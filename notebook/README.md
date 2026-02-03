@@ -8,11 +8,11 @@ This folder contains Python scripts (Jupyter notebooks) that automate the heavy 
 
 ## Overview
 
-The migration process consists of three main steps, each automated by a dedicated notebook:
+The migration process consists of two required steps and one optional step, each automated by a dedicated notebook:
 
-1. **Export and convert XML to Quarto markdown** (`1_squarespace_xmlexport_to_quarto.ipynb`)
-2. **Download assets from Squarespace** (`2_squarespace_download_assets.ipynb`)
-3. **Rename assets to match QMD files** (`3_squarespace_rename_assets.ipynb`)
+1. **Export and convert XML to Quarto markdown** (`1_squarespace_xmlexport_to_quarto.ipynb`) - **Required**
+2. **Download assets from Squarespace** (`2_squarespace_download_assets.ipynb`) - **Required**
+3. **Rename assets to match QMD files** (`3_squarespace_rename_assets.ipynb`) - **Optional** - Only needed if your image filenames are messy
 
 ---
 
@@ -35,6 +35,7 @@ Squarespace provides a feature to export site content into an XML file. This is 
 ### What Content Will Export
 
 ✅ **Exports successfully:**
+
 - Blog posts (title, content, tags, categories)
 - Pages (title, content)
 - Text content and basic formatting
@@ -42,6 +43,7 @@ Squarespace provides a feature to export site content into an XML file. This is 
 - Publication dates and metadata
 
 ❌ **Won't export:**
+
 - Custom CSS and JavaScript
 - Form submissions and data
 - Commerce data (products, orders)
@@ -81,6 +83,7 @@ Squarespace provides a feature to export site content into an XML file. This is 
 **Purpose:** Converts the Squarespace XML export into Quarto-compatible markdown documents (.qmd files).
 
 **What it does:**
+
 - Parses the XML export file
 - Extracts posts and pages
 - Converts HTML content to markdown
@@ -101,6 +104,7 @@ Squarespace provides a feature to export site content into an XML file. This is 
 **Purpose:** Downloads images and other assets referenced in the QMD files from Squarespace.
 
 **What it does:**
+
 - Scans QMD files for asset URLs (images, PDFs, etc.)
 - Downloads assets from Squarespace servers
 - Saves assets to local folders
@@ -112,6 +116,7 @@ Squarespace provides a feature to export site content into an XML file. This is 
 **Output:** Downloaded assets in the assets folder
 
 **⚠️ Important Note:** Not all assets will successfully download. Some reasons include:
+
 - Private or restricted content
 - Expired or moved URLs
 - Assets that require authentication
@@ -119,25 +124,44 @@ Squarespace provides a feature to export site content into an XML file. This is 
 
 ---
 
-### Notebook 3: Rename Assets to Match QMD Files
+### Notebook 3: Rename Assets to Match QMD Files (Optional)
 
 **File:** `3_squarespace_rename_assets.ipynb`
 
-**Purpose:** Renames downloaded assets to match their associated QMD files for better organization.
+**⚠️ This step is OPTIONAL.** If your original image filenames from Squarespace are clean and organized, you can skip this notebook.
+
+**When to use this:**
+
+- Your Squarespace exported images have messy, random filenames
+- You want better organization with meaningful filenames
+- You need to easily identify which images belong to which pages
 
 **What it does:**
+
 - Scans QMD files for image references
 - Identifies which assets are used in which QMD files
-- Renames assets based on the QMD filename (e.g., `2020-01-15-blog-post-01.png`)
+- Renames assets based on the QMD filename and adds sequential numbering
 - Updates image paths in QMD files to reflect new names
 - Preserves unused assets with original names
 
+**Example:**
+If you have a page called `2025-blog-helloworld.qmd` with multiple images, the script will rename them as:
+
+- `2025-blog-helloworld-01.png`
+- `2025-blog-helloworld-02.png`
+- `2025-blog-helloworld-03.png`
+- And so on...
+
+This makes it easy to identify which images belong to which page at a glance.
+
 **Input:**
+
 - QMD files
 - Downloaded assets
 
 **Output:**
-- Renamed assets
+
+- Renamed assets with meaningful filenames
 - Updated QMD files with corrected image paths
 
 **Note:** Assets that aren't referenced in any QMD file will not be renamed. This helps identify unused or orphaned assets.
@@ -157,7 +181,7 @@ Squarespace provides a feature to export site content into an XML file. This is 
                ▼
 ┌─────────────────────────────┐
 │  2. Convert XML to QMD      │
-│  (Notebook 1)               │
+│  (Notebook 1) - REQUIRED    │
 └──────────────┬──────────────┘
                │
                │ *.qmd files
@@ -165,7 +189,7 @@ Squarespace provides a feature to export site content into an XML file. This is 
                ▼
 ┌─────────────────────────────┐
 │  3. Download Assets         │
-│  (Notebook 2)               │
+│  (Notebook 2) - REQUIRED    │
 └──────────────┬──────────────┘
                │
                │ Images, PDFs, etc.
@@ -173,10 +197,11 @@ Squarespace provides a feature to export site content into an XML file. This is 
                ▼
 ┌─────────────────────────────┐
 │  4. Rename Assets           │
-│  (Notebook 3)               │
+│  (Notebook 3) - OPTIONAL    │
+│  Skip if filenames are OK   │
 └──────────────┬──────────────┘
                │
-               │ Organized assets
+               │ (with clean filenames)
                │
                ▼
 ┌─────────────────────────────┐
@@ -192,6 +217,7 @@ Squarespace provides a feature to export site content into an XML file. This is 
 After running all three notebooks, the automated conversion is complete. Your content is now in Quarto format, but the real work begins - making it beautiful and functional.
 
 **The scripts save you months** by automating:
+
 - XML parsing and markdown conversion
 - Bulk asset downloading
 - File organization and renaming
@@ -250,15 +276,19 @@ This migration process is provided as-is without warranty. Please note:
 ### Common Issues
 
 **Problem:** XML export is empty or incomplete
+
 - **Solution:** Check Squarespace export settings, ensure you're exporting the correct site
 
 **Problem:** Assets won't download (403/404 errors)
+
 - **Solution:** Assets may be private or moved. Download manually from Squarespace admin panel
 
 **Problem:** QMD files have broken formatting
+
 - **Solution:** Review and manually fix markdown. Some Squarespace HTML may not convert cleanly
 
 **Problem:** Images don't display in Quarto site
+
 - **Solution:** Check file paths in QMD files, ensure assets are in correct folders
 
 ---
