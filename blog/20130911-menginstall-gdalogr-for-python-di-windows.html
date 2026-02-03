@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Benny Istanto">
+<meta name="dcterms.date" content="2013-09-11">
+<meta name="description" content="Beberapa bulan terakhir saya banyak menggunakan GDAL/OGR untuk melakukan clip dan translate data satelit">
+
+<title>Menginstall “GDAL/OGR for Python” di Windows</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/image-logo/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ae7d70a23c66c8df71f5a679a6f4dfc7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-1bcb2280c51331a5c09e99b999b82845.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ae7d70a23c66c8df71f5a679a6f4dfc7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-371178116"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-371178116', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../styles/styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo light-content">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../csr.html"> 
+<span class="menu-text">CSR</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-works" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Works</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-works">    
+        <li>
+    <a class="dropdown-item" href="../works.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/experiences.html">
+ <span class="dropdown-text">Experiences</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/projects.html">
+ <span class="dropdown-text">Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/consulting.html">
+ <span class="dropdown-text">Consulting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/maps-and-infographics.html">
+ <span class="dropdown-text">Maps &amp; Infographics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../cv.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Menginstall “GDAL/OGR for Python” di Windows</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">GIS</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Beberapa bulan terakhir saya banyak menggunakan GDAL/OGR untuk melakukan clip dan translate data satelit
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Benny Istanto </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 11, 2013</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Beberapa bulan terakhir saya banyak menggunakan <a href="https://gdal.org">GDAL/OGR</a> untuk melakukan <em>clip</em> dan <em>translate</em> data satelit. Sebelumnya saya menggunakan GDAL/OGR yang sudah terintegrasi di dalam QGIS <em>plugins</em> (<a href="http://fwtools.maptools.org">FW tools</a>).</p>
+<p>Ternyata menggunakan GDAL/OGR secara langsung juga mudah dan jauh lebih enak, apalagi ketika saya hanya membutuhkan operasi <em>clip</em> untuk memotong data satelit menjadi wilayah Indonesia saja, dan <em>translate</em> untuk mengubah format HDF menjadi format GeoTIFF.</p>
+<p>Dengan menggunakan 1-baris perintah GDAL/OGR, proses <em>clip</em> dan <em>translate</em> untuk 1000 file bisa dilakukan dengan cepat dan hanya memerlukan waktu beberapa detik saja, tentunya syarat dan ketentuan berlaku (tergantung ukuran filenya, <em>shapefile</em> yang digunakan untuk memotong, luasan wilayah, dll).</p>
+<p>Tetapi banyak orang enggan menggunakan GDAL/OGR secara langsung, ini disebabkan oleh beberapa faktor seperti:</p>
+<ul>
+<li>Proses instalasi dan pengaturannya yang rumit</li>
+<li>GDAL/OGR sudah tersedia dengan berbagai versi dari hasil instalasi software lainnya. QGIS dan PostgreSQL+PostGIS misalnya, mempunyai GDAL/OGR di dalamnya, dengan pengaturan yang melekat tergantung kebutuhan software itu sendiri.</li>
+<li>Komputer sudah terinstall ArcGIS, sehingga akan menambah rumit dan mungkin saja menimbulkan masalah baru ketika GDAL/OGR terinstall juga.</li>
+</ul>
+<p>Setelah mencoba beberapa metode, saya menemukan cara mudah menginstall software GDAL/OGR terbaru di sistem operasi Windows. (Untuk sistem operasi lain, tidak perlu saya beri contoh, karena jauh lebih mudah dibanding Windows).</p>
+<p>Untuk melakukan instalasi ini, kamu harus mempunyai akses sebagai Administrator di Windows.</p>
+<blockquote class="blockquote">
+<p>CATATAN</p>
+<p>Situasi berikut dapat menyebabkan masalah ketika menginstall GDAL/OGR for Python:</p>
+<ol type="1">
+<li><p>Beberapa instalasi Python. Misalnya: ArcGIS menginstal versi Python yang tidak terdaftar secara resmi di Windows (membuatnya sedikit lebih rumit untuk menginstal GDAL padanya). Lihat langkah 1 untuk informasi lebih lanjut.</p></li>
+<li><p>GDAL/OGR mungkin sudah terinstal dan diperlukan oleh perangkat lunak lain (misal: QGIS dan PostGIS). Lihat langkah 7 untuk informasi dan solusi.</p></li>
+</ol>
+</blockquote>
+<section id="prosedur-instalasi" class="level2">
+<h2 class="anchored" data-anchor-id="prosedur-instalasi">Prosedur instalasi:</h2>
+<ol type="1">
+<li>Menentukan versi Python yang diinginkan</li>
+<li>Mendapatkan file instalasi GDAL</li>
+<li>Mendapatkan <em>Python bindings</em></li>
+<li>Menginstal GDAL</li>
+<li>Mengedit <em>Environment Variable</em> pada Windows</li>
+<li>Menginstal <em>Python bindings</em></li>
+<li>Informasi dan solusi untuk instalasi GDAL yang sudah ada</li>
+<li>Masalah umum</li>
+</ol>
+<section id="menentukan-versi-python-yang-diinginkan" class="level3">
+<h3 class="anchored" data-anchor-id="menentukan-versi-python-yang-diinginkan">1. Menentukan versi Python yang diinginkan</h3>
+<p>Jika kamu menginstal Python secara manual, itu bisa berada di mana saja lokasi tempat menginstalnya, tetapi lokasi <em>default</em>-nya adalah seperti C:, di mana XX adalah versi utama; misalnya, 27 adalah versi utama Python 2.7.5. (Versi 2.7.5 adalah versi python yang terinstall di Windows saya dan lokasinya berada di C:)</p>
+<p>Jika di komputer kita telah terinstall ArcGIS misalnya, ArcGIS 10.2 biasanya menginstal Python 2.7 ke C:, meskipun sebenarnya dapat juga diinstal ke drive lokal lain seperti D:.</p>
+<p>Jika kamu telah menginstal <em>Background Geoprocessing 64-bit</em> (dijelaskan di <a href="https://www.esri.com/arcgis-blog/products/arcgis-desktop/analytics/announcing-64-bit-geoprocessing/">sini</a>), maka itu akan menginstal Python tambahan, dengan lokasi default C:<br>
+</p>
+<p>Kamu juga dapat mencoba mencari python.exe di <em>hard-drive</em> kamu, tetapi perlu diketahui bahwa beberapa aplikasi mungkin berisi instalasi internal Python mereka sendiri (yang mungkin tidak cocok/ingin kamu gunakan).</p>
+<p>Setelah kamu mengetahui Python mana yang akan kamu gunakan, buka interpreter Python dengan cara biasa (atau klik dua kali pada python.exe-nya). Ini akan mencetak informasi tentang versi di atas ketika terbuka, misalnya:</p>
+<p><em>Python 2.7.5 (default, 15 May 2013, 08:10:18) [MSC v.1500 32 bit (Intel)] on win32</em></p>
+<p>Informasi yang penting dari versi Python di atas: versi di komputer saya adalah Python 2.7 (informasi tambahan .5 tidak penting) dan 32 bit.</p>
+</section>
+<section id="mendapatkan-file-instalasi-gdal" class="level3">
+<h3 class="anchored" data-anchor-id="mendapatkan-file-instalasi-gdal">2. Mendapatkan file instalasi GDAL</h3>
+<p>Situs ini: <a href="https://www.gisinternals.com/release.php" class="uri">https://www.gisinternals.com/release.php</a> adalah tempat dimana kamu dapat mengunduh file instalasi GDAL. Gulir ke bawah ke bagian bawah tabel dan klik tautan yang relevan di ’<em>Downloads’ -</em> pada kolom <em>Arch</em>. kolom menunjukkan apakah <em>32 bit</em> (<em>win32</em>) atau <em>64 bit</em> (<em>x64</em>), pilih salah satu yang sesuai dengan Python kamu. Misal: <em>release-1500-gdal-1-10-1-mapserver-6-4-0</em></p>
+<p>Dari halaman baru, download file <em>GDAL Core</em>: <em>gdal-[version]-[build]-core.msi</em> (Contoh: <em>gdal-110-1500-core.msi</em>)</p>
+</section>
+<section id="mendapatkan-python-bindings" class="level3">
+<h3 class="anchored" data-anchor-id="mendapatkan-python-bindings">3. Mendapatkan <em>Python Bindings</em></h3>
+<p>Untungnya, <em>Python bindings</em> juga tersedia di sini, nama filenya <em>GDAL-[gdalVersion.architecture]-py[pythonVersion].[exe/msi]</em> (misalnya <em>GDAL-1.10.1.win32-py2.7.msi</em>), pastikan saja untuk mengunduh versi yang cocok dengan versi Python yang kamu instal.</p>
+</section>
+<section id="menginstall-gdal" class="level3">
+<h3 class="anchored" data-anchor-id="menginstall-gdal">4. Menginstall GDAL</h3>
+<p>Jalankan file instalasi GDAL Core yang diunduh pada langkah 2, dan ingat/catat lokasi folder instalasi jika kamu mengubahnya (tidak sesuai dengan <em>default</em>).</p>
+</section>
+<section id="edit-environmental-variables" class="level3">
+<h3 class="anchored" data-anchor-id="edit-environmental-variables">5. Edit <em>Environmental Variables</em></h3>
+<blockquote class="blockquote">
+<p>PERINGATAN</p>
+<p>Jangan membuat kesalahan apa pun disini (seperti menghapus sesuatu), atau akan berakibat sistem kamu menjadi tidak berfungsi…</p>
+</blockquote>
+<p>Untuk memunculkan kotak dialog <em>Environmental Variables</em>:</p>
+<ul>
+<li>Buka <em>Control Panel</em></li>
+<li>Masuk ke <em>System</em></li>
+<li>Klik pada <em>Advanced</em> di sebelah kiri</li>
+<li>Lalu klik <em>Environmental Variables</em> dibagian bawah</li>
+</ul>
+<p>Pertama, kamu perlu mengidentifikasi apakah akan ada konflik dengan versi GDAL yang mungkin telah diinstal sebelumnya. Sebagai contoh, saya akan memodifikasi dua <em>Environmental Variables</em>, yang satu disebut GDAL_DATA dan yang lainnya sistem <em>Path</em>.</p>
+<p>Untuk memeriksa versi GDAL sebelumnya:</p>
+<ul>
+<li>Gulir ke bawah di panel <em>System Variables</em> (di agian bawah) dan cari variabel yang disebut GDAL_DATA</li>
+<li>Gulir ke bawah lebih jauh di panel <em>System Variables</em> dan temukan variabel <em>Path</em>, klik <em>Edit</em> dan salin konten ke <em>editor</em> teks (Notepad atau Wordpad), lalu cek isinya dengan cermat dan lihat apakah ada referensi ke GDAL.</li>
+<li>Periksa panel variabel <em>User</em> untuk hal yang sama (kecil kemungkinannya ada di sini, tetapi perlu diperiksa)</li>
+</ul>
+<p>Jika GDAL_DATA tidak ada dan tidak ada referensi ke GDAL di variabel <em>Path</em>, seharusnya tidak ada konflik dan kamu dapat melanjutkan dengan yang di bawah ini. Jika tidak, periksa informasi di langkah 7 sebelum melanjutkan.</p>
+<p>Di panel <em>System Variables</em>, gulir kotak ke bawah, pilih variabel <em>Path</em>, lalu ke <em>Edit</em>, tekan <em>End</em> untuk mendapatkan kursor di bagian akhir, tambahkan titik koma (;) dan kemudian masukkan path instalasi GDAL kamu. Sebagai contoh dalam instalasi di komputer saya, saya menambahkan ini:</p>
+<p>;C:Files (x86)</p>
+<blockquote class="blockquote">
+<p>Jika sistem operasi kamu menggunakan <em>64 bit</em>, dan kamu juga menggunakan file instalasi GDAL <em>64 bit</em>, maka yang harus kamu tambahkan adalah:</p>
+<p>;C:Files</p>
+<p>Pastikan untuk tidak memasukkan spasi tambahan sebelum atau sesudah <em>path</em>!</p>
+</blockquote>
+<p>Klik <em>OK</em>, lalu klik <em>New</em> dan masukkan yang berikut ini:</p>
+<p>Nama variabel: GDAL_DATA</p>
+<p>Nilai variabel adalah path ke direktori data GDAL. Sebagai contoh dalam instalasi di komputer saya, saya menambahkan ini:</p>
+<p>C:Files (x86)-data</p>
+<blockquote class="blockquote">
+<p>Jika sistem operasi kamu menggunakan <em>64 bit</em>, dan kamu juga menggunakan file instalasi GDAL <em>64 bit</em>, maka yang harus kamu tambahkan adalah:</p>
+<p>C:Files-data</p>
+</blockquote>
+<p>Untuk menguji hasil instalasi, buka <em>command prompt</em> kamu (ketik <em>cmd</em> di dialog <em>Run</em>), ketik <em>ogr2ogr</em> dan tekan <em>Enter</em>. Ini adalah salah satu program yang disertakan dengan GDAL; jika <em>Path</em> kamu sudah ditulis dengan benar, itu akan dapat diakses dari mana saja.</p>
+<p>Jika beberapa informasi tentang penggunaan ogr2ogr dan opsinya tercetak di layar (lihat gambar di bawah), maka GDAL sudah terpasang dengan benar dan <em>Environmental Variables</em> berfungsi.</p>
+<p><a href="../assets/image-blog/20130911-menginstall-gdalogr-for-python-di-windows-01.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="../assets/image-blog/20130911-menginstall-gdalogr-for-python-di-windows-01.jpg" class="img-fluid"></a></p>
+<p>Jika sebaliknya dikatakan: <em>‘ogr2ogr’ is not recognized as an internal or external command, operable program or batch file.</em>, Berarti ada masalah. Pertama, coba <em>restart</em> komputer kemudian jalankan perintah <em>ogr2ogr</em> lagi, jika <em>ogr2ogr</em> masih tidak berfungsi, periksa <em>Environmental Variables</em> kamu untuk memastikan tidak ada kesalahan ejaan atau kesalahan ketik.</p>
+</section>
+<section id="menginstall-python-bindings" class="level3">
+<h3 class="anchored" data-anchor-id="menginstall-python-bindings">6. Menginstall <em>Python bindings</em></h3>
+<p>Jalankan file instalasi <em>Python bindings</em> yang diunduh pada langkah 2. Jika kamu memiliki banyak instalasi Python atau pengaturan <em>non-standar</em>, pastikan untuk memeriksa ke versi Python mana ini akan terinstall.</p>
+<p>Setelah instalasi dilakukan dan untuk menguji seluruh pengaturan, buka <em>prompt</em> Python yang relevan dan masukkan:</p>
+<p><em>import ogr</em></p>
+<p>Tekan <em>Enter</em>, lalu:</p>
+<p><em>import gdal</em></p>
+<p>Jika keduanya berjalan tanpa ada respon apa pun, berarti kamu telah berhasil menginstall GDAL/OGR! (lihat gambar di bawah ini)</p>
+<p><a href="../assets/image-blog/20130911-menginstall-gdalogr-for-python-di-windows-02.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../assets/image-blog/20130911-menginstall-gdalogr-for-python-di-windows-02.jpg" class="img-fluid"></a></p>
+</section>
+<section id="masalahsolusi-untuk-instalasi-gdal-yang-sudah-ada" class="level3">
+<h3 class="anchored" data-anchor-id="masalahsolusi-untuk-instalasi-gdal-yang-sudah-ada">7. Masalah/solusi untuk instalasi GDAL yang sudah ada</h3>
+<p>Jika program/aplikasi lain telah menginstall GDAL pada komputermu, ini mungkin dapat menyebabkan masalah jika kamu mengganti variabel <em>Path</em> dan GDAL_DATA karena versi <em>library</em> nya mungkin tidak cocok.</p>
+<p>Identifikasi dan buatlah list terkait program/aplikasi mana saja yang menggunakan atau menginstall GDAL, dan pikirkan apakah kamu masih memerlukannya. Idealnya kamu dapat menghapus versi yang ada dan melanjutkan hanya dengan satu versi, jika kamu melakukan ini pastikan untuk membersihkan variabel <em>Path</em> dan GDAL_DATA sehingga mengarah ke lokasi yang benar dan lanjutkan dengan langkah 5 dan 6 di atas. Sebagai alternatif, kamu mungkin bisa mendapatkan <em>Python bindings</em> untuk versi yang telah diinstal, dan mengizinkan Python untuk mengaksesnya.</p>
+</section>
+<section id="masalah-umum" class="level3">
+<h3 class="anchored" data-anchor-id="masalah-umum">8. Masalah umum</h3>
+<p>Saat mencoba melakukan “<em>import gdal</em>” atau “<em>import ogr</em>” pada <em>prompt</em> Python, pesan kesalahan seperti <em>ImportError: DLL load failed: The specified module could not be found.</em> adalah paling sering disebabkan oleh kesalahan saat menambahkan folder pemasangan GDAL ke variabel sistem <em>Path</em> - ketika menemukan kesalahan ini, kembali ke langkah 5 dan cek dengan teliti.</p>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/benny\.istan\.to\/site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026, Benny Istanto.</p>
+<p>Exploring Climate with GIS and Data Science, solving old problems in new ways. Turning earth observation data into actionable, life-saving insights.</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+<div class="toc-actions"><ul><li><a href="https://github.com/bennyistanto/site/blob/main/blog/20130911-menginstall-gdalogr-for-python-di-windows.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/bennyistanto/site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/bennyistanto" aria-label="GitHub"><i class="bi bi-github"></i></a> <a href="https://linkedin.com/in/bennyistanto" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a> <a href="https://worldbank.github.io/GOST/content/staff/bennyistanto.html" aria-label="GOST"><i class="bi bi-globe"></i></a></p>
+<p><a href="https://buymeacoffee.com/bennyistanto">Buy Me a Coffee</a></p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Benny Istanto">
+<meta name="dcterms.date" content="2023-07-02">
+<meta name="description" content="1 Introduction In the sphere of meteorology, the significance of statistical models in comprehending and forecasting diverse weather patterns is incontestable">
+
+<title>Fourier regression model to generate monthly to daily temperature data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/image-logo/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ae7d70a23c66c8df71f5a679a6f4dfc7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-1bcb2280c51331a5c09e99b999b82845.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ae7d70a23c66c8df71f5a679a6f4dfc7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-371178116"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-371178116', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles/styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo light-content">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../csr.html"> 
+<span class="menu-text">CSR</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-works" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Works</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-works">    
+        <li>
+    <a class="dropdown-item" href="../works.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/experiences.html">
+ <span class="dropdown-text">Experiences</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/projects.html">
+ <span class="dropdown-text">Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/consulting.html">
+ <span class="dropdown-text">Consulting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/maps-and-infographics.html">
+ <span class="dropdown-text">Maps &amp; Infographics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../cv.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Fourier regression model to generate monthly to daily temperature data</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Research</div>
+    <div class="quarto-category">Climate</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    1 Introduction In the sphere of meteorology, the significance of statistical models in comprehending and forecasting diverse weather patterns is incontestable
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Benny Istanto </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 2, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">1 Introduction</h3>
+<p>In the sphere of meteorology, the significance of statistical models in comprehending and forecasting diverse weather patterns is incontestable. Within this context, the Fourier regression model has emerged as a formidable asset, specifically in generating daily time series from monthly temperature data (Wilks, 1998). The model lays a robust foundation for simulating temperature patterns, yielding crucial insights that are indispensable for weather prediction, climate change studies, and managing water resources.</p>
+<p>The Fourier regression model has been proven to be a highly effective tool for generating daily time series from monthly temperature data, enhancing our understanding and prediction capabilities in weather forecasting, climate change studies, and water resource management. This model’s unique ability to incorporate historical context allows it to capture intricate dependencies and transitions in temperature data, which are crucial in understanding temperature patterns.</p>
+<p>By applying Fourier series, it is possible to reduce the number of parameters involved in the process, thereby simplifying complex calculations and making the model more efficient. Moreover, the Fourier regression model can seamlessly replace missing values and handle anomalies, which are often challenges in data analysis. This enables more accurate simulations and predictions, making it a vital tool in fields such as agriculture and urban planning.</p>
+<p>The Fourier regression model’s success in generating daily time series from monthly temperature data not only contributes to our understanding of weather patterns but also provides practical solutions for real-world challenges, making it a powerful instrument in various domains.</p>
+</section>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">2 Data</h3>
+<p>Over the past three decades, Bogor’s climate has remained relatively consistent. The city experiences an average annual temperature of around 26 °Celsius. The temperature varies little throughout the year, with the warmest month averaging around 27 °Celsius and the coolest month averaging around 25 °Celsius.</p>
+<p>Daily temperature data of Bogor Climatological Station from 1984-2021 were used in this analysis, downloaded from BMKG Data Online in *.xlsx format. The file then manipulated by remove the logo and unnecessary text, aggregated into monthly, leaving only two columns, namely date in column A and temperature in column B for the header with the format extending downwards, and save as *.csv format.</p>
+<p>The final input file is accessible via this link: <a href="https://drive.google.com/file/d/1vKT5ekDnqahkG6um5wIm-ZfhExqZTAm8/view?usp=sharing" class="uri">https://drive.google.com/file/d/1vKT5ekDnqahkG6um5wIm-ZfhExqZTAm8/view?usp=sharing</a></p>
+</section>
+<section id="methods" class="level3">
+<h3 class="anchored" data-anchor-id="methods">3 Methods</h3>
+<p>This exercise focuses on the Fourier regression model as a tool for generating daily temperature data from monthly time series (Boer, 1999).</p>
+<p>Fourier series can also be employed to generate other climate data. McCaskill (1990a) utilized Fourier series regression, incorporating rainfall events to generate pan evaporation data, maximum and minimum air temperature, and daily radiation intensity (P(i)).</p>
+<p><a href="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-01.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-01.jpg" class="img-fluid"></a></p>
+<p>where <span class="math inline">\(f\)</span> represents a rain function, <span class="math inline">\(R(i+j)\)</span> is a rain event on day <span class="math inline">\((i+j)\)</span>, and <span class="math inline">\(c_j\)</span>, <span class="math inline">\(l\)</span>, and <span class="math inline">\(n\)</span> are determined through regression analysis. In the context of Australia, the incorporation of rain events in the Fourier series function did not exert a significant impact, although it substantially reduced the error level of the estimated value (McCaskill, 1990a).</p>
+<p>In the above equation 1, the effect of rainfall events is assumed to be additive. However, for certain regions, this rainfall event impact could be multiplicative.</p>
+<p>In many cases, climate data is generally presented as monthly data, making analysis requiring daily data difficult to execute. Fourier series regression can also be used to generate daily climate data from average monthly climate data (Epstein, 1991). The equation is written as follows:</p>
+<p><a href="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-02.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-02.jpg" class="img-fluid"></a></p>
+<p>where <span class="math inline">\(t' = \frac{2\pi t}{12}\)</span>, and <span class="math inline">\(t\)</span> is the month. This equation assumes an equal number of days in each month, which is not the case in reality. Therefore, to adjust it, the value of <span class="math inline">\(t\)</span> in the above equation is changed as the <span class="math inline">\(m\)</span>-th day for the <span class="math inline">\(T\)</span>-th month so that the value <span class="math inline">\(t = (T-0.5)+\frac{(m-0.5)}{D}\)</span>, where <span class="math inline">\(D\)</span> is the number of days in month <span class="math inline">\(T\)</span>. The use of equation 2 to create fitting lines for daily data is highly effective. The fitting lines composed from daily data and those derived from monthly data almost overlap.</p>
+<p>For simulation purposes, an error component, <span class="math inline">\(e(i)\)</span>, which has a normal distribution with a mean of 0 and a variance of <span class="math inline">\(s^2\)</span> is typically included. Thus, the data series generated by each simulation will differ but still reflect the seasonal diversity of data. Errors in climate data simulation models often autocorrelate. Therefore, the error component can be modeled using a k-th order autocorrelation function (Wannacott and Wannacott, 1987), which is:</p>
+<p><a href="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-03.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-03.jpg" class="img-fluid"></a></p>
+<p>where <span class="math inline">\(r\)</span> is the correlation value and <span class="math inline">\(w(i)\)</span> is the random error (white noise). The simplest autocorrelation error function linearly connects the error on day <span class="math inline">\(i\)</span> with the error on day <span class="math inline">\(i-1\)</span> plus the random error on day <span class="math inline">\(i\)</span> (first-order autocorrelation function), namely:</p>
+<p><a href="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-04.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-04.jpg" class="img-fluid"></a></p>
+<p>Therefore, if the value of <span class="math inline">\(r\)</span> is positive, the error on day <span class="math inline">\(i\)</span> tends to increase if the error on the previous day was high, and vice versa. Practically, the value of <span class="math inline">\(r\)</span> is always less than one, but its magnitude is unknown.</p>
+</section>
+<section id="implementation" class="level3">
+<h3 class="anchored" data-anchor-id="implementation">4 Implementation</h3>
+<p>In the implementation phase of this analysis, we utilized Python and the Pandas, Numpy and Matplotlib library to develop a Fourier regression model to generate daily time series from monthly temperature data.</p>
+<section id="how-to" class="level4">
+<h4 class="anchored" data-anchor-id="how-to">4.1 How-to?</h4>
+<p>The step-by-step guide for the model is readily accessible in Google Colab, an ideal platform for data analysis and machine learning. This comprehensive how-to guide explains the entire process, starting with reshaping the data to ensure compatibility with the model, and aggregate calculation from daily to monthly, assigning monthly data across the corresponding days of the month, Fourier Series Modeling and Coefficient Extraction, Temperature estimation using Fourier Coefficients, Autocorrelated Error Calculation and Final estimates adjusted temperature..</p>
+<p>4.1.1 Reshape the data</p>
+<p>The first step in our analysis involves pre-processing and reshaping the data to fit the requirements of the subsequent statistical modeling. Our raw temperature data, originally in a CSV file, consists of daily temperature readings recorded over several years. In this data, dates are represented in a ‘YYYY-MM-DD’ format. However, for our analysis, we require the ‘day of the year’ and the ‘year’ as separate variables.</p>
+<p>We start by loading the data into a Pandas DataFrame. Next, we convert the ‘date’ column into a datetime format using the pd.to_datetime() function, which facilitates date-specific manipulations. This allows us to extract the ‘day of the year’ and the ‘year’ information from each date and store these in new columns titled ‘dayofyear’ and ‘year’, respectively.</p>
+<p>Since we have multiple temperature readings per day, we average these readings for each day of the year across all years. We do this by grouping the data by ‘dayofyear’ and ‘year’, and then calculating the mean temperature for each group using the groupby() and mean() functions.</p>
+<p>However, this leaves us with a long format DataFrame, where each row represents a day of a particular year. For easier visualization and modeling, we convert this into a wide format DataFrame, where each column represents a year and each row represents a day of the year. This transformation is performed using the unstack() function.</p>
+<p>Lastly, we reset the DataFrame index for neatness and compatibility with future operations. The resulting DataFrame is saved into a new CSV file. This reshaping of data forms the foundation for our Fourier regression model and helps ensure accuracy and efficiency in the subsequent analysis.</p>
+<p>Above code will produce output previews like below.</p>
+<p><a href="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-05.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-05.jpg" class="img-fluid"></a></p>
+<p><strong>Table 1.</strong> Reshape data from long to wide format</p>
+<p>4.1.2 Daily to Monthly</p>
+<p>In addition to the daily analysis, we decided to explore the temperature trends on a monthly basis. The process for reshaping the data for monthly temperature averages mirrors the daily approach.</p>
+<p>First, we load the raw temperature data from a CSV file into a Pandas DataFrame and convert the ‘date’ column to a datetime format. With the datetime format, we’re able to extract the ‘month’ and ‘year’ from each date, creating new columns for each.</p>
+<p>As with the daily analysis, we handle multiple temperature readings per day by averaging these for each month of each year. We achieve this by grouping the data by ‘month’ and ‘year’, then calculating the mean temperature for each group.</p>
+<p>To facilitate further analysis and visualization, we convert this long format DataFrame to a wide format DataFrame, with each column representing a year and each row representing a month. This is done using the unstack() function.</p>
+<p>After resetting the DataFrame index for better data structure, we save the resulting DataFrame into a new CSV file. This CSV file contains average monthly temperatures over the years and will be useful for understanding broader temperature trends and providing context to our Fourier regression model.</p>
+<p>Above code will produce output previews like below.</p>
+<p><a href="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-06.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-06.jpg" class="img-fluid"></a></p>
+<p><strong>Table 2.</strong> Monthly average of temperature</p>
+<p>4.1.3 Assigning monthly data into across the corresponding days of the month</p>
+<p>In order to prepare our dataset for Fourier regression modeling, we need to map the average monthly temperature values to their corresponding days of the year. This step is crucial as it enables the creation of a continuous time series from the previously calculated monthly averages.</p>
+<p>We begin this process by defining the number of days in each month, differentiating between leap and non-leap years. Then, we create a new DataFrame, dayofyear_df, with a ‘dayofyear’ column that sequentially enumerates each day of the year from 1 to 366. A binary ‘leap’ column is also added to indicate if the day corresponds to a leap year.</p>
+<p>To map the ‘dayofyear’ to the corresponding month, we create a ‘month’ column using np.repeat() to repeat the month index according to the number of days in each month. This column is then adjusted for non-leap years.</p>
+<p>The average monthly temperatures, stored in monthly_avg_df, are merged with the dayofyear_df DataFrame, repeating each monthly average across the corresponding days of the month. As a result, we obtain a DataFrame with daily granularity, which contains the corresponding average monthly temperature for each day.</p>
+<p>We then handle the 366th day of non-leap years, setting the temperature to NaN, as it doesn’t exist in those years.</p>
+<p>Finally, we remove the unnecessary ‘month’ and ‘leap’ columns, reset the index, and save this DataFrame into a new CSV file. This final, reshaped DataFrame serves as our input for the Fourier regression modeling, enabling us to predict temperatures at a daily level from average monthly temperatures.</p>
+<p>Above code will produce output previews like below.</p>
+<p><a href="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-07.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-07.jpg" class="img-fluid"></a></p>
+<p><strong>Table 3.</strong> Assigning monthly data into daily</p>
+<p>4.1.4 Fourier series modeling and coefficient extraction</p>
+<p>The next step in the analysis process involves fitting a Fourier series to our daily temperature data. The Fourier series is a mathematical tool used for analyzing periodic functions, making it suitable for modeling periodic patterns in weather data like temperature.</p>
+<p>To begin, we first load the reshaped DataFrame containing the daily average temperatures. Next, we define a Fourier function, specifying the form it should take. The function is expressed in terms of trigonometric terms (cosine and sine functions) and includes coefficients that we aim to estimate (a0, a1, b1, a2, b2).</p>
+<p>To perform this estimation, we iterate over each year in the DataFrame. For each year, we calculate new variables ‘T’, ‘m’, ‘D’, and ‘t’. These variables represent respectively the month, the day of the month, the number of days in the month, and a transformed time index (where each month is considered as a unit time interval). We exclude data points with NaN or infinite values.</p>
+<p>We then utilize the curve_fit function from the scipy.optimize module to fit the Fourier function to the temperature data for each year. This function returns the optimal values for the coefficients a0, a1, b1, a2, and b2 that best fit the data.</p>
+<p>In cases where there’s insufficient data to fit the Fourier series, we handle the errors and assign NaN values to the coefficients for that year.</p>
+<p>Once we obtain the coefficients for each year, we save this data into a new CSV file. This file will then be used to generate our Fourier regression model and perform temperature estimation. The generated Fourier coefficients provide insights into the amplitude and phase of the cyclical patterns in the temperature data.</p>
+<p>Above code will produce output previews like below.</p>
+<p><a href="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-08.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-08.jpg" class="img-fluid"></a></p>
+<p><strong>Table 4.</strong> Fourier coefficient</p>
+<p>4.1.5 Temperature estimation using Fourier coefficient</p>
+<p>Having determined the coefficients of the Fourier series for each year, we can now use these coefficients to generate temperature estimates. This step entails constructing a time series model for the daily temperatures based on the Fourier series.</p>
+<p>We start by loading the DataFrame that contains the Fourier coefficients for each year. These coefficients were calculated in the previous step and are used to define the form of the Fourier series for each year.</p>
+<p>Our next task is to create a new DataFrame, ‘temp_estimates’, to store our estimated temperatures. This DataFrame is initially populated with a ‘dayofyear’ column, containing each day of the year (from 1 to 367).</p>
+<p>We then iterate over each year in our coefficients DataFrame. For each year, we create a separate DataFrame ‘year_df’ and calculate the transformed time index ‘t’ just as we did when fitting the Fourier series. This time index is used as the input to our Fourier function.</p>
+<p>Next, we use our Fourier function, along with the coefficients for the current year, to calculate the estimated temperature for each day of that year. These estimated temperatures are then added as a new column in the ‘year_df’ DataFrame, with the column name being the current year.</p>
+<p>We repeat this process for all years in our dataset, merging the temperature estimates for each year into the ‘temp_estimates’ DataFrame.</p>
+<p>Finally, we save these temperature estimates to a new CSV file. The end result of this process is a DataFrame that provides a day-by-day estimate of the temperature for each year based on the Fourier regression model. These estimates serve as the basis for our subsequent analysis and allow us to visualize and quantify the cyclical patterns present in the temperature data.</p>
+<p>Above code will produce output previews like below.</p>
+<p><a href="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-09.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-09.jpg" class="img-fluid"></a></p>
+<p><strong>Table 5.</strong> Temperature estimates</p>
+<p>4.1.6 Autocorrelated error calculation</p>
+<p>This code calculates the autocorrelated error between the observed temperature and the estimated temperature from the Fourier model for each year, and stores the errors in a dataframe.</p>
+<p>Firstly, we load the wide-format data and the estimated temperature data. Then, we specify an autocorrelation factor (r), which is a parameter that describes the correlation between values of the error at different points in time.</p>
+<p>We loop over each year from 1986 to 2022, and for each year we:</p>
+<p>Calculate the difference between the observed and estimated temperatures to get the error.</p>
+<p>Generate a sequence of random numbers from a normal distribution, called white noise.</p>
+<p>Compute the autocorrelated error. The error for the first day is simply the white noise, and for each subsequent day, the error is the autocorrelation factor multiplied by the previous day’s error, plus the white noise for that day.</p>
+<p>Finally, we create a DataFrame from the dictionary of autocorrelated errors, and save it to a CSV file.</p>
+<p>This autocorrelated error represents the error in our model’s estimate that cannot be explained by the model itself, but rather depends on previous errors. This could be due to factors that we did not include in our model, such as atmospheric conditions or climate change. By including this autocorrelation in our analysis, we can better understand and model these unexplained variations in temperature.</p>
+<p>Above code will produce output previews like below.</p>
+<p><a href="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-10.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-10.jpg" class="img-fluid"></a></p>
+<p><strong>Table 6.</strong> Autocorrelated error</p>
+<p>4.1.7 Final estimates adjusted temperature</p>
+<p>We integrated the autocorrelated error into our temperature estimates to generate a more refined model of temperature estimation. With this data in place, we transformed our wide-format data into a long-format data frame. Each row of this data frame represented a specific day from a specific year, containing information on the date, observed temperature, estimated temperature, error, and the adjusted estimated temperature (estimate + error).</p>
+<p>This transformed format provided us with a holistic and granular view of our data, suitable for subsequent detailed analyses. Once the transformation was complete, the data was saved into a CSV file, enabling easy access for further research or data visualization tasks.</p>
+<p>Above code will produce output previews like below.</p>
+<p><a href="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-11.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-11.jpg" class="img-fluid"></a></p>
+<p><strong>Table 7.</strong> Final adjusted temperature</p>
+</section>
+<section id="jupyter-notebook" class="level4">
+<h4 class="anchored" data-anchor-id="jupyter-notebook">4.2 Jupyter Notebook</h4>
+<p>The provided code shows the process on how we can use monthly temperature data to generate daily time series temperature using Fourier regression models. Here’s a summary of what each part of the code does: <a href="https://gist.github.com/bennyistanto/a9e6045a78b230dbd5c443a0e0e4fa41" class="uri">https://gist.github.com/bennyistanto/a9e6045a78b230dbd5c443a0e0e4fa41</a></p>
+</section>
+</section>
+<section id="results" class="level3">
+<h3 class="anchored" data-anchor-id="results">5 Results</h3>
+<p>The graphical visualization of the estimated daily temperature against the observed temperature provided a robust means of evaluating the efficacy of the Fourier model across the study period (1986-2021) at the Bogor Climatological Station. The estimated temperature, generated from the Fourier model, was superimposed onto a scatter plot of the observed temperatures. The latter were smoothed using the nonparametric LOESS technique to discern major trends within the data.</p>
+<p>Each subplot delineated a separate year’s worth of data, allowing for an insightful year-to-year examination of the model’s performance. The observed temperatures were presented as scatter points, with the LOESS smoothing line capturing the general pattern of the temperature across different days of the year.</p>
+<p>The comparison between the observed temperature trends and the estimates from the Fourier model revealed a substantial degree of congruence, indicating the model’s reliability in predicting daily temperature patterns. The Fourier model demonstrated a commendable ability to generate daily temperature estimates from monthly data. This affirms the model’s utility in climatological studies, particularly when granular daily data are not readily available.</p>
+<p>Above code will produce a chart visualization below</p>
+<p><a href="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-13.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-13.jpg" class="img-fluid"></a></p>
+<p><strong>Picture 1.</strong> Observed temperature vs Estimated temperature, year-by-year</p>
+<p>In this exercise, we implemented a method to compute autocorrelated errors between observed and estimated temperatures from 1986 to 2022. We began by loading our dataset, after which we defined an autocorrelation factor, a parameter that reveals the correlation between different points in time within the error series.</p>
+<p>Each year’s temperature discrepancy was calculated and white noise, a random sequence derived from a normal distribution, was added. We then introduced the autocorrelation factor into the errors, with the first day’s error being only the white noise. The error for subsequent days factored in both the white noise and a portion of the previous day’s error, weighted by the autocorrelation factor.</p>
+<p>Post computation, we organized the autocorrelated errors into a dictionary, subsequently transforming it into a DataFrame for further analysis. This dataset of autocorrelated errors presents the unexplained variance within our model, potentially stemming from unaccounted factors such as climate changes or certain atmospheric conditions.</p>
+<p>Finally, we integrated these autocorrelated errors with our estimated temperatures, resulting in an adjusted and more refined temperature prediction. This revised dataset was then visualized in a time series plot, allowing for a comparative analysis between observed and adjusted estimated temperatures. The plot revealed a clear upward trend in the temperature at the Bogor Climatological Station from 1986 to 2021. Notably, the application of autocorrelated errors offered an excellent fit to the observed temperatures, thus affirming the effectiveness of our model.</p>
+<p>Above code will produce a chart visualization below</p>
+<p><a href="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-14.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-14.jpg" class="img-fluid"></a></p>
+<p><strong>Picture 2.</strong> Observed temperature vs Estimated temperature with error</p>
+<p>The Fourier model’s estimates were further scrutinized by integrating autocorrelated errors into the calculations. This facilitated the generation of a modified temperature prediction that comprised the original estimate and the error. Upon examination, the plots vividly displayed a comprehensive juxtaposition of this adjusted forecast against the observed data for each year from 1986 to 2021.</p>
+<p>Notably, the error-adjusted estimates, visualized through LOESS-smoothed lines, revealed minor disparities compared to the original model predictions. These charts underscored the pertinence of accommodating inherent model errors and substantiated the robustness of the Fourier model’s initial estimates. The insights derived from this comparison can guide further refinements to the model for superior accuracy in future temperature estimates.</p>
+<p>Above code will produce a chart visualization below</p>
+<p><a href="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-12.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="../assets/image-blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data-12.jpg" class="img-fluid"></a></p>
+<p><strong>Picture 3.</strong> Observed temperature vs Estimated temperature with error, year-by-year</p>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">6 Conclusion</h3>
+<p>The application of the Fourier regression model for generating daily time series data from monthly temperature observations has demonstrated considerable efficacy in climatological studies. This modeling approach provides a mathematically rigorous way to interpolate intra-monthly fluctuations, leveraging periodicity inherent in annual temperature patterns. The model is thus capable of filling data gaps and offering granular insights into day-to-day temperature variations, a granularity that monthly data alone cannot provide.</p>
+<p>Notably, the model’s provision for the autocorrelation of errors adds an additional layer of realism to the estimations, acknowledging the dependence of errors on preceding values. This factor makes the model responsive to the serial correlation often seen in climatic data, enhancing its predictive capabilities.</p>
+<p>In conclusion, Fourier regression modeling serves as an invaluable tool for climatologists, offering an effective means of generating daily time series data from sparse or aggregated observations. Through its utilization, it is possible to acquire more detailed insights into temperature dynamics, paving the way for refined climate studies, policy formulation, and mitigation strategies against climatic anomalies. The model’s robustness, flexibility, and accommodating nature towards error correlation further enhance its applicability, making it a staple in the data-driven examination of climate patterns.</p>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">7 References</h3>
+<p>Epstein, E.S. 1991. On Obtaining daily climatological values from monthly means. J. Climate 4:465-368. <a href="https://doi.org/10.1175/1520-0442(1991)004%3C0365:OODCVF%3E2.0.CO;2" class="uri">https://doi.org/10.1175/1520-0442(1991)004%3C0365:OODCVF%3E2.0.CO;2</a></p>
+<p>Boer, R., Notodipuro, K.A., Las, I. 1999. Prediction of Daily Rainfall Characteristics from Monthly Climate Indices. RUT-IV report. National Research Council, Indonesia.</p>
+<p>Castañeda-Miranda, A., Icaza-Herrera, M. de, &amp; Castaño, V. M. (2019). Meteorological Temperature and Humidity Prediction from Fourier-Statistical Analysis of Hourly Data. Advances in Meteorology, 2019, 1–13. <a href="https://doi.org/10.1155/2019/4164097" class="uri">https://doi.org/10.1155/2019/4164097</a></p>
+<p>Hernández-Bedolla, J.; Solera, A.; Paredes-Arquiola, J.; Sanchez-Quispe, S.T.; Domínguez-Sánchez, C. A Continuous Multisite Multivariate Generator for Daily Temperature Conditioned by Precipitation Occurrence. Water 2022, 14, 3494. <a href="https://doi.org/10.3390/w14213494" class="uri">https://doi.org/10.3390/w14213494</a></p>
+<p>McCaskill, M.R. 1990. An efficient method for generation of full climatological records from daily rainfall. Australian Journal of Agricultural Research 41, 595-602. <a href="https://doi.org/10.1071/AR9900595" class="uri">https://doi.org/10.1071/AR9900595</a></p>
+<p>Parra-Plazas, J., Gaona-Garcia, P. &amp; Plazas-Nossa, L. Time series outlier removal and imputing methods based on Colombian weather stations data. Environ Sci Pollut Res 30, 72319–72335 (2023). <a href="https://doi.org/10.1007/s11356-023-27176-x" class="uri">https://doi.org/10.1007/s11356-023-27176-x</a></p>
+<p>Srikanthan, R., &amp; McMahon, T. A. (2001). Stochastic generation of annual, monthly and daily climate data: A review. Hydrology and Earth System Sciences Discussions, 5(4), 653-670. <a href="https://doi.org/10.5194/hess-5-653-2001" class="uri">https://doi.org/10.5194/hess-5-653-2001</a></p>
+<p>Stern, R. D., &amp; Coe, R. (1984). A model fitting analysis of daily rainfall data. Journal of the Royal Statistical Society. Series A (General), 147(1), 1-34. <a href="https://doi.org/10.2307/2981736" class="uri">https://doi.org/10.2307/2981736</a></p>
+<p>Wannacott, T.H. abd R.J. Wannacott. 1987. Regression: A second course in statistics. Robert E. Krieger Publishing, Co.&nbsp;Florida.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/benny\.istan\.to\/site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026, Benny Istanto.</p>
+<p>Exploring Climate with GIS and Data Science, solving old problems in new ways. Turning earth observation data into actionable, life-saving insights.</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+<div class="toc-actions"><ul><li><a href="https://github.com/bennyistanto/site/blob/main/blog/20230702-fourier-regression-model-to-generate-monthly-to-daily-temperature-data.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/bennyistanto/site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/bennyistanto" aria-label="GitHub"><i class="bi bi-github"></i></a> <a href="https://linkedin.com/in/bennyistanto" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a> <a href="https://worldbank.github.io/GOST/content/staff/bennyistanto.html" aria-label="GOST"><i class="bi bi-globe"></i></a></p>
+<p><a href="https://buymeacoffee.com/bennyistanto">Buy Me a Coffee</a></p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

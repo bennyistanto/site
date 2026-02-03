@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Benny Istanto">
+<meta name="dcterms.date" content="2024-01-24">
+<meta name="description" content="Last month I did experiment test to analyze the propagation of Meteorological Drought (Standardized Precipitation Index - SPI) to Hydrological Drought (Standardized Streamflow Index - SSI) using La…">
+
+<title>Drought Propagation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/image-logo/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ae7d70a23c66c8df71f5a679a6f4dfc7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-1bcb2280c51331a5c09e99b999b82845.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ae7d70a23c66c8df71f5a679a6f4dfc7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-371178116"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-371178116', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles/styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo light-content">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../csr.html"> 
+<span class="menu-text">CSR</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-works" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Works</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-works">    
+        <li>
+    <a class="dropdown-item" href="../works.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/experiences.html">
+ <span class="dropdown-text">Experiences</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/projects.html">
+ <span class="dropdown-text">Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/consulting.html">
+ <span class="dropdown-text">Consulting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/maps-and-infographics.html">
+ <span class="dropdown-text">Maps &amp; Infographics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../cv.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Drought Propagation</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Remote Sensing</div>
+    <div class="quarto-category">Research</div>
+    <div class="quarto-category">Climate</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Last month I did experiment test to analyze the propagation of Meteorological Drought (Standardized Precipitation Index - SPI) to Hydrological Drought (Standardized Streamflow Index - SSI) using La…
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Benny Istanto </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 24, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Last month I did experiment test to analyze the propagation of <strong>Meteorological Drought</strong> (Standardized Precipitation Index - SPI) to <strong>Hydrological Drought</strong> (Standardized Streamflow Index - SSI) using <strong>Lagged Correlation</strong> at the pixel level with area of interest, Indonesia.</p>
+<p>To download the full repository, you can ccess it via this link: <a href="https://github.com/bennyistanto/drought-propagation" class="uri">https://github.com/bennyistanto/drought-propagation</a></p>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>I use the <strong>Standardized Precipitation Index</strong> (<a href="https://library.wmo.int/viewer/39629/download?file=wmo_1090_en.pdf&amp;type=pdf&amp;navigator=1">SPI</a>) - as proxy for meteorological drought, and the (<a href="https://doi.org/10.1029/2019WR026315">SSI</a> - as proxy for hydrological drought.</p>
+<p>The SPI use monthly gridded Satellite precipitation estimates from Climate Hazards Group InfraRed Precipitation with Station data (<a href="https://doi.org/10.1038/sdata.2015.66">CHIRPS</a>).</p>
+<p>The SSI use daily gridded River discharge in the last 24 hours from <a href="https://doi.org/10.5194/essd-12-2043-2020">GloFAS-ERA5 operational global river discharge reanalysis 1979–present</a> as a proxy for the streamflow time series infomation.</p>
+</section>
+<section id="folder-structure-and-files" class="level3">
+<h3 class="anchored" data-anchor-id="folder-structure-and-files">Folder structure and files</h3>
+<p>There are 3 notebook along with support folder that required to run the analysis. Feel free to use your own preferences for this setting/folder arrangements.</p>
+<ol type="1">
+<li><code>hyd</code> # Files required to proceed the hydrological drought goes here.</li>
+<li><code>met</code> # Files required to proceed the meteorological drought goes here.</li>
+<li><code>prop</code> # File required to proceed the propagation using lagged correlation goes here.</li>
+<li><code>subset</code> # In this folder I put <code>idn_subset_chirps.nc</code> file, a subset file to clip the input data to follow the area of interest. Basically this file are came from a shapefile polygon which has <code>land</code> attribute column with <code>value = 1</code>, then converting to raster based on <code>land</code> column, and set the cell size following our standard (I use 0.05 deg, because the SPI and SSI also has the same spatial resolution, 0.05 deg). After that, convert it to netCDF. All is done in ArcGIS Desktop.</li>
+</ol>
+<p>The notebook</p>
+<ol type="1">
+<li><a href="https://github.com/bennyistanto/drought-propagation/blob/main/1_Steps_to_Generate_SPI_Using_CHIRPS_Data.ipynb"><code>1_Steps_to_Generate_SPI_Using_CHIRPS_Data.ipynb</code></a></li>
+<li><a href="https://github.com/bennyistanto/drought-propagation/blob/main/2_Steps_to_Generate_SSI_Using_GloFAS-ERA5_Data.ipynb"><code>2_Steps_to_Generate_SSI_Using_GloFAS-ERA5_Data.ipynb</code></a></li>
+<li><a href="https://github.com/bennyistanto/drought-propagation/blob/main/3_Drought_Propagation_Met2Hyd_Using_CCA.ipynb"><code>3_Drought_Propagation_Met2Hyd_Using_CCA.ipynb</code></a></li>
+</ol>
+<blockquote class="blockquote">
+<p>This is using Cross-Correlation for each pixel accross the entire time series, also employ noise filtering techniques like Singular Spectrum Analysis (SSA) which can help in isolate the underlying trends and patterns in our data before performing the CCA. This step is crucial for enhancing the signal-to-noise ratio in our datasets.</p>
+</blockquote>
+</section>
+<section id="approach" class="level3">
+<h3 class="anchored" data-anchor-id="approach">Approach</h3>
+<p>The analysis using combination from various time scale [<code>3</code>, <code>6</code>, <code>9</code>, and <code>12-month</code>] and Lag range from 1 - 12 month</p>
+<pre><code>time_scale_combinations = [
+    "spi03_ssi03", "spi06_ssi03", "spi09_ssi03", "spi12_ssi03",
+    "spi03_ssi06", "spi06_ssi06", "spi09_ssi06", "spi12_ssi06",
+    "spi03_ssi09", "spi06_ssi09", "spi09_ssi09", "spi12_ssi09",
+    "spi03_ssi12", "spi06_ssi12", "spi09_ssi12", "spi12_ssi12"
+]</code></pre>
+<section id="preprocessing" class="level4">
+<h4 class="anchored" data-anchor-id="preprocessing">Preprocessing</h4>
+<p>The drought characteristics originally following the method proposed by Yevjevich in <a href="https://www.engr.colostate.edu/ce/facultystaff/yevjevich/papers/HydrologyPapers_n23_1967.pdf">1967</a> and has been employed to recognize the feature of droughts. The paper from Le, et al in <a href="https://www.researchgate.net/publication/333171255_Space-time_variability_of_drought_over_Vietnam">2019</a> provide better explanation about it: duration, severity, intensity, and interarrival.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/image-blog/20240124-drought-propagation-01.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Drought"><img src="../assets/image-blog/20240124-drought-propagation-01.png" class="img-fluid figure-img" alt="Drought"></a></p>
+<figcaption>Drought</figcaption>
+</figure>
+</div>
+<p><strong>Masking for Drought Event</strong> The drought condition is set when the SPI or SSI value negative, or less than -1.2. Focusing on drought conditions could be a more relevant approach for our analysis compare to using all SPI and SSI data, as it has dry and wet condition. By concentrating on these periods, we can potentially gain more insight into the correlation between meteorological and hydrological droughts.</p>
+<p><strong>Calculate Drought Magnitude</strong> Compute the absolute cumulative values during drought events for both datasets. This gives a measure of drought magnitude, which may be more meaningful for correlation analysis than using raw SPI/SSI values.</p>
+<p><strong>Applying Singular Spectrum Analysis (SSA)</strong> For noise filtering and trend extraction in drought magnitude data in SPI and SSI datasets. In drought propagation analysis, noise filtering with SSA is a critical step for data preparation. SSA effectively separates the underlying signal from the noise in climate datasets, such as SPI and SSI.</p>
+<p>SSA decomposes a time series into a sum of components:</p>
+<p><span class="math display">\[X(t) = T(t) + S(t) + N(t)\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(X(t)\)</span>: Original time series</li>
+<li><span class="math inline">\(T(t)\)</span>: Trend component</li>
+<li><span class="math inline">\(S(t)\)</span>: Seasonal component</li>
+<li><span class="math inline">\(N(t)\)</span>: Noise component</li>
+</ul>
+<p>This process is crucial for enhancing the clarity and accuracy of the data, which in turn facilitates a more precise understanding of drought patterns and their progression.</p>
+</section>
+<section id="analysis" class="level4">
+<h4 class="anchored" data-anchor-id="analysis">Analysis</h4>
+<p><strong>Cross-Correlation Analysis</strong> Especially when applied to data refined through SSA noise filtering, is pivotal in understanding drought propagation. This technique examines the relationship between different drought indicators across various time scales. By utilizing data filtered through SSA, which isolates the core signal from noise, Cross-Correlation Analysis can more accurately determine the time lag and intensity with which meteorological droughts (indicated by SPI) translate into hydrological droughts (indicated by SSI).</p>
+<p>The cross-correlation coefficient <span class="math inline">\(\rho_{xy}(\tau)\)</span> at lag <span class="math inline">\(\tau\)</span> is calculated as:</p>
+<p><span class="math display">\[\rho_{xy}(\tau) = \frac{\sum((X_i - \bar{X})(Y_{i+\tau} - \bar{Y}))}{\sqrt{\sum(X_i - \bar{X})^2 \sum(Y_i - \bar{Y})^2}}\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(X_i\)</span>: Value of the first time series at time <span class="math inline">\(i\)</span></li>
+<li><code>Yi</code>: Value of the second time series at time <code>i + τ</code></li>
+<li><code>τ</code>: Time lag</li>
+<li><code>X̄</code>: Mean of the first time series</li>
+<li><code>Ȳ</code>: Mean of the second time series</li>
+<li><code>N</code>: Number of data points</li>
+</ul>
+<p>This approach is essential for predicting the onset and progression of drought conditions, enabling timely decision-making and effective resource management to mitigate the adverse impacts of droughts.</p>
+<p><strong>Frequency Analysis</strong> In the context of drought propagation analysis, frequency analysis plays a critical role in identifying the most prominent patterns of correlation between meteorological and hydrological drought indicators over time. By classifying cross-correlation values into distinct ranges (e.g., 0.0-0.1, 0.1-0.2, etc.) and analyzing these across different lag times, researchers can pinpoint the range that most frequently occurs.</p>
+<p>This approach helps in understanding the typical strength of correlation and the temporal shift (lag) between the onset of meteorological drought and its subsequent impact on hydrological conditions. The most frequent range provides insights into the commonality of correlation strengths, while the corresponding lag sheds light on the typical delay between atmospheric changes and their effects on hydrological systems. We can also derive the maximum correlation value that can provides insight on which areas has the best correlation, and Lag time where the maximum correlation between SPI and SSI is observed.</p>
+</section>
+</section>
+<section id="visualisation" class="level3">
+<h3 class="anchored" data-anchor-id="visualisation">Visualisation</h3>
+<p>There are two map type that use to illustrate the results of the cross-correlation analysis between meteorological and hydrological droughts.</p>
+<p><strong>Lag Map</strong> This map displays the time lag (in months) between meteorological and hydrological droughts across the study area. It helps identify regions where hydrological responses to meteorological changes are immediate or delayed.</p>
+<p><strong>Strength Map</strong> This map shows the strength of the correlation between meteorological and hydrological droughts. It highlights areas with a strong predictive relationship, indicating regions sensitive to meteorological changes.</p>
+<p>Below some example of the individual Strength Map from various time scale combinations and lag.</p>
+<ol type="1">
+<li><p>SPI 03 and SSI 03, Lag 1-month</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/cor_spi03_ssi03_lag01.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="SM1"><img src="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/cor_spi03_ssi03_lag01.png" class="img-fluid figure-img" alt="SM1"></a></p>
+<figcaption>SM1</figcaption>
+</figure>
+</div></li>
+<li><p>SPI 06 and SSI 03, Lag 1-month</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/cor_spi06_ssi03_lag01.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="SM2"><img src="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/cor_spi06_ssi03_lag01.png" class="img-fluid figure-img" alt="SM2"></a></p>
+<figcaption>SM2</figcaption>
+</figure>
+</div></li>
+<li><p>SPI 06 and SSI 03, Lag 3-month</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/cor_spi06_ssi03_lag03.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="SM3"><img src="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/cor_spi06_ssi03_lag03.png" class="img-fluid figure-img" alt="SM3"></a></p>
+<figcaption>SM3</figcaption>
+</figure>
+</div></li>
+<li><p>SPI 12 and SSI 06, Lag 6-month</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/cor_spi12_ssi06_lag06.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="SM4"><img src="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/cor_spi12_ssi06_lag06.png" class="img-fluid figure-img" alt="SM4"></a></p>
+<figcaption>SM4</figcaption>
+</figure>
+</div></li>
+</ol>
+<p>And below some example of the composite Strength and Lag Map from various time scale combinations.</p>
+<ol type="1">
+<li><p>Most frequent correlation and Lag where the most frequent observe of SPI to SSI 3-month</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_freq_corr_combination_1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="SM1"><img src="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_freq_corr_combination_1.png" class="img-fluid figure-img" alt="SM1"></a></p>
+<figcaption>SM1</figcaption>
+</figure>
+</div></li>
+<li><p>Most frequent correlation and Lag where the most frequent observe of SPI to SSI 6-month</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_freq_corr_combination_2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="SM2"><img src="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_freq_corr_combination_2.png" class="img-fluid figure-img" alt="SM2"></a></p>
+<figcaption>SM2</figcaption>
+</figure>
+</div></li>
+<li><p>Most frequent correlation and Lag where the most frequent observe of SPI to SSI 9-month</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_freq_corr_combination_3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="SM3"><img src="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_freq_corr_combination_3.png" class="img-fluid figure-img" alt="SM3"></a></p>
+<figcaption>SM3</figcaption>
+</figure>
+</div></li>
+<li><p>Most frequent correlation and Lag where the most frequent observe of SPI to SSI 12-month</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_freq_corr_combination_4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="SM4"><img src="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_freq_corr_combination_4.png" class="img-fluid figure-img" alt="SM4"></a></p>
+<figcaption>SM4</figcaption>
+</figure>
+</div></li>
+<li><p>Maximum correlation and Lag where the maximum observe of SPI to SSI 3-month</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_max_corr_combination_1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="SM1"><img src="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_max_corr_combination_1.png" class="img-fluid figure-img" alt="SM1"></a></p>
+<figcaption>SM1</figcaption>
+</figure>
+</div></li>
+<li><p>Maximum correlation and Lag where the maximum observe of SPI to SSI 6-month</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_max_corr_combination_2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="SM2"><img src="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_max_corr_combination_2.png" class="img-fluid figure-img" alt="SM2"></a></p>
+<figcaption>SM2</figcaption>
+</figure>
+</div></li>
+<li><p>Maximum correlation and Lag where the maximum observe of SPI to SSI 9-month</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_max_corr_combination_3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="SM3"><img src="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_max_corr_combination_3.png" class="img-fluid figure-img" alt="SM3"></a></p>
+<figcaption>SM3</figcaption>
+</figure>
+</div></li>
+<li><p>Maximum correlation and Lag where the maximum observe of SPI to SSI 12-month</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_max_corr_combination_4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="SM4"><img src="https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_max_corr_combination_4.png" class="img-fluid figure-img" alt="SM4"></a></p>
+<figcaption>SM4</figcaption>
+</figure>
+</div></li>
+</ol>
+</section>
+<section id="to-do" class="level3">
+<h3 class="anchored" data-anchor-id="to-do">To do</h3>
+<p>Number of Lag from 1-12 month in the existing simulation is good enough.</p>
+<p>Adding more time scale from <code>3, 6, 9, 12</code> to <code>1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12</code> and the combination, potentially produce more insight.</p>
+<p><strong>THIS WORK STILL IN PROGRESS</strong></p>
+</section>
+<section id="live-testing" class="level3">
+<h3 class="anchored" data-anchor-id="live-testing">Live testing</h3>
+<p>You can access the notebook via Binder</p>
+<p><a href="https://mybinder.org/v2/gh/bennyistanto/drought-propagation/HEAD" class="uri">https://mybinder.org/v2/gh/bennyistanto/drought-propagation/HEAD</a></p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/benny\.istan\.to\/site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026, Benny Istanto.</p>
+<p>Exploring Climate with GIS and Data Science, solving old problems in new ways. Turning earth observation data into actionable, life-saving insights.</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+<div class="toc-actions"><ul><li><a href="https://github.com/bennyistanto/site/blob/main/blog/20240124-drought-propagation-01.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/bennyistanto/site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/bennyistanto" aria-label="GitHub"><i class="bi bi-github"></i></a> <a href="https://linkedin.com/in/bennyistanto" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a> <a href="https://worldbank.github.io/GOST/content/staff/bennyistanto.html" aria-label="GOST"><i class="bi bi-globe"></i></a></p>
+<p><a href="https://buymeacoffee.com/bennyistanto">Buy Me a Coffee</a></p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

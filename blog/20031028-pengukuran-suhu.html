@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Benny Istanto">
+<meta name="dcterms.date" content="2003-10-28">
+<meta name="description" content="Makalah berikut merupakan tugas dari mata kuliah Metode Observasi dan Instrumentasi Cuaca di semester 3">
+
+<title>Pengukuran Suhu</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/image-logo/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ae7d70a23c66c8df71f5a679a6f4dfc7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-1bcb2280c51331a5c09e99b999b82845.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ae7d70a23c66c8df71f5a679a6f4dfc7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-371178116"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-371178116', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles/styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo light-content">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../csr.html"> 
+<span class="menu-text">CSR</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-works" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Works</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-works">    
+        <li>
+    <a class="dropdown-item" href="../works.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/experiences.html">
+ <span class="dropdown-text">Experiences</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/projects.html">
+ <span class="dropdown-text">Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/consulting.html">
+ <span class="dropdown-text">Consulting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/maps-and-infographics.html">
+ <span class="dropdown-text">Maps &amp; Infographics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../cv.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Pengukuran Suhu</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Climate</div>
+    <div class="quarto-category">Research</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Makalah berikut merupakan tugas dari mata kuliah Metode Observasi dan Instrumentasi Cuaca di semester 3
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Benny Istanto </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 28, 2003</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Makalah berikut merupakan tugas dari mata kuliah Metode Observasi dan Instrumentasi Cuaca di semester 3. Tugas ini saya kerjakan bersama 3 orang teman lainnya: Risyanto (G24101014), Dini Oktavia Ambarwati (G24101025) dan Sri Lestariningsih (G24101037).</p>
+<p><a href="../assets/image-blog/20031028-pengukuran-suhu-01.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="../assets/image-blog/20031028-pengukuran-suhu-01.jpg" class="img-fluid"></a></p>
+<section id="latar-belakang" class="level4">
+<h4 class="anchored" data-anchor-id="latar-belakang">LATAR BELAKANG</h4>
+<p>Suhu merupakan salah satu unsur cuaca terpenting dalam Meteorologi. Ada banyak hal dalam kehidupan sehari-hari yang berkaitan erat dengan suhu. Alat yang paling lazim digunakan untuk pengukuran suhu adalah termometer. Sejak pertama kali ditemukan oleh Galileo pada tahun 1612, termometer terus berkembang dan bervariasi menurut penggunaanya.</p>
+<p>Pengamatan suhu dengan menggunakan termometer memang tidak sulit, namun pembacaannya harus dilakukan secara cepat, tepat dan kontinu. Selain itu perlu diperhatikan pula cara pengkalibrasiannya sehingga data-data yang diperoleh dapat digunakan. Persyaratan-persyaratan umum lain, seperti letak (lokasi) instrumen juga harus dipenuhi. Untuk mendapatkan hasil yang lebih baik, metode pengukuran dan mekanisme kerja alat perlu diketahui.</p>
+</section>
+<section id="tujuan" class="level4">
+<h4 class="anchored" data-anchor-id="tujuan">TUJUAN</h4>
+<p>Data suhu udara sangat diperlukan dalam banyak bidang, khususnya Meteorologi dan Klimatologi. Untuk itu diperlukan pengetahuan dalam hal pengukuran, metode dan mekanisme kerja alatnya. Pengetahuan ini sangat bermanfaat agar pada saat melakukan observasi, pengamat dapat mamperoleh hasil yang tepat dan akurat.</p>
+</section>
+<section id="pengukuran-suhu" class="level4">
+<h4 class="anchored" data-anchor-id="pengukuran-suhu">PENGUKURAN SUHU</h4>
+<p><strong>4.1 Aspek-aspek umum</strong></p>
+<p><strong><em>4.1.1 Definisi</em></strong></p>
+<p>Suhu adalah kondisi yang menentukan arah aliran panas diantara dua benda. Benda yang kehilangan panas, dikatakan memiliki suhu yang lebih tinggi. Untuk mengukur suhu suatu termometer dapat dikondisikan ke suhu yag sama seperti objek (yaitu kedalam keseimbangan termodinamika) dan kemudian suhu termometer tersebut dapat diukur. Suhu juga dapat ditentukan oleh sebuah radiometer.</p>
+<p><strong><em>4.1.2 Satuan dan skala Suhu</em></strong></p>
+<p>Suhu termodinamika (q), dengan satuan kelvin (K) adalah suhu dasar. Suhu yang banyak digunakan dalam meteorologi yaitu suhu celcius (t).</p>
+<p>Pada skala suhu termodinamika, pengukuran diungkapkan sebagai perbedaan dari nol mutlak (0 K), yaitu suhu ketika molekul-molekul suatu zat tidak memiliki energi kinetik. Skala yang umum digunakan yaitu&nbsp;<em>Internasional Practical Temperature Scale</em>&nbsp;(IPTS) atau skala suhu praktis internasional yang berdasarkan pada nilai yang ditentukan untuk sejumlah besaran yang dapat diturunkan dan pada alat-alat standar khusus yang dikalibrasi pada suhu-suhu tersebut.</p>
+<p><strong><em>4.1.3 Termometer</em></strong></p>
+<p>Sifat fisik apapun dari suatu zat yang merupakan sebuah fungsi dari suhu dapat digunakan sebagai dasar dari terrmometer. Sifat –sifat yag banyak digunakan pada termometer meteorologi adalah perluasan panas dan perubahan dalam hambatan listrik dengan suhu.</p>
+<p><strong><em>4.1.4 Persyaratan Meteorologi</em></strong></p>
+<p>Meteorologi memerlukan pengukuran dan pencatatan yang kontinu dari suhu:</p>
+<p>(a)&nbsp;&nbsp;&nbsp;Udara dekat permukaan</p>
+<p>(b)&nbsp;&nbsp;&nbsp;Tanah pada kedalaman berbeda</p>
+<p>(c)&nbsp;&nbsp;&nbsp;Permukaan laut dan danau</p>
+<p>(d)&nbsp;&nbsp;&nbsp;Udara atas</p>
+<p>Bab ini membahas tentang (a) dan (b)</p>
+<p><strong>4.2 Pelindung termometer</strong></p>
+<p><strong><em>4.2.1 Mengukur suhu udara</em></strong></p>
+<p>4.2.1.1 Pengaruh Radiasi</p>
+<p>Radiasi dari matahari, awan, tanah, dan objek sekitar lainnya lewat melalui udara tanpa melalui perubahan suhu yang berarti, tetapi termometer di udara terbuka dapat menyerap radiasi yang cukup banyak. Akibatnya, suhu dapat berbeda dari suhu udara yang sesungguhnya, perbedaannya berdasarkan pada intensitas radiasi, dan pada perbandingan radiasi yang diserap dengan panas yang dihamburkan. Agar tidak terdapat nilai kesalahan yang besar, perlu untuk melindungi termometer dengan sangkar atau penyangga yang juga melindunginya dari presipitasi, serta membiarkan sirkulasi udara bebas dan mencegah kerusakan.</p>
+<p>4.2.1.2 Sangkar Cuaca</p>
+<p>Sebuah sangkar sebaiknya dirancang untuk menyediakan pagar yang mengelilingi termometer yang dapat mengeluarkan pancaran panas dan presipitasi. Dindingnya berjelusi lapis dua. Atapnya berlapis dua dengan persediaan untuk ventilasi dari ruangan diantara dua lapisan.pada iklim dingin, karena reflektivitas salju yang tinggi (diatas 88 %) sangkar juga sebaiknya memiliki dua lapis lantai yang terbuat dari papan yang dapat diturunkan atau dimiringkan dengan mudah sehingga salju yang memasuki sangkar selama badai dapat dipindahkan.</p>
+<p>Ukuran dan bentuk sangkar dapat menjaga kapasitas panas serendah mungkin dan membiarkan cukup ruang diantara alat-alat dan dinding sehingga tidak terjadi kontak langsung unit penginderaan termometer dengan dinding bagian dalam dan luar sangkar di cat putih.</p>
+<p>Ketika dinding lapis dua disediakan, lapisan udara diantaranya membantu mengurangi jumlah panas yang diterima dari luar dinding kebagian dalam pagar. Sirkulasi udara melalui sangkar dapat mengakibatkan suhu berubah. Pada hari yang sinar mataharinya kuat dan angin&nbsp;<em>calm</em>, suhu udaranya lebih tinggi daripada ketika malam cerah dan tenang. Kesalahan lain mungkin diketahui dari pendinginan yang mengacu pada evaporasi dari sangkar yang basah setelah hujan. Semua kesalahan ini juga memiliki pengaruh langsung pada pembacaan alat-alat lain di dalam sangkar seperti higrometer, evaporimeter, dll.</p>
+<p>Untuk kerja meteorologi, suhu yang diamati harus mewakili kondisi sirkulasi udara bebas dengan area seluas mungkin mengelilingi stasiun, pada ketinggian diantara 1.25 m dan 2.00 m diatas permukaan tanah. Tempat terbaik untuk sangkar yaitu diarea terbuka dan tidak dilindungi atau dekat dengan pohon, gedung dan halangan lainnya. Sebuah tempat diatas lereng curam atau di lembah merupakan tempat dengan kondisi ekstrim yang harus dihindari.</p>
+<p>Ditempat bersalju, dimungkinkan untuk menggunakan sebuah penyangga yang membuat sangkar dapat dinaikkan atau diturunkan untuk menjaga ketinggian yang tepat diatas permukaan salju.</p>
+<p>Umumnya hanya satu pintu dibutuhkan, sangkar ditempatkan sehingga matahari tidak menyinari termometer ketika pintu dibuka pada waktu pengamatan. Didaerah tropik dua pintu dibutuhkan untuk penggunaan selama periode tahun yang berbeda. Demikian juga didaerah kutub (dimana matahari berada pada sudut rendah).</p>
+<p>Sangkar juga dapat terbuat dari bahan plastik yang menawarkan perlindungan yang lebih baik terhadap pengaruh radiasi karena rancangan jelusinya yang lebih baik. Pada sebuah kasus, sangkar dan penyangga harus dibangun dari bahan yang kokoh dan dipasang dengan baik sehingga kesalahan dalam pembacaan termometer maksimum dan minimum yang disebabkan oleh getaran angin dijaga tetap kecil. Penutup tanah dibawah sangkar harus rumput atau, pada tempat-tempat dimana rumput tidak tumbuh, permukaan alami didaerah tersebut.</p>
+<p>Sangkar harus dijaga bersih dan dicat secara teratur; dibanyak tempat mengecat dua tahun sekali cukup, tetapi didaerah yang terkena polusi atmosfer setidaknya sekali setahun.</p>
+<p>Sebagai alat untuk mengurangi kesalahan karena ventilasi yang tidak cukup dan untuk membantu psikrometri yang akurat telah disarankan ventilasi buatan dan sangkar radiasi tambahan yang digunakan pada stasiun sinoptik, khususnya untuk termometer listrik yang tidak memerlukan samgkar yang luas.</p>
+<p>4.2.1.3 Ventilasi buatan</p>
+<p>Alternatif utama untuk perlindungan pada sangkar berventilasi alami terdiri dari pelindung bola termometer dari radiasi langsung. Pelindungnya biasanya terbuat dari baja yang dipelitur untuk mengurangi penyerapannya dari radiasi panas. Bagian dalam pelindung dijaga tetap bersentuhan dengan aliran udara pada kedua sisi.&nbsp;&nbsp;Apabila ventilasi buatan disediakan oleh kipas angin listrik, harus diperhatikan untuk mencegah panas dari motor dan kipas angin mencapai termometer.</p>
+<p><strong><em>4.2.2 Mengukur suhu tanah dan suhu minimum rumput</em></strong></p>
+<p>Suhu minimum rumput merupakan suhu terendah yang dicapai dalam semalam oleh termometer yang terbuka bebas terhadap langut, tepat diatas rumput pendek. Suhunya diukur dengan termometer minimum. Termometer dinaikkan pada penyangga pada sudut kira-kira 2º dari horizontal dengan bola lebih rendah daripada tangkai, 25 mm – 50 mm diatas tanah dan bersentuhan dengan ujung rumput.</p>
+<p>Umumnya termometer dibiarkan terkena udara pada jam pengamatan terakhir sebelum matahari terbenam dan pembacaannya diambil keesokan harinya.</p>
+<p>Kedalaman standar untuk pengukuran suhu tanah yaitu, 5, 10, 20, 50, dan 100 cm dibawah permukaan. Tempat pengukuran tersebut harus sebidang permukaan tanah gundul, kira-kira tb cm2. Jika permukaan tidak mewakili keadaan umum sekeliling, luasnya tidak bisa kurang dari 100 m2. Bila tanah ditutupi salju, dapat diukur salju yang menutupi.</p>
+<p>Ketika menerangkan tempat untuk pengukuran tanah, tipe tanah, penutup tanah dan derajat serta arah kemiringan tanah harus dicatat. Konstanta tanah fisik seperti kerapatan besar, konduktivitas panas dan kandungan kelembaban pada kapasitas lahan harus ditunjukkan. Struktur tanah juga harus dimasukkan.</p>
+<p>Pada stasiun meteorologi pertanian diharapkan adanya pencatatan kontinu suhu tanah dan suhu udara pada permukaan yang berbeda pada lapisan yang berbatasan dengan tanah (dari permukaan tanah naik sampai kira-kira 10 m diatas batas atas tumbuh-tumbuhan yang berpengaruh).</p>
+<p><strong>4.3 Waktu Tanggap Termometer</strong></p>
+<p>Tidak ada keuntungan penggunaan termometer dengan konstanta waktu sangat kecil, karena suhu udara terus berubah naik sampai ½ derajat dalam beberapa detik. Sedangkan termometer dengan konstanta waktu yang lebih luas cenderung meratakan perubahan yang cepat. Konstanta waktu yang terlalu panjang, dapat menghasilkan kesalahan ketika perubahan suhu dalam waktu lama terjadi. Konstanta waktu, diartikan sebagai waktu yang dibutuhkan oleh termometer untuk mendata 63,2 % perubahan dalam suhu udara, diantara 30 dan 60 detik pada kecepatan angin 5 m/s. Secara kasarnya, proporsi kebalikan dari akar persegi kecepatan angin.</p>
+<p><strong>4.4 Termometer Cairan dalam Kaca</strong></p>
+<p><strong><em>4.4.1 Syarat-syarat penyusunnya</em></strong></p>
+<p>Untuk pengamatan rutin suhu udara termasuk suhu bola basah, maksimum dan minimum, termometer air raksa masih umum digunakan. Untuk menunjukkan suhunya termometer ini menggunakan pemuaian yang berbeda dari cairan yang terdapat pada gelasnya. Batangnya memiliki tabung yang mempuyai kaliber yang disematkan ke benda utama.</p>
+<p>Cairan yang dipakai bergantung pada nilai suhu yang digunakan. Air raksa digunakan untuk suhu diatas titik bekunya (-32º C). Sementara etil alkohol atau cairan organik murni lainnya digunakan untuk suhu yang lebih rendah. Salah satu gelas kacanya terbuat dari gelas kaca normal atau gelas kaca ‘borosilikat’ yang disetujui dalam penggunaan termometer. Bola kaca dibuat setipis dan sekuat mungkin untuk memfasilitasi konduksi panas ke bola dan dari bola kemuatannya.</p>
+<p>Ada 4 tipe utama konstruksi untuk termometer meteorologi, yaitu :</p>
+<ol type="1">
+<li><p>Tipe berlapis skala dicatat pada batang termometer.</p></li>
+<li><p>Tipe berlapis skala dicatat pada jalur kaca opal yang disematkan pada batang di dalam lapisan termometer.</p></li>
+<li><p>Tipe tidak berlapis dengan tanda kenaikan pada batang, baja, porselen atau kayu yang mempunyai nomor skala.</p></li>
+<li><p>Tipe tidak berlapis dengan skala tidak diukur pada batang.</p></li>
+</ol>
+<p>Tipe 1 dan 2 memiliki keuntungan daripada tipe 3 dan 4 yaitu tanda skalanya dilindungi dari kerusakan. Untuk tipe 3 dan 4 penandaan harus diisi ulang dari waktu ke waktu. Keuntungan lain dari tipe 1 dan 2 yaitu kurang rentan terhadap kesalahan paralaks.</p>
+<p>Tipe manapun yang dipakai lapisan tidak boleh rusak sehingga kapasitas panas tetap rendah.</p>
+<p>Untuk termometer air raksa dan termometer maksimum, ruang hampa udara diatas kolom mercury adalah penting.</p>
+<p><strong><em>4.4.2 Syarat ketelitian</em></strong></p>
+<p>Angka 0 pada termometer air raksa memiliki kecenderungan naik secara lambat terhadap waktu, karena itu lebih disukai yang lebih tahan. Untuk termometer maksimum dan biasa disusun untuk memungkinkan kesalahan negatif yang lebih tinggi dari pada yang positif.</p>
+<p>Termometer yang digunakan untuk psikometri harus disediakan dengan lembar koreksi yang kelebihan&nbsp;±&nbsp;0.1º C. Pada stasiun sinoptik harus dicek terhadap referensi instrumen standar setiap satu atau dua tahun. Pengecekan termometer yang dipasang pada sepasang psikometri harus diseleksi sehingga mengurangi perbedaan kesalahan diantara dua termometer.</p>
+<p><strong><em>4.4.3 Termometer maksimum</em></strong></p>
+<p>Tipe yang dianjurkan oleh termometer air raksa dengan penyempitan kaliber yang mencegah kolom air raksa surut dengan suhu turun. Pengamat memegangnya dengan benar dasar bola menurun dan menggoyangkan tangannya sampai kolm air raksa bersatu kembali. Termometer maksimum dinaikkan kira-kira 2º dari horizontal pada dasar bola yang lebih rendah untuk memastikan bahwa kolam air raksa tenang terhadap penyempitan tanpa gaya gravitasi menekannya ke angka. Pelebaran kaliber bagian-bagian kolam yang telah terpisah dapat mudah bersatu.</p>
+<p><strong><em>4.4.4 Termometer minimum</em></strong></p>
+<p>Instrumen yang paling umum adalah termometer alkohol dengan indeks kaca gelap kira-kira panjangnya 2 cm yang dicelupkan ke dalam air keras.</p>
+<p>Kekurangan dari termometer minimum yaitu dengan pecahnya kolom selama pengangkutan dan adhesi air keras ke kaca.</p>
+<p>Kolom cairan yang pecah dapat disatukan lagi dengan memegang dasar bola, menurun dan menggerakkan termometer secara ringan dan cepat dengan jari atau kesesuatu yang elastis dan tidak terlalu keras. Penggerakan harus berkelanjutan beberapa waktu, setelah itu termometer didirikan tegak lurus, setidaknya satu jam untuk membiarkan air keras menempelke kaca untuk mendinginkan bola adlah dengan campuran es dan garam yang membeku.</p>
+<p>Sementara supaya bagian batang tetap panas, cairan akan menyaring kembali secara penahan ke kolom utama. Termometer dipegang tegak lurus dengan bolanya dalam bejana air panas, sementara batangnya ditekuk dan digoyangkan dari waktu ke waktu. Termometer harus segera dipindahkan dari air setelah bagian atas kolom mercury mencapai ruangan aman pada bagian atas batang.</p>
+<p>Variasi cairan yang dapat digunakan pada termometer minimum seperti etil alkohol, pentana dan toluol. Hal ini agar cairan oleh kehadiran kotoran tertentu meningkatkan kecenderungan cairan untuk berpolimer dengan pencahayaan dan setelah beberapa waktu polimerisasi seperti itu menyebabkan perubahan di dalam kalibrasi. Pada kasus etil alkohol contohnya alkohol harus bebas dari aseton.</p>
+<p>Termometer minimum juga dibiarkan didaerah luas untuk mendapatkan suhu minimum rumput.</p>
+<p><strong><em>4.4.5 Termometer Tanah</em></strong></p>
+<p>Untuk mengukur suhu tanah pada kedalaman 20 cm atau kurang umumnya menggunakan termometer air raksa dengan batangnya yang bengkok pada sudut yang tepat. Bola termometer dimasukkan ke dalam tanah pada kedalaman yang diperlukan dan skala dibaca dengan termometer insitu. Termometer ini diukur untuk pencelupan diatas sampai mengukur kedalaman.</p>
+<p>Untuk mengukur suhu kedalaman lebih besar dari 20 m, dianjurkan termometer air raksa yang ditempelkan di tabung kayu, gelas kaca, plastik dan bolanya dilekatkan dicat lilin atau logam. Pemasangan tabung termometer dipasang pada logam berdinding tipis atau tabung plastik dimasukkan kedalam tanah. Di iklim dingin bagian atas tabung luar dipasang diatas tanah ke ketinggian lebih besar dari kedalaman penutup salju. Pengamatan suhu tanah dapat lebih baik dengan menggunakan remote perekam sensor suhu listrik.</p>
+<p><strong>4.5 Pembacaan Termometer</strong></p>
+<p>Termometer harus dibaca cepat, konsisten dan akurat untuk menghindari perubahan suhu selama kehadiran pengamat. Koreksi untuk nilai kesalahan, jika ada, harus digunakan dalam pembacaan. Termometer maksimum dan minimum harus dibaca dan dipasang sekurangnya dua kali dalam sehari. Pembacaannya harus dibandingkan secara frekuentif dengan termometer biasa untuk menjamin bahwa tidak ada kesalahan serius pada termometer tersebut.</p>
+<p><strong>4.6 Termograf Mekanik</strong></p>
+<p><strong><em>4.6.1 Syarat-syarat Umum</em></strong></p>
+<p>Tipe yang masih sering digunakan, disediakan sensor bimetallic atau tabung&nbsp;<em>Bourdon</em>&nbsp;karena relatif murah, akurat dan mudah dibawa. Pada umumnya termograf harus beroperasi diatas nilai 60°C atau bahkan 80°C, jika ingin digunakan dalam iklim benua (kontinental). Nilai skala dibutuhkan, sehingga suhu bisa dibaca sampai 0.2°C tanpa kesulitan pada grafik dengan ukuran yang bisa diterima. Untuk melakukannya, ketetapan harus dibuat untuk perubahan ‘setting’ angka nol dari alat menurut musim. Kesalahan maksimum termograf tidak boleh lebih dari 1°C.</p>
+<p><strong><em>4.6.2 Termograf Bimetallic</em></strong></p>
+<p>Pada alat ini, pergerakan dari pena perekam dikendalikan oleh perubahan pada lekukan dari kepingan bimetallic atau ‘helix’. Instrumen ini harus dilengkapi dengan alat peubah nilai skala dengan mengatur panjang dari pengungkit yang mentransfer pergerakan dari bimetal ke pena. Penyesuaian ini lebih baik dikerjakan oleh pegawai yang diberikan kuasa. Elemen bimetallic harus terlindungi dari korosi, hal ini dapat dilakukan dengan menggunakan tembaga berat, nikel atau plat kronium. Konstanta waktu yang khas instrumen ini adalah kira-kira 25 detik dihasilkan pada kecepatan udara 5 m/s.</p>
+<p><strong><em>4.6.3 Termograf Tabung Bourden</em></strong></p>
+<p>Penyusunannya secara umum menyerupai dengan tipe bimetallic, tetapi elemem suhu sensitifnya berbentuk tabung logam cekung yang diisi dengan alkohol. Tabung tidak lebih sensitif dari elemen bimetallic dan biasanya membutuhkan mekanisme pengungkit yang berulang-ulang untuk memberikan nilai skala yang cukup. Konstanta waktu yang khas untuk instrumen ini adalah 60 detik yang dihasilkan pada kecepatan udara 5 m/s.</p>
+<p><strong><em>4.6.4 Pengecekan Termograf</em></strong></p>
+<p>Pembacaan termograf harus diperiksa secara teratur dan membandingkannya dengan termometer kontrol. Metode sederhana untuk melakukan pengecekan adalah dengan menggunakan referensi dari termometer maksimum dan minimum. Metode yang lebih akurat dari pengecekan termograf adalah dengan mengetesnya dalam ruangan yabg didesain secara tepat, memiliki keseimbangan panas di laboratorium. Dilakukan sekurangnya satu kali dalam tiap dua tahun.&nbsp;&nbsp;Untuk mengecek nilai skala instrumen adalah dengan mengelompokan (memplot) antara pembacaan termometer bola kering yang diambl pada jam-jam utama observasi, dengan pembacaan pada observasi termograf. Akan ada beberapa tersebar, tetapi garis cocok yang terbaik harus pada sudur 45°&nbsp;ke salah satu sumbu.</p>
+<p><strong>4.7 Termometer Listrik</strong></p>
+<p>Kelebihan utama termometer listrik terletak pada kemampuan menyediakan sinyal output yang sesuai untuk penggunaan dalam penunjuk jarak jauh, perekaman, penyimpanan atau transmisi data temperatur. Sensor yang sering digunakan adalah elemen hambatan listrik, transmitter dan thermocouples.</p>
+<p><strong><em>4.7.1 Termometer Hambatan Listrik</em></strong></p>
+<p>4.7.1.1 Menggunakan logam dan campuran</p>
+<p>Untuk perubahan temperatur yang kecil, kenaikan nilai hambatan dari logam murni sebanding dengan perubahan suhu, seperti yang ditunjukan pada persamaan (4.2).</p>
+<p><span class="math display">\[R_T = R_o[1+ a (T-T_o)] \tag{4.2}\]</span></p>
+<p>dimana <span class="math inline">\((t-T_o)\)</span> kecil</p>
+<ul>
+<li><p><span class="math inline">\(R_T\)</span> adalah hambatan logam dengan jumlah tetap pada suhu <span class="math inline">\(T\)</span> dalam Kelvin</p></li>
+<li><p><span class="math inline">\(R_o\)</span> adalah koefisien suhu referensi <span class="math inline">\(T_o\)</span>, dan</p></li>
+<li><p><span class="math inline">\(a\)</span> adalah koefisien suhu dari hambatan disekitar <span class="math inline">\(T_o\)</span>.</p></li>
+</ul>
+<p>Untuk perubahan temperatur yang lebih besar dan untuk campuran logam tertentu, persamaan (4.3) menunjukan hubungan yang lebih akurat :</p>
+<p><span class="math display">\[R_T = R_o [1 + a (T-T_o) + b (T-T_o)^2] \tag{4.3}\]</span></p>
+<p>dimana:</p>
+<ul>
+<li><span class="math inline">\(a\)</span> dan <span class="math inline">\(b\)</span> adalah koefisien yang dapat dicari dengan mengkalibrasi termometer yang dimaksud.</li>
+</ul>
+<p>Hambatan logam yang baik mengikuti persyaratan sebagai berikut :</p>
+<ol type="1">
+<li>Sifat fisik dan kimia akan tetap sama dengan nilai pengukuran suhu</li>
+<li>Hambatan akan meningkat secara tetap dengan kenaikan suhu adanya ketidakberlanjutan dari nilai pengukuran</li>
+<li>Pengaruh luar seperti kelembaban, korosi atau perubahan fisika tidak akan mengubah nilai hambatan cukup besar</li>
+<li>Resistivitasnya akan tetap konstan selama periode dua tahun atau lebih</li>
+<li>Resistivitasnya dan koefisien termal resistivitas akan cukup besar bermanfaat dalam pengukuran sirkuit.</li>
+</ol>
+<p>Platinum asli merupakam bahan terbaik untuk termometer standar primer yang dibutuhkan dalam mentransfer IPTS 1968. Tembaga merupakan bahan yang baik untuk termometer standar sekunder.</p>
+<p>Termometer praktis biasanya terbuat dari campuran platinum, nikel atau tembaga (dan adakalanya tungsten&nbsp;&nbsp;untuk keperluan meteorologi).</p>
+<p>4.7.1.2 Menggunakan Thermistor</p>
+<p>Thermistor adalah sebuah semikonduktor dengan koefisien termal yang cukup besar yang nilainya bisa positif atau negatif tergantung bahan yang digunakan. Persamaan umum untuk ketergantungan suhu dari hambatan R thermistor diberikan pada persamaan (4.4)</p>
+<p><span class="math display">\[R = a \exp(b/T) \tag{4.4}\]</span></p>
+<p>dimana <span class="math inline">\(a\)</span> dan <span class="math inline">\(b\)</span> adalah konstan dan <span class="math inline">\(T\)</span> adalah suhu thermistor dalam Kelvin. Keuntungan thermistor adalah :</p>
+<ol type="1">
+<li>Koefisien suhu hambatan yang besar memungkinkan tegangan yang melewati hambatan berkurang ketika mencapai senistivitas yang sama, pengurangan atau peniadaan tersebut dibutuhkan&nbsp;&nbsp;untuk menghitung hambatan yang mendahului dan perubahannya.</li>
+<li>Elemen dapat dibuat sangat kecil, sehingga kapasitas termalnya yang kecil dapat menghasilkan konstanta waktu yang kecil pula.</li>
+</ol>
+<p>Jika&nbsp;&nbsp;suhu referensi, To digunakan dalam persamaan (4.4), maka persamaan (4.5) dapat diperoleh :</p>
+<p><span class="math display">\[R = R_o \exp\left[\frac{b}{T}-\frac{b}{T_o}\right] \tag{4.5}\]</span></p>
+<p>4.7.1.3 Metode pengukuran</p>
+<p>Termometer hambatan bisa dihubungkan dengan sejenis sirkuit pengukuran listrik yang diantaranya merupakan variasi dari sirkuit penghubung hambatan dalam seimbang (<em>balance</em>) dan tidak seimbang (<em>unbalance</em>).</p>
+<p>Digital voltmeter (DVMs) dapat digunakan dalam hubungannya dengan sumber arus konstan untuk mengukur ketegangan suhu tertentu yang turun melewati elemen termometer; hasilnya dapat diskalakan secara langsung dalam suhu. Output digital juga dapat disimpan atau dipindahkan tanpa mengurangi akurasinya dan tersedia bagi penggunaannya selanjutnya. Digital output dari DVM sesudah itu diubah ke bentuk tegangan analog.</p>
+<p>Untuk tujuan perekaman, instrumen sirkuit pnghubung tidak seimbang (<em>unbalance bridge circuit</em>) dapat digunakan, tetapi lebih akurat hasilnya,&nbsp;<em>potentiometric recorder</em>&nbsp;harus disiapkan.</p>
+<p><strong><em>4.7.2&nbsp;&nbsp;&nbsp;&nbsp;Thermocouples</em></strong></p>
+<p>4.7.2.1 Sifat-sifat</p>
+<p>Termocouples banyak digunakan ketika termometer dengan konstanta waktu yang sangat kecil dan kemampuan pembacaan jarak jauh dan perekaman diperlukan. Satu kerugian jika suhu mutlak diperlukan, peralatan penyokong untuk pengukuran gaya elektromotif perlu dipasang. Termocouples lebih cocok untuk pengukuran suhu yang berbeda.</p>
+<p>4.7.2.2 Metode prngukuran</p>
+<p>Sedikit teknik yang diperlukan dengan menggunakan pembelokan dari pergerakan meteran.</p>
+<p>Beberapa sumber kesalahan :</p>
+<ol type="1">
+<li>Hambatan termoelemen dan ketergantungan suhunya</li>
+<li>Persediaan garis dan penggantian petunjuk</li>
+<li>Pergerakan meteran dan hambatan serinya</li>
+</ol>
+<p>Jika akurasi pengukuran lebih baik dari 0.05% dibutuhkan, maka tegangan termoelektrik harus ditentukan dengan prosedur pengganti, yaitu menggunakan penunjuk angka alkohol nol sensitif&nbsp;<em>(sensitive zero indicator).</em></p>
+<p><strong><em>4.7.3&nbsp;&nbsp;&nbsp;&nbsp;Teknik Digital</em></strong></p>
+<p>Prosedur pengukuran digital memiliki akurasi yang tinggi dan kemudahan dalam tranmisi, indikasi, penyimpangan dan pemrosesan. Ketika komputer digital digunakan untuk perolehan dan pemrosesan&nbsp;&nbsp;data dari sejumlah tempat pengamatan, maka teknik pengukuran digital menjadi penting. Dengan teknik tersebut, nilai dapat diwakilkan hanya sebagai perkalian integral dari kenaikan nilai minimum, sedangkan pengukuran analog, bagian apapun secara teoritis mungkin (dapat dilakukan) pada prakteknya, resolusi pengukuran analog dibatasi dengan penggunaan teknik dan tak sering lebih baik dari yang dihasilkan dengan metode digital. Dalam metode digital, nilai pengukuran dikuantitaskan (ke dalam) perkalian integral dari kenaikan minimum (resolusi). Nilai dari kenaikan minimum harus ditentukan sehingga tidak banyak mempengaruhi akurasi pengukurannya. Kenaikan 1-3 akurasi final (ketepatan akhir) instrumen, umumnya diterima sebagai solusi. Dengan pengukuran temperatur secara elektrik, sinyal output dari sensor merupakan arus langsung, tegangan langsung atau hambatan lain yang besar jaraknya yang bervariasi secara terus menerus. Ketika peraaltan tersebut dioperasikan dalam sistem pengukuran digital, quantization dan konversi ke dalam bentuk kode digital diperlukan. Perkembangan yang tepat dalam bidang elektronik menyebabkan berkembangnya penggunaan prinsip konversi. Mengacu pada kekebalannnya dari bunyi listrik, menggabungkan pengubah analog ke digital umum digunakan.</p>
+<p><strong>KESIMPULAN</strong></p>
+<p>Suhu adalah kondisi yang menentukan arah aliran panas diantara dua benda. Satuan suhu yang banyak digunakan dalam meteorologi yaitu Kelvin dan Celcius. Suhu mencerminkan energi kinetik rata-rata dari gerakan molekul-molekul.</p>
+<p>Secara umum, termometer (alat pengukur suhu) terbagi dalam 3 macam, yaitu :</p>
+<ol type="1">
+<li>Termometer cairan dalam kaca</li>
+<li>Termometer mekanik</li>
+<li>Termometer listrik</li>
+</ol>
+<p>Beberapa contoh termometer kaca misalnya : termometer maksimum dan minimum, termometer tanah. Termograf mekanik terdiri dari termograf bimetallic dan termograf tabung Bourdon. Sedangkan termometer listrik terdiri dari termometer hambatan dan thermo couples.</p>
+<p>Pengukuran suhu udara harus dilakukan diareal terbuka, tanpa adanya halangan seperti gedung, pohon, dan lain-lain. Pembacaan termometer harus dilakukan secara cepat, tepat dan kontinu sehingga didapatkan data yang baik.</p>
+<p><strong><em>Lampiran :</em></strong></p>
+<p><strong>Definisi titik tetap</strong></p>
+<p><strong>Titik referensi sekunder dan suhunya pada IPTS</strong></p>
+<p><strong>Nilai hambatan khusus, Ro, dan koefisien suhu, a, beberapa logam umum dan campuran</strong></p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/benny\.istan\.to\/site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026, Benny Istanto.</p>
+<p>Exploring Climate with GIS and Data Science, solving old problems in new ways. Turning earth observation data into actionable, life-saving insights.</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+<div class="toc-actions"><ul><li><a href="https://github.com/bennyistanto/site/blob/main/blog/20031028-pengukuran-suhu.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/bennyistanto/site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/bennyistanto" aria-label="GitHub"><i class="bi bi-github"></i></a> <a href="https://linkedin.com/in/bennyistanto" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a> <a href="https://worldbank.github.io/GOST/content/staff/bennyistanto.html" aria-label="GOST"><i class="bi bi-globe"></i></a></p>
+<p><a href="https://buymeacoffee.com/bennyistanto">Buy Me a Coffee</a></p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

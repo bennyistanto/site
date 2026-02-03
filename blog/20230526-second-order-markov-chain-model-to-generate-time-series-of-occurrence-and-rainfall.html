@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Benny Istanto">
+<meta name="dcterms.date" content="2023-05-26">
+<meta name="description" content="1 Introduction In the realm of meteorological studies, the use of statistical models is pivotal for understanding and predicting various weather phenomena">
+
+<title>Second-order Markov chain model to generate time series of occurrence and rainfall</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/image-logo/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ae7d70a23c66c8df71f5a679a6f4dfc7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-1bcb2280c51331a5c09e99b999b82845.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ae7d70a23c66c8df71f5a679a6f4dfc7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-371178116"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-371178116', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles/styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo light-content">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../csr.html"> 
+<span class="menu-text">CSR</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-works" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Works</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-works">    
+        <li>
+    <a class="dropdown-item" href="../works.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/experiences.html">
+ <span class="dropdown-text">Experiences</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/projects.html">
+ <span class="dropdown-text">Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/consulting.html">
+ <span class="dropdown-text">Consulting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/maps-and-infographics.html">
+ <span class="dropdown-text">Maps &amp; Infographics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../cv.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Second-order Markov chain model to generate time series of occurrence and rainfall</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Research</div>
+    <div class="quarto-category">Climate</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    1 Introduction In the realm of meteorological studies, the use of statistical models is pivotal for understanding and predicting various weather phenomena
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Benny Istanto </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 26, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">1 Introduction</h2>
+<p>In the realm of meteorological studies, the use of statistical models is pivotal for understanding and predicting various weather phenomena. Among these models, the second-order Markov chain model has emerged as a powerful tool, particularly in generating time series of rainfall occurrence (Wilks, 1998). This model provides a robust framework for simulating rainfall patterns, offering valuable insights that are crucial for weather forecasting, water resource management, and climate change studies.</p>
+<p>The second-order Markov chain model distinguishes itself from its first-order counterpart through its ability to consider not just the state of the system at the previous time step, but also the state at the time step before that. This additional layer of historical context allows the model to capture more complex dependencies and transitions in the rainfall data (Bellone et al., 2000). This enhanced capability significantly improves the accuracy of the generated time series, making it a powerful tool in the study of rainfall patterns.</p>
+<p>Rainfall, as a natural phenomenon, exhibits a high degree of variability and randomness. The second-order Markov chain model, with its ability to incorporate historical context, is well-equipped to handle this variability (Hughes et al., 1999). By considering the state of the system at two previous time steps, the model can capture the inherent randomness in rainfall occurrence, thereby generating a time series that closely mirrors real-world rainfall patterns.</p>
+<p>The application of the second-order Markov chain model to rainfall data is not just a theoretical exercise. The generated time series of rainfall occurrence can have practical applications in various fields. For instance, in the field of agriculture, understanding rainfall patterns can help farmers plan their planting and harvesting schedules (Rosenzweig et al., 2000). In urban planning, accurate rainfall predictions can inform the design of drainage systems to prevent flooding (Ashley et al., 2005).</p>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">2 Data</h2>
+<p>Over the past three decades, Bogor’s climate has remained relatively consistent. The city experiences an average annual temperature of around 26 °Celsius. The temperature varies little throughout the year, with the warmest month averaging around 27 °Celsius and the coolest month averaging around 25 °Celsius.</p>
+<p>In terms of rainfall, Bogor receives an average annual precipitation of over 3,000 millimeters. The city experiences the most rainfall from November to March, with each of these months receiving over 300 millimeters of rain on average. Even in the driest months, from June to September, Bogor still receives over 100 millimeters of rain per month on average.</p>
+<p>This consistent and significant rainfall, combined with the city’s warm temperatures, contributes to its lush, tropical environment. The climatic conditions of Bogor provide a rich dataset for the application of a second-order Markov chain model to generate time series of occurrence and rainfall.</p>
+<p>Daily rainfall data of Bogor Climatological Station from 1984-2021 were used in this analysis, downloaded from BMKG Data Online in *.xlsx format. The file then manipulated by remove the logo and unnecessary text, leaving only two columns, namely date in column A and rainfall in column B for the header with the format extending downwards, and save as *.csv format.</p>
+<p>The final input file is accessible via this link: <a href="https://drive.google.com/file/d/1molqggv9o71Z0VT50h5OvEqCxYq4Bp1Z/view?usp=sharing" class="uri">https://drive.google.com/file/d/1molqggv9o71Z0VT50h5OvEqCxYq4Bp1Z/view?usp=sharing</a></p>
+</section>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">3 Methods</h2>
+<p>This exercise focuses on the second-order Markov chain model as a tool for generating rainfall occurrence probabilities and the gamma distribution for determining rainfall height (Boer, 1999).</p>
+<p>The second-order Markov chain model is widely used to represent rainfall occurrence (Stern and Coe, 1984; Hann et al, 1976). In this model, rainfall occurrence on day “i” is influenced by the presence or absence of rainfall in the previous days and the day after the previous day. If rainfall on day “i” is only influenced by rainfall on the previous day, it is considered a first-order Markov chain, and if it is influenced by rainfall two days prior, it is considered a second-order Markov chain, and so on.</p>
+<p>The second-order Markov chain model has been demonstrated to be effective in generating time series of rainfall occurrence (Nick and Harp, 1980; Richardson, 1981; Wilks, 1990). Furthermore, the gamma distribution is frequently utilized to determine rainfall height (Wilks, 1990). By employing both the second-order Markov chain model and gamma distribution, this study offers a comprehensive approach to generating rainfall data.</p>
+<p>The combined use of the second-order Markov chain model for rainfall occurrence and gamma distribution for rainfall height provides a robust method for generating rainfall data. This approach has significant implications for various fields, such as agriculture and urban planning, where accurate rainfall data is crucial for informed decision-making.</p>
+<p>In this exercise, the focus is limited to second-order Markov chains, as the analysis for lower/higher-order chains is fundamentally similar. The analysis employs the symbol 0 for non-rainy days and 1 for rainy days. The probability of rainfall on day i, given that it did not rain on the previous day and the day before previous day, is denoted as P001(i), while the probability of rain given that it rained the previous day and the day before previous day is represented as P111(i). The general form of the estimated probability of rainfall occurrence is as follows:</p>
+<p><span class="math display">\[P_{jkl}(i) = \frac{n_{jkl}(i)}{n_{jk0}(i) + n_{jk1}(i)} \tag{1}\]</span></p>
+<p>where njkl(i) represents the number of years in which the event l (0 or 1) occurred on day i, and the event jk (0 or 1) happened on the previous day and the day before the previous day.</p>
+<section id="rainfall-occurrence-model" class="level3">
+<h3 class="anchored" data-anchor-id="rainfall-occurrence-model">3.1 Rainfall occurrence model</h3>
+<p>Rainfall occurrence models commonly use Fourier regression equations to predict the probability of rainfall occurrence. However, these equations can sometimes produce a fitting line with values greater than 1 or smaller than 0. To address this issue, the probability values are first transformed into a logit function gjkl(i).</p>
+<p><span class="math display">\[g_{jkl}(i) = \ln\left(\frac{P_{jkl}(i)}{1 - P_{jkl}(i)}\right) \tag{2}\]</span></p>
+<p>To transform gjkl(i) back into probability values, the following equation is used:</p>
+<p><span class="math display">\[P_{jkl}(i) = \frac{1}{1 + \exp(-g_{jkl}(i))} \tag{3}\]</span></p>
+<p>The fitting line for gjkl(i) follows the form presented by Stern and Coe (1984):</p>
+<p><span class="math display">\[g_{jkl}(i) = a_0 + a_1 \sin(t'(i)) + b_1 \cos(t'(i)) + a_2 \sin(2t'(i)) + b_2 \cos(2t'(i)) \tag{4}\]</span></p>
+<p>Where <span class="math inline">\(t'(i) = \frac{2\pi i}{365}\)</span> and <span class="math inline">\(i = 1, 2, \ldots, 365\)</span></p>
+<p>The number of harmonics, m, can be determined using multiple regression techniques, where independent variables are introduced sequentially, starting with harmonic 1, harmonic 2, and so on until no more variance is explained by the newly introduced variable.</p>
+</section>
+<section id="rainfall-generation-model" class="level3">
+<h3 class="anchored" data-anchor-id="rainfall-generation-model">3.2 Rainfall generation model</h3>
+<p>To generate rainfall data, the probability information required is the probability of rainfall occurrence on day i, where the previous day’s occurrence is k (0 or 1), and the day before yesterday is j (0 or 1). The estimated value for gjkl(i) can be calculated if daily rainfall observation data is available.</p>
+<p>For simulation purposes, probability data must be converted into occurrence data. This is done by generating random numbers from a uniform distribution U(0, 1; VanTassel et al., 1990). If the random value from the uniform distribution is smaller than the probability value, it indicates rainfall; otherwise, it indicates no rainfall. If the simulation result indicates rainfall, the next step is to generate rainfall height using theoretical distributions.</p>
+<p>The next step in creating a rainfall data simulation model is to calculate the parameters of a theoretical distribution that approximates the rainfall data distribution. The Gamma distribution is widely used to describe rainfall intensity variability (Ison et al., 1971; Stern and Coe, 1984; Waggoner, 1989; Wilks, 1990). The probability density function is as follows:</p>
+<p><span class="math display">\[f(x, \alpha, \beta) = \frac{1}{\beta\Gamma(\alpha)}\left(\frac{x}{\beta}\right)^{\alpha-1}e^{-x/\beta} \tag{5}\]</span></p>
+<p>with <span class="math inline">\(\beta\)</span> being the shape parameter and <span class="math inline">\(\alpha\)</span> being the scale parameter of the gamma function <span class="math inline">\(\Gamma\)</span>.</p>
+<p>Several methods can be employed to estimate the values of the two parameters of the gamma distribution, one of which is the Maximum Likelihood Method. According to Shenton and Bowman (1970, as cited in Haan, 1979), the <span class="math inline">\(\alpha\)</span> value obtained from the Maximum Likelihood Method may still have a bias, and therefore needs to be corrected. The corrected <span class="math inline">\(\alpha\)</span> value, calculated using the Greenwood and Durand method, is:</p>
+<p><span class="math display">\[FC_\alpha = \frac{(n - 3)\alpha}{n} \tag{6}\]</span></p>
+<p>Subsequently, the <span class="math inline">\(\beta\)</span> parameter is calculated as follows:</p>
+<p><span class="math display">\[\beta = \frac{\bar{X}}{\alpha} \tag{7}\]</span></p>
+<p>The predicted rainfall is based on a predetermined set of patterns, P001, P010, P011 and P111, referred to as P-types. These P-types represent different combinations of previous and future rainy days and are used as event triggers in the model. The rainfall data is then separated into different seasons, DJF, MAM, JJA and SON,&nbsp; based on the month of occurrence. The model takes into account the day-to-day variability within each season.</p>
+<p>The gamma distribution, parameterized by <span class="math inline">\(\alpha\)</span> (shape) and <span class="math inline">\(\beta\)</span> (scale), is used to generate the predicted rainfall. <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> parameters for each season are pre calculated. These parameters are fetched for each P-type and season combination.</p>
+<p>The random gamma function, employed to simulate rainfall events, generates samples from a Gamma distribution. The number of samples drawn (pertaining to the size parameter in the gamma distribution) ideally aligns with the valid event days within a given season, conforming to the original precipitation data (Wilks, 2011). In essence, for each season and event type, the gamma distribution is simulated as frequently as the number of event days occurring within the season, according to the original data.</p>
+<p>Although the simulated events from a uniform distribution and the derived rainfall values from the gamma distribution are not intrinsically connected in the simulation process, they both represent the same event category. To maintain consistency in the temporal distribution of events, the generated rainfall values are matched with the valid event days in the original data. This coherence in the number of samples drawn from the gamma distribution is accomplished by aligning it with the structure of the initial precipitation data, rather than the simulated occurrences. Consequently, the gamma distribution is simulated for as many instances as the number of simulated event days within the season, thereby aligning with the frequency of simulated events in the synthetic weather data. The methodology of generating synthetic weather data using stochastic processes is a widely recognized approach in atmospheric sciences (Rodriguez-Iturbe, Cox, &amp; Isham, 1987; Srikanthan &amp; McMahon, 2001).</p>
+<p>For every P-type, the model iterates through each season. During each iteration, it identifies the days in the season when an event (rainfall) is predicted to occur. These are the days that have a corresponding 1 in the event data for the current P-type.</p>
+<p>Once these event days are identified, the model generates rainfall values for these days using the gamma distribution with the α and β parameters for the current season. This process is repeated for all the P-types and seasons.</p>
+<p>The result is a predicted rainfall dataset that takes into account the specific patterns of rainfall events and the seasonal characteristics of rainfall intensity.</p>
+</section>
+</section>
+<section id="implementation" class="level2">
+<h2 class="anchored" data-anchor-id="implementation">4 Implementation</h2>
+<p>In the implementation phase of this analysis, we utilized Python and the Pandas, Numpy and Matplotlib library to develop a rainfall occurrence generation model.</p>
+<section id="how-to" class="level3">
+<h3 class="anchored" data-anchor-id="how-to">4.1 How-to?</h3>
+<p>The step-by-step guide for the model is readily accessible in Google Colab or Jupyter Notebook, an ideal platform for data analysis and machine learning. This comprehensive how-to guide explains the entire process, starting with reshaping the data to ensure compatibility with the model, generate transition probabilities, essential for accurate predictions, calculate the number of probabilities, followed by translating these probabilities into meaningful rainfall event information. The final step involves chart generation, effectively visualizing the results for clear interpretation and analysis.</p>
+<hr>
+<p><strong>Configuration</strong></p>
+<p>Configuration is a crucial aspect of setting up any data analysis or processing workflow. Proper configuration ensures seamless access to data, efficient execution of tasks, and smooth integration of required tools and libraries. This article covers several essential subtopics related to configuration, such as connecting Google Drive to Colab, installing packages, importing libraries, and setting up working directories.</p>
+<p>Google Drive directory into Colab</p>
+<p>Connecting Google Drive to Colab is a vital step when working with data stored in Google Drive. It allows us to access and manipulate files directly from our Colab notebook. To connect our Google Drive, we can use the google.colab.drive module to mount our drive, enabling seamless access to our files and folders.</p>
+<p>Notes</p>
+<p>This is only apply if we are working in Colab</p>
+<p>Working Directories</p>
+<p>Setting up working directories involves defining the input and output directory paths for our project. This ensures that our code knows where to find the input data and where to store the results. Properly organizing our working directories makes it easier to manage our project, share it with others, and maintain a clean and structured codebase.</p>
+<hr>
+<section id="rainfall-categorization" class="level4">
+<h4 class="anchored" data-anchor-id="rainfall-categorization">4.1.1 Rainfall categorization</h4>
+<p>In the first stage of the analysis, we import the data and categorize whether the day is rainy (value = 1) or sunny (value = 0).</p>
+<p>Above code will produce output previews like below.</p>
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-01.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-01.jpg" class="img-fluid"></a></p>
+</section>
+<section id="function-for-transition-probabilities-order-2" class="level4">
+<h4 class="anchored" data-anchor-id="function-for-transition-probabilities-order-2">4.1.2 Function for transition probabilities order 2</h4>
+<p>This step explain the process to calculate the transition probabilities of weather states from one day to the next, considering the weather states of the previous two days, based on historical weather data. The weather states are represented as binary values: 0 for “Sunny” and 1 for “Rain”. The transition probabilities are calculated for eight different scenarios:</p>
+<ul>
+<li>P000: The probability that today is Sunny given that the day before yesterday was Sunny and yesterday was Sunny.</li>
+<li>P010: The probability that today is Sunny given that the day before yesterday was Sunny and yesterday was Rain.</li>
+<li>P100: The probability that today is Sunny given that the day before yesterday was Rain and yesterday was Sunny.</li>
+<li>P110: The probability that today is Sunny given that the day before yesterday was Rain and yesterday was Rain.</li>
+<li>P001: The probability that today is Rain given that the day before yesterday was Sunny and yesterday was Sunny.</li>
+<li>P101: The probability that today is Rain given that the day before yesterday was Sunny and yesterday was Rain.</li>
+<li>P011: The probability that today is Rain given that the day before yesterday was Rain and yesterday was Sunny.</li>
+<li>P111: The probability that today is Rain given that the day before yesterday was Rain and yesterday was Rain.</li>
+</ul>
+<p>The given code defines a function calculate_transition_probabilities_orders_2_long that calculates transition probabilities based on weather conditions in a DataFrame (df). The function takes three conditions (condition1, condition2, and result) and checks if these conditions are met in consecutive rows of the DataFrame. It creates a new column with binary values indicating the occurrence of the specified conditions. NaN values are set for rows with missing data. The code then defines a list of conditions and results and iterates over them to calculate transition probabilities for each scenario. The resulting probabilities are stored in new columns in the DataFrame. The DataFrame is restructured and saved as a CSV file. Finally, the program prints ‘Completed!’ and displays a preview of the DataFrame.</p>
+<p>Above code will produce output previews like below.</p>
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-02.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-02.jpg" class="img-fluid"></a></p>
+</section>
+<section id="reshape-the-data" class="level4">
+<h4 class="anchored" data-anchor-id="reshape-the-data">4.1.3 Reshape the data</h4>
+<p>The provided code segment executes a series of steps to transform weather data from long to wide format, to make easy for further process.</p>
+<p>Firstly, it generates a list of unique scenarios represented by “P” values. Subsequently, a ‘year’ column is added to the DataFrame bin_df based on the ‘date’ information. The code then iterates through each unique “P” value. For each iteration, it selects the relevant columns (‘year’, ‘day’, and the current “P” value) from bin_df while removing rows with missing values. The “P” column is renamed as ‘value’. The DataFrame is then pivoted, organizing the data with ‘day’ as the index, ‘year’ as the columns, and ‘value’ as the values. Each resulting pivoted DataFrame is saved as a CSV file, with the file name corresponding to the current “P” value.</p>
+<p>Above code will produce output previews like below.</p>
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-03.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-03.jpg" class="img-fluid"></a></p>
+</section>
+<section id="calculate-number-of-event" class="level4">
+<h4 class="anchored" data-anchor-id="calculate-number-of-event">4.1.4 Calculate number of event</h4>
+<p>This code below is responsible for calculating the total number of occurrences per day for each of the eight possible weather state transitions (P000, P001, P010, P100, P110, P101, P011, P111) over the entire period of the dataset.</p>
+<p>In this context, each weather state transition represents a sequence of three consecutive days. For example, P010 represents a sequence where it was sunny two days ago, rained yesterday, and is sunny today. The weather states are represented as binary values: 0 for “Sunny” and 1 for “Rain”.</p>
+<p>The code first calculates the total number of occurrences per day for each weather state transition by summing up the values in the respective columns of the binary DataFrame (bin_bin_reshape_dfxxx). It then creates a new DataFrame (num_df) that includes these totals along with the corresponding day. This DataFrame provides a daily summary of the weather state transitions for the entire period of the dataset.</p>
+<p>Finally, the code saves this DataFrame to a CSV file for further analysis and previews the data. This step is crucial as it allows for the inspection of the calculated totals and ensures the data is correctly processed and ready for the next steps of the analysis.</p>
+<p>Above code will produce output previews like below.</p>
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-04.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-04.jpg" class="img-fluid"></a></p>
+</section>
+<section id="calculate-the-probabilities" class="level4">
+<h4 class="anchored" data-anchor-id="calculate-the-probabilities">4.1.5 Calculate the probabilities</h4>
+<p>This specific code block calculates the transition probabilities for each of the four possible weather state transitions where the current day is rainy (P001, P011, P101, P111) and another four where the current day is sunny (P000, P010, P110, P100).</p>
+<p>The transition probabilities are calculated by dividing the total number of occurrences of each rainy/sunny weather state transition by the total number of occurrences of both the rainy and sunny weather state transitions for the same previous two days. For example, the transition probability P011 is calculated by dividing the total number of P011 occurrences by the sum of the total number of P011 and P010 occurrences.</p>
+<p>The calculated transition probabilities are then stored in a new DataFrame (prob_df_xxxx), which also includes the corresponding day. This DataFrame provides a daily summary of the transition probabilities for the entire period of the dataset.</p>
+<p>Finally, the code saves this DataFrame to a CSV file for further analysis and previews the data. This step is crucial as it allows for the inspection of the calculated probabilities and ensures the data is correctly processed and ready for the next steps of the analysis.</p>
+<p>Above code will produce output previews like below.</p>
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-05.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-05.jpg" class="img-fluid"></a></p>
+</section>
+<section id="converting-to-logit-function-and-transform-back-to-probability-value" class="level4">
+<h4 class="anchored" data-anchor-id="converting-to-logit-function-and-transform-back-to-probability-value">4.1.6 Converting to logit function and transform back to probability value</h4>
+<p>The code calculates Fourier coefficients and applies a logit transformation to the probability values in a pandas DataFrame prob_df. First, it modifies prob_df, replacing any instances of 0 or 1 probabilities with a small constant epsilon or 1 - epsilon respectively. This prevents errors when applying logarithms and exponentials later in the process. The script then calculates a set of variables based on the day of the year, including trigonometric functions sin_t_prime, cos_t_prime, sin_2t_prime, and cos_2t_prime based on the day of the year scaled by 2*pi/365 to reflect the cyclical nature of the calendar.</p>
+<p>After that, the script computes the logit of the probabilities, g_a_df, which is the log of the odds ratio (i.e., the ratio of the probability of an event occurring to the probability of it not occurring). Fourier coefficients are calculated for each original column in prob_df. The Fourier series is a way to represent a function as a sum of periodic components, and in this context, it’s used to capture the cyclical patterns of the probabilities throughout the year.</p>
+<p>Finally, the script constructs a new DataFrame result_df that includes the original probabilities, the calculated g_a_df values, fitted g_fit values (based on the Fourier series representation), and final probabilities (the inverse logit of g_a_df). This DataFrame is saved to a CSV file and then returned for review.</p>
+<p>Above code will produce output previews like below.</p>
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-06.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-06.jpg" class="img-fluid"></a></p>
+</section>
+<section id="visualize-the-calculated-logit-and-their-fitted" class="level4">
+<h4 class="anchored" data-anchor-id="visualize-the-calculated-logit-and-their-fitted">4.1.7 Visualize the calculated logit and their fitted</h4>
+<p>The script visualizes the calculated logit (g) values and their fitted counterparts (g_fit) from the result_df DataFrame for both rainy and sunny day scenarios.</p>
+<p>This is accomplished by setting up a 2-row, 4-column grid of subplots. In the first row, it plots the rainy day scenarios (P_types_rainy) and in the second row, it plots the sunny day scenarios (P_types_sunny). For each scenario (rainy or sunny) and each type of day (defined by P_types), it creates a scatter plot of ‘g’ values and overlays a line plot of ‘g_fit’ values over the course of the year (represented by the ‘day’ variable).</p>
+<p>The script then labels each subplot with its respective day type and scenario, sets the x and y labels, and includes a legend indicating which points represent ‘g’ and which line represents ‘g_fit’.</p>
+<p>Finally, it adjusts the layout for better visualization and displays the plot. This way, it helps to analyze how well the fitted values (g_fit) are approximating the calculated logit (g) values.</p>
+</section>
+<section id="generate-random-numbers-from-a-uniform-distribution-to-get-the-rainfall-events" class="level4">
+<h4 class="anchored" data-anchor-id="generate-random-numbers-from-a-uniform-distribution-to-get-the-rainfall-events">4.1.8 Generate random numbers from a uniform distribution to get the rainfall events</h4>
+<p>This code generates random numbers from a uniform distribution for each day and compares these to our probabilities to generate the events. Events are coded as 1 for rain and 0 for no rain. The new DataFrame event_df only contains the event data, with columns named event_Pxxx as specified. The data is saved in a CSV file called events.csv.</p>
+<p>Above code will produce output previews like below.</p>
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-07.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-07.jpg" class="img-fluid"></a></p>
+</section>
+<section id="visualize-the-probability-of-rainfall-occurrence" class="level4">
+<h4 class="anchored" data-anchor-id="visualize-the-probability-of-rainfall-occurrence">4.1.9 Visualize the probability of rainfall occurrence</h4>
+<p>The given script produces a set of heatmaps to visualize event data related to different scenarios of rainfall given that the current day is rainy. The data, divided by months and days, represents whether it’s a rainy day (indicated by a color) or a sunny day (represented by a white block).</p>
+<p>A heatmap is an apt choice of visualization here as it allows for an immediate visual assessment of patterns and trends in the data over a period of time (in this case, over the days of each month). Moreover, the color contrast between rainy and sunny days helps to easily distinguish between the two events. Heatmaps also excel at handling and displaying data over two dimensions (months and days, in this context), making them a clear choice for this kind of data presentation.</p>
+<p>Firstly, the code defines different types of events (represented as ‘P_types’), the layout for the subplots, and the number of days in each month (accounting for leap years).</p>
+<p>Then, it loops over each event type, creating a 2D array filled with NaNs to hold the event data for each day of each month. The event data is split by month and filled into this array, ensuring the correct day and month placement for each event.</p>
+<p>Next, a heatmap for each event type is generated using seaborn, with a color scheme denoting the presence or absence of rainfall, and an outline for each day block to enhance readability. The heatmap’s axes and title are customized for each scenario.</p>
+<p>A legend is also created to indicate the meanings of the colors in the heatmaps. The code finally adds a main title for the set of heatmaps, adjusts the layout for clear viewing, and displays the visualizations.</p>
+<p>Before running below code, please make sure yopu already have “seaborn” installed. If not, please install it using “pip install seaborn”</p>
+</section>
+<section id="gamma-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="gamma-distribution">4.1.10 Gamma distribution</h4>
+<p>This code analyses a dataset of rainfall patterns. It first loads the data, and prepares it by converting the ‘date’ column into a datetime format and adding a ‘month’ column. It then assigns each entry to a season (DJF, MAM, JJA, or SON) based on the month of the year. After isolating only the rainy days, the script applies a Gamma distribution model for each season’s rainfall data. The parameters (alpha and beta) of the Gamma distribution for each season are corrected for small sample sizes using the Greenwood and Durand method. These corrected parameters are then stored in a new DataFrame, which is exported as a CSV file for future use or analysis. The resulting DataFrame provides a seasonal breakdown of the rainfall data, and offers insights into how the rainfall pattern is distributed for each season.</p>
+<p>Above code will produce output previews like below</p>
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-08.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-08.jpg" class="img-fluid"></a></p>
+</section>
+<section id="generate-rainfall-value" class="level4">
+<h4 class="anchored" data-anchor-id="generate-rainfall-value">4.1.11 Generate rainfall value</h4>
+<p>Now that we have estimated the parameters for the gamma distribution for each season, and have generated event data, we can generate rainfall values based on these parameters and events.</p>
+<p>The gamma distribution is only used to generate rainfall values for rainy days (where event = 1), as it is typically used to model positive continuous data, and cannot generate the zero values corresponding to non-rainy days.</p>
+<p>In this script, we create a new rainfall_PXXX column for each event_PXXX column. For each season, we select the days where event_PXXX = 1, and generate rainfall values for these days using the gamma distribution with the corresponding alpha and beta parameters. These generated values are then stored in the rainfall_PXXX column. At the end, the updated DataFrame is saved to a new CSV file.</p>
+<p>Here’s how we could do this for each P-type.</p>
+<p>Above code will produce output previews like below.</p>
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-09.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-09.jpg" class="img-fluid"></a></p>
+</section>
+</section>
+<section id="evaluations" class="level3">
+<h3 class="anchored" data-anchor-id="evaluations">4.2 Evaluations</h3>
+<p>Evaluating the quality of our predicted rainfall values depends on the specific goals of our analysis and the characteristics of our data. However, here are several common methods for evaluating prediction quality.</p>
+<section id="visualize-the-rainfall-compared-to-predicted-rainfall" class="level4">
+<h4 class="anchored" data-anchor-id="visualize-the-rainfall-compared-to-predicted-rainfall">4.2.1 Visualize the rainfall compared to predicted rainfall</h4>
+<p>The given script produces a set of maps to visualize rainfall data compared to predicted rainfall different scenarios of rainfall given that the current day is rainy.</p>
+<p>This code is meant to load, process, and plot data on annual rainfall and rainfall predictions from the years 1984 to 2021.</p>
+<p>It initializes a plot with 10 rows and 4 columns to make room for a line plot for each year from 1984 to 2021. Each plot will compare actual rainfall (in light blue) with the predicted rainfall (in orange) over the course of a year.</p>
+</section>
+<section id="performance" class="level4">
+<h4 class="anchored" data-anchor-id="performance">4.2.2 Performance</h4>
+<p>Distribution of Errors (Residuals): We can plot a histogram or a Kernel Density Estimate plot of the residuals, which are the differences between the actual and predicted values. If our model is a good fit, the residuals should be normally distributed around zero.</p>
+<p>Time Series of Residuals: Plotting residuals over time can show whether the errors are consistent throughout the time series, or if they vary significantly at certain time periods.</p>
+<p>Boxplot of Errors by Year: This can help us see if the model’s performance varies significantly from year to year.</p>
+</section>
+</section>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">5 Results</h2>
+<p>We delve into a comprehensive analysis of rainfall prediction and its various aspects. By examining the curve adjustment chart and transforming probabilities into rainfall events, we gain insights into the predicted outcomes. Furthermore, we assess the performance of these predictions using visual comparisons, distributed errors (residuals), time series of residuals, and boxplot of error by year. This chapter aims to elucidate the accuracy and reliability of our rainfall prediction model.</p>
+<section id="adjustment-curve" class="level3">
+<h3 class="anchored" data-anchor-id="adjustment-curve">5.1 Adjustment curve</h3>
+<p>The scatter plot visualizes the adjustment curve for generating daily rainfall data using Fourier regression analysis. The data spans from 1984 to 2021. Each subplot corresponds to different weather patterns, characterized by the variables ‘P001’, ‘P011’, ‘P101’, ‘P111’, ‘P000’, ‘P010’, ‘P100’, and ‘P110’.</p>
+<p>The top row of plots shows the fitting model for rainy days (‘P001’, ‘P011’, ‘P101’, ‘P111’). Here, the patterns in the fitted models (g_fit) align with the data generated by g_a, indicating that the Fourier model accurately captures the distribution pattern of rainfall across different types of rainy day events.</p>
+<p>The second row presents the fitting model for dry days (‘P000’, ‘P010’, ‘P100’, ‘P110’). In these plots, the peak of the dry season, occurring in the June-July-August (JJA) period, is prominently reflected in the peak of the g_fit line plot. Conversely, the rainfall is lowest during this period, which is depicted as a valley in the model.</p>
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-19.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-19.jpg" class="img-fluid"></a></p>
+<p>Above visualization effectively demonstrates the application and accuracy of the Fourier regression analysis in modeling and simulating daily weather patterns, both for rainy and dry conditions, over a significant period. The g_fit line plots accurately reflect the distribution patterns of the original data (g), implying that the Fourier model is a suitable tool for simulating these weather patterns.</p>
+</section>
+<section id="transforming-the-probability-into-rainfall-event" class="level3">
+<h3 class="anchored" data-anchor-id="transforming-the-probability-into-rainfall-event">5.2 Transforming the probability into rainfall event</h3>
+<p>The image is a set of four heatmaps, each representing a different scenario: ‘P001’, ‘P011’, ‘P101’, and ‘P111’. These scenarios are likely representative of different weather conditions or patterns. Each heatmap shows the pattern of rainfall across a year. The x-axis denotes the day of the month while the y-axis represents the month itself, ranging from 1 (January) to 12 (December).</p>
+<p>The color intensity in each cell indicates the probability of rainfall. Darker shades symbolize a higher likelihood of rain, while lighter shades indicate a lower likelihood. This color gradient allows us to visually comprehend the variability and seasonality of rainfall across different periods of the year.</p>
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-20.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-20.jpg" class="img-fluid"></a></p>
+<p>From these heatmaps, one can observe the days and months when rainfall is more or less likely, given that the day is classified as ‘rainy’. These visualizations provide an intuitive understanding of rainfall patterns and their variations throughout the year for each respective scenario.</p>
+</section>
+<section id="predicted-rainfall" class="level3">
+<h3 class="anchored" data-anchor-id="predicted-rainfall">5.3 Predicted rainfall</h3>
+<p>The daily rainfall generated by the Fourier regression model and compared with the daily observation data from the Bogor Climatology Station from 1984-2021 in the image below (example using Year 2008-200- and 2012-2013) indicates that the predicted rainfall shows rainfall values produced by the model are higher than the observation data (overrated) with a pattern that tends to be somewhat dissimilar.</p>
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-10.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-10.jpg" class="img-fluid"></a></p>
+</section>
+<section id="performance-1" class="level3">
+<h3 class="anchored" data-anchor-id="performance-1">5.4 Performance</h3>
+<p>Evaluating the quality of our predicted rainfall values depends on the specific goals of our analysis and the characteristics of our data. However, here are several common methods for evaluating prediction quality:</p>
+<p>Visual comparison: It’s a plot of the predicted values against the observed values. This can give us a quick, intuitive sense of how closely our predictions match the actual values. While visually comparing the predicted and actual rainfall data is important and necessary, it is not sufficient on its own to evaluate the performance of the prediction model.</p>
+<div class="image-gallery">
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-21.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-21.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-22.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-22.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-23.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-23.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-24.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-24.jpg" class="img-fluid"></a></p>
+</div>
+</div>
+<p>Distribution of Errors (Residuals): This plot shows the distribution of residuals (errors), which are the differences between the predicted and actual rainfall values.</p>
+<div class="image-gallery">
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-15.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-15.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-16.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-16.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-17.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-17.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-18.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-18.jpg" class="img-fluid"></a></p>
+</div>
+</div>
+<p>In the context of rainfall prediction, if the residuals are normally distributed and centered around zero, it indicates that your model has made errors that are random and not biased, which is a good sign. If the distribution is not centered around zero or is highly skewed, it indicates that your model may be consistently overestimating or underestimating the rainfall.</p>
+<p>Time Series of Residuals: This plot shows how residuals change over time.</p>
+<div class="image-gallery">
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-25.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-25.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-26.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-22"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-26.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-27.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-23"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-27.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-28.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-24"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-28.jpg" class="img-fluid"></a></p>
+</div>
+</div>
+<p>We should expect to see no clear pattern in the residuals over time. If we see patterns, such as the residuals increasing or decreasing over time, it suggests that our model is not capturing some trend in the data. This could indicate a problem with our model that needs to be addressed.</p>
+<p>Boxplot of Error by Year: This plot shows the distribution of residuals for each year.</p>
+<div class="image-gallery">
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-11.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-25"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-11.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-12.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-26"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-12.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-13.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-27"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-13.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-14.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-28"><img src="../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-14.jpg" class="img-fluid"></a></p>
+</div>
+</div>
+<p>This can help you understand if your model’s performance is consistent over time. If some years have much higher or lower residuals, it may indicate that those years had unusual rainfall patterns that your model didn’t capture. You may want to investigate further to understand what’s causing these discrepancies.</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">6 Conclusion</h2>
+<p>Markov-chain models, when combined with Fourier regression equations and logit transformations, can be useful in estimating rainfall occurrence probabilities and generating synthetic rainfall data. This generated data can have practical applications in various fields, such as agriculture and urban planning, where accurate rainfall data is crucial for informed decision-making.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">7 References</h2>
+<p>Ashley, R. M., Balmforth, D. J., Saul, A. J., &amp; Blanskby, J. D. (2005). Flooding in the future–predicting climate change, risks and responses in urban areas. Water Science and Technology, 52(5), 265-273. <a href="https://doi.org/10.2166/WST.2005.0142" class="uri">https://doi.org/10.2166/WST.2005.0142</a></p>
+<p>Bellone, E., Hughes, J. P., &amp; Guttorp, P. (2000). A hidden Markov model for downscaling synoptic atmospheric patterns to precipitation amounts. Climate Research, 15(1), 1-12. <a href="https://www.jstor.org/stable/e24867295" class="uri">https://www.jstor.org/stable/e24867295</a></p>
+<p>Boer, R., Notodipuro, K.A., Las, I. 1999. Prediction of Daily Rainfall Characteristics from Monthly Climate Indices. RUT-IV report. National Research Council, Indonesia.</p>
+<p>Cho, H., K. P. Bowman, and G. R. North. 2004. A Comparison of Gamma and Lognormal Distributions for Characterizing Satellite Rain Rates from the Tropical Rainfall Measuring Mission. J. Appl. Meteor. Climatol., 43, 1586–1597. <a href="https://doi.org/10.1175/JAM2165.1" class="uri">https://doi.org/10.1175/JAM2165.1</a></p>
+<p>Hughes, J. P., Guttorp, P., &amp; Charles, S. P. (1999). A non-homogeneous hidden Markov model for precipitation occurrence. Journal of the Royal Statistical Society: Series C (Applied Statistics), 48(1), 15-30. <a href="https://doi.org/10.1111/1467-9876.00136" class="uri">https://doi.org/10.1111/1467-9876.00136</a></p>
+<p>Rodriguez-Iturbe, I., Cox, D. R., &amp; Isham, V. (1987). Some models for rainfall based on stochastic point processes. Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences, 410(1839), 269-288. <a href="https://doi.org/10.1098/rspa.1987.0039" class="uri">https://doi.org/10.1098/rspa.1987.0039</a></p>
+<p>Rosenzweig, C., Tubiello, F. N., Goldberg, R., Mills, E., &amp; Bloomfield, J. (2002). Increased crop damage in the US from excess precipitation under climate change. Global Environmental Change, 12(3), 197-202. <a href="https://doi.org/10.1016/S0959-3780(02)00008-0" class="uri">https://doi.org/10.1016/S0959-3780(02)00008-0</a></p>
+<p>Srikanthan, R., &amp; McMahon, T. A. (2001). Stochastic generation of annual, monthly and daily climate data: A review. Hydrology and Earth System Sciences Discussions, 5(4), 653-670. <a href="https://doi.org/10.5194/hess-5-653-2001" class="uri">https://doi.org/10.5194/hess-5-653-2001</a></p>
+<p>Stern, R. D., &amp; Coe, R. (1984). A model fitting analysis of daily rainfall data. Journal of the Royal Statistical Society. Series A (General), 147(1), 1-34. <a href="https://doi.org/10.2307/2981736" class="uri">https://doi.org/10.2307/2981736</a></p>
+<p>VanTassell, L.W., J.W. Richardson and J.R. Conner. 1990. Simulation of meteorological data for use in agricultural production studies. Agric. System 34:319-336. <a href="https://doi.org/10.1016/0308-521X(90)90011-E" class="uri">https://doi.org/10.1016/0308-521X(90)90011-E</a></p>
+<p>Waggoner, P.E. (1989). Anticipating the frequency distribution of precipitation if climate change alters its mean. Agric. For. Meteor. 47:321-337. <a href="https://doi.org/10.1016/0168-1923(89)90103-2" class="uri">https://doi.org/10.1016/0168-1923(89)90103-2</a></p>
+<p>Wilks, D. S. (1990). Maximum likelihood estimation for the gamma distribution using data containing zeros. Journal of Climate, 3(12), 1495-1501. <a href="https://doi.org/10.1175/1520-0442(1990)003%3C1495:MLEFTG%3E2.0.CO;2" class="uri">https://doi.org/10.1175/1520-0442(1990)003%3C1495:MLEFTG%3E2.0.CO;2</a></p>
+<p>Wilks, D. S. (1998). Multisite generalization of a daily stochastic precipitation generation model. Journal of Hydrology, 210(1-4), 178-191. <a href="https://doi.org/10.1016/S0022-1694(98)00186-3" class="uri">https://doi.org/10.1016/S0022-1694(98)00186-3</a></p>
+<p>Wilks, D. S. (2011). Statistical methods in the atmospheric sciences (Vol. 100). Academic press. <a href="https://doi.org/10.1016/C2017-0-03921-6" class="uri">https://doi.org/10.1016/C2017-0-03921-6</a></p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/benny\.istan\.to\/site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026, Benny Istanto.</p>
+<p>Exploring Climate with GIS and Data Science, solving old problems in new ways. Turning earth observation data into actionable, life-saving insights.</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+<div class="toc-actions"><ul><li><a href="https://github.com/bennyistanto/site/blob/main/blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/bennyistanto/site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/bennyistanto" aria-label="GitHub"><i class="bi bi-github"></i></a> <a href="https://linkedin.com/in/bennyistanto" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a> <a href="https://worldbank.github.io/GOST/content/staff/bennyistanto.html" aria-label="GOST"><i class="bi bi-globe"></i></a></p>
+<p><a href="https://buymeacoffee.com/bennyistanto">Buy Me a Coffee</a></p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

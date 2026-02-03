@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Benny Istanto">
+<meta name="dcterms.date" content="2023-02-28">
+<meta name="description" content="Unit hydrographs are a fundamental tool in the analysis of floods and their impacts on watersheds">
+
+<title>Unit Hydrographs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/image-logo/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ae7d70a23c66c8df71f5a679a6f4dfc7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-1bcb2280c51331a5c09e99b999b82845.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ae7d70a23c66c8df71f5a679a6f4dfc7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-371178116"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-371178116', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../styles/styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo light-content">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../csr.html"> 
+<span class="menu-text">CSR</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-works" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Works</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-works">    
+        <li>
+    <a class="dropdown-item" href="../works.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/experiences.html">
+ <span class="dropdown-text">Experiences</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/projects.html">
+ <span class="dropdown-text">Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/consulting.html">
+ <span class="dropdown-text">Consulting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/maps-and-infographics.html">
+ <span class="dropdown-text">Maps &amp; Infographics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../cv.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Unit Hydrographs</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Climate</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Unit hydrographs are a fundamental tool in the analysis of floods and their impacts on watersheds
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Benny Istanto </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 28, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Unit hydrographs are a fundamental tool in the analysis of floods and their impacts on watersheds. A unit hydrograph represents the response of a watershed to a unit of rainfall or snow melt over a period of time. By analyzing the shape of the unit hydrograph, hydrologists can estimate the runoff volume, timing, and distribution of peak flows within a watershed. This information is essential for understanding the risk of flooding and designing effective flood management strategies.</p>
+<p>At its core, a unit hydrograph is a simple concept. It is a graph that shows the relationship between the input of precipitation or snowmelt and the resulting output of streamflow over time. The unit hydrograph concept assumes that the watershed responds to a given rainfall or snowmelt event in a predictable way, and that the response is proportional to the magnitude and duration of the event. By developing a unit hydrograph for a particular watershed, hydrologists can estimate the runoff that will occur for any given precipitation or snowmelt event, which is essential for predicting floods.</p>
+<p>Unit hydrographs are useful in a range of applications, from designing flood control structures to evaluating the impacts of land use changes on hydrologic processes. They can be developed using a variety of methods, including graphical, analytical, and numerical techniques. One common approach is to use data from a historical storm event to develop a synthetic unit hydrograph, which can then be used to estimate the response of the watershed to future storm events.</p>
+<p>To develop a unit hydrograph, hydrologists first divide the watershed into subareas or subcatchments, each with its own unique hydrologic characteristics. They then estimate the time it takes for runoff to travel from each subcatchment to the watershed outlet, known as the travel time. The travel time is a function of the length, slope, and roughness of the flow path, as well as the velocity of the water.</p>
+<p>Once the travel times for each sub catchment have been estimated, hydrologists can develop the unit hydrograph by adding together the contributions from each subcatchment. This is done by convolving the runoff from each subcatchment with a unit impulse function, which represents the response of the watershed to a unit of precipitation or snowmelt.</p>
+<p>The resulting unit hydrograph shows the response of the watershed to a unit of rainfall or snowmelt over time, typically in the form of a graph. The time axis represents the time it takes for the runoff to reach the watershed outlet, while the discharge axis represents the volume of runoff at the outlet. The shape of the unit hydrograph reflects the characteristics of the watershed, including its size, shape, and hydrologic processes.</p>
+<p>By analyzing the shape of the unit hydrograph, hydrologists can estimate the volume, timing, and distribution of peak flows within the watershed for any given storm event. This information is critical for designing flood control structures, such as dams and levees, and for developing flood warning systems. It can also be used to evaluate the impacts of land use changes on hydrologic processes and to assess the effectiveness of different flood management strategies.</p>
+<p>Overall, unit hydrographs are an essential tool for understanding floods at the watershed level. By analyzing the shape of the unit hydrograph, hydrologists can estimate the response of the watershed to different storm events, and develop effective flood management strategies to protect communities and infrastructure.</p>
+<section id="exercise-1" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-1">Exercise 1:</h4>
+<p>Obtain a Unit Hydrograph for a basin of 282.6 km2 of area using the rainfall and streamflow data tabulated below.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Time (h)</th>
+<th>Observed Hydrograph (m3/s)</th>
+<th>Time (h)</th>
+<th>Gross Precipitation (GRH)(cm/h)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>160</td>
+<td>0 - 1</td>
+<td>0.25</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>150</td>
+<td>1 - 2</td>
+<td>2.75</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>350</td>
+<td>2 - 3</td>
+<td>2.75</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>800</td>
+<td>3 - 4</td>
+<td>0.25</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>1200</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>900</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>750</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>550</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>350</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>225</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>150</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>140</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Answer</strong></p>
+<p>We will utilize Python to construct the process and calculate the Unit Hydrographs. First we need to define the variables.</p>
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+# Define the time interval (in hours)
+delta_t = 1
+
+# Define the duration of the storm (in hours)
+t_storm = 8
+
+# Define the observed hydrograph data
+obs_hydro = [160, 150, 350, 800, 1200, 900, 750, 550, 350, 225, 150, 140]
+
+# Define the gross precipitation data
+gross_precip = [0.25, 2.75, 2.75, 0.25]
+
+# Define the basin area in square meters
+A = 282.6 * 1000000
+
+# Define the baseflow in m^3/s
+baseflow = 150</code></pre>
+<p>Then follow with calculation process</p>
+<pre><code># Calculate the number of time intervals
+n = len(obs_hydro)
+
+# Calculate the direct runoff hydrograph by subtracting the baseflow from the observed hydrograph
+runoff = np.array(obs_hydro) - baseflow
+
+# Calculate the volume of direct runoff in m^3 by summing the direct runoff over the duration of the storm
+VDRH = np.sum(runoff) * delta_t * 3600
+
+# Calculate the effective precipitation by subtracting the initial abstraction (Ia) from the gross precipitation
+Ia = 0.2 * np.sum(gross_precip) * t_storm
+Pe = np.array(gross_precip) - Ia / delta_t
+
+# Calculate the volume of effective rainfall in m^3 by summing the effective precipitation over the duration of the storm
+VERH = np.sum(Pe) * delta_t * A / 100
+
+# Calculate the depth of direct runoff in meters by dividing the volume of direct runoff by the basin area
+depth_DRH = VDRH / A
+
+# Create an empty array to store the unit hydrograph
+uh = np.zeros(n)
+
+# Calculate the unit hydrograph by normalizing the direct runoff hydrograph
+uh = runoff / depth_DRH / 100
+
+# Define the time vector
+time = np.arange(n) * delta_t
+
+# Calculate the rainfall intensity
+rainfall_intensity = np.zeros(n)
+for i in range(4):
+    rainfall_intensity[i] = gross_precip[i] * 100 / delta_t  # Convert cm/h to mm/h to mm/interval
+for i in range(4, n):
+    rainfall_intensity[i] = gross_precip[3] * 100 / delta_t  # Convert cm/h to mm/h to mm/interval</code></pre>
+<p>Next plot the result as a line chart using below code.</p>
+<pre><code># Plot the observed hydrograph, direct runoff hydrograph, unit hydrograph, and rainfall intensity
+plt.plot(time, obs_hydro, label='Observed Hydrograph')
+plt.plot(time, baseflow * np.ones(n), label='Baseflow')
+plt.plot(time, runoff, label='Direct Runoff Hydrograph')
+plt.plot(time, uh, label='Unit Hydrograph')
+plt.plot(time, rainfall_intensity, label='Rainfall Intensity')
+plt.xlabel('Time (hours)')
+plt.ylabel('Discharge (m^3/s) or Rainfall Intensity (mm/interval)')
+plt.legend()
+plt.show()</code></pre>
+<p>It will produce a chart below.</p>
+<p><a href="../assets/image-blog/download+(1).jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="../assets/image-blog/download+(1).jpg" class="img-fluid"></a></p>
+<p>We can generate the table that constructs the above chart too.</p>
+<pre><code># Create the table
+table_data = np.vstack((time, obs_hydro, baseflow * np.ones(n), runoff, uh, rainfall_intensity)).T
+headers = ['Time (h)', 'OH (m^3/s)', 'Baseflow (m^3/s)', 'DRH (m^3/s)', 'UH (m^3/s/cm)', 'RI (cm/h)']
+print('\t'.join(headers))
+for row in table_data:
+    print('\t'.join(str(cell) for cell in row))</code></pre>
+<p>The script will generate table below</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Time (h)</th>
+<th>OH (m^3/s)</th>
+<th>Baseflow (m^3/s)</th>
+<th>DRH (m^3/s)</th>
+<th>UH (m^3/s/cm)</th>
+<th>RI (cm/h)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>160</td>
+<td>150</td>
+<td>10</td>
+<td>2</td>
+<td>25</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>150</td>
+<td>150</td>
+<td>0</td>
+<td>0</td>
+<td>275</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>350</td>
+<td>150</td>
+<td>200</td>
+<td>40</td>
+<td>275</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>800</td>
+<td>150</td>
+<td>650</td>
+<td>130</td>
+<td>25</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>1200</td>
+<td>150</td>
+<td>1050</td>
+<td>210</td>
+<td>25</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>900</td>
+<td>150</td>
+<td>750</td>
+<td>150</td>
+<td>25</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>750</td>
+<td>150</td>
+<td>600</td>
+<td>120</td>
+<td>25</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>550</td>
+<td>150</td>
+<td>400</td>
+<td>80</td>
+<td>25</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>350</td>
+<td>150</td>
+<td>200</td>
+<td>40</td>
+<td>25</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>225</td>
+<td>150</td>
+<td>75</td>
+<td>15</td>
+<td>25</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>150</td>
+<td>150</td>
+<td>0</td>
+<td>0</td>
+<td>25</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>140</td>
+<td>150</td>
+<td>-10</td>
+<td>-2</td>
+<td>25</td>
+</tr>
+</tbody>
+</table>
+<p>Next is determining the duration D of the ERH associated with the UH obtained in step above</p>
+<pre><code># Calculate the volume of losses
+VGRH = np.sum(gross_precip) * t_storm * 3600 * A / 100
+VDRH2 = np.sum(runoff) * delta_t * 3600 * A / 100
+VLosses = (VGRH - VDRH2 - Ia * A / 100)
+
+# Calculate the f-index
+tr = t_storm * delta_t
+f_index = VLosses / tr
+
+# Calculate the ERH by subtracting the f-index from the gross precipitation
+# ERH = np.array(gross_precip) - f_index
+ERH = np.zeros(n)
+ERH[:4] = [0.0, 2.5, 2.5, 0.0]
+
+# Determine the duration of the effective rainfall hyetograph
+ERH_duration = len(ERH[ERH &gt; 0]) * delta_t</code></pre>
+<p>Last step is calculating the Predicted Hydrograph and visualizing the result as a line chart.</p>
+<pre><code># Convolve the ERH and UH to obtain the predicted hydrograph
+n_P = len(ERH)
+time_P = np.arange(n_P) * delta_t
+
+# Pad the ERH array with zeros if its length is less than the UH length
+if n_P &lt; n:
+    ERH_padded = np.pad(ERH, (n - n_P, 0), mode='constant')
+else:
+    ERH_padded = ERH
+
+# the conversion factor from m^3/s/m to m^3/s/mm by multiply uh with 0.0005
+Q = np.convolve(ERH_padded, 0.0005 * uh) * delta_t * 3600
+
+# Plot the predicted hydrograph
+plt.plot(time_P, Q[:n_P], label='Predicted Hydrograph')
+plt.xlabel('Time (hours)')
+plt.ylabel('Discharge (m^3/s)')
+plt.legend()
+plt.show()</code></pre>
+<p>It will produce a line chart below.</p>
+<p><a href="../assets/image-blog/download+(2).jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../assets/image-blog/download+(2).jpg" class="img-fluid"></a></p>
+</section>
+<section id="exercise-2" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-2">Exercise 2:</h4>
+<p>Utilize the results of the Problem-1 to finish the Problem-2. Among the outcomes of Problem-1 is the tabulation and curve of the Unit Hydrograph (m3/s). Assuming that in the same watershed there are four effective rains (P1, P2, P3, and P4) with each effective rain having a duration of 2 hours, the short tabulation is as follows:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Time (h)</th>
+<th>Pm (cm)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0 - 2</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>2 - 4</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>4 - 6</td>
+<td>1.5</td>
+</tr>
+<tr class="even">
+<td>6 - 8</td>
+<td>0.5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Answer</strong></p>
+<p>The given code is an implementation of a hydrological model that predicts the runoff flow for a catchment area. The catchment area is described by the unit hydrograph (UH), which is the hypothetical runoff hydrograph resulting from 1 unit of excess rainfall input over a unit of time. The hydrological model uses the UH to simulate the catchment response to rainfall input.</p>
+<p>The model requires the specification of four effective rainfall hyetographs (ERHs) that represent the four rainfall events with different intensities and durations. The ERHs and the duration of each pulse are specified in the code as arrays. The model also requires the specification of the time steps at which the runoff flow is simulated. The time steps are also specified as an array in the code.</p>
+<p>The hydrological model is implemented using a table array that contains the values of the UH, the ERHs, and the calculated runoff flow values. The table array is initialized with zeros and populated with values in a step-by-step process.</p>
+<ul>
+<li>Firstly, the time column is populated with the time steps.</li>
+<li>Secondly, the Pm value is calculated for each ERH pulse by multiplying the ERH value by the pulse duration.</li>
+<li>Then, the UH column is populated with the given UH values.</li>
+<li>The P1UH column is calculated by multiplying the Pm value of the first ERH pulse with the corresponding UH value.</li>
+<li>The P2UH column is calculated by applying the convolution operation between the UH and the Pm value of the second ERH pulse. The convolution operation is implemented using a for loop that starts at the third time step.</li>
+<li>The P3UH column is calculated in a similar way by applying the convolution operation between the UH and the Pm value of the third ERH pulse. The P3UH calculation starts at the fifth time step.</li>
+<li>The P4UH column is calculated by multiplying the UH value by the Pm value of the fourth ERH pulse. The P4UH calculation starts at the seventh time step.</li>
+<li>The DRH (direct runoff hydrograph) column is calculated by summing up the values in the P1UH, P2UH, P3UH, and P4UH columns for each time step.</li>
+<li>The Baseflow column is populated with the constant value of 150.</li>
+<li>The Total column is calculated by summing up the values in the DRH and Baseflow columns for each time step.</li>
+</ul>
+<p>See below implementation using python.</p>
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+# Define the given UH
+uh = np.array([0, 40, 130, 210, 150, 120, 80, 40, 15, 0])
+
+# Define the given ERH
+erh = np.array([2.0, 3.0, 1.5, 0.5])
+
+# Define the duration of each ERH pulse
+duration = 1  # hours
+
+# Define the time steps
+t = np.arange(1, 17)
+
+# Initialize table array
+table = np.zeros((len(t), 9))
+
+# Populate time column
+table[:, 0] = t
+
+# Calculate Pm for each ERH pulse
+pm = np.array(erh) * duration
+
+# Populate UH column
+table[:, 1] = np.pad(uh, (0, len(t) - len(uh)), 'constant', constant_values=(0,))
+
+# Populate P1*UH column
+for i in range(len(t)):
+    if i &lt; len(uh):
+        table[i, 2] = pm[0] * uh[i]
+
+# Populate remaining P2*UH values
+for i in range(3, len(t)):
+    if table[i, 3] == 0:
+        table[i, 3] = pm[1] * table[i-2, 1]
+
+# Populate P3*UH column
+for i in range(5, len(t)):
+    if table[i, 4] == 0:
+        table[i, 4] = pm[2] * table[i-4, 1]
+
+# Populate P4*UH column
+for i in range(7, len(t)):
+    if table[i, 5] == 0:
+        table[i, 5] = pm[3] * table[i-6, 1]
+
+# Populate DRH column
+for i in range(len(t)):
+    table[i, 6] = np.sum(table[i, 2:6])
+
+# Populate Baseflow column
+table[:, 7] = 150
+
+# Populate Total column
+table[:, 8] = table[:, 6] + table[:, 7]
+
+# Print the table
+print("{:&lt;10} {:&lt;12} {:&lt;12} {:&lt;12} {:&lt;12} {:&lt;12} {:&lt;12} {:&lt;12} {:&lt;12}".format(
+    "Time(h)", "UH(m3/s/cm)", "P1*UH(m3/s)", "P2*UH(m3/s)", "P3*UH(m3/s)", 
+    "P4*UH(m3/s)", "DRH(m3/s)", "Baseflow(m3/s)", "Total(m3/s)"
+))
+for i in range(len(t)):
+    print("{:&lt;10} {:&lt;12} {:&lt;12} {:&lt;12} {:&lt;12} {:&lt;12} {:&lt;12} {:&lt;12} {:&lt;12}".format(
+        table[i, 0], table[i, 1], table[i, 2], table[i, 3], table[i, 4], 
+        table[i, 5], table[i, 6], table[i, 7], table[i, 8]
+    ))
+print('_______________________________________________')</code></pre>
+<p>Finally, the table array is printed with the column headings and the calculated values for each time step. The table provides a prediction of the runoff flow for the given catchment area and the four specified rainfall events.</p>
+<p>Here is the table:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Time (h)</th>
+<th>UH (m3/s/cm)</th>
+<th>P1*UH (m3/s)</th>
+<th>P2*UH (m3/s)</th>
+<th>P3*UH (m3/s)</th>
+<th>P4*UH (m3/s)</th>
+<th>DRH (m3/s)</th>
+<th>Baseflow (m3/s)</th>
+<th>Total (m3/s)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td></td>
+<td>0</td>
+<td>150</td>
+<td>150</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>40</td>
+<td>80</td>
+<td></td>
+<td></td>
+<td></td>
+<td>80</td>
+<td>150</td>
+<td>230</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>130</td>
+<td>260</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td>260</td>
+<td>150</td>
+<td>410</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>210</td>
+<td>420</td>
+<td>120</td>
+<td></td>
+<td></td>
+<td>540</td>
+<td>150</td>
+<td>690</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>150</td>
+<td>300</td>
+<td>390</td>
+<td>0</td>
+<td></td>
+<td>690</td>
+<td>150</td>
+<td>840</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>120</td>
+<td>240</td>
+<td>630</td>
+<td>60</td>
+<td></td>
+<td>930</td>
+<td>150</td>
+<td>1080</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>80</td>
+<td>160</td>
+<td>450</td>
+<td>195</td>
+<td>0</td>
+<td>805</td>
+<td>150</td>
+<td>955</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>40</td>
+<td>80</td>
+<td>360</td>
+<td>315</td>
+<td>20</td>
+<td>775</td>
+<td>150</td>
+<td>925</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>15</td>
+<td>30</td>
+<td>240</td>
+<td>225</td>
+<td>65</td>
+<td>560</td>
+<td>150</td>
+<td>710</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>0</td>
+<td>0</td>
+<td>120</td>
+<td>180</td>
+<td>105</td>
+<td>405</td>
+<td>150</td>
+<td>555</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td></td>
+<td></td>
+<td>45</td>
+<td>120</td>
+<td>75</td>
+<td>240</td>
+<td>150</td>
+<td>390</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td></td>
+<td></td>
+<td>0</td>
+<td>60</td>
+<td>60</td>
+<td>120</td>
+<td>150</td>
+<td>270</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td></td>
+<td></td>
+<td></td>
+<td>22.5</td>
+<td>40</td>
+<td>62.5</td>
+<td>150</td>
+<td>212.5</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td></td>
+<td></td>
+<td></td>
+<td>0</td>
+<td>20</td>
+<td>20</td>
+<td>150</td>
+<td>170</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>7.5</td>
+<td>7.5</td>
+<td>150</td>
+<td>157.5</td>
+</tr>
+<tr class="even">
+<td>16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>0</td>
+<td>0</td>
+<td>150</td>
+<td>150</td>
+</tr>
+</tbody>
+</table>
+<p>Next plot the result as a line chart using below code.</p>
+<pre><code># Plot the chart
+plt.plot(t, table[:, 1], label='UH')
+plt.plot(t, table[:, 2], label='P1*UH')
+plt.plot(t, table[:, 3], label='P2*UH')
+plt.plot(t, table[:, 4], label='P3*UH')
+plt.plot(t, table[:, 5], label='P4*UH')
+plt.plot(t, table[:, 6], label='DRH')
+plt.plot(t, table[:, 7], label='Baseflow')
+plt.plot(t, table[:, 8], label='Total')
+
+# Set chart title and labels
+plt.title('Hydrograph Components')
+plt.xlabel('Time (hours)')
+plt.ylabel('Discharge (m3/s)')
+
+# Show the legend
+plt.legend()
+
+# Show the chart
+plt.show()</code></pre>
+<p>It will produce a chart below.</p>
+<p><a href="../assets/image-blog/download+(3).jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="../assets/image-blog/download+(3).jpg" class="img-fluid"></a></p>
+</section>
+<section id="exercise-3" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-3">Exercise 3:</h4>
+<p>Characteristics of two catchments M and N measured from a map are given below:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Catchment M</th>
+<th>Catchment N</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lca</td>
+<td>76 km</td>
+<td>52 km</td>
+</tr>
+<tr class="even">
+<td>L</td>
+<td>148 km</td>
+<td>106 km</td>
+</tr>
+<tr class="odd">
+<td>A</td>
+<td>2718 km2</td>
+<td>1400 km2</td>
+</tr>
+</tbody>
+</table>
+<p>For the 6-h unit hydrograph in catchment M, the peak discharge is at 200 m3/s and occurs at 37 h from the start of the rainfall excess. Assuming the catchments M and N are meteorologically similar; determine the elements of the 6-h synthetic unit hydrograph for catchment N by using Snyder’s method.</p>
+<p>Here’s a Python implementation to solve the problem:</p>
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+# Given data
+Lca_M = 76  # km
+L_M = 148  # km
+A_M = 2718  # km^2
+Lca_N = 52  # km
+L_N = 106  # km
+A_N = 1400  # km^2
+T_M = 6  # hours
+Q_M = 200  # m^3/s
+t_peak_M = 37  # hours
+
+# Snyder's unit hydrograph parameters
+K_M = 0.0136 * A_M**0.77 * L_M**0.385 / T_M
+K_N = K_M * (A_N / A_M)**0.385 * (Lca_N / Lca_M)**0.54
+Tw_M = 0.78 * L_M**0.5
+Tw_N = Tw_M * (L_N / L_M)**0.8
+
+# Compute the ordinates of the unit hydrograph for catchment M
+time_M = np.arange(0, t_peak_M + Tw_M + T_M, T_M)
+UH_M = (1 / (K_M * Tw_M)) * (time_M / Tw_M)**0.5 * np.exp(-time_M / Tw_M)
+
+# Scale the unit hydrograph to peak discharge Q_M
+UH_M *= Q_M / UH_M.max()
+
+# Compute the ordinates of the unit hydrograph for catchment N
+time_N = np.arange(0, t_peak_M + Tw_N + T_M, T_M)
+UH_N = (1 / (K_N * Tw_N)) * (time_N / Tw_N)**0.5 * np.exp(-time_N / Tw_N)
+
+# Scale the unit hydrograph to peak discharge Q_N
+Q_N = Q_M * (A_N / A_M)
+UH_N *= Q_N / UH_N.max()
+
+# Print out the results
+print(f'K_M = {K_M:.2f} m^(1/3)/s, Tw_M = {Tw_M:.2f} hours')
+print(f'K_N = {K_N:.2f} m^(1/3)/s, Tw_N = {Tw_N:.2f} hours')
+print('6-hour synthetic unit hydrograph for catchment M:')
+print(UH_M)
+print(f'Peak discharge: {Q_M:.2f} m^3/s')
+print('6-hour synthetic unit hydrograph for catchment N:')
+print(UH_N)
+print(f'Peak discharge: {Q_N:.2f} m^3/s')
+
+# Create a table of the synthetic unit hydrograph
+table_data = np.column_stack((time_M, UH_M, UH_N))
+header = '{:&lt;10} {:&lt;20} {:&lt;20}'.format('Time (h)', 'UH for M (m3/s)', 'UH for N (m3/s)')
+print(header)
+print('-' * len(header))
+for i in range(len(time_M)):
+    print('{:&lt;10.1f} {:&lt;20.2f} {:&lt;20.2f}'.format(table_data[i, 0], table_data[i, 1], table_data[i, 2]))</code></pre>
+<p>It will print the result below:</p>
+<p>K_M = 6.84 m^(1/3)/s, Tw_M = 9.49 hours</p>
+<p>K_N = 4.32 m^(1/3)/s, Tw_N = 7.27 hours</p>
+<p>6-hour synthetic unit hydrograph for catchment M:</p>
+<p>[ 0. 200. 150.29306573 97.80893338 60.01251688 35.65256641 20.75273644 11.9108489 6.76601005]</p>
+<p>Peak discharge: 200.00 m^3/s</p>
+<p>6-hour synthetic unit hydrograph for catchment N:</p>
+<p>[ 0. 103.01692421 63.79260217 34.21075734 17.29731912 8.46799408 4.06179415 1.92104724 0.89925065]</p>
+<p>Peak discharge: 103.02 m^3/s</p>
+<p>Time (h) UH for M (m3/s) UH for N (m3/s)</p>
+<hr>
+<p>0.0 0.00 0.00</p>
+<p>6.0 200.00 103.02</p>
+<p>12.0 150.29 63.79</p>
+<p>18.0 97.81 34.21</p>
+<p>24.0 60.01 17.30</p>
+<p>30.0 35.65 8.47</p>
+<p>36.0 20.75 4.06</p>
+<p>42.0 11.91 1.92</p>
+<p>48.0 6.77 0.90</p>
+<p>Let’s visualise it as a chart.</p>
+<pre><code># Plot the synthetic unit hydrographs
+plt.plot(time_M, UH_M, label='Catchment M')
+plt.plot(time_N, UH_N, label='Catchment N')
+plt.xlabel('Time (h)')
+plt.ylabel('Ordinates of unit hydrograph (m$^3$/s)')
+plt.title('6-hour Unit Hydrograph for Catchments M and N')
+plt.legend()
+plt.show()</code></pre>
+<p>It will produce a chart below:</p>
+<p><a href="../assets/image-blog/download+(4).jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="../assets/image-blog/download+(4).jpg" class="img-fluid"></a></p>
+</section>
+<section id="strength-and-weakness-of-unit-hydrographs" class="level4">
+<h4 class="anchored" data-anchor-id="strength-and-weakness-of-unit-hydrographs">Strength and Weakness of Unit Hydrographs:</h4>
+<p>The Unit Hydrographs is a commonly used technique for flood analysis on a watershed. Like any method, it has its strengths and weaknesses, which are discussed below.</p>
+<p><strong>Strengths:</strong></p>
+<ol type="1">
+<li>Unit hydrographs are a simple yet powerful tool for analyzing the response of a watershed to precipitation or snowmelt events. They allow hydrologists to estimate the runoff volume, timing, and distribution of peak flows within a watershed, which is essential for understanding the risk of flooding and designing effective flood management strategies.</li>
+<li>Unit hydrographs can be developed using a variety of methods, including graphical, analytical, and numerical techniques. This makes them a versatile tool that can be adapted to a range of hydrologic conditions and data availability.</li>
+<li>By analyzing the shape of the unit hydrograph, hydrologists can estimate the travel times and storage capacities of different subcatchments within the watershed. This information is important for developing effective flood control strategies, such as the construction of dams and levees.</li>
+<li>Unit hydrographs can be used to assess the impacts of land use changes on hydrologic processes, such as urbanization or deforestation. By comparing the unit hydrographs of different land use scenarios, hydrologists can estimate the effects of land use changes on runoff, peak flows, and other hydrologic variables.</li>
+<li>Unit hydrographs are a widely accepted and established tool in the field of hydrology. As a result, there are many resources available for developing and analyzing unit hydrographs, including software, textbooks, and research articles.</li>
+</ol>
+<p><strong>Weaknesses:</strong></p>
+<ol type="1">
+<li>Developing an accurate unit hydrograph requires a significant amount of data, including precipitation records, streamflow measurements, and topographic data. In some cases, these data may not be available, which can limit the accuracy of the resulting unit hydrograph.</li>
+<li>The assumptions underlying the unit hydrograph concept may not always hold true, particularly in complex or heterogeneous watersheds. For example, the travel times and storage capacities of different subcatchments may vary widely, which can affect the accuracy of the resulting unit hydrograph.</li>
+<li>The accuracy of the unit hydrograph is dependent on the accuracy of the input data, including precipitation and streamflow measurements. Errors in these data can propagate through the analysis, leading to inaccurate estimates of runoff and peak flows.</li>
+<li>Unit hydrographs do not capture the complex interactions between different hydrologic processes within the watershed. As a result, they may not be suitable for simulating extreme events or rare flood events that fall outside of the range of historical data.</li>
+<li>Developing a unit hydrograph requires a significant amount of expertise and experience in the field of hydrology. As a result, it may not be a practical tool for non-experts or small communities with limited resources.</li>
+</ol>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/benny\.istan\.to\/site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026, Benny Istanto.</p>
+<p>Exploring Climate with GIS and Data Science, solving old problems in new ways. Turning earth observation data into actionable, life-saving insights.</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+<div class="toc-actions"><ul><li><a href="https://github.com/bennyistanto/site/blob/main/blog/20230228-unit-hydrographs.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/bennyistanto/site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/bennyistanto" aria-label="GitHub"><i class="bi bi-github"></i></a> <a href="https://linkedin.com/in/bennyistanto" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a> <a href="https://worldbank.github.io/GOST/content/staff/bennyistanto.html" aria-label="GOST"><i class="bi bi-globe"></i></a></p>
+<p><a href="https://buymeacoffee.com/bennyistanto">Buy Me a Coffee</a></p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

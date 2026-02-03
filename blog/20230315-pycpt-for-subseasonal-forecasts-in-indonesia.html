@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Benny Istanto">
+<meta name="dcterms.date" content="2023-03-15">
+<meta name="description" content="1 Introduction PyCPTis a Python library for statistical analysis and forecasting of climate data">
+
+<title>PyCPT for Subseasonal Forecasts in Indonesia</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/image-logo/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ae7d70a23c66c8df71f5a679a6f4dfc7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-1bcb2280c51331a5c09e99b999b82845.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ae7d70a23c66c8df71f5a679a6f4dfc7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-371178116"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-371178116', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../styles/styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo light-content">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../csr.html"> 
+<span class="menu-text">CSR</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-works" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Works</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-works">    
+        <li>
+    <a class="dropdown-item" href="../works.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/experiences.html">
+ <span class="dropdown-text">Experiences</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/projects.html">
+ <span class="dropdown-text">Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/consulting.html">
+ <span class="dropdown-text">Consulting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/maps-and-infographics.html">
+ <span class="dropdown-text">Maps &amp; Infographics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../cv.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">PyCPT for Subseasonal Forecasts in Indonesia</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Climate</div>
+    <div class="quarto-category">Remote Sensing</div>
+    <div class="quarto-category">Research</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    1 Introduction PyCPTis a Python library for statistical analysis and forecasting of climate data
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Benny Istanto </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 15, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>1 Introduction</strong></p>
+<p>PyCPTis a Python library for statistical analysis and forecasting of climate data. It provides a range of tools for time series analysis, including trend analysis, seasonal decomposition, and correlation analysis. These tools can be used to identify patterns and relationships in climate data, which can then be used to develop forecasts for subseasonal climate conditions.</p>
+<p>Subseasonal forecasting is an important area of research in climate science, particularly in regions such as Indonesia where the climate is strongly influenced by the Madden-Julian Oscillation (MJO) and other large-scale climate drivers that operate on a timescale of several weeks to a few months. By developing subseasonal forecasts, it is possible to anticipate changes in climate conditions and take measures to prepare for and adapt to these changes.</p>
+<p><a href="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-07.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-07.jpg" class="img-fluid"></a></p>
+<p>Figure 1. PyCPT S2S. Source: <a href="https://bitbucket.org/py-iri/iri-pycpt/src/master/" class="uri">https://bitbucket.org/py-iri/iri-pycpt/src/master/</a></p>
+<p>To use PyCPT for subseasonal forecasting in Indonesia, the first step is to acquire and preprocess the relevant climate data. This may include data on temperature, precipitation, and other climate variables, as well as data on MJO and other large-scale climate drivers. The data should be cleaned, validated, and formatted into a suitable time series format for analysis.</p>
+<p>Once the data has been prepared, it can be analyzed using PyCPT’s time series analysis tools. This may involve identifying trends, subseasonal patterns, and correlations between different climate variables. These insights can then be used to develop statistical models for forecasting subseasonal climate conditions.</p>
+<p>PyCPT includes a range of statistical models for subseasonal forecasting, including autoregressive integrated moving average (ARIMA) models, vector autoregression (VAR) models, and dynamic linear models (DLMs). These models can be used to make point forecasts of subseasonal climate conditions, as well as to estimate the uncertainty associated with these forecasts.</p>
+<p>In addition to point forecasts, PyCPT can be used to generate probabilistic forecasts of subseasonal climate conditions. This can be particularly useful in regions such as Indonesia, where the climate is highly variable and uncertain. Probabilistic forecasts can provide information on the likelihood of different climate scenarios, which can help decision-makers to plan for and adapt to future climate conditions.</p>
+<p>PyCPT also includes tools for evaluating the accuracy and performance of different forecasting models. These tools can be used to compare different models and identify the most effective approach for forecasting subseasonal climate conditions in Indonesia.</p>
+<p>In addition to its forecasting capabilities, PyCPT can also be used for climate impact assessments and scenario planning at the subseasonal timescale. By simulating different subseasonal climate scenarios, it is possible to assess the potential impacts of future climate conditions on agriculture, water resources, and other sectors. This information can then be used to develop adaptation strategies and policies.</p>
+<p>PyCPT is a powerful tool for subseasonal forecasting in Indonesia and other regions with complex and variable climates. Its range of statistical tools and models, combined with its ease of use and integration with Python, make it a valuable resource for climate scientists, researchers, and decision-makers.</p>
+<p>By using PyCPT to develop accurate and reliable subseasonal forecasts, it is possible to better anticipate and adapt to the impacts of climate change in Indonesia. This can help to reduce the risks and costs associated with extreme weather events, protect vulnerable populations, and promote sustainable development.</p>
+<p><strong>2 PyCPT set-up</strong></p>
+<p>I have written notes on how to set up the PyCPT from preparing the installation (Anaconda and CPT), supporting files, and modified notebook for running a sub seasonal and seasonal forecast in Indonesia. It’s accessible via this <a href="../blog/20230306-pycpt-config-and-notebook">link</a>.</p>
+<p><strong>3 Configuring PyCPT</strong></p>
+<p>To develop a subseasonal Multi-Model Ensemble (MME), we will utilize the CFSv2, GEFSv12, and FIM SubX models. Similar to the seasonal forecasting case, in subseasonal forecasting, the application of Model Output Statistics (MOS) using PyCPT necessitates a series of decisions. These include selecting the appropriate SubX model and observed dataset, choosing the MOS methodology, selecting predictor and predictand variables, specifying the spatial domains of interest, choosing the forecast date and training season, and selecting the forecast lead intervals. It is recommended that you first designate a case name for your experiment, establish a working directory, and indicate the root directory for the CPT tool.</p>
+<p>Regarding the SubX model and observed dataset, precipitation data from several sources, including ECMWF, NCEP-CFSv2, EMC-GEFSv12, ECCC-GEPS6, and ESRL-FIM, can be utilized as predictors. The spatial resolution of the SubX data is 1 degree, while S2S data is 1.5 degrees, but note that the native model resolutions may be more precise.</p>
+<p>########Model (choose between ECMWF, CFSv2, GEFS, CFSv2_SubX, GEPS6)<br>
+model= [‘CFSv2_SubX’, ‘ESRL’]</p>
+<p>The predictand variable of choice is precipitation from CHIRPS, although other options, such as TRMM, CPC, IMD1deg, and IMDp25deg, can be selected. It is worth noting that temperature will soon be added as a predictand, but rainfall frequency is not yet available in the subseasonal version.</p>
+<p>########Obs (choose between CHIRPS, TRMM, CPC, IMD1deg, IMDp25deg)<br>
+obs=‘CHIRPS’</p>
+<p>Choice of MOS method is another critical consideration. CCA, PCR, and no-MOS can all be employed with the subseasonal models, and ELR, which is applied gridpoint-by-gridpoint, is under development. CCA is presently recommended as the default option.</p>
+<p>########MOS method (choose between None, PCR, CCA and ELR)<br>
+MOS=‘CCA’</p>
+<p>For the forecast date and training season length, subseasonal forecasts are initialized every week, and the training sample of hindcasts can be increased by selecting multiple start times each year, as long as these fall within a climatologically homogeneous season, such as a monsoon season.</p>
+<p>########Forecast date&nbsp;<br>
+##– If ECMWF, it needs to be a Monday or a Thursday! CFSv2: any day; GEFS: Wednesdays.<br>
+mon=‘Mar’ # Forecast month<br>
+fyr=2023 # Forecast year<br>
+fday=1 # Forecast day&nbsp; (Monday and Thursday in ECMWF model; yesterday in CFSv2: real time)<br>
+#training_season=mon<br>
+training_season=‘Feb-Apr’&nbsp; # with *mon* in the middle, e.g., ‘Feb-Apr’ if mon=‘Mar’</p>
+<p>Predictor and predictand spatial domains should be chosen carefully.</p>
+<section id="spatial-domain-for-predictor" class="level1">
+<h1>Spatial domain for predictor</h1>
+<p>nla1=16 # Northernmost latitude<br>
+sla1=-18 # Southernmost latitude<br>
+wlo1=85 # Westernmost longitude<br>
+elo1=150 # Easternmost longitude<br>
+# Spatial domain for predictand<br>
+nla2=11 # Northernmost latitude<br>
+sla2=-13 # Southernmost latitude<br>
+wlo2=90 # Westernmost longitude<br>
+elo2=145 # Easternmost longitude</p>
+<p><a href="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-08.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-08.jpg" class="img-fluid"></a></p>
+<p>Figure 2. Predictor and Predictand domain.</p>
+<p>While forecast lead time intervals, which determine how far into the future is predicted and over what time frame the forecast is averaged, should be set according to the desired outcome. The exact values of day1 and day2 depend on the selected model and variable, and careful attention should be paid to the instructions in the Jupyter notebook.</p>
+<p>########Forecast lead interval&nbsp; – This counts using L, the lead time; e.g., ECMWF L=0..46 (NOT calendar days)<br>
+nwk=4 # Number of weeks to process (leads)<br>
+# Lists for looping over lead times – ALL these arrays should have the same dimension (see nwk above), as they correspond<br>
+wk = &nbsp; [1 &nbsp; &nbsp; &nbsp; ,2 &nbsp; &nbsp; &nbsp; ,3 &nbsp; &nbsp; &nbsp; ,34 &nbsp; &nbsp; &nbsp; ,4 &nbsp; &nbsp; &nbsp; ]&nbsp; # week-lead number label (e.g., corresponding to week1, week2, week3, week4, week1-4/month 1)<br>
+wknam= [‘Week 1’,‘Week 2’,‘Week 3’,‘Week 3-4’,‘Month 1’]&nbsp; #naming the weeks (for plots) –can use a different language here<br>
+day1 = [1 &nbsp; &nbsp; &nbsp; ,7 &nbsp; &nbsp; &nbsp; ,14&nbsp; &nbsp; &nbsp; ,14&nbsp; &nbsp; &nbsp; ,21&nbsp; &nbsp; &nbsp; &nbsp; ]&nbsp; # first lead day of target weeks<br>
+day2 = [7 &nbsp; &nbsp; &nbsp; ,14&nbsp; &nbsp; &nbsp; ,21&nbsp; &nbsp; &nbsp; ,28&nbsp; &nbsp; &nbsp; ,28 &nbsp; &nbsp; &nbsp; ]&nbsp; # last lead day of target weeks<br>
+# ECMWF - first day is day 0, 0000Z accumulated rainfall; specify day1=1 for week 1<br>
+# GEFS - first day is day 0.5 (daily average rainfall rate); specify day1=0 for week 1<br>
+# CFSv2 - first day is day 1, 0000Z accumulated rainfall over the first day; specify day1=1 for week 1</p>
+<p>Training and verification periods should be determined based on the limited hindcast period, which must be used to both train and assess skill, each of which requires large sets of independent non-overlapping data. PyCPT-Subseasonal uses Retroactive Forecasting to train and verify the MOS model, which requires choosing the length of initial training period and update interval.</p>
+<p>lit=28 # Initial training period for retroactive forecasts (in timesteps)<br>
+liti=10 # Update interval for retroactive forecasts (in timesteps)</p>
+<p>A simple rule of thumb is to set the length of the initial training period equal to 50% of the hindcast dataset and the update interval to once a year. The values of the initial training period and update interval should be adjusted if necessary, but note that overfitting the MOS model may occur if skill results are excessively “tuned” to maximize them without some independent data available to re-test the model.</p>
+<p>########Model-dependent parameters<br>
+<strong>if</strong> model==‘CFSv2’:<br>
+&nbsp; &nbsp; hstep = 7 # use all starts in the trainng period with this daily step between them<br>
+&nbsp; &nbsp; nlag&nbsp; = 3&nbsp; # length of the lagged ensemble in days<br>
+&nbsp; &nbsp; ntrain= 55 # Length of training period (5 weeks x 11 hindcast years) (363 before)<br>
+&nbsp; &nbsp; lit =&nbsp; 28<br>
+&nbsp; &nbsp; liti = 10<br>
+<strong>elif</strong> model==‘ECMWF’ or model==‘ECMWFrt’:<br>
+&nbsp; &nbsp; hstep = 0 # bogus but needed by functions (eliminate in the future)<br>
+&nbsp; &nbsp; nlag&nbsp; = 0 # bogus but needed by functions (eliminate in the future)<br>
+&nbsp; &nbsp; ntrain= 160&nbsp; # Length of training period<br>
+&nbsp; &nbsp; lit =&nbsp; 110<br>
+&nbsp; &nbsp; liti = 20<br>
+<strong>elif</strong> model==‘GEFS’:<br>
+&nbsp; &nbsp; hstep = 0 # bogus but needed by functions (eliminate in the future)<br>
+&nbsp; &nbsp; nlag&nbsp; = 0 # bogus but needed by functions (eliminate in the future)<br>
+&nbsp; &nbsp; ntrain= 219&nbsp; # Length of training period (1999-2016)<br>
+&nbsp; &nbsp; lit =&nbsp; 100<br>
+&nbsp; &nbsp; liti = 20<br>
+<strong>elif</strong> model==‘GEPS6’:<br>
+&nbsp; &nbsp; hstep = 0 # bogus but needed by functions (eliminate in the future)<br>
+&nbsp; &nbsp; nlag&nbsp; = 0 # bogus but needed by functions (eliminate in the future)<br>
+&nbsp; &nbsp; ntrain= 260&nbsp; # Length of training period (1998-2017)<br>
+&nbsp; &nbsp; GEPShdate1 = ‘0000 4 Jun’ # first hindcast date each year in training season<br>
+&nbsp; &nbsp; # Must be a THURSDAY in the forecast year since GEPS is an on-the-fly model<br>
+&nbsp; &nbsp; GEPShdate1 = parse.quote(GEPShdate1)<br>
+&nbsp; &nbsp; lit =&nbsp; 120<br>
+&nbsp; &nbsp; liti = 20<br>
+<strong>elif</strong> model==‘CFSv2_SubX’:<br>
+&nbsp; &nbsp; hstep = 7 # use all starts in the trainng period with this daily step between them<br>
+&nbsp; &nbsp; nlag&nbsp; = 3&nbsp; # length of the lagged ensemble in days<br>
+&nbsp; &nbsp; ntrain= 234 # Length of training period for 3 month season (1638/7=234)<br>
+&nbsp; &nbsp; lit =&nbsp; 100<br>
+&nbsp; &nbsp; liti = 20</p>
+<p>Finally, it is common to divide data into three parts: the training, validation, and test sets, to check the model’s performance on data not seen during training.</p>
+<p><strong>4 PyCPT outputs</strong></p>
+<p>The CPT output provides several diagnostic plots and statistical metrics that can be used to assess the quality of the subseasonal forecast. These diagnostics include:</p>
+<p><strong>4.1 EOF analysis</strong></p>
+<p>EOF analysis (Empirical Orthogonal Function analysis) is a method used to identify dominant patterns of variability in a dataset. PyCPT’s EOF analysis map produces maps of X EOF Spatial Loadings, Y EOF Spatial Loadings, and charts of X and Y Principal Components.</p>
+<p><a href="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-09.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-09.jpg" class="img-fluid"></a></p>
+<p>Figure 3. EOF analysis result for week 1.</p>
+<p>The X EOF Spatial Loadings map shows the spatial pattern of variability for the Xth EOF mode. This map is useful for understanding the dominant spatial patterns of the variability in the data. The Y EOF Spatial Loadings map shows the spatial pattern of variability for the Yth EOF mode, and is useful for identifying the dominant spatial patterns of the second variable in the dataset.</p>
+<p>The charts of X and Y Principal Components show the time evolution of the principal components for the Xth and Yth EOF modes, respectively. The X Principal Component chart shows how the Xth mode of variability changes over time, while the Y Principal Component chart shows how the Yth mode of variability changes over time. These charts can be used to identify the times when the dominant patterns of variability are strongest, and how they change over time.</p>
+<p>Overall, the EOF analysis map produced by PyCPT is a powerful tool for identifying dominant patterns of variability in subseasonal forecast datasets. By visualizing the spatial patterns and time evolution of these patterns, forecasters can gain a better understanding of the underlying dynamics of the forecast data, which can help inform better forecasting decisions.</p>
+<p><strong>4.2 CCA analysis</strong></p>
+<p>The Canonical Correlation Analysis (CCA) is a statistical technique used in PyCPT to explore relationships between two multivariate datasets X and Y. The CCA analysis in PyCPT is applied to subseasonal forecast data to identify patterns of covariability between climate predictors and predictands.</p>
+<p><a href="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-10.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-10.jpg" class="img-fluid"></a></p>
+<p>Figure 4. EOF analysis result for week 1.</p>
+<p>The output of the CCA analysis map in PyCPT includes three types of plots:</p>
+<p>Maps of X CCA Spatial Loadings: The CCA spatial loadings are maps that show the correlation between the predictor variables and the predictand variable at each location. The values in the map represent the strength and direction of the correlation.</p>
+<p>Maps of Y CCA Spatial Loadings: The Y CCA spatial loadings are maps that show the correlation between the predictand variable and the predictor variables at each location. The values in the map represent the strength and direction of the correlation.</p>
+<p>Charts on X and Y Temporal Scores: The temporal scores are time series that represent the variability of the predictor variables and the predictand variable over time. The charts show how the predictor variables and the predictand variable vary together over time.</p>
+<p>The CCA analysis map is useful for identifying regions where the predictor variables and the predictand variable are highly correlated, which can help in developing subseasonal forecast models. By analyzing the spatial loadings and temporal scores, users can identify the patterns of variability in the predictor variables and the predictand variable that are driving the correlations.</p>
+<p><strong>4.3 Skill maps</strong></p>
+<p>The Skills map is a set of skill scores that measures the performance of the forecast model against the observed data. The following skill scores are included in the Skills map:</p>
+<p><strong>4.3.1 Spearman</strong></p>
+<p>Spearman’s rank correlation coefficient is a measure of the strength and direction of the relationship between two variables. It is particularly useful for non-linear relationships. Spearman’s rank correlation coefficient ranges from -1 to 1, where a coefficient of 1 indicates a perfect positive correlation, 0 indicates no correlation, and -1 indicates a perfect negative correlation.</p>
+<p><a href="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-11.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-11.jpg" class="img-fluid"></a></p>
+<p>Figure 5. Spearman</p>
+<p>Strengths:</p>
+<ul>
+<li>Spearman’s rank correlation coefficient is useful for evaluating the relationship between two variables when the relationship is non-linear.</li>
+<li>It is a robust measure that is not sensitive to outliers.</li>
+<li>It can be used to evaluate the skill of both deterministic and probabilistic forecasts.</li>
+</ul>
+<p>Weaknesses:</p>
+<ul>
+<li>Spearman’s rank correlation coefficient is less sensitive to small differences than other correlation measures.</li>
+<li>It is not suitable for evaluating the skill of forecasts with categorical or ordinal data.</li>
+<li>Spearman’s rank correlation coefficient does not provide information about the magnitude of the correlation.</li>
+</ul>
+<p>Potential applications:</p>
+<ul>
+<li>Spearman’s rank correlation coefficient can be used to evaluate the skill of forecasts in a variety of contexts, such as weather forecasting, hydrological forecasting, and financial forecasting.</li>
+<li>It can be used to evaluate the relationship between different variables in a system, which can be useful for identifying potential drivers of a particular phenomenon.</li>
+<li>It can be used to identify situations in which a forecast adds value over a reference forecast, which can be useful for decision-making and risk management.</li>
+</ul>
+<p><strong>4.3.2 2AFC (Two-Alternative Forced Choice)</strong></p>
+<p>2AFC is a binary classification skill score that compares the forecast probabilities to a threshold. It is defined as the percentage of times that the forecast probability is higher (or lower) than the threshold when the observed event occurs (or does not occur). A perfect forecast has a 2AFC of 100%, while a forecast with no skill has a 2AFC of 50%.</p>
+<p><a href="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-12.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-12.jpg" class="img-fluid"></a></p>
+<p>Figure 6. 2AFC</p>
+<p>Strengths:</p>
+<ul>
+<li>2AFC is a simple and intuitive skill score that can be used to evaluate binary forecasts.</li>
+<li>2AFC is a useful skill score for evaluating forecasts in situations where only two possible outcomes are of interest (such as a yes/no decision).</li>
+<li>2AFC is robust to changes in the threshold, so it can be used to evaluate forecasts with different probability thresholds.</li>
+</ul>
+<p>Weaknesses:</p>
+<ul>
+<li>2AFC does not take into account the magnitude of the forecast probabilities, only their direction relative to the threshold.</li>
+<li>2AFC assumes that the cost of false positives and false negatives is equal, which may not always be the case in practice.</li>
+<li>2AFC may not be as informative as some other skill scores for evaluating probabilistic forecasts.</li>
+</ul>
+<p>Potential applications:</p>
+<ul>
+<li>2AFC can be used to evaluate the skill of binary forecasts in a variety of contexts, such as weather forecasting, sports betting, and medical diagnosis.</li>
+<li>2AFC can be used to compare the skill of different binary forecasts or to evaluate the value of adding new information to an existing binary forecast.</li>
+<li>2AFC can be used to identify situations in which a binary forecast adds value over a simple decision rule (such as always betting on the favorite in a sports game).</li>
+</ul>
+<p><strong>4.3.3 RocAbove and RocBelow (Receiver Operating Characteristic)</strong></p>
+<p>RocAbove and RocBelow are binary classification skill scores that compare the forecast probabilities to a threshold. They are defined as the area under the ROC curve above (RocAbove) or below (RocBelow) the threshold. A perfect forecast has a RocAbove (or RocBelow) of 1, while a forecast with no skill has a RocAbove (or RocBelow) of 0.5.</p>
+<p><img src="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-13.jpg" class="img-fluid"> <img src="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-14.jpg" class="img-fluid"></p>
+<p>Figure 7. RocAbove and RocBelow.</p>
+<p>Strengths:</p>
+<ul>
+<li>RocAbove and RocBelow are skill scores that can be used to evaluate binary forecasts in a variety of contexts.</li>
+<li>RocAbove and RocBelow are more informative than some other binary classification skill scores (such as 2AFC) because they take into account both the magnitude and direction of the forecast probabilities.</li>
+<li>RocAbove and RocBelow can be used to evaluate the skill of binary forecasts with different probability thresholds.</li>
+</ul>
+<p>Weaknesses:</p>
+<ul>
+<li>RocAbove and RocBelow assume that the cost of false positives and false negatives is equal, which may not always be the case in practice.</li>
+<li>RocAbove and RocBelow may not be as intuitive as some other skill scores for some users.</li>
+<li>RocAbove and RocBelow may not be as informative for evaluating probabilistic forecasts as some other skill scores, such as RPSS or Ignorance.</li>
+</ul>
+<p>Potential applications:</p>
+<ul>
+<li>RocAbove and RocBelow can be used to evaluate the skill of binary forecasts in a variety of contexts, such as weather forecasting, medical diagnosis, and credit scoring.</li>
+<li>RocAbove and RocBelow can be used to compare the skill of different binary forecasts or to evaluate the value of adding new information to an existing binary forecast.</li>
+<li>RocAbove and RocBelow can be used to identify situations in which a binary forecast adds value over a simple decision rule.</li>
+</ul>
+<p><strong>4.3.4 RPSS (Ranked Probability Skill Score):</strong></p>
+<p>RPSS is a skill score that compares the forecast probabilities with the observed frequencies. It is defined as the difference between the skill score of the forecast and that of a reference forecast, divided by the maximum possible improvement in the skill score over the reference forecast. A perfect forecast has an RPSS of 1, while a forecast with no skill has an RPSS of 0.</p>
+<p><a href="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-15.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-15.jpg" class="img-fluid"></a></p>
+<p>Figure 8. RPSS.</p>
+<p>Strengths:</p>
+<ul>
+<li>RPSS is a skill score that can be used to evaluate probabilistic forecasts.</li>
+<li>It is a more informative measure of skill than some other skill scores (such as the Brier Score) because it takes into account the skill of the reference forecast.</li>
+<li>RPSS can be useful for identifying situations in which a probabilistic forecast adds value over a reference forecast (such as climatology or persistence).</li>
+</ul>
+<p>Weaknesses:</p>
+<ul>
+<li>RPSS requires the use of a reference forecast, which may not always be available or appropriate.</li>
+<li>RPSS can be sensitive to the choice of reference forecast, so it is important to choose a reference forecast that is appropriate for the specific application.</li>
+<li>RPSS may not be as intuitive as some other skill scores, such as the Brier Score or the ROC curve, for some users.</li>
+</ul>
+<p>Potential applications:</p>
+<ul>
+<li>RPSS can be used to evaluate the skill of probabilistic forecasts in a variety of contexts, such as weather forecasting, hydrological forecasting, and financial forecasting.</li>
+<li>RPSS can be used to compare the skill of different probabilistic forecasts or to evaluate the value of adding new information to an existing probabilistic forecast.</li>
+<li>RPSS can be used to identify situations in which a probabilistic forecast adds value over a reference forecast, which can be useful for decision-making and risk management.</li>
+</ul>
+<p><strong>4.3.5 Ignorance</strong></p>
+<p>Ignorance is a skill score that measures the degree to which the forecast adds information beyond the climatological probability. It is defined as the difference between the information gained from the forecast and the information gained from the climatology, divided by the maximum possible information gain. A perfect forecast has an Ignorance score of 1, while a forecast with no skill has an Ignorance score of 0.</p>
+<p><a href="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-01.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-01.jpg" class="img-fluid"></a></p>
+<p>Figure 9. Ignorance.</p>
+<p>Strengths:</p>
+<ul>
+<li>Ignorance provides a measure of the degree to which the forecast adds value beyond the climatological probability, which can be useful for decision-making and risk management.</li>
+<li>Ignorance can be used to evaluate the skill of probabilistic forecasts in a variety of contexts, such as weather forecasting, hydrological forecasting, and financial forecasting.</li>
+<li>Ignorance can be useful for identifying situations in which a probabilistic forecast adds value over the climatological probability.</li>
+</ul>
+<p>Weaknesses:</p>
+<ul>
+<li>Ignorance requires the use of a climatological probability, which may not always be appropriate or accurate.</li>
+<li>Ignorance may not be as intuitive as some other skill scores, such as the Brier Score or the ROC curve, for some users.</li>
+</ul>
+<p>Potential applications:</p>
+<ul>
+<li>Ignorance can be used to evaluate the skill of probabilistic forecasts in a variety of contexts, such as weather forecasting, hydrological forecasting, and financial forecasting.</li>
+<li>Ignorance can be used to compare the skill of different probabilistic forecasts or to evaluate the value of adding new information to an existing probabilistic forecast.</li>
+<li>Ignorance can be used to identify situations in which a probabilistic forecast adds value over the climatological probability, which can be useful for decision-making and risk management.</li>
+</ul>
+<p><strong>4.3.6 GROC (Gross Relative Operating Characteristic)</strong></p>
+<p>GROC is a skill score that measures the degree to which a forecast is better than random. It is defined as the area under the ROC curve, divided by the maximum possible area under the ROC curve. A perfect forecast has a GROC of 1, while a forecast with no skill has a GROC of 0.5.</p>
+<p><a href="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-02.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-02.jpg" class="img-fluid"></a></p>
+<p>Figure 10. GROC.</p>
+<p>Strengths:</p>
+<ul>
+<li>GROC is a skill score that can be used to evaluate the skill of probabilistic forecasts in a variety of contexts, such as weather forecasting, hydrological forecasting, and financial forecasting.</li>
+<li>GROC can provide a measure of the degree to which a forecast is better than random, which can be useful for decision-making and risk management.</li>
+<li>GROC is a more informative measure of skill than some other skill scores (such as the Brier Score) because it takes into account the entire range of possible forecast probabilities.</li>
+</ul>
+<p>Weaknesses:</p>
+<ul>
+<li>GROC may not be as intuitive as some other skill scores, such as the Brier Score or the ROC curve, for some users.</li>
+</ul>
+<p>Potential applications:</p>
+<ul>
+<li>GROC can be used to evaluate the skill of probabilistic forecasts in a variety of contexts, such as weather forecasting, hydrological forecasting, and financial forecasting.</li>
+<li>GROC can be used to compare the skill of different probabilistic forecasts or to evaluate the value of adding new information to an existing probabilistic forecast.</li>
+<li>GROC can be used to provide a measure of the degree to which a forecast is better than random, which can be useful for decision-making and risk management.</li>
+</ul>
+<p><strong>4.4 Forecast maps</strong></p>
+<p>The Forecasts Map is an output of PyCPT that provides maps of probabilistic and deterministic forecasts for a given forecast variable. The probabilistic forecast shows the probability of the forecast variable exceeding a certain threshold, while the deterministic forecast shows the expected value of the forecast variable.</p>
+<p><img src="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-03.jpg" class="img-fluid"> <img src="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-04.jpg" class="img-fluid"></p>
+<p>Figure 11. Deterministic and Probabilistic forecast map.</p>
+<p>Strengths:</p>
+<ul>
+<li>The probabilistic forecast provides a range of possible outcomes with associated probabilities, which can be useful for decision-making and risk management.</li>
+<li>The deterministic forecast provides a single value that can be used as a point estimate for the forecast variable, which may be useful in some applications.</li>
+<li>The forecasts map can provide a visual representation of the forecasted values, making it easier to identify areas of potential impact or concern.</li>
+</ul>
+<p>Weaknesses:</p>
+<ul>
+<li>The accuracy of the forecasts may be limited by the quality and availability of the input data.</li>
+<li>The probabilistic forecast may be difficult for some users to interpret, particularly if they are not familiar with probability concepts.</li>
+<li>The deterministic forecast may not accurately capture the full range of possible outcomes.</li>
+</ul>
+<p>Potential applications:</p>
+<ul>
+<li>The forecasts map can be used in a variety of contexts, such as weather forecasting, hydrological forecasting, and financial forecasting.</li>
+<li>The probabilistic forecast can be particularly useful in situations where there is a high degree of uncertainty, such as in long-range weather forecasting or in predicting the likelihood of extreme events.</li>
+<li>The deterministic forecast may be useful in some applications where a single point estimate is sufficient, such as in short-term weather forecasting or in predicting the expected value of a financial variable.</li>
+</ul>
+<p><strong>4.5 Flexible Forecast maps</strong></p>
+<p>The Flexible Forecasts map produced by PyCPT shows the probability (%) of exceeding the 50th percentile for a given forecast period. This map is particularly useful for decision-making as it provides information on the likelihood of exceeding the median value for a given variable.</p>
+<p><a href="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-05.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-05.jpg" class="img-fluid"></a></p>
+<p>Figure 12. Flexible forecast map.</p>
+<p>Strengths:</p>
+<ul>
+<li>The Flexible Forecasts map provides a quick and easy way to assess the probability of exceeding the median value for a given variable.</li>
+<li>This map can be particularly useful for decision-making in a variety of applications, including agriculture, water management, and energy planning.</li>
+<li>The 50th percentile is a commonly used reference point in decision-making, making this map easy to interpret.</li>
+</ul>
+<p>Weaknesses:</p>
+<ul>
+<li>The Flexible Forecasts map provides a limited view of the forecast distribution, as it only shows the probability of exceeding the median value.</li>
+<li>This map does not provide information on the tails of the distribution, which may be important for certain applications.</li>
+<li>The accuracy of the forecast probabilities depends on the skill of the underlying model, which can vary depending on the variable being forecast and the forecast lead time.</li>
+</ul>
+<p>Potential applications:</p>
+<ul>
+<li>The Flexible Forecasts map can be used in a variety of decision-making contexts, including agricultural planning (e.g., planting decisions), water resource management (e.g., reservoir operations), and energy planning (e.g., electricity generation).</li>
+<li>This map can also be useful in risk management contexts, as it provides information on the likelihood of extreme events (i.e., events that exceed the median value).</li>
+<li>The Flexible Forecasts map can be used in combination with other forecast products (e.g., deterministic or probabilistic forecasts) to provide a more complete picture of the forecast distribution.</li>
+</ul>
+<p><strong>4.6 Flexible Forecast at a specific location</strong></p>
+<p>Flexible Forecasts for a particular location is a tool that provides probabilistic forecast information for a specific location. It produces a chart of probability of exceedance and probability density function, showing the likelihood of different outcomes for a particular forecast variable (such as temperature or precipitation) at a specific location.</p>
+<p><a href="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-06.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-06.jpg" class="img-fluid"></a></p>
+<p>Figure 12. Flexible forecast at Kebun raya Bogor, with coordinates: 106.79739, -6.59800</p>
+<p>Strengths:</p>
+<ul>
+<li>Provides probabilistic forecast information for a specific location, which can be useful for decision-making and risk management at the local level.</li>
+<li>Shows both the probability of exceedance and the probability density function, providing a comprehensive view of the forecast distribution.</li>
+<li>Can be used to compare different forecast models or scenarios for a specific location.</li>
+</ul>
+<p>Weaknesses:</p>
+<ul>
+<li>May not be as useful for large-scale decision-making or risk management, as it only provides information for a single location.</li>
+<li>May require expertise in interpreting probability distributions and making decisions based on uncertain information.</li>
+</ul>
+<p>Potential applications:</p>
+<ul>
+<li>Can be useful for local decision-making and risk management, such as in agriculture or energy management.</li>
+<li>Can be used to compare different forecast models or scenarios for a specific location, helping to identify the most likely outcomes and potential risks.</li>
+<li>Can be used in conjunction with other forecast tools and information to inform decision-making and risk management at the local level.</li>
+</ul>
+<p>Overall, the CPT output provides a comprehensive assessment of the quality of the subseasonal forecast, allowing for evaluation of the model skill and identification of areas for improvement.</p>
+<p><strong>5 Strength and Weakness of PyCPT for Subseasonal Forecasts</strong></p>
+<p>CPT has been developed to forecast weather conditions over a period of weeks to months. These tools rely on various data sources, including historical observations, computer models, and physical relationships between the atmosphere and oceans. While CPTs have shown great promise for Subseasonal Forecasting, their accuracy remains limited, and they have both strengths and weaknesses that must be considered.</p>
+<p>One of the strengths of CPTs for Subseasonal Forecasting in Indonesia is their ability to capture large-scale climate patterns that can influence weather conditions over weeks to months. For example, the El Niño-Southern Oscillation (ENSO) phenomenon, which causes warming or cooling of the ocean in the equatorial Pacific, can have significant impacts on rainfall patterns in Indonesia. CPTs can accurately predict the strength and duration of an ENSO event, providing valuable information to decision-makers in industries such as agriculture, water management, and disaster preparedness.</p>
+<p>However, CPTs also have weaknesses that can limit their accuracy in Subseasonal Forecasting for Indonesia. One of the main limitations is the quality and availability of data. For example, in Indonesia, there are gaps in historical weather data, which can make it difficult to calibrate CPTs accurately. Additionally, the quality of data from remote sensing technologies such as satellite observations can be influenced by cloud cover, atmospheric interference, and other factors, leading to errors in the model output.</p>
+<p>Another limitation of CPTs for Subseasonal Forecasting in Indonesia is the complex terrain and heterogeneous climate patterns found in the country. Indonesia’s islands and mountain ranges create a unique climate system that can be difficult to capture accurately in CPTs. The monsoon climate in Indonesia is also highly variable, with different regions experiencing different levels of rainfall and temperature fluctuations. This variability makes it challenging to develop accurate models that can capture the subseasonal weather patterns across the country.</p>
+<p>In conclusion, while CPTs hold great promise for Subseasonal Forecasting in Indonesia, they also have limitations that must be considered. To improve their accuracy, researchers must continue to invest in high-quality data sources and develop models that can capture the complex climate patterns of Indonesia. Improved accuracy in Subseasonal Forecasting can help decision-makers prepare for extreme weather events, manage natural resources more effectively, and support sustainable development across the country.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/benny\.istan\.to\/site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026, Benny Istanto.</p>
+<p>Exploring Climate with GIS and Data Science, solving old problems in new ways. Turning earth observation data into actionable, life-saving insights.</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+<div class="toc-actions"><ul><li><a href="https://github.com/bennyistanto/site/blob/main/blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/bennyistanto/site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/bennyistanto" aria-label="GitHub"><i class="bi bi-github"></i></a> <a href="https://linkedin.com/in/bennyistanto" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a> <a href="https://worldbank.github.io/GOST/content/staff/bennyistanto.html" aria-label="GOST"><i class="bi bi-globe"></i></a></p>
+<p><a href="https://buymeacoffee.com/bennyistanto">Buy Me a Coffee</a></p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

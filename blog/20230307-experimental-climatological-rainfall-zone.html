@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Benny Istanto">
+<meta name="dcterms.date" content="2023-03-10">
+<meta name="description" content="Climatological rainfall zones represent distinct areas with different rainfall patterns">
+
+<title>Experimental climatological rainfall zone</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/image-logo/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ae7d70a23c66c8df71f5a679a6f4dfc7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-1bcb2280c51331a5c09e99b999b82845.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ae7d70a23c66c8df71f5a679a6f4dfc7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-371178116"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-371178116', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../styles/styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo light-content">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../csr.html"> 
+<span class="menu-text">CSR</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-works" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Works</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-works">    
+        <li>
+    <a class="dropdown-item" href="../works.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/experiences.html">
+ <span class="dropdown-text">Experiences</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/projects.html">
+ <span class="dropdown-text">Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/consulting.html">
+ <span class="dropdown-text">Consulting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/maps-and-infographics.html">
+ <span class="dropdown-text">Maps &amp; Infographics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../cv.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Experimental climatological rainfall zone</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Remote Sensing</div>
+    <div class="quarto-category">Research</div>
+    <div class="quarto-category">Climate</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Climatological rainfall zones represent distinct areas with different rainfall patterns
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Benny Istanto </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 10, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Climatological rainfall zones represent distinct areas with different rainfall patterns. They are characterized by specific precipitation behaviors, including factors such as the amount, frequency, and timing of rainfall. Understanding these zones is crucial for a variety of reasons:</p>
+<ol type="1">
+<li><strong>Agriculture:</strong> Agriculture heavily relies on rainfall patterns. Knowing the climatological rainfall zones can help farmers and agricultural planners understand when to plant crops and which types of crops would be most suitable for a given area.</li>
+<li><strong>Water Resource Management:</strong> Rainfall contributes significantly to freshwater resources. Understanding the rainfall patterns can aid in planning and managing these resources effectively.</li>
+<li><strong>Climate Change Studies:</strong> Changes in rainfall patterns can be an indicator of larger climatic changes. Studying these zones over time can provide insights into climate change.</li>
+<li><strong>Disaster Planning:</strong> Areas prone to heavy rainfall could be at a higher risk of flooding. Knowledge of these zones can inform disaster planning and mitigation strategies.</li>
+</ol>
+<p>The Python code provided below aids in the process of identifying climatological rainfall zones. The code does this through the following steps:</p>
+<ol type="1">
+<li><strong>Preprocessing:</strong> The code first preprocesses the rainfall data to make it suitable for clustering. This includes standardizing the data and reducing its dimensionality using Principal Component Analysis (PCA).</li>
+<li><strong>Clustering:</strong> The code then applies a clustering algorithm (KMeans or Agglomerative Clustering) to the preprocessed data to identify distinct rainfall patterns, representing different climate zones. The optimal number of clusters is determined using the Calinski-Harabasz and Silhouette methods.</li>
+<li><strong>Assignment:</strong> Each location is then assigned to the climate zone of the nearest cluster centroid.</li>
+<li><strong>Visualization:</strong> Finally, the code visualizes the identified climate zones on a map, allowing for easy interpretation and application of the results.</li>
+</ol>
+<p>In essence, the code facilitates the data-driven identification and visualization of climatological rainfall zones, providing valuable insights for various applications.</p>
+<p>——————————————————————-</p>
+<p>This Python code performs an analysis of climatological rainfall zones, with study case for Uganda, applying KMeans or Agglomerative Clustering to precipitation data sourced from CHIRPS (Climate Hazards Group InfraRed Precipitation with Station) for two time periods: <a href="https://www.dropbox.com/s/atbudxdcpx4bv1y/chirps_precip_1981_2010.csv?dl=0">1981-2010</a> and <a href="https://www.dropbox.com/s/205vgwvq3ydcpv2/chirps_precip_1991_2020.csv?dl=0">1991-2020</a>. This data is contained in a CSV file that includes unique identifiers, longitude, latitude, and dates.</p>
+<p>Here’s a summary of what the code does:</p>
+<ol type="1">
+<li><strong>Import necessary libraries:</strong> The code begins by importing necessary libraries for data manipulation, clustering, standardization, calculating metrics, and visualization.</li>
+<li><strong>Choose the clustering method:</strong> The variable <code>cluster_method</code> is set to ‘KMeans’ by default, but can be changed to ‘AgglomerativeClustering’.</li>
+<li><strong>Load the precipitation data:</strong> The CSV data file is loaded into a pandas dataframe. By default, the code reads data for the period 1991-2020, but it can be switched to load the 1981-2010 data.</li>
+<li><strong>Data Transformation:</strong> The date columns in the dataframe are renamed and reformatted to a datetime object. The dataframe is then ‘melted’ to convert it into long format, which makes it easier to manage and analyze. The ‘date’ column is again converted into a datetime object.</li>
+<li><strong>Calculate monthly mean precipitation:</strong> The code then calculates the monthly mean precipitation for each location (defined by unique id, longitude, and latitude) by extracting the month from the ‘date’ column and using it to group the data. This monthly mean precipitation data is then rearranged into a pivot table format for further processing.</li>
+<li><strong>Data Visualization:</strong> Finally, the transformed dataframe is displayed for visual inspection.</li>
+</ol>
+<p>This initial portion of the code is focused on loading and preparing the data for clustering analysis, which is performed in subsequent steps (not shown in the provided code). Depending on the chosen method, KMeans or Agglomerative Clustering is applied to this monthly mean precipitation data to classify the different climatological rainfall zones. The number of clusters can be a specific integer or determined using an optimal result generated by the Calinski-Harabasz or Silhouette method.</p>
+<p>This section of the code is about data standardization and dimensionality reduction using Principal Component Analysis (PCA).</p>
+<p>Here’s the step-by-step explanation:</p>
+<ol type="1">
+<li><strong>Remove unnecessary columns:</strong> The code first creates a new dataframe <code>X</code> that drops the “id”, “lon”, and “lat” columns from the <code>monthly_precip_df</code> dataframe. This is done because clustering should be based on the rainfall data, not identifiers or coordinates.</li>
+<li><strong>Standardize the data:</strong> The data is then standardized using <code>StandardScaler()</code>, which scales the data to have a mean of 0 and a standard deviation of 1. This is a common requirement for many machine learning estimators, as they might behave badly if the individual features do not more or less look like standard normally distributed data.</li>
+<li><strong>Apply PCA:</strong> Next, PCA is applied to the scaled data to reduce its dimensionality. <code>PCA(n_components=0.90)</code> means that PCA will keep enough components to explain 90% of the variance in the data. This is a way to reduce the complexity of the model and avoid overfitting.</li>
+<li><strong>Fit and transform the data:</strong> The <code>fit_transform()</code> function fits the PCA model with the scaled data <code>X_scaled</code> and applies the dimensionality reduction on <code>X_scaled</code>.</li>
+</ol>
+<p>The print statement ‘Done!’ indicates the successful completion of these steps. Now, the data is ready for the clustering step. The transformed data, <code>X_pca</code>, can be used as the input for the clustering algorithms. The PCA transformation is beneficial especially for visualization purposes, as it allows us to plot high-dimensional data in 2D or 3D space, and it can also improve the computational efficiency and performance of the clustering algorithm.</p>
+<p>This function <code>get_optimal_plot_calinski()</code> calculates the optimal number of clusters for a given dataset <code>X</code> and a specified clustering method (<code>KMeans</code> or <code>AgglomerativeClustering</code>), and then visualizes the results. It does this using the Calinski-Harabasz criterion, which is a method for determining the optimal number of clusters. It operates on the principle that clusters should be compact and well separated.</p>
+<p>Here’s what the code does, step-by-step:</p>
+<ol type="1">
+<li><strong>Define the model:</strong> Depending on the <code>cluster_method</code> parameter, it sets the <code>model</code> to either <code>KMeans</code> or <code>AgglomerativeClustering</code>. If another value is passed, it raises a ValueError.</li>
+<li><strong>Define the compute_score function:</strong> This inner function creates a model with <code>k</code> clusters, fits the model to the data <code>X</code>, and returns the Calinski-Harabasz score. The Calinski-Harabasz score is a measure of cluster validity; higher scores indicate better clustering configurations.</li>
+<li><strong>Calculate scores for range of clusters:</strong> It then calculates the Calinski-Harabasz score for each number of clusters in the range from 2 to 20. These computations are performed in parallel to speed up the process, especially beneficial for large datasets.</li>
+<li><strong>Find the optimal number of clusters:</strong> The number of clusters (<code>k</code>) that yields the maximum Calinski-Harabasz score is identified as the optimal number of clusters.</li>
+<li><strong>Plot the scores:</strong> Finally, it visualizes these scores in a plot, where the x-axis represents the number of clusters and the y-axis represents the corresponding Calinski-Harabasz scores. The optimal number of clusters is marked with a vertical red dashed line, and its value is also displayed on the plot.</li>
+<li><strong>Return the optimal number of clusters:</strong> The function returns the optimal number of clusters as determined by the Calinski-Harabasz criterion.</li>
+</ol>
+<p>This function is used to explore and determine the optimal number of clusters for the dataset, which can then be used in the actual clustering process. It’s an essential step in unsupervised machine learning tasks like clustering, as deciding on the number of clusters can often be non-trivial.</p>
+<p>This function <code>get_optimal_plot_silhouette()</code> is designed to compute the optimal number of clusters for a given dataset <code>X</code> using either the KMeans or Agglomerative Clustering method, using the silhouette score as a measure of cluster quality. It also produces a plot of the silhouette scores as a function of the number of clusters.</p>
+<p>Here’s a step-by-step breakdown of what the code does:</p>
+<ol type="1">
+<li><strong>Define the compute_score function:</strong> The function <code>compute_score</code> is defined to calculate the silhouette score for a given number of clusters. The silhouette score measures the quality of a clustering. A higher silhouette score indicates that the instances in the same cluster are similar to each other and different from the instances in other clusters.</li>
+<li><strong>Calculate scores for range of clusters:</strong> It then calculates the silhouette score for each number of clusters in the range from 2 to 20. These computations are performed in parallel to speed up the process, which can be especially beneficial for large datasets.</li>
+<li><strong>Find the optimal number of clusters:</strong> The number of clusters (<code>k</code>) that yields the maximum silhouette score is identified as the optimal number of clusters.</li>
+<li><strong>Plot the scores:</strong> The silhouette scores are then plotted against the number of clusters. The optimal number of clusters is marked with a vertical red dashed line, and its value is also displayed on the plot.</li>
+<li><strong>Return the optimal number of clusters:</strong> Finally, the function returns the optimal number of clusters as determined by the silhouette score.</li>
+</ol>
+<p>The silhouette score is an alternative to the Calinski-Harabasz score for finding the optimal number of clusters in a dataset. It considers both the compactness of the clusters (how close the instances in the same cluster are) and the separation between the clusters (how far apart the clusters are). The optimal number of clusters is the one that maximizes the average silhouette score over all instances.</p>
+<p>This part of the code calculates the optimal number of clusters for the PCA-transformed data <code>X_pca</code> using two different methods: the Calinski-Harabasz method and the Silhouette method. The clustering method is defined by the variable <code>cluster_method</code>.</p>
+<ol type="1">
+<li><strong>Calinski-Harabasz:</strong> The function <code>get_optimal_plot_calinski(X_pca, cluster_method)</code> is called to calculate the optimal number of clusters using the Calinski-Harabasz method. This function computes the Calinski-Harabasz scores for different numbers of clusters, plots the scores as a function of the number of clusters, and returns the optimal number of clusters that yields the highest Calinski-Harabasz score. The optimal number of clusters is stored in the variable <code>optimal_c</code>.</li>
+<li><strong>Silhouette:</strong> Similarly, the function <code>get_optimal_plot_silhouette(X_pca, cluster_method)</code> is called to calculate the optimal number of clusters using the Silhouette method. This function computes the Silhouette scores for different numbers of clusters, plots the scores as a function of the number of clusters, and returns the optimal number of clusters that yields the highest Silhouette score. The optimal number of clusters is stored in the variable <code>optimal_s</code>.</li>
+</ol>
+<p>Then, it prints out the optimal number of clusters as determined by both the Calinski-Harabasz and Silhouette methods. The ‘Done!’ print statement indicates the successful completion of these steps.</p>
+<p>This section of the code is crucial as it determines the most suitable number of clusters for the data, which is a key parameter for clustering algorithms. The Calinski-Harabasz and Silhouette methods are two popular methods for determining this optimal number, and comparing their results can provide additional validation for the chosen number of clusters.</p>
+<p><img src="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-01.jpg" class="img-fluid"> <img src="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-02.jpg" class="img-fluid"></p>
+<p>The <code>cluster_data()</code> function takes in the input data array <code>X_pca</code>, the chosen clustering method <code>cluster_method</code>, and an optional number of clusters <code>n_clusters</code>. It performs clustering on the data and returns the cluster labels.</p>
+<p>Here’s a step-by-step breakdown of what the code does:</p>
+<ol type="1">
+<li><strong>Check for optimal cluster number:</strong> If <code>n_clusters</code> is set to <code>'optimal_c'</code> or <code>'optimal_s'</code>, the function calls the previously defined functions <code>get_optimal_plot_calinski()</code> or <code>get_optimal_plot_silhouette()</code>, respectively, to compute the optimal number of clusters. It does this for the specified clustering method, either <code>'KMeans'</code> or <code>'AgglomerativeClustering'</code>.</li>
+<li><strong>Raise an error for invalid input:</strong> If <code>n_clusters</code> is not one of the allowed strings and it is not an integer, the function raises a <code>ValueError</code>.</li>
+<li><strong>Create the cluster model:</strong> Depending on the value of <code>cluster_method</code>, the function creates a <code>KMeans</code> or <code>AgglomerativeClustering</code> model with the specified number of clusters.</li>
+<li><strong>Fit the model to the data:</strong> The function then fits the clustering model to the input data. It also provides a progress bar to track the process.</li>
+<li><strong>Retrieve the cluster labels:</strong> After the model has been fitted, the function retrieves the cluster labels, which indicate the cluster to which each data point has been assigned.</li>
+<li><strong>Return the labels and number of clusters:</strong> Finally, the function returns the cluster labels and the number of clusters used in the clustering model.</li>
+</ol>
+<p>By encapsulating the clustering process into a function, the code allows for easy and repeatable clustering of the data using different methods and numbers of clusters. The function also handles the computation of the optimal number of clusters, making it easy to compare the results of different clustering approaches.</p>
+<p>This section of the code conducts clustering of the data with the specified clustering method and the defined number of clusters (14 in this case). Once the clusters are determined, it assigns a climatic zone to each row based on the nearest centroid. Here’s a step-by-step breakdown:</p>
+<ol type="1">
+<li><strong>Perform Clustering:</strong> The function <code>cluster_data(X_pca, cluster_method, n_clusters=14)</code> is invoked to perform clustering on the data. The function returns the labels of the clusters and the number of clusters used, which are stored in <code>labels</code> and <code>n_clusters</code> respectively.</li>
+<li><strong>Calculate Centroids:</strong> A centroid is a point at the center of each cluster. It’s the mean position of all the points in a cluster. The code calculates these centroids for each cluster and stores them in the <code>centroids</code> array.</li>
+<li><strong>Calculate Euclidean Distances:</strong> The code then calculates the Euclidean distance between each data point (each row) and each of the cluster centroids. The Euclidean distance is a measure of the straight line distance between two points in a space. These distances are stored in the <code>distances</code> array.</li>
+<li><strong>Assign Closest Cluster:</strong> For each row in the dataset, the code assigns the cluster that is closest (has the smallest Euclidean distance) to it. This is achieved using the <code>np.argmin()</code> function, which returns the index of the smallest value along an axis. The assigned clusters are added as a new column <code>climate_zone</code> in the <code>monthly_precip_df</code> dataframe.</li>
+<li><strong>Grouping Data:</strong> The dataset is then grouped by <code>id</code>, <code>lon</code> (longitude), and <code>lat</code> (latitude), and for each group, the mode (the most frequently appearing value) of the <code>climate_zone</code> is calculated. This essentially assigns a single climate zone to each unique location based on the most frequent climate zone assigned to it over the timeseries. This grouped data is stored in <code>monthly_precip_df_centroid</code>.</li>
+<li><strong>Completion Message:</strong> Upon successful completion of these steps, a ‘Done!’ message is printed.</li>
+</ol>
+<p>This section of the code allows each location (represented by a unique combination of <code>id</code>, <code>lon</code>, and <code>lat</code>) in the dataset to be assigned to a specific climatological rainfall zone based on the monthly timeseries precipitation data. This information can be useful for various climatological and environmental studies.</p>
+<p>The function <code>plot_climate_zone_map(climate_zone_csv, shapefile_path)</code> is designed to generate a scatter plot of climate zones over a given geographical region, which could be a country or a continent, for instance. The plot utilizes longitude and latitude coordinates from a CSV file and a polygon shapefile to depict the geographical boundaries of the region of interest. Here’s a breakdown of the steps:</p>
+<ol type="1">
+<li><strong>Load the Data:</strong> The function starts by loading a CSV file containing longitude (<code>lon</code>), latitude (<code>lat</code>), and climate zone (<code>climate_zone</code>) data.</li>
+<li><strong>Create a Scatter Plot:</strong> A scatter plot is generated using the longitude and latitude values as x and y coordinates, respectively. The climate zone data is used to color-code the points on the scatter plot.</li>
+<li><strong>Load the Polygon Shapefile:</strong> A polygon shapefile, which represents the geographical boundaries of the region of interest, is loaded using the geopandas library.</li>
+<li><strong>Plot the Polygon Shapefile:</strong> The loaded polygon shapefile is overlaid on the scatter plot to provide geographical context. The boundaries are shown as black lines.</li>
+<li><strong>Add a Colorbar:</strong> A colorbar is added to the plot to provide a reference for the color-coding of the climate zones.</li>
+<li><strong>Set the Title and Axis Labels:</strong> The plot is given a title, and the x and y axes are labeled as longitude and latitude, respectively. A footnote reference to the study providing the climatological rainfall zone is also included.</li>
+<li><strong>Display the Plot:</strong> Finally, the plot is displayed using <code>plt.show()</code>.</li>
+</ol>
+<p>This function provides a visual representation of the climate zones within a specific geographical region, which can help researchers and policymakers understand the spatial distribution of different climate characteristics based on rainfall patterns.</p>
+<p>The code snippet provided is performing the following steps:</p>
+<ol type="1">
+<li><strong>Save DataFrame to CSV:</strong> It saves the <code>monthly_precip_df_centroid</code> DataFrame, which contains the ‘id’, ‘lon’, ‘lat’, and ‘climate_zone’ columns, into a CSV file. This file will be saved in the location specified by the path string. The filename is constructed using the method of clustering and the number of clusters.</li>
+<li><strong>Print Confirmation Message:</strong> After saving the file, a confirmation message is printed stating “Save the output to csv completed”. A separator line is then printed for clarity.</li>
+<li><strong>Plot Climate Zone Map:</strong> The <code>plot_climate_zone_map</code> function is then called, which generates a scatter plot of climate zones over a given geographical region based on the CSV file saved in the previous step and a shapefile which represents the geographical boundaries.</li>
+<li><strong>Print Separator Line:</strong> Another separator line is printed for clarity.</li>
+<li><strong>Print Completion Message:</strong> Finally, a message is printed stating “Done!” to signify the end of the code execution.</li>
+</ol>
+<p>Remember to ensure that the directory paths used in the code (“../csv/” and “../shapefiles/”) exist in your current working directory and contain the necessary files. If not, you will need to change these paths to the appropriate ones that are relevant to your working environment.</p>
+<div class="image-gallery">
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-03.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-03.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-04.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-04.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-05.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-05.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-06.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-06.jpg" class="img-fluid"></a></p>
+</div>
+</div>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/benny\.istan\.to\/site");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026, Benny Istanto.</p>
+<p>Exploring Climate with GIS and Data Science, solving old problems in new ways. Turning earth observation data into actionable, life-saving insights.</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+<div class="toc-actions"><ul><li><a href="https://github.com/bennyistanto/site/blob/main/blog/20230307-experimental-climatological-rainfall-zone.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/bennyistanto/site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/bennyistanto" aria-label="GitHub"><i class="bi bi-github"></i></a> <a href="https://linkedin.com/in/bennyistanto" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a> <a href="https://worldbank.github.io/GOST/content/staff/bennyistanto.html" aria-label="GOST"><i class="bi bi-globe"></i></a></p>
+<p><a href="https://buymeacoffee.com/bennyistanto">Buy Me a Coffee</a></p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
