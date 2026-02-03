@@ -1,12 +1,16 @@
 ---
-title: ""
+title: "Hi, my name is Benny Istanto"
 page-layout: custom
 toc: false
 ---
 
+::: {.wip-banner}
+🚧 **Work in Progress** - This site is being migrated from Squarespace - https://benny.istan.to to Quarto. Some features and content are still being updated.
+:::
+
 ::: {.hero-section}
 ::: {.hero-image}
-![](assets/image-spotlight/name-in-landsat.jpg){.hero-img fig-alt="Landsat satellite imagery showcasing Earth features"}
+![](assets/image-spotlight/name-in-landsat.jpg){.hero-img fig-alt="Landsat satellite imagery showcasing Earth features" .no-lightbox}
 :::
 
 ::: {.spotlight-box}

@@ -27,6 +27,49 @@ body {
 }
 
 /* ============================================
+   WIP Banner
+   ============================================ */
+
+.wip-banner {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+  border-left: 4px solid #f39c12;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem auto;
+  max-width: 1200px;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.wip-banner strong {
+  font-weight: 600;
+  color: #856404;
+}
+
+@media (prefers-color-scheme: dark) {
+  .wip-banner {
+    background: linear-gradient(135deg, #3a3a2e 0%, #4a4a3a 100%);
+    border-left-color: #f39c12;
+    color: #ffeaa7;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .wip-banner strong {
+    color: #ffd93d;
+  }
+}
+
+/* ============================================
+   Homepage Title Block - Hidden
+   ============================================ */
+
+/* Hide the title block on index page only */
+body.page-layout-custom #title-block-header {
+  display: none;
+}
+
+/* ============================================
    Navbar Customization
    ============================================ */
 
