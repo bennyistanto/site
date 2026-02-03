@@ -5,7 +5,7 @@ project:
 website:
   title: ""
   favicon: assets/image-logo/favicon.ico
-  site-url: https://benny.istan.to
+  site-url: https://benny.istan.to/site
   repo-url: https://github.com/bennyistanto/site
   repo-actions: [source, issue]
   bread-crumbs: true
