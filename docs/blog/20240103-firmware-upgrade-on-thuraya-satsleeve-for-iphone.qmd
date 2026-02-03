@@ -1,0 +1,52 @@
+---
+title: "Firmware upgrade on Thuraya SatSleeve for iPhone"
+author: "Benny Istanto"
+date: "2024-01-04"
+image: "../assets/image-blog/20240103-firmware-upgrade-on-thuraya-satsleeve-for-iphone-01.jpg"
+categories:
+  - "General"
+# tags:
+#   - "iphone"
+#   - "satsleeve"
+
+---
+
+![](../assets/image-blog/20240103-firmware-upgrade-on-thuraya-satsleeve-for-iphone-01.jpg)
+
+I have old version of [Thuraya SatSleeve for iPhone](https://www.thuraya.com/en/products-list/legacy/satsleeve-for-iphone), now categorized as a legacy product on Thuraya website.
+
+Since year ago the SatSleeve device experiencing intermittent connection, between bluetooth on iPhone SE and SatSleeve, also the GPS connection. Luckily, Thuraya providing a firmware upgrade with release v3.0.1 on their website <https://www.thuraya.com/en/support/upgrades/legacy/thuraya-satsleeve-for-iphone>
+
+Before upgrading a SatSleeve, please check which firmware is installed (SatSleeve > Settings > Device Info > Firmware version). Perform the upgrade only if Thuraya releases a firmware version newer than your existing one (mine is v2.94)
+
+To upgrade the firmware, follow steps on the website:
+
+Step 1
+
+* Download the below SatSleeve Upgrader program.
+
+  [SatSleeve upgrader](https://www.thuraya.com/-/media/thuraya/downloads/upgrades/legacy-downloads/satsleeve-for-iphone/thurayasatsleeveupgraderv1331-1.zip?la=en&hash=6383DE73A533A43B0C8043BF355806EB19BB8F05)
+* Unzip and Run the setup file - the Upgrader program including the USB driver will be installed.
+
+Step 2
+
+* Download the latest Thuraya SatSleeve firmware release to your hard disk.
+
+  [SatSleeve iPhone firmware release v3.0.1](https://www.thuraya.com/-/media/thuraya/downloads/upgrades/legacy-downloads/satsleeve-for-iphone/satsleevedatathurayav301.zip?la=en&hash=C2145EA5F0579D34268B8B4ED1056D3CCF3436D1)
+
+  (works only on the SatSleeve for iPhone Data model) - Unzip it.
+
+  Release notes of v3.0.1: Fixed GPS rollover issues
+
+Step 3
+
+* Connect your SatSleeve with the PC/laptop via USB data cable.
+* You can now start the SatSleeve Upgrader program (please make sure you run this software as Administrator.
+
+  + The requirement is using PC with Windows 8/8.1, Windows 7 or Windows Vista, and I am using Windows 11 is working fine
+  + Right click Thuraya SatSlevee Upgrader > More > Run as administrator
+* and locate the firmware on your hard disk. The Upgrader program will help you through the upgrade process.
+
+Now, my SatSleeve is working fine on iPhone SE
+
+![](../assets/image-blog/20240103-firmware-upgrade-on-thuraya-satsleeve-for-iphone-02.jpg)

@@ -1,0 +1,92 @@
+---
+title: "ILO Basic Operational GIS for Road Assessment (Part 3)"
+author: "Benny Istanto"
+date: "2011-06-01"
+description: "This the last part of 3 series post on ILO Basic Operational GIS for Road Assessment"
+image: "../assets/image-blog/20110601-ilo-basic-operational-gis-for-road-assessment-part-3-01.jpg"
+categories:
+  - "GIS"
+# tags:
+#   - "ilo"
+#   - "bireuen"
+#   - "dbmck"
+#   - "pidie"
+#   - "bappeda"
+
+---
+
+This the last part of 3 series post on ILO Basic Operational GIS for Road Assessment.
+
+You can read first part [here](/blog/20110428-ilo-basic-operational-gis-for-road-assessment-part-1) and second part [here](/blog/20110501-ilo-basic-operational-gis-for-road-assessment-part-2).
+
+9 – 12 May 2011, Week 2: GIS
+
+Bireuen:
+
+Training was participated by 12 people as follows: 7 DBMCK staffs, 4 BAPPEDA staffs and 1 student from local university. The module and presentation were covering topics on Introduction to ArcMap on first day and Creating geographic map objects on second day. The purpose of the exercise on first day is to get familiar with the application and learn how to use the basic map tools in order to create a map using a data set over Aceh in ArcMap. On the second day, the purpose of the exercise is to learn how to create different geographic features represented as line, points and polygons.
+
+At the end of this exercise the participant will be able to: Create a new project in ArcMap, Navigate around your map, View attribute information, Re-ordering layers, Different Views, Finding features, Measuring Distance, Working with coordinate system, Display attribute tables, Display and Edit attribute table, Select features, Symbolize data, Prepare a Layout, and Create new shapefile and map objects.
+
+Pidie:
+
+Training was participated by 17 people as follows: 9 DBMCK staffs, 6 BAPPEDA staffs and 2 DPKKD staffs. The training delivered same module and presentation as the training in Bireuen.
+
+[caption id="" align="alignnone" width="714"]![ GIS training in Pidie ](../assets/image-blog/20110601-ilo-basic-operational-gis-for-road-assessment-part-3-01.jpg) GIS training in Pidie [/caption]
+
+18 – 19 May 2011, Week 3: GIS
+
+Pidie: Training was participated by 12 people as follows: 5 DBMCK staffs, 5 BAPPEDA staffs and 2 DPKKD staffs. The module and presentation were covering topics on Working with Buffers and Joining Tables on first day and Assignment on Working with external data sources in the second day. The purpose of the exercise on first day is to get familiar with the ArcToolbox and the two different buffer tools used for geoprocessing. On the second day, the purpose of the exercise is to use different databases to combine data and visualize the result as unique values symbology.
+
+At the end of this exercise the participant will be able to: Explore the data, Create geographic objects from x and y coordinates, Create a multiple buffer, Create a buffer from a specified distance, Joining tables, Select by attributes, Create another Symbology, and Display the result.
+
+[caption id="" align="alignnone" width="714"]![ GIS training in Pidie ](../assets/image-blog/20110601-ilo-basic-operational-gis-for-road-assessment-part-3-02.jpg) GIS training in Pidie [/caption]
+
+20 May 2011, Week 3: GPS
+
+Pidie: Actually, training on the use of GPS in Pidie was conducted in the third week of April last month. But some staff in DBMCK requested to conduct GPS training again, then on the 20 May was held GPS training with same materials of the training. 7 peoples participated in this training.
+
+[caption id="" align="alignnone" width="714"]![ GPS training in Pidie ](../assets/image-blog/20110601-ilo-basic-operational-gis-for-road-assessment-part-3-03.jpg) GPS training in Pidie [/caption]
+
+23 – 24 May 2011, Week 4: GIS
+
+Bireuen: Training was participated by 5 people as follows: 1 DBMCK staffs, 3 BAPPEDA staffs and 1 student from local university. The training delivered same module and presentation as the training on 18 – 19 May in Pidie.
+
+25 – 26 May 2011, Week 4: GPS Field Training
+
+Pidie: After getting the theory and practical session of the use of GPS, we then conducted the field survey. We split the the participants into two teams; all team will focus with survey area on roads that was rehabilitated by ILO in Delima, Pidie, Peukan Baro, Simpang Tiga, Glumpang Baro, Keumbang Tanjong, Sakti, Indra Jaya dan Padang Tiji sub-district.
+
+[caption id="" align="alignnone" width="1425"]![ GPS field training in Pidie ](../assets/image-blog/20110601-ilo-basic-operational-gis-for-road-assessment-part-3-04.jpg) GPS field training in Pidie [/caption]
+
+The technical team has a good grip of the field condition, but they are less reliable in utilizing the maps for supporting the survey activities. There was a number of misdirection during the survey. Redirection (to obtain the right way) is guided by synchronizing the GPS with base maps and tabular data.
+
+[caption id="" align="alignnone" width="1336"]![ Roads that was rehabilitated by ILO (left to right: PD19, PD4 and PD21) ](../assets/image-blog/Screen+Shot+2021-10-08+at+6.14.12+PM.jpg) Roads that was rehabilitated by ILO (left to right: PD19, PD4 and PD21) [/caption]
+
+The overall purpose of this activity is to develop the technical team capacity and comprehension to overcome the current and future problems. The survey is not only focused on road section position registration. Fruitful discussions on training materials and its application in the field were always been inserted during the survey. Considerable time and patience were spent to make a significant improvement.
+
+The following picture shows the sub-district area in Delima, Pidie, Peukan Baro, Simpang Tiga, Glumpang Baro, Keumbang Tanjong, Sakti, Indra Jaya dan Padang Tiji, which had been surveyed by the all team. The red line shows the existing road network, the yellow point shows the point of road section identifier, and the green line shows the track which is traversed by a survey team that can later be converted into a road map.
+
+[caption id="" align="alignnone" width="712"]![ Waypoint and Track from GPS field training in Pidie ](../assets/image-blog/20110601-ilo-basic-operational-gis-for-road-assessment-part-3-05.jpg) Waypoint and Track from GPS field training in Pidie [/caption]
+
+Overall training was delivered in Bahasa Indonesia and discussed about GPS and GIS that can be useful specifically to provide support for the planning and budgeting of investments in road infrastructure. It is expected that by the end of the course, participants are able to describe basic functional and analytical capabilities of GPS and GIS, and perform data processing in order to visualize geographic data.
+
+Aggregated Training Impact assessment results on GIS
+
+Impact Evaluation Methodology: Participants undertook a process of self-evaluation before and after the training, to essentially measure their level of self-confidence in carrying out specific tasks in which training was to be carried out. Participants were asked to indicate their level of skill/confidence for each task prior to and after the training. Choices offered were:
+
+* I cannot perform the task at all
+* I can perform the task but I still require assistance
+* I can perform the task without any assistance
+
+Evaluation Results: This calculation is only carried to the participants that followed the training more than 80% of all the training that was conducted. Result indicated that 34.21% and 46.71% of the participants in Bireuen and Pidie can do task independently, while 49.12% and 53.29% of the participants in Bireuen and Pidie still need help in achieving the task due to their lack of confidence and the need to adapt towards the software. However, as a general comment, the participants have gained valuable computer knowledge and additional GIS and data management skills from the training. Request for a follow up training was raised by most of the participants at the closing ceremony.
+
+Impact assessment result in Bireuen
+
+[caption id="" align="alignnone" width="1393"]![ Training impact assessment in Bireuen ](../assets/image-blog/20110601-ilo-basic-operational-gis-for-road-assessment-part-3-08.jpg) Training impact assessment in Bireuen [/caption]
+[caption id="" align="alignnone" width="1837"]![ Training impact assessment in Bireuen ](../assets/image-blog/20110601-ilo-basic-operational-gis-for-road-assessment-part-3-06.jpg) Training impact assessment in Bireuen [/caption]
+
+Impact assessment result in Pidie
+
+[caption id="" align="alignnone" width="1393"]![ Training impact assessment in Pidie ](../assets/image-blog/20110601-ilo-basic-operational-gis-for-road-assessment-part-3-09.jpg) Training impact assessment in Pidie [/caption]
+![](../assets/image-blog/20110601-ilo-basic-operational-gis-for-road-assessment-part-3-07.jpg)
+
+As identified during the training, local government offices already have a number of qualified human resources in the field of GPS and GIS. More training is required to increase the level of confidence among participants, who still need help in performing essential GPS and GIS basic tasks. It is expected that the next training will help to decrease the number of participants who need help and increase the number of participants who do not need help.

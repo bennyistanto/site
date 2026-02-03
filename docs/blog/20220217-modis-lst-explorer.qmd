@@ -1,0 +1,28 @@
+---
+title: "MODIS LST Explorer"
+author: "Benny Istanto"
+date: "2022-02-17"
+description: "Recently I worked on utilising daily MODIS LST (MOD11A1) to calculate number of day in a year with LST exceeding 35degC"
+image: "../assets/image-blog/20220217-modis-lst-explorer-01.jpg"
+categories:
+  - "Remote Sensing"
+  - "Climate"
+# tags:
+#   - "gee"
+#   - "earthengine"
+#   - "mod11a1"
+#   - "modis"
+
+---
+
+Recently I worked on utilising daily MODIS LST ([MOD11A1](https://lpdaac.usgs.gov/products/mod11a1v006/)) to calculate number of day in a year with LST exceeding 35degC. At some point curious about the daily coverage of MODIS has pixel with good data quality.
+
+So, I wrote a Google Earth Engine script to see visual differences between applying QC Bitmask and the original based on daily data.
+
+Check this out!
+
+app: <https://bennyistanto.users.earthengine.app/view/modis-lst-explorer>
+
+code: <https://code.earthengine.google.com/6f6d1750bc67f384dbf9060c17c710ef>
+
+![](../assets/image-blog/20220217-modis-lst-explorer-01.jpg)

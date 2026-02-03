@@ -1,0 +1,42 @@
+---
+title: "Visit to DLR and WFP Innovation Accelerator"
+author: "Benny Istanto"
+date: "2019-11-09"
+description: "Shortly after finishing workshop in Rome, I flew to Munich to attend a workshop in 29 October 2019 with Earth Observation Centre at Deutsches Zentrum für Luft- und Raumfahrt (DLR) Oberpfaffenhofen"
+image: "../assets/image-blog/20191109-visit-to-dlr-and-wfp-innovation-accelerator-01.jpg"
+categories:
+  - "Research"
+  - "Travel"
+# tags:
+#   - "travel"
+#   - "workshop"
+#   - "innovation"
+
+---
+
+Shortly after finishing [workshop](/blog/20191108-global-gis-workshop-2019) in Rome, I flew to Munich to attend a workshop in 29 October 2019 with Earth Observation Centre at Deutsches Zentrum für Luft- und Raumfahrt ([DLR](https://goo.gl/maps/PEjwBanxDN9kQ93A6)) Oberpfaffenhofen.
+
+The 1-day workshop discussed PRISM major technical highlights and areas of operation, Global climate monitoring tools for WFP, DLR major highlights and areas of operation. Following with a presentation about the project that currently runs within DLR Emergency Operation Center (EOC): Emergency mapping at DLR EOC, An automatic system for near-real time flood extent and duration mapping based on multi-sensor satellite data, Land cover mapping - drought monitoring and agriculture productivity monitoring.
+
+The next day, I worked at WFP Innovation Accelerator office and have meeting on corporate solution for VAM data product with VAM HQ team, this activities will cover some thematic areas: climate trends and variability, seasonal and natural hazard monitoring and early warning, land cover dynamic and livelihood resources, settlements, infrastructure and populations. And continued discussion with SKAI team, project SKAI is a collaboration between Google AI and WFP Innovation Accelerator on Artificial intelligence and aerial imagery for emergencies. SKAI uses Artificial Intelligence (AI) and satellites to help WFP reduce the amount of time needed to understand the impact of disasters.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20191109-visit-to-dlr-and-wfp-innovation-accelerator-01.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191109-visit-to-dlr-and-wfp-innovation-accelerator-03.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191109-visit-to-dlr-and-wfp-innovation-accelerator-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191109-visit-to-dlr-and-wfp-innovation-accelerator-04.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191109-visit-to-dlr-and-wfp-innovation-accelerator-06.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191109-visit-to-dlr-and-wfp-innovation-accelerator-05.jpg)
+:::
+:::

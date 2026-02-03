@@ -1,0 +1,74 @@
+---
+title: "Changelog"
+subtitle: "Track changes and updates to this website"
+page-layout: article
+toc: true
+toc-depth: 2
+---
+
+## Version History
+
+### 2026-01-31 - Initial Quarto Migration Setup
+
+**Added**
+
+- Migrated website framework from Squarespace to Quarto
+- Implemented responsive design with light/dark theme support
+- Created spotlight section (MIT-inspired) for homepage showcase
+- Set up GitHub Pages hosting infrastructure with automated deployment
+- Added modern CSS with smooth transitions and animations
+- Created Works portfolio with hierarchical structure (Experiences, Projects, Consulting, Maps & Infographics)
+- Added placeholder pages for all main content sections
+- Implemented GitHub Actions workflow for automatic deployment
+- Created comprehensive documentation suite
+
+**Changed**
+
+- Renamed image folder from `hero-images` to `spotlight` (MIT-inspired naming)
+- Restructured content organization for better maintainability
+- Improved page load performance with static site generation
+- Enhanced mobile responsiveness across all breakpoints
+- Updated navigation with dropdown menu for Works section
+
+**Technical**
+
+- **Framework**: Quarto
+- **Hosting**: GitHub Pages (testing at `/site/` subdirectory)
+- **Repository**: [github.com/bennyistanto/site](https://github.com/bennyistanto/site)
+- **Themes**: Custom light (Cosmo-based) and dark (Darkly-based) variants
+- **Primary Color**: Orange (#D35400 light, #E67E22 dark)
+- **Deployment**: Automated via GitHub Actions
+- **Custom Domain**: Configured for future migration to benny.istan.to
+
+**Documentation**
+
+- `QUICK-START.md` - Quick start guide
+- `DEPLOYMENT.md` - Testing and deployment instructions
+- `FINAL-MIGRATION.md` - Production migration guide
+- `MIGRATION-SUMMARY.md` - Complete migration overview
+- `SETUP.md` - Detailed setup instructions
+- `README.md` - Project overview
+
+**Migration Status**
+
+- ✅ Framework setup complete
+- ✅ Placeholder pages created
+- ✅ Works portfolio structure ready
+- ✅ Deployment workflow configured
+- ⏳ Asset migration pending (logo, favicon, spotlight images)
+- ⏳ Content migration in progress
+- 🔜 Final deployment to benny.istan.to (when ready)
+
+---
+
+## About This Changelog
+
+This changelog follows semantic versioning principles and documents all notable changes to the website. Updates are organized by date and categorized as:
+
+- **Added**: New features or content
+- **Changed**: Updates to existing functionality
+- **Fixed**: Bug fixes
+- **Removed**: Deprecated features
+- **Technical**: Infrastructure or development changes
+
+For detailed commit history, visit the [GitHub repository](https://github.com/bennyistanto/site).

@@ -1,0 +1,110 @@
+---
+title: "ILO Basic Operational GIS for Road Assessment (Part 1)"
+author: "Benny Istanto"
+date: "2011-04-28"
+description: "This the first part of 3 series post on ILO Basic Operational GIS for Road Assessment"
+image: "../assets/image-blog/20110428-ilo-basic-operational-gis-for-road-assessment-part-1-01.jpg"
+categories:
+  - "GIS"
+# tags:
+#   - "ilo"
+#   - "bireuen"
+#   - "pidie"
+#   - "dbmck"
+#   - "bappeda"
+
+---
+
+This the first part of 3 series post on ILO Basic Operational GIS for Road Assessment.
+
+After spent 2 months to do an assessment of the currently available GIS system in 2 districts (Pidie and Bireuen), I would like to start writing a technical documentation on how to use a GPS and GIS for road survey and monitoring and prepare some supporting material.
+
+Below is the outline:
+
+### GPS Training
+
+This document contains information about the material that was given to participants in the GPS training.
+
+Slide presentation
+
+The most important element during the presentation was that they understand: Survey Instrument, Navigation Concept, How the GPS system works, the importance of doing this measurement for the survey (important to be careful to take the measurement), The basic of the Garmin GPS receiver. It is important that the participants play with the GPS receiver trying themselves to follow the steps mentioned in presentation slide. This allowed them to be more familiar with the device and the data collection protocol. Some slide presentations that have been made are the following:
+
+* Introduction to Survey Instrument
+* Map Reading and Navigation Technique
+
+  Map Reading and Navigation Technique material are equipped with several examples of maps with a completely different layout to give understanding to the training participants that maps as the output of the GIS, created for different purposes by different presentation as well. Some examples of these maps include:
+
+  + Contour Map - Semeru, Indonesia
+  + Disaster Situation Map – Merapi, Indonesia
+  + Forest Landuse Map – Aceh, Indonesia
+  + Geology Map, Aceh - Indonesia
+  + Humanitarian Situation Map - Libya
+  + IDP - West Sumatra, Indonesia
+  + Reference Map - Indonesia
+  + Topographic AMS Map – Lhokseumawe, Indonesia
+  + Topographic Map - Indonesia
+* Introduction to Navigation System using GPS
+* Introduction to GPS Survey Method, Survey Planning and Preparation, Data Collection, and Data Processing.
+
+At the end of the lecture of the GPS survey method the participants was expected to be able to test the GPS device and make a practical exercise. This practical part was essential and certainly the most important part of the training.
+
+At the end of this practical exercise, the participants should be able to take the measurement of the latitude and longitude of any landmark (road section position registration) within the district and enter the correct information in the survey form.
+
+Module
+
+* 76csx Quick Guide: Handheld Garmin GPS 76csx is a common type of GPS is owned by government officials in Bireuen and Pidie.
+* eTrex Quick Guide: Handheld Garmin GPS eTrex H is suitable for the beginner, as it is easy to use, small, lightweight, low cost and able to make quick and reliable satellite fixes.
+* Download and Upload GPS: The module discusses about the installation of GPS software, Connecting GPS with PC, Configure GPS software, Download waypoints-track- route, Upload waypoints-tracks-routes, Save a file from the GPS. DNR Garmin and GPS Utility software used in this module.
+* Display GPS Data using GIS OpenSource Software: The module discusses about the installation of GIS software, Displays GPS Data in MapWindow, Viewing attribute information, Using a plug-in MapWindow. MAPWindow is software used in this module.
+* GPS and Google Earth: Google Earth is a software that is quite popular today, everyone can download it for free. Google Earth is also can be used together with GPS. This module will discuss how to Importing data from a GPS device and Viewing GPS track in Google Earth
+
+Software
+
+Software packages used in the training were free and open-sources software (FOSS) and downloadable from internet i.e. GPS Utility (<http://www.gpsu.co.uk/download.html>), Google Earth (<http://earth.google.com>) and MapWindow (<http://www.mapwindow.org>), DNR Garmin (<http://www.dnr.state.mn.us/mis/gis/tools/arcview/extensions/DNRGarmin/DNRGarmin.html>).
+
+GPS Maps
+
+To complete a map that has been available in the GPS, Indonesia maps that can be downloaded free through from Navigasi.net (<http://navigasi.net/>). Navigasi.net is a site and forum of a group of GPS users in Indonesia.
+
+Supporting Documents
+
+* List of District Road Network in Bireuen was used as supporting data during field training
+* About GPS: This document discussed concept and the use of GPS Technology in various Industries
+* GPS Data Collection Form for field training: Form was used to fill the additional information obtained during the survey.
+* GPS Terminology: This document contained a list of terms commonly used in GPS.
+* Do We Need GPS? – Navigasi.net: This article discussed about the advantages use of GPS devices, what can be done using the GPS and also gives other illustration related to the GPS which is about the tracking and routing (determining the direction of travel).
+* GPS and Garmin POI – Navigasi.net: This article discussed the types of Point of Interest (POI) found in Garmin devices.
+
+### GIS Training
+
+This document contained information about the material that was delivered to participants in the GIS training.
+
+Slide presentation
+
+* What is GIS: The presentation discussed about the definition of GIS and geodata and Typical questions a GIS can answer.
+* Introduction to ArcGIS: This presentation was aimed to introduce participants to the basic use of ArcGIS. ArcGIS is a large program with many extensions and many uses. We will concentrate on ArcMap and ArcCatalog.
+* Working with external data source: The strength of GIS is that we can use many different information sources to bring together relevant information.
+
+Modules
+
+* Installation: The step-by-step installation of ArcGIS Desktop.
+* Introduction to ArcMap: The purpose of this exercise is to get familiar with the application and learn how to use the basic map tools in order to create a map using a data set over Indonesia in ArcMap.
+* Creating Map Objects: The purpose of this exercise is to learn how to create different geographic features represented as line, points and polygons.
+* Working with Buffers: The purpose with this exercise is to get familiar with the ArcToolbox and the two different buffer tools used for geoprocessing.
+* Joining Tables: The purpose of this exercise is to use different databases to combine data and visualize the result as unique values symbology.
+* Exercise - Working with External Geodata
+
+Software
+
+Software packages used in the training class were from ESRI, ArcGIS 9.3.1 Student licenses and downloadable from internet (http://www.esri.com/software/arcgis/arcview/eval/evaluate.html).
+
+Spatial and Non-spatial data used in this module
+
+* Administrative boundaries, Road network, Capital city of Aceh
+* Jakarta image map
+* Earthquake epicenter
+* Place code and PNPM data of Aceh
+* Health facilities and Shelter assessment data during Emergency situation in Jogjakarta
+* Indonesia villages boundaries
+
+![](../assets/image-blog/20110428-ilo-basic-operational-gis-for-road-assessment-part-1-01.jpg)

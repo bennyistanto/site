@@ -1,0 +1,17 @@
+---
+title: "xkcd style for LSEQM illustration"
+author: "Benny Istanto"
+date: "2024-05-23"
+description: "Source: <https://gist"
+categories:
+  - "General"
+  - "Climate"
+# tags:
+#   - "quantile mapping"
+#   - "precipitation"
+#   - "xkcd"
+#   - "linear scaling"
+
+---
+
+Source: <https://gist.github.com/bennyistanto/b9e5d9c932dc6b034f559deaa26e2743>

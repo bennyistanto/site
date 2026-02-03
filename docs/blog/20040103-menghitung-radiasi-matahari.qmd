@@ -1,0 +1,242 @@
+---
+title: "Menghitung radiasi matahari"
+author: "Benny Istanto"
+date: "2004-01-03"
+description: "Mata kuliah Mikrometeorologi membuat saya dan teman-teman melakukan pengamatan cuaca selama 24 jam di halaman Kampus IPB Baranangsiang, sangat menyenangkan karena waktu pengamatannya bertepatan den..."
+image: "../assets/image-blog/20040103-menghitung-radiasi-matahari-01.jpg"
+categories:
+  - "Research"
+  - "Climate"
+# tags:
+#   - "basics"
+#   - "cuaca"
+#   - "visualbasic"
+#   - "vb"
+#   - "radiasi"
+#   - "iklim"
+#   - "matahari"
+
+---
+
+Mata kuliah Mikrometeorologi membuat saya dan teman-teman melakukan pengamatan cuaca selama 24 jam di halaman Kampus IPB Baranangsiang, sangat menyenangkan karena waktu pengamatannya bertepatan dengan perayaan pergantian tahun 2003/2004.
+
+**Praktikum pengukuran profil iklim mikro fluks uap air dan bahang pada permukaan rumput**
+
+Tujuan dari praktikum ini adalah:
+
+1. Menentukan variasi diurnal Radiasi netto (Rn) yang terdapat pada permukaan rumput
+2. Mendapatkan variasi diurnal dari profil kecepatan angin, suhu udara, suhu tanah dan kelembaban spesifikpada permukaan rumput selama 24 jam.
+3. Menentukan karakteristik kekasapan permukaan rumput (d, zo, dan U\*)
+4. Menetukan kondisi stabilitas atmosfer (Ri), netral, stabil dan inversi dalam periode 24 jam.
+5. Menentukan besarnya energi yang digunakan untuk fluks bahang (QH) dan (QG), uap air (QE) pada kondisi netral.
+
+Selain melakukan pengamatan, praktikum kali ini juga mengasah kemampuan saya dan teman-teman dalam menerapkan ilmu yang kita pelajari pada mata kuliah Instrumentasi Meteorologi untuk membuat beberapa IoT Anemometer portable dengan interface USB-2, sehingga data yang dihasilkan bisa langsung tersimpan di komputer untuk dianalisa lebih lanjut. Saya bertanggung jawab untuk mengamati Radiasi Netto, merekam data dan menganalisanya. Selain itu saya juga harus membandingkan dengan nilai dugaan Radiasi menggunakan pendekatan rumus empirik.
+
+Slide di bawah ini adalah materi kuliah tentang radiasi matahari yang disampaikan Bu Tania June seminggu yang lalu, sebelum kita melakukan pengamatan lapangan.
+
+## Hasil pengamatan
+
+Berdasarkan hasil praktikum terlihat adanya perubahan radiasi netto pada siang dan malam hari. Satuan miliVolt (mV) menunjukkan bahwa pengukuran radiasi netto ini menggunakan Net Radiometer dan DVM (Digital Volt Meter), diukur setiap 30 menit. Nilai Radiasi Netto pada siang hari ditunjukkan oleh grafik di bawah ini:
+
+Selanjutnya saya harus membandingkan nilai radiasi hasil pengukuran dengan hasil dugaan menggunakan rumus empiris. Referensi saya adalah dokumen dari FAO no 56: Crop evapotranspiration - Guidelines for computing crop water requirements - FAO Irrigation and drainage paper 56 (http://www.fao.org/3/x0490e/x0490e00.htm#Contents): Chapter 3 yang membahas tentang data meteorologi, sub topik radiasi: http://www.fao.org/3/x0490e/x0490e07.htm#radiation
+
+Menurut dokumen di atas, konsep dari perhitungan radiasi adalah sebagai berikut:
+
+## Radiasi ekstraterestrial (Ra)
+
+Radiasi yang mengenai permukaan tegak lurus terhadap sinar matahari di bagian atas atmosfer bumi, yang disebut konstanta matahari, adalah sekitar 0,082 MJ m-2 mnt-1. Intensitas lokal radiasi ditentukan oleh sudut antara arah sinar matahari ke permukaan atmosfer. Sudut ini akan berubah pada siang hari dan akan berbeda di lintang yang berbeda dan di musim yang berbeda. Radiasi matahari yang diterima di bagian atas atmosfer bumi pada permukaan horizontal disebut radiasi ekstraterestrial, Ra. Jika matahari berada tepat di atas kepala, sudut datangnya nol dan radiasi ekstraterestrial 0,0820 MJ m-2 min-1. Saat musim berubah, posisi matahari dan panjang hari juga berubah, oleh karena itu Ra juga berubah. Radiasi ekstraterestrial dengan demikian merupakan fungsi dari garis lintang, tanggal dan waktu hari.
+
+### Ra untuk periode harian
+
+Ra untuk periode harian dalam setahun dan untuk lintang yang berbeda dapat diperkirakan dari konstanta matahari, deklinasi matahari, dan waktu dalam setahun dengan:
+
+Ra = (24(60))/π \* Gsc \* dr \* [ωs \* sin(φ) \* sin(δ) + cos(φ) \* cos(δ) \* sin(ωs)] (**Persamaan 1**)
+
+dimana :
+
+* Ra radiasi ekstraterestrial [MJ m-2 hari-1]
+* Gsc konstanta matahari = 0,0820 MJ m-2 menit-1
+* dr jarak relatif terbalik Bumi-Matahari (**Persamaan 4**)
+* ωs sudut waktu matahari terbenam, dalam radian (**Persamaan 7 atau 8**),
+* φ latitude, dalam radian (**Persamaan 3**)
+* δ sudut deklinasi matahari, dalam radian (**Persamaan 5**).
+
+Dalam persamaan FAO Penman-Monteith tentang Evapotranspirasi, radiasi yang dinyatakan dalam MJ m-2 hari-1 dikonversi menjadi penguapan yang setara dalam mm hari-1 dengan menggunakan faktor konversi yang sama dengan kebalikan dari panas laten penguapan (1 / l = 0,408):
+
+$$\text{evaporasi [mm hari}^{-1}\text{]} = 0.408 \times \text{Radiasi [MJ m}^{-2}\text{ hari}^{-1}\text{]} \tag{2}$$
+
+Ra diekspresikan dalam persamaan di atas dalam MJ m-2 hari-1. Penguapan dalam mm hari-1 diperoleh dengan mengalikan Ra dengan 0,408 (Persamaan 2). Garis lintang, φ, dinyatakan dalam radian positif untuk belahan bumi utara dan negatif untuk belahan selatan. Konversi dari derajat desimal ke radian diberikan oleh:
+
+$$[\text{Radians}] = \frac{\pi}{180} \times [\text{decimal degrees}] \tag{3}$$
+
+Jarak relatif terbalik Bumi-Matahari, dr, dan deklinasi matahari, d, dihitung dari:
+
+$$d_r = 1 + 0.033 \cos\left(\frac{2\pi}{365} J\right) \tag{4}$$
+
+$$\delta = 0.409 \sin\left(\frac{2\pi}{365} J - 1.39\right) \tag{5}$$
+
+dimana J adalah tanggal dalam Julian (<https://landweb.modaps.eosdis.nasa.gov/browse/calendar.html>), antara 1 (1 Januari) dan 365 atau 366 (31 Desember). J dapat ditentukan untuk setiap hari (D) bulan (M) melalui:
+
+J = INTEGER (275 M / 9 - 30 + D) - 2
+
+IF (M <3) THEN J = J + 2
+
+IF (“tahun kabisat” and (M> 2)) THEN J = J + 1 (**Persamaan 6**)
+
+Sudut waktu matahari terbenam, ωs, ditentukan dari:
+
+$$\omega_s = \arccos[-\tan(\phi) \tan(\delta)] \tag{7}$$
+
+Karena fungsi arccos tidak tersedia dalam semua bahasa komputer, sudut waktu matahari terbenam juga dapat dihitung menggunakan fungsi arctan:
+
+$$\omega_s = \frac{\pi}{2} - \arctan\left[\frac{-\tan(\phi) \tan(\delta)}{X^{0.5}}\right] \tag{8}$$
+
+dimana:
+
+$$X = 1 - [\tan(\phi)]^2 [\tan(\delta)]^2 \tag{9}$$
+
+  dan $X = 0.00001$ jika $X \leq 0$
+
+### Ra untuk periode per jam atau yang lebih pendek
+
+Untuk periode per jam atau lebih pendek, sudut waktu matahari pada awal dan akhir periode harus dipertimbangkan ketika menghitung Ra:
+
+Ra = (12(60))/π \* Gsc \* dr \* [(ω2 - ω1) \* sin(φ) \* sin(δ) + cos(φ) \* cos(δ) \* (sin(ω2)-sin(ω1))] (**Persamaan 10**)
+
+dimana :
+
+* Ra radiasi ekstraterestrial per jam atau periode yang lebih pendek [MJ m-2 jam-1],
+* Gsc konstanta matahari = 0,0820 MJ m-2 menit-1,
+* dr jarak relatif terbalik Bumi-Matahari (**Persamaan 4**),
+* δ sudut deklinasi matahari, dalam radian (**Persamaan 5**),
+* φ latitude, dalam radian (**Persamaan 3**),
+* ω1 sudut waktu matahari terbit, dalam radian (**Persamaan 11**),
+* ω2 sudut waktu matahari terbenam, dalam radian (**Persamaan 12**),
+
+Sudut waktu matahari terbit dan tenggelam dihitung menggunakan persamaan berikut:
+
+$$\omega_1 = \omega - \frac{\pi t_1}{24} \tag{11}$$
+
+$$\omega_2 = \omega + \frac{\pi t_1}{24} \tag{12}$$
+
+dimana
+
+* ω sudut waktu matahari pada tengah hari atau periode lebih pendek, dalam radian,
+* t1 panjang periode perhitungan [jam]: misal. 1 untuk periode per jam atau 0,5 untuk periode 30 menit.
+
+Sudut waktu matahari di titik tengah periode adalah:
+
+$$\omega = \frac{\pi}{12} [(t + 0.06667 (L_z - L_m) + S_c) - 12] \tag{13}$$
+
+dimana
+
+* t waktu jam standar di tengah periode [jam]. Misalnya untuk periode antara 14.00 dan 15.00 jam, t = 14.5,
+* Lz lokasi bujur dari titik tengah dari zona waktu lokal [derajat Bujur Barat Greenwich]. Misalnya, Lz = 75, 90, 105 dan 120° untuk zona waktu wilayah Timur, Tengah, Pegunungan Rocky dan Pasifik (Amerika Serikat) dan Lz = 0° untuk Greenwich, 330° untuk Kairo (Mesir), dan 255° untuk Bangkok (Thailand),
+* Lm bujur dari lokasi pengukuran [derajat Bujur Barat Greenwich],
+* Sc Koreksi musiman untuk waktu matahari [jam].
+
+Tentu saja, jika w < -ws atau w > ws dari Persamaan 13 menunjukkan bahwa matahari berada di bawah cakrawala sehingga, menurut definisi, Ra adalah nol.
+
+Koreksi musiman untuk waktu matahari adalah:
+
+$$S_c = 0.1645 \sin(2b) - 0.1255 \cos(b) - 0.025 \sin(b) \tag{14}$$
+
+$$b = \frac{2\pi(J-81)}{364} \tag{15}$$
+
+dimana J adalah hari ke-n dalam setahun.
+
+## Lama penyinaran, dalam jam (N)
+
+Dihitung menggunakan persamaan berikut:
+
+N = 24/π \* ωs (**Persamaan 16**)
+
+di mana ωs adalah sudut waktu matahari terbenam dalam radian yang diberikan oleh Persamaan 7 atau 8.
+
+## Radiasi matahari (Rs)
+
+Jika radiasi matahari, Rs, tidak terukur, dapat dihitung dengan rumus Angstrom yang menghubungkan radiasi matahari dengan radiasi ekstraterestrial dan durasi sinar matahari relatif:
+
+$$R_s = (a_s + b_s \frac{n}{N}) R_a \tag{17}$$
+
+dimana
+
+* Rs radiasi matahari atau gelombang pendek [MJ m-2 hari-1],
+* n durasi aktual sinar matahari [jam],
+* N durasi maksimum yang mungkin dari sinar matahari atau panjang hari [jam],
+* n/N durasi sinar matahari relatif [-],
+* Ra radiasi ekstarterrestrial [MJ m-2 hari-1],
+* as sebagai konstanta regresi, menyatakan fraksi radiasi ekstraterestrial yang mencapai bumi pada hari-hari mendung (n = 0),
+* as+bs sebagai fraksi radiasi ekstraterestrial yang mencapai bumi pada hari-hari cerah (n = N).
+
+Rs dinyatakan dalam persamaan di atas dalam MJ m-2 hari-1. Penguapan setara yang sesuai dalam mm hari-1 diperoleh dengan mengalikan Rs dengan 0,408 (Persamaan 2). Bergantung pada kondisi atmosfer (kelembaban, debu) dan deklinasi matahari (garis lintang dan bulan), nilai Angstrom as dan bs akan bervariasi. Ketika tidak ada data radiasi matahari aktual yang tersedia dan tidak ada kalibrasi telah dilakukan untuk parameter as dan bs yang ditingkatkan, nilai yang direkomendasikan untuk as = 0,25 dan bs = 0,50.
+
+Radiasi ekstraterestrial, Ra, dan panjang hari atau durasi maksimum yang mungkin dari sinar matahari, N, diberikan oleh Persamaan 10 dan 16. Durasi aktual sinar matahari, n, direkam dengan perekam sinar matahari Campbell Stokes.
+
+## Radiasi matahari, ketika langit cerah (Rso)
+
+Perhitungan radiasi ketika langit-cerah, Rso, ketika n = N, diperlukan untuk menghitung radiasi gelombang panjang netto.
+
+Untuk dekat permukaan laut atau ketika nilai kalibrasi untuk as dan bs tersedia:
+
+$$R_{so} = (a_s + b_s) R_a \tag{18}$$
+
+dimana
+
+* Rso radiasi matahari ketika langit cerah [MJ m-2 hari-1],
+* as + bs fraksi radiasi ekstraterestrial yang mencapai bumi pada hari-hari langit cerah (n = N).
+
+Ketika nilai kalibrasi untuk as dan bs tidak tersedia:
+
+$$R_{so} = (0.75 + 2 \times 10^{-5}z) R_a \tag{19}$$
+
+dimana
+
+* z ketinggian stasiun di atas permukaan laut [m].
+
+## Radiasi matahari atau gelombang pendek netto (Rns)
+
+Radiasi gelombang pendek netto yang dihasilkan dari keseimbangan antara radiasi matahari yang masuk dan yang dipantulkan diberikan oleh:
+
+$$R_{ns} = (1-\alpha) R_s \tag{20}$$
+
+dimana
+
+* Rns radiasi matahari atau gelombang pendek netto [MJ m-2 hari-1],
+* a koefisien refleksi albedo atau kanopi, yang bernilai 0.23 untuk referensi hipotesis tanaman rumput [tidak mempunyai unit],
+* Rs radiasi matahari yang masuk [MJ m-2 hari-1].
+
+## Radiasi gelombang panjang netto (Rnl)
+
+Tingkat emisi energi gelombang panjang sebanding dengan suhu absolut permukaan yang dipangkatkan empat. Hubungan ini diekspresikan secara kuantitatif oleh hukum Stefan-Boltzmann. Namun, fluks energi bersih yang meninggalkan permukaan bumi kurang dari yang dipancarkan dan diberikan oleh hukum Stefan-Boltzmann karena penyerapan dan radiasi ke bawah dari langit. Uap air, awan, karbon dioksida, dan debu adalah penyerap dan penghasil radiasi gelombang panjang. Konsentrasi mereka harus diketahui ketika menilai fluks keluar netto. Karena kelembaban dan kekeruhan memainkan peran penting, hukum Stefan-Boltzmann dikoreksi oleh dua faktor ini ketika memperkirakan - fluks keluar radiasi gelombang panjang. Dengan demikian diasumsikan bahwa konsentrasi peredam lain adalah konstan:
+
+$$R_{nl} = \sigma\left[\frac{(T_{max} + 273.16)^4 + (T_{min} + 273.16)^4}{2}\right] (0.34 - 0.14\sqrt{e_a}) \left[1.35 \frac{R_s}{R_{so}} - 0.35\right] \tag{21}$$
+
+dimana
+
+* Rnl radiasi gelombang panjang keluar netto [MJ m-2 hari-1],
+* σ Konstanta Stefan-Boltzmann [4,903 10-9 MJ K-4 m-2 hari-1],
+* Tmax, dalam Kelvin, suhu absolut maksimum selama periode 24 jam [K = °C + 273,16],
+* Tmin, dalam Kelvin, suhu absolut minimum selama periode 24 jam [K = °C + 273,16],
+* ea tekanan uap aktual [kPa],
+* Rs/Rso Radiasi gelombang pendek relatif (terbatas pada ≤ 1.0),
+* Rs dihitung dari (Persamaan 17) radiasi matahari [MJ m-2 hari-1],
+* Rso dihitung dari (Persamaan 18 atau 19) radiasi langit cerah [MJ m-2 hari-1].
+
+Rata-rata suhu udara maksimum dan suhu udara minimum yang dipangkatkan empat biasanya digunakan dalam persamaan Stefan-Boltzmann untuk periode waktu 24 jam. Istilah (0.34-0.14√ea) menyatakan koreksi untuk kelembaban udara, dan akan lebih kecil jika kelembaban meningkat. Efek kekeruhan diungkapkan oleh (1.35 Rs / Rso - 0.35). Istilah ini menjadi lebih kecil jika kekeruhan meningkat dan karenanya Rs berkurang. Semakin kecil ketentuan koreksi, semakin kecil fluks keluar radiasi gelombang panjang. Perhatikan bahwa istilah Rs/Rso dalam Persamaan 39 harus dibatasi sehingga Rs / Rso ≤ 1.0.
+
+Di mana pengukuran radiasi pendek dan gelombang panjang masuk dan keluar selama langit cerah dan mendung tersedia, kalibrasi koefisien dalam Persamaan 39 dapat dilakukan.
+
+## Radiasi netto (Rn)
+
+Radiasi netto (Rn) adalah perbedaan antara radiasi gelombang pendek netto masuk (Rns) dan radiasi gelombang panjang netto keluar (Rnl):
+
+$$R_n = R_{ns} - R_{nl} \tag{22}$$
+
+## Script menggunakan bahasa BASIC
+
+Selanjutnya untuk memudahkan perhitungan radiasi harian selama 1 tahun, beberapa persamaan diatas saya tulis menggunakan bahasa BASIC (kodenya dapat dilihat dibagian bawah tulisan). Dan untuk perhitungan 1 waktu, saya buat user interface sederhana menggunakan Visual Basic 6 seperti gambar dibawah.
+
+![ Gambar 1. UI program menghitung radiasi matahari.](../assets/image-blog/20040103-menghitung-radiasi-matahari-01.jpg) 
+
+Gambar 1. UI program menghitung radiasi matahari.

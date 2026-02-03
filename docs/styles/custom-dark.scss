@@ -1,0 +1,121 @@
+/*-- scss:defaults --*/
+
+// Dark Theme Customization
+// Based on Darkly theme with custom modifications
+
+// Primary Colors
+$primary: #E67E22 !default;  // Lighter orange for dark theme
+$secondary: #6c757d !default;
+$success: #00bc8c !default;
+$info: #3498db !default;
+$warning: #f39c12 !default;
+$danger: #e74c3c !default;
+$light: #adb5bd !default;
+$dark: #303030 !default;
+
+// Body
+$body-bg: #1a1a1a !default;
+$body-color: #e9ecef !default;
+
+// Links
+$link-color: $primary !default;
+$link-hover-color: lighten($primary, 10%) !default;
+
+// Fonts
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
+$headings-font-weight: 600 !default;
+$headings-line-height: 1.2 !default;
+
+// Navbar
+$navbar-bg: rgba(34, 34, 34, 0.95) !default;
+$navbar-fg: $body-color !default;
+
+// Borders
+$border-color: #444 !default;
+$border-radius: 0.5rem !default;
+
+// Spacing
+$spacer: 1rem !default;
+
+// Code
+$code-bg: #2d2d2d !default;
+$code-color: #e96366 !default;
+
+/*-- scss:rules --*/
+
+// Dark theme specific styles
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.spotlight-box {
+  background: rgb(80, 80, 80) !important;
+  border-top-color: $primary;
+  color: #e9ecef;
+}
+
+.spotlight-box h2 {
+  color: #ffffff;
+}
+
+.spotlight-box p {
+  color: #e9ecef;
+}
+
+pre {
+  background-color: #2d2d2d;
+  border: 1px solid #444;
+}
+
+blockquote {
+  border-left: 4px solid $primary;
+  background-color: #2d2d2d;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.page-footer {
+  background: linear-gradient(to top, #0d0d0d 0%, #1a1a1a 100%);
+  border-top-color: #333;
+}
+
+// Card styles
+.card {
+  background-color: #222;
+  border-color: #444;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+  border-color: $primary;
+}
+
+// Improve contrast for dark theme
+a:not(.btn) {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.3s ease;
+}
+
+a:not(.btn):hover {
+  text-decoration-color: currentColor;
+}
+
+// Dark theme image adjustments
+img:not(.hero-img) {
+  opacity: 0.95;
+}
+
+img:not(.hero-img):hover {
+  opacity: 1;
+}

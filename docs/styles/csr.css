@@ -1,0 +1,168 @@
+/* CSR Page Styles */
+
+/* Constrain the full layout to readable width */
+.page-layout-full .quarto-container,
+.page-layout-full #quarto-content,
+.page-layout-full main.content {
+  max-width: 1400px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+/* Grid should use full available width */
+.grid {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Ensure content columns are properly sized */
+.column-page,
+.column-body,
+.column-screen {
+  max-width: 100% !important;
+}
+
+/* Extra wide screens */
+@media (min-width: 1600px) {
+  .page-layout-full .quarto-container,
+  .page-layout-full #quarto-content,
+  .page-layout-full main.content {
+    max-width: 1600px !important;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .page-layout-full .quarto-container,
+  .page-layout-full #quarto-content,
+  .page-layout-full main.content {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+/* Dataset Grid Layout */
+.datasets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.dataset-card {
+  background: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  height: 100%;
+}
+
+.dataset-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
+  border-color: var(--bs-primary);
+  text-decoration: none;
+}
+
+.dataset-thumbnail {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.dataset-content {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dataset-year {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--bs-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.dataset-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--bs-body-color);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.dataset-card:hover .dataset-title {
+  color: var(--bs-primary);
+}
+
+/* Cards without images - add gradient background */
+.dataset-card:not(:has(.dataset-thumbnail)) {
+  background: linear-gradient(135deg, var(--bs-body-bg) 0%, var(--bs-primary-bg-subtle) 100%);
+}
+
+.dataset-card:not(:has(.dataset-thumbnail)) .dataset-content {
+  padding: 2rem 1.5rem;
+}
+
+/* Code blocks for projection strings */
+code {
+  background: #e8f4f8;
+  color: #0066cc;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.375rem;
+  font-size: 0.9em;
+  font-weight: 500;
+  border: 1px solid #b3d9f2;
+}
+
+pre code {
+  background: #f8f9fa;
+  color: #212529;
+  display: block;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  border: 1px solid #dee2e6;
+  font-weight: 400;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .datasets-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .datasets-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  code {
+    background: #1a3a52;
+    color: #6ea8fe;
+    border-color: #2d5a7a;
+  }
+
+  pre code {
+    background: #1e1e1e;
+    color: #e0e0e0;
+    border-color: #444;
+  }
+}

@@ -1,0 +1,64 @@
+---
+title: "Satelit Geostasioner"
+author: "Benny Istanto"
+date: "2005-01-08"
+description: "Mengamati bumi melalui satelit Geostasioner (GOES EAST, METEOSAT, IODC, GMS dan GOES WEST) tanggal 25 Oktober 2004, Jam 18"
+image: "../assets/image-blog/20050108-satelit-geostasioner-02.jpg"
+categories:
+  - "Remote Sensing"
+  - "Research"
+  - "Climate"
+# tags:
+#   - "satelit geostasioner"
+#   - "gms"
+#   - "iodc"
+#   - "meteosat"
+#   - "goes"
+
+---
+
+Mengamati bumi melalui satelit Geostasioner (GOES EAST, METEOSAT, IODC, GMS dan GOES WEST) tanggal 25 Oktober 2004, Jam 18.00.
+
+Satelit-satelit yang mengorbit bumi sebagian besar berada pada orbit geostasioner, dengan ketinggian sekitar 35.800 km dari permukaan bumi. Satelit semacam ini umumnya digunakan untuk keperluan pengamatan cuaca (meteorologi) dan hubungan komunikasi jarak jauh (telekomunikasi). Pemanfaatan satelit semacam ini membutuhkan kedudukan satelit yang harus tepat longitude akusisi dari daerah atau stasiun bumi yang diliput. Hal ini dapat dipenuhi oleh orbit geostasioner yang berada pada bidang khatulistiwa, berbentuk lingkaran, dan mempunyai periode yang sinkron denga periode riel rotasi bumi.
+
+Citra yang dihasilkan oleh kelima satelit pada tanggal 25 Oktober 2004, jam 18.00 GMT adalah sebagai berikut:
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20050108-satelit-geostasioner-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20050108-satelit-geostasioner-05.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20050108-satelit-geostasioner-04.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20050108-satelit-geostasioner-01.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20050108-satelit-geostasioner-03.jpg)
+:::
+:::
+
+Dan cakupan wilayah masing-masing satelit seperti gambar berikut:
+
+![](../assets/image-blog/20050108-satelit-geostasioner-06.jpg)
+
+Mosaic yang dihasilkan oleh kelima satelit pada tanggal 25 Oktober 2004, jam 18.00 GMT adalah sebagai berikut:
+
+![](../assets/image-blog/20050108-satelit-geostasioner-08.jpg)
+
+Animasi citra satelit GMS tanggal 14-31 Oktober 2004
+
+![](../assets/image-blog/20050108-satelit-geostasioner-07.gif)
+
+Pada citra satelit GMS tanggal 14-31 Oktober 2004, dapat dilihat pola penyebaran awan di Indonesia sebagian besar tersebar di wilayah Indonesia bagian barat. Hal ini disebabkan oleh angin muson barat yang berasal dari Asia yang membawa udara lembab. Angin muson yaitu angin yang terjadi akibat adanya perbedaan tekanan antara daerah di belahan bumi utara dan daerah di belahan bumi selatan.
+
+Perbedaan tekanan ini disebabkan oleh gerak semu matahari. Pada bulan Oktober, matahari bergerak ke selatan sehingga daerah di belahan bumi utara memasuki musim dingin sedangkan daerah di belahan bumi selatan akan memasuki musim panas. Tekanan udara pada daerah di belahan bumi selatan relatif rendah sedangkan tekanan di belahan bumi utara relatif tinggi akibatnya angin betiup dari Asia (BBU) menuju Australia (BBS) atau disebut juga dengan Angin Muson Barat atau Angin Monsun Barat atau Angin Musim Penghujan. Angin Muson Barat menyebabkan musin penghujan karena angin ini melewati lautan relatif lebih jauh dibanding dengan Angin Muson Timur yang berasal dari Australia. Namun demikian, tidak semua wilayah di Indonesia tertutup awan dan berpeluang terjadi hujan terutama di wilayah Indonesia bagian timur.
+
+Hal ini dikarenakan bulan Oktober merupakan awal musim penghujan. Selain dipengaruhi oleh angin muson dan sirkulasi atmosfer meridional (sirkulasi Hadley), wilayah Indonesia juga dipengaruhi oleh sirkulasi zonal (sirkulasi Walker) dan sirkulasi lokal (konvektif). Pengaruh sirkulasi zonal dapat dilihat pada perawanan di Irian.
+
+Dari hasil pantauan pada kelima satelit cuaca di atas, didapati sebaran awan didekat ekuator pada wilayah benua Afrika, Amerika, Australia. Untuk wilayah Eropa dan Asia perawanan yang relatif kecil (tidak merata), dengan perawanan yang seperti ini dapat dikatakan bahwa penyebaran awan tidak terdistribusi dengan merata.
+
+Diketahui bahwa pergerakan matahari pada bulan September, menuju ke selatan dan menurut teori pergerakan ITCZ (Inter Tropical Convergence Zone), ITZC bergerak mengikuti pergerakan semu matahari (ke selatan). Garis ITZC menunjukkan wilayah berpotensi curah hujan yang tinggi. Akan tetapi jika melihat animasi kelima satelit tersebut pada tanggal 14-31 Oktober 2004, garis ITZC tidak terlihat jelas. Hal ini terjadi karena adanya tanda-tanda awal pembentukan siklon di wilayah samudera Atlantik sehingga penyebaran awan memusat pada wilayah itu.

@@ -1,0 +1,42 @@
+---
+title: "Number of dry and wet-spell"
+author: "Benny Istanto"
+date: "2020-07-21"
+description: "Now, it’s easy to get statistics information on AVERAGE, MINIMUM and MAXIMUM number of consecutive dry and wet days for a certain period using Google Earth Engine platform"
+image: "../assets/image-blog/20200721-number-of-dry-and-wet-spell-02.jpg"
+categories:
+  - "Remote Sensing"
+  - "Research"
+  - "Climate"
+# tags:
+#   - "chirps"
+#   - "cdd"
+#   - "wet-spell"
+#   - "flood"
+#   - "climate"
+#   - "drought"
+#   - "dry-spell"
+#   - "gee"
+#   - "rainfall"
+#   - "cwd"
+#   - "earthengine"
+
+---
+
+Now, it’s easy to get statistics information on AVERAGE, MINIMUM and MAXIMUM number of consecutive dry and wet days for a certain period using Google Earth Engine platform. Copy below code and paste into GEE.
+
+You can modify:
+
+* Bounding box or area of interest
+* Start and End of YEAR, MONTH and DATE
+* Precipitation threshold which can be considered as rain day.
+* Symbology as SLD style
+* Palette
+
+Example of the analysis
+
+![](../assets/image-blog/20200721-number-of-dry-and-wet-spell-02.jpg)
+![](../assets/image-blog/20200721-number-of-dry-and-wet-spell-01.jpg)
+
+Link for the full [code](https://code.earthengine.google.com/719cbbf4e7f519ccd5941282b419a5c6)  
+**Notes:** The code was compiled from various source (GEE help, GEE Groups, StackExchange)

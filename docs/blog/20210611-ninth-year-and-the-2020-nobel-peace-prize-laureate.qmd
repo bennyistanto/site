@@ -1,0 +1,32 @@
+---
+title: "Ninth year and the 2020 Nobel Peace Prize Laureate"
+author: "Benny Istanto"
+date: "2021-06-11"
+description: "[caption id=\"\" align=\"alignnone\" width=\"2500\"]"
+image: "../assets/image-blog/20210611-ninth-year-and-the-2020-nobel-peace-prize-laureate-01.jpg"
+categories:
+  - "General"
+# tags:
+#   - "nobel"
+#   - "nobel peace prize"
+#   - "wfp"
+#   - "nobel peace"
+
+---
+
+[caption id="" align="alignnone" width="2500"]![  “until the day we have a vaccine, food is the best vaccine against chaos”  ](../assets/image-blog/20210611-ninth-year-and-the-2020-nobel-peace-prize-laureate-01.jpg) “until the day we have a vaccine, food is the best vaccine against chaos” [/caption]
+
+Today marks my [ninth](/blog/20120611-first-day-at-wfp) year working with the UN World Food Programme, I feel honoured because this has been beyond a profession, but I found my definition of [ikigai](/blog/20201109-a-reason-for-being) (A Reason for Being).
+
+* I LOVE drawing and coloring, especially map since I was a kid
+* I am GOOD AT turning data into maps for actionable and live-saving insight WFP are delivering
+* as one of crisis mapper at WFP, I GET PAID for it, of course
+* with WFP, I share the ideas of helping others and contribute to humanitarian NEEDS is as simple as I do
+
+Last year, WFP was awarded the Nobel Peace Prize! This completes my achievement at WFP: as the best GIS in the 1st WFP GIS Community Award in 2015, and with VAM team won 2017 WFP Innovation Challenge, for [VAMPIRE](/projects/2016-vampire) works.
+
+Thank you WFP!
+
+***Looking forward to doing more meaningful work in climate analytics and geospatial technology for greater impact.***
+
+Credit: thumbnail image - <https://www.instagram.com/p/CGHfltyAvlF/>

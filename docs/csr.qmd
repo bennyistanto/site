@@ -1,0 +1,67 @@
+---
+title: "CSR"
+subtitle: "Climate Social Responsibility"
+page-layout: full
+toc: true
+css: styles/csr.css
+---
+
+## Overview
+
+Don't get confused with the common CSR - Corporate Social Responsibility! I'm introducing **Climate Social Responsibility** here.
+
+As a teenager, I dreamt about a future career in technology that could provide actionable, life-saving insights. This led me to the Department of Geophysics and Meteorology at IPB University, where environment and climate issues captured my interest. During my final two years of undergraduate studies, I discovered the beauty of geospatial applications for climate research - combining my passion for science with visual communication through maps and data visualization.
+
+I understand that meteorological bureaus in each country have the absolute authority to provide climate-related data and information under government regulations. This repository serves as complementary information and an alternative perspective to ground observations - my contribution as a graduate of agricultural meteorology to the fields I'm passionate about.
+
+## About the Data
+
+Data and information play crucial roles in decision-making processes. This repository focuses on geographical data related to location and position on Earth. Despite limited availability of open geographical data on the internet, such information is vital for visualization, planning, and decision support systems at all administrative levels - from local to global.
+
+This data catalogue serves as a repository for climate and vegetation datasets. I continuously update this collection with the latest selected data, promoting data sharing and open-source principles to encourage more data exploration and analysis.
+
+### Technical Specifications
+
+**Vector data:** ESRI Shapefile format
+
+**Raster data:** GeoTIFF format (with TFW world file when applicable)
+
+**Geographic Coordinate System:** EPSG:4326, WGS84 datum
+
+`+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs`
+
+**Projected Coordinate System:** EPSG:3395 WGS84 / World Mercator
+
+`+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs`
+
+### Disclaimer
+
+All users downloading data from this repository are highly encouraged to read about data sources and processing methods in each dataset's documentation. All data is provided as a public service. I am not responsible for any issues relating to accuracy, content, design, or usage. If you discover errors or omissions, please report them for future updates.
+
+## Available Datasets
+
+You can find specific products below. I will continue to upload new data, so please check this page regularly for updates.
+
+---
+
+```{=html}
+<div class="datasets-grid">
+
+<a href="csr/terraclimate-spi.html" class="dataset-card">
+  <img src="../assets/image-csr/terraclimate-spi-00.png" class="dataset-thumbnail" alt="TerraClimate SPI">
+  <div class="dataset-content">
+    <div class="dataset-year">1958-2024</div>
+    <h3 class="dataset-title">TerraClimate SPI</h3>
+  </div>
+</a>
+
+<a href="csr/terraclimate-spei.html" class="dataset-card">
+  <img src="../assets/image-csr/terraclimate-spei-00.png" class="dataset-thumbnail" alt="TerraClimate SPEI">
+  <div class="dataset-content">
+    <div class="dataset-year">1958-2024</div>
+    <h3 class="dataset-title">TerraClimate SPEI</h3>
+  </div>
+</a>
+
+</div>
+```

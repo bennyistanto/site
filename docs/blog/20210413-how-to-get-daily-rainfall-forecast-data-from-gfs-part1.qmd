@@ -1,0 +1,134 @@
+---
+title: "How to get daily rainfall forecast data from GFS? (Part 1)"
+author: "Benny Istanto"
+date: "2021-04-13"
+description: "Last week, Tropical Cyclone Seroja hit eastern part of Indonesia and Timor-Leste"
+image: "../assets/image-blog/20210413-how-to-get-daily-rainfall-forecast-data-from-gfs-part1-01.jpg"
+categories:
+  - "Climate"
+  - "Remote Sensing"
+  - "Research"
+# tags:
+#   - "weather"
+#   - "cyclone"
+#   - "forecast"
+#   - "gfs"
+#   - "rainfall"
+#   - "noaa"
+
+---
+
+Last week, Tropical Cyclone Seroja hit eastern part of Indonesia and Timor-Leste. It brought flood and landslide displaced more than 8,000 people and led to the deaths of 42 people in total in Timor-Leste. The storm also caused power outages in the entire country. In Indonesia, Seroja caused widespread rainfall and thunderstorms in Nusa Tenggara Barat and Nusa Tenggara Timur provinces, and trigger a flood and landslide in various areas.
+
+Many questions arise on that day: What will happen tomorrow? How is the weather will be in the afternoon? Where is Seroja now?
+
+Currently, it is quite easy to get weather and forecast information from internet or mobile apps. Lot of 3rd party company provide the forecast based on public data for free. You named it: [Ventusky](https://www.ventusky.com), [Windy](https://www.windy.com/?-6.595%2C106.789%2C5), [Zoom](https://zoom.earth), [DarkSky](https://maps.darksky.net/@precipitation_rate,-0.176,-246.885,4), the most popular and influential one is [earth.nullschool.net](https://earth.nullschool.net), a famous project by Cameron Beccario.
+
+### GIS-ready data
+
+Sometimes you are looking for a daily rainfall forecast data in the area where the cyclone will pass. But you don’t understand on how to get the data and what data are available for public?
+
+#### GFS
+
+One of the best data related to weather forecast is [Global Forecast System](https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs) (GFS) data from [NOAA](https://www.noaa.gov). Below are some detail about GFS:
+
+* The Global Forecast System (GFS) is a weather forecast model produced by the National Centers for Environmental Prediction (NCEP).
+
+* The GFS dataset consists of selected model outputs as gridded forecast variables. The 384-hour forecasts, with 3-hour forecast interval, are made at 6-hour temporal resolution (i.e. updated four times daily).
+* TEMPORAL COVERAGE: from 15 Jan 2015 to nowadays (new version of GFS)
+* TEMPORAL RESOLUTION: 3h, 6h, 12h, 18h, 24h upto 16 days
+* SPATIAL COVERAGE: 90° N – 90° S
+* SPATIAL RESOLUTION: 0,25° x 0,25°
+* VARIABLE: 743 variable are available, full list: <https://www.nco.ncep.noaa.gov/pmb/products/gfs/gfs.t00z.pgrb2.0p25.f003.shtml>
+* FORMAT: GRIB2 (\*.grib2), Reference: <https://wmoomm.sharepoint.com/:b:/s/wmocpdb/EUmnLNAM9WdMr1S7GRMl_G8BFqp-B1Qie-k-vMwmrG22GQ?e=cEd2Vk>
+
+### How to acquire the data?
+
+In this case, I am interested to get 1 - 5 days Total Precipitation (APCP - code for total precipitation in GFS) data. There are several ways to get this data.
+
+#### 1. GRIB filter
+
+GFS forecast data only available for the last 10-days and updated every 6-hours period. Accessible via this GRIB filter:<https://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25.pl>. If today is 13 April 2021, then GFS only available from 4 - 13 April 2021.
+
+We will try to get forecast data issued on 13 April 2021, forecast hour 00.
+
+* Access GRIB filter link above: choose sub-directory gfs.20210413, 00, atmos
+* In combo-box, choose gfs.t00z.pgrb2.0p25.f006 (551063361); levels: surface; variables: APCP; sub-region: left longitude 94, right longitude 142, top latitude 7, bottom latitude -12.
+* Click Start Download, you will get grb file with name: gfs.t00z.pgrb2.0p25.f006
+
+![](../assets/image-blog/20210413-how-to-get-daily-rainfall-forecast-data-from-gfs-part1-01.jpg)
+
+* If you choose option Show the URL only for web programming, you will get URL information: https://nomads.ncep.noaa.gov/cgi-bin/filter\_gfs\_0p25.pl?file=gfs.t00z.pgrb2.0p25.f006&lev\_surface=on&var\_ACPCP=on&leftlon=94&rightlon=142&toplat=7&bottomlat=-12&dir=%2Fgfs.20210413%2F00%2Fatmos
+* Using above URL, we can modified and make automation script to download all data that we required.
+
+#### Script for batch download
+
+Example parameters
+
+* Forecast available every 6-hours, we will focus from f006 (start of data) until f120 (day-5)
+
+  Release hour (00, 06, 12, 18): geavg.t00z
+
+  Forecast hour (f006, f012, f018, f024, f030, f036, f042, f048, f054, f060, f066, f072, f078, f084, f090, f096, f102, f108, f114, f120): f006
+
+  Level: surface
+
+  Variable: APCP
+
+  Subset: Indonesia (94,142,7,-12)
+
+  Date (YYYYMMDD): 20210413
+
+  Release hour (00, 06, 12, 18): 00
+
+  Script: [https://nomads.ncep.noaa.gov/cgi-bin/filter\_gefs\_atmos\_0p25s.pl?file=geavg.t00z.pgrb2s.0p25.f006&lev\_surface=on&var\_APCP=on&subregion=&leftlon=94&rightlon=142&toplat=7&bottomlat=-12&dir=%2Fgefs.20210413%2F00%2Fatmos%2Fpgrb2sp25](https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?bottomlat=-12&dir=%2Fgefs.20210413%2F00%2Fatmos%2Fpgrb2sp25&file=geavg.t00z.pgrb2s.0p25.f006&leftlon=94&lev_surface=on&rightlon=142&subregion=&toplat=7&var_APCP=on)
+
+Download process
+
+* Each time we run the download process procedure (Example: Date 3 Nov 2020, release hour 00), it means we need to download all the forecast hour from f006 to f120
+
+[https://nomads.ncep.noaa.gov/cgi-bin/filter\_gefs\_atmos\_0p25s.pl?file=geavg.t00z.pgrb2s.0p25.f006&lev\_surface=on&var\_APCP=on&subregion=&leftlon=94&rightlon=142&toplat=7&bottomlat=-12&dir=%2Fgefs.20210413%2F00%2Fatmos%2Fpgrb2sp25](https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?bottomlat=-12&dir=%2Fgefs.20210413%2F00%2Fatmos%2Fpgrb2sp25&file=geavg.t00z.pgrb2s.0p25.f006&leftlon=94&lev_surface=on&rightlon=142&subregion=&toplat=7&var_APCP=on)
+
+[https://nomads.ncep.noaa.gov/cgi-bin/filter\_gefs\_atmos\_0p25s.pl?file=geavg.t00z.pgrb2s.0p25.f012&lev\_surface=on&var\_APCP=on&subregion=&leftlon=94&rightlon=142&toplat=7&bottomlat=-12&dir=%2Fgefs.20210413%2F00%2Fatmos%2Fpgrb2sp25](https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?bottomlat=-12&dir=%2Fgefs.20210413%2F00%2Fatmos%2Fpgrb2sp25&file=geavg.t00z.pgrb2s.0p25.f012&leftlon=94&lev_surface=on&rightlon=142&subregion=&toplat=7&var_APCP=on)
+
+<https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t00z.pgrb2s.0p25.f018&lev_surface=on&var_APCP=on&subregion=&leftlon=94&rightlon=142&toplat=7&bottomlat=-12&dir=%2Fgefs.20210413%2F00%2Fatmos%2Fpgrb2sp25>
+
+…………….
+
+…………….
+
+[https://nomads.ncep.noaa.gov/cgi-bin/filter\_gefs\_atmos\_0p25s.pl?file=geavg.t00z.pgrb2s.0p25.f114&lev\_surface=on&var\_APCP=on&subregion=&leftlon=94&rightlon=142&toplat=7&bottomlat=-12&dir=%2Fgefs.20210413%2F00%2Fatmos%2Fpgrb2sp25](https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?bottomlat=-12&dir=%2Fgefs.20210413%2F00%2Fatmos%2Fpgrb2sp25&file=geavg.t00z.pgrb2s.0p25.f114&leftlon=94&lev_surface=on&rightlon=142&subregion=&toplat=7&var_APCP=on)
+
+[https://nomads.ncep.noaa.gov/cgi-bin/filter\_gefs\_atmos\_0p25s.pl?file=geavg.t00z.pgrb2s.0p25.f120&lev\_surface=on&var\_APCP=on&subregion=&leftlon=94&rightlon=142&toplat=7&bottomlat=-12&dir=%2Fgefs.20210413%2F00%2Fatmos%2Fpgrb2sp25](https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?bottomlat=-12&dir=%2Fgefs.20210413%2F00%2Fatmos%2Fpgrb2sp25&file=geavg.t00z.pgrb2s.0p25.f120&leftlon=94&lev_surface=on&rightlon=142&subregion=&toplat=7&var_APCP=on)
+
+* When new forecast released (for example release hour: 06, 12 and 18), we need to repeat all download procedure above and adjust the script with current release hour.
+
+#### 2. NCAR/UCAR Research Data Archive
+
+GFS data also available from NCAR/UCAR Research Data Archive portal: <https://rda.ucar.edu/datasets/ds084.1/>. If you don’t have account, you need to register in order to download the data.
+
+* Go to Data Access tab, Get a Subset
+* Choose temporal selection: 2021-01-01 00:00 to 2021-04-28 12:00
+* Parameter selection: Total Precipitation, Continue
+* Output format: I prefer to have data in netCDF
+* In the gridded product, I choose 24-hour, 48-hour, 72-hour, 96-hour and 120-hour Accumulation
+* Spatial Selection: you can leave as it is, or choose within a bounding box. Continue with push Click here button
+* It’s optional to choose data compression option.
+* Submit request.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20210413-how-to-get-daily-rainfall-forecast-data-from-gfs-part1-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20210413-how-to-get-daily-rainfall-forecast-data-from-gfs-part1-03.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20210413-how-to-get-daily-rainfall-forecast-data-from-gfs-part1-04.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20210413-how-to-get-daily-rainfall-forecast-data-from-gfs-part1-05.jpg)
+:::
+:::
+
+If the data ready to download, you will get an email.

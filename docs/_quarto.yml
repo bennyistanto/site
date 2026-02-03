@@ -1,0 +1,74 @@
+project:
+  type: website
+  output-dir: ../_site
+
+website:
+  title: ""
+  favicon: assets/image-logo/favicon.ico
+  site-url: https://benny.istan.to
+  repo-url: https://github.com/bennyistanto/site
+  repo-actions: [source, issue]
+  bread-crumbs: true
+  back-to-top-navigation: true
+  page-navigation: true
+  google-analytics: "G-371178116"
+  site-path: "/site/"  # For testing at bennyistanto.github.io/site/
+
+  navbar:
+    logo: assets/image-logo/bi-logo-full-light.png
+    logo-alt: "Benny Istanto Logo"
+    background: transparent
+    foreground: dark
+    search: true
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "About"
+        href: about.qmd
+      - text: "CSR"
+        href: csr.qmd
+      - text: "Blog"
+        href: blog.qmd
+      - text: "Works"
+        menu:
+          - text: "Overview"
+            href: works.qmd
+          - text: "Experiences"
+            href: works/experiences.qmd
+          - text: "Projects"
+            href: works/projects.qmd
+          - text: "Consulting"
+            href: works/consulting.qmd
+          - text: "Maps & Infographics"
+            href: works/maps-and-infographics.qmd
+      - text: "CV"
+        href: cv.qmd
+
+  page-footer:
+    left: |
+      © 2026, Benny Istanto.
+
+      Exploring Climate with GIS and Data Science, solving old problems in new ways.
+      Turning earth observation data into actionable, life-saving insights.
+    center: |
+      Built with [Quarto](https://quarto.org/)
+    right: |
+      [<i class="bi bi-github"></i>](https://github.com/bennyistanto){aria-label="GitHub"} [<i class="bi bi-linkedin"></i>](https://linkedin.com/in/bennyistanto){aria-label="LinkedIn"} [<i class="bi bi-globe"></i>](https://worldbank.github.io/GOST/content/staff/bennyistanto.html){aria-label="GOST"}
+
+      [Buy Me a Coffee](https://buymeacoffee.com/bennyistanto)
+
+format:
+  html:
+    theme:
+      light: [cosmo, styles/custom-light.scss]
+      dark: [darkly, styles/custom-dark.scss]
+    css: styles/styles.css
+    lightbox: true
+    toc: false
+    smooth-scroll: true
+    link-external-newwindow: true
+    link-external-icon: true
+    default-image-extension: svg
+
+execute:
+  freeze: auto

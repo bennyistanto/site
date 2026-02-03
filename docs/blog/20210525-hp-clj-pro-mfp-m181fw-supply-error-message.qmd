@@ -1,0 +1,58 @@
+---
+title: "HP CLJ Pro MFP M181fw supply error message"
+author: "Benny Istanto"
+date: "2021-05-25"
+description: "I bought printer HP Color Laserjet Pro MFP M181fw and a set spare original HP 204A catridges not long after I started to work from home due to COVID-19 pandemic situation"
+image: "../assets/image-blog/20210525-hp-clj-pro-mfp-m181fw-supply-error-message-03.jpg"
+categories:
+  - "General"
+# tags:
+#   - "printer"
+#   - "hp"
+#   - "firmware"
+
+---
+
+I bought printer HP Color Laserjet Pro MFP M181fw and a set spare original HP 204A catridges not long after I started to work from home due to COVID-19 pandemic situation. The printer really fit for me and family, as my daughter frequently needed to print some school assignment and scanned the paper works, and to support my wife’s works too.
+
+![](../assets/image-blog/20210525-hp-clj-pro-mfp-m181fw-supply-error-message-03.jpg)
+
+9 months passed, time to replace the cartridges after one month I was forced to keep using it even though the notifications “toner low” kept appearing.
+
+I was surprised when I replace the empty toner and I got a warning “Supply Problem” message. After googling, I found it caused by update a firmware and this update excludes cartridges from old production or third party cartridges from use and causes this error message. I remembered previously getting a firmware update few weeks ago.
+
+Seems the solution related this problem is only one: **downgrade the firmware**
+
+Here’s how-to guide to downgrade the firmware:
+
+(You need a computer/laptop with Windows 10 installed)
+
+**Step 1. Confirm Cartridge Policy is off.**
+
+Newer HP mono/color printers have what they call a “cartridge policy”. Without turning this off, the printer will not accept aftermarket cartridges and may even write to the chip, rendering the cartridge useless. To turn of the Cartridge Policy setting, follow one of the paths described below according to the options available on your particular machine:
+
+* Home Screen > Setup Menu > System Setup > Supply Setting > Cartridge Policy > Off
+
+**Step 2. Find the Firmware Datecode**
+
+* Home Screen > Setup Menu > Service > Firmware Datecode
+
+If the firmware version is NOT 20201021, immediately disable the “Check Automatically” and “Allow Updates” options to avoid an upgrade in the future.
+
+* Home Screen > Setup Menu > LaserJet update > Manage Updates > Check Automatically. Choose NO
+* Home Screen > Setup Menu > LaserJet update > Manage Updates > Allow Update. Choose NO
+
+**Step 3. ONLY Complete this Step if Your Firmware Date is 20201021**
+
+* Download Firmware Version 20200612 for HP Color Laserjet Pro M180 – M181 Series. Link: <https://on.istan.to/3TUk8Vg>
+* Run the downloaded application to roll back to the previous firmware, then click Send Firmware. The process should only take a few minutes.
+
+![](../assets/image-blog/20210525-hp-clj-pro-mfp-m181fw-supply-error-message-02.jpg)
+
+**Step 4. Re-check the Firmware Datecode**
+
+* Home Screen > Setup Menu > Service > Firmware Datecode
+
+If everything success, you will get response for the code 20200612. It means your problem is solved and the printer is ready to use.
+
+![](../assets/image-blog/20210525-hp-clj-pro-mfp-m181fw-supply-error-message-01.jpg)

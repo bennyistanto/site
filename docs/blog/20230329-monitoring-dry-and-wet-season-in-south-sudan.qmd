@@ -1,0 +1,35 @@
+---
+title: "Monitoring dry and wet season in South Sudan"
+author: "Benny Istanto"
+date: "2023-03-29"
+description: "I am excited to share some news with you all"
+image: "../assets/image-blog/20230329-monitoring-dry-and-wet-season-in-south-sudan-02.jpg"
+categories:
+  - "Remote Sensing"
+  - "Research"
+  - "Climate"
+# tags:
+#   - "chirps"
+#   - "wet-spell"
+#   - "spi"
+#   - "dry-spell"
+
+---
+
+I am excited to share some news with you all! The World Bank has recently released a new publication, in which I had the opportunity to contribute the analysis. The publication is titled “Rising from the Depths: Water Security and Fragility in South Sudan”, and it delves into the crucial subject of dry and wet periods in the region.
+
+My contribution to the analysis seeks to unveil the complex connection between water security and fragility in South Sudan, while pinpointing opportunities for the World Bank Group to employ water security measures as catalyst for stability, peace and resilience.
+
+The team employs the Standardized pPrecipitation Index (SPI) based on CHIRPS global precipitation estimates data to track the evolution of dry and wet conditions on a monthly and yearly basis.
+
+The images below serve as examples, showcasing the severe flooding experience in South Sudan over the past 60 years - events accurately capture through the data.
+
+![](../assets/image-blog/20230329-monitoring-dry-and-wet-season-in-south-sudan-02.jpg)
+
+If you are interested to read the story and report, feel free to visit below:
+
+1. Press release: <https://www.worldbank.org/en/news/press-release/2023/03/27/new-report-with-inclusion-and-accountability-water-security-is-key-for-development-and-stability-in-afe-south-sudan>
+2. Publication: <https://www.worldbank.org/en/country/southsudan/publication/rising-from-the-depths-water-security-and-fragility-in-afe-south-sudan>
+3. Publication: <https://openknowledge.worldbank.org/entities/publication/91048a50-eacb-5a24-9fa4-30cf8a9a9c9b>
+
+![](../assets/image-blog/20230329-monitoring-dry-and-wet-season-in-south-sudan-01.jpg)

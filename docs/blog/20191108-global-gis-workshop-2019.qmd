@@ -1,0 +1,32 @@
+---
+title: "Global GIS Workshop 2019"
+author: "Benny Istanto"
+date: "2019-11-08"
+description: "Right after following the innovation bootcamp in SF, I flew to Rome to attend WFPs Global GIS Workshop"
+image: "../assets/image-blog/20191108-global-gis-workshop-2019-01.jpg"
+categories:
+  - "GIS"
+  - "Travel"
+# tags:
+#   - "travel"
+#   - "workshop"
+#   - "global"
+#   - "gis"
+
+---
+
+Right after following the innovation [bootcamp](/blog/20191102-sf-innovation-bootcamp-2019) in SF, I flew to Rome to attend WFPs Global GIS Workshop.
+
+Over 100 people from around the world came to WFP Headquarters in Rome for the Global GIS Workshop 2019. This event brings together GIS users, practitioners and analysts to exchange knowledge, ideas and best practices. This allows us to better understand the needs and gaps within GIS and build a stronger GIS community within WFP.
+
+On day 1 we have a presentation about Geospatial Strategy from WFP Emergencies, Introduction and Overview of VAM Geospatial, Regional Bureau overview and Data Preparedness Exercise. The objective of the exercise is to gain an understanding of the importance of data preparedness and role of GIS during the early phases of an emergency response following a fast onset disaster. And will be challenged by a disaster scenario, according to the likelihood of the event in the areas of concern of the RB.
+
+The VAM HQ presented the various tools/products that been develop on for the past few years including seasonal monitor and country-level crop analysis. OSE presented on the services they provide to country offices, including flood extent.
+
+The 3rd day was mostly with external partners including HDX, JRC, ECMWF, NASA, and Copernicus. They highlighted a lot of data and information that is available publicly – inviting people in the audience to go out and get things on their own. Afternoon session was drone activities from ETC and they presented about use of drones in emergency response.
+
+Day 4, we also had a presentation by ESRI on some new spatial stats tools in ArcGIS Pro which were really impressive. During the presentation, we provided an ArcGIS Pro Package containing scenarios driven by World Food Programme GIS analysts using a variety of spatial statistics tools. This coincides with content and material found in the User Conference workshops, Spatial Data Mining I: Essentials of Cluster Analysis, and Spatial Data Mining II: A Deep Dive into Space-Time Analysis. The utility of these exercises are analytical methods to explore and identify patterns relating to Taleban spring offensive conflicts that may prevent WFP programming from engaging in food distribution operations. After lunch we have a Data Collection Exercise for Network Analysis using 3 mobile app data collection platforms: ESRI Quick Capture, ESRI Survey123 and KoboToolbox. All the participants are divided into 9 teams and have 9 routes with starting points in some train stations in Rome and the final meeting point is Colosseo. The objective of this exercise is to show how the network analysis could be relevant to face a possible emergency, planning properly a preparedness or a response scenario.
+
+Last day of the workshop was exciting, we discussed the result of the data collection exercise and what possible analysis we could do using the result. We have been able to estimate which IDPs are covered by the Food Shops we collected and which IDPs need to consider new Potential Shops using Network Analysis approach.
+
+![](../assets/image-blog/20191108-global-gis-workshop-2019-01.jpg)

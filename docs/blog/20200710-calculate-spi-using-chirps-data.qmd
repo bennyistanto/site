@@ -1,0 +1,98 @@
+---
+title: "Calculate SPI using CHIRPS data"
+author: "Benny Istanto"
+date: "2020-07-10"
+description: "NOTES - 1 Mar 2022 I have write a new and comprehensive guideline on SPI, you can access via this link <https://bennyistanto"
+image: "../assets/image-blog/20200710-calculate-spi-using-chirps-data-02.jpg"
+categories:
+  - "Remote Sensing"
+  - "Research"
+  - "Climate"
+# tags:
+#   - "chirps"
+#   - "cdo-climate"
+#   - "python"
+#   - "normalisation"
+#   - "spi"
+#   - "cdo"
+#   - "gamma"
+#   - "pearson"
+#   - "standardizedprecipitationindex"
+
+---
+
+NOTES - 1 Mar 2022
+
+I have write a new and comprehensive guideline on SPI, you can access via this link <https://bennyistanto.github.io/spi/>
+
+---
+
+I explained in the previous blog [post](/blog/20200706-calculate-spi-using-imerg-data) on how to calculate monthly SPI using daily IMERG data. This time I use [CHIRPS](https://chc.ucsb.edu/data/chirps), because I want to get higher resolution, more frequent monitoring (updated every dekad ~ 10days), and long-term historical data from 1981 – now.
+
+### CHIRPS data acquisition for SPI analysis
+
+### Example output
+
+SPI 1, 2, 3, 6, 9, 12, 24, 36, 48, 60 and 72-month
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20200710-calculate-spi-using-chirps-data-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20200710-calculate-spi-using-chirps-data-04.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20200710-calculate-spi-using-chirps-data-06.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20200710-calculate-spi-using-chirps-data-10.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20200710-calculate-spi-using-chirps-data-13.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20200710-calculate-spi-using-chirps-data-03.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20200710-calculate-spi-using-chirps-data-05.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20200710-calculate-spi-using-chirps-data-07.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20200710-calculate-spi-using-chirps-data-09.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20200710-calculate-spi-using-chirps-data-11.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20200710-calculate-spi-using-chirps-data-12.jpg)
+:::
+:::
+
+SPI 3-month for Indonesia, March 2020
+
+* WFP’s calculated SPI, based on IMERG
+* WFP’s calculated SPI, based on CHIRPS
+* [BMKG](https://www.bmkg.go.id), based on weather station. Link: <https://www.bmkg.go.id/iklim/indeks-presipitasi-terstandarisasi.bmkg?p=the-standardized-precipitation-index-maret-2020&tag=spi&lang=ID>
+* Climate Engine, based on CHIRPS. Link: <https://climengine.page.link/nTyi>
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20200710-calculate-spi-using-chirps-data-15.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20200710-calculate-spi-using-chirps-data-08.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20200710-calculate-spi-using-chirps-data-01.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20200710-calculate-spi-using-chirps-data-14.jpg)
+:::
+:::
+
+Notes:
+
+Thanks to Yanmarshus Bachtiar for CDO’s tips.

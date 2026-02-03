@@ -1,0 +1,59 @@
+---
+title: "Kelas Inspirasi Bogor 2"
+author: "Benny Istanto"
+date: "2014-09-15"
+description: "Last week, on 9 Sep 2014 I participated in Kelas Inspirasi Bogor - part of Indonesia Mengajar activities"
+image: "../assets/image-blog/20140915-kelas-inspirasi-bogor-2-01.jpg"
+categories:
+  - "General"
+# tags:
+#   - "crisis mapper"
+#   - "bogor"
+
+---
+
+Last week, on 9 Sep 2014 I participated in [Kelas Inspirasi](http://kelasinspirasi.org) Bogor - part of [Indonesia Mengajar](https://www.indonesiamengajar.org) activities. I and some other professional and assisted by [Anneke Puspa Calliandra](https://indonesiamengajar.org/pengajar-muda/anneke-calliandra), give inspiration on how to dream big and prepare for the future to students in grade 1 to 6 in [SDN Ciomas 8](https://goo.gl/maps/9SSuZBMb6R63CCiw5), Bogor.
+
+I introduced myself as a crisis mapper of the United Nations agency. I love drawing and colouring since I was a kid, this inspire me to do my job now as a crisis mapper who mainly is working with drawing and colouring maps.
+
+I shared the idea that helping others and contributing to humanitarian is as simple as I do.
+
+First picture from left to right: Darma, Nunuz, Ayu, Rusydan, Anneke, Herli, Yuna, Alfa, Hendri, Benny, Fahmi
+
+Pictures taken by [Nunuz Rohmatullayaly](https://scholar.google.com/citations?hl=id&user=ERitK2IAAAAJ).
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20140915-kelas-inspirasi-bogor-2-01.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20140915-kelas-inspirasi-bogor-2-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20140915-kelas-inspirasi-bogor-2-03.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20140915-kelas-inspirasi-bogor-2-04.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20140915-kelas-inspirasi-bogor-2-05.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20140915-kelas-inspirasi-bogor-2-06.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20140915-kelas-inspirasi-bogor-2-07.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20140915-kelas-inspirasi-bogor-2-08.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20140915-kelas-inspirasi-bogor-2-09.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20140915-kelas-inspirasi-bogor-2-10.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20140915-kelas-inspirasi-bogor-2-11.jpg)
+:::
+:::

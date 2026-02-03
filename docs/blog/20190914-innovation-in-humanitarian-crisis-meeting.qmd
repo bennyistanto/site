@@ -1,0 +1,120 @@
+---
+title: "Innovation in humanitarian crisis meeting"
+author: "Benny Istanto"
+date: "2019-09-14"
+description: "Last week I went to Rome for a workshop and a task force meeting"
+image: "../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-10.jpg"
+categories:
+  - "Travel"
+  - "General"
+# tags:
+#   - "travel"
+#   - "wfp"
+
+---
+
+Last week I went to Rome for a workshop and a task force meeting. In the 1st day, I attend workshop on Innovation in Humanitarian Crisis: an integrated approach to innovative tools for food security analysis and response in emergency settings. I deliver a presentation on Linking remote sensing technology, socio-economic vulnerability data and field-collected information to measure risk and impact using VAMPIRE+PRISM.
+
+In day 2-4, I joined a task force meeting on Automated Livelihood Information Assistant (ALIA). The idea behind ALIA was generated from WFP programme officers who had several years of experience preparing for, responding to and recovering from climate-related disasters and understood the information gaps in place, and how enhanced predictive analytics could be harnessed to make WFP’s responses more effective.
+
+Last day was a meeting with VAM HQ on seasonal monitor and future product.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-10.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-07.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-09.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-08.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-29.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-01.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-28.jpg)
+:::
+:::
+
+After the workshop, spending time with friends sightseeing Rome, try the best Gelato and Pizza, dinner like Roman. 😂
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-03.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-04.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-05.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-06.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-11.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-12.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-13.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-14.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-15.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-16.jpg)
+:::
+:::
+
+I also manage to visit Ruins of Pompeii in Napoli on Saturday. My flight back to Jakarta are scheduled to depart on Saturday midnight, so it was perfect time for short visit.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-17.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-18.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-19.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-20.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-21.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-22.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-23.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-24.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-25.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-26.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190914-innovation-in-humanitarian-crisis-meeting-27.jpg)
+:::
+:::

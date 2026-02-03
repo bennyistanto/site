@@ -1,0 +1,178 @@
+---
+title: "About me."
+subtitle: ""
+page-layout: full
+toc: false
+css: styles/about.css
+---
+
+</br>
+![](assets/image-general/bi-about-aerialbold.jpg)
+</br>
+
+Hi! my name is **Benny Istanto**, an agricultural meteorologist by training and a certified [GIS Professional (GISP)](https://www.gisci.org/Already-a-GISP/GISP-Registry/pagesize/10/GISP/Active?Region=west+java). With over 15 years of experience working with the [United Nations](https://www.un.org/) and various international organizations, specializes in integrating advanced GIS modeling with climate technology to drive international development initiatives.
+
+I create maps, play with spatial data and satellite imagery. In addition to technical activities, I enjoy listening to [Iwan Fals](https://en.wikipedia.org/wiki/Iwan_Fals), [Led Zeppelin](https://en.wikipedia.org/wiki/Led_Zeppelin), and [MR.BIG](https://en.wikipedia.org/wiki/Mr._Big_(American_band)), as well as other similar music genres. During my free time, I practice [pencak silat](https://en.wikipedia.org/wiki/Pencak_silat), hike, cycle, draw, and occasionally post on social media.
+
+My formal education background was actually [Meteorology](https://en.wikipedia.org/wiki/Meteorology), I got my Bachelor for this major in 2006 from [IPB](https://www.ipb.ac.id/). However my interest has been growing much broader since I was a student. I love GIS, Remote Sensing and computer programming and decided to work on those fields. I've been very lucky to get various working opportunities. Got the chances to work with governments, non-government and international organizations in disaster risk reduction, climate adaptation and mitigation and some other interesting fields.
+
+From my work I've got chances to travel, live in some interesting places, learn interesting cultures, eat lots of delicious (or sometimes weird) foods! I love what I do and I am eager to keep continuing this path. People says that the more we get involved, the more interesting this is. The more I learn, the more I realized how much I do not know.
+
+From June 2012 - August 2021, I was an Earth Observation and Climate Analyst at the United Nations [World Food Programme](https://www.wfp.org/countries/indonesia) based in Indonesia, and played the role of geospatial and climate technologist for Indonesia Country Office and Regional Bureau Bangkok (RBB) for Asia and Pacific, covering 17 country offices and 5 oversight countries. During my service with WFP, my two-others colleagues and I started working on an [award-winning](https://medium.com/world-food-programme-insight/wfp-staff-show-entrepreneurial-side-in-annual-competition-be03924215) tech innovation project to solve hunger called [VAMPIRE](https://benny.istan.to/projects/2016-vampire) (Vulnerability Analysis and Monitoring Platform for Impact of Regional Events) in 2015, now rebranding as [PRISM](https://innovation.wfp.org/project/prism). In my last 4 years within WFP, I have been working on the process of transforming satellite-based data product into actionable and life-saving insight for hydro-meteorological hazards early-warning early-action.
+
+Currently, I work as a [Climate Geographer](https://worldbank.github.io/GOST/content/staff/bennyistanto.html) at Geospatial Operations Support Team ([GOST](https://www.worldbank.org/en/research/brief/geospatial-operations-support-team-at-the-world-bank)) of Development Economic Data Group (DECDG) at [The World Bank](https://www.worldbank.org/), Washington DC.
+
+I run a "casual weekend project" called [Climate Social Responsibility (CSR)](csr.qmd), to provide satellite-based climate and vegetation products for free, i.e. rainfall and anomaly, dry and wet spell, standardized precipitation index, and crop phenology.
+
+**Disclaimer**: All content on this website does not represent the views of my (current or previous) employer.
+
+**Acknowledgement**: Development of this website is supported by my cheering team [El](https://wijanging.ngelmu.art/about-me) and beloved-wife [Kiki Kartikasari](https://www.linkedin.com/in/kikikartikasari/).
+
+---
+
+## Background.
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6}
+### Education.
+
+**[Bogor Agricultural University](https://ipb.ac.id/), Bogor, Indonesia** (09/2001 - 03/2006)
+
+Sarjana Sains (B.Sc.) in Meteorology with a focus on agriculture meteorology and climatology, computation and agriculture simulation model, satellite meteorology, with minor in geographic information system and remote sensing.
+
+- **Supervisors**: [Idung Risdiyanto](https://scholar.google.co.id/citations?hl=id&user=WBIaIyYAAAAJ) (Bogor Agricultural University), [M. Rokhis Khomarudin](https://scholar.google.com/citations?hl=en&user=RA5YWWQAAAAJ) (Indonesian National Institute of Aeronautics and Spaces)
+- **Bachelor thesis**: Software development to determine the Canadian Forest Fire Weather Index System using remote sensing satellite. (in Bahasa Indonesia). [Source: IPB Scientific Repository](http://repository.ipb.ac.id/handle/123456789/47915/)
+
+---
+
+**[Harvard University on edX, T.H. Chan School of Public Health](https://pll.harvard.edu/series/professional-certificate-data-science), United States** (01/2022 - 10/2024)
+
+- Professional Certificate of Data Science. [View Credential](https://credentials.edx.org/credentials/5dc2c828afb74fdbb8f9bfe1cdbb554b/)
+- **Capstone Projects**: [HarvardX PH125.9x Data Science Capstone](https://github.com/bennyistanto/HarvardX-PH125.9x-Data-Science-Capstone)
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### Awards.
+
+**Jacub Rais award**
+
+Indonesian Society for Remote Sensing ([MAPIN](https://mapin.or.id/)), December 2006.
+
+The Best Author in 15th Annual Scientific gathering and 4th Congress of Indonesian Society for Remote Sensing. Bandung, Indonesia. Paper entitled *"Software development for forest fire early warning system in Indonesia"*. (in Bahasa Indonesia)
+
+---
+
+**The WFP GIS Community Award**
+
+World Food Programme, worldwide
+
+The Best GIS Officer in the 1st WFP GIS Community Award. Rome, Italy. June 2015.
+
+---
+
+**Innovative New Solution to Hunger**
+
+World Food Programme, worldwide
+
+VAMPIRE (Vulnerability Analysis Monitoring Platform for the Impact of Regional Events) won the [2017 WFP Innovation Challenge](https://medium.com/@WFPInnovation/wfp-staff-show-entrepreneurial-side-in-annual-competition-be03924215). Rome, Italy. January 2018.
+:::
+
+:::
+
+---
+
+## Expertise.
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6}
+### Domains.
+
+- Atmospheric science, agriculture meteorology and climatology, climate risk
+- GIS, remote-sensing and agriculture related spatial modeling
+- Climate, geo-statistics and other scientific data processing
+- Impact science, early-warning and anticipatory-action
+- Capacity development on geospatial and climate analytics
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### Tools.
+
+- **ESRI ArcGIS Family**: Desktop, Pro, Server, Online, Portal
+- **FOSS4G**: QGIS, GDAL/OGR, SAGA, Whitebox, CDO, NCO
+- **Data Catalogue**: GeoNode, CKAN, JKAN
+- **Programming**: Google Earth Engine, bash, python, arcpy, jupyter or ESRI notebook
+- **Design**: Photoshop/GIMP and Illustrator/CorelDRAW/Inkscape, Avenza
+- **Documentation**: Markdown, Material for MkDocs, Jupyter Book, Quarto
+:::
+
+:::
+
+---
+
+::: {style="text-align: center; padding: 2rem 0;"}
+## ???
+
+*It all begins with a question.*
+
+I'm medium-active on Telegram, you can discuss or post question about gis and remote sensing at [@gis_id](https://t.me/gis_id) Telegram channel, and I will endeavour to answer them. Don't hesitate to contact me if you have something to say: my email is below, you can text me too via WhatsApp or via message box below. Find more about me in this website and get in touch, happy surfing!
+:::
+
+---
+
+## Contact.
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6}
+### Get in Touch
+</br>
+[benny@istan.to](mailto:benny@istan.to)
+
+[+1 (940) 604-3852](https://wa.me/19406043852)
+
+Currently living in Bogor, Indonesia
+
+**Connect with me**:
+
+- [<i class="bi bi-github"></i> GitHub](https://github.com/bennyistanto)
+- [<i class="bi bi-linkedin"></i> LinkedIn](https://linkedin.com/in/bennyistanto)
+- [<i class="bi bi-globe"></i> Website](https://benny.istan.to)
+
+```{=html}
+<div style="margin-top: 2rem; text-align: left;">
+  <a href="https://clustrmaps.com/site/1b87f" title="Visit tracker">
+    <img src="https://www.clustrmaps.com/map_v2.png?d=_htKfyfLH1wU5CKuYWQtjDzb10rG4s6rb33QTdF6tko&cl=ffffff" alt="ClustrMaps visitor map" />
+  </a>
+</div>
+```
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### Send a Message
+
+```{=html}
+<form action="https://formspree.io/f/xeezoery" method="POST">
+  <div style="margin-bottom: 1rem;">
+    <label for="name" style="display: block; margin-bottom: 0.25rem;">Name</label>
+    <input type="text" id="name" name="name" required style="width: 100%; padding: 0.5rem; border: 1px solid var(--bs-border-color); border-radius: 0.25rem;">
+  </div>
+
+  <div style="margin-bottom: 1rem;">
+    <label for="email" style="display: block; margin-bottom: 0.25rem;">Email</label>
+    <input type="email" id="email" name="email" required style="width: 100%; padding: 0.5rem; border: 1px solid var(--bs-border-color); border-radius: 0.25rem;">
+  </div>
+
+  <div style="margin-bottom: 1rem;">
+    <label for="message" style="display: block; margin-bottom: 0.25rem;">Message</label>
+    <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 0.5rem; border: 1px solid var(--bs-border-color); border-radius: 0.25rem;"></textarea>
+  </div>
+
+  <button type="submit" style="padding: 0.5rem 1.5rem; background-color: var(--bs-primary); color: white; border: none; border-radius: 0.25rem; cursor: pointer;">Send Message</button>
+</form>
+```
+
+:::
+
+:::

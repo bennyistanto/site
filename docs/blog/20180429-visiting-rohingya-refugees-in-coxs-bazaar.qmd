@@ -1,0 +1,120 @@
+---
+title: "Visiting Rohingya refugees in Cox’s Bazaar"
+author: "Benny Istanto"
+date: "2018-04-29"
+description: "Two-weeks ago I visited Rohingya refugees camp in Cox’s Bazaar, Bangladesh to conduct the feasibility study of 72hrs approach related to the exposure of Rohingya refugee camps to the upcoming monso..."
+image: "../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-17.jpg"
+categories:
+  - "Travel"
+  - "General"
+# tags:
+#   - "travel"
+
+---
+
+Two-weeks ago I visited Rohingya refugees camp in Cox’s Bazaar, Bangladesh to conduct the feasibility study of 72hrs approach related to the exposure of Rohingya refugee camps to the upcoming monsoon season and their high vulnerability in face of any flood and landslides call for adequate analysis that can inform humanitarian assistance in time.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-17.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-18.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-19.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-20.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-21.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-22.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-23.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-24.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-25.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-26.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-27.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-28.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-29.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-30.jpg)
+:::
+:::
+
+Bangladesh will entering cyclone season soon, simulating the impact based on existing cyclone path and combine with latest secondary data will help us understand the situation. Useful feedback and suggestion from team at Coxs also help me to prepare the analysis that already in my head; including viewshed analysis of the base transceiver stations (BTS) to predict the blank spot if the cyclone hit the tower; and travel time analysis to food distribution point will help on planning for the porter system for the logistics base, clinics, food and evouchers distribution points, as well as the areas that are less well covered by the current distribution points.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-03.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-04.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-01.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-10.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-11.jpg)
+:::
+:::
+
+I met my Indonesia colleague who works in here and have lunch+dinner together with some other colleague. My favorite food is Beef Khichuri at Poushee restaurant.
+
+I also took the time to visit some beach on the way back from Kutupalong to Cox’s.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-05.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-06.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-07.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-08.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-09.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-12.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-13.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-14.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-15.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-16.jpg)
+:::
+:::

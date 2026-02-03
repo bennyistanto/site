@@ -1,0 +1,31 @@
+---
+title: "Monthly mosaic of modified Radar Vegetation Index"
+author: "Benny Istanto"
+date: "2023-08-24"
+image: "../assets/image-blog/20230824-monthly-mosaic-of-modified-radar-vegetation-index-02.jpg"
+categories:
+  - "Remote Sensing"
+# tags:
+#   - "rvi"
+#   - "sentinel"
+#   - "radar vegetation index"
+#   - "sentinel-1"
+#   - "vegetation-index"
+
+---
+
+![](../assets/image-blog/20230824-monthly-mosaic-of-modified-radar-vegetation-index-02.jpg)
+
+Few months ago, I wrote a [post](/blog/20230614-sentinel-1-modified-radar-vegetation-index) about how to calculate The modified Radar Vegetation Index (mRVI) using Sentinel-1 satellite. It was try to extract the mRVI every Dekad with study case is Ukraine.
+
+For areas in Europe, getting the S1 data every dekad is doable, but it’s bit tricky for area outside Europe. Currently, for my work, I would like to extract the mRVI for [Mpumalanga](https://en.wikipedia.org/wiki/Mpumalanga) province in South Africa. The location is near -25.5 S, then according to below picture the revisit time is every 12 days.
+
+[caption id="" align="alignnone" width="3579"][![ Source:  https://sentinel.esa.int/documents/247904/4748961/Sentinel-1-Repeat-Coverage-Frequency-Geometry-2021.jpg   ](../assets/image-blog/20230824-monthly-mosaic-of-modified-radar-vegetation-index-03.jpg)](https://sentinel.esa.int/documents/247904/4748961/Sentinel-1-Repeat-Coverage-Frequency-Geometry-2021.jpg) Source: https://sentinel.esa.int/documents/247904/4748961/Sentinel-1-Repeat-Coverage-Frequency-Geometry-2021.jpg [/caption]
+
+Getting monthly mosaic mRVI seems possible for case in South Africa, as if I keep the dekad, some of them will return an empty collection.
+
+So, I need to modify the existing code to get the monthly list, calculate monthly mosaics, calculate monthly mean and the ratio anomaly
+
+Full GEE code is here: <https://code.earthengine.google.com/aea00cb8f3f1ccc921d5f6698b5c0c5a>
+
+![](../assets/image-blog/20230824-monthly-mosaic-of-modified-radar-vegetation-index-01.jpg)

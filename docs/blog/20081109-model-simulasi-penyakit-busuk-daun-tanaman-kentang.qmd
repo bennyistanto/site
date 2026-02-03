@@ -1,0 +1,65 @@
+---
+title: "Model simulasi penyakit busuk daun tanaman kentang"
+author: "Benny Istanto"
+date: "2008-11-09"
+description: "User interface model simulasi penyakit busuk daun (late blight) pada tanaman kentang (Solanum tuberosum L"
+image: "../assets/image-blog/20081109-model-simulasi-penyakit-busuk-daun-tanaman-kentang-01.jpg"
+categories:
+  - "Research"
+  - "Climate"
+# tags:
+#   - "cuaca"
+#   - "tanaman"
+#   - "model"
+#   - "penyakit"
+#   - "kentang"
+
+---
+
+User interface model simulasi penyakit busuk daun (late blight) pada tanaman kentang (*Solanum tuberosum L.*) dibangun menggunakan Visual Basic 6.
+
+Model ini membutuhkan input data cuaca (hujan, suhu minimum dan maksimum, kelembaban relatif dan lama penyinaran) harian selama setahun.
+
+Terdapat dua opsi simulasi:
+
+1. Perlakuan standar dengan penyemprotan fungisida setiap minggu
+2. Bukan perlakuan standar
+
+   * Tanpa penyemprotan
+   * Dengan penyemprotan pada hari setelah tanam (HST): xx
+
+Model simulasi ini mempunyai 3 sub model:
+
+1. Neraca air, yang akan menghasilkan informasi tentang fluktuasi kadar air tanah tersedia (mm/hari), evapotranspirasi aktual (mm/hari) dan intersepsi daun (mm/hari)
+2. Perkembangan, yang akan menghasilkan informasi tentang jumlah hari selama fase perkembangan (tanam-muncul tunas, vegetatif, pembentukan umbi, pengisian umbi dan pematangan umbi), thermal heat unit, dan proporsi alokasi biomassa (%).
+3. Pertumbuhan, yang akan menghasilkan informasi indeks luas daun (ILD/LAI), jumlah biomassa untuk daun, batang, akar, umbi dan total keseluruhan dalam ton/ha.
+
+Hasil luaran akhir dari model simulasi ini adalah informasi peluang tanaman terinfeksi (%) dan intensitas serangan (%).
+
+Penyusunan model ini dipimpin oleh:
+
+Dr. Ir. Handoko | Laboratorium Meteorologi Pertanian IPB / Seameo BIOTROP
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20081109-model-simulasi-penyakit-busuk-daun-tanaman-kentang-01.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20081109-model-simulasi-penyakit-busuk-daun-tanaman-kentang-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20081109-model-simulasi-penyakit-busuk-daun-tanaman-kentang-03.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20081109-model-simulasi-penyakit-busuk-daun-tanaman-kentang-04.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20081109-model-simulasi-penyakit-busuk-daun-tanaman-kentang-05.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20081109-model-simulasi-penyakit-busuk-daun-tanaman-kentang-06.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20081109-model-simulasi-penyakit-busuk-daun-tanaman-kentang-07.jpg)
+:::
+:::

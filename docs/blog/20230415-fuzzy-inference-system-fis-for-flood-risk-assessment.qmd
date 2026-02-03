@@ -1,0 +1,215 @@
+---
+title: "Fuzzy Inference System (FIS) for Flood Risk Assessment"
+author: "Benny Istanto"
+date: "2023-04-15"
+description: "1 Implementation In the implementation phase of this analysis, we utilized Python and the Scikit-Fuzzy library to develop a fuzzy logic-based flood risk assessment model"
+image: "../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-01.jpg"
+categories:
+  - "Data Science"
+  - "Climate"
+# tags:
+#   - "landcover"
+#   - "fis"
+#   - "flood"
+#   - "soil moisture"
+#   - "precipitation"
+#   - "risk"
+#   - "fuzzy"
+
+---
+
+1 Implementation
+
+In the implementation phase of this analysis, we utilized Python and the `Scikit-Fuzzy` library to develop a fuzzy logic-based flood risk assessment model. This model took into account four essential factors affecting flood risks: precipitation intensity, soil moisture, land cover, and slope. By defining the fuzzy sets and rules for these variables, the model was able to estimate the flood risk for various combinations of input values. The ultimate goal of this implementation was to identify the conditions under which low flood risks could be achieved, even in situations where precipitation intensity was at its maximum.
+
+1.1 How-to?
+
+In the first stage of the analysis, we defined the variables that influence flood risk. These variables include precipitation intensity, soil moisture, land cover, and slope. Each of these variables was represented as a fuzzy variable using the `Scikit-Fuzzy` library's `Antecedent` class. Additionally, we defined the output variable `flood_risk` using the `Consequent` class. This stage set the foundation for the fuzzy logic-based flood risk assessment model by establishing the key variables that the model would use to estimate flood risk.
+
+In the second and third stages, we focused on defining the fuzzy sets and their respective membership functions for each of the variables defined in the first stage. We used the `automf()` function to automatically generate triangular membership functions for precipitation intensity, soil moisture, and flood risk, each with three levels: `low`, `medium`, and `high`. For the land cover and slope variables, we manually defined triangular membership functions, specifying the appropriate ranges for each fuzzy set (`urban`, `vegetation`, and `bare_soil` for land cover, and `flat`, `moderate`, and `steep` for slope). These stages were critical for establishing the relationships between the input variables and the output flood risk, which would later be used to evaluate different combinations of input values in the fuzzy inference process.
+
+In the fourth stage, we defined the rules that describe the relationships between the input variables (precipitation intensity, soil moisture, land cover, and slope) and the output variable (flood risk). We first created a list of classifications for each input variable and the output variable. Using the multiplication principle, we calculated the total number of possible combinations of these classifications, resulting in 81 unique rules.
+
+For each combination of input classifications, we determined the appropriate flood risk level based on a set of predefined conditions. These conditions were based on expert knowledge and domain understanding, considering factors such as high precipitation and soil moisture, bare soil land cover, and steep slopes. After determining the flood risk level for each combination, we created a fuzzy rule using the `Scikit-Fuzzy` library's `Rule` class, linking the input conditions with the corresponding flood risk level. These rules formed the basis of the fuzzy inference system that was used to evaluate different scenarios and estimate the corresponding flood risks.
+
+In the fifth stage, we created the control system and simulation by combining the defined rules from the previous stage. The `Scikit-Fuzzy` library's `ControlSystem` and `ControlSystemSimulation` classes were used for this purpose. The `ControlSystem` class takes the set of rules as input and initializes the fuzzy inference system, while the `ControlSystemSimulation` class initializes a simulation environment that can be used to compute the output based on the input values.
+
+In the sixth stage, we provided example input values for each input variable (precipitation, soil moisture, land cover, and slope) to test the fuzzy inference system. The input values were assigned to their corresponding input variables in the simulation, and the compute method of the `ControlSystemSimulation` object was called to perform the fuzzy inference process and obtain the output flood risk level.
+
+In the final stage, we output the computed flood risk level and visualize the result using the `Scikit-Fuzzy` library's built-in plotting capabilities. The flood risk level was displayed as a numerical value, while the visualization provided a graphical representation of the membership functions and the defuzzified output. This allowed us to assess the performance of the fuzzy inference system and analyze the relationships between the input variables and the flood risk.
+
+This will returned:
+
+```
+Flood Risk Value: 83.33333333333336
+Flood Risk Category: high
+```
+
+And a plot below
+
+![](../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-01.jpg)
+
+The initial implementation of the fuzzy inference system for flood risk assessment has been completed successfully. By providing example input values for precipitation (`100`), soil moisture (`50`), land cover (`25`), and slope (`30`) in Stage 6, we have demonstrated the functionality of the fuzzy system. The system processes these inputs through the defined membership functions, rules, and defuzzification methods to produce an output flood risk value and the corresponding flood risk category.
+
+Upon evaluating the system with the given input values, a flood risk value is generated, and the `flood_risk.view(sim=flood_risk_sim)` function provides a visual representation of the output. The plot displays the aggregated output membership functions and indicates the defuzzified crisp value. In this case, the plot reflects the flood risk level based on the provided inputs, and the computed flood risk category helps to understand the risk associated with the given conditions. With this initial implementation, we have set the foundation for further analyses and can adapt or extend the fuzzy system as needed to address specific flood risk assessment scenarios.
+
+1.2 Plot the membership function of the input variables
+
+The provided code visualizes the membership functions for each of the input variables (Precipitation Intensity, Soil Moisture, Land Cover, and Slope) and the output variable (Flood Risk Level) in the fuzzy inference system. Here's a summary of what each part of the code does:
+
+* `precipitation.view(sim=flood_risk_sim)`: Plots the membership functions for the Precipitation Intensity variable, displaying how the input values are categorized into low, medium, and high precipitation levels.
+* `soil_moisture.view(sim=flood_risk_sim)`: Plots the membership functions for the Soil Moisture variable, showing how the input values are categorized into low, medium, and high soil moisture levels.
+* `land_cover.view(sim=flood_risk_sim)`: Plots the membership functions for the Land Cover variable, illustrating how the input values are categorized into low, medium, and high land cover levels.
+* `slope.view(sim=flood_risk_sim)`: Plots the membership functions for the Slope variable, demonstrating how the input values are categorized into low, medium, and high slope levels.
+* `flood_risk.view()`: Plots the membership functions for the output variable, Flood Risk Level, indicating how the output values are categorized into low, medium, and high flood risk levels.
+* `flood_risk.view(sim=flood_risk_sim)`: Plots the final Flood Risk Level for given input values, illustrating how the fuzzy inference system computes the flood risk based on the input variable values and the defined fuzzy rules.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-04.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-05.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-06.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-07.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-08.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-09.jpg)
+:::
+:::
+
+To interpret the plots, observe how each input variable is divided into categories (low, medium, high) based on the membership functions. These categories represent the degree to which an input value belongs to a particular category.
+
+The output variable plot shows how the flood risk levels are determined based on the input variables' membership values and the fuzzy rules defined in the system. The final plot, Flood Risk Level for Given Input Values, displays the aggregated output membership functions and the computed flood risk level as a single value.
+
+1.3 2D Plot
+
+The provided code generates a 2D contour plot of flood risk as a function of Precipitation Intensity and Land Cover, while fixing the values of Soil Moisture and Slope. Here's a summary of what each part of the code does:
+
+* Create grid points for input variables: Define a range of values for each input variable (Precipitation Intensity, Soil Moisture, Land Cover, and Slope) using `np.linspace()`.
+* Define `compute_flood_risk()` function: This function takes Precipitation Intensity (P), Soil Moisture (M), Land Cover (L), and Slope (S) as inputs and computes the flood risk using the fuzzy inference system (`flood_risk_sim`).
+* Fix Soil Moisture and Slope values: Assign fixed values to Soil Moisture (M\_fixed) and Slope (S\_fixed).
+* Create flood risk matrix: Initialize a matrix with the size of the combination of Precipitation Intensity (P\_values) and Land Cover (L\_values). Iterate through each combination of these values and compute the flood risk using the `compute_flood_risk()` function with the fixed values of Soil Moisture and Slope.
+* Plot the 2D contour plot: Using `plt.contourf()`, create a contour plot that visualizes the flood risk as a function of Precipitation Intensity and Land Cover. The color map 'viridis' is used to represent the flood risk levels, with 20 contour levels.
+* Add colorbar, labels, and title: Add a colorbar to represent the flood risk values, label the axes, and add a title that includes the fixed values of Soil Moisture and Slope.
+
+![](../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-10.jpg)
+
+To interpret the plot, observe how the flood risk values change as the Precipitation Intensity and Land Cover values vary. The plot shows how the flood risk is influenced by these two input variables while keeping the other two (Soil Moisture and Slope) fixed at specific values.
+
+The contour lines in the plot represent different levels of flood risk, with the color intensity indicating the flood risk level. Darker colors represent lower flood risk, and lighter colors represent higher flood risk.
+
+1.4 3D Plot
+
+The provided code generates a 3D surface plot of flood risk as a function of Precipitation Intensity and Land Cover, while fixing the values of Soil Moisture and Slope. Here's a summary of what each part of the code does:
+
+* Create a 3D plot figure: Initialize a new figure using `plt.figure()` and add a 3D subplot with the `projection='3d'` argument.
+* Create the 3D surface plot: Use the `ax.plot_surface()` function to create a 3D surface plot for Precipitation Intensity (Y-axis) vs Land Cover (X-axis), with the flood risk as the Z-axis. The color map 'viridis' is used to represent the flood risk levels.
+* Add colorbar, labels, and title: Add a colorbar to represent the flood risk values, label the axes, and add a title that includes the fixed values of Soil Moisture and Slope.
+
+![](../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-11.jpg)
+
+To interpret the plot, observe how the flood risk values (Z-axis) change as the Precipitation Intensity and Land Cover values (X and Y axes) vary. The plot shows how the flood risk is influenced by these two input variables while keeping the other two (Soil Moisture and Slope) fixed at specific values. The color intensity on the surface indicates the flood risk level, with darker colors representing lower flood risk and lighter colors representing higher flood risk.
+
+The 3D surface plot provides a more detailed visualization of the relationship between flood risk, Precipitation Intensity, and Land Cover compared to the 2D contour plot. You can observe the shape of the surface to identify areas with high or low flood risk and better understand the interaction between the input variables.
+
+2 Minimizing Flood Risks under Maximum Precipitation
+
+This chapter emphasizes the focus on reducing flood risks under the most challenging conditions (maximum precipitation) while highlighting the three main variables (soil moisture, land cover, and slope) being examined in the analysis.
+
+Flood risk management is a critical aspect of urban planning and environmental protection. Understanding the factors that contribute to flood risks and identifying strategies to minimize these risks is essential for creating resilient communities. In this analysis, we explore the relationships between four key variables - precipitation intensity, soil moisture, land cover, and slope - to determine their influence on flood risk. **Our goal is to identify the combinations of these variables that result in low flood risks, even under conditions of maximum precipitation.**
+
+Using a fuzzy logic-based simulation model, we examine the interactions between these variables and their impact on flood risk. The model incorporates expert knowledge and rule-based systems to predict flood risk levels based on various input scenarios. By analyzing the simulation results, we aim to provide insights into the conditions that can effectively mitigate flood risks, helping policymakers and urban planners make informed decisions for better flood management strategies.
+
+The analysis includes a scatterplot matrix visualization that highlights the relationships between soil moisture, land cover, and slope under maximum precipitation conditions. By interpreting this matrix, we can identify patterns and correlations between these variables that contribute to lower flood risks. These insights will help guide future efforts in designing urban areas and implementing flood management measures that are both effective and sustainable.
+
+The provided code performs a sensitivity analysis to minimize flood risks under maximum precipitation conditions. It evaluates flood risk categories based on all input variables, generates a dataset of data points with different combinations of soil moisture, land cover, and slope values, and finally creates a scatterplot matrix. Here's a summary of what each part of the code does:
+
+* Define the maximum precipitation intensity: Set the value of `max_precipitation` to 100, which is considered high precipitation intensity.
+* Define the flood risk category function: Create a function `get_flood_risk_category()` that takes precipitation, soil moisture, land cover, and slope as input variables, and returns the flood risk category using the previously defined `categorize_flood_risk()` function.
+* Generate data points for soil moisture, land cover, and slope: Create arrays of evenly spaced values for each of these input variables.
+* Iterate through all combinations of soil moisture, land cover, and slope: For each combination, use the maximum precipitation value and the `get_flood_risk_category()` function to obtain the flood risk category. If the category is not `None`, append the combination to the `data_points` list.
+* Create a DataFrame containing the data points: Convert the list of data points into a pandas DataFrame, which makes it easier to analyze and visualize the data.
+* Create a scatterplot matrix: Use the seaborn library's `pairplot()` function to create a scatterplot matrix of the data points, with flood risk categories represented by different colors.
+
+![](../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-02.jpg)
+
+Here's how to read the scatterplot matrix:
+
+* The diagonal plots (from the top-left to the bottom-right) are bar plots showing the distribution of each variable. These plots give an idea of the frequency of different values for each variable when the flood risk is low under maximum precipitation conditions.
+* The off-diagonal plots are scatter plots showing the relationships between pairs of variables. These plots help identify any patterns or correlations between the variables. The color of the dots indicates the flood risk category associated with each data point.
+* In the off-diagonal plots, if you see that dots of a specific color (in this case, low flood risk) are clustered in a particular region, it indicates that certain combinations of variables are more likely to result in low flood risk conditions.
+
+To interpret the plots, consider the following:
+
+* In the scatterplot between soil moisture and land cover, if there is a pattern or a specific region where low flood risk dots are clustered, it would suggest that there's a relationship between these two variables that contributes to lower flood risks under maximum precipitation conditions.
+* Similarly, in the scatterplot between soil moisture and slope, look for clusters or patterns of low flood risk dots to identify any relationships between these variables that contribute to lower flood risks.
+* Finally, in the scatterplot between land cover and slope, examine the distribution of low flood risk dots to determine if there's a connection between these variables that leads to lower flood risks.
+
+By analyzing these plots, we can gain insights into the relationships between soil moisture, land cover, and slope that contribute to low flood risks even under maximum precipitation conditions.
+
+3 Sensitivity Analysis
+
+After obtaining the flood risk assessment results from the Fuzzy Inference System (FIS), we can assess the quality of the model by comparing its predictions to observed data. To do this, we'll need a dataset containing historical flood events along with the corresponding values of the input variables (Precipitation Intensity, Soil Moisture, Land Cover, and Slope).
+
+**What if observation data on flood events never exist?**
+
+If we don't have any observation data to compare the FIS model results, evaluating the model's performance becomes more challenging. However, we can still follow some steps to ensure that your FIS model is reasonable and plausible:
+
+* Expert knowledge: Consult with experts in the field of flood risk assessment to ensure that your fuzzy sets, membership functions, and fuzzy rules are realistic and based on sound principles. This can help us refine our FIS model even without actual observation data.
+* Sensitivity analysis: Perform a sensitivity analysis to understand how the output flood risk varies with changes in input variables. By altering the input variables within their expected range and studying the corresponding changes in flood risk, we can gain insight into the behavior of the model and identify any unrealistic responses.
+* Comparison with other models: If there are other flood risk assessment models available (either deterministic or statistical), compare your FIS model's predictions with those from the other models. Although this is not a direct comparison with observed data, it can provide some indication of how your model's performance compares to alternative approaches.
+* Simulation data: If we have access to hydrological or hydraulic models that can simulate flood events, we can use the simulated data as a proxy for observed data. Although this approach has its limitations, as the simulated data may not perfectly represent real-world conditions, it can still provide valuable information for evaluating your FIS model.
+* Temporal validation: If we have historical data for some of the input variables but not for the flood risk, we can still evaluate your FIS model by analyzing its performance over time. For instance, we can assess whether the model's predictions of high flood risk align with periods of heavy rainfall, high soil moisture, or other conditions known to increase flood risk.
+
+Remember that without observed data, it is more challenging to assess the performance of your FIS model accurately. However, following the steps outlined above can help us gain some confidence in your model and identify areas for potential improvement.
+
+**Let’s try Sensitivity Analysis**
+
+We'll use the One-at-a-time (OAT) sensitivity analysis method to understand the effect of varying each input variable while keeping the others fixed. Assume that we have the FIS model already built and implemented in Python using the variables and fuzzy rules defined earlier.
+
+This code performs a sensitivity analysis to study the relationship between input variables (Precipitation, Soil Moisture, Land Cover, and Slope) and the output variable (Flood Risk) in a FIS. It evaluates the FIS model for different values of the input variables, keeping the other input variables at their median values.
+
+Here is a summary of the main steps in the code:
+
+* Define the range and step size for each input variable.
+* Calculate the flood risk for each input variable using the FIS model. The sensitivity\_analysis function iterates over different values of each input variable while keeping the other input variables fixed at their median values.
+* Categorize the flood risk levels (low, medium, high) based on the computed flood risk values.
+* Plot the sensitivity analysis results, showing how flood risk varies with changes in the input variables.
+
+The plot consists of four subplots, one for each input variable, with flood risk on the y-axis and the input variable on the x-axis. The background of each plot is filled with colors corresponding to the flood risk categories (low, medium, and high). The data points are plotted with different markers ('o', 's', 'x') based on the input variable's categories (low, medium, and high).
+
+![](../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-03.jpg)
+
+To interpret the plot, observe how the flood risk changes as the input variable value increases or decreases. A steep slope in the plot indicates that the flood risk is highly sensitive to changes in the input variable. If the flood risk remains relatively constant despite changes in the input variable, it suggests that the flood risk is less sensitive to that input variable.
+
+To understand the meaning of the plot, consider that it represents how much the flood risk is affected by each input variable, given that other input variables are kept constant. By analyzing the plot, you can identify which input variables have a more significant impact on flood risk and prioritize interventions or mitigation strategies accordingly.
+
+4 Summary
+
+Flood risk assessment is a critical component of disaster management and urban planning. Accurate and reliable flood risk estimation helps authorities make informed decisions, prioritize resources, and implement effective mitigation strategies. With the increasing impacts of climate change and urbanization, there is a growing need for advanced techniques that can provide better insights into flood risk under varying conditions.
+
+Fuzzy Inference Systems (FIS) offer a robust and flexible approach to model complex relationships between multiple input variables and an output variable, such as flood risk. By incorporating expert knowledge and handling uncertainties, FIS models can capture the intricacies of real-world systems, providing more accurate and reliable estimates of flood risk compared to traditional methods.
+
+FIS models have gained popularity in the field of hydrological modeling and flood risk assessment due to their ability to handle imprecise and incomplete data, as well as their capability to incorporate human reasoning and intuition in the form of linguistic rules. This ability to integrate expert knowledge with quantitative data provides a valuable advantage, especially in situations where data availability is limited or uncertain.
+
+The utilization of FIS in flood risk assessment typically involves defining input variables that influence flood risk, such as precipitation intensity, soil moisture, land cover, and slope. These variables are then used to estimate the flood risk level, which can be categorized into different levels, such as low, medium, or high.
+
+To build an FIS model for flood risk assessment, the first step is to identify relevant input variables and their value domains. Next, fuzzy sets and membership functions are defined for each variable, followed by the formulation of fuzzy rules that describe the relationship between input variables and flood risk. These rules are derived from expert knowledge or empirical data and are used to determine the output flood risk level.
+
+One of the critical aspects of FIS models is their ability to handle uncertainties and vagueness in the input data. This is particularly important in the context of flood risk assessment, where data can be scarce or subject to significant measurement errors. By using fuzzy sets and membership functions, FIS models can accommodate these uncertainties, providing more reliable and robust estimates of flood risk.
+
+Sensitivity analysis is a valuable tool for evaluating the performance of FIS models in flood risk assessment. By varying input variables within their expected range and studying the corresponding changes in flood risk, modelers can gain insight into the behavior of the model and identify any unrealistic responses or potential areas for improvement.
+
+FIS models can be further enhanced by incorporating optimization techniques to identify the most critical factors contributing to flood risk. This can help decision-makers focus on specific areas or interventions that have the most significant impact on reducing flood risk and improving overall resilience.
+
+One of the challenges in applying FIS models for flood risk assessment is the lack of observed data for model validation. In such cases, the performance of the model can be evaluated using expert knowledge, sensitivity analysis, comparison with other models, or the use of simulated data from hydrological or hydraulic models.
+
+In conclusion, FIS provides a promising approach for flood risk assessment, offering a flexible and robust framework for modeling complex relationships and handling uncertainties. By incorporating expert knowledge and quantitative data, FIS models have the potential to significantly improve our understanding of flood risk and support more effective decision-making in disaster management and urban planning.

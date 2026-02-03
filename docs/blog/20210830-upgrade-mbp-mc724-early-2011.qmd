@@ -1,0 +1,76 @@
+---
+title: "Upgrade the MBP MC724 Early 2011"
+author: "Benny Istanto"
+date: "2021-08-30"
+image: "../assets/image-blog/20210830-upgrade-mbp-mc724-early-2011-01.jpg"
+categories:
+  - "General"
+# tags:
+#   - "mc724"
+#   - "a1278"
+#   - "macbook pro"
+
+---
+
+![](../assets/image-blog/20210830-upgrade-mbp-mc724-early-2011-01.jpg)
+
+This year is my 10th year using MacBook Pro 13” Early 2011. I bought my Mac on 5 Jun 2011 at [Ibox](https://ibox.co.id) [Menteng Central](https://goo.gl/maps/4ypBDLMAkj5d6pKv5) with original specification 13.3” 2.7GHz i7/4GB RAM/500GB HDD with OS X Snow Leopard 10.6.6, it costed around USD1,600\* or equal to IDR14,149,000 according to the receipt. [\*based on the exchange rates on June 2011]
+
+2-weeks after using it, I got new Mac replacement because the letter P on the keyboard was mallfunction. I should wait the new unit for a week, because it’s came from the Singapore. So far the process was smooth and no hasle.
+
+Since then, I use my Mac to support my activities on earth observation, geospatial and climate analytics, both using OS X and Windows 7 running in Parallels Desktop 6. It was very good experience and I could achieve many milestone on my careers.
+
+During 2011 - 2018, I am gradually upgrading my Mac and buy some tools, it costs a lot of money, but I also get a decent compensation for the work I do. Below is the complete list:
+
+1. Macbook Pro, MC724LL. IDR14,149,000
+2. Apple Care, MD015FE. IDR1,999,000
+3. Mini DisplayPort to VGA adapter. MB572Z. IDR300,000
+4. Apple Magic Mouse, MB829ZM. IDR699,000
+5. CORSAIR Mac Memory 2 x 8GB DDR3 1333MHz PC-12800. IDR1,520,200
+6. Baseqi Ninja Stealth Drive for MacBooks 103A. IDR352,602
+7. CORSAIR Force Series LE 960GB SATA3 6Gb/s SSD. IDR4,725,000
+8. SSD/HDD Caddy 9.5mm for DVD slot. IDR30,000
+9. Patriot P200 2TB 2.5" SATA3 6Gb/s SSD. IDR2,775,000
+10. Battery for A1278, 3 times, each costed IDR750,000. Total IDR2,250,000
+
+In addition to the hardware, I also bought a lot of original software that supports my work. Some of them are (I recommend this as the essential paid application for your Mac):
+
+1. 1Password
+2. Alfred
+3. Bartender
+4. BetterZip
+5. CleanMyMac
+6. DiskSensei
+7. Folx Pro
+8. iMazing
+9. OmniGraffle
+10. Paragon NTFS
+11. Parallels Desktop
+12. Total Finder
+13. Transmit
+
+In early 2019, my Mac experiencing a serious problem, unable to charge. After discussing with friend and finding similar problem at several Mac forums, I decided to change the integrated circuit (IC) charging controller. Good friend in OSX telegram group recommend me to go to [Bengkel Mac](https://goo.gl/maps/R1aazMKsj5tmcKku7) in North Jakarta.
+
+It was a good decision, as they offer the lowest price of all the places I surveyed, and they promised to finish it within 3 working days. It costed IDR1,300,000
+
+In early 2021, my Mac starting lost the Bluetooth and experiencing intermittent on the WiFi or have failed completely. I started looking for Bluetooth card replacement, but most of the review is makes me unhappy, because it doesn't completely solve the problem.
+
+Other problems, over the past few months my Mac has been running consistently hotter and hotter. I have try most of the recommended action in the forums, from blow the dust, reset SMC, NVRAM and did some application checking via Activity Monitor. And the CPU temperature still high, 100°C.
+
+I decided to clean off the old thermal paste, apply a new layer using [Arctic Silver 5](https://www.ifixit.com/Store/Tools/Arctic-Silver-Thermal-Paste/IF179-010?o=2) following awesome [guideline](https://www.ifixit.com/Guide/How+to+Apply+Thermal+Paste/744) from IFIXIT, and follow on [how to remove the logic board](https://www.ifixit.com/Guide/MacBook+Pro+13-Inch+Unibody+Early+2011+Logic+Board+Replacement/5154) beforehand. And now the CPU temperature is 56°C during idle, and around 80°C when I use it to process simple analysis.
+
+Weeks ago I found [802.11ac + Bluetooth 4.2 for Unibody MacBook Pro](https://subtle.design/products/80211ac/) sell by Subtle Design, very expensive USD198, but a lot better than other similar product in local market place, as they support newer wireless and bluetooth standards than the originals. From their reviews seems promising.
+
+It takes 7-days for DHL express to send the package from Austin, TX, US to Bogor, Indonesia. I got the package today and start to install the component, it’s very easy and they also provide the guideline just in case you are not sure how to do it.
+
+It’s really nice to see your old MacBook Pro now have no problems on Bluetooth and WiFi, having some feature which previously only available to MacBook Pro release after 2012. Some of these features are:
+
+1. New Bluetooth 4.2, chipset 20703A1
+2. 802.11ac faster wireless
+3. Handoff enabled
+4.  Watch auto unlock
+5. The old Mac now can recognised new device (latest iPhone or Mac) on AirDrop
+
+I know my old Mac may be slow compared to the new one but it might extend the life for a while yet. The new ones are just too expensive.
+
+I hope it can last a few more years.

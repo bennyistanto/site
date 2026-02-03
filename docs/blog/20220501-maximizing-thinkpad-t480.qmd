@@ -1,0 +1,91 @@
+---
+title: "Maximizing Thinkpad T480"
+author: "Benny Istanto"
+date: "2022-05-01"
+description: "I never owned a Thinkpad before, but I used Thinkpad since 2008, T400 version from my office, and every 2-3 years got upgrade to the latest"
+image: "../assets/image-blog/20220501-maximizing-thinkpad-t480-07.jpg"
+categories:
+  - "General"
+# tags:
+#   - "t480"
+
+---
+
+I never owned a Thinkpad before, but I used Thinkpad since 2008, T400 version from my office, and every 2-3 years got upgrade to the latest.
+
+For my personal daily use, I am happy with my [Macbook Pro 13 2011](/blog/20210830-upgrade-mbp-mc724-early-2011) and Mac mini Server 2012.
+
+![](../assets/image-blog/20220501-maximizing-thinkpad-t480-07.jpg)
+
+Recently, I have my first own Thinkpad T480 (released on April 2019) with standard spec (it’s secondhand btw, with very good condition, and still under warranty up to this month).
+
+[caption id="" align="alignnone" width="3024"]![ Unboxing the T480 ](../assets/image-blog/20220501-maximizing-thinkpad-t480-02.jpg) Unboxing the T480 [/caption]
+
+I decided to choose the [T series](https://en.wikipedia.org/wiki/ThinkPad_T_series) (T14, L14, T480 and T490 on my list) and finally with T480 after few months learning the best type to support my works. It’s came with i7 8650U 1.9ghz vPro (8 CPUs), Intel UHD620 4GB, DDR4 8GB, 512GB SSD Sata3, HD display 1366x768, non backlight keyboard, 6-cell external and without wwan and internal batteries.
+
+[caption id="" align="alignnone" width="2913"]![ Let see inside ](../assets/image-blog/20220501-maximizing-thinkpad-t480-08.jpg) Let see inside [/caption]
+
+Then I start to upgrade some parts:
+
+* 2 x 32GB DDR4 Corsair Vengeance 2666MHz. <https://www.corsair.com/ww/en/Categories/Products/Memory/Vengeance-SODIMM/p/CMSX32GX4M1A2666C18>
+
+  I am aware the original RAM for T480 is 2400MHz, but it’s difficult to find it. I also surprised the 2666 is cheaper than 2400, and easy to find from the marketplace. Is it dangerous to use 2666MHz in a 2400MHz laptop? No, the ram will work fine, and the 2666 frequency will under-clocked to 2400.
+* 870 QVO SATA III 2.5" SSD 4TB. <https://www.samsung.com/us/computing/memory-storage/solid-state-drives/870-qvo-sata-iii-2-5--ssd-4tb-mz-77q4t0b-am/>
+* Internal Battery, 24 Wh. <https://www.amazon.com/01AV421-01AV419-SB10K97577-SB10K97576-Replacement/dp/B09N1HYTTX>
+* Install the new Windows 11 - <https://www.microsoft.com/software-download/windows11>, previously was Windows 10
+
+[caption id="" align="alignnone" width="4032"]![ Installing new SSD, RAM and internal battery ](../assets/image-blog/20220501-maximizing-thinkpad-t480-01.jpg) Installing new SSD, RAM and internal battery [/caption]
+
+I also change the US non-backlight to backlight keyboard too. <https://www.tokopedia.com/laptopstorebatam/keyboard-thinkpad-t470-t480-keyboard-thinkpad-t480-t470-backlight>
+
+[caption id="" align="alignnone" width="4032"]![ Woohooo, it has backlight now ](../assets/image-blog/20220501-maximizing-thinkpad-t480-03.jpg) Woohooo, it has backlight now [/caption]
+
+And few days ago I just completed another upgrades:
+
+* Replace the HD screen into WQHD 2560x1440 along with the 40pins cable, as the original cable came with 30pins.
+
+  Parts:
+
+  + Genuine WQHD Screen for Lenovo ThinkPad T480 T480s X1 Carbon, with an FRU of 00NY664 and LP140QH2-SPB1. <https://www.amazon.com/dp/B09FZ9TJBT?psc=1&ref=ppx_yo2ov_dt_b_product_details>
+  + Original LCD Cable for Lenovo ThinkPad T480 01YR503 Windu-2 (20L5/20L6) FRU WQHD LCD Cable, WN-2. <https://www.amazon.com/dp/B093GKPPN8?psc=1&ref=ppx_yo2ov_dt_b_product_details>
+* Install wwan card + antenna kit.
+
+  Parts:
+
+  + SenFend L850-GL CAT9 WWAN 4G LTE Module for Lenovo and Thinkpad T480 T480S T490 T495S T590, FRU: 5W10V25803 OR 01AX792. <https://www.amazon.com/dp/B09Q2T7CBV?psc=1&ref=ppx_yo2ov_dt_b_product_details>
+  + GinTai WLAN WWAN Antenna Kit Replacement for Lenovo ThinkPad T480 T470 3G 4G 01YR494 01YR495. <https://www.amazon.com/dp/B083S5JJ8J?psc=1&ref=ppx_yo2ov_dt_b_product_details>
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20220501-maximizing-thinkpad-t480-04.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20220501-maximizing-thinkpad-t480-05.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20220501-maximizing-thinkpad-t480-06.jpg)
+:::
+:::
+
+Have a look, cellular data option is available and my screen is better now!
+
+![](../assets/image-blog/Screenshot+(11).jpg)
+![](../assets/image-blog/Screenshot+(12).jpg)
+
+I did all the installation myself by following the awesome guideline [https://www.ifixit.com/Device/Lenovo\_ThinkPad\_T480](https://www.ifixit.com/Device/Lenovo_ThinkPad_T480.) and use Pro Tech Toolkit <https://www.ifixit.com/Store/Tools/Pro-Tech-Toolkit/IF145-307> from [IFIXIT](https://www.ifixit.com).
+
+I am quite satisfied and excited, hope it lasts until next 5 years.
+
+Back to work, to support my daily activities on climate analytics and geospatial technology, I installed various application:
+
+* ArcGIS Desktop 10.8.2
+* ArcGIS Pro 2.9
+* R Statistics 4.1.3 and RStudio
+* Total Commander
+* Windows Subsystem for Linux 2, and GDAL/OGR, CDO, NCO, geopandas, xarray, rasterio, jupyter notebook, etc inside Anaconda.
+
+UPDATE: 4 Jun 2022
+
+I replaced existing Wi-Fi card Intel Model 8265NGW with Intel Killer 6E AX1675x Tri Band AX210 M.2 2230 Bluetooth 5.2 Wi-Fi Card.
+
+![](../assets/image-blog/Screenshot+(23).jpg)

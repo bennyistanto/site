@@ -1,0 +1,190 @@
+---
+title: "2015 ESRI User Conference"
+author: "Benny Istanto"
+date: "2015-08-01"
+description: "San Diego Convention Center 20 – 24 July 2015, San Diego, CA, USA"
+image: "../assets/image-blog/20150801-2015-esri-user-conference-01.jpg"
+categories:
+  - "GIS"
+  - "Travel"
+# tags:
+#   - "esri uc"
+
+---
+
+San Diego Convention Center
+
+20 – 24 July 2015, San Diego, CA, USA
+
+![](../assets/image-blog/20150801-2015-esri-user-conference-01.jpg)
+
+### The Conference
+
+1. Plenary Session and Keynote Address
+
+Here's a quick overview of the opening Plenary Session, Applying Geography Everywhere – Welcome and GIS Vision:
+
+a. Enter the Era of Geographic Enlightenment. Jack Dangermond introduced the term geoenlightenment during introductory remarks at the Esri UC Plenary Session. What is geoenlightenment? Dangermond said it means understanding how things on our planet are interconnected and applying that knowledge to make the world a better place. "What we do here, affects there,"
+
+b. New Development in ArcGIS
+
+* Esri just launched the R - ArcGIS Community on GitHub. The new initiative's goal is to build a collaborative community for R and ArcGIS users. R is an open source programming language for statistical analysis. R users can directly access all their organization's GIS data, and ArcGIS users can directly integrate R into their geoprocessing workflows.
+* AppStudio for ArcGIS. Esri demonstrated how to create native apps for multiple platforms in a snap using the configurable application templates and other functionality in the new AppStudio for ArcGIS. There's no coding required.
+* Analyze Very Big Data with ArcGIS.
+* Esri App for Drone Imagery.
+* Vector Tiles
+* ArcGIS Ready-to-Use Apps
+
+c. What's Trending in Web GIS, including the establishment of portals for geospatial information, the growing amount of authoritative content that's available, and easy-to-use analysis tools.
+
+d. Open and Interopable
+
+e. ArcGIS Pro and Environmental Justice
+
+Plenary-Geography Around the World:
+
+f. Bruce Aylward of the World Health Organization talked about his work to stop the Ebola outbreak in western Africa and the success brought about by mapping the movement of patients and the people who were exposed to them.
+
+g. Gary Knell from National Geographic Society, called for greater geographic literacy and said educators must take into account the technological savvy of kids who will "never know the world before tablets and smart phones."
+
+h. Martin O’Malley from State of Maryland, used GIS in his administrations to identify problem areas that required government services.
+
+i. Dangermond honored many organizations with awards for their fine work implementing GIS.
+
+2. Session (Technical Workshop)
+
+Here the list of technical workshop that I attended
+
+a. Tue, Jul 21
+
+8.30 – 9.45 ArcGIS Online: Living Atlas of the World. ArcGIS Online provides access to a diverse and growing set of content to enrich the ArcGIS user experience. This content represents a living atlas of the world with beautiful and authoritative maps on hundreds of topics.
+
+10.15 – 11.30 Leveraging GIS for Climate Change and Sustainable Development. The presentation describes how the system integrates remote sensing, soil, crop, climate and other data to produce GHG estimates and support tools to address development challenges.
+
+11.30 – 11.45 Story Maps – Simple Yet Compelling.
+
+1.30 – 2.45 Creation of a Composite Drought Index using ArcGIS and Satellite Data. ArcGIS and its extensions were used to resample and extract indicators values from the massive raw data sets and then to calculate the Composite Drought Index.
+
+3.15 – 4.30 ArcGIS Online: The Mapping Platform for Your Organization. This session talking about how the organization can create interactive web maps and apps that we can share with anyone and discover what’s included such as ready-to-use content, apps, and templates.
+
+4.30 – 6.00 Map Gallery
+
+b. Wed, Jul 22
+
+8.30 – 9.45 Python Map Automation: Intriduction to arcpy.mapping / arcpy.mp. It provide an overview of the mapping module along with demonstrations of how it can be used to process the contents of map documents and layer files and how to automate exporting, printing, and the generation of PDF map books.
+
+11.00 – 11.30 How to make a Story Map Journal
+
+12.00 – 12.30 How to make a Story Map Tour
+
+1.30 – 2.45 ArcGIS Online: Smart Mapping – Make brilliant maps quickly and with confidence. Smart Mapping allows novices and pros alike to work faster centered around the idea of data-driven workflows, smart defaults, and automatic cartographic expertise.
+
+3.15 – 4.30 Volunteers can do it!: Using Collector for Natural Resources Management. This is an example the used of Collector for ArcGIS app for NGO with limited resources.
+
+4.30 – 6.00 Map Gallery
+
+c. Thu, Jul 23
+
+8.30 – 9.45 Python – Raster Analysis.This session introduced Spatial Analyst arcpy module, best practices for using the raster object and classes to expand the modelling capability, optimized performance and identify how to use NumPy.
+
+10.15 – 11.30 Administering your Microsoft SQL Server Geodatabase. This session address a variety SQL Server specific configuration and optimization techniques for experienced enterprise geodatabase administrators.
+
+12.00 – 12.30 How to make a Story Map Tour
+
+1.30 – 2.45 ArcGIS Online: Managing Data. This session talking about how to store the data online and, once stored, how to manage it effectively.
+
+3.15 – 4.30 A GIS model to identify Flood Affected Areas using Landsat Images. This session give an example on how conduct an automated multi-temporal analysis of Landsat images, the model would provide valuable information to assess damage and mitigate losses.
+
+5.30 – 8.00 Thursday Night Party
+
+d. Fri, Jul 24
+
+9.00 – 10.15 Collector for ArcGIS: an Overview. This session explain how to use this app and configure it to satisfy a specific data collection workflow.
+
+10.30 – 12.00 Closing Session
+
+3. ESRI Showcase
+
+Besides attending the technical workshop, I am also visited ESRI showcase on Humanitarian, Nonprofit, Apps, Online, Mapping and Visualization, Spatial Analysis. I also took the opportunity to discuss with ESRI developer and explain some of my problem using ESRI product.
+
+Lesson-learned
+
+1. Tell Story Using a Map
+
+The Story Map is ideal when we want to combine narrative text with maps and other embedded content. A Map Journal and other contains entries, or sections, that users simply scroll through. Each section in a Map Journal has an associated map, image, video or web page.
+
+During ESRI UC, all staffs of ESRI as well as most of participants made use of Story Map for presenting their products. Story Map is likely to replace other presentation slide applications because it has more feature. Users are able to modify ESRI templates via the following link <https://github.com/Esri/map-journal-storytelling-template-js> that provides guideline for customizing the templates. However Story Map has some shortages such as standard chart is difficult to be edited. This problem can be solved by using cedar.js chart library here <http://esri.github.io/cedar/>. Chart customization in Story Map needs advance programming skill and will change a whole appearance. Staff with limited programming skill is likely to only use default templates. WFP Indonesia has used Story Map for presenting Food Security and Vulnerability Atlas 2015 <http://arcg.is/1yThC40>
+
+Standard feature on Story Map does not allow too much editing to tables and graphs. WFP Indonesia applies ArcGIS online maps as basemaps for alternate version of FSVA online <http://fsva.wfp.or.id>
+
+The alternate version of FSVA online uses D3, Highchart and CoffeeScript and other library and a set of data separately stored. Tables and graphs of FSVA online are interactive and user friendly.
+
+During UC I discussed a number of issues with ESRI Story Map developer including the options for template customization, tables&chart modification. Unfortunately event the easiest option still need quite advance programming skill. It is possible to present interactive tables and graphs on <http://fsva.wfp.or.id> in Story Map by embedding it to <http://arcg.is/1yThC40> as per suggestion from ESRI Story Map team.
+
+ESRI staff also suggest to me to submit the FSVA story map to the gallery so it can be appear in ESRI website. But they also make sure that FSVA story map should be referenced on a WFP website page or blog.
+
+2. The Power of Apps
+
+ArcGIS includes a suite of apps that are ready to go and free to use.
+
+a. Explore maps
+
+Mapping apps like ArcGIS Explorer for the Mac, provide a way to manage a collection of data. We can find, use, and share maps from Mac, Android, or iOS device using ArcGIS Explorer.
+
+b. Collect data using Collector for ArcGIS and Survey123
+
+We can use smartphone or tablet to collect and update information in the field, whether connected or disconnected. The power of Collector for ArcGIS enables organizations to use maps to gather data in the field and to synchronize the results with their enterprise GIS data. With Collector we can update data in the field, log the location, and put the capture data back into central GIS database directly from phone or mobile device with iOS/Android.
+
+Below pictures are the example of Collector for ArcGIS running in my iPhone device and used for collecting IDP and flooded area in Jakarta.
+
+We can download maps to our device to work offline; use GPS to create and update map data, points, lines, and area features; fill out easy-to-use map-driven forms; find places and get directions; track and report areas visited.
+
+For gathering data in the field, we can combine Collector for ArcGIS with Survey 123 app. We can design the surveys in a spreadsheet and use Survey123 Connect to upload the surveys to ArcGIS. Get the Survey123 for ArcGIS mobile app from the Google Play and Apple App Store, download surveys and start collecting data. That’s it.
+
+Next month I will test Survey123 to collect data for Local School Meal program in Papua, and will displaying the result through Rael-Time Operation Dashboard.
+
+c. Office for Maps
+
+ESRI Maps for Office helps us integrate information from Microsoft Office product like Excel dan Powerpoints with our maps. Our Excel spreadsheet data mapped within the Excel environment and updated automatically as oour work on the spreadsheet.
+
+This app still have limitation like we can’t create custom color for our maps and custom classification using natural breaks renderer or equal interval value. Here’s the example of the used ESRI Maps for Office for displaying the food security and vulnerability atlas data.
+
+3. Real-Time Dashboard
+
+Using Operation Dashboard for ArcGIS, we can monitor activities and events, track our field workforce, and assess the status and performance of WFP daily operations.
+
+Operation Dashboard for ArcGIS have many features like: Bring together a common view of the systems and resources you manage. Monitor real-time data feeds for large-scale events or day-to-day operations on your desktop or tablet device. Create focused executive dashboards that integrate maps, charts, and graphs. Use maps with dynamic data sources to provide real-time views. Configure charts, gauges, histograms, and more, to provide statistical context. Create and share operation views that are focused on a specific need. Design views for use on multiple monitors or single-display devices. Create custom widgets and tools to suit your needs.
+
+Here’s the example from ESRI Netherland on the used of Operation Dashboard to monitor the election.
+
+WFP Indonesia will create similar application and currently I am still configuring the dashboard, maps, data and survey from Local School Meal program in Papua.
+
+4. Portal for ArcGIS
+
+From the demo at ESRI showcase, Portal for ArcGIS – an extention for ArcGIS Server which is ArcGISOnline-like software that we can install on-premises in case we don't want to expose our resources to the Internet or for any other reason. Portal will let us organize our resources within a company and manage the services from one place. In general, Portal have similar feature with ArcGIS Online like: Create, save, and share web maps, Create and host web mapping apps, Search for GIS content within organization, Create groups for sharing GIS information with coworkers, Share links to GIS applications, Share map and layer packages to use in ArcGIS for Desktop.
+
+Since 10.2, Portal is an extension to ArcGIS Server software (which means it is not available directly). Earlier, it was a separate product that was accessible only via Esri Professional Services. I can’t explore this app more details because WFP Enterprise Level Agreement didn’t include this product.
+
+But it would be very advantageous if we have this extension, considering the current WFP data are hosted on ArcGIS Online which is at ESRI cloud, and after the subscription is ended, the data also will be deleted and we can't recover it. So, by using the Portal and ArcGIS Server, and WFP already implemented the SDI, we can utilize all this product as a substitute for ArcGIS Online with several advantages, our data is safe and all the apps are hosted in WFP server.
+
+5. OpenData Portal and Geoportal Server
+
+As part of our ArcGIS Online subscription, we can use ArcGIS Open Data to share our live authoritative open data. Esri-hosted ArcGIS Open Data gives us a quick way to set up public-facing websites where people can easily find and download your open data in a variety of open formats. During the UC, there is a good example of OpenData portal from WHO displaying all the data related to Ebola response.
+
+ESRI also have an open-source product for metadata catalogue called Geoportal https://github.com/Esri/geoportal-server/ that we can physically install in a server.
+
+ArcGIS Open Data uses the ArcGIS Online groups to identify open data, allowing us to quickly publish or remove our open data. Our open datasets automatically sync with the latest version of our sources. It can even integrate with other open data platforms, such as CKAN and ESRI Geoportal.
+
+It seems that both of product (OpenData and Geoportal) are competitor of our Geonode portal. I will request to Filippo to activated the OpenData feature for my ArcGIS Online account, so I can test that platform in near future.
+
+Conclusion
+
+Some applications of ArcGIS Online platform can be used/implemented in the Country Office or maybe Field Office. I've tried several apps and it looks pretty good. The main problem is the lack of good internet connections, it will also block the access to ArcGIS Online. To customize the application (interface, feature, etc.) required a programming skill.
+
+Next Step
+
+In the near future I am planning develop some examples of ArcGIS online application for WFP Indonesia activities such as the use of Story Map for online version of FSVA, Collector for ArcGIS and Survey 123 for collecting field survey data, monitoring progress of Local School Meal program in Papua using Operation Dashboard and use of ESRI Maps for Excel for distributing tabular data and FSVA maps via Microsoft Excel.
+
+Enough time for preparation is necessary for future winner of GIS community award who get a chance to join ESRI UC. I had only short preparation. I was notified about the award shortly before the event, difficulty to find accommodation and flights, WFP ArcGIS Online account was not valid for registration which I was not officially registered until a day before ESRI UC started. I did not get a chance to participate map design competition (Map Gallery) due to this issue of registration because deadline for submission of the map was about 2 weeks before the conference.
+
+ESRI UC Asia Pacific in Bangkok and FOSS4G 2015 in Seoul are potential chances to present GIS products of WFP including implementation of SDI during the period of 2014 - 2015

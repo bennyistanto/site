@@ -1,0 +1,198 @@
+---
+title: "GISForestFire"
+subtitle: "Forest Fire Early Warning System for Sumatra, Indonesia"
+page-layout: full
+toc: false
+image: "../../assets/image-projects/2006-gisforestfire-00.png"
+css: ../../styles/project-detail.css
+---
+
+This software is used to identify fire danger level in Sumatra - Indonesia. The hazard level is determined using the Canadian Forest Fire Weather Index System, which is generated through analysis of remote sensing data.
+
+GISForestFire is part of my final research and as one of the requirements to get bachelor of science degree at Department of Geophysics and Meteorology, Faculty of Mathematics and Natural Science, Bogor Agricultural University.
+
+::: {.project-meta}
+::: {.meta-item}
+::: {.meta-label}
+Year
+:::
+::: {.meta-value}
+2006
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Institution
+:::
+::: {.meta-value}
+Bogor Agricultural University (IPB)
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Tools
+:::
+::: {.meta-value}
+ArcView GIS 3.3, ErMapper 6.4, Surfer 6, MapObject 2.2, Visual Basic 6, CorelDRAW 12
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Advisors
+:::
+::: {.meta-value}
+[Idung Risdiyanto](https://scholar.google.co.id/citations?hl=id&user=WBIaIyYAAAAJ), [Rokhis Khomarudin](https://scholar.google.com/citations?hl=en&user=RA5YWWQAAAAJ)
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Design Credit
+:::
+::: {.meta-value}
+[Hendro Poerwandito](https://id.linkedin.com/in/hendropoerwandito) (Welcome screen and CD cover)
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Reference
+:::
+::: {.meta-value}
+[Thesis Repository](https://repository.ipb.ac.id/handle/123456789/47915)
+:::
+:::
+:::
+
+## Project Background
+
+Forest fire is one of the main types of hazards in Indonesia. This study was aimed to develop an application system to determine [the Canadian Forest Fire Weather Index System](http://cwfis.cfs.nrcan.gc.ca/background/summary/fwi) (FWI) from various combinations of remote sensing satellite data based on numerical and spatial models.
+
+This application is expected to provide forest fire danger rating information for a certain area based on numerical-spatial FWI value at a certain time. FWI was calculated from air temperature (Ta), relative humidity (RH), wind speed (u), and rainfall (Ra). These were derived from satellite images (remote sensing data).
+
+## Methodology
+
+Three main processes were involved:
+
+1. **Program Development** - Designing a program to prepare the input for the software
+2. **Algorithm Development** - Script development of the software
+3. **Early Warning System** - Development of the software for forest fire early warning
+
+The designed program stimulated weather conditions based on surface temperature data (Ts) that was extracted from [AVHRR/NOAA](http://noaasis.noaa.gov/NOAASIS/ml/avhrr.html) to derive Ta and RH. Wind data was generated using thermal wind equation which relates vertical shear of the geostrophic wind to horizontal temperature gradient, then corrected using extracted wind data from [TXLAPS](http://www.bom.gov.au/). Rainfall data was extracted from [QMORPH](http://www.cpc.noaa.gov/products/janowiak/cmorph_description.html) (CPC MORPHing Technique).
+
+## Software Interface & Results
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-01.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-02.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-03.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-04.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-05.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-06.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-07.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-08.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-09.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-10.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-11.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-12.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-13.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-14.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-15.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-16.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-17.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-18.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-19.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-20.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-21.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-22.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-23.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-24.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-25.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2006-gisforestfire-26.png){.gallery-img}
+:::
+
+:::
+
+::: {.back-link}
+[← Back to Projects](../projects.qmd)
+:::

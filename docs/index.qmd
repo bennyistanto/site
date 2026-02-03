@@ -1,0 +1,18 @@
+---
+title: ""
+page-layout: custom
+toc: false
+---
+
+::: {.hero-section}
+::: {.hero-image}
+![](assets/image-spotlight/name-in-landsat.jpg){.hero-img fig-alt="Landsat satellite imagery showcasing Earth features"}
+:::
+
+::: {.spotlight-box}
+## Spotlight.
+
+My name is visualized through a collection of Landsat satellite imagery, where each letter represents distinct Earth features captured from space. This artistic composition combines various natural patterns, including rivers, lakes, mountains, and landscapes photographed by the Landsat program - NASA and USGS's 50+ year Earth observation mission. From meandering rivers to desert patterns, each letter showcases the diverse and beautiful textures of our planet's surface as seen from orbit and created using NASA's 'Your Name in Landsat' interactive tool - [https://science.nasa.gov/specials/your-name-in-landsat/](https://science.nasa.gov/specials/your-name-in-landsat/), which transforms Earth observation data into a personalized geographic alphabet.
+
+:::
+:::

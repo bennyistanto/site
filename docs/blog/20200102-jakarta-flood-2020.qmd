@@ -1,0 +1,32 @@
+---
+title: "Jakarta flood 2020"
+author: "Benny Istanto"
+date: "2020-01-02"
+description: "[caption id=\"\" align=\"alignnone\" width=\"2500\"]"
+image: "../assets/image-blog/20200102-jakarta-flood-2020-01.jpg"
+categories:
+  - "Remote Sensing"
+  - "GIS"
+  - "Climate"
+# tags:
+#   - "flood"
+#   - "jakarta"
+#   - "gpm"
+#   - "banjir"
+#   - "imerg"
+
+---
+
+[caption id="" align="alignnone" width="2500"]![  Figure 1.  1-day rainfall ](../assets/image-blog/20200102-jakarta-flood-2020-01.jpg) Figure 1. 1-day rainfall [/caption]
+
+Kicking off 2020 with massive flood in Greater Jakarta. [NASA‘s GPM](https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGDL.06/2020/01/) satellite captured heavy rain of at least 300 mm pouring over East Jakarta and Bekasi nonstop from new years eve up until the morning.
+
+Other surrounding areas experienced 100-160mm/day of rainfall. What‘s most to blame? Upstream Ciliwung river of course 😬. Yet, local rainfall in the area was only 60 mm.
+
+Let’s check rainfall intensity per 30-minutes from the same source, [NASA’s GPM](https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGHHL.06/2020/001/).
+
+If you are curious every line in the chart referring to which areas, then you should check below map index.
+
+The highest rainfall around 370 mm was fall in East Jakarta and Kota Bekasi, compared to official BMKG’s released from weather station around 340 mm.
+
+![](../assets/image-blog/20200102-jakarta-flood-2020-02.jpg)

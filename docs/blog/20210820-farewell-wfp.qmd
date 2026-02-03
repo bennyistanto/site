@@ -1,0 +1,20 @@
+---
+title: "Farewell WFP!"
+author: "Benny Istanto"
+date: "2021-08-19"
+description: "As you may have heard, I’m moving on to the World Bank HQ after 9 wonderful years at the UN WFP in Indonesia"
+image: "../assets/image-blog/20210820-farewell-wfp-01.jpg"
+categories:
+  - "General"
+# tags:
+#   - "farewell"
+---
+
+As you may have heard, I’m moving on to the World Bank HQ after [9 wonderful years](/blog/20210611-ninth-year-and-the-2020-nobel-peace-prize-laureate) at the UN WFP in Indonesia. I started my career with WFP on [11 June 2012](/blog/20120611-first-day-at-wfp).
+
+Today is my last working days, I am visiting the office to clean up my things. Yes, this is my first time back to the office again since “[working from home](/blog/20210311-today-a-year-ago)” mode started on March 11, 2020.
+
+Looking forward to doing more meaningful work in climate analytics and geospatial technology for greater impact.
+
+![](../assets/image-blog/20210820-farewell-wfp-01.jpg)
+![](../assets/image-blog/20210820-farewell-wfp-02.jpg)

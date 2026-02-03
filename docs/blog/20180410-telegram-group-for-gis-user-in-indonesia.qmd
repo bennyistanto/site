@@ -1,0 +1,19 @@
+---
+title: "Telegram group for GIS user in Indonesia"
+author: "Benny Istanto"
+date: "2018-04-10"
+image: "../assets/image-blog/20180410-telegram-group-for-gis-user-in-indonesia-01.jpg"
+categories:
+  - "Remote Sensing"
+  - "GIS"
+# tags:
+#   - "telegram"
+#   - "remote sensing"
+
+---
+
+![](../assets/image-blog/20180410-telegram-group-for-gis-user-in-indonesia-01.jpg)
+
+A group of friends and me run a Telegram group discussion about GIS and Remote Sensing application, currently focusing on Indonesia context and has been participated by more than 900 GIS practitioners (as of 10 April 2018).
+
+As of now, there has been 31 sessions conducted. Presentations were delivered voluntary by a number of participants, covering the topic of SDG application, spatial model, web-map, UAV, etc. Feel free to join at this [link](https://t.me/gis_id).

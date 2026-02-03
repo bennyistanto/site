@@ -1,0 +1,48 @@
+---
+title: "Kriging and IDW interpolation in GEE"
+author: "Benny Istanto"
+date: "2020-08-28"
+description: "I have automatic weather station coordinates from BMKG, along with example data on precipitation accumulation for 1 - 10 Jan 2017 in csv format with column structure: Lon, Lat, Rainfall"
+image: "../assets/image-blog/20200829-kriging-and-idw-interpolation-in-gee-01.jpg"
+categories:
+  - "Remote Sensing"
+  - "GIS"
+  - "Climate"
+# tags:
+#   - "weather"
+#   - "gis"
+#   - "kriging"
+#   - "idw"
+#   - "gee"
+#   - "earthengine"
+
+---
+
+I have automatic weather station coordinates from BMKG, along with example data on precipitation accumulation for 1 - 10 Jan 2017 in csv format with column structure: Lon, Lat, Rainfall.
+
+I uploaded this data into GEE assets, available as Feature Collection and accessible from this address: "users/bennyistanto/datasets/shp/rainfall\_201701d1"
+
+![](../assets/image-blog/20200829-kriging-and-idw-interpolation-in-gee-01.jpg)
+
+Is it possible to do [Kriging](https://en.wikipedia.org/wiki/Kriging) and [Inverse Distance Weighting](https://en.wikipedia.org/wiki/Inverse_distance_weighting) (IDW) interpolation using Google Earth Engine?
+
+Yes, it is. Follow below script.
+
+Full [link](https://code.earthengine.google.com/4fd323b121042988ecfd8df2e9d977b7)
+
+See below comparison from ArcGIS and GEE for both method. The pattern is slightly different due to GEE’s layer visualised using stretched colour while ArcGIS’s layer visualised using classified colour.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20200829-kriging-and-idw-interpolation-in-gee-05.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20200829-kriging-and-idw-interpolation-in-gee-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20200829-kriging-and-idw-interpolation-in-gee-04.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20200829-kriging-and-idw-interpolation-in-gee-03.jpg)
+:::
+:::

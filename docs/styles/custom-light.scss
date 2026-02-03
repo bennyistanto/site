@@ -1,0 +1,86 @@
+/*-- scss:defaults --*/
+
+// Light Theme Customization
+// Based on Cosmo theme with custom modifications
+
+// Primary Colors
+$primary: #D35400 !default;  // Orange accent from your logo
+$secondary: #6c757d !default;
+$success: #28a745 !default;
+$info: #17a2b8 !default;
+$warning: #ffc107 !default;
+$danger: #dc3545 !default;
+$light: #f8f9fa !default;
+$dark: #343a40 !default;
+
+// Body
+$body-bg: #ffffff !default;
+$body-color: #2c3e50 !default;
+
+// Links
+$link-color: $primary !default;
+$link-hover-color: darken($primary, 15%) !default;
+
+// Fonts
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
+$headings-font-weight: 600 !default;
+$headings-line-height: 1.2 !default;
+
+// Navbar
+$navbar-bg: rgba(255, 255, 255, 0.95) !default;
+$navbar-fg: $dark !default;
+
+// Borders
+$border-color: #dee2e6 !default;
+$border-radius: 0.5rem !default;
+
+// Spacing
+$spacer: 1rem !default;
+
+// Code
+$code-bg: #f5f5f5 !default;
+$code-color: #c7254e !default;
+
+/*-- scss:rules --*/
+
+// Light theme specific styles
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.spotlight-box {
+  background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
+}
+
+pre {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+blockquote {
+  border-left: 4px solid $primary;
+  background-color: #f8f9fa;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.page-footer {
+  background: linear-gradient(to top, #f8f9fa 0%, #ffffff 100%);
+}
+
+// Card styles
+.card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}

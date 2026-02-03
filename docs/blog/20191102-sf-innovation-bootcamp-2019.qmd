@@ -1,0 +1,121 @@
+---
+title: "SF Innovation Bootcamp 2019"
+author: "Benny Istanto"
+date: "2019-11-02"
+description: "Last month I had the opportunity to attend 2019 WFP Innovation Accelerator Bootcamp in San Francisco, CA, USA"
+image: "../assets/image-blog/20191102-sf-innovation-bootcamp-2019-27.jpg"
+categories:
+  - "Research"
+  - "Travel"
+# tags:
+#   - "bootcamp"
+#   - "disrupthunger"
+#   - "travel"
+#   - "workshop"
+#   - "google"
+#   - "wfp"
+
+---
+
+Last month I had the opportunity to attend 2019 WFP Innovation Accelerator Bootcamp in San Francisco, CA, USA.
+
+For one week, 55 innovators from around the world joined in San Francisco to work alongside leading tech companies and experts. They were divided into six Early Stage innovation teams looking to build and test their ideas, and five advanced stage Scale-Up projects who had already proven concepts and were looking to scale their impact and reach.
+
+Eleven outstanding ideas were presented. Among the Early Stage Start-Ups, projects included HungerMapLive, an AI-assisted crisis map to provide humanitarian responders with data to predict hunger crises before they happen; the GrainATM that dispenses grains to create access to food in rural India; Fenik’s off-grid refrigeration unit that requires no energy; Roambee’s Internet of Things tracking system for delivery to the last mile and every point in between; and the Tamwini digital ID app that allows people in Iraq to access services without having to rely on ineffective paper systems.
+
+The Scale-Up teams represented innovations already being tested in WFP’s field operations, with the objective of scaling up their impact or reach. ShareTheMeal is an app which mobilizes microdonations to support WFP’s global operations; H2Grow is a hydroponic system that allows people to grow food with no soil and 90% less water; PLUS School Menus is software that calculates the most cost-effective menus that meet the nutritional requirements of children of different age groups; EMPACT is a digital skills training program that prepares refugee and war-affected youth for the future of work; and VAMPIRE/PRISM combines remote sensing data and population vulnerability information to produce risk and impact analytics.
+
+The Early Stage innovators were hosted at the inspiring Google Developers Launchpad space in San Francisco. The bootcamp for advanced Scale-Up innovators was hosted by Orange Silicon Valley. Each team met with specialized tech sector professionals, mentors, and other innovators, analyzed their ideas, injected lean-startup business processes, and considered human-centered design.
+
+With team, went through the pitch night at Googleplex to attract investors and show what we have made to #disrupthunger using VAMPIRE/PRISM.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-27.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-26.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-22.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-21.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-25.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-24.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-20.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-23.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-01.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-03.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-19.jpg)
+:::
+:::
+
+Besides following the bootcamp, I have great discussion in Malala Yousafzai meeting room at Planet office and check out the well-known Dove+RapideEye satellite.
+
+I also enjoy views of the city from Bernal Height Park, taste the delicious oysters at Ferry Building and the best taco+burrito in Mission Street, and visit the famous Golden Gate bridge.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-12.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-13.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-06.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-07.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-08.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-17.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-16.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-15.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-09.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-10.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-11.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-14.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-18.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-05.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20191102-sf-innovation-bootcamp-2019-04.jpg)
+:::
+:::

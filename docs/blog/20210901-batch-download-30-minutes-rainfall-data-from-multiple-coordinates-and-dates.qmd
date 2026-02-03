@@ -1,0 +1,56 @@
+---
+title: "Batch download 30-minutes rainfall data from multiple coordinates and dates"
+author: "Benny Istanto"
+date: "2021-09-01"
+description: "The need for the availability of 30-minutes rainfall time series data are very crucial, especially when we are working on the study of extreme rainfall induced landslide"
+image: "../assets/image-blog/20210901-batch-download-30-minutes-rainfall-data-from-multiple-coordinates-and-dates-03.jpg"
+categories:
+  - "Remote Sensing"
+  - "Research"
+# tags:
+#   - "gee"
+#   - "extremerainfall"
+#   - "rainfall"
+#   - "imerg"
+#   - "earthengine"
+
+---
+
+The need for the availability of 30-minutes rainfall time series data are very crucial, especially when we are working on the study of extreme rainfall induced landslide.
+
+During 2018, landslide dominated natural disasters occurred in Central Java. The [Regional Disaster Management Agency](https://bpbd.jatengprov.go.id) (BPBD) of Central Java Province recorded that there were about 2,000 landslides in this area. Most landslide is preceeded by continuous extreme rainfall for few days, as most of the area isn't located near ground weather station, therefore rainfall records are often not available.
+
+In this [post](/blog/20200505-30-minutes-rainfall-and-landslide-research), I have talk about how we can extract half-hourly [IMERG](https://gpm.nasa.gov/GPM) rainfall in single location and date. Now I will explain on how to batch download 30-minutes rainfall data from multiple coordinates and dates.
+
+For this example, I am still using Landslide event as the case, and Google Earth Engine as a tool for downloading the data.
+
+#### Data Source
+
+1. Half hourly IMERG at Earth Engine Data Catalogue - <https://developers.google.com/earth-engine/datasets/catalog/NASA_GPM_L3_IMERG_V06>
+2. Landslide event in Magelang, Central Java - Indonesia during 2018. Compiled by [Department of Environmental Geography](https://gel.geo.ugm.ac.id), Faculty of Geography - Universitas Gadjah Mada.
+
+![](../assets/image-blog/20210901-batch-download-30-minutes-rainfall-data-from-multiple-coordinates-and-dates-03.jpg)
+
+* Available in CSV format with column structure: ID, Lon, Lat, Day, DD, MM, YYYY, TimeWIB.
+
+* Example of landslide event data accessible via this [link](https://github.com/wfpidn/landslide-rainfall/blob/main/data/idn_nhr_ls_3308_magelang_2018_p_example.csv)﻿, and below picture. There are 10 landslide event that happen during 2018.
+
+![](../assets/image-blog/20210901-batch-download-30-minutes-rainfall-data-from-multiple-coordinates-and-dates-01.jpg)
+
+#### Script
+
+The script below describe how to extract 30-minute rainfall from NASA GPM-IMERG, based on points location and convert it into CSV file using Google Earth Engine code editor.
+
+Full GEE script available via this link <https://code.earthengine.google.com/b7ccc8291d23770301e96a22bd1be2c8>
+
+#### Output
+
+30-minutes of rainfall that occurred 10-days before landslide. Generated using GEE, CSV output is accessible via this [link](https://github.com/wfpidn/landslide-rainfall/blob/main/data/landslide_rainfall.csv).
+
+![](../assets/image-blog/20210901-batch-download-30-minutes-rainfall-data-from-multiple-coordinates-and-dates-02.jpg)
+
+#### About
+
+I worked with my 2 other colleagues: Ridwan Mulyadi from WFP-VAM and [Guruh Samodra](https://scholar.google.co.id/citations?hl=en&user=0O79Hx4AAAAJ) from UGM. This activity is part of research and development of threshold for extreme rainfall that could trigger a landslide event in Indonesia. Reference: [https://bennyistanto.github.io/erm/ls/#extreme-rainfall-triggered-landslide-alert](https://wfpidn.github.io/ERM/ls/#extreme-rainfall-triggered-landslide-alert)
+
+Source: [https://github.com/bennyistanto/landslide-rainfall](https://github.com/wfpidn/landslide-rainfall)

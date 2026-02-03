@@ -1,0 +1,17 @@
+---
+title: "Skip PEARSON fitting on climate-indices python package"
+author: "Benny Istanto"
+date: "2024-05-03"
+description: "Source: <https://gist"
+categories:
+  - "Remote Sensing"
+  - "Climate"
+# tags:
+#   - "python"
+#   - "climate"
+#   - "gamma"
+#   - "pearson"
+
+---
+
+Source: <https://gist.github.com/bennyistanto/e8710f89bfbebaf24498dd957a1fa961>

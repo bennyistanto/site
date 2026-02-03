@@ -1,0 +1,17 @@
+---
+title: "Halo!"
+author: "Benny Istanto"
+date: "2003-10-08"
+description: "Hari ini saya memulai sebuah blog, dan ini tulisan pertama saya"
+image: "../assets/image-blog/20031008-halo-01.png"
+categories:
+  - "General"
+---
+
+![ACC](../assets/image-blog/20031008-halo-01.png)
+
+Hari ini saya memulai sebuah blog, dan ini tulisan pertama saya.
+
+Saya menulisnya di Agromet Cyber Cafe, Kampus IPB Baranangsiang dan akan mencoba mengisi blog ini dengan hal yang menarik minat saya seperti: komputasi meteorologi dan terapannya untuk pertanian.
+
+Semoga bermanfaat!

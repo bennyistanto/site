@@ -1,0 +1,21 @@
+---
+title: "Install the WRF Model in WSL2"
+author: "Benny Istanto"
+date: "2023-02-10"
+description: "UPDATE: 25 Feb 2024 Old version: <https://gist"
+categories:
+  - "Remote Sensing"
+  - "Research"
+  - "Climate"
+# tags:
+#   - "linux"
+#   - "wrf"
+#   - "windows"
+#   - "weather research and forecasting"
+#   - "wsl"
+
+---
+
+UPDATE: 25 Feb 2024
+
+Old version: <https://gist.github.com/bennyistanto/fb5dcfb1f9d9b3b8745e199523368a62/d03e0e0a9517bebe19d716843f0f704bdfb6821e>

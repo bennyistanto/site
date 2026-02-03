@@ -1,0 +1,122 @@
+---
+title: "Web Map Interface"
+author: "Benny Istanto"
+date: "2009-11-21"
+description: "This training was part of ADB’s ETESP Package 39 Part 2 project and was carried out last month, which was attended by staff from Aceh’s Forestry and Plantation Office"
+categories:
+  - "GIS"
+# tags:
+#   - "openlayers"
+#   - "gis"
+#   - "webmap"
+
+---
+
+This training was part of ADB’s ETESP Package 39 Part 2 [project](/project/2008-aceh-fis) and was carried out last month, which was attended by staff from Aceh’s Forestry and Plantation Office.
+
+The training course is built around the concept of data severs, map servers and application servers and the open source software required at each tier to establish a scalable architecture capable of delivering spatial web services and web applications.
+
+**Outcomes**
+
+Participants will be up to date with the latest geospatial data standards and exchange formats which enable interoperability.
+
+On completion of the training course, participants will have developed a map viewer framework using open source software which distributes spatial web services and web mapping applications.
+
+**Length**
+
+The length of the course is approximately 5 days
+
+**Topics**
+
+An overview of the training course material is summarised below;
+
+**Module 1**, focuses on spatial web services, the standards, protocols and data exchange formats as well as practical applications including the creation, debugging and accessing of spatial web services.
+
+MS4W
+
+* Introduction to Map Server 4 Windows (MS4W)
+* Map Server 4 Windows installation
+
+WMS
+
+* Introduction to the Web Mapping Service (WMS) standard
+* MapServer, creating a WMS data service, debugging and troubleshooting
+* WMS and uDig
+
+Download tools and materials
+
+* Data (Download [here](https://docs.google.com/viewer?a=v&chrome=true&hl=en_GB&pid=explorer&srcid=0BymH7PIKa_uIYTljNjEyM2QtNmRlZi00MTg3LWIyZDItNTIzNmYyMGVlYmZh))
+* MS4W (<http://www.maptools.org/ms4w/index.phtml?page=downloads.html>), symbol (Download [here](https://docs.google.com/viewer?a=v&chrome=true&hl=en_GB&pid=explorer&srcid=0BymH7PIKa_uINjRlZDFiMGQtZTMxZC00NTJiLWIxYzItZDFkM2RkYzY3MDAy)) and fonts (Download [here](https://docs.google.com/viewer?a=v&chrome=true&hl=en_GB&pid=explorer&srcid=0BymH7PIKa_uINjVjMDI5YjMtZDJmYy00ZjAyLWEwY2QtNGE5MTI5Mjc3YzQ4))
+* Firefox (<http://www.mozilla.com/en-US/firefox/fx/>)
+* Notepad++ (<http://notepad-plus-plus.org/download/v5.9.3.html>)
+* uDig (<http://udig.refractions.net/download/>)
+
+**Module 2**, introduces the basic technologies that can be used to begin creating web applications, including client side javascript libraries and data formats.
+
+HTML and CSS
+
+* Introduction to Hyper-Text Markup Language (HTML)
+* Introduction to Cascading Style Sheets (CSS)
+* Creating a web site
+
+JavaScript
+
+* Introduction to JavaScript
+* Using JavaScript to create Dynamic HTML (DHTML)
+
+Ext JS
+
+* Introduction to Ext JS and the Ext JS API
+* Including Ext JS in your website
+
+Download tools and materials
+
+* Firebug (<http://getfirebug.com/downloads>)
+* Ext JS (<http://www.sencha.com/products/extjs/download/>)
+* imgs (Download [here](https://docs.google.com/viewer?a=v&chrome=true&hl=en_GB&pid=explorer&srcid=0BymH7PIKa_uINTFlYzdmNjctZTAzMy00ZmJiLTgwZTktZTY3NTJlYTRiYTgy))
+* Reference (Download [here](https://docs.google.com/viewer?a=v&chrome=true&hl=en_GB&pid=explorer&srcid=0BymH7PIKa_uIYzhiNmZjZTYtMDEwZC00YWUxLWJjYWEtYTZkZDhkM2IxOTY5))
+
+**Module 3**, introduces OpenLayers client side JavaScript libraries that are used to display web services and vector data formats, to enable the creation of dynamic maps in web applications.
+
+OpenLayers
+
+* Introduction to OpenLayers and the OpenLayers API
+* A basic web map
+* Vector Styles and Formats in Open Layers (KML, GML, WKT)
+
+Download tools and materials
+
+* imgs (Download [here](https://docs.google.com/viewer?a=v&chrome=true&hl=en_GB&pid=explorer&srcid=0BymH7PIKa_uIMWUwZDZmMTYtMzRlYy00MmViLWExNzAtOGVhZjU2OWQ2MzMx))
+* MapFish (<http://mapfish.org/downloads/>)
+* OpenLayers (<http://openlayers.org/download/>)
+
+**Module 4**, investigates spatial database systems, in particular the object-relational PostgreSQL with PostGIS spatial extension including database and table management, loading SHP files, basic and spatial queries and database formats
+
+PostGIS
+
+* Overview of PostGIS
+* Loading SHP files into PostGIS
+
+DB Queries
+
+* Introduction to basic queries and results
+* Introduction to spatial queries and formats
+* OpenLayers and PostgreSQL/PostGIS
+
+Download tools and materials
+
+* PostGIS (<http://postgis.refractions.net/download/>)
+* PostgreSQL (<http://www.postgresql.org/download/>)
+
+**Module 5**, database access, spatial web services and JavaScript combine to produce a user friendly graphical web mapping application which enables geo-processing.
+
+WebApp
+
+* Creating a toolbar and customised tools
+* Spatial database processing from the web client
+
+Annex A provides a background to geographic standards and software and the web sites that provide support and documentation.
+
+Reference sites to geographic standards, software downloads and supporting documentation
+
+Download Web Map Interface Training module [here](https://docs.google.com/leaf?hl=en_GB&id=0BymH7PIKa_uIODkzZDJjYjUtMDM2ZS00N2VmLTk5MmYtZDZjNTE2MmVhMTg2) (52 MB)

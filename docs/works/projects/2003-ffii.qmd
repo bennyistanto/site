@@ -1,0 +1,69 @@
+---
+title: "Festival Film Independen Indonesia"
+subtitle: "Merah Putih Dipundakku"
+page-layout: full
+toc: false
+image: "../../assets/image-projects/2003-ffii-00.png"
+css: ../../styles/project-detail.css
+---
+
+I was in a team consisted of second year students from [ITB](https://fsrd.itb.ac.id/), [ITENAS](https://www.itenas.ac.id/), [IKJ](http://www.fftv.ikj.ac.id/) and [IPB](https://ipb.ac.id/), produced the movie in 2003 and we participated the [Festival Film Independen Indonesia](https://majalah.tempo.co/read/film/88500/napas-segar-di-dunia-sinema) hosted by SCTV.
+
+And involved in the production of this following movie, mainly in property and set construction but also as one of the casts (Si Amrik).
+
+::: {.project-meta}
+::: {.meta-item}
+::: {.meta-label}
+Producer & Director
+:::
+::: {.meta-value}
+d'JALMA 5 and [Hendro Poerwandito](https://id.linkedin.com/in/hendropoerwandito)
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Location
+:::
+::: {.meta-value}
+Jakarta - Bogor - Sukabumi, Indonesia
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Festival
+:::
+::: {.meta-value}
+Festival Film Independen Indonesia - SCTV
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Production Year
+:::
+::: {.meta-value}
+2003
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Team
+:::
+::: {.meta-value}
+Hendro Poerwandito, [Fery Widiantoro](https://indoartnow.com/artists/fery-widiantoro), [Farid Hamdan](https://id.linkedin.com/in/anomnim), [Dhian Wijanarko](https://www.facebook.com/dhian.wijanarko), [Heri Sucahyono](https://www.imdb.com/name/nm3874255/), Benny Istanto and [Niken Eka Priarnani](https://twitter.com/nikenpriarnani?lang=en)
+:::
+:::
+:::
+
+![Movie cover of "Merah Putih Dipundakku](../../assets/image-projects/2003-ffii-01.png)
+
+{{< video https://youtu.be/OHMAu0Thueo >}}
+
+> We're talking about idealism dude! It's all about fighting non-stop while worrying about getting food in your belly!
+
+::: {.back-link}
+[← Back to Projects](../projects.qmd)
+:::

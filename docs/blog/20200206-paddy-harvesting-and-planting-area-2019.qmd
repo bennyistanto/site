@@ -1,0 +1,33 @@
+---
+title: "Paddy harvesting and planting area 2019"
+author: "Benny Istanto"
+date: "2020-02-06"
+description: "BPS (Statistics of Indonesia) release: paddy harvested area of 2019 was estimated around 10,68 million Ha"
+image: "../assets/image-blog/20200206-paddy-harvesting-and-planting-area-2019-01.jpg"
+categories:
+  - "Remote Sensing"
+  - "Research"
+# tags:
+#   - "tanam"
+#   - "timesat"
+#   - "mod13q1"
+#   - "padi"
+#   - "bps"
+#   - "panen"
+#   - "modis"
+
+---
+
+BPS (Statistics of Indonesia) [release](https://www.bps.go.id/pressrelease/2020/02/04/1752/luas-panen-dan-produksi-padi-pada-tahun-2019-mengalami-penurunan-dibandingkan-tahun-2018-masing-masing-sebesar-6-15-dan-7-76-persen.html): paddy harvested area of 2019 was estimated around 10,68 million Ha.
+
+[caption id="" align="alignnone" width="2500"]![  Figure 1.  BPS release on harvest area in 2019 ](../assets/image-blog/20200206-paddy-harvesting-and-planting-area-2019-01.jpg) Figure 1. BPS release on harvest area in 2019 [/caption]
+
+Outputs of my analysis indicates higher number, with less than 10% difference. I suppose this is still acceptable due to many factors i.e. accuracy of interpretation, uncertainty estimate using satellite data, does not count pixels which are interpreted as crop failure, and no ground check or validation.
+
+By analyzing [MODIS](https://lpdaac.usgs.gov/products/mod13q1v006/) satellite images over the growing season of 2019, total planted area for paddy was 11,3 million Ha and total harvested area was 11,4 million Ha. Please notice that planting area was calculated only for the period of 1 Jan - 31 Dec (excluding main planting season Oct - Dec from the earlier year).
+
+![](../assets/image-blog/20200206-paddy-harvesting-and-planting-area-2019-02.jpg)
+
+The Start of Season (SoS - Planting) and End of Season (EoS - Harvesting) estimates the day of the year identified at the beginning/end of a consistent upward/downward trend in timeseries EVI and is interpreted as the beginning/end of measureble of photosynthesis in the vegetation canopy.
+
+All the figures came from TIMESAT analysis, please check on the following [page](/blog/20160927-satellite-based-monitoring-of-growing-season) for detailed methodology.

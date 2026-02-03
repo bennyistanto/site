@@ -1,0 +1,83 @@
+# Quarto
+/.quarto/
+docs/.quarto/
+_site/
+docs/_site/
+*.html
+!docs/_site/**/*.html
+
+# General folder for temporary
+temp/
+temp2/
+temp3/
+
+# R and RStudio
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# Node modules (if using any JS tools)
+node_modules/
+
+# Environment variables
+.env
+.env.local
+
+# Cache
+.cache/
+
+# Sass
+.sass-cache/
+*.css.map
+
+# Lock files
+package-lock.json
+yarn.lock
+
+# Build artifacts
+*.o
+*.a
+*.exe
+*.tex
+*.aux
+*.out
+*.toc

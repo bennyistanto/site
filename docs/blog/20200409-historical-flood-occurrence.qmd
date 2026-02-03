@@ -1,0 +1,42 @@
+---
+title: "Historical flood occurrence"
+author: "Benny Istanto"
+date: "2020-04-09"
+description: "Inspired from Dr"
+image: "../assets/image-blog/20200409-historical-flood-occurrence-01.jpg"
+categories:
+  - "Remote Sensing"
+  - "GIS"
+  - "Research"
+# tags:
+#   - "global surface water"
+#   - "flood"
+#   - "gee"
+#   - "water occurrence"
+#   - "earthengine"
+
+---
+
+Inspired from [Dr. Ate Poortinga](https://sig-gis.com/sig-people/ate-poortinga/)’s work in extracting [water occurrence](https://code.earthengine.google.com/083a6f9a981d2737d8eac16cbe8505b0) from satellite image, I tried to do similar analysis to get historical average of flood occurrence by month. The result from this analysis will be added as a probability information to enhance WFP's VAMPIRE flood alert system (Extreme rainfall-triggering flood) that currently I am working on.
+
+The steps below describe how to extract monthly water occurrence and seasonality water using Google Earth Engine code editor.
+
+**Step 1.** Define geographic domain
+
+**Step 2.** Import JRC Global Surface Water and extract permanent water from Seasonality layer
+
+**Step 3.** Define study period (example: extract January data from 1984 - 2018)
+
+**Step 4.** Detect all observation data with water
+
+**Step 5.** Calculate flood occurrence
+
+**Step 6.** Visualisation and add map to canvas
+
+**Step 7.** Export the result to Google Drive
+
+**Step 8.** Setting legend
+
+[caption id="" align="alignnone" width="2500"]![  Figure 1.  Google Earth Engine user interface ](../assets/image-blog/20200409-historical-flood-occurrence-01.jpg) Figure 1. Google Earth Engine user interface [/caption]
+
+Full script [here](https://code.earthengine.google.com/a6c255d7b4629d0b0675e4e469f31af1)

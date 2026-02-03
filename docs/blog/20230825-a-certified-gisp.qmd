@@ -1,0 +1,27 @@
+---
+title: "A certified GISP"
+author: "Benny Istanto"
+date: "2023-08-25"
+image: "../assets/image-blog/20230825-a-certified-gisp-01.jpg"
+categories:
+  - "General"
+# tags:
+#   - "certification"
+#   - "gisp"
+#   - "gisci"
+
+---
+
+![](../assets/image-blog/20230825-a-certified-gisp-01.jpg)
+
+Exciting news! I'm now a certified GIS Professional (GISP)
+
+Big thanks to GIS Certification Institute (GISCI) for this recognition. To learn more about the GISP certification process, visit <https://www.gisci.org>
+
+Shoutout to my mentors at the WBG, [Keith Garrett](https://www.worldbank.org/en/about/people/k/keith-patrick-garrett) and [Ben Stewart](https://www.worldbank.org/en/about/people/b/benjamin-p-stewart), for their guidance in the last 2 years.
+
+Looking forward to doing more meaningful work in climate analytics and geospatial technology for greater impact! 🗺️
+
+![](../assets/image-blog/20230825-a-certified-gisp-02.jpg)
+
+Update: happy to received the certificate at the end of 2023

@@ -1,0 +1,21 @@
+---
+title: "Sarjana Meteorologi"
+author: "Benny Istanto"
+date: "2006-03-10"
+description: "Hari ini saya dinyatakan lulus program sarjana Meteorologi - FMIPA IPB, setelah tadi siang saya menerima Surat Keterangan Lulus (SKL)"
+categories:
+  - "General"
+# tags:
+#   - "meteorologi"
+
+---
+
+Hari ini saya dinyatakan lulus program sarjana Meteorologi - FMIPA IPB, setelah tadi siang saya menerima Surat Keterangan Lulus (SKL). Resminya saya harus mengikuti upacara wisuda yang akan diselenggarakan dibulan Juni mendatang.
+
+Semester 7 dan 8 saya jalani dengan cukup tantangan, mulai dari:
+
+* 1 Maret 2005. Seminar Usul Penelitian
+* 11 Januari 2006. Seminar Hasil Penelitian
+* 8 Maret 2006. Sidang tertutup/ujian skripsi selama 4 jam, dengan 3+1 orang penguji: (i) Pak Idung Risdiyanto, (ii) Pak Rokhis Khomarudin, (iii) Pak Sobry Effendi dan (iv) Ibu Laras Tursilowati.
+
+Oya yang lebih asik lagi, Senin depan 13 Maret 2006 saya akan mulai bekerja sebagai asisten peneliti di Lembaga Penerbangan dan Antariksa Nasional (LAPAN). Tugas pertama saya adalah memanfaatkan luaran hasil penelitian saya untuk menyempurnakan proses akuisisi data dan perhitungan model kebakaran hutan di LAPAN.

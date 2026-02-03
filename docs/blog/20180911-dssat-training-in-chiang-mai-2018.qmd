@@ -1,0 +1,255 @@
+---
+title: "DSSAT training in Chiang Mai, 2018"
+author: "Benny Istanto"
+date: "2018-09-11"
+description: "Last month, I attended training on DSSAT and MWCropDSS: Efficient and precision agricultural resource utilization under changes with simulation models and GIS in Chiang Mai, Thailand from 27 Aug to..."
+image: "../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-55.jpg"
+categories:
+  - "Travel"
+  - "Research"
+  - "Climate"
+# tags:
+#   - "training"
+#   - "climate"
+
+---
+
+Last month, I attended training on [DSSAT](https://dssat.net) and MWCropDSS: Efficient and precision agricultural resource utilization under changes with simulation models and GIS in Chiang Mai, Thailand from 27 Aug to 1 Sep. The goal of the trainings is to gain better understanding of simulation models in predicting relationships of agricultural resources, i.e., water and nitrogen under various weather and climate conditions, on crop phenology and growth.
+
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-55.jpg)
+
+There are 24 participants from Bhutan, China, Indonesia, Japan, Nepal and Thailand. And the trainer are [Prof. Gerrit Hoogenboom](https://scholar.google.com/citations?hl=en&user=6t7Zm4oAAAAJ) from University of Florida, USA and [Prof. Attachai Jintrawet](https://scholar.google.com/citations?hl=en&user=HHRpPm4AAAAJ) from Chiang Mai University.
+
+Here's some topic I learned during the training.
+
+1st day
+
+1. History and overview of DSSSAT
+2. Exercises: Running Crop Models
+3. Simulating phenological development
+4. Sensitivity analysis tool
+5. Exercises: Sensitivity Analysis Tools
+6. Creating FileX: Potential crop production
+7. Exercises: Potential Crop Production
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-01.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-03.jpg)
+:::
+:::
+
+2nd day
+
+1. Simulating basic growth processes
+2. Weather data input and utilities
+3. Exercises: Weather Data Files
+4. Minimum dataset concept
+5. Learning the DSSAT file system
+6. Concept of genetic coefficients species vs ecotype vs cultivar coefficients
+7. Genetic coefficients - CROPGRO and CERES
+8. Exercises: Cultivar Sensitivity Analyses
+9. Estimatic genetic coefficient, concepts
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-04.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-05.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-06.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-07.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-08.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-09.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-10.jpg)
+:::
+:::
+
+3rd day
+
+1. Estimating Genetic Coefficients, Concepts Tools for Estimating Cultivar Coefficients
+2. Cultivar Coefficient Calibration using the Glue Tool
+3. Simulating Water Limited Production Soil and Flood Water Balance in Rice
+4. Soil Data Inputs and Utilities
+5. Exercises: Soil Data Files
+6. Creating FileX: Water Balance On
+7. Exercises: Water Limited Production
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-11.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-12.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-13.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-14.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-15.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-16.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-17.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-18.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-19.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-20.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-21.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-22.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-23.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-24.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-25.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-26.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-27.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-28.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-29.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-30.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-31.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-32.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-33.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-34.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-35.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-36.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-37.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-38.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-39.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-40.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-41.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-42.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-43.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-44.jpg)
+:::
+:::
+
+4th day
+
+1. Experimental Data Collection - Model Evaluation
+2. Experimental Data Files and Utilities
+3. Exercises: Experimental Data Files
+4. Simulating Nitrogen Limited Production Processes in the Soil
+5. Simulating Nitrogen Limited Production Processes in the Plant
+6. Creating FileX: Water and N Balance On
+7. Exercises: Nitrogen Limited Production
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-45.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-46.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-47.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-48.jpg)
+:::
+:::
+
+5th day
+
+1. Spatial Modeling Applications Demonstration: MWCropDSS
+2. Uncertainty, Risk, BMPs, and Sustainability
+3. Creating FileX: Seasonal Analysis
+4. Exercises: Seasonal Analysis
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-49.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-50.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-51.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-52.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-53.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-54.jpg)
+:::
+:::
+
+6th day
+
+1. Cropping Systems – Simulating Crop Rotations
+2. Creating FileX: Rotation/Sequence Analysis
+3. Group Discussion of Applications and Needs

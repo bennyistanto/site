@@ -1,0 +1,27 @@
+---
+title: "How long will I live?"
+author: "Benny Istanto"
+date: "2016-08-10"
+description: "What's my place in the world population"
+image: "../assets/image-blog/20160810-how-long-will-i-live-01.jpg"
+categories:
+  - "Data Science"
+# tags:
+#   - "life-expextancy"
+#   - "statistics"
+#   - "population"
+#   - "projection"
+
+---
+
+What's my place in the world population? How long will I live?
+
+![](../assets/image-blog/20160810-how-long-will-i-live-01.jpg)
+
+[Population.io](https://population.io/) aims to make demography – the study of human populations – accessible to a wider audience. Below is the summary:
+
+* I was older than 59.6% of all people in the world and 62.8% in Indonesia.
+* My next milestone is 5 Sep 2022 then I’ll be 5th billionth person to be alive in the world.
+* I share a birthday with about 298,427 people around the world and that approximately 12,300 people were born in the same hour.
+* The website estimate that I will live until 21 Jan 2061 if I was an average world citizen. Whereas in Indonesia it would be until 17 Nov 2055, age 73.6 years.
+* Or maybe I could live even longer if I moved to Japan, they estimate I will live until age 86.1 years or 12.5 years longer.

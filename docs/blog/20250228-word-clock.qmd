@@ -1,0 +1,32 @@
+---
+title: "Word Clock"
+author: "Benny Istanto"
+date: "2025-02-28"
+description: "A creative visualization that transforms time into natural language - experience time as spoken words rather than digits or clock hands"
+image: "../assets/image-blog/20250228-word-clock-01.jpg"
+categories:
+  - "Data Science"
+  - "General"
+# tags:
+#   - "javascript"
+#   - "visualization"
+#   - "observable"
+#   - "word-clock"
+
+---
+
+Ever wondered what time it would be if clocks could speak? This Word Clock translates the current time into natural language phrases that we use in everyday conversation. Instead of looking at hands or digits, you simply read the highlighted words to tell the time!
+
+*"IT IS TWENTY MINUTES PAST FOUR" or "IT IS QUARTER TO SEVEN"* - just like you'd say it to a friend.
+
+The clock updates every minute, automatically highlighting the words that form the correct time phrase. Notice how at different times, different word combinations light up to create readable sentences.
+
+It's a fun, more human way to experience time passing. Enjoy watching the words change as the minutes tick by!
+
+**Inspiration**
+
+Inspired by the Word Clock sold by [Walmart - The Word Clock - Shows The Time In A Sentence](https://www.walmart.com/ip/The-Word-Clock-Shows-The-Time-In-A-Sentence/102811752)
+
+![](../assets/image-blog/20250228-word-clock-01.jpg)
+
+See it at Observable - https://observablehq.com/@bennyistanto/word-clock

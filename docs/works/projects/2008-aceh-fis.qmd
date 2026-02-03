@@ -1,0 +1,144 @@
+---
+title: "Aceh Forest Information System"
+subtitle: "Forestry Information System (FIS) User Guides"
+page-layout: full
+toc: false
+image: "../../assets/image-projects/2008-aceh-fis-00.png"
+css: ../../styles/project-detail.css
+---
+
+The Asian Development Bank's Earthquake and Tsunami Emergency Support Project ([ETESP](http://www.adb.org/Projects/ETESP/)) packages 38 and 39-P2 developed a comprehensive Forestry Information System (FIS) with detailed user guides for the Agency for Forestry and Plantations (DisHutBun - Aceh). The system integrated multiple Forest Management Modules (FMM) addressing high-priority forest management processes during 2008-2010.
+
+::: {.project-meta}
+::: {.meta-item}
+::: {.meta-label}
+Year
+:::
+::: {.meta-value}
+2008 - 2009
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Organization
+:::
+::: {.meta-value}
+Asian Development Bank - ETESP
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+My Role
+:::
+::: {.meta-value}
+GIS Modeler - FIS Development and Information Product Work Group
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Tools
+:::
+::: {.meta-value}
+ArcGIS (Desktop, Server, SDE), ArcPy, Python, Drupal, OpenLayers, MS4W, PostgreSQL, Bizagi Process Modeler
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Team Lead
+:::
+::: {.meta-value}
+[Maurice Bowen](http://mauricebowen.com)
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+References
+:::
+::: {.meta-value}
+[ADB ETESP](http://www.adb.org/Projects/ETESP/) | [ADB Tsunami Response](http://www.adb.org/tsunami/default.asp)
+:::
+:::
+:::
+
+## System Components
+
+The FIS components support comprehensive forest management:
+
+1. **Quantification and Classification** of the Aceh Forest Resource Base
+2. **Land Suitability Assessment** for Plantation Forests and Tree Crops
+3. **Environmental Sensitivity Mapping**
+4. **Forest Fire Risk Management** for Protection, Land Rehabilitation, and Social Forestry
+5. **Remote Sensing Applications** at the Watershed Level
+6. **Technical and Graphical Information Products** for modular, scalable FIS
+
+## User Guides
+
+Comprehensive documentation categorizes user guides by management structure, describing representative uses, essential outputs, and training requirements:
+
+- [ArcCatalog and Metadata](https://s3.benny.istan.to/FIS/ADB_ETESP_P39Part2_FIS_UG_ArcCatalogAndMetadata.pdf)
+- [ArcGIS Server](https://s3.benny.istan.to/FIS/ADB_ETESP_P39Part2_FIS_UG_ArcGISServer.pdf)
+- [Coordinate Conversion](https://s3.benny.istan.to/FIS/ADB_ETESP_P39Part2_FIS_UG_CoordinateConversion.pdf)
+- [Degraded Land](https://s3.benny.istan.to/FIS/ADB_ETESP_P39Part2_FIS_UG_DegradedLand.pdf)
+- [Environment Sensitivity](https://s3.benny.istan.to/FIS/ADB_ETESP_P39Part2_FIS_UG_EnvironmentSensitivity.pdf)
+- [Forest Disturbance](https://s3.benny.istan.to/FIS/ADB_ETESP_P39Part2_FIS_UG_ForestDisturbance.pdf)
+- [Forest Fire Risk](https://s3.benny.istan.to/FIS/ADB_ETESP_P39Part2_FIS_UG_ForestFireRisk.pdf)
+- [Installation and Configuration](https://s3.benny.istan.to/FIS/ADB_ETESP_P39Part2_FIS_UG_InstallationAndConfiguration.pdf)
+- [Land Availability for Forest Production](https://s3.benny.istan.to/FIS/ADB_ETESP_P39Part2_FIS_UG_LandAvailabilityForForestProduction.pdf)
+- [Land Cover](https://s3.benny.istan.to/FIS/ADB_ETESP_P39Part2_FIS_UG_LandCover.pdf)
+- [Land Suitability](https://s3.benny.istan.to/FIS/ADB_ETESP_P39Part2_FIS_UG_LandSuitability.pdf)
+- [Non-Spatial Database](https://s3.benny.istan.to/FIS/ADB_ETESP_P39Part2_FIS_UG_NonSpatialDatabase.pdf)
+- [Timber Volume Estimated](https://s3.benny.istan.to/FIS/ADB_ETESP_P39Part2_FIS_UG_TimberVolumeEstimated.pdf)
+
+## Potential Soil Loss Model
+
+As GIS Modeler, I developed the potential soil loss model based on the RUSLE (Revised Universal Soil Loss Equation) methodology.
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![](../../assets/image-projects/2008-aceh-fis-01.png){.gallery-img}
+:::
+
+:::
+
+### RUSLE Model Implementation
+
+The potential soil loss model is based on RUSLE (Revised Universal Soil Loss Equation), which accounts for erosional factors without considering sediment deposition. Annual erosion is calculated by combining spatially explicit raster maps:
+
+**E = R × K × LS × C × P**
+
+Where:
+- **E** - Annual Erosion
+- **R** - Rainfall Erosivity Factor
+- **K** - Soil Erodibility Factor
+- **LS** - Slope Factor
+- **C** - Vegetative Cover Factor
+- **P** - Management Factor
+
+### Data Sources and Methodology
+
+**Slope Factor (LS):** Calculated from SRTM30 Digital Elevation Model
+
+**Vegetative Cover (C):** Derived from Landsat land cover dataset classified according to IGBP (International Geosphere-Biosphere Programme) scheme
+
+**Soil Erodibility (K):** Calculated from USDA global soil sub-order dataset ([NRCS](http://soils.usda.gov/technical/classification/taxonomy/)), incorporating:
+- Organic matter content
+- Percentage of silt and fine sand
+- Percentage of sand
+- Soil texture and permeability
+
+**Rainfall Erosivity (R):** Calculated from interpolated daily global rainfall data (CMORPH - NOAA) using ILWIS application [methodology](https://ftp.itc.nl/pub/ilwis/pdf/appch23.pdf)
+
+### Model Specifications
+
+- **Output Scale:** 1:250,000
+- **Note:** Higher resolution input data would improve calculation accuracy of potential soil loss
+
+::: {.back-link}
+[← Back to Projects](../projects.qmd)
+:::

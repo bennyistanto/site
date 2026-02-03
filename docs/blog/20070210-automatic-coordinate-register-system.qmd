@@ -1,0 +1,18 @@
+---
+title: "Automatic Coordinate Register System"
+author: "Benny Istanto"
+date: "2007-02-10"
+description: "Image registration is the process of transforming different sets of data into one coordinate system"
+image: "../assets/image-blog/20070210-automatic-coordinate-register-system-01.jpg"
+categories:
+  - "Remote Sensing"
+# tags:
+#   - "automatic"
+
+---
+
+Image registration is the process of transforming different sets of data into one coordinate system. Data may be multiple photographs, data from different sensors, from different times, or from different viewpoints [1]. It is used in computer vision, medical imaging, military automatic target recognition, and compiling and analyzing images and data from satellites. Registration is necessary in order to be able to compare or integrate the data obtained from these different measurements. [1] Wikipedia, <http://en.wikipedia.org/wiki/Image_registration>
+
+This program is designed to Small Format Aerial Photo Application. This process is to manipulate the ER Mapper Files (\*.ers) using LISTRIG file (\*.txt) in batch. After this process, you will have ER Mapper files which have an additional GCP inside generated from LISTRIG file, then you can rectify those files in batch using the automatic rectification wizard from ER Mapper.
+
+![](../assets/image-blog/20070210-automatic-coordinate-register-system-01.jpg)

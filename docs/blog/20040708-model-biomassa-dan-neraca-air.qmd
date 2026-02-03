@@ -1,0 +1,37 @@
+---
+title: "Model biomassa dan neraca air"
+author: "Benny Istanto"
+date: "2004-07-08"
+description: "Model ini merupakan tugas akhir mata kuliah Model Simulasi Pertanian di Semester 6"
+image: "../assets/image-blog/20040708-model-biomassa-dan-neraca-air-01.jpg"
+categories:
+  - "Research"
+  - "Climate"
+# tags:
+#   - "biomassa"
+#   - "tanaman"
+#   - "model"
+#   - "perkembangan"
+#   - "pertumbuhan"
+#   - "neraca air"
+#   - "padi"
+
+---
+
+Model ini merupakan tugas akhir mata kuliah Model Simulasi Pertanian di Semester 6. Melanjutkan model [sebelumnya](/blog/20040427-model-pendugaan-biomassa-tanaman-padi) yang telah diajarkan pada praktikum, kali ini saya menambahkan beberapa variable sehingga pengguna dapat:
+
+1. Memilih jenis tanaman, yang sudah dilengkapi dengan Suhu Dasar dan Heat Unit.
+2. Memilih tanggal tanam
+3. Memilih jenis tanah, yang berkaitan dengan Titik Layu Permanen dan Kapasitas Lapang
+4. Menentukan jenis irigasi
+5. Menentukan nilai Indeks Luas Daun, Kedalaman Tanah, Kadar Air Tanah di awal tanam, Kemiringan Lahan
+
+Selain itu pengguna juga dapat mencoba data iklim dari beberapa stasiun cuaca yang disediakan, seperti gambar di bawah
+
+![](../assets/image-blog/20040708-model-biomassa-dan-neraca-air-01.jpg)
+
+Gambar di bawah ini merupakan tampilan dari model biomassa dan neraca air.
+
+![](../assets/image-blog/20040708-model-biomassa-dan-neraca-air-02.jpg)
+
+Script di bawah ini digunakan untuk menghitung neraca air pada model.

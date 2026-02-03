@@ -1,0 +1,79 @@
+---
+title: "Makalah Dasar Agronomi"
+author: "Benny Istanto"
+date: "2003-11-20"
+description: "Makalah berikut merupakan tugas dari mata kuliah Dasar Agronomi di semester 3"
+image: "../assets/image-blog/20031120-makalah-dasar-agronomi-01.jpg"
+categories:
+  - "Research"
+  - "Climate"
+# tags:
+#   - "pathogen"
+#   - "jamur"
+#   - "kelembaban"
+#   - "suhu"
+#   - "agronomi"
+
+---
+
+Makalah berikut merupakan tugas dari mata kuliah Dasar Agronomi di semester 3. Tugas ini saya kerjakan bersama 4 orang teman lainnya yang tergabung dalam kelompok 5 dengan topik bacaan 1.
+
+1. Tita Krishna Murtie, G24101008
+2. Risyanto, G24101014
+3. Dini Oktavia Ambarwati, G24101025
+4. Utian Ayuba, G24101026
+5. Benny Istanto, G24101043
+
+### Jamur pathogen sebagai kontrol ‘thrips’ pada bunga-bunga dalam rumahkaca
+
+![](../assets/image-blog/20031120-makalah-dasar-agronomi-01.jpg)
+
+***Western Flower Thrips (WFT) menyebabkan sejumlah tanaman pertanian hilang dengan memakan daun-daunan dan buah, berkembang biak dalam buah dan menyebarkan penyakit. Penggunaan pestisida berulang kali adalah satu-satunya cara untuk menurunkan populasi sampai pada tingkat yang wajar. Usaha pengendalian secara biologi telah dilakukan dengan menggunakan predator dan sebagian besar tidak berhasil. bagaimanapun, jamur entomopathognic dapat juga digunakan sebagai kontrol biologi untuk WFT. Laboratorium dan lahan percobaan menunjukkan formula umum Beauveria bassiana (GHA strain), dapat menginfeksi dan mengurangi sejumlah WFT dalam rumah kaca, ini menunjukkan bahwa hal itu berpotensi sebagai pestisida konvensional.***
+
+WFT adalah salah satu hama terpenting dalam produksi pemotongan bunga di California. WFT hidup dari daun bunga, membahayakan dan menimbulkan kerusakan estetis sehingga tidak dapat dipasarkan untuk tanaman bunga, banyak semprotan pestisida digunakan khusus untuk thrips. Industri memperkirakan biaya pengendalian hama (tenaga kerja dan materi) mencapai 7,5% dari biaya total keseluruhan. Ini sulit untuk mengukur jumlah yang rusak akibat thrips karena pemerintah tidak menyimpan data statistiknya.
+
+Gangguan tersebut juga menyebabkan banyak kehilangan tanaman pertanian seperti tomat, lada, dan buah berbiji. Dengan memakan langsung daun-daunan dan buah, dan melalui ¢ovipotional¢ yang merugikan pada buah selain itu, WFT berperan sebagai vektor untuk ¢virus tomat¢ dan virus yang mematikan yang menyerang sejumlah tanaman dan sayuran.
+
+Taktik manajemen saat ini untuk WFT, *frinkliniella occidentalis*, dalam produksi budidaya bunga mengendalikan secara utama pada penggunaan pestisida berulang-ulang. Dalam banyak situasi, penanam bunga menggunakan pestisida pada selang waktu 5 sampai 10 hari untuk mengurangi populasi pada tingkat standar. Penggunaan pestisida secara intensif seperti itu menyebabkan WFT anti pestisida berkembang pesat dalam rumah kaca. Usaha untuk mengurangi ketergantungan pada pengendalian secara kimia telah difokuskan pada pengendalian secara biologis dengan menggunakan kuman (mites) yang berifat predator dalam genus *amblyseius*dan *hypoaspis* dan serangga predator bergnus *orius*.
+
+Bagaimanapun juga pengendalian biologis itu sendiri tidak berhasil mengurangi populasi thrips dalam budidaya bunga sampai pada tingkat standar/normal. Tuntutan yang tinggi terhadap kualitas estetis dan masalah yang berhubungan dengan penyebaran virus, akan membuat pengendalian dengan predator itu sulit untuk berhasil. Karena harga komoditi itu berhubungan dengan kualitas estetis, penanam cenderung untuk tidak toleransi terhadap kerusakan.
+
+Potensi alternatif lain untuk pestisida tradisional adalah penggunaan jamur entomopathogenic yang mempengaruhi thrips dan arthropoda lainnya. Tentu saja terdapat jamur pathogen yang mematikan banyak spesies arthropoda. Ketika suhu dan RH optimal, sejumlah besar populasi serangga dapat terinfeksi oleh jamur, menyebabkan pengurangan yang berartipada ukuran populasi, hal ini disebut *epizootic*.
+
+Peristiwa alami dari epizootics fungi telah berperan dalam usaha memanfaatkan jamur sebagai pengendali hama di lahan dan rumah kaca di seluruh dunia. Sekarang ini penggunaan secara umum telah dibatasi oleh kesulitan dan teknis, yaitu produksi yang berlebihan dan seluk beluk konidia (spora), formulasi dan bentuk tak tetap antara spesies jamur dan strains, sebanding dengan kebutuhan kondisi lingkungan untuk infeksi jamur. Baru-baru ini, bagaimanapun juga kemajuan dalam teknologi fermentasi dan formulasi, dan kemajuan dalam isolasi terhadap spesies dan strain yang terinfeksi telah membuat beberapa pabrik untuk memulai produksi komersial dari jamur untuk pengendalian hama.
+
+Jamur pathogen memiliki beberapa ciri yang membuat mereka menjadi kandidat ideal sebagai pestisida kimia alternatif. Seringkali, jamur itu secara relatif berkelompok secara spesifik, tidak mebahayakan mamalia dan dapat diproduksi besar-besaran dalam media buatan dan dapat menginfeksi target populasi dalam jumlah yang tinggi. Selain itu, jamur dapat dengan mudah diformulasikan dan digunakan dengan peralatan penyemprotan yang standar.
+
+Temperatur dan RH yang tinggi diperlukan oleh kebanyakan jamur. Bagaimanapun penemuan spesies dan strain baru itu kelihatannya mampu untuk menginfeksi lebih luas pada kondisi lingkungan seperti biasa ditemukan di rumah kaca (60° to 85°F, 50 to 160% RH). Meskipun jamur memiliki perbedaan daur hidup, namun konidiospores (spora) lebih sering digunakan sebagai alat kontrol. Serangga bisa mendapatkan spora dari penyemprotan secara langsung dan dari kontak dari daun yang telah disemprot. Setelah menempel pada sekumpulan serangga yang rentan, spora menghasilkan kuman yang menembus suticle serangga. Hal ini memungkinkan jamur hidup dari tubuh serangga, akhirnya membunuh serangga itu.
+
+Temperatur yang hangat dan kelembapan yang relatif tinggi menjadikan rumah kaca sebagai lingkungan yang ideal untuk pengguanaan jamur pathogen. Disini, kami mempresentasikan hasil rancangan percobaan laboratorium dan rumah kaca untuk menilai potensi dari penggunaan produksi strain secara komersial dari *Beauveria bassiana* untuk pengendalian WFT dalam budidaya bunga di rumah kaca. Dua produk komersial yang mengandung jamur yang sekarang ini berharga yaitu Botani Gard (WP) atau Emulsifiable Oil (ES) yang diproduksi oleh perusahaan Mycotech, Montana dan Naturalis-O yang di produksi oleh Troy Biosciences.Inc di Lake Placid, Florida. Dalam laporan eksperimen ini, kami menggunakan Botani Gard Wp dan ES, formula jamur.
+
+### Laboratorium dan lahan percobaan
+
+Lahan percobaan. Kami mengadakan percobaan laboratorium untuk menilai keefektifan dari *B. bassiana* melawan segala macam umur WFT jantan dan betina dewasa pada daun bunga mawar dalam konsentrasi spora yang berbeda dibawah kendali suhu dan kelembapan. Konsentrasi 0.1, 0.45, 0.9, dan 1.8 gram spora (4.4 ´ 1,010 spora/gram) per 100 ml air ditambah ¢spreading agent¢ (0.3% v/v, Silwet L-77) yang telah dicoba pada daun mawar melawan WFT dan membandingkannya dengan WFT yang diobati dengan  spreading agent saja. Selain itu, tes tersebut diadakan untuk membandingkan pengaruh tiga kelembapan (60%, 75%, dan 90%) pada mortalitas WFT dalam dua konsentrasi spora (0.9 dan 18 gr spora pr 100 ml air). WFT tersebut telah dibatasi dengan daun-daun mawar dalam kotak kecil dengan ¢petri dish¢ yang bersih. Setiap karton mewakili sebuah percobaan tiruan. Empat tiruan mengandung 20 sampai 50 WFT dewasa pada setiap konsentrasi dan kelembapan yang telah dibandingkan.
+
+Kira-kira 0.6 ml suspensi spora *B. bassiana* telah digunakan untuk daun-daun mawar dan WFT dalam karton dengan menggunakan alat penyemprot laboratorium. Karton tersebut telah ditempatkan pada suhu kamar 78.8°F (26°C) pada salah satu dari RH tersebut. Suhu dan RH karton yang berlubang kira-kira mendekati suhu kamar (dalam 3.6°F [2°C] dan 5% RH). Setiap 24 jam dalam seminggu, kami menghitung jumlah WFT yang mati disetiap karton. Perbdaan jumlah WFT yang mati akibat perlakuan itu telah di analisa oleh ANOVA dan perbandingan rata-rata WFT yang mati akibat perlakuan itu dilakukan dengan menggunakan Metode Dunnet¢s pada P = 0,05. Analisa ²probit² telah digunakan untuk memperkirakan hubungan tingkat kematian.
+
+**Caged rose trials.**Test awal penilaian keampuhan *B. bassiana* WP melawan WFT betina dewasa pada tanaman berbunga telah dilakukan dalam ²caged rose buds². Pada rumah kaca komersil, 16 pucuk mawar tiruan dalam ²cages² telah digunakan dalam randomized complete block design. Kami menyemprot delapan pucuk mawar tiruan dengan *B. bassiana*WP dengan 1 pon formula per 100 galon air ditambah ²spreading agent² dan delapan lainyya disemprot dengan air ditambah ²spreading agent² saja lalu dikeringkan. Pucuk bunga itu ditutup dengan ²mylar tube cage² yang berlubang untuk ventilasi. Kami mengambil 12 sampai 15 WFT betina dari bunga anyelir dan melepaskannya pada setiap ²cages².
+
+Setelah 7 hari, ²cages² tersbut dibersihkan dari semak-semak bunga dan dikembalikan ke laboratorium. Lalu ditempatkan pada pendingin konvensional untuk membunuh WFT dalam ²cages². Karena tingkat aktifitas WFT yang tinggi, kami perlu menonaktifkan WFT untuk mendapatkan perhitungan. Lalu kami memotong pucuk bunga dan mencatat WFT dewasa dan larvanya. WFT yang ditemukan dalam ²cages² diemersikan dalam alkohol untuk membunuh spora pada kutikula serangga dan ditempatkan pada medium agar selektif untuk ditentukan tingkat infeksi jamur dalam WFT percobaan.
+
+**Comercial grenhouse trials**
+
+Penelitian lapang telah dilakukan pada  dua tempat: Watsonville dan Half Moon Bay. Percobaan tersebut membandingkan daya guna dari *B. bassiana* WP dan ES formula *B. bassiana.*
+
+**Anyelir**. Watsonville telah melakukan percobaan melawan WFT pada rumahkaca seluas 40.000 square foot pada 3 kultivar anyelir: ¢Elegance¢, ¢Etna¢, dan ¢Bagatel¢. Test plots terdiri dari 3 percobaan dengan 6 replika, untuk setiap percobaan kira-kira 725 SF per plot dari total 13.050 SF. Enam plot telah dicoba dengan *B. bassiana* WP formula (1 lb/100 gal) dan 6 plot  telah dicoba dengan *B. bassian* ES formula (2 qt/100 gal) dan 6 plot lainnya tanpa perlakuan apapun. Sejumlah WFT yang ada di anyelir telah dihitung terlebih dahulu saat percobaan dimulai. Dua aplikasinya telah dibuat dalam jangka 8 hari, yang pertama 28 November dan yang kedua 6 Desember 1995. untuk membandingkan berat jenis WFT yang di plot, kami mengambil 10-15 contoh bunga anyelir yang sepenuhnya terbuka dari setiap plot pada 6 dan 13 Desember.
+
+**Mawar**. The Half Moon Bay telah melakukan percobaan melawan WFT dalam luasan 50.000 SF dengan bunga mawar rumahkaca komersial yaitu ¢Royalty¢ dan ¢Caramia¢. Percobaan terdiri dari 3 perlakuan, pertama *B. bassiana* WP ( 1 lb/100 gal), kedua *B. bassiana* ES ( 2 qt/100 gal), dan yang ketiga hanya menggunakan ES saja sebagai kontrol    ( 2 qt/100 gal).
+
+Percobaan telah dibentuk sebagai ¢randomized complete block design¢ menggunakan 12 test plot pada luasan sekitar 1185 SF ( untuk setiap plotnya). Setiap dua blok terdiri 6 plot, perlakuan secara acak telah diberikan kepada semua plot dalam setiap blok. Ada 4 replika tiap perlakuan. Satu baris penyangga/penahan telah dipelihara dalam tiap plot percobaan untuk meminimalkan arus/aliran dari penggunaan sempotan. Kami memantau jumlah WFT sebelum dan sesudah percobaan dengan 10 contoh mawar per plot. Penggunaan pada 3 percobaan telah dibuat dalam jangka waktu 7 hari dimulai pada 3 April 1996 dan berakhir 24 April 1996.
+
+Kami mematikan contoh bunga anyelir dan mawar yang terpisah sendiri untuk mencegah pergerakan WFT antar sampel. Sampel dikembalikan ke laboratorium dan isimpan didalam pendingin konvensional sampai pemrosesan lebih lanjut. Kami mengambil WFT dari anyelir dan mawar dan mencatat total jumlahnya. Untuk percobaan pada mawar, 5% klorin bleach digunakan untuk membunuh spora pada kutikula serangga dan menempatkan WFT pada medium agar selektif untuk menentukan tingkat infeksi jamur. Perbedaan WFT yang mati akibat perlakuan dalam ¢caged rose¢ dan percobaa komersial telah dianalisa oleh ANOVA dan perbandingan rata-rata WFT yang mati akibat perlakuan itu menggunakan test separasi Tukey pada P = 0.05.
+
+**Pengurangan jumlah thrips**
+
+**Laboratorium percobaan.**Hasil percobaan laboratorium menyatakan bahwa penggunaan *B. bassiana* WP menyebabkan kematian WFT yang lebih besar pada semua konsentrasi dimana dibandingkan pada kontrol 78.8°F (26°C) dan pH 75%(tabel 1). Kematian WFT tidak melebihi 90% untuk setiap single konsentrasi yang diujikan. Untuk kami memperkirakan konsentrasi optimal berhasil dengan kematian WFT 50%. Probit analysis menyatakan bahwa *B.bassiana* WP membunuh 50% populasi WFT pada konsentrasi 0.42 gr/100 ml air (tabel 1). Konsentrasi ini sebanding dengan penggunaan 20 trillion spora per acre (1 lb *B. bassiana* WP). Penggandaan konsentrasi, pertama 0.9 gr/100 ml lalu 1.8 gr/100 ml, tidak menggandakan tingkat kematian, menunjukkan bahwa konsentrasi awal dari 0.45 gr/100 ml hasil produksi mendekati kematian maksimum pada suhu dan RH ini.
+
+Uji menyatakan bahwa tingkat kematian yang signifikan terjadi pada semua tes RH; meskipun demikian tingkat kematian tersebut menunjukkan bahwa untuk meningkatkannya dengan meningkatkan kelembapannya. RH di California bergantung pada wilayah geografis dan tipe rumahkaca tetapi selama24 jam kisaran RH nya 50-100%. Hasil percobaan menguatkan bahwa RH adalah faktor penting yang mempengaruhi tingkat kontrol WFT tetapi penggunaan formula lainnya seharusnya secara signifikan mengurangi jumlah WFT dikondisi rumahkaca California.
+
+**Caged rose trial**. Hasil ¢caged trial¢ menguatkan bahwa penggunaan *B. bassiana* untuk WFT yang tersebar pada pucuk mawar  dapat menghasilkan pengurangan berarti jumlah WFT, besarnya pengurangan tersebut sama dengan jumlah yang ditemukan di laboratorium pengujian.

@@ -1,0 +1,26 @@
+---
+title: "Parsing BMKG’s daily climate data"
+author: "Benny Istanto"
+date: "2023-08-22"
+description: "To replicate below code, please download daily climate data from BMKG Data Online <https://dataonline"
+categories:
+  - "Climate"
+# tags:
+#   - "weather station"
+#   - "daily climate"
+#   - "statistics"
+#   - "bmkg"
+
+---
+
+To replicate below code, please download daily climate data from BMKG Data Online <https://dataonline.bmkg.go.id/home>, just a heads up, if you haven't already registered on the portal, you might want to do so. It's a necessary step before you can download any data.
+
+Then go to Climate Data > Daily Data, choose the Station Type, Parameter, Province, Regency, Station Name and the Date Period and click Process button. You will get the data in \*.xlsx format.
+
+You can get one of the data example from this link: <https://docs.google.com/spreadsheets/d/1xbBWeHhiMNs8IehHbsrMV9yeZlcu8GqR/edit?usp=sharing&ouid=104182606454912191559&rtpof=true&sd=true>
+
+In above example, I tried to get daily precipitation data for all station from 1 Jun 2000 - 31 Dec 2021. I would like to use it to correct the value and distribution daily [IMERG](https://gpm.nasa.gov/data/imerg) data using bias correction method that currently I have develop.
+
+Unfortunately, too many missing value.
+
+I should find alternative daily timeseries precipitation data, probably gridded data will suit my objectives.

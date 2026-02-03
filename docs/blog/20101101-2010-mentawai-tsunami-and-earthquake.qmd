@@ -1,0 +1,42 @@
+---
+title: "2010 Mentawai Tsunami and Earthquake"
+author: "Benny Istanto"
+date: "2010-11-01"
+description: "25 October 2010 - 21:42, that night I was in my room (Agus Salim stadium complex) working on map requested by Ignacio Leon - Head of OCHA Indonesia"
+image: "../assets/image-blog/20101101-2010-mentawai-tsunami-and-earthquake-06.jpg"
+categories:
+  - "GIS"
+# tags:
+#   - "mentawai"
+#   - "gis"
+#   - "earthquake"
+
+---
+
+25 October 2010 - 21:42, that night I was in my room (Agus Salim stadium complex) working on map requested by Ignacio Leon - Head of OCHA Indonesia. He asked me to create some infographic about each natural disaster and it’s impact in Indonesia.
+
+When the shock occurs, I grab my go-bag and bicycle and spur fast towards Alai Market. But unfortunately traffic jam and extreme panic had occurred when I passed Padang Baru intersection.
+
+Then, the day after was a very busy day for me and team, coordinating data, analysis and information management to support the response. For first action, I create disaster event and general information map using the best available data that I can found from internet, to help government counterpart and humanitarian actors understand on the situation.
+
+### Disaster event map
+
+![](../assets/image-blog/20101101-2010-mentawai-tsunami-and-earthquake-06.jpg)
+![](../assets/image-blog/20101101-2010-mentawai-tsunami-and-earthquake-01.jpg)
+
+### General administration map
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20101101-2010-mentawai-tsunami-and-earthquake-05.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20101101-2010-mentawai-tsunami-and-earthquake-03.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20101101-2010-mentawai-tsunami-and-earthquake-04.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20101101-2010-mentawai-tsunami-and-earthquake-02.jpg)
+:::
+:::

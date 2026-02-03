@@ -1,0 +1,243 @@
+---
+title: "Using Google to disseminate information during 2010 Tsunami in Mentawai Islands"
+author: "Benny Istanto"
+date: "2010-12-15"
+description: "Information Management in Emergency Situation  During post-disaster emergency response, the role of information management is highly important"
+image: "../assets/image-blog/20101215-using-google-to-disseminate-information-during-2010-tsunami-in-mentawai-islands-01.jpg"
+categories:
+  - "General"
+# tags:
+#   - "tsunami"
+#   - "mentawai"
+#   - "emergency"
+#   - "google"
+#   - "earthquake"
+#   - "im"
+
+---
+
+### Information Management in Emergency Situation
+
+ During post-disaster emergency response, the role of information management is highly important. Data and information exchange happens very fast, and everybody needs all kinds of information in regard with the disaster. Most often, up-to-date and reliable information are scarce at the beginning of emergency response. Good Information Management is very crucial to ensure timely dissemination of information. The information management steps that should be followed include collection, processing, analysis and dissemination of data and information.
+
+### Dissemination information using free tools from Internet
+
+![](../assets/image-blog/20101215-using-google-to-disseminate-information-during-2010-tsunami-in-mentawai-islands-01.jpg)
+
+**Why Choose Google?** Google is very popular, free and powerful
+
+We must have a **Google Account** first before using the product from google, this account can be used to access all the Google products. The followings are products from Google that are used to support the Information Management Unit in terms of Response for Tsunami and Earthquake in Mentawai Islands on 25 October 2010:
+
+1. Gmail
+2. Google Sites
+3. Google Code
+4. Google Docs: Documents, Spreadsheets, Presentations, Drawings and Forms
+5. Google Calendar
+6. Google Groups
+7. Google Translate
+8. Google Analytics
+9. Google Webmaster Tools
+10. Google Earth
+11. Google Maps
+12. Google Map Maker
+13. Google Apps
+14. YouTube
+15. Picasa Web Album
+
+**Google Sites:** Mentawai Response website (<http://www.mentawairesponse.org>) developed using Google Sites as a primary tool for disseminating information. All Google products that we used integrated in one tool in Google Sites.
+
+![](../assets/image-blog/20101215-using-google-to-disseminate-information-during-2010-tsunami-in-mentawai-islands-02.jpg)
+
+﻿**Gmail:** Gmail is a free, advertising-supported webmail, POP3, and IMAP[1] service provided by Google. Gmail is used for disseminating information by email and also tool for communicating with other humanitarian actors.
+
+![](../assets/image-blog/20101215-using-google-to-disseminate-information-during-2010-tsunami-in-mentawai-islands-03.jpg)
+
+**Google Docs:** All data and information related to the disaster are stored in Google Docs (Material presentations, Minute of Meeting, Technical Reference, Tabular data: Humanitarian Impacts – Distributed Relief Materials – Population data –etc). It allows users to create and edit documents online while collaborating in real-time with other users. Google Docs combines the features of Documents and Spreadsheets with a presentation program. Data storage of any files up to 1GB each in size.
+
+![](../assets/image-blog/20101215-using-google-to-disseminate-information-during-2010-tsunami-in-mentawai-islands-04.jpg)
+![](../assets/image-blog/20101215-using-google-to-disseminate-information-during-2010-tsunami-in-mentawai-islands-05.jpg)
+
+**Google Code:** Google Code is Google's site for developer tools, APIs and technical resources. Google Sites does support custom gadgets feature that can be added to websites hosted on Google Sites. Gadget is essentially a programming interface with custom code that can be embedded and used to provide content to iGoogle homepage and websites hosted on Google Sites. As a workaround, gadgets can be used to add, include or insert JavaScript (JS) code and other content that is otherwise prohibited.
+
+In Mentawai Response website, we used some social networks and other plugins to promote our website in International and National Humanitarian forum i.e. Facebook, Twitter, Whos Amung Us and AddThis Analytics. All these plugins contain Javascript in their components, so it does not work if included in the Google Sites, to overcome this, a simple XML script was created using Google Gadgets Editor which was accessible on Google Code.
+
+* On first login, an example code of “Hello World” will be displayed, as show below:
+
+*<?xml version="1.0" encoding="UTF-8"?>  
+<Module>  
+<ModulePrefs title="hello world example" />  
+<Content type="html"><![CDATA[  
+Hello, world!  
+]]></Content>  
+</Module>*
+
+* Remove the line of Hello, world! and replace it with the custom code.
+* Name the gadget by changing the hello world example in the line of ModulePrefs.
+
+![](../assets/image-blog/20101215-using-google-to-disseminate-information-during-2010-tsunami-in-mentawai-islands-06.jpg)
+
+﻿**Google Calendar:** All Mentawai Response meeting events are stored online, meaning that the calendar can be viewed from any location that has Internet access. Multiple calendars can be added and shared, allowing various levels of permissions for the users.
+
+![](../assets/image-blog/20101215-using-google-to-disseminate-information-during-2010-tsunami-in-mentawai-islands-07.jpg)
+
+**Google Groups:** We used this tool for supporting exchange of information amongst humanitarian actors through mailing list.
+
+![](../assets/image-blog/20101215-using-google-to-disseminate-information-during-2010-tsunami-in-mentawai-islands-08.jpg)
+
+**Google Translate:** Whenever someone visits a Mentawai Response website in another language, they will be given the option to translate the content into the language of their choice. All they have to do is click on the translate link at the bottom right-hand side of the page. Now, the content on your site can be translated into 51 languages. Google Sites had integrated with the Google Translate Elements.
+
+![](../assets/image-blog/20101215-using-google-to-disseminate-information-during-2010-tsunami-in-mentawai-islands-09.jpg)
+
+**Google Analytics:** It’s is a free service offered by Google that generates detailed statistics about the visitors to a website. Since Mentawai Response website launched, 200 people visited this website every day.
+
+![](../assets/image-blog/20101215-using-google-to-disseminate-information-during-2010-tsunami-in-mentawai-islands-10.jpg)
+
+**Google Earth, Google Maps, Google Map Maker:** It is a combination of 3 tools to create an online map with input data from text or KML.
+
+![](../assets/image-blog/20101215-using-google-to-disseminate-information-during-2010-tsunami-in-mentawai-islands-11.jpg)
+
+**Google Apps:** It is a service from Google providing independently customizable versions of several Google products under a custom domain name. It features several Web applications with similar functionality to traditional office suites, including: Gmail, Google Groups, Google Calendar, Talk, Docs and Sites.
+
+![](../assets/image-blog/20101215-using-google-to-disseminate-information-during-2010-tsunami-in-mentawai-islands-12.jpg)
+
+**YouTube:** Free video sharing Web site which lets users upload, view, and share video clips.
+
+![](../assets/image-blog/20101215-using-google-to-disseminate-information-during-2010-tsunami-in-mentawai-islands-13.jpg)
+
+**Picasa Web Album:** Picasa Web Albums (PWA) is a photo sharing web site from Google, often compared to Flickr and similar sites. It allows users with accounts at Google to store and share 1 GB of photos for free.
+
+![](../assets/image-blog/20101215-using-google-to-disseminate-information-during-2010-tsunami-in-mentawai-islands-14.jpg)
+
+### Mentawai Response: website content
+
+**1.     Updates from Sikakap**
+
+The “updates from Sikakap” will provide concise information directly from Sikakap since 4 November – 11 November 2010.
+
+<http://www.mentawairesponse.org/updates-from-sikakap>
+
+**2.     Information Management**
+
+Information Management is a resource designed to assist Humanitarian Affairs professionals in managing information to support their work in ensuring better humanitarian planning and response. It consists of 3W, Contact Directory and Humanitarian Impacts.
+
+<http://www.mentawairesponse.org/information-management>
+
+**a.     3W**
+
+The Who does What Where database (3W) is providing more information on their activities respectively in terms of Mentawai Response.
+
+<http://www.mentawairesponse.org/information-management/3w>
+
+**b.     Contact Directory (Agency contact list and sector support lead list in Padang and Mentawai)**
+
+      Contact lists provide the name, organization, location, e-mail and telephone number for humanitarian actors working in an operational environment in emergencies phase. Contacts are organized and provided to user and the lists are a simple yet useful coordination tool.
+
+<http://www.mentawairesponse.org/information-management/contact-directory>
+
+**c.     Humanitarian Impacts**
+
+Humanitarian impacts summarize casualties and damages caused by disaster in figures.
+
+<http://www.mentawairesponse.org/information-management/humanitarian-impact>
+
+**3.     Map Centre**
+
+The Map Centre provides you with access to the complete set of Mentawai Islands maps produced and provided by OCHA and its partners. The page consists of Online Maps, Reference Maps and Situation Maps.
+
+<http://www.mentawairesponse.org/map-centre>
+
+**a.     Online Maps**
+
+<http://www.mentawairesponse.org/map-centre/online-maps>
+
+**b.     Reference Maps**
+
+<http://www.mentawairesponse.org/map-centre/reference-maps>
+
+Source map: DLR, OCHA
+
+**c.     Situation Maps**
+
+<http://www.mentawairesponse.org/map-centre/situation-maps>
+
+Source map: DLR, OCHA, ECJRC, IFRC, PDC, US HIU and WFP
+
+**4.     Sector Info**
+
+In general, the Sector Info page concludes information on sector support. To date, health and logistics were accommodated mainly.
+
+<http://www.mentawairesponse.org/sectors-info>
+
+**a.     Health**
+
+**b.     Logistics**
+
+**5.     Meetings**
+
+The Meeting page concludes information on minutes of meeting and its schedule conducted in Padang or Mentawai in various sectors (agriculture, coordination, logistics and emergency coordination) involved.
+
+<http://www.mentawairesponse.org/meetings>
+
+**a.     Meeting Minutes**
+
+<http://www.mentawairesponse.org/meetings/meeting-minutes>
+
+Mentawai: Agriculture, Coordination, Emergency Telecommunication
+
+Padang: Coordination, Logistics
+
+**b.     Meeting Schedules**
+
+<http://www.mentawairesponse.org/meetings/meeting-schedule>
+
+**6.     Documents**
+
+The documents page concludes all pertinent documents/reports provided by partners along with related field map production, and regulation and law.
+
+<http://www.mentawairesponse.org/documents>
+
+**a.     Situation Report**
+
+<http://www.mentawairesponse.org/documents/situation-reports>
+
+Caritas-Karina, CFK, CWS, HOPE, IBU, IFRC, Surfaid International, WHO, WVI
+
+**b.     Field Map Production**
+
+<http://www.mentawairesponse.org/documents/field-map-production>
+
+**c.     Regulation and Law**
+
+<http://www.mentawairesponse.org/documents/regulation-and-law>
+
+**7.     Surveys**
+
+During a humanitarian crisis a large number of assessments and surveys are carried out. The following displays report on assessment (form and report) had been conducted to date.
+
+<http://www.mentawairesponse.org/surveys>
+
+**a.     Report/Assessments**
+
+<http://www.mentawairesponse.org/surveys/report-assessments>
+
+Assessment Form, Assessment Data, Assessment Report
+
+**b.     Survey Tools**
+
+<http://www.mentawairesponse.org/surveys/survey-tools>
+
+**8.     Media Centre**
+
+Media Centre page concludes information in pictures, consists of Photo Gallery and Press Releases.
+
+<http://www.mentawairesponse.org/media-centre>
+
+**a.     Photo Gallery**
+
+<http://www.mentawairesponse.org/media-centre/photo-gallery>
+
+<http://picasaweb.google.com/mentawairesponse>
+
+**b.     Press Releases**
+
+<http://www.mentawairesponse.org/media-centre/press-releases>

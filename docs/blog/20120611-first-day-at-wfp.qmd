@@ -1,0 +1,23 @@
+---
+title: "First day at WFP"
+author: "Benny Istanto"
+date: "2012-06-11"
+description: "Today is my first day working at World Food Programme, Indonesia Country Office and based in Jakarta"
+image: "../assets/image-blog/20120611-first-day-at-wfp-01.jpg"
+categories:
+  - "General"
+# tags:
+#   - "first-day"
+#   - "wfp"
+
+---
+
+Today is my first day working at World Food Programme, Indonesia Country Office and based in Jakarta. I will work under Vulnerability Analysis and Mapping Unit as a GIS Programme Officer. I am happy moving back to Jakarta after spend almost 6 years working in the field.
+
+Since few months ago I am looking for a new job in Jakarta because my wife will back home soon from the Netherlands. I think it was a good reason to restart my life together.
+
+Since morning I am dealing with administrative issue and some mandatory training for new UN staff. I am really excited to start my work, as I will utilized my expertise on climate analytics, combined with GIS on food security issue.
+
+Wish me luck!
+
+![](../assets/image-blog/20120611-first-day-at-wfp-01.jpg)

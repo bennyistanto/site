@@ -1,0 +1,22 @@
+---
+title: "So fun Aerial Bold!"
+author: "Benny Istanto"
+date: "2016-04-02"
+description: "Have you heard about Aerial Bold"
+image: "../assets/image-blog/20160402-so-fun-aerial-bold-01.jpg"
+categories:
+  - "Remote Sensing"
+  - "General"
+# tags:
+#   - "aerial"
+#   - "font"
+#   - "building"
+#   - "satellite"
+
+---
+
+Have you heard about [Aerial Bold](http://type.aerial-bold.com/tw/)? - a project from [Benedikt Groß](https://benedikt-gross.de/projects/the-aerial-bold-project/) & [Joey Lee](https://jk-lee.com/projects/aerial-bold/), devoted to finding all the human-built letters of the world. The idea was to pore over satellite imagery to locate architectural ABCs, then turn those images into a font. Wired also discussed [this](https://www.wired.com/2016/03/aerial-bold-clever-typeface-crafted-satellite-shots-buildings/).
+
+![](../assets/image-blog/20160402-so-fun-aerial-bold-01.jpg)
+
+Here's the example of my daughter's name using Aerial Bold. If you are curious, yes it's real, W letter in the picture comes from Rosenhof Berlin-Zehlendorf Seniorenwohnanlage Betriebsgesellschaft mbH, Schlettstadter Straße 22, 14169 Berlin, Germany. <https://maps.app.goo.gl/TYBs856cSeDM9imz9>

@@ -1,0 +1,37 @@
+---
+title: "MBTiles map"
+author: "Benny Istanto"
+date: "2013-04-02"
+description: "After few months playing around with TileMill and TileStream, I have created few MBTiles map using data from my previous and current project"
+image: "../assets/image-blog/20130402-mbtiles-map-03.jpg"
+categories:
+  - "GIS"
+# tags:
+#   - "carto"
+#   - "tilemill"
+#   - "mbtiles"
+
+---
+
+After few months playing around with [TileMill and TileStream](/blog/20110810-first-try-using-tilemill-and-tilestream), I have created few [MBTiles](https://gdal.org/drivers/raster/mbtiles.html) map using data from my previous and current project.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20130402-mbtiles-map-03.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20130402-mbtiles-map-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20130402-mbtiles-map-01.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20130402-mbtiles-map-04.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20130402-mbtiles-map-05.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20130402-mbtiles-map-06.jpg)
+:::
+:::

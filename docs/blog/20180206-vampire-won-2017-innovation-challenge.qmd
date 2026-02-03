@@ -1,0 +1,27 @@
+---
+title: "VAMPIRE won 2017 Innovation Challenge"
+author: "Benny Istanto"
+date: "2018-02-05"
+description: "Today we celebrate the VAMPIRE project, won the 2017 WFPs Innovation Challenge"
+image: "../assets/image-blog/20180206-vampire-won-2017-innovation-challenge-03.jpg"
+categories:
+  - "General"
+# tags:
+#   - "vam"
+#   - "innovation"
+
+---
+
+Today we celebrate the VAMPIRE project, won the 2017 WFPs Innovation Challenge. See the news in WFP Innovation blog here: <https://medium.com/@WFPInnovation/wfp-staff-show-entrepreneurial-side-in-annual-competition-be03924215>
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20180206-vampire-won-2017-innovation-challenge-03.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180206-vampire-won-2017-innovation-challenge-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20180206-vampire-won-2017-innovation-challenge-01.jpg)
+:::
+:::

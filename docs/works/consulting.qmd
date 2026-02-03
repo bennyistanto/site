@@ -1,0 +1,173 @@
+---
+title: "Consulting"
+subtitle: "Expertise in climate science and geospatial solutions"
+page-layout: full
+toc: false
+css: ../styles/consulting.css
+---
+
+::: {.consulting-intro}
+I provide specialized consultancy bridging **climate science** and **geospatial technology**. I help organizations and individuals harness GIS, remote sensing, and information management for precision agriculture, natural resource management, and atmospheric resilience.
+:::
+
+::: {.logo-section}
+![](../assets/image-logo/bigc-logo-full.png)
+:::
+
+::: {.services-grid}
+
+::: {.service-card}
+::: {.service-icon}
+🌦️
+:::
+
+### Atmospheric Science & Climate Risk {.service-title}
+
+::: {.service-description}
+Quantitative analytics to decipher climate patterns and strengthen environmental resilience.
+:::
+
+::: {.service-topics}
+#### Deliverables:
+
+- Hydrometeorological monitoring systems
+- Agro-climatological modeling
+- Spatio-temporal climate analysis
+- Climate change impact assessments
+- Climate indices calculation and interpretation
+:::
+:::
+
+::: {.service-card}
+::: {.service-icon}
+🗺️
+:::
+
+### GIS, Remote Sensing & Spatial Modeling {.service-title}
+
+::: {.service-description}
+Transforming complex satellite imagery and spatial data into actionable visual intelligence.
+:::
+
+::: {.service-topics}
+#### Deliverables:
+
+- Crop phenology and vegetation health monitoring
+- Land use change detection
+- Multi-criteria site suitability analysis
+- Nightlight analytics
+- Satellite image classification
+:::
+:::
+
+::: {.service-card}
+::: {.service-icon}
+📊
+:::
+
+### Climate & Geo-Statistics Data Processing {.service-title}
+
+::: {.service-description}
+Building robust pipelines for automated data management and rigorous scientific validation.
+:::
+
+::: {.service-topics}
+#### Deliverables:
+
+- Automated ETL (Extract, Transform, Load) pipelines
+- Google Earth Engine workflows
+- Spatial Data Infrastructure (SDI) implementation
+- Database design and optimization
+- Geo-statistical modeling
+:::
+:::
+
+::: {.service-card}
+::: {.service-icon}
+⚠️
+:::
+
+### Impact Science & Early Warning {.service-title}
+
+::: {.service-description}
+Frameworks that translate hazard data into anticipatory action and decision support.
+:::
+
+::: {.service-topics}
+#### Deliverables:
+
+- Impact-based forecasting systems
+- Early Warning Early Action (EWEA) protocols
+- Hydro-meteorological risk profiling
+- Vulnerability assessments
+- Operational decision support tools
+:::
+:::
+
+::: {.service-card}
+::: {.service-icon}
+👥
+:::
+
+### Capacity Development {.service-title}
+
+::: {.service-description}
+Empowering teams with the technical skills to manage and analyze geospatial data independently.
+:::
+
+::: {.service-topics}
+#### Deliverables:
+
+- QGIS and ArcGIS technical training
+- Python for geospatial analysis 
+- Google Earth Engine bootcamps
+- Climate data processing workshops
+- Custom curriculum development
+:::
+:::
+
+::: {.service-card}
+::: {.service-icon}
+📝
+:::
+
+### Proposal Development {.service-title}
+
+::: {.service-description}
+Structuring technical concepts into winning proposals for funding and project implementation.
+:::
+
+::: {.service-topics}
+#### Deliverables:
+
+- Concept notes and logical frameworks
+- Methodology and technical approach design
+- Geospatial component integration
+- Resource and budget planning
+- Donor-specific technical documentation
+:::
+:::
+
+:::
+
+::: {.cta-section}
+## Ready to Get Started? {.cta-title}
+
+Schedule a consultation or reach out to discuss your project needs.
+
+::: {.cta-buttons}
+[📅 Schedule Appointment](https://app.acuityscheduling.com/schedule.php?owner=19707818){.btn-primary-custom target="_blank"}
+
+[✉️ Send Email](mailto:benny@istan.to?subject=Book appointment for consulting service){.btn-secondary-custom}
+:::
+:::
+
+::: {.student-note}
+### 🎓 For Students
+
+If you are a student seeking advice for climate and geospatial problems, please save your budget. Post your questions at the [@gis_id](https://t.me/gis_id){target="_blank"} Telegram group, and I will be happy to answer them there for free.
+:::
+
+::: {.back-link}
+[← Back to Works](../works.qmd)
+:::

@@ -1,0 +1,35 @@
+---
+title: "Hourly Humidity Data"
+author: "Benny Istanto"
+date: "2023-10-15"
+image: "../assets/image-blog/20231015-hourly-humidity-data-01.jpg"
+categories:
+  - "Remote Sensing"
+  - "Climate"
+# tags:
+#   - "relative humidity"
+#   - "era5-land"
+#   - "specific humidity"
+#   - "dew point"
+#   - "gee"
+#   - "temperature"
+
+---
+
+![](../assets/image-blog/20231015-hourly-humidity-data-01.jpg)
+
+Recently, I embarked on a journey to calculate humidity data from a myriad of sources. Throughout this process, I experimented with various methods, ranging from the saturation water vapour pressure using Teten's formula (with parameters according to Buck) to saturation over ice from Alduchov and Eskridge, and finally to Clausius-Clapeyron.
+
+For those in need of hourly humidity data spanning from 1 Jan 1950 to the present, there's good news! You can seamlessly extract this information from ERA5-Land Hourly data via Google Earth Engine (GEE). The Specific and Relative Humidity is meticulously calculated based on three core parameters: T2m (Temperature at 2 meters), Dew Point, and Surface Pressure.
+
+Interested in exploring further? Check out my GEE script: <https://code.earthengine.google.com/9b23f929939122fb1fdc8418d17c43f5>
+
+By the way, for those diving deep into the technicalities, the GEE script I've shared leans on a simpler approach, kinda like a nod to the good ol' Magnus formula. So, it's pretty straightforward and user-friendly
+
+I hope this proves beneficial to researchers, data scientists, and enthusiasts in the realm of climatology. If you have any suggestions, feedback, or improvements, please don't hesitate to reach out.
+
+**Reference**
+
+Alduchov, O. A., & Eskridge, R. E. (1996). Improved Magnus form approximation of saturation vapor pressure. Journal of Applied Meteorology, 35(4), 601-609.
+
+---

@@ -1,0 +1,165 @@
+---
+title: "SISKe"
+subtitle: "Spatial Information System for Forest and Land Fire"
+page-layout: full
+toc: false
+image: "../../assets/image-projects/2007-siske-00.png"
+css: ../../styles/project-detail.css
+---
+
+New software for hotspot and forest fire monitoring was developed to facilitate Forest Information System (FIS) operators in their regular tasks. SISKe is a robust yet user-friendly application for fire monitoring and early warning systems, developed by the South Sumatra Forest Fire Management Project ([SSFFMP](https://www.ssffmp.or.id/)) in 2006-2007, and freely available not only for stakeholders in South Sumatra but also at the national level.
+
+::: {.project-meta}
+::: {.meta-item}
+::: {.meta-label}
+Year
+:::
+::: {.meta-value}
+2006 - 2007
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Organization
+:::
+::: {.meta-value}
+South Sumatra Forest Fire Management Project (SSFFMP)
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Tools
+:::
+::: {.meta-value}
+Visual Basic 6, ESRI MapObjects 2.2
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Language
+:::
+::: {.meta-value}
+Bahasa Indonesia
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Reference
+:::
+::: {.meta-value}
+[SSFFMP Summary Report 2003-2007](http://www.gfmc.online/se_asia/projects/summary/1.%20Summary%20Report%20of%20Results%20and%20Achievements%202003-2007.pdf)
+:::
+:::
+:::
+
+## Key Features
+
+Distinguished from other forest fire software with Bahasa Indonesia as the main language interface, SISKe offers several unique capabilities:
+
+### 1. Weather Data Management
+
+Comprehensive management of meteorological data (rainfall, air temperature, relative humidity, wind speed and direction) from multiple sources including BMKG, Manggala Agni, and plantation company weather stations. Features include simple queries, statistical information, and export functionality to Microsoft Excel.
+
+### 2. Forest Fire Early Warning System
+
+Integrated with the weather data management module to calculate fire hazard levels at specific locations:
+
+- **Fire Weather Index (FWI)** - Canadian forest fire danger rating system
+- **Keetch-Byram Drought Index (KBDI)** - Soil moisture deficit index
+
+### 3. Forest Fire Monitoring and Analysis
+
+**Hotspot Frequency Analysis**
+
+Intersection features with administrative boundaries or land cover to generate hotspot summaries by region or land cover type, with monitoring capabilities by day, month, or custom periods.
+
+**Fire-prone Areas Analysis - Weighted Overlay**
+
+Inspired by ESRI's weighted overlay methodology, custom algorithms enable users to perform multi-criteria analysis using existing SISKe database layers or their own datasets through the embedded translation tools.
+
+**Fire-prone Areas Analysis - Fire Danger Rating System**
+
+Connected with the weather data management module and featuring advanced IDW interpolation, users can calculate Fire Weather Index across entire regions.
+
+### 4. Layout and Printing
+
+Streamlined layout design and print preview module for report generation.
+
+## Software Interface & Results
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![](../../assets/image-projects/2007-siske-01.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2007-siske-02.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2007-siske-03.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2007-siske-04.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2007-siske-05.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2007-siske-06.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2007-siske-07.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2007-siske-08.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2007-siske-09.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2007-siske-10.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2007-siske-11.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2007-siske-12.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2007-siske-13.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2007-siske-14.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2007-siske-15.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2007-siske-16.png){.gallery-img}
+:::
+
+:::
+
+::: {.back-link}
+[← Back to Projects](../projects.qmd)
+:::
+

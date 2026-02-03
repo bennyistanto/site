@@ -1,0 +1,47 @@
+---
+title: "Extreme winter in Mongolia"
+author: "Benny Istanto"
+date: "2019-01-26"
+description: "Last week, I had the opportunity to visit Mongolia"
+image: "../assets/image-blog/20190126-extreme-winter-in-mongolia-04.jpg"
+categories:
+  - "General"
+  - "Travel"
+# tags:
+#   - "disrupthunger"
+#   - "travel"
+#   - "wfp"
+#   - "meeting"
+
+---
+
+Last week, I had the opportunity to visit Mongolia. This country sounds familiar to me, especially during my childhood studied history at elementary school level about the battle of Mongol forces against the Majapahit Kingdom in East Java.
+
+Currently, Mongolia is in (extreme) winter season. Winter lasts from early November until April, with the coldest period being between mid-December and the end of February or mid-March when the temperatures drops to -20°C or -30°C, occasionally even lower. This time, trip to Mongolia is very hard for me. I have felt winter in several countries, but never felt this cold, -33°C.
+
+![](../assets/image-blog/20190126-extreme-winter-in-mongolia-04.jpg)
+
+In Ulaanbaatar (UB) I have several meeting with various government official and international organization: [NEMA](http://en.nema.gov.mn), [NAMEM](http://namem.gov.mn/eng/?p=60), [NSO](http://www.en.nso.mn/content/301), [ALAGAC](https://www.zasag.mn/en/m/alacgc), [WHO](https://www.who.int/countries/mng/en/) and [World Vision](https://worldvision.mn).
+
+Here’s some pictures in UB.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20190126-extreme-winter-in-mongolia-07.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190126-extreme-winter-in-mongolia-06.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190126-extreme-winter-in-mongolia-03.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190126-extreme-winter-in-mongolia-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190126-extreme-winter-in-mongolia-01.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20190126-extreme-winter-in-mongolia-05.jpg)
+:::
+:::

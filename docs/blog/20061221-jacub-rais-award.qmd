@@ -1,0 +1,32 @@
+---
+title: "Jacub Rais Award"
+author: "Benny Istanto"
+date: "2006-12-21"
+description: "Minggu lalu saya mengikuti Pertemuan Ilmiah Tahunan XV dan Kongres IV Masyarakat Ahli Penginderaan Jauh Indonesia (MAPIN), yang diadakan di Bandung, 13 - 14 Desember 2006"
+image: "../assets/image-blog/20061221-jacub-rais-award-03.jpg"
+categories:
+  - "Remote Sensing"
+  - "GIS"
+  - "Research"
+# tags:
+#   - "lapan"
+#   - "mapin"
+
+---
+
+Minggu lalu saya mengikuti Pertemuan Ilmiah Tahunan XV dan Kongres IV Masyarakat Ahli Penginderaan Jauh Indonesia (MAPIN), yang diadakan di Bandung, 13 - 14 Desember 2006.
+
+Saya mengirimkan makalah yang saya tulis bersama Pak Idung Risdiyanto dan Pak Rokhis Khomarudin dengan judul “*Penyusunan perangkat lunak untuk sistem peringatan dini kebakaran hutan di Indonesia*”. Saya mendapatkan jadwal presentasi pada hari kedua, ini merupakan pengalaman pertama yang sangat berkesan dan mendebarkan. Karena dari daftar pemakalah yang ada, sepertinya hanya saya yang masuk kategori “*anak kemarin sore*” karena baru 5 bulan menjalani wisuda S1, sedangkan yang lain namanya sudah cukup terkenal di dunia SIG dan Penginderaan Jauh di Indonesia.
+
+Setelah selesai sesi presentasi dan tanya jawab yang berjalan cukup lancar, panitia memngumumkan bahwa saya mendapatkan Jacub Rais Award untuk kategori Penulis Terbaik.
+
+Kaget dan senang tentunya.
+
+[caption id="" align="alignnone" width="2500"]![  Gambar 1.  Sertifikat dari MAPIN ](../assets/image-blog/20061221-jacub-rais-award-03.jpg) Gambar 1. Sertifikat dari MAPIN [/caption]
+![](../assets/image-blog/20061221-jacub-rais-award-01.jpg)
+
+Jadwal PIT MAPIN 2016 bisa dilihat di link [ini](https://drive.google.com/file/d/1Of9VW-_tJ4EsEa7838JQ8RFZLRF896MU/view?usp=sharing) dan makalah lengkapnya ada di link [ini](https://drive.google.com/file/d/1RumlhYF2ZaUP9TlVyUpEISiyyN4VKd89/view?usp=sharing).
+
+Gambar di bawah ini merupakan salah satu output yang saya tampilkan dalam presentasi, user interface pengolahan FDRS menggunakan input data wilayah.
+
+[caption id="" align="alignnone" width="2500"]![  Gambar 3.  Indonesia FDRS ](../assets/image-blog/20061221-jacub-rais-award-02.jpg) Gambar 3. Indonesia FDRS [/caption]

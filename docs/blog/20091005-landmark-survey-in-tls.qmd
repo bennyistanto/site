@@ -1,0 +1,110 @@
+---
+title: "Landmark survey in TLS"
+author: "Benny Istanto"
+date: "2009-10-05"
+description: "Since May 2009 I am working for UNFPA as Census Mapping Supervisor in Timor-Leste supporting Direksaun Jeral de Estatistika (DNE) conducting landmark survey as preparation before 2010 Population an..."
+image: "../assets/image-blog/East+Timor+(36"
+categories:
+  - "GIS"
+# tags:
+#   - "statistics"
+#   - "census"
+#   - "landmark"
+#   - "gis"
+
+---
+
+Since May 2009 I am working for UNFPA as Census Mapping Supervisor in Timor-Leste supporting Direksaun Jeral de Estatistika ([DNE](https://www.statistics.gov.tl)) conducting landmark survey as preparation before 2010 Population and Housing Census.
+
+My main tasks was
+
+* Mentor team leaders and survey technicians, developing their skills for collecting geographic data methodically and systematically.
+* Building their understanding of the purpose for which the data is being collected.
+* Work with team leaders to manage the large volume of maps, survey forms, supplies and materials, and to manage the database of landmark locations and attributes as it grows in size during the course of the survey.
+
+Beside above tasks, I also go around visiting every house of *‘chefe aldeia’* (head of sub village) in 3 districts (Dili+Atauro, Oecusse and Baucau). Interestingly, in rural areas, the distance from *chefe aldeias* house to another is very far. My team sometimes have difficulties to mention how far is the distance (in km or in hour). If they said the distance is 3 hills, it means I need to walk and can’t use car or motorbike to go. 😂😩
+
+But all of that was great fun and sometimes scary.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/East+Timor+(36)+(Custom).jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20091005-landmark-survey-in-tls-10.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20091005-landmark-survey-in-tls-11.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20091005-landmark-survey-in-tls-01.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20091005-landmark-survey-in-tls-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20091005-landmark-survey-in-tls-03.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20091005-landmark-survey-in-tls-04.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20091005-landmark-survey-in-tls-05.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20091005-landmark-survey-in-tls-06.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20091005-landmark-survey-in-tls-07.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20091005-landmark-survey-in-tls-08.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20091005-landmark-survey-in-tls-09.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/East+Timor+(26)+(Custom).jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/East+Timor+(37)+(Custom).jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/East+Timor+(70)+(Custom).jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/East+Timor+(108)+(Custom).jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/East+Timor+(113)+(Custom).jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20091005-landmark-survey-in-tls-12.jpg)
+:::
+:::
+
+### Summary and finding during Landmark Survey
+
+#### Training in Landmark Survey
+
+There was a two weeks preparation training preceding the landmark survey. The training concerned to the basic concept of Geographic Information System (GIS), Global Positioning System (GPS) operation and census mapping application. The participants were also trained to conceive and use a number of basic supporting forms. The training was attended by 11 survey technical officers and 5 team leaders. During the training, there were two sample/practice surveys, a two-days survey in Dili and a three-days survey outside of Dili.
+
+#### Problems faced during the field
+
+Used base maps are actually providing appropriate information, but there are some fatal error which causing the missteps during the LS such as: different scale of maps, unmatched positions, and also some conditions do not match the reality, i.e layer of: Aerial photo, Road, Toponimy. The maps were also does not have the coordinate system.
+
+Handheld Garmin GPS eTrex H is suitable for the beginner, as it is easy to use, small, lightweight, low cost and able to make quick and reliable satellite fixes. But it has a low accuracy, moreover with the various topographic condition of Timor-Leste. Noted landmarks position was mostly taken on the hillsides and under the shade trees. The accurate waypoints are difficult to be retrieved under those conditions by using Garmin eTrex H. Furthermore; this is equipped by the monochrome display which usually confusing to mark off the Track and existing base maps.
+
+The technical team has a good grip of the field condition, but they are less reliable in utilizing the maps for supporting the survey activities. There was a number of misdirection during the survey. Redirection (to obtain the right way) is guided by synchronizing the GPS with base maps in laptop. In this case, Dili district - with its complex condition - required an extra concern.
+
+At the beginning, the technical team always took the waypoints incorrectly, due to the limitation of their understanding on mapping basic concept and census application. Considerable time and patience were spent to make a significant improvement. The output of Dili district still needs a major revision, since it is the first location and there are a number of errors. The revision should be supported by accurate and good quality map. The most challenging problem during the survey was various topographic condition of Timor Leste, which required an excellent physical condition.
+
+The overall purpose of this activity is to develop the technical team capacity and comprehension to overcome the current and future problems. The survey is not only focused on landmark position registration. Fruitful discussions on training materials and its application in the field were always been inserted during the survey.
+
+NSD Agency was highly supporting the LS by conducting the approach to Chefe Suco and Chefe Aldeia. The LS was successfully conducted without any major problems either technical or administrative and also good cooperation among the related agencies and team.
+
+Revision to the output has not been fully completed, due to the limitation of mapping expert in NSD.
+
+#### Suggestion from United Nations Security Operation Centre
+
+During the LS outside of Dili district area, United Nation Security Operation Center (UN SOC) suggested the team to always bring UN standard safety equipment, including: single communication radio, vehicle communication radio and vehicle GPS. UN staff is only allowed to conduct the trip to the area outside of DIli district using UN vehicle and UN flight. UN staff is not allowed to trip by public transportation i.e NAKROMA watercraft.

@@ -1,0 +1,52 @@
+---
+title: "West Sumatra Earthquake Response 2009"
+author: "Benny Istanto"
+date: "2010-04-20"
+description: "Almost 5-months I have been working for UNOCHA as GIS Officer to support earthquake response that happen in West Sumatra, 30 Sep 2009"
+image: "../assets/image-blog/20100420-west-sumatra-earthquake-response-2009-04.jpg"
+categories:
+  - "GIS"
+# tags:
+#   - "atlas"
+#   - "idp"
+#   - "response"
+
+---
+
+Almost 5-months I have been working for UNOCHA as GIS Officer to support earthquake response that happen in West Sumatra, 30 Sep 2009. I was bored in the first two-months, because UNOCHA’s works mostly on coordination and I feel my excellent skills on GIS not much used.
+
+![](../assets/image-blog/20100420-west-sumatra-earthquake-response-2009-04.jpg)
+
+One of example work, I did an assessment to IDP camps, then update the map. Easy peasy and nothing special.
+
+![](../assets/image-blog/20100420-west-sumatra-earthquake-response-2009-03.jpg)
+
+Then I realized, coordinating lots of humanitarian actors are challenging, especially when you asked them to provide data and update on their works. Some are voluntary and proactive sending the data, but most of them are lazy. 😂
+
+I have been requested by Head of UNOCHA in Jakarta to produce an ATLAS related to the response, similar with what UNOCHA did for Yogyakarta Earthquake in 2006. Challenging work (GIS+Design+Visualization+Coordination) has started, with team - I try to approach the cluster lead and member to get update about their work and communicate about our plan to create an ATLAS, so far the progress is quite good.
+
+Here’s some of the draft.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20100420-west-sumatra-earthquake-response-2009-01.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20100420-west-sumatra-earthquake-response-2009-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20100420-west-sumatra-earthquake-response-2009-05.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20100420-west-sumatra-earthquake-response-2009-06.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20100420-west-sumatra-earthquake-response-2009-07.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20100420-west-sumatra-earthquake-response-2009-08.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20100420-west-sumatra-earthquake-response-2009-09.jpg)
+:::
+:::

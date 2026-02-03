@@ -1,0 +1,158 @@
+---
+title: "Menginstall “GDAL/OGR for Python” di Windows"
+author: "Benny Istanto"
+date: "2013-09-11"
+description: "Beberapa bulan terakhir saya banyak menggunakan GDAL/OGR untuk melakukan clip dan translate data satelit"
+image: "../assets/image-blog/20130911-menginstall-gdalogr-for-python-di-windows-01.jpg"
+categories:
+  - "GIS"
+# tags:
+#   - "python"
+#   - "ogr"
+#   - "windows"
+
+---
+
+Beberapa bulan terakhir saya banyak menggunakan [GDAL/OGR](https://gdal.org) untuk melakukan *clip* dan *translate* data satelit. Sebelumnya saya menggunakan GDAL/OGR yang sudah terintegrasi di dalam QGIS *plugins* ([FW tools](http://fwtools.maptools.org)).
+
+Ternyata menggunakan GDAL/OGR secara langsung juga mudah dan jauh lebih enak, apalagi ketika saya hanya membutuhkan operasi *clip* untuk memotong data satelit menjadi wilayah Indonesia saja, dan *translate* untuk mengubah format HDF menjadi format GeoTIFF.
+
+Dengan menggunakan 1-baris perintah GDAL/OGR, proses *clip* dan *translate* untuk 1000 file bisa dilakukan dengan cepat dan hanya memerlukan waktu beberapa detik saja, tentunya syarat dan ketentuan berlaku (tergantung ukuran filenya, *shapefile* yang digunakan untuk memotong, luasan wilayah, dll).
+
+Tetapi banyak orang enggan menggunakan GDAL/OGR secara langsung, ini disebabkan oleh beberapa faktor seperti:
+
+* Proses instalasi dan pengaturannya yang rumit
+* GDAL/OGR sudah tersedia dengan berbagai versi dari hasil instalasi software lainnya. QGIS dan PostgreSQL+PostGIS misalnya, mempunyai GDAL/OGR di dalamnya, dengan pengaturan yang melekat tergantung kebutuhan software itu sendiri.
+* Komputer sudah terinstall ArcGIS, sehingga akan menambah rumit dan mungkin saja menimbulkan masalah baru ketika GDAL/OGR terinstall juga.
+
+Setelah mencoba beberapa metode, saya menemukan cara mudah menginstall software GDAL/OGR terbaru di sistem operasi Windows. (Untuk sistem operasi lain, tidak perlu saya beri contoh, karena jauh lebih mudah dibanding Windows).
+
+Untuk melakukan instalasi ini, kamu harus mempunyai akses sebagai Administrator di Windows.
+
+> CATATAN
+>
+> Situasi berikut dapat menyebabkan masalah ketika menginstall GDAL/OGR for Python:
+>
+> 1. Beberapa instalasi Python. Misalnya: ArcGIS menginstal versi Python yang tidak terdaftar secara resmi di Windows (membuatnya sedikit lebih rumit untuk menginstal GDAL padanya). Lihat langkah 1 untuk informasi lebih lanjut.
+>
+> 2. GDAL/OGR mungkin sudah terinstal dan diperlukan oleh perangkat lunak lain (misal: QGIS dan PostGIS). Lihat langkah 7 untuk informasi dan solusi.
+
+## Prosedur instalasi:
+
+1. Menentukan versi Python yang diinginkan
+2. Mendapatkan file instalasi GDAL
+3. Mendapatkan *Python bindings*
+4. Menginstal GDAL
+5. Mengedit *Environment Variable* pada Windows
+6. Menginstal *Python bindings*
+7. Informasi dan solusi untuk instalasi GDAL yang sudah ada
+8. Masalah umum
+
+### 1. Menentukan versi Python yang diinginkan
+
+Jika kamu menginstal Python secara manual, itu bisa berada di mana saja lokasi tempat menginstalnya, tetapi lokasi *default*-nya adalah seperti C:\PythonXX\, di mana XX adalah versi utama; misalnya, 27 adalah versi utama Python 2.7.5. (Versi 2.7.5 adalah versi python yang terinstall di Windows saya dan lokasinya berada di C:\Python27)
+
+Jika di komputer kita telah terinstall ArcGIS misalnya, ArcGIS 10.2 biasanya menginstal Python 2.7 ke C:\Python27\ArcGIS10.2\, meskipun sebenarnya dapat juga diinstal ke drive lokal lain seperti D:.
+
+Jika kamu telah menginstal *Background Geoprocessing 64-bit* (dijelaskan di [sini](https://www.esri.com/arcgis-blog/products/arcgis-desktop/analytics/announcing-64-bit-geoprocessing/)), maka itu akan menginstal Python tambahan, dengan lokasi default C:\Python27\ArcGISx6410.2\
+
+Kamu juga dapat mencoba mencari python.exe di *hard-drive* kamu, tetapi perlu diketahui bahwa beberapa aplikasi mungkin berisi instalasi internal Python mereka sendiri (yang mungkin tidak cocok/ingin kamu gunakan).
+
+Setelah kamu mengetahui Python mana yang akan kamu gunakan, buka interpreter Python dengan cara biasa (atau klik dua kali pada python.exe-nya). Ini akan mencetak informasi tentang versi di atas ketika terbuka, misalnya:
+
+*Python 2.7.5 (default, 15 May 2013, 08:10:18) [MSC v.1500 32 bit (Intel)] on win32*
+
+Informasi yang penting dari versi Python di atas: versi di komputer saya adalah Python 2.7 (informasi tambahan .5 tidak penting) dan 32 bit.
+
+### 2. Mendapatkan file instalasi GDAL
+
+Situs ini: <https://www.gisinternals.com/release.php> adalah tempat dimana kamu dapat mengunduh file instalasi GDAL. Gulir ke bawah ke bagian bawah tabel dan klik tautan yang relevan di '*Downloads' -* pada kolom *Arch*. kolom menunjukkan apakah *32 bit* (*win32*) atau *64 bit* (*x64*), pilih salah satu yang sesuai dengan Python kamu. Misal: *release-1500-gdal-1-10-1-mapserver-6-4-0*
+
+Dari halaman baru, download file *GDAL Core*: *gdal-[version]-[build]-core.msi* (Contoh: *gdal-110-1500-core.msi*)
+
+### 3. Mendapatkan *Python Bindings*
+
+Untungnya, *Python bindings* juga tersedia di sini, nama filenya *GDAL-[gdalVersion.architecture]-py[pythonVersion].[exe/msi]* (misalnya *GDAL-1.10.1.win32-py2.7.msi*), pastikan saja untuk mengunduh versi yang cocok dengan versi Python yang kamu instal.
+
+### 4. Menginstall GDAL
+
+Jalankan file instalasi GDAL Core yang diunduh pada langkah 2, dan ingat/catat lokasi folder instalasi jika kamu mengubahnya (tidak sesuai dengan *default*).
+
+### 5. Edit *Environmental Variables*
+
+> PERINGATAN
+>
+> Jangan membuat kesalahan apa pun disini (seperti menghapus sesuatu), atau akan berakibat sistem kamu menjadi tidak berfungsi…
+
+Untuk memunculkan kotak dialog *Environmental Variables*:
+
+* Buka *Control Panel*
+* Masuk ke *System*
+* Klik pada *Advanced* di sebelah kiri
+* Lalu klik *Environmental Variables* dibagian bawah
+
+Pertama, kamu perlu mengidentifikasi apakah akan ada konflik dengan versi GDAL yang mungkin telah diinstal sebelumnya. Sebagai contoh, saya akan memodifikasi dua *Environmental Variables*, yang satu disebut GDAL\_DATA dan yang lainnya sistem *Path*.
+
+Untuk memeriksa versi GDAL sebelumnya:
+
+* Gulir ke bawah di panel *System Variables* (di agian bawah) dan cari variabel yang disebut GDAL\_DATA
+* Gulir ke bawah lebih jauh di panel *System Variables* dan temukan variabel *Path*, klik *Edit* dan salin konten ke *editor* teks (Notepad atau Wordpad), lalu cek isinya dengan cermat dan lihat apakah ada referensi ke GDAL.
+* Periksa panel variabel *User* untuk hal yang sama (kecil kemungkinannya ada di sini, tetapi perlu diperiksa)
+
+Jika GDAL\_DATA tidak ada dan tidak ada referensi ke GDAL di variabel *Path*, seharusnya tidak ada konflik dan kamu dapat melanjutkan dengan yang di bawah ini. Jika tidak, periksa informasi di langkah 7 sebelum melanjutkan.
+
+Di panel *System Variables*, gulir kotak ke bawah, pilih variabel *Path*, lalu ke *Edit*, tekan *End* untuk mendapatkan kursor di bagian akhir, tambahkan titik koma (;) dan kemudian masukkan path instalasi GDAL kamu. Sebagai contoh dalam instalasi di komputer saya, saya menambahkan ini:
+
+;C:\Program Files (x86)\GDAL
+
+> Jika sistem operasi kamu menggunakan *64 bit*, dan kamu juga menggunakan file instalasi GDAL *64 bit*, maka yang harus kamu tambahkan adalah:
+>
+> ;C:\Program Files\GDAL
+>
+> Pastikan untuk tidak memasukkan spasi tambahan sebelum atau sesudah *path*!
+
+Klik *OK*, lalu klik *New* dan masukkan yang berikut ini:
+
+Nama variabel: GDAL\_DATA
+
+Nilai variabel adalah path ke direktori data GDAL. Sebagai contoh dalam instalasi di komputer saya, saya menambahkan ini:
+
+C:\Program Files (x86)\GDAL\gdal-data
+
+> Jika sistem operasi kamu menggunakan *64 bit*, dan kamu juga menggunakan file instalasi GDAL *64 bit*, maka yang harus kamu tambahkan adalah:
+>
+> C:\Program Files\GDAL\gdal-data
+
+Untuk menguji hasil instalasi, buka *command prompt* kamu (ketik *cmd* di dialog *Run*), ketik *ogr2ogr* dan tekan *Enter*. Ini adalah salah satu program yang disertakan dengan GDAL; jika *Path* kamu sudah ditulis dengan benar, itu akan dapat diakses dari mana saja.
+
+Jika beberapa informasi tentang penggunaan ogr2ogr dan opsinya tercetak di layar (lihat gambar di bawah), maka GDAL sudah terpasang dengan benar dan *Environmental Variables* berfungsi.
+
+![](../assets/image-blog/20130911-menginstall-gdalogr-for-python-di-windows-01.jpg)
+
+Jika sebaliknya dikatakan: *‘ogr2ogr’ is not recognized as an internal or external command, operable program or batch file.*, Berarti ada masalah. Pertama, coba *restart* komputer kemudian jalankan perintah *ogr2ogr* lagi, jika *ogr2ogr* masih tidak berfungsi, periksa *Environmental Variables* kamu untuk memastikan tidak ada kesalahan ejaan atau kesalahan ketik.
+
+### 6. Menginstall *Python bindings*
+
+Jalankan file instalasi *Python bindings* yang diunduh pada langkah 2. Jika kamu memiliki banyak instalasi Python atau pengaturan *non-standar*, pastikan untuk memeriksa ke versi Python mana ini akan terinstall.
+
+Setelah instalasi dilakukan dan untuk menguji seluruh pengaturan, buka *prompt* Python yang relevan dan masukkan:
+
+*import ogr*
+
+Tekan *Enter*, lalu:
+
+*import gdal*
+
+Jika keduanya berjalan tanpa ada respon apa pun, berarti kamu telah berhasil menginstall GDAL/OGR! (lihat gambar di bawah ini)
+
+![](../assets/image-blog/20130911-menginstall-gdalogr-for-python-di-windows-02.jpg)
+
+### 7. Masalah/solusi untuk instalasi GDAL yang sudah ada
+
+Jika program/aplikasi lain telah menginstall GDAL pada komputermu, ini mungkin dapat menyebabkan masalah jika kamu mengganti variabel *Path* dan GDAL\_DATA karena versi *library* nya mungkin tidak cocok.
+
+Identifikasi dan buatlah list terkait program/aplikasi mana saja yang menggunakan atau menginstall GDAL, dan pikirkan apakah kamu masih memerlukannya. Idealnya kamu dapat menghapus versi yang ada dan melanjutkan hanya dengan satu versi, jika kamu melakukan ini pastikan untuk membersihkan variabel *Path* dan GDAL\_DATA sehingga mengarah ke lokasi yang benar dan lanjutkan dengan langkah 5 dan 6 di atas. Sebagai alternatif, kamu mungkin bisa mendapatkan *Python bindings* untuk versi yang telah diinstal, dan mengizinkan Python untuk mengaksesnya.
+
+### 8. Masalah umum
+
+Saat mencoba melakukan "*import gdal*" atau "*import ogr*" pada *prompt* Python, pesan kesalahan seperti *ImportError: DLL load failed: The specified module could not be found.* adalah paling sering disebabkan oleh kesalahan saat menambahkan folder pemasangan GDAL ke variabel sistem *Path* - ketika menemukan kesalahan ini, kembali ke langkah 5 dan cek dengan teliti.

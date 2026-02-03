@@ -1,0 +1,48 @@
+---
+title: "Menduga distribusi ukuran butir hujan"
+author: "Benny Istanto"
+date: "2003-10-16"
+description: "Minggu kemarin kita melakukan praktikum mata kuliah Hidrometeorologi tentang pendugaan distribusi ukuran butir hujan pada berbagai kondisi atmosfer, awal atau akhir hujan"
+image: "../assets/image-blog/20031016-menduga-distribusi-ukuran-butir-hujan-01.jpg"
+categories:
+  - "Climate"
+  - "Data Science"
+# tags:
+#   - "hujan"
+#   - "butir hujan"
+#   - "hidrometeorologi"
+#   - "energi kinetik"
+
+---
+
+Minggu kemarin kita melakukan praktikum mata kuliah Hidrometeorologi tentang pendugaan distribusi ukuran butir hujan pada berbagai kondisi atmosfer, awal atau akhir hujan. Pada sesi menjelaskan prosedur pengamatan butir hujan, Prof. Daniel Murdiyarso menunjukkan contoh ukuran butir hujan yang dihasilkan oleh suntikan mikro-milimeter pada kertas khusus warna biru yang mempunyai daya serap tinggi dan dipasang pada “Pemidangan kayu bundar”, yang biasa dipakai untuk menjahit.
+
+Sebelum kita membahas tentang analisa datanya, sebaiknya kita baca dulu beberapa paragraf berikut ini.
+
+Hujan adalah salah satu bentuk presipitasi air atmosfer ke permukaan bumi. Hujan akan terjadi apabila uap air/air yang dapat menimbulkan hujan (precitible water) mengalami kondensasi sehingga membentuk butir-butir yang memiliki ukuran dan kecepatan jatuh yang cukup.
+
+Tetesan hujan menyebabkan pecahnya bongkahan tanah yang besar, menghancurkannya dan menyebabkan pengangkutan partikel-partikel tanah dengan percikan dan pencucian (Seyhan, 1976d dan Riezebos, 1975)
+
+Butir hujan bermacam-macam ukurannya mulai dari butir yang sedikit besar dari kabut samapai diameter maksimum sedikit lebih besar dari 7 mililiter. Rata- rata butir hujan hujan yang terjadi berukuran antara 1 sampai 4 mililiter. Rata- rata hujan didaerah tropika mempunyai butir hujan sekitar tiga mililter dan diameter 4,4 mm. Diameter didaerah tropika lebih besar dibanding daerah iklim sedang. (Kowal dan Kassam dalam Sitanala, 2000)
+
+Pada setiap kejadian hujan berbagai ukuran hujan terdapat. Namun demikian terdapat korelasi yang nyata antara intensitas hujan dengan ukuran median butir-butir hujan. Ukuran median butir hujan yang membagi butir-butir besar menjadi butir-butir yang kecil dalam kelompok yang sama volumenya bervariasi mulai dari mulai i 1mm untuk hujan berintensitas 1,25 mililiter per jam sampai tiga mm untuk hujan dengan intensitas 100 mililiter per jam (Laws dan Parson dalam Sitanala, 2000). Ini menunjukkan bahwa suatu peningkatan butir hujan sebesar tiga kali maka terjadi peningkatan intensitas hujan sebersar 80 kali.
+
+Kecepatan jatuh butir hujan ditentukan oleh grafitasi, tahanan udara, dan angin. Gravitasi bekerja secara seragam terhadap semua butir hujan yang ada. Tetapi tahanan udara persatuan massa akan semakin besar dengan semakin kecilnya ukuran butir hujan. oleh kerena itu semakin kecil butir hujan, maka besar permukaan jenisnya.
+
+Angin adalah faktor lain yang menyebabkan kecepatan jatuh butir hujan. Sementara itu kecepatan jatuh butir hujan maksimum adalah berkisar antara 33 km/jam. Angin kencang dapat memperbesar kecepatan jatuh butir hujan.
+
+Dengan diketahui kecepatan butir hujan maka kita akan dapat menentukan besarnya energi kinetik hujan tersebut. Energi kinetik hujan adalah sifat hujan yang sangat penting dan mempengaruhi erosi.
+
+### Data
+
+Proses mengukur butir hujan ini sangat melelahkan, membuat mata jereng. Saya harus mengukur diamater setiap butir hujan yang tertangkap kertas di pemidangan. Grafik di bawah menunjukkan bahwa Kecepatan adalah fungsi dari Diameter butir hujan.
+
+![Gambar 1. Data butir hujan](../assets/image-blog/20031016-menduga-distribusi-ukuran-butir-hujan-01.jpg) 
+
+Gambar 1. Data butir hujan
+
+Selain itu bekerja dalam kelompok, kita harus melakukan kalibrasi butir hujan dalam berbagai ukuran milimeter dan dengan 2 kali ulangan kemudian dihitung diameter rataannya. Cukup menyenangkan tapi juga membosankan ketika harus mengukur butir satu-per-satu.
+
+![Gambar 2. Kalibrasi data butir hujan](../assets/image-blog/20031016-menduga-distribusi-ukuran-butir-hujan-02.jpg) 
+
+Gambar 2. Kalibrasi data butir hujan

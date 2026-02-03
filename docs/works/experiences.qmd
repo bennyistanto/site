@@ -1,0 +1,739 @@
+---
+title: "Experiences"
+subtitle: "Professional journey in climate science and GIS"
+page-layout: full
+toc: false
+css: ../styles/experiences.css
+---
+
+::: {.timeline-intro}
+With limited skills I have, so far I've been working on information management and coordination for humanitarian activities, GIS and remote sensing, crop simulation models, agriculture meteorology and climate risk analytics.
+
+Find out some information about the projects that I've been involved with...
+:::
+
+::: {.section-divider}
+## International Development Agencies
+:::
+
+::: {.timeline}
+
+<!-- World Bank - GFDRR -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Sep 2025 - Present]{.timeline-date}
+
+::: {.timeline-organization}
+The World Bank
+:::
+
+::: {.timeline-position}
+Risk Data Librarian
+:::
+
+::: {.timeline-project}
+Global Facility for Disaster Reduction and Recovery (GFDRR)
+:::
+
+::: {.timeline-location}
+Washington DC, US
+:::
+
+::: {.timeline-summary}
+Making Hazard, Exposure, Vulnerability and Loss (HEVL) data play nice together for standardized risk insight, Findability, Accessibility, Interoperability, and Reusability (FAIR) data for unfair disaster. Risk Data Library project, an initiative of the Global Facility for Disaster Reduction and Recovery (GFDRR).
+:::
+:::
+:::
+
+<!-- World Bank - GOST -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Sep 2021 - Present]{.timeline-date}
+
+::: {.timeline-organization}
+The World Bank
+:::
+
+::: {.timeline-position}
+Climate Geographer
+:::
+
+::: {.timeline-project}
+GOST, Data Analytics and Tools. DEC Data Group
+:::
+
+::: {.timeline-location}
+Washington DC, US
+:::
+
+::: {.timeline-summary}
+I supported 15+ projects (some of them are still ongoing) with various themes from Sustainable Development Flagship, Water and Climate, Urban Development, World Development Report, Poverty Alleviation, Data Partnership, Ukraine need assessment, and Climate-informed spatial planning. I collaborate with teams across the bank to deliver solutions addressing issues in sustainable development, agriculture, and hydrometeorological monitoring.
+:::
+:::
+:::
+
+<!-- WFP - Climate Analyst -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Jan 2017 - Aug 2021]{.timeline-date}
+
+::: {.timeline-organization}
+World Food Programme
+:::
+
+::: {.timeline-position}
+Earth Observation and Climate Analyst
+:::
+
+::: {.timeline-project}
+Vulnerability Analysis and Mapping
+:::
+
+::: {.timeline-location}
+Regional Asia and the Pacific
+:::
+
+::: {.timeline-summary}
+Support Bangkok Regional Bureau for Asia and Pacific (RBB) VAM team with climate risk analytics and outlook, and responsible for spatial analysis covering 22 countries (17 country offices + 5 oversight countries).
+:::
+:::
+:::
+
+<!-- WFP - GIS Officer -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Jun 2012 - Dec 2016]{.timeline-date}
+
+::: {.timeline-organization}
+World Food Programme
+:::
+
+::: {.timeline-position}
+GIS Officer
+:::
+
+::: {.timeline-project}
+Vulnerability Analysis and Mapping
+:::
+
+::: {.timeline-location}
+Indonesia
+:::
+
+::: {.timeline-summary}
+Working under Vulnerability Analysis and Mapping (VAM) unit - capacity development for WFP staffs and government counterparts; secondary data initiative; involved in emergency response; enhance knowledge on methodologies of analyzing relationship between climate characteristics, natural disaster and food security; exploration for new methodologies and research on satellite-based application for food security, deforestation, hydrometeorological disaster and agriculture application.
+:::
+
+::: {.timeline-achievements}
+#### Selected Achievements
+
+- The Best GIS Officer in 1st GIS Community Award 2015, World Food Programme, worldwide
+- Created online FSVA 2015, now installed in the President of Indonesia's situation room to monitor national food security
+- Developed VAMPIRE - The Vulnerability Analysis and Monitoring Platform for Impact of Regional Events
+- Indonesia Country Office SDI and GIS Services
+- Province Infographic
+:::
+:::
+:::
+
+<!-- ILO - GIS Officer -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Jul 2011 - Jun 2012]{.timeline-date}
+
+::: {.timeline-organization}
+International Labour Organization
+:::
+
+::: {.timeline-position}
+GIS Officer
+:::
+
+::: {.timeline-project}
+Creating Jobs: Capacity Building for Local Resource-based Road Works
+:::
+
+::: {.timeline-location}
+Aceh, Indonesia
+:::
+
+::: {.timeline-summary}
+UNDP/ILO Project in selected districts in Aceh and Nias.
+:::
+
+::: {.timeline-achievements}
+#### Selected Achievements
+
+- Made 1 staff of district public works a champion in the GIS operating room
+- Completed institutional capacity development: 538 days of trainee-days, 31 men and 8 women trainees
+- District road and bridge condition survey completed for ±850 km in Bireuen
+:::
+:::
+:::
+
+<!-- ILO - GIS Consultant -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Feb - May 2011]{.timeline-date}
+
+::: {.timeline-organization}
+International Labour Organization
+:::
+
+::: {.timeline-position}
+GIS Consultant
+:::
+
+::: {.timeline-project}
+Creating Jobs: Capacity Building for Local Resource-based Road Works
+:::
+
+::: {.timeline-location}
+Aceh, Indonesia
+:::
+
+::: {.timeline-achievements}
+#### Selected Achievements
+
+- Completed institutional capacity development: 398 days of trainee-days, 120 men and 36 women trainees
+- District road and bridge condition survey for ±750 km of district road in Pidie completed
+- Comprehensive spatial data with attributes for every 100 meters of road
+:::
+:::
+:::
+
+<!-- UN RCO -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[May - Dec 2010]{.timeline-date}
+
+::: {.timeline-organization}
+United Nations Resident Coordinator Office
+:::
+
+::: {.timeline-position}
+Information Management Officer
+:::
+
+::: {.timeline-project}
+2010 West Sumatra Recovery Network
+:::
+
+::: {.timeline-location}
+West Sumatra, Indonesia
+:::
+:::
+:::
+
+<!-- UNOCHA -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Dec 2009 - Apr 2010]{.timeline-date}
+
+::: {.timeline-organization}
+UN Office for the Coordination of Humanitarian Affairs
+:::
+
+::: {.timeline-position}
+GIS/IT Officer
+:::
+
+::: {.timeline-project}
+2009 West Sumatra Earthquake Response
+:::
+
+::: {.timeline-location}
+West Sumatra, Indonesia
+:::
+:::
+:::
+
+<!-- ADB - SKM -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Oct - Dec 2009]{.timeline-date}
+
+::: {.timeline-organization}
+Asian Development Bank
+:::
+
+::: {.timeline-position}
+GIS Modeler
+:::
+
+::: {.timeline-project}
+Information Support for Management of Aceh's Forest Resources
+:::
+
+::: {.timeline-location}
+Aceh, Indonesia
+:::
+
+::: {.timeline-summary}
+Client: SKM - Sinclair Knight Merz. Earthquake and Tsunami Emergency Support Project - Package 39 Part 2.
+:::
+:::
+:::
+
+<!-- UNFPA -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[May - Sep 2009]{.timeline-date}
+
+::: {.timeline-organization}
+United Nations Population Fund
+:::
+
+::: {.timeline-position}
+Census Mapping Supervisor
+:::
+
+::: {.timeline-project}
+2010 Population and Housing Census in Timor-Leste
+:::
+
+::: {.timeline-location}
+Timor-Leste
+:::
+
+::: {.timeline-achievements}
+#### Selected Achievements
+
+- Revised enumeration area, suco location and marked landmark for 3 districts (Dili, Oecusse and Baucau)
+:::
+:::
+:::
+
+<!-- MCC -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Aug - Dec 2009]{.timeline-date}
+
+::: {.timeline-organization}
+Millennium Challenge Corporation
+:::
+
+::: {.timeline-position}
+GIS Consultant
+:::
+
+::: {.timeline-project}
+Indonesia Immunization Project
+:::
+
+::: {.timeline-location}
+Jakarta, Indonesia
+:::
+:::
+:::
+
+<!-- ADB - SECID -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Jul 2008 - Apr 2009]{.timeline-date}
+
+::: {.timeline-organization}
+Asian Development Bank
+:::
+
+::: {.timeline-position}
+GIS Modeler
+:::
+
+::: {.timeline-project}
+Information Support for Management of Aceh's Forest Resources
+:::
+
+::: {.timeline-location}
+Aceh, Indonesia
+:::
+
+::: {.timeline-summary}
+Client: SECID - South East Consortium for International Development. Earthquake and Tsunami Emergency Support Project - Package 38.
+:::
+:::
+:::
+
+<!-- EU - Short-term Expert -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Apr 2008]{.timeline-date}
+
+::: {.timeline-organization}
+European Union
+:::
+
+::: {.timeline-position}
+Short-term Expert
+:::
+
+::: {.timeline-project}
+South Sumatra Forest Fire Management Project
+:::
+
+::: {.timeline-location}
+Palembang, Indonesia
+:::
+
+::: {.timeline-achievements}
+#### Selected Achievements
+
+- Guideline on the use of remote sensing open source software for fire monitoring
+:::
+:::
+:::
+
+<!-- EU - GIS Consultant -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Oct 2006]{.timeline-date}
+
+::: {.timeline-organization}
+European Union
+:::
+
+::: {.timeline-position}
+GIS Consultant
+:::
+
+::: {.timeline-project}
+South Sumatra Forest Fire Management Project
+:::
+
+::: {.timeline-location}
+Palembang, Indonesia
+:::
+
+::: {.timeline-achievements}
+#### Selected Achievements
+
+- Spatial Information System for Land and Forest Fire (SISKe), a desktop application for fire monitoring utilized by all forestry offices at district level in South Sumatra
+:::
+:::
+:::
+
+:::
+
+::: {.section-divider}
+## Government of Indonesia
+:::
+
+::: {.timeline}
+
+<!-- Ministry of Forestry - Ciliwung -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Dec 2007 - Mar 2008]{.timeline-date}
+
+::: {.timeline-organization}
+Ministry of Forestry
+:::
+
+::: {.timeline-position}
+GIS Consultant
+:::
+
+::: {.timeline-project}
+Rehabilitation of Land and Forest on Ciliwung-Cisadane Watershed
+:::
+
+::: {.timeline-location}
+West Java, Indonesia
+:::
+
+::: {.timeline-summary}
+Flood Management in Jabotabek Area. Client: Center of Watershed Management (BPDAS) Citarum - Ciliwung.
+:::
+:::
+:::
+
+<!-- Ministry of Forestry - Jeneberang -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Oct 2007 - Jan 2008]{.timeline-date}
+
+::: {.timeline-organization}
+Ministry of Forestry
+:::
+
+::: {.timeline-position}
+GIS Consultant
+:::
+
+::: {.timeline-project}
+Spring water identification in Jeneberang - Walanae watershed
+:::
+
+::: {.timeline-location}
+South Sulawesi, Indonesia
+:::
+
+::: {.timeline-summary}
+Client: Center of Watershed Management (BPDAS) Jeneberang - Walanae.
+:::
+:::
+:::
+
+<!-- Ministry of Forestry - Sampara -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Sep - Nov 2007]{.timeline-date}
+
+::: {.timeline-organization}
+Ministry of Forestry
+:::
+
+::: {.timeline-position}
+GIS Consultant
+:::
+
+::: {.timeline-project}
+Spring water identification in Sampara watershed
+:::
+
+::: {.timeline-location}
+South East Sulawesi, Indonesia
+:::
+
+::: {.timeline-summary}
+Client: Center of Watershed Management (BPDAS) Sampara.
+:::
+:::
+:::
+
+<!-- Ministry of Forestry - Citarum -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Aug - Oct 2007]{.timeline-date}
+
+::: {.timeline-organization}
+Ministry of Forestry
+:::
+
+::: {.timeline-position}
+GIS Consultant
+:::
+
+::: {.timeline-project}
+Spring water identification in Citarum - Ciliwung watershed
+:::
+
+::: {.timeline-location}
+West Java, Indonesia
+:::
+
+::: {.timeline-summary}
+Client: Center of Watershed Management (BPDAS) Citarum - Ciliwung.
+:::
+:::
+:::
+
+<!-- Papua Government -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Feb - May 2007]{.timeline-date}
+
+::: {.timeline-organization}
+Government of Papua
+:::
+
+::: {.timeline-position}
+GIS Consultant
+:::
+
+::: {.timeline-project}
+Photogrammetrical study of Waropen district
+:::
+
+::: {.timeline-location}
+Papua, Indonesia
+:::
+
+::: {.timeline-summary}
+Client: Regional Development Planning Board of Waropen district.
+:::
+:::
+:::
+
+<!-- LAPAN - PSDAL -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Apr 2006 - May 2007]{.timeline-date}
+
+::: {.timeline-organization}
+National Institute of Aeronautics and Space (LAPAN)
+:::
+
+::: {.timeline-position}
+Research Assistant
+:::
+
+::: {.timeline-project}
+Remotely-sensed information system for natural disaster mitigation
+:::
+
+::: {.timeline-location}
+Jakarta, Indonesia
+:::
+
+::: {.timeline-summary}
+Client: Division of Natural Resources and Environmental Monitoring (PSDAL), Center for Remote Sensing Application and Technology Development.
+:::
+:::
+:::
+
+<!-- Bogor Agricultural University -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Aug 2005 - Jan 2007]{.timeline-date}
+
+::: {.timeline-organization}
+Bogor Agricultural University
+:::
+
+::: {.timeline-position}
+Lecturer Assistant
+:::
+
+::: {.timeline-project}
+Satellite Meteorology & Satellite Climatology Courses
+:::
+
+::: {.timeline-location}
+Bogor, Indonesia
+:::
+
+::: {.timeline-summary}
+Teaching assistant for Satellite Meteorology (undergraduate) and Satellite Climatology (graduate) programs. Client: Faculty of Mathematics and Natural Sciences.
+:::
+:::
+:::
+
+<!-- LAPAN - BAKL -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Jan - Dec 2005]{.timeline-date}
+
+::: {.timeline-organization}
+National Institute of Aeronautics and Space (LAPAN)
+:::
+
+::: {.timeline-position}
+Research Assistant
+:::
+
+::: {.timeline-project}
+Energy balance on land use and land cover change in Java
+:::
+
+::: {.timeline-location}
+Bandung, Indonesia
+:::
+
+::: {.timeline-summary}
+Client: Division of Climatology and Environment Application (BAKL), Center for Atmospheric and Climate Sciences.
+:::
+:::
+:::
+
+<!-- BPPT -->
+::: {.timeline-item}
+::: {.timeline-dot}
+:::
+
+::: {.timeline-content}
+[Jun - Dec 2004]{.timeline-date}
+
+::: {.timeline-organization}
+Agency for the Assessment and Application of Technology (BPPT)
+:::
+
+::: {.timeline-position}
+Intern
+:::
+
+::: {.timeline-project}
+GIS-based software design for climate data analysis and visualization
+:::
+
+::: {.timeline-location}
+Jakarta, Indonesia
+:::
+
+::: {.timeline-summary}
+Client: Laboratory of Geosystem Technology, Directorate of Technology for Natural Resource Inventory (TISDA).
+:::
+:::
+:::
+
+:::
+
+::: {.back-link}
+[← Back to Works](../works.qmd)
+:::

@@ -1,0 +1,125 @@
+---
+title: "Climate expertise in the humanitarian field"
+author: "Benny Istanto"
+date: "2018-04-02"
+description: "Last month I was invited by my alma mater to an academic workshop which aims to (i) evaluate the curriculum for the period (2013-2017), (ii) develop a curriculum that is relevant to technology and ..."
+categories:
+  - "General"
+  - "Climate"
+# tags:
+#   - "career"
+#   - "climate"
+#   - "student"
+#   - "humanitarian"
+
+---
+
+Last month I was invited by my [alma mater](https://ipb.ac.id/page/geomet) to an academic workshop which aims to (i) evaluate the curriculum for the period (2013-2017), (ii) develop a curriculum that is relevant to technology and science state of the art, and (iii) support the achievement of the competencies expected and in line with the direction of IPB towards a techno-socio-enterpreneurial university.
+
+I was asked to give an example of the application of climate in the humanitarian field, and what skills (social and technical) are needed to compete in the international development works.
+
+I deliver a short presentation and provide some example from my current office - [WFP](https://www.wfp.org) on “**Climate expertise in the field of humanitarian: needs and challenges**”
+
+**Outline**
+
+1. WFP and Climate
+2. UN core values and competencies
+3. Relevance of the curriculum to market needs
+
+I explain on how WFP applies climate analytics to support their goal to end hunger globally.
+
+**WFP’s Climate and Disaster Risk Reduction programme**
+
+1. Disaster risk reduction
+
+   Preventing and reducing the impact of disasters
+2. Resilience building
+
+   Building the capacity of communities potentially exposed to hazards to resist, adapt and recover
+3. Food assistance for assets
+
+   Addressing immediate food needs while promoting the building or boosting of assets to improve long-term food security and resilience
+4. Climate and food security analyses
+
+   Understanding the links and potential impacts of climate change on food insecurity
+5. Climate change adaptation
+
+   Helping governments and communities build resilience against and adapt to growing climate risks
+6. Risk management, insurance and finance
+
+   Linking safety nets with innovative tools to address climate risks
+
+Our competencies also important, so it can be perfectly match with what international organization need. I only mention some of the core value and competencies needed by the UN.
+
+**United Nations (UN) competencies for the future**
+
+Core values
+
+1. Integrity
+
+   * Does not abuse power or authority
+   * Takes prompt action in cases of unprofessional or unethical behaviour
+2. Professionalism
+
+   * Shows pride in work and in achievements
+   * Is conscientious and efficient in meeting commitments, observing deadlines and achieving results
+3. Respect for Diversity
+
+   * Works effectively with people from all backgrounds
+   * Does not discriminate against any individual or group
+
+Core competencies
+
+1. Creativity
+
+   * Actively seeks to improve programmes or services
+   * Offers new and different options to solve problems or meet client needs
+   * Takes an interest in new ideas and new ways of doing things
+   * Is not bound by current thinking or traditional approaches
+2. Technological Awareness
+
+   * Keeps abreast of available technology
+   * Understands applicability and limitations of technology to the work of the office
+   * Actively seeks to apply technology to appropriate tasks
+   * Shows willingness to learn new technology
+3. Judgement/Decision-making
+
+   * Checks assumptions against facts
+
+Last, I talked about relevance of the curriculum to market needs. And how we can improve it.
+
+**Highlight for curriculum programme design**
+
+1. Nature and quality of instruction
+
+   * Course instruction in the program should be student-centric, employ active learning, and draw upon effective practices revealed by discipline-based research in higher education.
+   * Involving undergraduates in research early in their program is highly encouraged.
+2. Advisory
+
+   * The diversity of career paths and opportunities within atmospheric and related sciences elevates the importance of academic advising and mentoring.
+   * Ideally, advisors should be experienced faculty in the program. Student should meet with their advisor at least once during each academic term.
+   * Advisory meetings should include conversations about the student’s career goals and interests as they evolve over the student’s academic career.
+
+**More skill needed**
+
+In addition to knowledge of specific topics in atmospheric science, competency in the following areas is essential. Opportunities for enhancement of these skills within discipline-specific course work is strongly recommended.
+
+Scientific data computing and data analytics
+
+1. Computing skills in data analysis, modeling, and visualization of atmospheric/climate problems
+2. Experience in developing (scientific) softwares
+3. Ability to apply numerical and statistical methods to atmospheric science problems
+
+**Diverse career options**
+
+1. Private sectors
+
+   * In recent years private sector has started to provide weather impacts analysis and decision-support services, which require sector-specific knowledge and technical skills, such as analytics and machine learning
+2. Human dimension of weather and climate
+
+   * Boundary spanner - e.g beyond the technical expertise, we need the capacity to be able to communicate the output of analysis better
+
+     Trend in most sciences, interdisciplinary studies and opportunities that link human dimensions with physical science are rapidly increasing. Some topical areas that lie at the intersection of human dimensions and atmospheric sciences include risk communication, disaster sociology, hazards geography, behavioral economics, and environmental law and policy.
+   * Liaison - working relationship is important in any context, a collaborator who brings together and translate the gap between physical and social sciences
+
+     Students with interests in these human dimensions will benefit from an array of introductory courses and activities in these fields. Students benefit especially from minors or second majors in fields of particular interest. A strong understanding of the common theories and methodological approaches of these fields will enable a student to become a boundary spanner, an important kind of collaborator who brings together and translates between physical and social science colleagues.

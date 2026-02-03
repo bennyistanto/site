@@ -1,0 +1,28 @@
+---
+title: "Extreme Rainfall Monitoring"
+subtitle: "Project from 2021"
+page-layout: full
+toc: true
+css: ../../styles/project-detail.css
+---
+
+::: {.project-meta}
+::: {.meta-item}
+::: {.meta-label}
+Year
+:::
+::: {.meta-value}
+2021
+:::
+:::
+:::
+
+## Overview
+
+Brief description of the project goes here.
+
+::: {.back-link}
+[← Back to Projects](../projects.qmd)
+:::
+
+*This is a placeholder page. Content will be added soon.*

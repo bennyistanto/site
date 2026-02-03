@@ -1,0 +1,129 @@
+/* Maps and Infographics Gallery Styles */
+
+/* Constrain the full layout to readable width */
+.page-layout-full .quarto-container,
+.page-layout-full #quarto-content,
+.page-layout-full main.content {
+  max-width: 1400px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+/* Grid should use full available width */
+.grid {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Ensure content columns are properly sized */
+.column-page,
+.column-body,
+.column-screen {
+  max-width: 100% !important;
+}
+
+/* Extra wide screens */
+@media (min-width: 1600px) {
+  .page-layout-full .quarto-container,
+  .page-layout-full #quarto-content,
+  .page-layout-full main.content {
+    max-width: 1600px !important;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .page-layout-full .quarto-container,
+  .page-layout-full #quarto-content,
+  .page-layout-full main.content {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: white;
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 4/3;
+}
+
+.gallery-item figure {
+  margin: 0;
+}
+
+.gallery-item figcaption {
+  padding: 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #666;
+  background: white;
+}
+
+.external-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #0066cc;
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #0066cc;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.external-link:hover {
+  background: #0066cc;
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .gallery-item {
+    background: #1e1e1e;
+  }
+
+  .gallery-item figcaption {
+    background: #1e1e1e;
+    color: #ccc;
+  }
+}

@@ -1,0 +1,27 @@
+---
+title: "Back to Aceh (again)"
+author: "Benny Istanto"
+date: "2011-02-10"
+description: "Starting from 1 February 2011, I am back to Aceh again"
+image: "../assets/image-blog/Pict+(00"
+categories:
+  - "GIS"
+# tags:
+#   - "ilo"
+#   - "bireuen"
+#   - "dbmck"
+#   - "pidie"
+#   - "bappeda"
+
+---
+
+Starting from 1 February 2011, I am back to Aceh again. I got GIS consultant position at the International Labour Organization (ILO) to support a project on “Creating Jobs: Capacity Building for Local Resources-Based Road Works in Selected District in NAD and Nias”.
+
+This project is to support the Aceh Government in improving the livelihoods of the Acehnese people by enhancing the capacity of local governments to generate maximum employment opportunities through investments in rural infrastructure, particularly the road sector.
+
+The objective of the project is to provide technical assistance (TA) to address the issues of asset maintenance and mainstreaming Local Resource-based (LRB) approaches. The implementation of this proposed exit strategy is limited to the Aceh cluster of the project. One of the key activities of TA is in the development and implementation of a Geographic Information System (GIS) as a key supporting tool in decision-making and planning of investments in road infrastructure.
+
+I am based at Dinas Bina Marga and Cipta Karya office in Sigli, Pidie district and frequently travelling to Bireun.
+
+![](../assets/image-blog/Pict+(00).jpg)
+![](../assets/image-blog/20110210-back-to-aceh-again-01.jpg)

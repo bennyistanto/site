@@ -1,0 +1,81 @@
+---
+title: "Logo Design"
+subtitle: "Visual identity and branding projects"
+page-layout: full
+toc: false
+image: "../../assets/image-projects/2004-now-logo-00.png"
+css: ../../styles/project-detail.css
+---
+
+My friends and colleagues at work often asked me for help designing logos. Below are a few examples of branding and visual identity work I've created over the years.
+
+::: {.project-meta}
+::: {.meta-item}
+::: {.meta-label}
+Period
+:::
+::: {.meta-value}
+2004 - Present
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Tools
+:::
+::: {.meta-value}
+Inkscape, GIMP
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Projects Count
+:::
+::: {.meta-value}
+8 Logos
+:::
+:::
+:::
+
+## Logo Portfolio
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![](../../assets/image-projects/2004-now-logo-01.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2004-now-logo-02.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2004-now-logo-03.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2004-now-logo-04.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2004-now-logo-05.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2004-now-logo-06.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2004-now-logo-07.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2004-now-logo-08.png){.gallery-img}
+:::
+
+:::
+
+::: {.back-link}
+[← Back to Projects](../projects.qmd)
+:::

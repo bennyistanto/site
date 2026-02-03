@@ -1,0 +1,143 @@
+---
+title: "Model pendugaan biomassa tanaman padi"
+author: "Benny Istanto"
+date: "2004-04-27"
+description: "Ini adalah salah satu tugas praktikum dari mata kuliah Model Simulasi Pertanian yang diberikan oleh Pak Handoko dan Pak Yon Sugiarto"
+image: "../assets/image-blog/20040427-model-pendugaan-biomassa-tanaman-padi-03.jpg"
+categories:
+  - "Research"
+  - "Climate"
+# tags:
+#   - "biomassa"
+#   - "model"
+#   - "perkembangan"
+#   - "pertumbuhan"
+#   - "padi"
+#   - "tanaman"
+
+---
+
+Ini adalah salah satu tugas praktikum dari mata kuliah Model Simulasi Pertanian yang diberikan oleh Pak Handoko dan Pak Yon Sugiarto.
+
+Pendugaan biomassa tanaman padi yang dilakukan mencakup dua tahapan proses yang saling mempengaruhi satu sama lain. Struktur neraca air yang dimodelkan mengasumsikan CH dan faktor irigasi sebagai sumber air. Dua model pendugaan Biomassa dan Neraca Air Lahan ini kemudian digabungkan dalam satu model yang berkaitan satu sama lain.
+
+Seperti yang telah dikemukakan diatas bahwa pemodelan ini merupakan penggabungan antara pendugaan biomassa tanaman dan neraca air lahan. Oleh karena itu ada parameter masukan yang dubutuhkan. Untuk sub model perkembangan dan sub model pertumbuhan dibutuhkan parameter masukan yang dapat kita impor dari file input oleh pengguna model yaitu data iklim suhu udara rataan harian (dalam °C) dan radiasi surya (dalam MJ M-2) yang dalam hal ini data inputnya adalah data iklim Stasiun Gunung Medan selama periode setahun. Dan untuk neraca air lahan dibutuhkan data iklim curah hujan, radiasi dan kelembaban relatif.
+
+### Sub Model Perkembangan
+
+1. Menggambarkan fase perkembangan tanaman dari masing-masing kejadian fenologi yang diduga berdasarkan konsep heat unit / thermal unit
+2. Berdasarkan konsep ini, laju perkembangan tanaman terjadi jika suhu rata-rata harian melebihi suhu dasar.
+3. Fase perkembangan tanaman akan berubah dari suatu fase ke fase selanjutnya jika tanaman telah mencapai akumulasi heat unit tertentu
+4. Secara umum, kejadian fenologi tanaman padi mulai disebar hingga panen diberi skala 0 – 1. Skala tersebut dibagi menjadi 4 kejadian, yaitu semai (s=0.0), tanam (0.25), tunas maksimum (0.50), pembungaan (s=0.75) dan matang fisiologis (s=1.0).
+5. Persamaan umum
+
+   * ds = (T - Tb) / TU jika T >Tb
+   * ds = 0 jika T<=Tb
+
+### Sub Model Pertumbuhan
+
+1. Mensimulasi aliran biomassa ke daun, batang, akar dan biji serta kehilangannya berupa respirasi
+2. Menghitung pertambahan biomassa berdasarkan intersepsi radiasi surya dan ketersediaan air tanaman
+3. Intersepsi radiasi surya (Qint) dihitung dari data radiasi surya (Qs) dan indeks luas daun (LAI) berdasarkan persamaan :
+
+   $$Q_{\text{int}} = Q_s (1 - \exp(-k \cdot LAI))$$
+
+   dimana
+
+   * $Q_{\text{int}}$ = Radiasi diintersepsi (MJ M-2)
+   * $Q_s$ = Radiasi surya (MJ M-2)
+   * $k$ = koefisien pemadaman tajuk tanaman
+   * $LAI$ = indek luas daun
+4. Biomassa hasil fotosintesis dibagi antara organ vegetatif dan generatif (biji)
+5. Pertambahan biomassa total merupakan fungsi dari efisiensi pengunaan radiasi surya dan jumlah radiasi surya yang diintersepsi
+
+   $$dW = LUE \cdot Q_{\text{int}}$$
+
+   dimana
+
+   * $dW$ = pertambahan berat total (kg ha-1 hari-1)
+   * $LUE$ = efisiensi penggunaan radiasi surya
+6. Sebagian dari biomasaa ini akan digunakan dalam proses respirasi.
+7. Laju respirasi dipengaruhi berat organ x dan suhu dalam temperature quotient (Q10).
+
+   Rm = km \* Wx \* Q10
+
+   dimana
+
+   * $R_m$ = Kehilangan biomassa dlm proses respirasi
+   * $k_m$ = koefisensi respirasi
+   * $W_x$ = biomassa organ x
+   * $Q_{10}$ = temperature quotient
+
+### Asumsi
+
+#### Parameter awal dan masukan
+
+1. Parameter statis
+
+   * Suhu dasar atau Tb sebesar 17°C
+   * Heat Unit atau Thermal Unit (TU) sebesar 1000
+   * Koefisien pemadaman (k) sebesar 0.5
+   * Koefisien respirasi 0.02 untuk seluruh organ
+   * Sla sebesar 0.002
+2. Parameter dinamis
+
+   * LAI awal 0.1
+3. Parameter masukan
+
+   * Suhu udara rataan harian (dalam °C)
+   * Radiasi surya rataan harian (dalam MJ M-2)
+
+#### Sub model perkembangan
+
+1. Untuk mempermudah model yang akan dibuat, model hanya akan menggunakan dua fase yaitu fase dari semai (s=0.00) sampai fase pembungaan (s = 0.75) dan fase setelah pembungaan sampai fase panen (s = 1.00).
+2. Panen setelah fase panen tercapai (s=1), model berhenti setelah nilai s=1 atau fase panen tercapai
+
+#### Sub model pertumbuhan
+
+1. Pertambahan biomassa merupakan kumulatif dari biomassa dari masing-masing organ tanaman
+2. Pertambahan biomassa total dan koefisien alokasi biomassa ke masing-masing organ yang dipengaruhi oleh fase pekembangan tanaman dan respirasi.
+
+   * s = 0 – 0.75 alokasi biomassa ke daun sebesar 0.5, alokasi biomasa ke batang sebesar 0.4 dan alokasi biomassa ke akar sebesar 0.1.
+   * s > 0.75 sampai s = 1 alokasi biomassa ke akar, daun dan batang sangat kecil, diasumsikan tidak ada alokasi dan 3 persen dari biomassa batang akan dialokasikan ke biomassa biji.
+
+### Program
+
+Selanjutnya paramater dan asumsi di atas ditulis menggunakan bahasa permograman BASIC. Model sederhana untuk pendugaan Biomassa Tanaman Padi berikut ini menggunakan parameter awal sebagai berikut:
+
+* Thermal Unit = 1000
+* k = 0.5
+* LUE = 1.5
+* SLA = 0.002
+
+Pada model yang pertama ini menggunakan parameter masukan LAI = 0.01 dan suhu dasar 17ºC
+
+![ Gambar 1. Model 1](../assets/image-blog/20040427-model-pendugaan-biomassa-tanaman-padi-03.jpg) 
+
+Gambar 1. Model 1
+
+Pada model yang kedua ini menggunakan parameter masukan LAI = 0.1 dan suhu dasar 17ºC
+
+![Gambar 2. Model 2](../assets/image-blog/20040427-model-pendugaan-biomassa-tanaman-padi-04.jpg) 
+
+Gambar 2. Model 2
+
+Pada model yang ketiga ini menggunakan parameter masukan LAI = 1 dan suhu dasar 17ºC
+
+![Gambar 3. Model 3](../assets/image-blog/20040427-model-pendugaan-biomassa-tanaman-padi-01.jpg) 
+
+Gambar 3. Model 3
+
+Dari ketiga model diatas, dapat disimpulkan bahwa semakin besar nilai LAI maka nilai Wdaun, Wbatang, Wakar, Wbiji juga akan semakin besar.
+
+![Gambar 4. Perbandingan model](../assets/image-blog/20040427-model-pendugaan-biomassa-tanaman-padi-05.jpg) 
+
+Gambar 4. Perbandingan model
+
+Pertambahan Wtotal juga bergantung pada besarnya LAI. Hal ini dapat dilihat pada grafik di samping:
+
+## User interface menggunakan Visual BASIC
+
+Selanjutnya untuk memudahkan perhitungan pendugaan biomassa dengan periode tertentu, beberapa persamaan diatas saya tulis ulang menggunakan Visual BASIC 6 (kodenya dapat dilihat dibagian bawah tulisan), dilengkapi dengan user interface sederhana seperti gambar dibawah.
+
+![](../assets/image-blog/20040427-model-pendugaan-biomassa-tanaman-padi-02.jpg)

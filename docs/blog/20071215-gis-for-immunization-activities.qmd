@@ -1,0 +1,20 @@
+---
+title: "GIS for immunization activities"
+author: "Benny Istanto"
+date: "2007-12-15"
+description: "In the last 4-months I have been working for USAID funded project as a GIS Consultant on Immunization for 64 districts in 7 provinces in Indonesia"
+image: "../assets/image-blog/20071215-gis-for-immunization-activities-01.jpg"
+categories:
+  - "GIS"
+# tags:
+#   - "usaid"
+#   - "gis"
+#   - "immunization"
+
+---
+
+In the last 4-months I have been working for USAID funded project as a GIS Consultant on Immunization for 64 districts in 7 provinces in Indonesia. My main task is develop map products in user friendly format in CDs and print and provide technical support to project’s provincial office, and counterparts on use of maps in planning for immunization activity location.
+
+By the end of the project, I submitted 1412 map sheet in soft-copy and hard-copy. Below is one of example.
+
+![](../assets/image-blog/20071215-gis-for-immunization-activities-01.jpg)

@@ -1,0 +1,100 @@
+---
+title: "Numerical random search"
+author: "Benny Istanto"
+date: "2006-08-12"
+image: "../assets/image-blog/20060812-numerical-random-search-01.jpg"
+categories:
+  - "Research"
+  - "Climate"
+  - "Data Science"
+# tags:
+#   - "relative humidity"
+
+---
+
+![](../assets/image-blog/20060812-numerical-random-search-01.jpg)
+
+In meteorological station, air humidity measurement often use hygrometer which can give direct value in RH unit (%), but many meteorological station did not has this feature, so they use temperature measurement to calculate air humidity data.
+
+Air humidity calculation using temperature data also give some problem about the data it self. Many meteorological stations have been recording temperature data in the minimum and maximum temperature daily only. So, if we want to know the variation of humidity every day, we might not get it, because we don't have temperature data based on the time of day (for example per hour or per ten minutes), while this data is very much needed if we are going to learn about plant micro-climatology.
+
+To calculate air humidity from temperature data could be use below equation:
+
+$$E_s = 6.1078 \exp\left\{\frac{17.239T_{wb}}{T_{wb}+237.3}\right\}$$
+
+$$E_a = E_s - 0.661 (T_{db} - T_{wb})$$
+
+$$RH = \frac{E_a}{E_s} \times 100\%$$
+
+Where:
+
+$E_s$ = water vapor potential (mbar)
+
+$E_a$ = water vapor actual (mbar)
+
+$T_{wb}$ = Temperature of wet bulb thermometer (°C)
+
+$T_{db}$ = Temperature of dry bulb thermometer (°C)
+
+$RH$ = Relative humidity
+
+We need information or data about air humidity fluctuation or variation in the one-day. How much the minimum, maximum and average the air humidity in relative humidity unit (%) if we only know the maximum and minimum temperature from dry and wet bulb thermometer in one-day?
+
+Formulation of the problem
+
+This problem will be solve using Numeric Search – Random Search.
+
+Relative humidity will calculate using above equation and the temperature data will provided by four data which recorded in one day:
+
+* Maximum dry bulb temperature: X1\_max
+* Minimum dry bulb temperature: X1\_min
+* Maximum wet bulb temperature: X2\_max
+* Minimum wet bulb temperature: X2\_min
+
+Generate X1 and X2 random numbers R1 :
+
+* $X_1 = X_{1,\min} + R_i (X_{1,\max} - X_{1,\min})$
+* $X_2 = X_{2,\min} + R_i (X_{2,\max} - X_{2,\min})$
+
+Calculate the water vapor pressure by using above function:
+
+* $E_s = 6.1078 \exp\left\{\frac{17.239 X_2}{X_2 +237.3}\right\}$
+* $E_a = E_s - 0.661 (X_1 - X_2)$
+* $RH = \frac{E_a}{E_s} \times 100\%$
+
+RH calculation should be iterate base on minutes/day (1440 minutes)
+
+Save RH as temporary solution
+
+Compare and calculate :
+
+Maximum RH (\* is maximum or temporary value)
+
+* IF $RH > RH_{\max}^*$ then $RH_{\max}^* = RH$; $X_1^* = X_1$ and $X_2^* = X_2$
+
+Minimum RH ((\* is minimum or temporary value)
+
+IF $RH < RH_{\min}^*$ then $RH_{\min}^* = RH$; $X_1^* = X_1$ and $X_2^* = X_2$
+
+Average RH
+
+* $RH_{avg} = \frac{\sum RH}{\text{number of iteration}}$
+
+Expected result
+
+Get the maximum, minimum and average air relative humidity and how is the maximum and minimum temperature when the value has reached.
+
+Finding the optimal value
+
+Fluctuation of air humidity that represent by relative humidity could be used in the microclimate condition on certain site. For example, if we have crop plantation we need information on potential water needed and photosynthesis rate of plant that could be estimated from transpiration rate, while transpiration process (dilatation) is determined by air humidity. So once we are able to identify maximum, minimum and average RH we can also identify stomata activity and potential photosynthesis daily.
+
+Solving the problem
+
+Visual Basic 6 used to solve above problem. For example, the data as input is :
+
+* Maximum dry bulb temperature is 32°C
+* Minimum dry bulb temperature is 21°C
+* Maximum wet bulb temperature is 29°C
+* Minimum wet bulb tempereture is 17°C
+
+Number of iteration is 1440 (same as number of minutes/day)

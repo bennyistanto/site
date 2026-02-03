@@ -1,0 +1,30 @@
+---
+title: "Curriculum Vitae"
+subtitle: "Benny Istanto"
+page-layout: article
+toc: true
+---
+
+## Education
+
+Content coming soon...
+
+## Professional Experience
+
+Content coming soon...
+
+## Skills
+
+Content coming soon...
+
+## Publications
+
+Content coming soon...
+
+## Certifications
+
+Content coming soon...
+
+---
+
+*This is a placeholder page. CV content will be added soon.*

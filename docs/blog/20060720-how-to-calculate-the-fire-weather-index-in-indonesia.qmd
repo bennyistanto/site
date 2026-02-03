@@ -1,0 +1,34 @@
+---
+title: "How to calculate the Fire Weather Index in Indonesia"
+author: "Benny Istanto"
+date: "2006-07-20"
+description: "FWI Excel program add-in is a quick and easy way to calculate the fire weather index into a table in Microsoft Excel, hereinafter known as XLFWI add-ins"
+image: "../assets/image-blog/20060720-how-to-calculate-the-fire-weather-index-in-indonesia-01.jpg"
+categories:
+  - "Research"
+  - "Climate"
+# tags:
+#   - "relative humidity"
+#   - "bui"
+#   - "dc"
+#   - "ffmc"
+#   - "isi"
+#   - "wind speed"
+#   - "fwi"
+#   - "temperature"
+#   - "rainfall"
+#   - "forest fire"
+
+---
+
+FWI Excel program add-in is a quick and easy way to calculate the fire weather index into a table in Microsoft Excel, hereinafter known as XLFWI add-ins. XLFWI add-in consists of functions worksheets for six index of fire weather index (FFMC, DMC, DC, BUI, ISI and FWI). Besides the function of this worksheet can be applied directly into the weather data that is stored in Microsoft Excel.
+
+Calculation system is designed to easily and quickly used by the user, or can also be modified in accordance with the application. XLFWI add-ins can be used for operational calculations FWI index on a single weather station, as FWI and training systems can be combined with other manufacturing excel display, such as charts and basic data analysis.
+
+Download FWI Excel add-in [here](https://docs.google.com/leaf?hl=en_GB&id=0ByRwKvdIZ-jeNTk5YTdmZDAtN2ViZC00MjAxLWI0MWItMTM3MzgxNzk4ZDRi).
+
+In addition to the Excel add-ins, as part of my final research project I developed a program that can run directly to calculate the FWI. The program is written in BASIC language, and some components have been adjusted for the FWI calculations in Indonesia.
+
+Download FWI Calculator [here](https://docs.google.com/leaf?hl=en_GB&id=0ByRwKvdIZ-jeZDkzZTQ0NDUtNjhmZi00MTJiLWJkNDItMzNhMGZkMmU0MTQw) (32-bit Windows program)
+
+[caption id="" align="alignnone" width="2308"]![ FWI Kalkulator ](../assets/image-blog/20060720-how-to-calculate-the-fire-weather-index-in-indonesia-01.jpg) FWI Kalkulator [/caption]

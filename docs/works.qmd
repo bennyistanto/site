@@ -1,0 +1,42 @@
+---
+title: "Works"
+subtitle: "Portfolio of projects, experiences, and visualizations"
+page-layout: full
+toc: false
+---
+
+## Overview
+
+Explore my portfolio of work in climate science, GIS, and data visualization.
+
+---
+
+## Featured Sections
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6}
+### [Experiences](works/experiences.qmd)
+Professional experiences and career highlights in climate science and geospatial analysis.
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### [Projects](works/projects.qmd)
+Key projects demonstrating expertise in earth observation and data science.
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### [Consulting](works/consulting.qmd)
+Consulting services and collaborative engagements.
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### [Maps & Infographics](works/maps-and-infographics.qmd)
+Visual storytelling through maps and data visualizations.
+:::
+
+:::
+
+---
+
+*Explore each section to learn more about my work.*

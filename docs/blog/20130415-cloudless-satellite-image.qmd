@@ -1,0 +1,44 @@
+---
+title: "Cloudless satellite image"
+author: "Benny Istanto"
+date: "2013-04-15"
+description: "I found excellent Image-compositing scripts for filtering weather out of satellite images <https://github"
+image: "../assets/image-blog/20130415-cloudless-satellite-image-01.jpg"
+categories:
+  - "Remote Sensing"
+# tags:
+#   - "python"
+#   - "cloud cover"
+#   - "cloudless"
+#   - "cloud"
+
+---
+
+I found excellent Image-compositing scripts for filtering weather out of satellite images <https://github.com/celoyd/wheather> and decided to give a try.
+
+This analysis based on MODIS subsets image from NASA - [https://lance-modis.eosdis.nasa.gov](https://lance-modis.eosdis.nasa.gov/imagery/subsets/?subset=WestIndonesia). See below:
+
+Located directly on the Equator and covered with mountains and rainforest, Indonesia is one of the cloudiest places on Earth. Getting cloud free image from MODIS is difficult
+
+[caption id="" align="alignnone" width="1024"]![ Sample quick look, 23 July 2012 ](../assets/image-blog/20130415-cloudless-satellite-image-01.jpg) Sample quick look, 23 July 2012 [/caption]
+
+Following the script, I downloaded the MODIS quick look. And you can see every day sometimes cloud-free and mostly not.
+
+[caption id="" align="alignnone" width="1024"]![ 1 - 31 July 2012, 1km pix res ](../assets/image-blog/20130415-cloudless-satellite-image-05.jpg) 1 - 31 July 2012, 1km pix res [/caption]
+
+If we could create an average image from all the collection in the previous picture, it will look as below picture.
+
+[caption id="" align="alignnone" width="1024"]![ Simple average ](../assets/image-blog/20130415-cloudless-satellite-image-04.jpg) Simple average [/caption]
+
+Then we can sort per pixel of all the image collection, and leave the least cloudy-looking layers and average the rest. Details are below:
+
+* Split them into strips
+* Sort the strips, pixelwise, to remove cloud cover
+* Average the cloudless strips
+* Rejoin the strips into a cloudless image.
+
+![](../assets/image-blog/20130415-cloudless-satellite-image-02.jpg)
+
+Finally choose the top of quality and we got below picture.
+
+![](../assets/image-blog/20130415-cloudless-satellite-image-03.jpg)

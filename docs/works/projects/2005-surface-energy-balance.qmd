@@ -1,0 +1,89 @@
+---
+title: "Surface Energy Balance"
+subtitle: "Urban Heat Islands Research"
+page-layout: full
+toc: false
+image: "../../assets/image-projects/2005-surface-energy-balance-00.png"
+css: ../../styles/project-detail.css
+---
+
+I was involved in research activities at Division of Climatology and Environment Application (BAKL), Center for Atmospheric and Climate Sciences - LAPAN in 2005, on the phenomenon of urban heat islands.
+
+Using Landsat satellite data, several surface energy balance parameters are extracted to obtain information related to changing in land use which affecting surface temperatures increase in urban and rural areas.
+
+::: {.project-meta}
+::: {.meta-item}
+::: {.meta-label}
+Year
+:::
+::: {.meta-value}
+2005
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Organization
+:::
+::: {.meta-value}
+LAPAN - Center for Atmospheric and Climate Sciences
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Tools
+:::
+::: {.meta-value}
+ArcView GIS 3.3, ErMapper 6.4, MapObject 2.2, Visual Basic 6
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Team
+:::
+::: {.meta-value}
+[Idung Risdiyanto](https://scholar.google.co.id/citations?hl=id&user=WBIaIyYAAAAJ), [Laras Tursilowati](https://scholar.google.co.id/citations?hl=en&user=efbMd_YAAAAJ), Erwin Hermawan, Andri Susanto, Benny Istanto
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Reference
+:::
+::: {.meta-value}
+[Published Paper](http://jurnal.lapan.go.id/index.php/jurnal_sains/article/view/640)
+:::
+:::
+:::
+
+## Research Overview
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![](../../assets/image-projects/2005-surface-energy-balance-01.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2005-surface-energy-balance-02.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2005-surface-energy-balance-03.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2005-surface-energy-balance-04.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2005-surface-energy-balance-05.png){.gallery-img}
+:::
+
+:::
+
+::: {.back-link}
+[← Back to Projects](../projects.qmd)
+:::

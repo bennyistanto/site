@@ -1,0 +1,65 @@
+---
+title: "Monthly weather data from ERA5 and FLDAS"
+author: "Benny Istanto"
+date: "2020-06-30"
+description: "Since 2015, considerable amount of new data (high resolution satellite-based product combined with social media data) developed using new technology through artificial intelligence (machine learnin..."
+image: "../assets/image-blog/20200630-monthly-weather-data-from-era5-and-fldas-01.jpg"
+categories:
+  - "Remote Sensing"
+  - "Research"
+  - "Climate"
+# tags:
+#   - "weather"
+#   - "climate"
+#   - "fldas"
+#   - "nasa"
+#   - "era5"
+#   - "gee"
+#   - "ecmwf"
+
+---
+
+Since 2015, considerable amount of new data (high resolution satellite-based product combined with social media data) developed using new technology through artificial intelligence (machine learning, computer vision, etc.) available for public, but further utilisation remains lack.
+
+Now in cloud computing era, we can easily get instant access to massive weather and climate data and do processing from the browser via Google Earth Engine platform.
+
+Let’s try to access monthly weather data from NASA and ECMWF:
+
+* <https://developers.google.com/earth-engine/datasets/catalog/NASA_FLDAS_NOAH01_C_GL_M_V001>
+* <https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_MONTHLY>
+
+Import above data from EE Data Catalog
+
+Access the precipitation data, visualise it and add to the map layer
+
+* Precipitation unit in FLDAS data: “kg m-2 s-1”, is the International System of Units (SI) used for precipitation. While 1kg = 1Liter = 10e6 mm3 and 1m2 = 10e6 mm2. Therefore 1kg of rain over 1 m2 is equivalent to 1mm.
+* Multiply the rate (given in kg m-2 s-1) by 1 to get the rainfall in terms of mm/second. Or multiply the value by 24\*60\*60 to get the total rainfall in mm per day. 1 kg/m2/s-1 = 86400 mm/day
+* For the monthly value, daily value can be multiplied by the number of days e.g. 86400 x kg/m2/s x number of days in a month (28/29/30/31).
+* Precipitation in ERA5 data is in m, so we need to multiply it by 1000 to get mm.
+
+![](../assets/image-blog/20200630-monthly-weather-data-from-era5-and-fldas-01.jpg)
+
+Temperature data
+
+* Kelvin to Celsius temperature conversion can be done by subtracting 273.15 from the Kelvin temperature in order to obtain the required celsius temperature. The Kelvin scale and the celsius scale are two different temperature scales which are related by the following formula: K = C + 273.15 (or) C = K - 273.15.
+
+![](../assets/image-blog/20200630-monthly-weather-data-from-era5-and-fldas-04.jpg)
+
+Relative Humidity
+
+* FLDAS only provide Specific Humidity data, so we need to convert it into Relative Humidity. From equation in this page: <https://earthscience.stackexchange.com/a/2361> we can easily calculate RH as follow:
+
+  RH = 100 \* (w/ws) ≈ 0.263 \* p \* q \* [exp⁡(17.67(T−T0)T−29.65)]^-1
+
+![](../assets/image-blog/20200630-monthly-weather-data-from-era5-and-fldas-02.jpg)
+
+Wind Speed and Direction
+
+From [Google Earth Engine Developer Groups](https://groups.google.com/g/google-earth-engine-developers/c/OoRSnMhzKhs/m/yszay3zfBQAJ), Gennadii Donchyts share his code on how to visualise wind vector. Lets adapt the code to use with ERA5 data.
+
+![](../assets/image-blog/20200630-monthly-weather-data-from-era5-and-fldas-03.jpg)
+
+Finally, if you want to download the data, you can add below code:
+
+Link for the full [code](https://code.earthengine.google.com/d366a29cbf5d345df7d79a520752c07f)  
+**Notes:** The code was compiled from various source (GEE help, GEE Groups, StackExchange)

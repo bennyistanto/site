@@ -1,0 +1,15 @@
+---
+title: "SPI-based drought characteristics"
+author: "Benny Istanto"
+date: "2023-08-11"
+categories:
+  - "Remote Sensing"
+  - "GIS"
+  - "Climate"
+# tags:
+#   - "spi"
+#   - "run-theory"
+#   - "drought"
+
+---
+

@@ -1,0 +1,200 @@
+---
+title: "Blending Satellite Precipitation and Gauge Observations"
+author: "Benny Istanto"
+date: "2017-08-02"
+description: "Blending of point and grid data I have some station data"
+image: "../assets/image-blog/20170802-blending-satellite-precipitation-and-gauge-observations-03.jpg"
+categories:
+  - "Remote Sensing"
+  - "Research"
+  - "Climate"
+# tags:
+#   - "blend"
+#   - "chirps"
+#   - "chirp"
+#   - "weather station"
+#   - "remote sensing"
+#   - "bmkg"
+#   - "kriging"
+
+---
+
+#### Blending of point and grid data
+
+I have some station data! Can I blend it with the remote sensing data? How?
+
+* The answer is Yes, and you must have: enough data, reasonable relationship between ground data and remote sensing parameter
+
+On different situations:
+
+* Long term point and long-term gridded data: station rainfall data and satellite precipitation estimates (SPE)
+* Long term point and average gridded data: station temperature data and WorldClim average temperature grid
+* Average point data and average gridded data
+
+Possible pairs:
+
+* Rainfall – SPE
+* Temperature – Land Surface Temperature
+
+#### Method
+
+Regression – Kriging
+
+* Define regression between point data and pixel values of a number of related/useful GRIDDED variables, e.g.
+* Tair = *f(altitude, LST, NDVI, coastdistance, other)*
+* Rain = *f(SPE, other)*
+
+Produce modelled parameter and residuals, e.g.
+
+* $\text{Rain}_{\text{Estimates}} = 1.43 \times \text{SPE}$
+* $\text{residual} = \text{Rain}_{\text{Estimates}} - \text{Rain}$
+
+Interpolate residuals then Add back to the initial estimate
+
+#### Example
+
+Extract SPE values at 152 station location: X, Y, Obs, SPE
+
+![](../assets/image-blog/20170802-blending-satellite-precipitation-and-gauge-observations-03.jpg)
+
+Regression model Rainfall - SPE
+
+![](../assets/image-blog/20170802-blending-satellite-precipitation-and-gauge-observations-02.jpg)
+
+Modelled rainfall grid and residuals
+
+![](../assets/image-blog/20170802-blending-satellite-precipitation-and-gauge-observations-04.jpg)
+
+Add back to the initial estimate
+
+![](../assets/image-blog/20170802-blending-satellite-precipitation-and-gauge-observations-05.jpg)
+
+#### Exercise
+
+I am sure that you are familiar with and frequently use [CHIRPS](https://wiki.chg.ucsb.edu/CHIRPS_FAQ) data in your climate-related analyses. But have you ever used CHIRP data?
+
+[CHIRP](https://data.chc.ucsb.edu/products/CHIRP/) and [CHIRPS](https://data.chc.ucsb.edu/products/CHIRPS-2.0/) are gridded rainfall time series product from Climate Hazard Group of University California Santa Barbara, and the difference between the two data is CHIRPS incorporates station data. Let see comparison on below maps.
+
+![](../assets/image-blog/20170802-blending-satellite-precipitation-and-gauge-observations-01.jpg)
+
+**Prepare observation data**
+
+Let’s try the exercise on blending data using CHIRP and station rainfall from BMKG.
+
+In this exercise, BMKG provide the daily rain gauge data in spreadsheet format and have two worksheet: Station and Data Original.
+
+Folder 01\_Download/BMKG
+
+Open file [BMKG\_152station\_dailyobs\_2017\_Dekad.xlsx](https://docs.google.com/spreadsheets/d/13Qe77NTqg55edZl9hM3FOjdwdF6Qgg0v/edit?ouid=101059909051816363704&rtpof=true&sd=true&usp=sharing)
+
+![](../assets/image-blog/20170802-blending-satellite-precipitation-and-gauge-observations-06.jpg)
+
+We will calculate dekad value from daily data. This can be done in many ways, we can use PIVOT or just using other simple formula.
+
+* Assign Dekad value on every Date
+* Merge year, month and day column into Date: YYYYMMDD
+* Merge year, month and dekad date into Date: YYYYMMDekad
+* Calculate the accumulation rainfall on each dekad. Try SUM IF with aray formula.
+
+  {SUM(IF(WORKSHEET!DATARANGE= DEKADDATE, WORKSHEET!DATARANGE))}
+* If using an array formula, make sure to confirmed with *ctrl+shift+enter* (not just enter) so that curly brackets appear around it {}. Those brackets can not be entered manually.
+* TRANSPOSE your data, and the format will be Station ID, Dekad Date, ..
+* You can add coordinate column using VLOOKUP, right after the Station ID. And your data are ready to add into GIS software.
+* Before adding to GIS software, copy final workbook into new one using PASTE VALUE. This is to make sure the final workbook doesn’t contain any formula. For the rainfall value, leave it only 2017 Dekad 1 data.
+
+**Load data as XY table**
+
+This step will use ArcGIS Desktop, but it is also possible to use other GIS software i.e. QGIS.
+
+* ArcToolbox > Conversion Tools > Excel > Excel to Tables
+
+![](../assets/image-blog/20170802-blending-satellite-precipitation-and-gauge-observations-07.jpg)
+
+* From table of content, right click > Display XY Data.
+
+* X Field for Longitude and Y Field for Latitude, and make sure the coordinate system of input is set to GCS\_WGS\_1984.
+
+![](../assets/image-blog/20170802-blending-satellite-precipitation-and-gauge-observations-08.jpg)
+
+* Save the table events to shapefile. From Table of Content, right click the table events > Data > Export Data. Save as idn\_cli\_rpg\_201701d1\_bmkg\_p.shp
+
+![](../assets/image-blog/20170802-blending-satellite-precipitation-and-gauge-observations-09.jpg)
+
+**Extract SPE value at station location**
+
+Load [CHIRP data for Dekad 1, Jan 2017](https://data.chc.ucsb.edu/products/CHIRP/dekads/CHIRP.2017.01.1.tif) and station data from the previous step.
+
+* Extract RFE value at station location using ArcToolbox
+* Spatial Analyst Tools > Extraction > Extract Values to Points
+* Put observation data as Input point feature and CHIRP data as Input raster
+* Save as CHIRP\_Obs\_point\_extraction.shp
+* After completed, open the attribute of CHIRP\_Obs\_point\_extraction.shp by right click on the table of contents and Open Attribute Table.
+* New column RASTERVALU added next to Observation data “201701D1”
+* From ArcToolbox, go to Conversion Tools > Excel > Table to Excel. Convert CHIRP\_Obs\_point\_extraction.shp table to spreadsheet.
+
+Open the spreadsheet from previous step.
+
+* Create scatter chart with observation data as Vertical axis and CHIRP data as Horizontal axis.
+* Add Linear trendline and display equation on chart.
+
+![](../assets/image-blog/20170802-blending-satellite-precipitation-and-gauge-observations-10.jpg)
+
+**Regression model rainfall - SPE**
+
+Using the same spreadsheet,
+
+* Add new column “Residual” next to CHIRP column.
+* Using the equation on the chart, calculate the residuals value. Residu = Observation-(1.0872\*CHIRP-4.3614)
+* Add a new column again, called “ObsMinRFE”. Calculate the difference between Observation and CHIRP data.
+* Compare the result.
+* You can also create Residual scatter chart, to see distribution from the data.
+
+![](../assets/image-blog/20170802-blending-satellite-precipitation-and-gauge-observations-17.jpg)
+
+**Kriging of residuals**
+
+Copy the data to new workbook, and save as new spreadsheet.
+
+![](../assets/image-blog/20170802-blending-satellite-precipitation-and-gauge-observations-11.jpg)
+
+* Convert the new spreadsheet to table using ArcToolbox > Conversion Tools > Excel > Excel to Tables.
+* From table of content, right click > Display XY Data.
+* X Field for Longitude and Y Field for Latitude, and make sure the coordinate system of input is set to GCS\_WGS\_1984.
+* Save the table events to shapefile. From Table of Content, right click the table events > Data > Export Data. Save as Residual.shp
+
+Load [Indonesia boundary file](https://drive.google.com/file/d/1peLBylUoZubQw1mUfVD-Yv-ZOw81ogWa/view?usp=sharing) to ArcMap.
+
+* Do Kriging Interpolation using Residual.shp as Input features and Residual column as Z value.
+* ArcToolbox > Spatial Analyst Tools > Interpolation > Kriging
+* Kriging method: Ordinary
+* Output cell size: 0.05
+* Klik Environments button. Find Processing Extent > Mask > Choose the Indonesia boundary – idn\_bnd\_adm1\_2013\_bps\_a.shp. And Snap raster > idn\_cli\_CHIRP.2017.01.1.tif
+
+![](../assets/image-blog/20170802-blending-satellite-precipitation-and-gauge-observations-12.jpg)
+
+* After the interpolation result appears, you need to clip the result to remove data outside the boundary. Spatial Analyst Tools > Extraction > Extract by Mask.
+
+![](../assets/image-blog/20170802-blending-satellite-precipitation-and-gauge-observations-13.jpg)
+
+* Put residual.tif as Input raster, and idn\_bnd\_adm1\_2013\_bps\_a.shp as Input raster or feature mask data
+
+**Blending Observation and CHIRP**
+
+Final step is adding the residual to the SPE data.
+
+* There are two ways to do the calculation, using Plus tool from Spatial Analysts Tools > Math > Plus. And using Raster Calculator from Spatial Analysts Tools > Map Algebra > Raster Calculator.
+* Below is using Raster Calculator.
+
+![](../assets/image-blog/20170802-blending-satellite-precipitation-and-gauge-observations-14.jpg)
+
+Final Result
+
+![](../assets/image-blog/20170802-blending-satellite-precipitation-and-gauge-observations-15.jpg)
+
+**More station data?**
+
+Previous blending analysis used 152 station data. What if you have more than 1000 station data. Can you imagine the result?
+
+Dekad 1, Jan 2017. Data 1000 station <https://cl.ly/lhvm>
+
+![](../assets/image-blog/20170802-blending-satellite-precipitation-and-gauge-observations-16.jpg)

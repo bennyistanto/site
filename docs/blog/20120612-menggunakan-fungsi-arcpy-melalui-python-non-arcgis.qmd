@@ -1,0 +1,27 @@
+---
+title: "Menggunakan fungsi ArcPy melalui Python non-ArcGIS"
+author: "Benny Istanto"
+date: "2012-06-12"
+description: "ArcGIS menginstal versi Python-nya sendiri yang tidak terdaftar secara resmi di sistem Windows tetapi pada kenyataannya dapat digunakan seperti layaknya Python melalui instalasi normal"
+image: "../assets/image-blog/20120612-menggunakan-fungsi-arcpy-melalui-python-non-arcgis-01.jpg"
+categories:
+  - "GIS"
+# tags:
+#   - "arcpy"
+#   - "arcgis"
+
+---
+
+ArcGIS menginstal versi Python-nya sendiri yang tidak terdaftar secara resmi di sistem Windows tetapi pada kenyataannya dapat digunakan seperti layaknya Python melalui instalasi normal. Saya pribadi lebih suka menggunakan ini sebagai Python utama saya, tetapi itu tidak selalu lancar karena kadang kita membutuhkan *library* yang mungkin tidak sesuai dengan versi yang ada di Python ArcGIS.
+
+Petunjuk di bawah ini dapat membantu kamu mengizinkan akses instalasi Python yang berbeda dan menggunakan Arcpy, misalnya Python yang diinstal oleh Python (x, y). Perhatikan bahwa:
+
+* Versi utama dari Python harus sesuai (2.6 untuk ArcGIS 10.0 dan 2.7 untuk ArcGIS 10.1 dan setelahnya)
+* Arsitektur (32 bit atau 64 bit) harus sesuai
+* Jika kamu menulis skrip dan menggunakannya sebagai *tools* dalam lingkungan *Arc*, *script* tersebut akan menggunakan Python yang diinstal oleh Arc; ini berarti bahwa *library* apa pun yang telah kamu instal ke Python lain, tetapi tidak diinstal ke ArcGIS Python, tidak akan dapat diakses (menyebabkan *ImportError*)
+
+Python mencari *library* di folder tertentu (yaitu folder *Lib\site-packages\* dari instalasi), dan ketika kamu mengetik *import somelibrary*, itu akan mencari file dengan nama *somelibrary.py* di folder ini. File Arcpy sebenarnya terletak di folder instalasi ArcGIS, di Program Files, tetapi terdapat file *Path* yang ditempatkan di folder *Lib\site-packages\* yang memberi tahu Python untuk menelusuri juga folder ArcGIS yang relevan untuk file saat kamu melakukan *impor library*.
+
+Untuk mengizinkan instalasi Python lain mengakses Arcpy, file *Path* ini hanya perlu disalin dari folder *Lib\site-packages\* dalam instalasi *Arc Python* (Saya menggunakan ArcGIS 10.2, maka lokasinya adalah sebagai berikut: *C:\Python27\ArcGIS10.2\Lib\site-packages*) dan ditempatkan di folder yang sesuai dari *non-Arc Python (*lokasinya adalah sebagai berikut: *C:\Python27\Lib\site-packages*). Jika kamu belum menginstal 64-bit background geoprocessing file tersebut adalah *Desktop10.2.pth*; jika kamu sudah menginstalnya, file tersebut adalah *DTBGGP64.pth*.
+
+![](../assets/image-blog/20120612-menggunakan-fungsi-arcpy-melalui-python-non-arcgis-01.jpg)

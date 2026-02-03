@@ -1,0 +1,80 @@
+---
+title: "OpenStreetMap GeoWeek 2017"
+author: "Benny Istanto"
+date: "2017-11-24"
+description: "November 12–18 is OSM Geography Awareness Week"
+image: "../assets/image-blog/20171124-openstreetmap-geoweek-2017-01.jpg"
+categories:
+  - "General"
+# tags:
+#   - "market access"
+#   - "osm"
+#   - "accessibility"
+#   - "geography awareness week"
+#   - "geoweek"
+#   - "openstreetmap"
+
+---
+
+November 12–18 is OSM Geography Awareness Week. 2017 OSMGeoWeek calls on community groups, teachers, students, governments, private sector, map lovers, and motivated individuals around the world to come together to celebrate geography, spatial data and its usage especially in humanitarian response, innovation and economic development.
+
+Last week I participated this event hosted by Humanitarian OpenStreetMap Organization (HOT). In Indonesia, the event run in parallel with WFP mapathon in Jakarta and Bali Mapathon with BNPB and Udaya University in Bali.
+
+The event featured HOT’s partners, from public, private, donor, IO, NGO, university, each explaining how they use OpenStreetMap or innovative using spatial technologies to tackle social, economic, and ecological challenges as well as to further the attainment of sustainable development goals and moderated by [Nadia Atmaji](https://nadiaatmaji.com) from Metro TV.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20171124-openstreetmap-geoweek-2017-01.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20171124-openstreetmap-geoweek-2017-07.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20171124-openstreetmap-geoweek-2017-08.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20171124-openstreetmap-geoweek-2017-06.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20171124-openstreetmap-geoweek-2017-09.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20171124-openstreetmap-geoweek-2017-03.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20171124-openstreetmap-geoweek-2017-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20171124-openstreetmap-geoweek-2017-11.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20171124-openstreetmap-geoweek-2017-04.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20171124-openstreetmap-geoweek-2017-14.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20171124-openstreetmap-geoweek-2017-13.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20171124-openstreetmap-geoweek-2017-15.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20171124-openstreetmap-geoweek-2017-16.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20171124-openstreetmap-geoweek-2017-10.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20171124-openstreetmap-geoweek-2017-05.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20171124-openstreetmap-geoweek-2017-12.jpg)
+:::
+:::
+
+My OSM presentation on [travel time and accessibility model](/blog/20141216-osm-use-case-market-accessibility) started at 55’
+
+OSM Geography Awareness Week 2017: Innovative Technology and Partnership for Resilient Communities. @america, Jakarta
+
+Source: <https://www.facebook.com/atamerica/videos/2170917652933630/>

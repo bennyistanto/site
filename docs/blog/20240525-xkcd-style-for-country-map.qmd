@@ -1,0 +1,15 @@
+---
+title: "xkcd style for Country map"
+author: "Benny Istanto"
+date: "2024-05-26"
+description: "Source: <https://gist"
+categories:
+  - "General"
+  - "GIS"
+# tags:
+#   - "python"
+#   - "xkcd"
+
+---
+
+Source: <https://gist.github.com/bennyistanto/7b391b11e861334bc020dd03c06815f2>

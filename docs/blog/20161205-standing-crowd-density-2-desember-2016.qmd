@@ -1,0 +1,91 @@
+---
+title: "Standing crowd density, 2 Desember 2016"
+author: "Benny Istanto"
+date: "2016-12-05"
+description: "Lagi rame tentang angka 7 juta :) Masih terkait dengan metode perhitungan yang cocok untuk standing crowd density pada 2 Desember di Monas dan sekitarnya, saya mencoba menghitung ulang dengan meman..."
+image: "../assets/image-blog/20161205-standing-crowd-density-2-desember-2016-13.jpg"
+categories:
+  - "GIS"
+# tags:
+#   - "212"
+
+---
+
+Lagi rame tentang angka 7 juta :)
+
+Masih terkait dengan metode perhitungan yang cocok untuk standing crowd density pada 2 Desember di Monas dan sekitarnya, saya mencoba menghitung ulang dengan memanfaatkan foss4g. Kebetulan saya mempunyai shapefile jalan di Jakarta dalam bentuk polygon, sehingga memudahkan saya untuk segera memulai perhitungan.
+
+Hasil dari perhitungan berikut menggunakan beberapa asumsi
+
+* Momen yang mau diambil ini adalah ketika menjelang sholat Jum'at dan sesudahnya, jadi peserta aksi dalam keadaan diam (sedikit bergerak).
+* Wilayah yang dihitung berdasarkan beberapa foto dari atas yang beredar di social media, jadi jika ada wilayah diluar perhitungan, berarti tidak/belum ditemukan foto dari atas yang bisa dijadikan referensi lokasi peserta aksi.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20161205-standing-crowd-density-2-desember-2016-13.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20161205-standing-crowd-density-2-desember-2016-12.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20161205-standing-crowd-density-2-desember-2016-11.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20161205-standing-crowd-density-2-desember-2016-10.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20161205-standing-crowd-density-2-desember-2016-09.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20161205-standing-crowd-density-2-desember-2016-08.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20161205-standing-crowd-density-2-desember-2016-07.jpg)
+:::
+:::
+
+* Wilayah yang dipakai untuk menghitung jumlah peserta aksi SUDAH mempertimbangkan lebar jalan dan trotoar TETAPI mengabaikan jumlah peserta yang ada di jembatan penyeberangan ataupun peserta yang mengendong anaknya. Peta dasarnya menggunakan data hasil digitasi citra IKONOS (Sumber citra: tidak diketahui)
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20161205-standing-crowd-density-2-desember-2016-04.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20161205-standing-crowd-density-2-desember-2016-01.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20161205-standing-crowd-density-2-desember-2016-02.jpg)
+:::
+:::
+
+* Selain itu, perhitungan juga TIDAK mempertimbangkan separator Transjakarta, bus dan kendaraan lainnya yang parkir, gerobak penjual di sepanjang jalan yang digunakan oleh peserta aksi.
+
+Ada dua nilai luaran yang dihasilkan dari perhitungan ini.
+
+1. Pertama dengan mengasumsikan ketika peserta sedang melaksanakan sholat Jum'at, dengan area 1 meter persegi idealnya ada 2 orang yang menempati area tersebut.
+2. Kedua ada 4 orang yang menempati area 1 meter persegi. Dalam keadaan berdiri dan tentunya peserta aksi sama sekali tidak membawa “gembolan” (meski kecil kemungkinannya), maka 4 orang masih terbilang ideal. Tetapi mungkin tidak dalam melaksanakan sholat, karena ruangnya cukup sempit dan dipastikan ketika sujud akan nyundul bokong (males banget kan) peserta didepannya.
+
+Berdasarkan beberapa asumsi diatas, peserta aksi 2 Desember kemarin menempati area seluas 363,202 meter persegi. Kira-kira seperti gambar di bawah ini, massa menempati wilayah yang diberi warna merah.
+
+![](../assets/image-blog/20161205-standing-crowd-density-2-desember-2016-03.jpg)
+
+* Jika menggunakan asumsi **1 meter persegi** ditempati oleh **2 orang**, maka jumlah peserta aksi adalah sekitar **725,000** orang
+
+* Jika menggunakan asumsi **1 meter persegi** ditempati oleh **4 orang**, maka jumlah peserta aksi adalah sekitar **1,450,000** orang
+* Berdasarkan <https://www.gkstill.com/Support/crowd-density/CrowdDensity-1.html> saya mencoba menggunakan asumsi **1 meter persegi** ditempati oleh **5 orang** - ini menjadi batas ATAS untuk ruang orang berdiri yang nyaman). Maka jumlah peserta aksi adalah sekitar **1,800,000** orang.
+
+Banyak yang nanya: Kamu ga ngitung orang2 yang ada di jembatan penyebarangan?
+
+Ya tinggal itung sajalah jumlah jembatan penyebrangan di sekitar lokasi, anggap saja jumlahnya 100 jembatan (biar keliatan banyak, meski tidak mungkin kan), dan setiap jembatan ditempati 1000 orang (makin tidak mungkin kan?), dengan asumsi tersebut, jumlah jamaah di jembatan itu maksimal cuman 100,000 orang. Ga bisa dipake ngatrol menjadi tiba-tiba 7 juta.
+
+Unit perhitungan ini sudah mencapai ratusan ribu hingga jutaan. Penambahan massa di lokasi seperti tempat parkir tidak akan serta merta mendongkrak nilainya menjadi 7 juta.
+
+Supaya 7 juta, sebarannya harus seperti apa sih?
+
+Dengan asumsi per m2 digunakan oleh 2 orang (kondisi ideal untuk sholat jamaah), massa harus memenuhi setidaknya area dalam radius 2.2 km dari titik tengah Monas, seperti gambar di bawah ini.
+
+![](../assets/image-blog/20161205-standing-crowd-density-2-desember-2016-05.jpg)
+
+Dengan asumsi per m2 di gunakan oleh 5 orang (kondisi sangat tidak ideal), maka massa harus memenuhi setidaknya area dalam radius 1.5 km dari titik tengah monas, seperti gambar di bawah ini.
+
+![](../assets/image-blog/20161205-standing-crowd-density-2-desember-2016-06.jpg)

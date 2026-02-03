@@ -1,0 +1,53 @@
+---
+title: "Sistem Peringkat Bahaya Kebakaran"
+author: "Benny Istanto"
+date: "2006-11-09"
+description: "LAPAN secara rutin melakukan pemantauan Sistem Peringkat Bahaya Kebakaran (SPBK/FDRS - Fire Danger Rating System) berbasis data satelit"
+image: "../assets/image-blog/20061109-sistem-peringkat-bahaya-kebakaran-01.jpg"
+categories:
+  - "Remote Sensing"
+  - "GIS"
+  - "Research"
+  - "Climate"
+# tags:
+#   - "spbk"
+#   - "hujan"
+#   - "kelembaban"
+#   - "suhu"
+#   - "fwi"
+#   - "lapan"
+#   - "angin"
+
+---
+
+LAPAN secara rutin melakukan pemantauan Sistem Peringkat Bahaya Kebakaran (SPBK/FDRS - Fire Danger Rating System) berbasis data satelit. SPBK tersebut mengacu pada sistem Fire Weather Index ([FWI](https://cwfis.cfs.nrcan.gc.ca/en_CA/background/summary/fwi)) yang dibuat oleh Canada.
+
+Sistem FWI membutuhkan masukan beberapa variabel cuaca harian: curah hujan, suhu udara, kelembaban relatif dan kecepatan angin. Untuk mendapatkan semua data tersebut, LAPAN memanfaatkan luaran dari [NOAA-16](https://en.wikipedia.org/wiki/NOAA-16), [QMORPH](https://www.cpc.ncep.noaa.gov/products/janowiak/cmorph_description.html) dan [TXLAPS](http://www.bom.gov.au/australia/charts/viewer/?IDCODE=IDYTX003.10M.000), dan menggunakan XLFWI addins (sistem yang sama digunakan oleh BMKG) yang berjalan di Microsoft Excel untuk menghitung FWI.
+
+Semua data yang dihasilkan disimpan dalam bentuk file teks XYZ (1 file, 1 variabel cuaca, 1 hari), untuk memudahkan proses analisis, query dan penyimpanan.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20061109-sistem-peringkat-bahaya-kebakaran-01.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20061109-sistem-peringkat-bahaya-kebakaran-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20061109-sistem-peringkat-bahaya-kebakaran-03.jpg)
+:::
+:::
+
+Tugas pertama yang saya kerjakan ketika pertama kali bergabung sebagai asisten peneliti di bidang Pemantauan Sumber Daya Alam dan Lingkungan (PSDAL) - LAPAN adalah melakukan modifikasi [GISFORESTFIRE](/project/2006-gisforestfire) (sistem yang saya buat ketika melakukan tugas akhir di LAPAN dan SEAMEO BIOTROP) menjadi sebuah aplikasi yang simpel dan ringan yang dapat membaca, menganalisis dan visualisasi data teks yang dibuat LAPAN untuk menghitung FWI.
+
+Aplikasi ini hanya menggunakan 1 form, 2 modules dan 1 class modules. Saya berencana untuk menulis laporan tentang proses pembuatannya, dan mengirimkannya ke Pertemuan Ilmiah Tahunan (PIT) - Masyarakat Ahli Penginderaan Jauh ([MAPIN](https://mapin.or.id)) yang akan dilaksanakan bulan depan di Bandung.
+
+![](../assets/image-blog/20061109-sistem-peringkat-bahaya-kebakaran-04.jpg)
+
+Code untuk frmNumerik (Numerik.frm)
+
+Code untuk modFDRS (FDRSI.bas)
+
+Code untuk modSamples (Samples.bas)
+
+Code untuk MapTip (MapTip.cls)

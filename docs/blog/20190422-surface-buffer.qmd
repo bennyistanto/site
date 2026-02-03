@@ -1,0 +1,32 @@
+---
+title: "Surface buffer"
+author: "Benny Istanto"
+date: "2019-04-22"
+description: "The current state of a volcano is extremely variable with time and it has no meaning to define fixed risk zones around volcanoes (e"
+image: "../assets/image-blog/20190422-surface-buffer-01.jpg"
+categories:
+  - "GIS"
+# tags:
+#   - "3d"
+#   - "buffer"
+#   - "arcpy"
+
+---
+
+The current state of a volcano is extremely variable with time and it has no meaning to define fixed risk zones around volcanoes (e.g. “from 5 to 10km from the crater”)
+
+Currently, during the emergency situation in volcano eruption case, most of decision maker with help from the technical team define the safe zone from the crater without considering the surface (blue line in below picture).
+
+[caption id="" align="alignnone" width="2500"]![  Figure 1 . Distance from a location ](../assets/image-blog/20190422-surface-buffer-01.jpg) Figure 1 . Distance from a location [/caption]
+
+Despite there is no default distance for volcanic safe zone, but it is important to calculate the true distance (considering the surface) from the crater — red line on above picture. For saving more lives and better preparedness.
+
+Using GIS technology, we can calculate the true distance very easily. In the ESRI GeoNet [forum](https://community.esri.com/thread/116656), there has been discussions on how to calculate a surface buffer using ArcPy. What we need is a coordinate of selected location and the surface condition from the surrounding areas, we can use free elevation data from [SRTM](https://www2.jpl.nasa.gov/srtm/) and can be downloaded from this site: 30-Meter SRTM Tile [Downloader](http://dwtkns.com/srtm30m/).
+
+[caption id="" align="alignnone" width="2500"]![  Figure 2.  12 km from the peak of Gunung Agung, Bali - Indonesia ](../assets/image-blog/20190422-surface-buffer-02.jpg) Figure 2. 12 km from the peak of Gunung Agung, Bali - Indonesia [/caption]
+
+Picture above is the result, red line is the true distance of 12km from the crater considering the topographic condition. You can try to calculate with your own data using below script from [Xander Bakker](https://community.esri.com/people/xander_bakker/blog) of ESRI Colombia below:
+
+You need to adjust the distance in line 9 (in meters) and working directory in line 11–13. And then you can paste the code into python GUI inside ArcGIS, or run via command prompt.
+
+Good luck!

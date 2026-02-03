@@ -1,0 +1,626 @@
+---
+title: "List of free satellite-based products and geospatial data on internet"
+author: "Benny Istanto"
+date: "2017-05-16"
+description: "This post updated regularly, so if you couldn’t find what you are looking for, comeback later or send me an email"
+categories:
+  - "Remote Sensing"
+  - "GIS"
+# tags:
+#   - "hydrology"
+#   - "terrain"
+#   - "population"
+#   - "opendata"
+#   - "physical"
+
+---
+
+*This post updated regularly, so if you couldn’t find what you are looking for, comeback later or send me an email!*
+
+***Latest update: 3 Nov 2020***
+
+Decision making to response different type of hazards requires different information. So does datasets necessary for the analysis. The data and information may not be available in one single map. This list is intended to provide data options and its use for different contexts.
+
+The data vary in accuracy, resolution, frequency of update, and geographic coverage. Data summary below mainly highlights the format, methods and technicalities (links to the sources provided). Full download of the datasets is available for most sources.
+
+### Baseline
+
+An effective disaster management system requires collection of baseline data that is comprehensive, accurate, timely, and accessible. Without these characteristics, an effective, economical, and task- oriented disaster management system cannot be achieved. This handbook focuses on baseline data collection and impact calculation for specific disasters, which can be defined as the scope and nature of the overall informational resources needed to prepare for and respond to a variety of disasters. What is presently required is a clear understanding of the characteristics of current information resources, their functional capabilities, and their use for disaster management.
+
+#### Boundaries
+
+* GADM
+
+Reference: <https://gadm.org/index.html>
+
+Format: Geopackage and Shapefile
+
+Coverage: Global, admin level 0 - 4 (availability is different for each country)
+
+Download link: By country <https://gadm.org/download_country_v3.html>, Indonesia Shapefile: <https://biogeo.ucdavis.edu/data/gadm3.6/shp/gadm36_IDN_shp.zip> Geopackage: <https://biogeo.ucdavis.edu/data/gadm3.6/gpkg/gadm36_IDN_gpkg.zip>
+
+The coordinate reference system is longitude/latitude and the WGS84 datum.
+
+* COD - Common Operational Datasets
+
+Reference: <https://data.humdata.org/dataset?vocab_Topics=common+operational+dataset+-+cod>
+
+Format: Geopackage and Shapefile
+
+Coverage: Global, admin level 0 - 4 (availability is different for each country)
+
+Download link: By country  <https://data.humdata.org/dataset?vocab_Topics=common+operational+dataset+-+cod>, Indonesia <https://data.humdata.org/dataset/indonesia-administrative-boundary-polygons-lines-and-places-levels-0-4b>
+
+* Natural Earth Data
+
+Reference: <https://www.naturalearthdata.com>
+
+Download link: <https://www.naturalearthdata.com/downloads/10m-cultural-vectors/>
+
+* Marine Boundaries
+
+Coverage: World, marine boundaries and Economic Exclusive Zone
+
+Reference: http://www.marineregions.org/sources.php#marbound
+
+Download link: <http://www.marineregions.org/downloads.php#marbound>
+
+Methodology: <http://www.marineregions.org/eezmethodology.php>
+
+#### Population
+
+Global mapping of population is rapidly growing in recent years. They are available at detailed spatial scales. The analysis is based on satellite or other geospatial data layers. The specifications of each map (data) widely differ. In order to get accurate population distributions, each data should be reconstructed and synchronized. Population data are necessary for the analysis of impacts of population growth, monitor population changes, and plan interventions.
+
+* Landscan
+
+  Reference: <https://landscan.ornl.gov>
+
+  Format and resolution: GeoTIFF, 1km spatial resolution
+
+  Coverage: Global, annual from 2000 - 2018 estimates of number of people per pixel (ppp)
+
+  Download link: <https://landscan.ornl.gov/landscan-datasets>
+* WorldPop
+
+  Reference: <https://www.worldpop.org>
+
+  Feature: API, GIS plugin, R package, and modelling script
+
+  Format and resolution: GeoTIFF, 100m spatial resolution
+
+  Data coverage: Global, annual from 2000 - 2018 estimates of number of people per pixel (ppp)
+
+  Link: The GeoTIFF images can be downloaded like so: ftp://ftp.worldpop.org.uk/GIS/Population/Global\_2000\_2020/YYYY/ISO3/iso3\_ppp\_yyyy.tif Example for Indonesia, year 2020, FTP download 0.99 GB - <ftp://ftp.worldpop.org.uk/GIS/Population/Global_2000_2020/2020/IDN/idn_ppp_2020.tif>
+
+  Other data product besides population: Births, Pregnancies, Urban Change, Age and sex structures, Development and Health Indicators, Dependency Ratio, Internal Migration Flow and others.
+* Facebook
+
+  Reference: <https://dataforgood.fb.com/tools/population-density-maps/>
+
+  Format and resolution: GeoTIFF, 30m spatial resolution
+
+  Data coverage: Global, 2019 estimates of number of people per pixel (ppp)
+
+  Download link: Humanitarian Data Exchange (HDX) - <https://data.humdata.org/organization/facebook>
+
+  Download link for Indonesia:
+
+  IDN\_children\_under\_five\_2019-06-01\_csv.zip, zipped csv (111.2M), <https://data.humdata.org/dataset/0474df44-62b5-4a4c-a4fd-fd733979e2cc/resource/94e808ad-9a61-426a-9fa3-60db15ad9eee/download/idn_children_under_five_2019-06-01_csv.zip>
+
+  IDN\_children\_under\_five\_2019-06-01\_geotiff.zip, zipped geotiff (77.8M), <https://data.humdata.org/dataset/0474df44-62b5-4a4c-a4fd-fd733979e2cc/resource/358825e9-bdac-4fa0-ae0e-07ec3f2fd1b4/download/idn_children_under_five_2019-06-01_geotiff.zip>
+
+  IDN\_elderly\_60\_plus\_2019-06-01\_csv.zip, zipped csv (111.1M), <https://data.humdata.org/dataset/0474df44-62b5-4a4c-a4fd-fd733979e2cc/resource/90fecfaf-8861-4715-af8f-941a1cd3ef90/download/idn_elderly_60_plus_2019-06-01_csv.zip>
+
+  IDN\_elderly\_60\_plus\_2019-06-01\_geotiff.zip, zipped geotiff (77.8M), <https://data.humdata.org/dataset/0474df44-62b5-4a4c-a4fd-fd733979e2cc/resource/a64ca5fb-7f43-47dd-a238-a2ff13b8e912/download/idn_elderly_60_plus_2019-06-01_geotiff.zip>
+
+  IDN\_men\_2019-06-01\_csv.zip, zipped csv (111.2M), <https://data.humdata.org/dataset/0474df44-62b5-4a4c-a4fd-fd733979e2cc/resource/2ed67ff5-5f22-44b5-89cd-1bc8133b7440/download/idn_men_2019-06-01_csv.zip>
+
+  IDN\_men\_2019-06-01\_geotiff.zip, zipped geotiff (77.7M), <https://data.humdata.org/dataset/0474df44-62b5-4a4c-a4fd-fd733979e2cc/resource/b1bf4b94-771c-44d2-8484-bad8c475621a/download/idn_men_2019-06-01_geotiff.zip>
+
+  IDN\_women\_2019-06-01\_csv.zip, zipped csv (111.2M), <https://data.humdata.org/dataset/0474df44-62b5-4a4c-a4fd-fd733979e2cc/resource/fb4f26e7-6f15-4f1e-ae14-8800890c5340/download/idn_women_2019-06-01_csv.zip>
+
+  IDN\_women\_2019-06-01\_geotiff.zip, zipped geotiff (77.7M), <https://data.humdata.org/dataset/0474df44-62b5-4a4c-a4fd-fd733979e2cc/resource/4258beb2-1579-475a-8fc2-2028289585dd/download/idn_women_2019-06-01_geotiff.zip>
+
+  IDN\_women\_of\_reproductive\_age\_15\_49\_2019-06-01\_csv.zip, zipped csv (111.2M), <https://data.humdata.org/dataset/0474df44-62b5-4a4c-a4fd-fd733979e2cc/resource/5c97ebbe-e1b5-4991-9e32-154f9d1e4942/download/idn_women_of_reproductive_age_15_49_2019-06-01_csv.zip>
+
+  IDN\_women\_of\_reproductive\_age\_15\_49\_2019-06-01\_geotiff.zip, zipped geotiff (77.7M), <https://data.humdata.org/dataset/0474df44-62b5-4a4c-a4fd-fd733979e2cc/resource/6620dbe5-24fd-4820-ba8b-6e5dd568b3be/download/idn_women_of_reproductive_age_15_49_2019-06-01_geotiff.zip>
+
+  IDN\_youth\_15\_24\_2019-06-01\_csv.zip, zipped csv (111.1M), <https://data.humdata.org/dataset/0474df44-62b5-4a4c-a4fd-fd733979e2cc/resource/64907f8a-a9d3-4763-b7cf-6c41c926cefc/download/idn_youth_15_24_2019-06-01_csv.zip>
+
+  IDN\_youth\_15\_24\_2019-06-01\_geotiff.zip, zipped geotiff (77.8M), <https://data.humdata.org/dataset/0474df44-62b5-4a4c-a4fd-fd733979e2cc/resource/776d4ce4-8490-4d96-8cc8-05980c7eadde/download/idn_youth_15_24_2019-06-01_geotiff.zip>
+
+  population\_idn\_2018-10-01\_geotiff.zip, zipped geotiff (77.7M), <https://data.humdata.org/dataset/0474df44-62b5-4a4c-a4fd-fd733979e2cc/resource/2b5f1310-ef98-44cb-b8b6-0d314add751c/download/population_idn_2018-10-01_geotiff.zip>
+
+  population\_idn\_2018-10-01.csv.zip, zipped csv (122.2M), <https://data.humdata.org/dataset/0474df44-62b5-4a4c-a4fd-fd733979e2cc/resource/1951bdfe-df73-45a9-b1bb-14d72966666c/download/population_idn_2018-10-01.csv.zip>
+* JRC GHSL
+
+  Reference: <https://ghsl.jrc.ec.europa.eu>
+
+  Format and resolution: GeoTIFF, 38m for footprint and 250m for population grids spatial resolution
+
+  Data coverage: 2015 estimates of number of people per pixel (ppp)
+
+  Download link: Population grids - <https://ghsl.jrc.ec.europa.eu/ghs_pop.php> and Footprint - <https://ghsl.jrc.ec.europa.eu/ghs_bu.php>
+
+#### Settlement
+
+* World Settlement Footprint (WSF) 2015
+
+AOI: Global
+
+Reference:
+
+* https://www.nature.com/articles/s41597-020-00580-5
+* https://www.dlr.de/eoc/en/desktopdefault.aspx/tabid-9628/16557\_read-40454/
+
+Source: DLR
+
+Format and resolution: GeoTIFF, 10m spatial resolution
+
+Download Link: WSF2015 can be downloaded from a dedicated repository
+
+* 10m <https://figshare.com/articles/dataset/World_Settlement_Footprint_WSF_2015/10048412>
+* 100m <https://figshare.com/articles/dataset/World_Settlement_Footprint_WSF_2015_-_Percent_Settlement_Area_-_100m/100484750>
+* 250m <https://figshare.com/articles/dataset/World_Settlement_Footprint_WSF_2015_-_Percent_Settlement_Area_-_250m/10048514>
+* 500m <https://figshare.com/articles/dataset/World_Settlement_Footprint_WSF_2015_-_Percent_Settlement_Area_-_500m/10048520>
+* 1km <https://figshare.com/articles/dataset/World_Settlement_Footprint_WSF_2015_-_Percent_Settlement_Area_-_1km/10048535>
+* 10km <https://figshare.com/articles/dataset/World_Settlement_Footprint_WSF_2015_-_Percent_Settlement_Area_-_10km/10048541>
+
+### Climate
+
+#### Precipitation
+
+Many research institution are producing global satellite precipitation estimate, and mostly available for public. Most notably products are CHIRPS, TRMM, CMORPH, GPM and GSMaP.
+
+* CHIRPS
+
+Coverage: Global
+
+Reference: <https://www.chc.ucsb.edu/data/chirps>
+
+Format and resolution: GeoTIFF and NetCDF, 0.05 deg ~ 5.6 km spatial resolution
+
+Data range: 1 Jan 1981 - present
+
+Download link:
+
+Daily - <https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_daily/>
+
+Pentad - <https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_pentad/>
+
+Dekad - <https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_dekad/>
+
+Monthly 1 - <https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_monthly/>
+
+Monthly 2 - <https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_2-monthly/>
+
+Monthly 3 - <https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_3-monthly/>
+
+Annual - <https://data.chc.ucsb.edu/products/CHIRPS-2.0/global_annual/>
+
+10-days Forecast - <https://data.chc.ucsb.edu/products/EWX/data/forecasts/CHIRPS-GEFS_precip/10day/>
+
+Preliminary data - <https://data.chc.ucsb.edu/products/CHIRPS-2.0/prelim/>
+
+* IMERG
+
+Coverage: Global
+
+Source: NASA IMERG (<https://pmm.nasa.gov/data-access/downloads/gpm>)
+
+Format and resolution: NetCDF4, 0.1 deg ~ 10 km spatial resolution
+
+Data range: 12 Mar 2000 - present
+
+Link:
+
+30-min Final Released <https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGHH.06/>
+
+30-min Early Released <https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGHHE.06/>
+
+30-min Late Released <https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGHHL.06/>
+
+Daily Final Released <https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGDF.06/>
+
+Daily Early Released <https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGDE.06/>
+
+Daily Late Released <https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGDL.06/>
+
+### Hydrographic
+
+River
+
+* Hydroshed River
+
+  Coverage: Global
+
+  Source: <https://hydrosheds.org>
+
+Format and resolution: Shepfile, 15 sec ~ 500 m spatial resolution
+
+Link: <https://hydrosheds.org/downloads>
+
+Lake
+
+* Hydroshed Lake
+
+  Coverage: Global
+
+  Source: <https://hydrosheds.org/pages/hydrolakes>
+
+Format and resolution: Shepfile and GDB
+
+Link:
+
+Polygon: shp (782 MB zip-file) - <https://97dc600d3ccc765f840c-d5a4231de41cd7a15e06ac00b0bcc552.ssl.cf5.rackcdn.com/HydroLAKES_polys_v10_shp.zip> and gdb (727 MB zip-file) - <https://97dc600d3ccc765f840c-d5a4231de41cd7a15e06ac00b0bcc552.ssl.cf5.rackcdn.com/HydroLAKES_polys_v10.gdb.zip>
+
+Pour points: shp (782 MB zip-file) - <https://97dc600d3ccc765f840c-d5a4231de41cd7a15e06ac00b0bcc552.ssl.cf5.rackcdn.com/HydroLAKES_points_v10_shp.zip> and gdb (78 MB zip-file) - <https://97dc600d3ccc765f840c-d5a4231de41cd7a15e06ac00b0bcc552.ssl.cf5.rackcdn.com/HydroLAKES_points_v10.gdb.zip>
+
+Water Body
+
+* SRTM Water Body
+
+Coverage: Global
+
+Source: SRTM Water Body (<http://dds.cr.usgs.gov/srtm/version2_1/SWBD/SWBD_Documentation/Readme_SRTM_Water_Body_Data.pdf>)
+
+Format: Shapefile in zip-file
+
+Link: <https://dds.cr.usgs.gov/srtm/version2_1/SWBD/>
+
+* JRC Global Surface Water
+
+Coverage: Global
+
+Source: JRC Global Surface Water (<https://www.nature.com/articles/nature20584.epdf?author_access_token=C5JSvooRop4jWxyp_qRPLNRgN0jAjWel9jnR3ZoTv0MqBuzCNsmw_DFxRd7sX93nfPzcbm_xTiPLlZMl7XrUhadm6EiT9cGdDNgn1s6EWrPWH3IeadLUjApplBoaS6xH)>
+
+Format and resolution: GeoTIFF, 30m spatial resolution, based on Landsat
+
+Data coverage: From 80° north to 60° south. It is divided into tiles of 10 x 10 degrees. 1984-2015.
+
+Data contents: Water occurrence, change, seasonality, recurrence, transitions and maximum extent
+
+Link: <https://global-surface-water.appspot.com/download>
+
+* USGS Global Surface Water
+
+AOI: Global
+
+Source: USGS Global Surface Water (<https://science.sciencemag.org/content/342/6160/850.abstract>)
+
+Format and resolution: GeoTIFF, 30m spatial resolution, based on Landsat
+
+Data coverage: From 80° north to 60° south. It is divided into tiles of 10 x 10 degrees. 2000 - 2012.
+
+Link: Bulk download - <https://edcintl.cr.usgs.gov/downloads/sciweb1/shared/gtc/downloads/WaterMask2010_UMD.zip> or as Individual tiles - <https://edcintl.cr.usgs.gov/downloads/sciweb1/shared/gtc/downloads/WaterMask2010_UMD_individual/>
+
+### Natural Hazards
+
+Fire Hotspot
+
+* MODIS and VIIRS Hotspot
+
+Coverage: Global, 2000 - now
+
+Source: NASA FIRMS
+
+Format: shp, csv, json
+
+Link: <https://firms.modaps.eosdis.nasa.gov/download/>
+
+* ATSR
+
+  Coverage: Global, 1995 - 2012
+
+  Source: ESA ATSR
+
+  Format: ASCII, <http://due.esrin.esa.int/page_wfaformats.php>
+
+  Link: <http://due.esrin.esa.int/page_wfa.php>
+
+* Earthquake
+
+Historical earthquake events also available for download from USGS website: <https://earthquake.usgs.gov/earthquakes/search/>
+
+ShakeMap is available from USGS website <https://earthquake.usgs.gov/data/shakemap/> and user is required to choose the earthquake event from the list and if not available, usually can be found through “Search ShakeMap archive”.
+
+* Landslide
+
+Coverage: Global
+
+Reference: <https://maps.nccs.nasa.gov/arcgis/apps/webappviewer/index.html?id=824ea5864ec8423fb985b33ee6bc05b7>
+
+Download link: <https://maps.nccs.nasa.gov/arcgis/apps/MapAndAppGallery/index.html?appid=574f26408683485799d02e857e5d9521>
+
+* Land Susceptibility
+
+  Coverage: Global
+
+  Reference: <https://earthobservatory.nasa.gov/images/89937/a-global-view-of-landslide-susceptibility> and <https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20170005840.pdf>
+
+  Format: GeoTIFF, 1km spatial resolution
+
+  Download link: <https://gpm.nasa.gov/sites/default/files/downloads/global-landslide-susceptibility-map-1-30-20.zip>
+
+### OpenStreetMap
+
+* Global
+
+Reference: OSM via GeoFabrik
+
+Format and update: shapefile in zip-file, daily update
+
+Feature content:
+
+* Point Features: places; point of interest; places of worship; natural features; traffic related; transport infrastructure
+* Line Features: road and paths; railways, subways, trams, lifts, and cable cars; waterways
+* Polygon Features: building outlines; land use and land cover; bodies of water
+
+Link: Asia - <http://download.geofabrik.de/asia.html,> Indonesia - <http://download.geofabrik.de/asia/indonesia-latest-free.shp.zip>
+
+* Surabaya
+
+Source: Perkumpulan OSM Indonesia (<https://openstreetmap.id/data-surabaya/>)
+
+Format: shapefile, osm, geopackage
+
+Feature content: Batas administrasi, bangunan, jalan, infrastruktur
+
+Link:
+
+* Batas administrasi (shp) <https://drive.google.com/open?id=1ARvJ_aEA_rg_zh6x_zuI8Zx8wIb7rPwH>
+* Batas administrasi (osm) <https://drive.google.com/open?id=1q0eQ9ctEv6KmLkw-8K4Id07W5bEOU4J4>
+* Batas administrasi (gpkg) <https://drive.google.com/open?id=1bhU7U4jiynEjMyRW2qPvBeenaLrqiR5h>
+* Bangunan (osm) <https://drive.google.com/open?id=18ZgH78G4ridroPcfTOQsAF9OKqEoJmzG>
+* Jalan (osm) <https://drive.google.com/open?id=1yDljp7q87lLQ4GnR0HxZe3i72hICErCm>
+* Infrastruktur keseluruhan (shp) <https://drive.google.com/open?id=1STnTZ2tljAIHzI_mbvqXu9boH5k0H6_K>
+
+  Infrastruktur terperinci:
+* Fasilitas ekonomi (gpkg) <https://drive.google.com/open?id=1tM97pQW0mumWWWFdldOKX_TO1_OG5FgJ>
+* Infrastruktur komunikasi (gpkg) <https://drive.google.com/open?id=1emY-3jNkskaNMp9rUIPRbhy6foRgedWO>
+* Fasilitas pendidikan (gpkg) <https://drive.google.com/open?id=1tghyX-Qgt2k8Fy3IVL-WbzR15YtZ3HA4>
+* Layanan kedaruratan (gpkg) <https://drive.google.com/open?id=1eK4HMSC25km-j41GFkYOqBoBYFQ1EId->
+* Stasiun pengisian bahan bakar umum (gpkg) <https://drive.google.com/open?id=1y24hCns8UlTY_YWH5hvMVDeCtcAKdVJr>
+* Kantor pemerintah (gpkg) <https://drive.google.com/open?id=1TLSdnbHJAMdPwNtupOP7QlkCjgpBjdWo>
+* Fasilitas kesehatan (gpkg) <https://drive.google.com/open?id=1HmcoR-HhD6ptLyTVTTQdNmup2-PrVU9L>
+* Infrastruktur kelistrikan (gpkg) <https://drive.google.com/open?id=1fgw5phV_RFVUz1x24DhOSFN2_eYVeqeL>
+* Tempat ibadah, fasilitas olahraga dan ruang publik (gpkg) <https://drive.google.com/open?id=1KMHbjIG9Q_P0NtAC9IzTQWtxo2I65hIK>
+* Sarana transportasi (gpkg) <https://drive.google.com/open?id=1HzwN-DgYDQzgS20IA8UjPWluD1Wxy_Tw>
+* Sarana perairan (gpkg) <https://drive.google.com/open?id=1174Nb0j3xSLiKxONtTWik6qbuH5P8k8w>
+
+* Jakarta
+
+Source: Perkumpulan OSM Indonesia (<https://openstreetmap.id/data-dki-jakarta/>)
+
+Format: shapefile, osm, geopackage
+
+Feature content: Batas administrasi, bangunan, jalan, infrastruktur
+
+Link:
+
+* Batas administrasi DKI (osm) <https://drive.google.com/open?id=18HMJ62_bmLqDcn4hnJ1M8Ujt3f2xHZJB>
+* Batas administrasi kotamadya (gpkg) <https://drive.google.com/open?id=1L64PZxK_8XTeu_HVorBYTZcbz35jgCLB>
+* Batas administrasi kecamatan (gpkg) <https://drive.google.com/open?id=1iAxEwK7Z1c71nIhH6rb8OG2u8XTXf6El>
+* Batas administrasi kelurahan (gpkg) <https://drive.google.com/open?id=18N6_1o5FR1wlBkubrzm-ZTnRMUleUqCe>
+* Batas administrasi rw (gpkg) <https://drive.google.com/open?id=1iRM1AcnoRpY3ItqxWMwfs7twXOqWe1ia>
+* Batas administrasi rt (gpkg) <https://drive.google.com/open?id=1ZKITXqDOa277Sd5KWDvZUyCljHOeB6Ub>
+* Bangunan (shp) <https://drive.google.com/open?id=1LvWXH9Vuv76R0PL9AwY-hVt-Ixg9dqGu>
+* Jalan (shp) <https://drive.google.com/open?id=1c00zYz0mtv14b8K87JUFvJVf-WxRANL4>
+* Infrastruktur keseluruhan (shp) <https://drive.google.com/open?id=1MRA-NhAGohWVo0snlkymr99JYYUIenb->
+
+  Infrastruktur terperinci:
+* Fasilitas ekonomi (shp) <https://drive.google.com/open?id=1oSSblEWaUxXDgRARpIBa8hV5-3nOd5eI>
+* Infrastruktur komunikasi (shp) <https://drive.google.com/open?id=110XxbarNPznlqtKKl_vzNTtHwAKwH6F->
+* Fasilitas pendidikan (shp) <https://drive.google.com/open?id=1RQYdWS2zYQIdOy7BXGhUBLpq6cuGsF1Y>
+* Layanan kedaruratan (shp) <https://drive.google.com/open?id=154vq9jpAH7P46abjzvnuHSKH7eHtDuRU>
+* Stasiun pengisian bahan bakar umum (shp) <https://drive.google.com/open?id=1DCRFhXCqIrtjvoR3XaEc_DnHwUKddk8r>
+* Kantor pemerintah (shp) <https://drive.google.com/open?id=1uc3UqVe4XXEepNZeTtc-kCCmQaVf5QXt>
+* Fasilitas kesehatan (shp) <https://drive.google.com/open?id=1azUAetAfVKHmkh8MdBnZv6owD-jzvBkd>
+* Infrastruktur kelistrikan (shp) <https://drive.google.com/open?id=1E-n34SPkon9_tWa3H7DwEsrfRH4XMcMD>
+* Tempat ibadah, fasilitas olahraga dan ruang publik (shp) <https://drive.google.com/open?id=1gkA503jsLdtxLBfOfztGKUwbB9j92E8->
+* Sarana transportasi (shp) <https://drive.google.com/open?id=1fSjRH71xbOWG8nT8--9raJyPTa4paEwr>
+* Sarana perairan (shp) <https://drive.google.com/open?id=1LIWCT63eRT_357u51sluRfjBQCo-EJLF>
+
+* Semarang
+
+Source: Perkumpulan OSM Indonesia (<https://openstreetmap.id/data-semarang/>)
+
+Format: shapefile, osm, geojson, geopackage
+
+Feature content: Batas administrasi, bangunan, jalan, infrastruktur
+
+Link:
+
+* Batas administrasi (shp) <https://drive.google.com/open?id=1bGw7PgBwDf4C3sjX4elNWSbRBJMW9Jrp>
+* Batas administrasi (geojson) <https://drive.google.com/open?id=1m2C1_dxiphOC9YDLQhsKKJ_FqVZqhiGh>
+* Batas administrasi kecamatan (geojson) <https://drive.google.com/open?id=1ZGTjT-iqqUCdSKE-3b4LZ5-ezaLM7QFE>
+* Batas administrasi kelurahan (geojson) <https://drive.google.com/open?id=1O2VMlY9LeNT49RsqFhsEL-E79nN_A2-w>
+* Batas administrasi rw (geojson) <https://drive.google.com/open?id=1-sO0Em3hFSnrdkX_-BgpKXBZxP50ZLZX>
+* Bangunan (shp) <https://drive.google.com/open?id=1xGBYdW54vPIp-BE81UwVad2AVBC8owcV>
+* Jalan (shp) <https://drive.google.com/open?id=1By3_FwPaLOos0Xvo1SpBYQoAlUiX2gv5>
+* Infrastruktur keseluruhan (shp) <https://drive.google.com/open?id=1Y0yF4RmKC-ZantMyPSKXimqJZQUfVJIs>
+
+  Infrastruktur terperinci:
+* Fasilitas ekonomi (gpkg) <https://drive.google.com/open?id=1ItjIE7KA5efo8tVn1ZWhn_ibUu9XBm7z>
+* Infrastruktur komunikasi (gpkg) <https://drive.google.com/open?id=16z5gPvkFjbdrMuWwt-oCZkcjMy5Z3OD7>
+* Fasilitas pendidikan (gpkg) <https://drive.google.com/open?id=1261mqijxkJZvdtlQIDpBoT-W24ySMa6X>
+* Layanan kedaruratan (gpkg) <https://drive.google.com/open?id=1mvF5ifakBEsO744ckFdHuZmwRn-nAk27>
+* Stasiun pengisian bahan bakar umum (gpkg) <https://drive.google.com/open?id=1CRb59034Xtm_SD_AE2t2Rv6mTnP6X3W4>
+* Kantor pemerintah (gpkg) <https://drive.google.com/open?id=1Q-MjF3TBB_Dc4Av7t_wNoNwO60DVa5OC>
+* Fasilitas kesehatan (gpkg) <https://drive.google.com/open?id=1JP2YvK3KGFY-LpNzo_1sGnrEeZqqfdSj>
+* Infrastruktur kelistrikan (gpkg) <https://drive.google.com/open?id=1I1TrQ4ACoryKs5yHFbLgQL1r8R4On6ou>
+* Tempat ibadah, fasilitas olahraga dan ruang publik (gpkg) <https://drive.google.com/open?id=1ct9NqJwLTl4vp-RqgzgP_l2QkKorvwkV>
+* Sarana transportasi (gpkg) <https://drive.google.com/open?id=1bKP9pEPr6ii0O3j1Lkx-7n_mGbZObeZu>
+* Sarana perairan (gpkg) <https://drive.google.com/open?id=18HAyKbBz8IQaDytbFiXw1ExfuAHQZy8W>
+
+### Physical
+
+Landcover
+
+Land cover maps represent spatial information on different types (classes) of physical coverage of the Earth's surface, e.g. forests, grasslands, croplands, lakes, wetlands. Dynamic land cover maps include transitions of land cover classes over time and hence captures land cover changes. Land use maps contain spatial information on the arrangements, activities and inputs people undertake in a certain land cover type to produce, change or maintain it.
+
+* Copernicus Global Landcover Services
+
+Coverage: Global
+
+Blog: <https://blog.vito.be/remotesensing/lcviewer>
+
+Source: <https://land.copernicus.eu/global/products/lc>
+
+Format and resolution: GeoTIFF in zip-file, 100m spatial resolution
+
+Download link: Tile for Indonesia
+
+<https://s3-eu-west-1.amazonaws.com/vito-lcv/2015/ZIPfiles/E080N20_ProbaV_LC100_epoch2015_global_v2.0.1_products_EPSG-4326.zip>
+
+<https://s3-eu-west-1.amazonaws.com/vito-lcv/2015/ZIPfiles/E100N20_ProbaV_LC100_epoch2015_global_v2.0.1_products_EPSG-4326.zip>
+
+<https://s3-eu-west-1.amazonaws.com/vito-lcv/2015/ZIPfiles/E120N20_ProbaV_LC100_epoch2015_global_v2.0.1_products_EPSG-4326.zip>
+
+<https://s3-eu-west-1.amazonaws.com/vito-lcv/2015/ZIPfiles/E080N00_ProbaV_LC100_epoch2015_global_v2.0.1_products_EPSG-4326.zip>
+
+<https://s3-eu-west-1.amazonaws.com/vito-lcv/2015/ZIPfiles/E100N00_ProbaV_LC100_epoch2015_global_v2.0.1_products_EPSG-4326.zip>
+
+<https://s3-eu-west-1.amazonaws.com/vito-lcv/2015/ZIPfiles/E120N00_ProbaV_LC100_epoch2015_global_v2.0.1_products_EPSG-4326.zip>
+
+<https://s3-eu-west-1.amazonaws.com/vito-lcv/2015/ZIPfiles/E140N00_ProbaV_LC100_epoch2015_global_v2.0.1_products_EPSG-4326.zip>
+
+* ESA CCI Annual Landcover
+
+Coverage: Global
+
+Source: ESA Climate Change Initiative <https://www.esa-landcover-cci.org/?q=node/197>
+
+Format and resolution: NetCDF, 300m spatial resolution, annual 1992 - 2018
+
+Download Link: <https://cds.climate.copernicus.eu/cdsapp#!/dataset/satellite-land-cover?tab=overview>
+
+* GlobCOVER
+
+Coverage: Global
+
+Source: ESA GlobCover (<http://due.esrin.esa.int/page_globcover.php>)
+
+Format and resolution: GeoTIFF in zip-file, 300m spatial resolution
+
+Link: <http://due.esrin.esa.int/files/Globcover2009_V2.3_Global_.zip>
+
+* Bare Land
+
+Coverage: Global
+
+Source: GLAD UMD (<https://glad.geog.umd.edu/dataset/global-2010-bare-ground-30-m>)
+
+Format and resolution: GeoTIFF, 30m spatial resolution, based on Landsat
+
+Data coverage: From 80° north to 60° south. It is divided into tiles of 10 x 10 degrees.
+
+Link: <https://glad.umd.edu/Potapov/Bare_2010/>
+
+* Tree Cover and Loss
+
+Coverage: Global
+
+Source: <http://earthenginepartners.appspot.com/science-2013-global-forest>
+
+Format and resolution: GeoTIFF, 30m spatial resolution, based on Landsat
+
+Data coverage: From 80° north to 60° south. It is divided into tiles of 10 x 10 degrees.
+
+Link: <http://earthenginepartners.appspot.com/science-2013-global-forest/download_v1.7.html>
+
+* Cropland based on MODIS
+
+Coverage: Global
+
+Source: GLAD UMD (<https://glad.geog.umd.edu/dataset/gce/global-cropland-extent>)
+
+Format and resolution: GeoTIFF, 250m spatial resolution, based on MODIS
+
+Data coverage: Each tile is 4800x4800 in MODIS Sinusoidal projection with a pixel size of 231.65635m. A map of MODIS tiles can be found here - <https://glad.geog.umd.edu/croplands/sinusoidal.gif>
+
+Link: Cropland Probability - <https://glad.geog.umd.edu/dataset/gce/250mprob> and Discrete Cropland/Non-Cropland <https://glad.geog.umd.edu/dataset/gce/modis-global-crop-extent-discrete-croplandnot-cropland-data>
+
+* Cropland based on Landsat
+
+Coverage: Global
+
+Source: USGS GFSAD (<https://www.usgs.gov/centers/wgsc/science/global-food-security-support-analysis-data-30-m?qt-science_center_objects=0#qt-science_center_objects>)
+
+Format and resolution: GeoTIFF, 30m spatial resolution, based on Landsat
+
+Link: Southeast Asia - <https://lpdaac.usgs.gov/products/gfsad30seacev001/>
+
+Terrain
+
+* DEMNAS
+
+Coverage: Indonesia
+
+Source: <http://tides.big.go.id/DEMNAS/> - registration required before downloading the data.
+
+Format and resolution: GeoTIFF, 8m spatial resolution
+
+Link:
+
+Sumatera - <http://tides.big.go.id/DEMNAS/Sumatera.php>
+
+Kalimantan - <http://tides.big.go.id/DEMNAS/Kalimantan.php>
+
+Sulawesi - <http://tides.big.go.id/DEMNAS/Sulawesi.php>
+
+Jawa dan Bali - <http://tides.big.go.id/DEMNAS/Jawa.php>
+
+Nusa Tenggara - <http://tides.big.go.id/DEMNAS/Nusa_tenggara.php>
+
+Maluku - <http://tides.big.go.id/DEMNAS/Maluku.php>
+
+Papua - <http://tides.big.go.id/DEMNAS/Papua.php>
+
+BATNAS - <http://tides.big.go.id/DEMNAS/Batnas.php>
+
+* SRTM
+
+Coverage: Global
+
+Source: NASA SRTM (<https://earthdata.nasa.gov/nasa-shuttle-radar-topography-mission-srtm-version-3-0-global-1-arc-second-data-released-over-asia-and-australia>)
+
+Format and Resolution: GeoTIFF, 30m and 90m spatial resolution
+
+Link: 30m - <http://dwtkns.com/srtm30m/> and 90m - <http://dwtkns.com/srtm/>
+
+* ASTER GDEM
+
+Coverage: Global
+
+Source: ASTER GDEM (<https://asterweb.jpl.nasa.gov/gdem.asp>)
+
+Format and Resolution: GeoTIFF, 30m spatial resolution
+
+Link: <https://search.earthdata.nasa.gov/search/granules/collection-details?p=C197265171-LPDAAC_ECS&q=ASTER%20GDEM&ok=ASTER%20GDEM>
+
+* NASADEM
+
+  Coverage: Global
+
+  Reference: <https://earthdata.nasa.gov/esds/competitive-programs/measures/nasadem>
+
+  Foremat and resolution: HGT and NetCDF, 30m spatial resolution
+
+  Link: <https://lpdaac.usgs.gov/news/release-nasadem-data-products/>
+
+  Tools for download the data: <https://github.com/dshean/nasadem>
+
+* Copernicus Digital Elevation Model 30
+
+AOI: Global
+
+News: [https://bit.ly/3kEnXem](https://t.co/TNWrzz2IQx?amp=1)
+
+Source: Copernicus
+
+Format: GeoTIFF and DTED
+
+Resolution: Europe 10m, Global 30 and 90m
+
+Download link: <https://spacedata.copernicus.eu/fr/dataset-details?articleId=394198>

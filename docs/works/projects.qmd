@@ -1,0 +1,123 @@
+---
+title: "Projects"
+subtitle: "Innovative solutions in climate and geospatial data science"
+page-layout: full
+toc: false
+css: ../styles/projects.css
+---
+
+::: {.projects-intro}
+It all begins with an idea, then it becomes something else.
+
+Featured projects demonstrating expertise in earth observation, climate analysis, and data science.
+:::
+
+## Selected Projects
+
+```{=html}
+<div class="projects-grid">
+
+<a href="projects/2003-ffii.html" class="project-card">
+  <img src="../assets/image-projects/2003-ffii-00.png" class="project-thumbnail" alt="FFII">
+  <div class="project-content">
+    <div class="project-year">2003</div>
+    <h3 class="project-title">Festival Film Independen Indonesia</h3>
+  </div>
+</a>
+
+<a href="projects/2004-now-logo.html" class="project-card">
+  <img src="../assets/image-projects/2004-now-logo-00.png" class="project-thumbnail" alt="Logo Design">
+  <div class="project-content">
+    <div class="project-year">2004 - now</div>
+    <h3 class="project-title">Logo</h3>
+  </div>
+</a>
+
+<a href="projects/2005-surface-energy-balance.html" class="project-card">
+  <img src="../assets/image-projects/2005-surface-energy-balance-00.png" class="project-thumbnail" alt="Surface Energy Balance">
+  <div class="project-content">
+    <div class="project-year">2005</div>
+    <h3 class="project-title">Surface Energy Balance</h3>
+  </div>
+</a>
+
+<a href="projects/2006-gisforestfire.html" class="project-card">
+  <img src="../assets/image-projects/2006-gisforestfire-00.png" class="project-thumbnail" alt="GISForestFire">
+  <div class="project-content">
+    <div class="project-year">2006</div>
+    <h3 class="project-title">GIS for Forest Fire</h3>
+  </div>
+</a>
+
+<a href="projects/2007-siske.html" class="project-card">
+  <img src="../assets/image-projects/2007-siske-00.png" class="project-thumbnail" alt="SISKe">
+  <div class="project-content">
+    <div class="project-year">2007</div>
+    <h3 class="project-title">Sistem Informasi Spasial Kebakaran Hutan dan Lahan</h3>
+  </div>
+</a>
+
+<a href="projects/2008-floss-for-forest-fire-monitoring.html" class="project-card">
+  <img src="../assets/image-projects/2008-floss-for-forest-fire-monitoring-00.jpg" class="project-thumbnail" alt="F/OSS for Forest Fire Monitoring">
+  <div class="project-content">
+    <div class="project-year">2008</div>
+    <h3 class="project-title">F/OSS for Forest Fire Monitoring</h3>
+  </div>
+</a>
+
+<a href="projects/2008-aceh-fis.html" class="project-card">
+  <img src="../assets/image-projects/2008-aceh-fis-00.png" class="project-thumbnail" alt="Aceh FIS">
+  <div class="project-content">
+    <div class="project-year">2008</div>
+    <h3 class="project-title">Aceh Forest Information System</h3>
+  </div>
+</a>
+
+<a href="projects/2009-cluster-atlas.html" class="project-card">
+  <div class="project-content">
+    <div class="project-year">2009</div>
+    <h3 class="project-title">Cluster Atlas: West Sumatra Earthquake Response</h3>
+  </div>
+</a>
+
+<a href="projects/2011-district-road-network.html" class="project-card">
+  <div class="project-content">
+    <div class="project-year">2011</div>
+    <h3 class="project-title">Aceh District Road Network</h3>
+  </div>
+</a>
+
+<a href="projects/2014-province-infographic.html" class="project-card">
+  <div class="project-content">
+    <div class="project-year">2014</div>
+    <h3 class="project-title">Province Infographic</h3>
+  </div>
+</a>
+
+<a href="projects/2015-fsva.html" class="project-card">
+  <div class="project-content">
+    <div class="project-year">2015</div>
+    <h3 class="project-title">Food Security and Vulnerability Atlas</h3>
+  </div>
+</a>
+
+<a href="projects/2016-vampire.html" class="project-card">
+  <div class="project-content">
+    <div class="project-year">2016</div>
+    <h3 class="project-title">VAMPIRE</h3>
+  </div>
+</a>
+
+<a href="projects/2021-extreme-rainfall-monitoring.html" class="project-card">
+  <div class="project-content">
+    <div class="project-year">2021</div>
+    <h3 class="project-title">Extreme Rainfall Monitoring</h3>
+  </div>
+</a>
+
+</div>
+```
+
+::: {.back-link}
+[← Back to Works](../works.qmd)
+:::

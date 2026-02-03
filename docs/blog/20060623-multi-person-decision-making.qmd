@@ -1,0 +1,90 @@
+---
+title: "Multi Person Decision Making"
+author: "Benny Istanto"
+date: "2006-07-23"
+description: "Problem"
+image: "../assets/image-blog/20060623-multi-person-decision-making-01.jpg"
+categories:
+  - "Research"
+  - "Climate"
+  - "Data Science"
+# tags:
+#   - "relative humidity"
+#   - "weather"
+#   - "wind speed"
+#   - "temperature"
+
+---
+
+Problem?
+
+Prediction on weather phenomena could be done using data from weather station. For small certain location may be could use data from one station. But for global area would be need more than one weather station. Formulated parameter to predict weather conditions for all weather station in the large area may different between each of stations. For example if we have a watershed for study area; this area maybe has more than one weather station, then we must concern about parameters that give big influences for weather conditions. Temperature 25°C on the low land maybe would give the same impact if on the up land has same temperature but different air humidity.
+
+I would like to determine weather information from 7 stations in certain watershed and each station has the different rank of weather stations data that give impact on weather conditions for this area. Information on that would needed if we want to create generalisation which weather data will given big influence of watershed area.
+
+Formulated of the problem
+
+The problem will be solved with multi person decision-making. Derived from 5 weather stations data, we get 6 kind of weather data, they are :
+
+1. Air Temperature (a)
+2. Air Relative Humidity (b)
+3. Air Pressure ©
+4. Wind (d)
+5. Solar radiance (e)
+6. Sunshine hours (Measured by Campbell Stokes Instrument) (f)
+
+Weather data priority to predict weather conditions each of stations:
+
+* W1 = (d, a, c, b, e, f)
+* W2 = (a, d, f, b, e, c)
+* W3 = (e, a, b, d, c, f)
+* W4 = (c, f, d, b, a, e)
+* W5 = (a, f, e, d, c, b)
+
+Determine the degree of weather data of priority by below equation:
+
+* S(xi,xj) = N(xi,xj) / n
+
+  N(xi,xj) is number of stations preferring xi over xj
+
+  n is number of stations
+
+Creating fuzzy preference relations in matric (would be created in computer program)
+
+Selected maximum degree of group preference of alternative xi over xj (would be created in computer program)
+
+Determine data prefering xi over xj which recommendation by computer program
+
+Determine possible combination
+
+Problem Solving
+
+![](../assets/image-blog/20060623-multi-person-decision-making-01.jpg)
+
+Based on result above program we can determine the possible combination with the maximum degree of group preference is 0.8 and data preferring xi over xj has been recommended are :
+
+1. a > b
+2. a > c
+3. a > e
+4. d > b, and
+5. d > c
+
+The possible data ranking and combination are :
+
+* a, d, c, b, e, f
+* a, d, b, c, e, f
+* a, d, b, c, f, e
+* a, d, e, f, b, c
+* a, d, e, f, c, b
+* a, d, f, e, b, c
+* a, d, f, e, c, b
+* d, a, c, b, e, f
+* d, a, b, c, e, f
+* d, a, b, c, f, e
+* d, a, e, f, b, c
+* d, a, e, f, c, b
+* d, a, f, e, b, c
+* d, a, f, e, c, b
+* etc.
+
+Note : Possible combination must be put a or d in the first or second series.

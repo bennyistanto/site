@@ -1,0 +1,20 @@
+---
+title: "Blog"
+subtitle: "Exploring Climate with GIS, and Data Science"
+page-layout: full
+toc: false
+css: styles/blog.css
+listing:
+  contents: blog
+  sort: "date desc"
+  type: grid
+  categories: true
+  sort-ui: true
+  filter-ui: true
+  fields: [image, date, title, author, categories, description]
+  feed:
+    title: "Benny Istanto's Blog"
+    description: "Exploring climate, GIS, and data science - with stories from work, family moments, and journeys around the world"
+    items: 20
+---
+

@@ -1,0 +1,27 @@
+---
+title: "Today - a year ago"
+author: "Benny Istanto"
+date: "2021-03-11"
+image: "../assets/image-blog/20210311-today-a-year-ago-01.gif"
+categories:
+  - "General"
+# tags:
+#   - "work from home"
+#   - "pandemic"
+#   - "covid-19"
+
+---
+
+![](../assets/image-blog/20210311-today-a-year-ago-01.gif)
+
+Today marks the [first anniversary of my office’s decision](/blog/20200311-covid-19-and-wfh) to asks all staffs to work from home (WFH) due to COVID-19.
+
+This means a lot for me and changed the way on how everybody works. For me, WFH means an escape from wasting my lives commuting from Bogor - Jakarta - Bogor. I have done the maths, on average, Jakarta/Bogor commuters spend 30 days a year traveling to and from work.
+
+Some fun stuff during WFH too, I can:
+
+* Teach my daughter how to code using [Scratch](https://scratch.mit.edu), and now we are starting to use [Lua](http://www.lua.org)
+* Replace my wife’s duty, frequently buy vegetables and recipes at the vegetable vendors or local market
+* Netflix movie marathon
+
+The pandemic still not over, please stay at home, stay healthy and wear your mask. I know wearing a mask is not a political right, but it respect other lives.

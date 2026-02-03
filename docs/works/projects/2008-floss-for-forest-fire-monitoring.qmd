@@ -1,0 +1,120 @@
+---
+title: "F/OSS for Forest Fire Monitoring"
+subtitle: "Remote sensing application for hotspot and forest fire monitoring using Free Open Source Software for Geospatial (FOSS4G)"
+page-layout: full
+toc: false
+image: "../../assets/image-projects/2008-floss-for-forest-fire-monitoring-00.jpg"
+css: ../../styles/project-detail.css
+---
+
+Research and development of remote sensing applications for fire monitoring using Free and Open Source Software for Geospatial (FOSS4G) at the EU-funded South Sumatra Forest Fire Management Project (SSFFMP) in 2008.
+
+::: {.project-meta}
+::: {.meta-item}
+::: {.meta-label}
+Year
+:::
+::: {.meta-value}
+2008
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Organization
+:::
+::: {.meta-value}
+South Sumatra Forest Fire Management Project (SSFFMP) - EU Funded
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Tools
+:::
+::: {.meta-value}
+[KOSMO 1.2](http://www.saig.es/), [ArcExplorer Java Edition](http://www.esri.com/software/arcexplorer/download-education.html), [ILWIS 3.4](http://www.itc.nl/ilwis/)
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+My Role
+:::
+::: {.meta-value}
+Short-term Expert - FOSS4G Specialist
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Reference
+:::
+::: {.meta-value}
+SSFFMP Short-term Expert [Report No. 79](https://s3.benny.istan.to/SSFFMP/STE_R79_Development_on_RemoteSensingApplication_for_FireMonitoring_Report.pdf), and software [manual](https://s3.benny.istan.to/SSFFMP/STE_R79_Development_on_RemoteSensingApplication_for_FireMonitoring_Manual.pdf)
+:::
+:::
+:::
+
+## Project Objectives
+
+The Terms of Reference specified comprehensive evaluation and implementation of open-source geospatial software:
+
+1. Identify potential open-source applications for fire information systems
+2. Investigate and explore capabilities of identified applications
+3. Develop manuals for fire monitoring and land cover classification
+4. Compare strengths and weaknesses with proprietary solutions
+5. Train counterparts in application usage
+
+## Software Evaluation
+
+Desktop GIS open-source applications evaluated for fire information system capabilities:
+
+**Assessed Applications:** GRASS, Quantum GIS, uDig, gvSIG, SAGA, JUMP Family, ILWIS, KOSMO, MapWindow GIS
+
+**Implementation Criteria:**
+1. **Operating System Support** - UNIX, Linux, Windows, MacOS compatibility
+2. **Performance** - Speed and efficiency
+3. **Data Format Support** - Comprehensive format compatibility
+4. **Interoperability** - OGC Specifications compliance
+
+## Selected Solutions
+
+**KOSMO** - Selected for daily hotspot monitoring (vector data model applications)
+
+**ILWIS** - Selected for fire-prone area mapping (raster data model applications)
+
+**ArcExplorer Java Edition for Education (AEJEE)** - Free GIS software (not open-source) used for supplementary tasks
+
+The selection balanced functional requirements for daily monitoring operations and fire risk assessment with the practical considerations of software accessibility and intellectual property compliance.
+
+## Outcomes
+
+The project demonstrated that open-source GIS software provides sufficient capability for daily hotspot monitoring and fire-prone area analysis. The research emphasized the importance of:
+
+- Promoting open-source applications to address software piracy concerns
+- Reducing barriers to legal software usage
+- Enhancing human resource capacity in FOSS4G technologies
+- Supporting sustainable fire information system development
+
+## Software Interface & Results
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![](../../assets/image-projects/2008-floss-for-forest-fire-monitoring-01.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2008-floss-for-forest-fire-monitoring-02.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2008-floss-for-forest-fire-monitoring-03.jpg){.gallery-img}
+:::
+
+:::
+
+::: {.back-link}
+[← Back to Projects](../projects.qmd)
+:::

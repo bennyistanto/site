@@ -1,0 +1,164 @@
+---
+title: "ILO Basic Operational GIS for Road Assessment (Part 2)"
+author: "Benny Istanto"
+date: "2011-05-01"
+description: "This the second part of 3 series post on ILO Basic Operational GIS for Road Assessment"
+image: "../assets/image-blog/20110501-ilo-basic-operational-gis-for-road-assessment-part-2-01.jpg"
+categories:
+  - "GIS"
+# tags:
+#   - "ilo"
+#   - "bireuen"
+#   - "dbmck"
+#   - "pidie"
+#   - "bappeda"
+
+---
+
+This the second part of 3 series post on ILO Basic Operational GIS for Road Assessment.
+
+You can read first part [here](/blog/20110428-ilo-basic-operational-gis-for-road-assessment-part-1).
+
+Objective of the training course is to provide support to personnel working with GPS and GIS in road infrastructure in order strengthen the capacity for decision making and analysis through standardized data processing and dissemination of information.
+
+Methodology
+
+Training: The training used Classroom and On-the-job training (OJT) method. Training was started by a general lecture on the methods and concepts of GIS, followed by a practical session and work in a case study. During the training, participants were expected to be active with any questions or problems previously experienced during the work.
+
+Field Training: For each survey, there were two to three teams that carry out field survey. Each team consists of staff of the ILO, BAPPEDA, DBMCK and drivers. This survey updated the district roads data using the real-time tracking of GPS.
+
+Training Participants
+
+Most of participants was the field supervisor of DBMKCK and BAPPEDA in Bireuen and Pidie.
+
+Bireuen
+
+* DBMCK (10 people)
+* BAPPEDA (4 people)
+* DPKKD (3 peoples)
+* KPPTSP (3 people)
+* DBMCK consultant (7 people)
+* Student (6 people)
+
+Pidie
+
+* DBMCK (13 people)
+* BAPPEDA did not send any representative, as its staffs are already trained and familiar with the GPS. They confirm to participate in the upcoming training on GIS.
+
+Prerequisite of this training was to have a basic computer skill and comfortable working in the Windows environment, the open-source interface, have some Internet exposure, and have some experience working with data sets. Sending institutions were also encouraged to nominate participant from IT/Information management related division.
+
+Bireuen
+
+* DBMCK (8 people)
+* BAPPEDA (4 people)
+* Student (1 person)
+
+Pidie
+
+* DBMCK (10 people)
+* BAPPEDA (8 people)
+* DPKKD (2 people)
+
+Each participant was asked to bring his or her own laptop, because the training was also including software installation process, and the committee provided the software. Software packages used in the training were FOSS and non open-source software and downloadable from internet i.e. ArcGIS 9.3.1 student license (<http://www.esri.com/software/arcgis/arcview/eval/evaluate.html>), GPS Utility (<http://www.gpsu.co.uk/download.html>), Map Window (<http://www.mapwindow.org>) and DNR Garmin (<http://www.dnr.state.mn.us/mis/gis/tools/arcview/extensions/DNRGarmin/DNRGarmin.html>).
+
+Summary of the Training Activities
+
+Training on the use of GPS and GIS application was carried out in April and May. The following materials (slide presentation) are provided in the training:
+
+* Introduction to Survey Instrument
+* Map Reading and Navigation Techniques
+* Introduction to Navigation System Using GPS
+* Introduction of GPS Survey Method
+* GPS Survey Planning and Preparation
+* GPS Survey Data Collection
+* GPS Survey Data Processing
+* GPS and GIS
+* Field Training: The purpose of this field survey is for the preparation of Bireuen and or Pidie district road map that is valid and accurate for the legalization of the status of road. Implementation of field survey is conducted as a part of the GPS training. With the field survey, the participants are expected to acquire knowledge about data survey using GPS and producing district road network map.
+* What is GIS
+* Introduction to ArcGIS
+* Working with external data source
+
+The materials was developed as simple as possible in order to make sure the beginner can follow. First material is about the introduction to survey instrument, reading map and manual navigation technique. At the same time, participants are expected to share their experience in using maps and conducting survey by both manual and automatic equipment.
+
+Next material is introducing system of navigation by GPS and participants were guided to understand the modern concept of survey using satellite navigation in GPS. Also about complete method of GPS survey, including the preparation and planning, data collection, data processing and integration of GPS data to GIS (presenting survey data result of analysis by GIS). Main objective addressed in the module is to give an overview and guidance so participants would be able to prepare, plan and conduct a survey using GPS.
+
+Last part of the material is about GIS. The presentation discusses about the definition of GIS and geodata and Typical questions a GIS can answer. Introduce participants to the basic use of ArcGIS. ArcGIS is a large program with many extensions and many uses. We will concentrate on ArcMap and ArcCatalog. And the strength of GIS is that we can use many different information sources to bring together relevant information.
+
+4 – 5 April 2011, Week 1: GPS
+
+Bireuen;
+
+Training was conducted in BAPPEDA with only 1 participant. The training was covering topics on Introduction to Survey Instrument, Map Reading and Navigation Techniques, and Introduction to Navigation System Using GPS.
+
+Pidie:
+
+Scheduled
+
+11 – 14 April 2011, Week 2: GPS
+
+Bireuen:
+
+Training was participated by 25 people as follows: 5 DBMCK staffs, 3 BAPPEDA staffs, 3 DPKKD staffs, 3 KPPTSP staffs, 5 consultants in DBMCK, and 6 students from local university. The training was covering topics on Introduction to Survey Instrument, Map Reading and Navigation Techniques, Introduction to Navigation System Using GPS, Introduction of GPS Survey Method, GPS Survey Planning and Preparation, GPS Survey Data Collection, GPS Survey Data Processing, GPS and GIS. In addition to that basic theory related to GPS, participants also got a number of GPS modules on GPS terminology, Do We Need GPS? and GPS and Garmin POI. Participants were also introduced to various type of maps and read the map correctly.
+
+![](../assets/image-blog/20110501-ilo-basic-operational-gis-for-road-assessment-part-2-01.jpg)
+
+Pidie:
+
+Training was participated by 13 people and all were coming from DBMCK. The training delivered same module and presentation as the training in Bireuen.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/Pict+(10).jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/Pict+(11).jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/Pict+(09).jpg)
+:::
+:::
+
+18 – 21 April 2011, Week 3: GPS
+
+Bireuen:
+
+Training was participated by 21 people as follows: 9 DBMCK staffs, 2 BAPPEDA staffs, 1 DPKKD staff, 6 consultants in DBMCK and 3 students from local university. The module and presentation were covering topics on using GPS for field survey (complete module of GPS Garmin eTrex and 76CSx were distributed for guidance). Practical session in the area surrounding DBMCK involved the exercise to take waypoints and fill the information in GPS survey form. Additional information (if available) can be added to the form as well.
+
+![](../assets/image-blog/20110501-ilo-basic-operational-gis-for-road-assessment-part-2-02.jpg)
+
+Further exercise was download and upload the data from GPS. This guidance is beneficial for participants who have GIS interface/facilities in their home institution, so they can further analyze the survey data. Learning outcomes from this part is that the participants would be able to connect the GPS to PC, configure GPS software, download and upload waypoints, tracks and routes. Complete module on data uploading and downloading in GPS was distributed.
+
+[caption id="" align="alignnone" width="527"]![ Bireuen: GPS point plotted into a map ](../assets/image-blog/20110501-ilo-basic-operational-gis-for-road-assessment-part-2-06.jpg) Bireuen: GPS point plotted into a map [/caption]
+
+Pidie:
+
+Training was participated by 9 people and all were coming from DBMCK. The training delivered same module and presentation as the training in Bireuen.
+
+::: {.image-gallery}
+::: {.gallery-item}
+![](../assets/image-blog/20110501-ilo-basic-operational-gis-for-road-assessment-part-2-05.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20110501-ilo-basic-operational-gis-for-road-assessment-part-2-04.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20110501-ilo-basic-operational-gis-for-road-assessment-part-2-03.jpg)
+:::
+:::
+
+Last part of the training was on presenting GPS data in MapWindow - open source GIS software. This software has comprehensive features, available for free and open source in the internet. Participants were expected to be able to display GPS data on the map, edit the attributes data, use various plug-in in MapWindow that supports GPS application and basemap of Aceh was used for overlay and excercises. Complete module on using GIS-open source software for displaying GPS data was distributed.
+
+[caption id="" align="alignnone" width="891"]![ Pidie: GPS point plotted into a map ](../assets/image-blog/20110501-ilo-basic-operational-gis-for-road-assessment-part-2-09.jpg) Pidie: GPS point plotted into a map [/caption]
+
+25 – 26 April 2011, Week 5: GPS Field Training
+
+Bireuen:
+
+After getting the theory and practical session of the use of GPS, we then conducted the field survey. We split the the participants into two teams; first team consisted of 1 ILO staff, 1 BAPPEDA staff and 3 DBMCK staff with area survey in Kutablang, Makmur and Peusangan sub-district. The second team consisted of 1 ILO staff, 2 DBMCK staff and 2 BAPPEDA staff with area survey in Juli and Kota Juang sub-district. The following picture shows the sub-district area in Juli, which had been surveyed by the second team. The red line shows the existing road network, the yellow point shows the point of road section identifier, and the green line shows the track which is traversed by a survey team that can later be converted into a road map.
+
+![](../assets/image-blog/20110501-ilo-basic-operational-gis-for-road-assessment-part-2-08.jpg)
+![](../assets/image-blog/20110501-ilo-basic-operational-gis-for-road-assessment-part-2-07.jpg)
+
+Pidie:
+
+Scheduled

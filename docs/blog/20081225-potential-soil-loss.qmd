@@ -1,0 +1,36 @@
+---
+title: "Potential soil loss"
+author: "Benny Istanto"
+date: "2008-12-25"
+description: "During my assignment with ADB project called Earthquake and Tsunami Emergency Support Project (ETESP) - Package 38, I am working on development of potential soil loss map"
+image: "../assets/image-blog/20081225-potential-soil-loss-03.jpg"
+categories:
+  - "Remote Sensing"
+  - "GIS"
+  - "Research"
+# tags:
+#   - "loss"
+#   - "soil"
+#   - "etesp"
+#   - "aceh"
+#   - "rusle"
+#   - "adb"
+
+---
+
+During my assignment with ADB project called Earthquake and Tsunami Emergency Support Project (ETESP) - [Package 38](/project/2008-aceh-fis), I am working on development of potential soil loss map.
+
+Potential soil loss based on RUSLE model, only takes into account erosional factors and does not consider the effect of sediment deposition. Annual erosion is calculated by combining spatially explicit raster maps according to this formula:
+
+$$E = R \cdot K \cdot LS \cdot C \cdot P$$
+
+Where: $E$ is Annual Erosion, $R$ is Rainfall Erosivity Factor, $K$ is Soil Erodibility Factor, $LS$ is Slope Factor, $C$ is Vegetative Cover and $P$ is Management Factor.
+
+The SRTM30 Dataset was used to calculate the slope factor (LS). The Landsat land cover dataset, classified according to the IGBP (International Geosphere-Biosphere Programme) scheme (based on <http://duckwater.bu.edu/lc/mod12q1.html>), was used to calculate the vegetative management factor (CP). K was calculated based on the USDA global soil sub order dataset, available through the NRCS (<http://soils.usda.gov/technical/classification/taxonomy/>). The erodibility of the soil is determined by the following soil properties: organic matter content, percentage of silt and fine sand, percentage of sand, soil texture and permeability. Using interpolated daily global rainfall data from CMORPH – NOAA ([ftp.cpc.ncep.noaa.gov](https://ftp.cpc.ncep.noaa.gov)), the average rainfall erosivity index (R) was calculated. The equation to be used to calculate R is based on ILWIS application guide chapter 23 ([ftp.itc.nl/pub/ilwis/pdf/appch23.pdf](https://ftp.itc.nl/pub/ilwis/pdf/appch23.pdf)).
+
+![](../assets/image-blog/20081225-potential-soil-loss-03.jpg)
+![](../assets/image-blog/20081225-potential-soil-loss-02.jpg)
+
+The calculated potential soil loss is expressed at scale 1:250.000. The model resuires a higher resolution input for more accurate calculation of potential soil loss.
+
+![](../assets/image-blog/20081225-potential-soil-loss-01.jpg)

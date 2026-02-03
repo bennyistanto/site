@@ -1,0 +1,317 @@
+---
+title: "Maps & Infographics"
+subtitle: "Visual storytelling with geospatial data"
+page-layout: full
+toc: true
+css: ../styles/maps-and-infographics.css
+---
+
+I am having fun playing with geospatial and remote sensing data. Have a look at selected maps/infographics that I have ever made!
+
+::: {.callout-tip}
+Click on any map to view it in full resolution in a new tab.
+:::
+
+## 2024
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2024. The World Bank. Biodiversity Evaluation. QGIS 3.22.9](../assets/image-maps-and-infographics/2024-worldbank-biodiversity-evaluation.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2024. The World Bank. GEEST Level of Enablement Women. QGIS 3.22.9](../assets/image-maps-and-infographics/2024-worldbank-geest-women.jpg){.gallery-img}
+:::
+
+:::
+
+## 2023
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2023. The World Bank. Myanmar crop harvest status. QGIS 3.22.9](../assets/image-maps-and-infographics/2023-worldbank-myanmar-crop-harvest.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2023. The World Bank. Myanmar EVI ratio anomaly. QGIS 3.22.9](../assets/image-maps-and-infographics/2023-worldbank-myanmar-evi-anomaly.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2023. The World Bank. Syrian Arab Republic - Standardize Precipitation-Evapotranspiration Index. QGIS 3.22.9](../assets/image-maps-and-infographics/2023-worldbank-syria-spei.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2023. The World Bank. Syrian Arab Republic - Temperature anomaly. QGIS 3.22.9](../assets/image-maps-and-infographics/2023-worldbank-syria-temperature-anomaly.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2023. The World Bank. Syrian Arab Republic - Vegetation Condition Index. QGIS 3.22.9](../assets/image-maps-and-infographics/2023-worldbank-syria-vci.jpg){.gallery-img}
+:::
+
+:::
+
+## 2022
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2022. The World Bank. Ukraine population 2021. QGIS 3.22.9](../assets/image-maps-and-infographics/2022-worldbank-ukraine-population.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2022. The World Bank. Ukraine power plant. QGIS 3.22.9](../assets/image-maps-and-infographics/2022-worldbank-ukraine-power-plant.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2022. The World Bank. Ukraine general administration. QGIS 3.22.9](../assets/image-maps-and-infographics/2022-worldbank-ukraine-admin.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2022. The World Bank. Ukraine land cover and mine incidents. QGIS 3.16.8](../assets/image-maps-and-infographics/2022-worldbank-ukraine-landcover-mines.jpg){.gallery-img}
+:::
+
+:::
+
+## 2021
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2021. WFP. Tropical Cyclone Seroja. ArcGIS 10.8](../assets/image-maps-and-infographics/2021-wfp-cyclone-seroja.jpg){.gallery-img}
+:::
+
+:::
+
+## 2020
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2020. WFP. Facebook population movement. ArcGIS 10.7](../assets/image-maps-and-infographics/2020-wfp-facebook-population.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2020. WFP. COVID-19 data preparedness. ArcGIS 10.7](../assets/image-maps-and-infographics/2020-wfp-covid19-preparedness.jpg){.gallery-img}
+
+[Featured on ESRI Map Gallery](https://mapgallery.esri.com/submission-detail/609d7f2195ac006b209082e3){.external-link target="_blank"}
+:::
+
+::: {.gallery-item}
+![2020. WFP. Travel time to nearest market. ArcGIS 10.7](../assets/image-maps-and-infographics/2020-wfp-travel-time-market.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2020. WFP. Vegetation anomaly. ArcGIS 10.7](../assets/image-maps-and-infographics/2020-wfp-vegetation-anomaly.jpg){.gallery-img}
+:::
+
+:::
+
+## 2019
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2019. WFP. Rainfall forecast. ArcGIS 10.7](../assets/image-maps-and-infographics/2019-wfp-rainfall-forecast.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2019. WFP. Snow water equivalent. ArcGIS 10.7](../assets/image-maps-and-infographics/2019-wfp-snow-water-equivalent.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2019. WFP. Wet-spell. ArcGIS 10.7](../assets/image-maps-and-infographics/2019-wfp-wet-spell.jpg){.gallery-img}
+:::
+
+:::
+
+## 2018
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2018. WFP. Disaster snapshot. ArcGIS 10.4, Google Slide](../assets/image-maps-and-infographics/2018-wfp-disaster-snapshot.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2018. WFP. Central Sulawesi Earthquake Response. ArcGIS 10.4](../assets/image-maps-and-infographics/2018-wfp-sulawesi-earthquake.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2018. WFP. General logistics and planning. ArcGIS 10.4](../assets/image-maps-and-infographics/2018-wfp-logistics-planning.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2018. WFP. Travel time. ArcGIS 10.4](../assets/image-maps-and-infographics/2018-wfp-travel-time.jpg){.gallery-img}
+
+[Featured on WFP Story](https://www.wfp.org/stories/technology-emergencies-gives-us-bigger-picture-it-helps-us-find-solutions){.external-link target="_blank"}
+:::
+
+::: {.gallery-item}
+![2018. WFP. VAMPIRE drought alert. ArcGIS 10.4, Google Slide](../assets/image-maps-and-infographics/2018-wfp-vampire-drought.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2018. WFP. Dry-spell. ArcGIS 10.4](../assets/image-maps-and-infographics/2018-wfp-dry-spell.jpg){.gallery-img}
+:::
+
+:::
+
+## 2017
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2017. WFP. VAMPIRE flood alert. ArcGIS 10.4, Google Slide](../assets/image-maps-and-infographics/2017-wfp-vampire-flood.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2017. WFP. Dry-spell. ArcGIS 10.4](../assets/image-maps-and-infographics/2017-wfp-dry-spell.png){.gallery-img}
+:::
+
+:::
+
+## 2016
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2016. WFP. Highlight activities. ArcGIS 10.4. CorelDRAW 12](../assets/image-maps-and-infographics/2016-wfp-highlight-activities-01.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2016. WFP. Highlight activities. ArcGIS 10.4. CorelDRAW 12](../assets/image-maps-and-infographics/2016-wfp-highlight-activities-02.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2016. WFP. Pidie earthquake. ArcGIS 10.3](../assets/image-maps-and-infographics/2016-wfp-pidie-earthquake.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2016. WFP. Rainfall anomaly. ArcGIS 10.3](../assets/image-maps-and-infographics/2016-wfp-rainfall-anomaly.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2016. WFP. Vegetation health index. ArcGIS 10.3](../assets/image-maps-and-infographics/2016-wfp-vegetation-health.jpg){.gallery-img}
+:::
+
+:::
+
+## 2015
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2015. WFP. Facebook population. ArcGIS 10.2.2](../assets/image-maps-and-infographics/2015-wfp-facebook-population.jpg){.gallery-img}
+:::
+
+:::
+
+## 2014
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2014. WFP. Province infographic. ArcGIS 10.2.2, Illustrator](../assets/image-maps-and-infographics/2014-wfp-province-infographic.jpg){.gallery-img}
+:::
+
+:::
+
+## 2013
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2013. WFP. Food for Assets. ArcGIS 10.2.2](../assets/image-maps-and-infographics/2013-wfp-food-for-assets.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2013. WFP and BNPB. Jakarta flood. ArcGIS 10.2.2](../assets/image-maps-and-infographics/2013-wfp-jakarta-flood.jpg){.gallery-img}
+:::
+
+:::
+
+## 2012
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2012. ILO. Road condition. ArcGIS 10](../assets/image-maps-and-infographics/2012-ilo-road-condition.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2012. ILO. LRB factsheet. CorelDRAW 12](../assets/image-maps-and-infographics/2012-ilo-lrb-factsheet.jpg){.gallery-img}
+:::
+
+:::
+
+## 2010
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2010. UNOCHA. Mentawai Tsunami Response. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-02.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2010. UNOCHA. Mentawai Tsunami Response. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-01.jpg){.gallery-img}
+:::
+
+:::
+
+## 2009
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2009. UNOCHA. West Sumatra Earthquake Response. ArcGIS 9.3](../assets/image-maps-and-infographics/2009-unocha-west-sumatra-earthquake.jpg){.gallery-img}
+:::
+
+:::
+
+## 2007
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2007. MCC International. Immunization project. ArcView GIS 3.3](../assets/image-maps-and-infographics/2007-mcc-immunization.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2007. Ministry of Forestry. Ciliwung Cisadane Flood Project. ArcView GIS 3.3](../assets/image-maps-and-infographics/2007-forestry-ciliwung-flood.jpg){.gallery-img}
+:::
+
+:::
+
+## 2006
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2006. SSFFMP. Land cover analysis. ILWIS 3.4](../assets/image-maps-and-infographics/2006-ssffmp-landcover.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2006. SSFFMP. Hotspot monitoring. ArcExplorer Java Edition](../assets/image-maps-and-infographics/2006-ssffmp-hotspot.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2006. LAPAN. Fire Danger Rating System. ArcView GIS 3.3](../assets/image-maps-and-infographics/2006-lapan-fire-danger.jpg){.gallery-img}
+:::
+
+:::
+
+## 2004
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2004. IPB. Satellite meteorology assignment. ArcView 3.3, ERMapper 6.4](../assets/image-maps-and-infographics/2004-ipb-satellite-meteorology.jpg){.gallery-img}
+:::
+
+:::
+
+---
+
+[← Back to Works](../works.qmd)

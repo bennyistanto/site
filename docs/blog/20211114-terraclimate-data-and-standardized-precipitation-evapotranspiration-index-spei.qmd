@@ -1,0 +1,101 @@
+---
+title: "TerraClimate and Standardized Precipitation-Evapotranspiration Index (SPEI)"
+author: "Benny Istanto"
+date: "2021-11-14"
+description: "Last month, I have a chance to give a try TerraClimate data from Climatology Lab of University of California, Merced"
+image: "../assets/image-blog/20211114-terraclimate-data-and-standardized-precipitation-evapotranspiration-index-spei-03.jpg"
+categories:
+  - "Remote Sensing"
+  - "Research"
+  - "Climate"
+# tags:
+#   - "netcdf"
+#   - "python"
+#   - "potential evapotranspiration"
+#   - "climate-indices"
+#   - "precipitation"
+#   - "spei"
+#   - "cdo"
+#   - "pet"
+#   - "nco"
+#   - "standardize precipitation-evapotranspiration index"
+
+---
+
+Last month, I have a chance to give a try [TerraClimate](http://www.climatologylab.org/terraclimate.html) data from [Climatology Lab](https://www.climatologylab.org) of [University of California, Merced](https://www.ucmerced.edu).
+
+TerraClimate is a dataset of monthly climate and climatic water balance for global terrestrial surfaces from 1958-2020. These data provide important inputs for ecological and hydrological studies at global scales that require high spatial resolution and time-varying data. All data have monthly temporal resolution and a 4-km (1/24th degree) spatial resolution.
+
+And here’s some of the datasets
+
+* Primary Climate Variables: Maximum temperature, minimum temperature, vapor pressure, precipitation accumulation, downward surface shortwave radiation, wind-speed
+* Derived variables: Reference evapotranspiration (ASCE Penman-Montieth), Runoff, Actual Evapotranspiration, Climate Water Deficit, Soil Moisture, Snow Water Equivalent, Palmer Drought Severity Index, Vapor pressure deficit
+
+| Name | Description | Units |
+| --- | --- | --- |
+| `aet` | Actual Evapotranspiration, monthly total | `mm` |
+| `def` | Climate Water Deficit, monthly total | `mm` |
+| `pet` | Potential evapotranspiration, monthly total | `mm` |
+| `ppt` | Precipitation, monthly total | `mm` |
+| `q` | Runoff, monthly total | `mm` |
+| `soil` | Soil Moisture, total column - at end of month | `mm` |
+| `srad` | Downward surface shortwave radiation | `W/m2` |
+| `swe` | Snow water equivalent - at end of month | `mm` |
+| `tmax` | Max Temperature, average for month | `°C` |
+| `tmin` | Min Temperature, average for month | `°C` |
+| `vap` | Vapor pressure, average for month | `kPa` |
+| `ws` | Wind speed, average for month | `m/s` |
+| `vpd` | Vapor Pressure Deficit, average for month | `kpa` |
+| `PDSI` | Palmer Drought Severity Index, at end of month | `unitless` |
+
+If you are interested to download it, individual years data are accessible via this link: <http://thredds.northwestknowledge.net:8080/thredds/catalog/TERRACLIMATE_ALL/data/catalog.html>
+
+I am planning to use TerraClimate data to calculate Standardize Precipitation-Evapotranspiration Index (SPEI). SPEI requires monthly precipitation and potential evapotranspiration data. To calculate SPEI, I will use [climate-indices](https://pypi.org/project/climate-indices/) python package which enables the user to calculate SPEI using any gridded netCDF dataset.
+
+In my previous blog post, I have write [some](https://benny.istan.to/blog/tag/spi) articles related to SPI calculation using various type of data. I suggest those article as prerequisite reading for you to get familiar with the python package and how to prepare the data before starting the SPEI calculation, as the SPEI step is almost similar.
+
+There are certain requirements for input files that vary based on input type.
+
+* Precipitation and potential evapotranspiration unit must be written as millimeters, milimeter, mm, inches, inch or in.
+* Data dimension and order must be written as lat, lon, time (Windows machine required this order) or time, lat, lon (Works tested on Mac/Linux and Linux running on WSL).
+* If your study area are big, it's better to prepare all the data following this dimension order: lat, lon, time as all the data will force following this order during SPEI calculation by NCO module. Let say you only prepare the data as is (leaving the order to lat, lon, time), it also acceptable but it will required lot of memory to use re-ordering the dimension, and usually NCO couldn't handle all the process and failed.
+
+### Calculate SPEI
+
+Before starting the calculation, please make sure below points:
+
+* You are still inside `climate\_indices` environment to start working on SPEI calculation.
+* Variable name on precipitation `--var\_name\_precip`, usually TerraClimate data use `ppt` as name while other precipitation data like CHIRPS using `precip` and IMERG using `precipitation` as a variable name. To make sure, check using command `ncdump -h file.nc` then adjust it in SPEI script if needed.
+* Variable name on potential evapotranspiration `--var\_name\_pet`, usually TerraClimate data use `pet` as name.
+* Precipitation and potential evapotranspiration unit must be written as `millimeters`, `milimeter`, `mm`, `inches`, `inch` or `in`.
+* Data dimension and order must be written as `lat`, `lon`, `time` (Windows machine required this order) or `time`, `lat`, `lon` (Works tested on Mac/Linux and Linux running on WSL).
+
+Let's start the calculation! In your Terminal, run the following code.
+
+Above code is example for calculating SPEI 1 to 72-months. It's ok if you think you only need some of them. Example: you are interested to calculate SPEI 1 - 3-months or SPEI 12-months, then adjust above code into `--scales 1 2 3` or `--scales 12`.
+
+The above command will compute SPEI (both gamma and Pearson Type III distributions) from monthly precipitation dataset and potential evapotranspiration, and the calibration period used will be Jan-1958 through Dec-2020. The index will be computed at `1`,`2`,`3`,`6`,`9`,`12`,`18`,`24`,`36`,`48`,`60` and `72-month` timescales. The output files will be <`out\_dir>/wld\_cli\_spei\_gamma\_xx.nc`, and `<out\_dir>/wld\_cli\_spei\_pearson\_xx.nc`.
+
+After the calculation process is completed, you can visualize it using Panoply or convert to GeoTIFF using GDAL for further processing.
+
+### Global SPEI data and comparison with other data provider
+
+Below is the example of global SPEI-12 as of December 2020
+
+![](../assets/image-blog/20211114-terraclimate-data-and-standardized-precipitation-evapotranspiration-index-spei-03.jpg)
+
+SPEI Global Drought Monitor
+
+Santiago Begueria and friend from Spanish National Research Council who invented SPEI, released the [SPEI Global Drought Monitor](https://spei.csic.es/index.html) which offers near real-time information about drought conditions at the global scale, with a 1 degree spatial resolution and a monthly time resolution.
+
+Link for SPEI 12-month, December 2020 from Global Drought Monitor - <https://spei.csic.es/map/maps.html#months=4#month=11#year=2020>
+
+![](../assets/image-blog/20211114-terraclimate-data-and-standardized-precipitation-evapotranspiration-index-spei-02.jpg)
+
+Climate Engine
+
+[Climate Engine](http://climateengine.org) is a free web application powered by Google Earth Engine that can be used to create on-demand maps and charts from publicly available satellite and climate data using a standard web browser. Climate Engine allows users to analyze and interact with climate and earth observations for decision support related to drought, water use, agricultural, wildfire, and ecology.
+
+One of the product that could generate easily using Climate Engine is SPEI and using TerraClimate data. Link <https://climengine.page.link/yMtH>
+
+![](../assets/image-blog/20211114-terraclimate-data-and-standardized-precipitation-evapotranspiration-index-spei-01.jpg)

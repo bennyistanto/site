@@ -1,0 +1,55 @@
+---
+title: "Magang di TISDA, BPPT"
+author: "Benny Istanto"
+date: "2005-06-10"
+description: "Pada tanggal 27 Juni 2004, saya memulai magang di Laboratorium Teknologi Geosystem, Pusat Pengkajian dan Penerapan Teknologi Inventarisasi Sumber Daya Alam (P3-TISDA), BPPT dibimbing oleh Pak Agus ..."
+image: "../assets/image-blog/20050610-magang-di-tisda-bppt-01.jpg"
+categories:
+  - "GIS"
+  - "Research"
+  - "Climate"
+# tags:
+#   - "tisda"
+#   - "bppt"
+#   - "gis"
+#   - "intern"
+
+---
+
+Pada tanggal 27 Juni 2004, saya memulai magang di Laboratorium Teknologi Geosystem, Pusat Pengkajian dan Penerapan Teknologi Inventarisasi Sumber Daya Alam (P3-TISDA), BPPT dibimbing oleh Pak Agus Wibowo yang saat itu menjabat sebagai Ketua Kompetensi Inti - Sistem Informasi Geografis di Laboratorium TISDA.
+
+Idealnya magang dilakukan selama 2 bulan penuh dimasa liburan semester 6 ke 7. Jadwal magang cukup teratur dengan progress cukup lumayan. Saya mendapatkan banyak ilmu selama magang di TISDA. Tapi proses penulisan laporan yang memakan waktu cukup lama, baru selesai setahun kemudian, tepatnya 3 Juni 2005. Berikut adalah ringkasan mengenai apa yang saya kerjakan selama magang di TISDA.
+
+### Desain software pengolahan dan penyajian peta tematik
+
+Dunia sistem informasi banyak terdapat model sistem informasi yang bertujuan akhir memberi berbagai macam informasi. Model sistem informasi juga diharapkan dapat digunakan sebagai alat prediksi kejadian di masa depan dengan berdasar pada data yang ada pada masa lalu dan masa sekarang.
+
+Dengan menggunakan data iklim kemudian mengolah dan menyajikan dalam bentuk peta tematik dapat diketahui informasi yang berguna mengenai berbagai proses penyebab iklim untuk menjawab banyak masalah praktis yang berkaitan dengan kondisi di waktu yang akan datang.
+
+Pemetaan tematik murni otomatik nampaknya sulit dilakukan, karena faktor manusia merupakan hal yang esensial dan berubah-ubah dalam interpretasi visual terhadap variasi bentang alam setempat.
+
+Sarana yang diperlukan untuk menunjang kegiatan tersebut salah satunya dengan menggunakan teknologi Sistem Informasi Geografis [SIG]. Data spasial dari penginderaan jauh dan survei terestrial tersimpan dalam basis data yang memanfaatkan teknologi komputer digital untuk pengelolaan dan pengambilan keputusannya.
+
+Untuk mempermudah dalam penyampaian informasi yang berguna mengenai berbagai proses penyebab iklim maka disusunlah sebuah program yang berbasis SIG dengan nama Spatial Information System of Rainfall . Program ini didesain untuk menyajikan suatu peta tematik berbasis sistem informasi geografis dari hasil pengolahan data iklim. Konsep yang digunakan dalam Spatial Information System of Rainfall [SISR] adalah mengubah data iklim suatu daerah (dalam kasus ini hanya menggunakan data curah hujan bulanan) menjadi sebuah informasi spasial maupun non spasial.
+
+Analisis spasial dalam SIG dapat dilakukan secara multi temporal dengan menggunakan data multi waktu. Perkembangan antar waktu dari beberapa data tersebut menjadi dasar analisis kemungkinan yang akan terjadi pada masa depan. Analisis ini akan memberi penjelasan tentang sesuatu yang mungkin akan terjadi di masa mendatang dengan penggambaran lokasi di mana fenomena tersebut akan terjadi.
+
+Pola sebuah fenomena dapat dilihat dari sebarannya secara spasial. Sebuah kawasan dapat dilihat bentuk pola curah hujannya dengan melihat bagaimana sebaran curah hujan yang ada di kawasan tersebut. Dengan mengetahui pola-pola suatu fenomena secara spasial, dapat dicari korelasinya dengan fenomena lain seperti pola suhu udara, sebaran angin, dan lain-lain.
+
+Hasil interpretasi dari sebuah fenomena dapat melalui peta tematik yang berbentuk statis maupun dinamis. SISR mampu memberikan informasi keadaan iklim suatu daerah berdasarkan data curah hujan yang dimiliki, sedangkan secara spasial mampu memberikan informasi (Gambar 1) yang berguna mengenai berbagai proses penyebab iklim untuk menjawab banyak masalah praktis yang berkaitan dengan kondisi di waktu yang akan datang.
+
+[caption id="" align="alignnone" width="2500"]![  Gambar 1.  Form utama dari SISR ](../assets/image-blog/20050610-magang-di-tisda-bppt-01.jpg) Gambar 1. Form utama dari SISR [/caption]
+
+SISR memerlukan input berupa data curah hujan dengan resolusi bulanan. Setelah semua data curah hujan diolah menjadi peta Isohyet menggunakan extension Spatial Analyst yang ada pada ArcView, maka untuk memudahkan pemakai mengetahui distribusi curah hujan yang terjadi di semua stasiun, diperlukan suatu map display yang disusun menggunakan MapObject yang dikombinasikan dengan bahasa pemrograman Visual Basic. Desain SISR ini dibangun dengan bantuan CorelDRAW Graphics Suite 12. Hal ini dimaksudkan agar pengguna dapat melakukan pemilihan menu dalam aplikasi dengan mudah karena media penyaji ini dibangun sebagai aplikasi yang memiliki sifat kemudahan dan interaktif.
+
+[caption id="" align="alignnone" width="1632"]![  Gambar 2.  Info peta yang ada didalam SISR ](../assets/image-blog/20050610-magang-di-tisda-bppt-02.jpg) Gambar 2. Info peta yang ada didalam SISR [/caption]
+
+Hasil pengolahan dari SISR ditampilkan dalam tiga bentuk yaitu grafik, tabel dan peta. Dalam kasus ini dipilih Propinsi Sumatera Barat sebagai objek kajian. Karena letak Sumatera Barat yang membentuk sudut 45º terhadap garis lintang 0º menyebabkan wilayah ini dilintasi DKAT (Daerah Konvergensi Antar Tropis) sebanyak dua kali (bulan April dan Nopember) dan mempengaruhi peredaran angin setempat. Keberadaan Samudera Hindia disebelah barat yang berinteraksi dengan topografi wilayah yang bervariasi menjadikan iklim Sumatera Barat bersifat spesifik. Kondisi cuaca dan iklim di suatu wilayah dipengaruhi oleh faktor internal (lokal) dan faktor eksternal (regional dan global). Faktor lokal terbentuk karena posisi geografi dan topografi wilayah.
+
+Informasi yang dapat diperoleh dari SISR ini pengguna dapat mengetahui distribusi curah hujan tiap stasiun dan perubahannya di seluruh Sumatera Barat. Secara spasial, output dalam bentuk peta memudahkan pengguna melihat suatu wilayah yang dianalisis. Hasil pengolahan untuk peta tematik statis ini berupa peta tematik iklim dalam bentuk hard copy dan soft copy. Data historis digunakan untuk pembuatan peta tematik statis dan desain peta tematik. Data historis adalah data yang telah terkumpul sampai dengan tahun 2000 dan telah dilakukan cek [quality control].
+
+Sedangkan pengolahan untuk peta tematik dinamis berupa peta tematik iklim dinamis yang terupdate sesuai dengan data yang telah diperbaharui. Data near real time merupakan data yang digunakan untuk update peta tematik dinamis. Frekuensi updating pada tahap ini masih pada skala waktu bulanan. Entry data dilakukan secara manual dengan format standard sesuai dengan jenis datanya. Untuk keperluan quality control, pada saat entry manual dilengkapi dengan prosedur quality control untuk setiap jenis data. Contoh: suhu udara berkisar antara 10-40 ºC.
+
+Dari gambar di bawah dapat diketahui distribusi curah hujan tiap stasiun dan perubahannya tiap bulan selama 30 tahun di seluruh Sumatera Barat. Untuk masa mendatang SISR dapat dikembangkan lagi tidak sebatas sebagai sebuah informasi curah hujan saja, tetapi dapat juga sebagai informasi iklim. Atau bahkan mungkin juga sebagai sistem pengambilan keputusan (Decission Support System) untuk pembangunan suatu wilayah. Karena untuk mengembangkan suatu wilayah harus didahului dengan analisa iklim, bencana dan lainnya. Sehingga dari hasil tersebut dapat digunakan sebagai alat prediksi kejadian di masa depan dengan berdasar pada data yang ada pada masa lalu dan masa sekarang.
+
+[caption id="" align="alignnone" width="2500"]![  Gambar 3.  Curah Hujan bulan Desember 1960 – 2000 Sumatera Barat ](../assets/image-blog/20050610-magang-di-tisda-bppt-03.jpg) Gambar 3. Curah Hujan bulan Desember 1960 – 2000 Sumatera Barat [/caption]

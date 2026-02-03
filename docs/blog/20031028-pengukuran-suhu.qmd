@@ -1,0 +1,294 @@
+---
+title: "Pengukuran Suhu"
+author: "Benny Istanto"
+date: "2003-10-28"
+description: "Makalah berikut merupakan tugas dari mata kuliah Metode Observasi dan Instrumentasi Cuaca di semester 3"
+image: "../assets/image-blog/20031028-pengukuran-suhu-01.jpg"
+categories:
+  - "Climate"
+  - "Research"
+# tags:
+#   - "cuaca"
+#   - "suhu"
+#   - "instrumentasi"
+#   - "observasi"
+#   - "metode"
+
+---
+
+Makalah berikut merupakan tugas dari mata kuliah Metode Observasi dan Instrumentasi Cuaca di semester 3. Tugas ini saya kerjakan bersama 3 orang teman lainnya: Risyanto (G24101014), Dini Oktavia Ambarwati (G24101025) dan Sri Lestariningsih (G24101037).
+
+![](../assets/image-blog/20031028-pengukuran-suhu-01.jpg)
+
+#### LATAR BELAKANG
+
+Suhu merupakan salah satu unsur cuaca terpenting dalam Meteorologi. Ada banyak hal dalam kehidupan sehari-hari yang berkaitan erat dengan suhu. Alat yang paling lazim digunakan untuk pengukuran suhu adalah termometer. Sejak pertama kali ditemukan oleh Galileo pada tahun 1612, termometer terus berkembang dan bervariasi menurut penggunaanya.
+
+Pengamatan suhu dengan menggunakan termometer memang tidak sulit, namun pembacaannya harus dilakukan secara cepat, tepat dan kontinu. Selain itu perlu diperhatikan pula cara pengkalibrasiannya sehingga data-data yang diperoleh dapat digunakan. Persyaratan-persyaratan umum lain, seperti letak (lokasi) instrumen juga harus dipenuhi. Untuk mendapatkan hasil yang lebih baik, metode pengukuran dan mekanisme kerja alat perlu diketahui.
+
+#### TUJUAN
+
+Data suhu udara sangat diperlukan dalam banyak bidang, khususnya Meteorologi dan Klimatologi. Untuk itu diperlukan pengetahuan dalam hal pengukuran, metode dan mekanisme kerja alatnya. Pengetahuan ini sangat bermanfaat agar pada saat melakukan observasi, pengamat dapat mamperoleh hasil yang tepat dan akurat.
+
+#### PENGUKURAN SUHU
+
+**4.1 Aspek-aspek umum**
+
+***4.1.1 Definisi***
+
+Suhu adalah kondisi yang menentukan arah aliran panas diantara dua benda. Benda yang kehilangan panas, dikatakan memiliki suhu yang lebih tinggi. Untuk mengukur suhu suatu termometer dapat dikondisikan ke suhu yag sama seperti objek (yaitu kedalam keseimbangan termodinamika) dan kemudian suhu termometer tersebut dapat diukur. Suhu juga dapat ditentukan oleh sebuah radiometer.
+
+***4.1.2 Satuan dan skala Suhu***
+
+Suhu termodinamika (q), dengan satuan kelvin (K) adalah suhu dasar. Suhu yang banyak digunakan dalam meteorologi yaitu suhu celcius (t).
+
+Pada skala suhu termodinamika, pengukuran diungkapkan sebagai perbedaan dari nol mutlak (0 K), yaitu suhu ketika molekul-molekul suatu zat tidak memiliki energi kinetik. Skala yang umum digunakan yaitu *Internasional Practical Temperature Scale* (IPTS) atau skala suhu praktis internasional yang berdasarkan pada nilai yang ditentukan untuk sejumlah besaran yang dapat diturunkan dan pada alat-alat standar khusus yang dikalibrasi pada suhu-suhu tersebut.
+
+***4.1.3 Termometer***
+
+Sifat fisik apapun dari suatu zat yang merupakan sebuah fungsi dari suhu dapat digunakan sebagai dasar dari terrmometer. Sifat –sifat yag banyak digunakan pada termometer meteorologi adalah perluasan panas dan perubahan dalam hambatan listrik dengan suhu.
+
+***4.1.4 Persyaratan Meteorologi***
+
+Meteorologi memerlukan pengukuran dan pencatatan yang kontinu dari suhu:
+
+(a)   Udara dekat permukaan
+
+(b)   Tanah pada kedalaman berbeda
+
+(c)   Permukaan laut dan danau
+
+(d)   Udara atas
+
+Bab ini membahas tentang (a) dan (b)
+
+**4.2 Pelindung termometer**
+
+***4.2.1 Mengukur suhu udara***
+
+4.2.1.1 Pengaruh Radiasi
+
+Radiasi dari matahari, awan, tanah, dan objek sekitar lainnya lewat melalui udara tanpa melalui perubahan suhu yang berarti, tetapi termometer di udara terbuka dapat menyerap radiasi yang cukup banyak. Akibatnya, suhu dapat berbeda dari suhu udara yang sesungguhnya, perbedaannya berdasarkan pada intensitas radiasi, dan pada perbandingan radiasi yang diserap dengan panas yang dihamburkan. Agar tidak terdapat nilai kesalahan yang besar, perlu untuk melindungi termometer dengan sangkar atau penyangga yang juga melindunginya dari presipitasi, serta membiarkan sirkulasi udara bebas dan mencegah kerusakan.
+
+4.2.1.2 Sangkar Cuaca
+
+Sebuah sangkar sebaiknya dirancang untuk menyediakan pagar yang mengelilingi termometer yang dapat mengeluarkan pancaran panas dan presipitasi. Dindingnya berjelusi lapis dua. Atapnya berlapis dua dengan persediaan untuk ventilasi dari ruangan diantara dua lapisan.pada iklim dingin, karena reflektivitas salju yang tinggi (diatas 88 %) sangkar juga sebaiknya memiliki dua lapis lantai yang terbuat dari papan yang dapat diturunkan atau dimiringkan dengan mudah sehingga salju yang memasuki sangkar selama badai dapat dipindahkan.
+
+Ukuran dan bentuk sangkar dapat menjaga kapasitas panas serendah mungkin dan membiarkan cukup ruang diantara alat-alat dan dinding sehingga tidak terjadi kontak langsung unit penginderaan termometer dengan dinding bagian dalam dan luar sangkar di cat putih.
+
+Ketika dinding lapis dua disediakan, lapisan udara diantaranya membantu mengurangi jumlah panas yang diterima dari luar dinding kebagian dalam pagar. Sirkulasi udara melalui sangkar dapat mengakibatkan suhu berubah. Pada hari yang sinar mataharinya kuat dan angin *calm*, suhu udaranya lebih tinggi daripada ketika malam cerah dan tenang. Kesalahan lain mungkin diketahui dari pendinginan yang mengacu pada evaporasi dari sangkar yang basah setelah hujan. Semua kesalahan ini juga memiliki pengaruh langsung pada pembacaan alat-alat lain di dalam sangkar seperti higrometer, evaporimeter, dll.
+
+Untuk kerja meteorologi, suhu yang diamati harus mewakili kondisi sirkulasi udara bebas dengan area seluas mungkin mengelilingi stasiun, pada ketinggian diantara 1.25 m dan 2.00 m diatas permukaan tanah. Tempat terbaik untuk sangkar yaitu diarea terbuka dan tidak dilindungi atau dekat dengan pohon, gedung dan halangan lainnya. Sebuah tempat diatas lereng curam atau di lembah merupakan tempat dengan kondisi ekstrim yang harus dihindari.
+
+Ditempat bersalju, dimungkinkan untuk menggunakan sebuah penyangga yang membuat sangkar dapat dinaikkan atau diturunkan untuk menjaga ketinggian yang tepat diatas permukaan salju.
+
+Umumnya hanya satu pintu dibutuhkan, sangkar ditempatkan sehingga matahari tidak menyinari termometer ketika pintu dibuka pada waktu pengamatan. Didaerah tropik dua pintu dibutuhkan untuk penggunaan selama periode tahun yang berbeda. Demikian juga didaerah kutub (dimana matahari berada pada sudut rendah).
+
+Sangkar juga dapat terbuat dari bahan plastik yang menawarkan perlindungan yang lebih baik terhadap pengaruh radiasi karena rancangan jelusinya yang lebih baik. Pada sebuah kasus, sangkar dan penyangga harus dibangun dari bahan yang kokoh dan dipasang dengan baik sehingga kesalahan dalam pembacaan termometer maksimum dan minimum yang disebabkan oleh getaran angin dijaga tetap kecil. Penutup tanah dibawah sangkar harus rumput atau, pada tempat-tempat dimana rumput tidak tumbuh, permukaan alami didaerah tersebut.
+
+Sangkar harus dijaga bersih dan dicat secara teratur; dibanyak tempat mengecat dua tahun sekali cukup, tetapi didaerah yang terkena polusi atmosfer setidaknya sekali setahun.
+
+Sebagai alat untuk mengurangi kesalahan karena ventilasi yang tidak cukup dan untuk membantu psikrometri yang akurat telah disarankan ventilasi buatan dan sangkar radiasi tambahan yang digunakan pada stasiun sinoptik, khususnya untuk termometer listrik yang tidak memerlukan samgkar yang luas.
+
+4.2.1.3 Ventilasi buatan
+
+Alternatif utama untuk perlindungan pada sangkar berventilasi alami terdiri dari pelindung bola termometer dari radiasi langsung. Pelindungnya biasanya terbuat dari baja yang dipelitur untuk mengurangi penyerapannya dari radiasi panas. Bagian dalam pelindung dijaga tetap bersentuhan dengan aliran udara pada kedua sisi.  Apabila ventilasi buatan disediakan oleh kipas angin listrik, harus diperhatikan untuk mencegah panas dari motor dan kipas angin mencapai termometer.
+
+***4.2.2 Mengukur suhu tanah dan suhu minimum rumput***
+
+Suhu minimum rumput merupakan suhu terendah yang dicapai dalam semalam oleh termometer yang terbuka bebas terhadap langut, tepat diatas rumput pendek. Suhunya diukur dengan termometer minimum. Termometer dinaikkan pada penyangga pada sudut kira-kira 2º dari horizontal dengan bola lebih rendah daripada tangkai, 25 mm – 50 mm diatas tanah dan bersentuhan dengan ujung rumput.
+
+Umumnya termometer dibiarkan terkena udara pada jam pengamatan terakhir sebelum matahari terbenam dan pembacaannya diambil keesokan harinya.
+
+Kedalaman standar untuk pengukuran suhu tanah yaitu, 5, 10, 20, 50, dan 100 cm dibawah permukaan. Tempat pengukuran tersebut harus sebidang permukaan tanah gundul, kira-kira tb cm2. Jika permukaan tidak mewakili keadaan umum sekeliling, luasnya tidak bisa kurang dari 100 m2. Bila tanah ditutupi salju, dapat diukur salju yang menutupi.
+
+Ketika menerangkan tempat untuk pengukuran tanah, tipe tanah, penutup tanah dan derajat serta arah kemiringan tanah harus dicatat. Konstanta tanah fisik seperti kerapatan besar, konduktivitas panas dan kandungan kelembaban pada kapasitas lahan harus ditunjukkan. Struktur tanah juga harus dimasukkan.
+
+Pada stasiun meteorologi pertanian diharapkan adanya pencatatan kontinu suhu tanah dan suhu udara pada permukaan yang berbeda pada lapisan yang berbatasan dengan tanah (dari permukaan tanah naik sampai kira-kira 10 m diatas batas atas tumbuh-tumbuhan yang berpengaruh).
+
+**4.3 Waktu Tanggap Termometer**
+
+Tidak ada keuntungan penggunaan termometer dengan konstanta waktu sangat kecil, karena suhu udara terus berubah naik sampai ½ derajat dalam beberapa detik. Sedangkan termometer dengan konstanta waktu yang lebih luas cenderung meratakan perubahan yang cepat. Konstanta waktu yang terlalu panjang, dapat menghasilkan kesalahan ketika perubahan suhu dalam waktu lama terjadi. Konstanta waktu, diartikan sebagai waktu yang dibutuhkan oleh termometer untuk mendata 63,2 % perubahan dalam suhu udara, diantara 30 dan 60 detik pada kecepatan angin 5 m/s. Secara kasarnya, proporsi kebalikan dari akar persegi kecepatan angin.
+
+**4.4 Termometer Cairan dalam Kaca**
+
+***4.4.1 Syarat-syarat penyusunnya***
+
+Untuk pengamatan rutin suhu udara termasuk suhu bola basah, maksimum dan minimum, termometer air raksa masih umum digunakan. Untuk menunjukkan suhunya termometer ini menggunakan pemuaian yang berbeda dari cairan yang terdapat pada gelasnya. Batangnya memiliki tabung yang mempuyai kaliber yang disematkan ke benda utama.
+
+Cairan yang dipakai bergantung pada nilai suhu yang digunakan. Air raksa digunakan untuk suhu diatas titik bekunya (-32º C). Sementara etil alkohol atau cairan organik murni lainnya digunakan untuk suhu yang lebih rendah. Salah satu gelas kacanya terbuat dari gelas kaca normal atau gelas kaca ‘borosilikat’ yang disetujui dalam penggunaan termometer. Bola kaca dibuat setipis dan sekuat mungkin untuk memfasilitasi konduksi panas ke bola dan dari bola kemuatannya.
+
+Ada 4 tipe utama konstruksi untuk termometer meteorologi, yaitu :
+
+1) Tipe berlapis skala dicatat pada batang termometer.
+
+2) Tipe berlapis skala dicatat pada jalur kaca opal yang disematkan pada batang di dalam lapisan termometer.
+
+3) Tipe tidak berlapis dengan tanda kenaikan pada batang, baja, porselen atau kayu yang mempunyai nomor skala.
+
+4) Tipe tidak berlapis dengan skala tidak diukur pada batang.
+
+Tipe 1 dan 2 memiliki keuntungan daripada tipe 3 dan 4 yaitu tanda skalanya dilindungi dari kerusakan. Untuk tipe 3 dan 4 penandaan harus diisi ulang dari waktu ke waktu. Keuntungan lain dari tipe 1 dan 2 yaitu kurang rentan terhadap kesalahan paralaks.
+
+Tipe manapun yang dipakai lapisan tidak boleh rusak sehingga kapasitas panas tetap rendah.
+
+Untuk termometer air raksa dan termometer maksimum, ruang hampa udara diatas kolom mercury adalah penting.
+
+***4.4.2 Syarat ketelitian***
+
+Angka 0 pada termometer air raksa memiliki kecenderungan naik secara lambat terhadap waktu, karena itu lebih disukai yang lebih tahan. Untuk termometer maksimum dan biasa disusun untuk memungkinkan kesalahan negatif yang lebih tinggi dari pada yang positif.
+
+Termometer yang digunakan untuk psikometri harus disediakan dengan lembar koreksi yang kelebihan ± 0.1º C. Pada stasiun sinoptik harus dicek terhadap referensi instrumen standar setiap satu atau dua tahun. Pengecekan termometer yang dipasang pada sepasang psikometri harus diseleksi sehingga mengurangi perbedaan kesalahan diantara dua termometer.
+
+***4.4.3 Termometer maksimum***
+
+Tipe yang dianjurkan oleh termometer air raksa dengan penyempitan kaliber yang mencegah kolom air raksa surut dengan suhu turun. Pengamat memegangnya dengan benar dasar bola menurun dan menggoyangkan tangannya sampai kolm air raksa bersatu kembali. Termometer maksimum dinaikkan kira-kira 2º dari horizontal pada dasar bola yang lebih rendah untuk memastikan bahwa kolam air raksa tenang terhadap penyempitan tanpa gaya gravitasi menekannya ke angka. Pelebaran kaliber bagian-bagian kolam yang telah terpisah dapat mudah bersatu.
+
+***4.4.4 Termometer minimum***
+
+Instrumen yang paling umum adalah termometer alkohol dengan indeks kaca gelap kira-kira panjangnya 2 cm yang dicelupkan ke dalam air keras.
+
+Kekurangan dari termometer minimum yaitu dengan pecahnya kolom selama pengangkutan dan adhesi air keras ke kaca.
+
+Kolom cairan yang pecah dapat disatukan lagi dengan memegang dasar bola, menurun dan menggerakkan termometer secara ringan dan cepat dengan jari atau kesesuatu yang elastis dan tidak terlalu keras. Penggerakan harus berkelanjutan beberapa waktu, setelah itu termometer didirikan tegak lurus, setidaknya satu jam untuk membiarkan air keras menempelke kaca untuk mendinginkan bola adlah dengan campuran es dan garam yang membeku.
+
+Sementara supaya bagian batang tetap panas, cairan akan menyaring kembali secara penahan ke kolom utama. Termometer dipegang tegak lurus dengan bolanya dalam bejana air panas, sementara batangnya ditekuk dan digoyangkan dari waktu ke waktu. Termometer harus segera dipindahkan dari air setelah bagian atas kolom mercury mencapai ruangan aman pada bagian atas batang.
+
+Variasi cairan yang dapat digunakan pada termometer minimum seperti etil alkohol, pentana dan toluol. Hal ini agar cairan oleh kehadiran kotoran tertentu meningkatkan kecenderungan cairan untuk berpolimer dengan pencahayaan dan setelah beberapa waktu polimerisasi seperti itu menyebabkan perubahan di dalam kalibrasi. Pada kasus etil alkohol contohnya alkohol harus bebas dari aseton.
+
+Termometer minimum juga dibiarkan didaerah luas untuk mendapatkan suhu minimum rumput.
+
+***4.4.5 Termometer Tanah***
+
+Untuk mengukur suhu tanah pada kedalaman 20 cm atau kurang umumnya menggunakan termometer air raksa dengan batangnya yang bengkok pada sudut yang tepat. Bola termometer dimasukkan ke dalam tanah pada kedalaman yang diperlukan dan skala dibaca dengan termometer insitu. Termometer ini diukur untuk pencelupan diatas sampai mengukur kedalaman.
+
+Untuk mengukur suhu kedalaman lebih besar dari 20 m, dianjurkan termometer air raksa yang ditempelkan di tabung kayu, gelas kaca, plastik dan bolanya dilekatkan dicat lilin atau logam. Pemasangan tabung termometer dipasang pada logam berdinding tipis atau tabung plastik dimasukkan kedalam tanah. Di iklim dingin bagian atas tabung luar dipasang diatas tanah ke ketinggian lebih besar dari kedalaman penutup salju. Pengamatan suhu tanah dapat lebih baik dengan menggunakan remote perekam sensor suhu listrik.
+
+**4.5 Pembacaan Termometer**
+
+Termometer harus dibaca cepat, konsisten dan akurat untuk menghindari perubahan suhu selama kehadiran pengamat. Koreksi untuk nilai kesalahan, jika ada, harus digunakan dalam pembacaan. Termometer maksimum dan minimum harus dibaca dan dipasang sekurangnya dua kali dalam sehari. Pembacaannya harus dibandingkan secara frekuentif dengan termometer biasa untuk menjamin bahwa tidak ada kesalahan serius pada termometer tersebut.
+
+**4.6 Termograf Mekanik**
+
+***4.6.1 Syarat-syarat Umum***
+
+Tipe yang masih sering digunakan, disediakan sensor bimetallic atau tabung *Bourdon* karena relatif murah, akurat dan mudah dibawa. Pada umumnya termograf harus beroperasi diatas nilai 60°C atau bahkan 80°C, jika ingin digunakan dalam iklim benua (kontinental). Nilai skala dibutuhkan, sehingga suhu bisa dibaca sampai 0.2°C tanpa kesulitan pada grafik dengan ukuran yang bisa diterima. Untuk melakukannya, ketetapan harus dibuat untuk perubahan ‘setting’ angka nol dari alat menurut musim. Kesalahan maksimum termograf tidak boleh lebih dari 1°C.
+
+***4.6.2 Termograf Bimetallic***
+
+Pada alat ini, pergerakan dari pena perekam dikendalikan oleh perubahan pada lekukan dari kepingan bimetallic atau ‘helix’. Instrumen ini harus dilengkapi dengan alat peubah nilai skala dengan mengatur panjang dari pengungkit yang mentransfer pergerakan dari bimetal ke pena. Penyesuaian ini lebih baik dikerjakan oleh pegawai yang diberikan kuasa. Elemen bimetallic harus terlindungi dari korosi, hal ini dapat dilakukan dengan menggunakan tembaga berat, nikel atau plat kronium. Konstanta waktu yang khas instrumen ini adalah kira-kira 25 detik dihasilkan pada kecepatan udara 5 m/s.
+
+***4.6.3 Termograf Tabung Bourden***
+
+Penyusunannya secara umum menyerupai dengan tipe bimetallic, tetapi elemem suhu sensitifnya berbentuk tabung logam cekung yang diisi dengan alkohol. Tabung tidak lebih sensitif dari elemen bimetallic dan biasanya membutuhkan mekanisme pengungkit yang berulang-ulang untuk memberikan nilai skala yang cukup. Konstanta waktu yang khas untuk instrumen ini adalah 60 detik yang dihasilkan pada kecepatan udara 5 m/s.
+
+***4.6.4 Pengecekan Termograf***
+
+Pembacaan termograf harus diperiksa secara teratur dan membandingkannya dengan termometer kontrol. Metode sederhana untuk melakukan pengecekan adalah dengan menggunakan referensi dari termometer maksimum dan minimum. Metode yang lebih akurat dari pengecekan termograf adalah dengan mengetesnya dalam ruangan yabg didesain secara tepat, memiliki keseimbangan panas di laboratorium. Dilakukan sekurangnya satu kali dalam tiap dua tahun.  Untuk mengecek nilai skala instrumen adalah dengan mengelompokan (memplot) antara pembacaan termometer bola kering yang diambl pada jam-jam utama observasi, dengan pembacaan pada observasi termograf. Akan ada beberapa tersebar, tetapi garis cocok yang terbaik harus pada sudur 45° ke salah satu sumbu.
+
+**4.7 Termometer Listrik**
+
+Kelebihan utama termometer listrik terletak pada kemampuan menyediakan sinyal output yang sesuai untuk penggunaan dalam penunjuk jarak jauh, perekaman, penyimpanan atau transmisi data temperatur. Sensor yang sering digunakan adalah elemen hambatan listrik, transmitter dan thermocouples.
+
+***4.7.1 Termometer Hambatan Listrik***
+
+4.7.1.1 Menggunakan logam dan campuran
+
+Untuk perubahan temperatur yang kecil, kenaikan nilai hambatan dari logam murni sebanding dengan perubahan suhu, seperti yang ditunjukan pada persamaan (4.2).
+
+$$R_T = R_o[1+ a (T-T_o)] \tag{4.2}$$
+
+dimana $(t-T_o)$ kecil
+
+- $R_T$ adalah hambatan logam dengan jumlah tetap pada suhu $T$ dalam Kelvin
+
+- $R_o$ adalah koefisien suhu referensi $T_o$, dan
+
+- $a$ adalah koefisien suhu dari hambatan disekitar $T_o$.
+
+Untuk perubahan temperatur yang lebih besar dan untuk campuran logam tertentu, persamaan (4.3) menunjukan hubungan yang lebih akurat :
+
+$$R_T = R_o [1 + a (T-T_o) + b (T-T_o)^2] \tag{4.3}$$
+
+dimana:
+
+- $a$ dan $b$ adalah koefisien yang dapat dicari dengan mengkalibrasi termometer yang dimaksud.
+
+Hambatan logam yang baik mengikuti persyaratan sebagai berikut :
+
+1. Sifat fisik dan kimia akan tetap sama dengan nilai pengukuran suhu
+2. Hambatan akan meningkat secara tetap dengan kenaikan suhu adanya ketidakberlanjutan dari nilai pengukuran
+3. Pengaruh luar seperti kelembaban, korosi atau perubahan fisika tidak akan mengubah nilai hambatan cukup besar
+4. Resistivitasnya akan tetap konstan selama periode dua tahun atau lebih
+5. Resistivitasnya dan koefisien termal resistivitas akan cukup besar bermanfaat dalam pengukuran sirkuit.
+
+Platinum asli merupakam bahan terbaik untuk termometer standar primer yang dibutuhkan dalam mentransfer IPTS 1968. Tembaga merupakan bahan yang baik untuk termometer standar sekunder.
+
+Termometer praktis biasanya terbuat dari campuran platinum, nikel atau tembaga (dan adakalanya tungsten  untuk keperluan meteorologi).
+
+4.7.1.2 Menggunakan Thermistor
+
+Thermistor adalah sebuah semikonduktor dengan koefisien termal yang cukup besar yang nilainya bisa positif atau negatif tergantung bahan yang digunakan. Persamaan umum untuk ketergantungan suhu dari hambatan R thermistor diberikan pada persamaan (4.4)
+
+$$R = a \exp(b/T) \tag{4.4}$$
+
+dimana $a$ dan $b$ adalah konstan dan $T$ adalah suhu thermistor dalam Kelvin. Keuntungan thermistor adalah :
+
+1. Koefisien suhu hambatan yang besar memungkinkan tegangan yang melewati hambatan berkurang ketika mencapai senistivitas yang sama, pengurangan atau peniadaan tersebut dibutuhkan  untuk menghitung hambatan yang mendahului dan perubahannya.
+2. Elemen dapat dibuat sangat kecil, sehingga kapasitas termalnya yang kecil dapat menghasilkan konstanta waktu yang kecil pula.
+
+Jika  suhu referensi, To digunakan dalam persamaan (4.4), maka persamaan (4.5) dapat diperoleh :
+
+$$R = R_o \exp\left[\frac{b}{T}-\frac{b}{T_o}\right] \tag{4.5}$$
+
+4.7.1.3 Metode pengukuran
+
+Termometer hambatan bisa dihubungkan dengan sejenis sirkuit pengukuran listrik yang diantaranya merupakan variasi dari sirkuit penghubung hambatan dalam seimbang (*balance*) dan tidak seimbang (*unbalance*).
+
+Digital voltmeter (DVMs) dapat digunakan dalam hubungannya dengan sumber arus konstan untuk mengukur ketegangan suhu tertentu yang turun melewati elemen termometer; hasilnya dapat diskalakan secara langsung dalam suhu. Output digital juga dapat disimpan atau dipindahkan tanpa mengurangi akurasinya dan tersedia bagi penggunaannya selanjutnya. Digital output dari DVM sesudah itu diubah ke bentuk tegangan analog.
+
+Untuk tujuan perekaman, instrumen sirkuit pnghubung tidak seimbang (*unbalance bridge circuit*) dapat digunakan, tetapi lebih akurat hasilnya, *potentiometric recorder* harus disiapkan.
+
+***4.7.2    Thermocouples***
+
+4.7.2.1 Sifat-sifat
+
+Termocouples banyak digunakan ketika termometer dengan konstanta waktu yang sangat kecil dan kemampuan pembacaan jarak jauh dan perekaman diperlukan. Satu kerugian jika suhu mutlak diperlukan, peralatan penyokong untuk pengukuran gaya elektromotif perlu dipasang. Termocouples lebih cocok untuk pengukuran suhu yang berbeda.
+
+4.7.2.2 Metode prngukuran
+
+Sedikit teknik yang diperlukan dengan menggunakan pembelokan dari pergerakan meteran.
+
+Beberapa sumber kesalahan :
+
+1. Hambatan termoelemen dan ketergantungan suhunya
+2. Persediaan garis dan penggantian petunjuk
+3. Pergerakan meteran dan hambatan serinya
+
+Jika akurasi pengukuran lebih baik dari 0.05% dibutuhkan, maka tegangan termoelektrik harus ditentukan dengan prosedur pengganti, yaitu menggunakan penunjuk angka alkohol nol sensitif *(sensitive zero indicator).*
+
+***4.7.3    Teknik Digital***
+
+Prosedur pengukuran digital memiliki akurasi yang tinggi dan kemudahan dalam tranmisi, indikasi, penyimpangan dan pemrosesan. Ketika komputer digital digunakan untuk perolehan dan pemrosesan  data dari sejumlah tempat pengamatan, maka teknik pengukuran digital menjadi penting. Dengan teknik tersebut, nilai dapat diwakilkan hanya sebagai perkalian integral dari kenaikan nilai minimum, sedangkan pengukuran analog, bagian apapun secara teoritis mungkin (dapat dilakukan) pada prakteknya, resolusi pengukuran analog dibatasi dengan penggunaan teknik dan tak sering lebih baik dari yang dihasilkan dengan metode digital. Dalam metode digital, nilai pengukuran dikuantitaskan (ke dalam) perkalian integral dari kenaikan minimum (resolusi). Nilai dari kenaikan minimum harus ditentukan sehingga tidak banyak mempengaruhi akurasi pengukurannya. Kenaikan 1-3 akurasi final (ketepatan akhir) instrumen, umumnya diterima sebagai solusi. Dengan pengukuran temperatur secara elektrik, sinyal output dari sensor merupakan arus langsung, tegangan langsung atau hambatan lain yang besar jaraknya yang bervariasi secara terus menerus. Ketika peraaltan tersebut dioperasikan dalam sistem pengukuran digital, quantization dan konversi ke dalam bentuk kode digital diperlukan. Perkembangan yang tepat dalam bidang elektronik menyebabkan berkembangnya penggunaan prinsip konversi. Mengacu pada kekebalannnya dari bunyi listrik, menggabungkan pengubah analog ke digital umum digunakan.
+
+**KESIMPULAN**
+
+Suhu adalah kondisi yang menentukan arah aliran panas diantara dua benda. Satuan suhu yang banyak digunakan dalam meteorologi yaitu Kelvin dan Celcius. Suhu mencerminkan energi kinetik rata-rata dari gerakan molekul-molekul.
+
+Secara umum, termometer (alat pengukur suhu) terbagi dalam 3 macam, yaitu :
+
+1. Termometer cairan dalam kaca
+2. Termometer mekanik
+3. Termometer listrik
+
+Beberapa contoh termometer kaca misalnya : termometer maksimum dan minimum, termometer tanah. Termograf mekanik terdiri dari termograf bimetallic dan termograf tabung Bourdon. Sedangkan termometer listrik terdiri dari termometer hambatan dan thermo couples.
+
+Pengukuran suhu udara harus dilakukan diareal terbuka, tanpa adanya halangan seperti gedung, pohon, dan lain-lain. Pembacaan termometer harus dilakukan secara cepat, tepat dan kontinu sehingga didapatkan data yang baik.
+
+***Lampiran :***
+
+**Definisi titik tetap**
+
+**Titik referensi sekunder dan suhunya pada IPTS**
+
+**Nilai hambatan khusus, Ro, dan koefisien suhu, a, beberapa logam umum dan campuran**

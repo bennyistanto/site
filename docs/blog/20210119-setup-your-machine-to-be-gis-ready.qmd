@@ -1,0 +1,244 @@
+---
+title: "Setup your machine to be GIS ready!"
+author: "Benny Istanto"
+date: "2021-01-19"
+image: "../assets/image-blog/20210119-setup-your-machine-to-be-gis-ready-01.jpg"
+categories:
+  - "Remote Sensing"
+  - "General"
+  - "GIS"
+  - "Climate"
+# tags:
+#   - "remote sensing"
+#   - "climate"
+#   - "gis"
+#   - "windows"
+
+---
+
+![](../assets/image-blog/20210119-setup-your-machine-to-be-gis-ready-01.jpg)
+
+Since 2009, I started to use Macbook Pro with OS X Snow Leopard along with Windows XP installed via Parallels Desktop to support my work as Earth Observation and Climate Analyst. I tried a lot to install and configure various geo tools and their dependencies in my Mac.
+
+There are many paths to installing and configuring software, not all of them complementary. The following guidelines reflect current technology stack (hardware and software). Tested using Macbook Pro 15-inch 2018, 2.9 GHz 6-Core Intel Core i9 and 32 GB 2400 MHz DDR4, running on macOS Big Sur 11.1 and Windows Server 2019 via Parallels Desktop 16.1.2.
+
+---
+
+## macOS Spatial Stack
+
+### Text Editor
+
+I prefer to use [Sublime Text](https://www.sublimetext.com) as my text editor, because it rich of features, light and powerful. You can download from the website: <https://www.sublimetext.com/3>
+
+* Install subl Terminal extension for Sublime Text 3, so you can call it via Terminal. Type below code in your Terminal
+
+  + *sudo ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl*
+
+Beside Sublime Text, there are many competitors which have similar feature, Give it try [Visual Studio Code](https://code.visualstudio.com) and [Atom](https://atom.io).
+
+### Command Line Tools for Xcode
+
+Install Command Line Tools (CLT) for Xcode, paste below code in your terminal and follow the process.
+
+* *xcode-select --install*
+
+Or you can download it from Apple Developer website (you must have Apple Developer account): <https://download.developer.apple.com/Developer_Tools/Command_Line_Tools_for_Xcode_12.3/Command_Line_Tools_for_Xcode_12.3.dmg>
+
+### Homebrew
+
+Next, install [Homebrew](https://brew.sh). As stated in their website, Homebrew installs [the stuff you need](https://formulae.brew.sh/formula/ "List of Homebrew packages") that Apple (or your Linux system) didn’t. Paste below code in your terminal and follow the process.
+
+* */bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"*
+
+#### Install Homebrew formula
+
+To install a formula, we just need to type *brew install formulaname* in Terminal, then Homebrew will do the job. I will install various tools to support our works. For example a famous download manager called WGET, below is the example:
+
+* *brew install wget*
+
+#### Install Homebrew geospatial and climate library
+
+To work on geospatial and climate related activities, we need various library below.
+
+Geospatial: gdal, json-c, libgeotiff, libpng, libspatialite, libtiff, libxml2, openjpeg, proj, sqlite
+
+Climate: hdf4, hdf5, netcdf, cdo, nco, ncl
+
+I just type below code in Terminal, then everything will install automatically. But if you missed some formula, you can easily install it.
+
+* *brew install libgeotiff*
+* *brew install netcdf*
+
+and so on.
+
+GDAL/OGR, CDO, NCO and NCL also available as Homebrew formula, but I will install it via Anaconda.
+
+### QGIS
+
+[QGIS](https://qgis.org/en/site/index.html) installer for macOS available from the official website: <https://qgis.org/downloads/macos/qgis-macos-pr.dmg>
+
+### PostgreSQL
+
+I prefer to use [Postgres.app](https://postgresapp.com) because it’s the easiest way to get started with PostgreSQL + PostGIS on the Mac. You can download latest software via this link: <https://postgresapp.com/downloads.html>
+
+Installing a graphic client like [pgAdmin](https://www.pgadmin.org) will make a perfect combination.
+
+### R and RStudio
+
+I used [R](https://www.r-project.org) to do statistical computing, the installer available from this link: <https://cloud.r-project.org/bin/macosx/R-4.0.3.pkg>
+
+Then installing the graphic client [RStudio](https://www.r-project.org) also important if you are typical GUI person. RStudio can be download from this link: <https://download1.rstudio.org/desktop/macos/RStudio-1.3.1093.dmg>
+
+### Panoply
+
+[Panoply](https://www.giss.nasa.gov/tools/panoply/) is my favorite apps for plots geo-referenced and other arrays from [netCDF](http://www.unidata.ucar.edu/netcdf/), [HDF](http://www.hdfgroup.org/), [GRIB](https://www.wmo.int/pages/prog/www/WMOCodes.html), and other datasets. You can download the latest software from this link <https://www.giss.nasa.gov/tools/panoply/download/PanoplyMacOS-4.12.2.dmg>
+
+### Anaconda
+
+I am aware macOS already shipped with their own python, now I would like to install python again using [Anaconda](https://www.anaconda.com). The reason? I agree with most of answer in [Reddit](https://www.reddit.com/r/Python/comments/3t23vv/what_advantages_are_there_of_using_anaconda/) forum:
+
+* User level install of the version of python you want
+* Able to install/update packages completely independent of system libraries or admin privileges
+* conda tool installs binary packages, rather than requiring compile resources like pip - again, handy if you have limited privileges for installing necessary libraries.
+* More or less eliminates the headaches of trying to figure out which version/release of package X is compatible with which version/release of package Y, both of which are required for the install of package Z
+* Comes either in full-meal-deal version, with numpy, scipy, PyQt, spyder IDE, etc. or in minimal / alacarte version (miniconda) where you can install what you want, when you need it
+* No risk of messing up required system libraries
+
+So, I choose Anaconda to support my works on earth observation and scientific data computing using python. You can find the latest installer via this link <https://repo.anaconda.com/archive/Anaconda3-2020.11-MacOSX-x86_64.pkg>
+
+After you install Anaconda, I assume located in ~/opt/anaconda3 You need to configure the specific environment for GIS and climate works.
+
+* When you open Terminal after install Anaconda, it will activating the base environment by default. To prevent that, type below command
+
+  + *conda config --set auto\_activate\_base false*
+* Create conda environment called gis, when conda asks you to proceed, type y.
+
+  + *conda create --name gis*
+* Activate the environment
+
+  + *conda activate gis* to deactivate environment, type *conda deactivate*
+* Install python, numpy, scipy, matplotlib and jupyter via Conda-Forge channel
+
+  + *conda install -c conda-forge python numpy scipy matplotlib jupyter*
+* Install GIS (gdal, pandas, geopandas, rasterio, xarray, rioxarray, cartopy) and Climate (cdo, nco, ncl, metpy) package.
+
+  + *conda install -c conda-forge gdal pandas geopandas rasterio xarray rioxarray cartopy*
+  + *conda install -c conda-forge cdo nco ncl metpy*
+* Please continue if you need more package.
+
+#### Python IDE
+
+I used [PyCharm](https://www.jetbrains.com/pycharm/) from Jetbrain as my IDE. You can download the latest installer for community edition via this link <https://www.jetbrains.com/pycharm/download/download-thanks.html?platform=mac&code=PCC>
+
+Configuring a conda environment in PyCharm
+
+* In the Settings/Preferences dialog (⌘,), select Project: <project name> | Project Interpreter.
+* Alternatively, from the Welcome screen, select Configure.
+* Select Preferences.
+* Select Project Interpreter.
+* In the Project Interpreter page, click the gear icon and select Add.
+* In the left-hand pane of the Add Python Interpreter dialog box, select Conda Environment. The following actions depend on whether the conda environment existed before.
+
+### Configure your .bash\_profile or .zshrc
+
+Apart from having a home directory to create and store files, users need an environment that gives them access to the tools and resources. When a user logs in to a system, the user’s work environment is determined by the initialization files. These initialization files are defined by the user’s startup shell, which can vary depending on the release. The default initialization files in your home directory enable you to customize your working environment.
+
+Open .bash\_profile or .zshrc using Sublime Text. Both files are located in your home folder ~/. Type in your Terminal
+
+* *subl ~/.bash\_profile*
+* *subl ~/.zshrc*
+
+Both file is a personal initialization file for configuring the user environment. The file is defined in your home directory and can be used for the following:
+
+* Modifying your working environment by setting custom environment variables and terminal settings
+* Instructing the system to initiate applications
+
+Below is example of my .zshrc file
+
+![](../assets/image-blog/20210119-setup-your-machine-to-be-gis-ready-02.jpg)
+
+---
+
+## Windows Spatial Stack
+
+Currently I used Windows Server 2019 running on Parallels Desktop 16. If you use Windows 10 Pro, I suggest you install Windows Subsystem for Linux <https://docs.microsoft.com/en-us/windows/wsl/install-win10>
+
+It will make your life easier when you try to run unix-based code/apps.
+
+### Text Editor
+
+As follow in macOS Spatial Stack, I prefer to use [Sublime Text](https://www.sublimetext.com) as my text editor, because it rich of features, light and powerful. You can download from the website: <https://www.sublimetext.com/3>
+
+### ArcGIS Desktop and ArcGIS Pro
+
+I assume you have installed ArcGIS Desktop and ArcGIS Pro in your Windows. If you don’t have it, you can request a free 21-day trial of ESRI product via this link <https://www.esri.com/en-us/arcgis/products/arcgis-online/trial> or buy Personal Use version via ESRI store <https://www.esri.com/en-id/store>
+
+After you got the license via email, save it to your local drive. The license will be like 371xxxxx\_v9.elf9 for hardware key file or
+
+000F206F635Av9.txt for license key file or EVA123456789 for Authorization number or ArcGISProAdvance\_SingleUse\_123456.prvc for provisiong text file.
+
+The license will allow you to pre-populate authorization numbers in the Software Authorization Wizard instead of manually entering the information;
+
+1. Save the license file to your machine and don’t share it with anyone. In case it is used for software authorization on another machine, any previous authorization will be invalidated;
+2. Launch the Software Authorization Wizard by clicking “Authorize Now” in the ArcGIS Administrator for ArcGIS Desktop and ArcGIS Engine, or the License Server Administrator for License Manager installations. For ArcGIS Server products, select “Authorize” in the respective post-installer;
+3. Select the option “I have received an authorization file from Esri and am now ready to finish the authorization process;
+4. Browse to the saved provisioning file; or enter the Authorization number.
+5. Select ”Authorize with Esri now over the Internet.” Select the website or email option if your machine does not have an Internet connection;
+6. Review the pre-populated authorization information and enter any additional information required;
+7. On the subsequent panels, you will see the authorization numbers entered for the core product as well as any extensions if applicable;
+8. Press 'Next' to complete the authorization process.
+
+Now, lets tune to make ArcGIS Desktop run faster, follow this step: <https://github.com/ncss-tech/geo-pit/wiki/How-to-Make-ESRI-Desktop-ArcMap-Faster>
+
+### Anaconda
+
+You can install the latest Anaconda for Windows via this link <https://repo.anaconda.com/archive/Anaconda3-2020.11-Windows-x86_64.exe>
+
+To avoid breaking ArcGIS (or other software), uncheck the checkboxes (a) make Anaconda the default Python and (b) add Anaconda's Python to the PATH. I will install Anaconda3 at C:/Anaconda3
+
+Then you can follow step-by-step above in macOS Spatial Stack section on creating environment, activate and deactivate, install package via channel.
+
+#### Workflow to set up Anaconda with ArcGIS Pro 2.7
+
+1. Create an Anaconda environment that is compatible with ArcGIS Pro
+
+   * Copy the folder arcgispro-py3 from C:\Program Files\ArcGIS\Pro\bin\Python\envs and paste to C:\Anaconda3\envs
+   * Rename the copied folder arcgispro-py3 in C:\Anaconda3\envs to arcgispro
+2. Test the virtual environment
+
+   * At the Anaconda Command Prompt, type: *conda activate arcgispro*
+   * Type: conda list. You can see the list of packages installed
+3. Add more packages
+
+   * Let's add the Python Spatial Analysis Library (pysal) module.
+   * Type the following command at the Anaconda Prompt: *conda install pysal*
+4. Configure ArcGIS to see Anaconda and vice versa
+
+   * Anaconda Python to ArcPy
+
+     + Edit the ArcGISPro.pth (path) file within "C:\Anaconda3\envs\arcgispro\lib\site-packages".
+     + Change the relative ArcPy path to C:\Program Files\ArcGIS\Pro\Resources\ArcPy
+     + Change the relative ArcToolBox path to C:\Program Files\ArcGIS\Pro\Resources\ArcToolBox\Script
+   * Arcpy to Anaconda Python
+
+     + Create a zconda.pth (path) file with the content "C:\Anaconda3\envs\arcgispro\lib\site-packages" in it.
+     + Then Copy zconda.pth to C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\lib\site-packages
+   * Testing in ArcGIS Pro
+
+     + Start ArcGIS Pro, open the Python window
+     + type "import pysal"
+     + type "pysal." A popup menu with a list of pysal-provided functions is a pretty good sign the install succeeded.
+   * Testing in PyCharm
+
+     + Start PyCharm, in File\Settings…, choose Project then Project Interpreter
+     + Ignore the drop down list for Project Interpreter, and click the cog button to Add Local, and in the file browser pick C:\Anaconda3\envs\arcgispro\python.exe
+     + To run your script, right click it in the Project window, and choose either Run or Debug
+     + Restart PyCharm for the Python Console to use the arcpro environment.
+
+Source: <https://gis.stackexchange.com/a/202704>
+
+### R
+
+You can download R for windows via this link <https://cloud.r-project.org/bin/windows/base/R-4.0.3-win.exe>
+
+Then follow with install R bridge for ArcGIS <https://r.esri.com> to combine the power of ArcGIS and R to solve your spatial problems. The installation procedure, check the Github pages <https://github.com/R-ArcGIS/r-bridge-install>
