@@ -1,11 +1,13 @@
 ---
-title: "Hi, my name is Benny Istanto"
+title: "Hi, I am Benny"
 page-layout: custom
 toc: false
+lightbox: false
+css: styles/index.css
 ---
 
 ::: {.wip-banner}
-🚧 **Work in Progress** - This site is being migrated from Squarespace - https://benny.istan.to to Quarto. Some features and content are still being updated.
+🚧 **Work in Progress** - This site is being migrated from Squarespace - [https://benny.istan.to](https://benny.istan.to) to Quarto. Some features and content are still being updated.
 :::
 
 ::: {.hero-section}
