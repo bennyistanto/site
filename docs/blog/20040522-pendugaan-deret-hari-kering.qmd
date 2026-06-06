@@ -2,7 +2,7 @@
 title: "Pendugaan deret hari kering"
 author: "Benny Istanto"
 date: "2004-05-22"
-description: "Makalah berikut merupakan tugas dari mata kuliah Klimatologi Pertanian di semester 6, dibimbing oleh Rizaldi Boer"
+description: "Makalah berikut merupakan tugas dari mata kuliah Klimatologi Pertanian di semester 6, dibimbing oleh Pak Rizaldi Boer"
 image: "../assets/image-blog/20040522-pendugaan-deret-hari-kering-01.jpg"
 categories:
   - "Research"
@@ -16,7 +16,7 @@ categories:
 
 ---
 
-Makalah berikut merupakan tugas dari mata kuliah Klimatologi Pertanian di semester 6, dibimbing oleh Rizaldi Boer.
+Makalah berikut merupakan tugas dari mata kuliah Klimatologi Pertanian di semester 6, dibimbing oleh Pak Rizaldi Boer.
 
 ## Penentuan musim tanam berdasarkan kejadian deret hari kering
 

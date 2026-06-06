@@ -3,6 +3,7 @@ title: "Sarjana Meteorologi"
 author: "Benny Istanto"
 date: "2006-03-10"
 description: "Hari ini saya dinyatakan lulus program sarjana Meteorologi - FMIPA IPB, setelah tadi siang saya menerima Surat Keterangan Lulus (SKL)"
+image: "../assets/image-blog/20060310-sarjana-meteorologi-00.png"
 categories:
   - "General"
 # tags:
@@ -19,3 +20,45 @@ Semester 7 dan 8 saya jalani dengan cukup tantangan, mulai dari:
 * 8 Maret 2006. Sidang tertutup/ujian skripsi selama 4 jam, dengan 3+1 orang penguji: (i) Pak Idung Risdiyanto, (ii) Pak Rokhis Khomarudin, (iii) Pak Sobry Effendi dan (iv) Ibu Laras Tursilowati.
 
 Oya yang lebih asik lagi, Senin depan 13 Maret 2006 saya akan mulai bekerja sebagai asisten peneliti di Lembaga Penerbangan dan Antariksa Nasional (LAPAN). Tugas pertama saya adalah memanfaatkan luaran hasil penelitian saya untuk menyempurnakan proses akuisisi data dan perhitungan model kebakaran hutan di LAPAN.
+
+### Seminar Usul Penelitian
+
+```{=html}
+<iframe
+  src="https://docs.google.com/presentation/d/1ypw9ZjpL9k7LZUv-1tIYfhzQB7EAVWVgCI_XSXG4RVI/embed?start=false&loop=false&delayms=3000"
+  frameborder="0"
+  width="960"
+  height="569"
+  allowfullscreen="true"
+  mozallowfullscreen="true"
+  webkitallowfullscreen="true">
+</iframe>
+```
+
+### Seminar Hasil Penelitian
+
+```{=html}
+<iframe
+  src="https://docs.google.com/presentation/d/1S4mCD5MR6HWB-l54c4oDI-pqhlyKdPjn96stH8Bikcg/embed?start=false&loop=false&delayms=3000"
+  frameborder="0"
+  width="960"
+  height="569"
+  allowfullscreen="true"
+  mozallowfullscreen="true"
+  webkitallowfullscreen="true">
+</iframe>
+```
+
+### Sidang Tertutup/Ujian Skripsi
+
+```{=html}
+<iframe
+  src="https://docs.google.com/presentation/d/1nIzkXUNWuQ5Kru8xZCRXJ_3dL_sxjyN6OTFJIUCQ4CE/embed?start=false&loop=false&delayms=3000"
+  frameborder="0"
+  width="960"
+  height="569"
+  allowfullscreen="true"
+  mozallowfullscreen="true"
+  webkitallowfullscreen="true">
+</iframe>
+```

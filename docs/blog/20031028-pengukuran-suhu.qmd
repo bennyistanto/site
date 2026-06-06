@@ -2,7 +2,7 @@
 title: "Pengukuran Suhu"
 author: "Benny Istanto"
 date: "2003-10-28"
-description: "Makalah berikut merupakan tugas dari mata kuliah Metode Observasi dan Instrumentasi Cuaca di semester 3"
+description: "Tugas mata kuliah Metode Observasi dan Instrumentasi Cuaca di semester 3"
 image: "../assets/image-blog/20031028-pengukuran-suhu-01.jpg"
 categories:
   - "Climate"
@@ -52,13 +52,10 @@ Sifat fisik apapun dari suatu zat yang merupakan sebuah fungsi dari suhu dapat d
 
 Meteorologi memerlukan pengukuran dan pencatatan yang kontinu dari suhu:
 
-(a)   Udara dekat permukaan
-
-(b)   Tanah pada kedalaman berbeda
-
-(c)   Permukaan laut dan danau
-
-(d)   Udara atas
+a. Udara dekat permukaan
+b. Tanah pada kedalaman berbeda
+c. Permukaan laut dan danau
+d. Udara atas
 
 Bab ini membahas tentang (a) dan (b)
 
@@ -120,13 +117,11 @@ Cairan yang dipakai bergantung pada nilai suhu yang digunakan. Air raksa digunak
 
 Ada 4 tipe utama konstruksi untuk termometer meteorologi, yaitu :
 
-1) Tipe berlapis skala dicatat pada batang termometer.
+1. Tipe berlapis skala dicatat pada batang termometer.
+2.Tipe berlapis skala dicatat pada jalur kaca opal yang disematkan pada batang di dalam lapisan termometer.
+3. Tipe tidak berlapis dengan tanda kenaikan pada batang, baja, porselen atau kayu yang mempunyai nomor skala.
 
-2) Tipe berlapis skala dicatat pada jalur kaca opal yang disematkan pada batang di dalam lapisan termometer.
-
-3) Tipe tidak berlapis dengan tanda kenaikan pada batang, baja, porselen atau kayu yang mempunyai nomor skala.
-
-4) Tipe tidak berlapis dengan skala tidak diukur pada batang.
+4. Tipe tidak berlapis dengan skala tidak diukur pada batang.
 
 Tipe 1 dan 2 memiliki keuntungan daripada tipe 3 dan 4 yaitu tanda skalanya dilindungi dari kerusakan. Untuk tipe 3 dan 4 penandaan harus diisi ulang dari waktu ke waktu. Keuntungan lain dari tipe 1 dan 2 yaitu kurang rentan terhadap kesalahan paralaks.
 
@@ -289,6 +284,17 @@ Pengukuran suhu udara harus dilakukan diareal terbuka, tanpa adanya halangan sep
 
 **Definisi titik tetap**
 
+| Pernyataan Keseimbangan | Nilai yang ditetapkan IPT (K) | Nilai yang ditetapkan IPT (°C) |
+| --- | --- | --- |
+| Keseimbangan diantara fase cairan dan uap oksigen (titik didih oksigen) pada tekanan atmosfer standar (1013.25 hPa)	| 90.188 |	-182.962 |
+| Keseimbangan diantara fase padat, cair dan uap air (tiga kali titik air)	| 273.16	| 0.01 |
+| Keseimbangan diantara fase cairan dan gas air (titik didih air) pada tekana atmosfer standar Pp. Suhu t sebagai fungsi uap air diberikan oleh persamaan : t = [100 + 2.7655 x 10-2 (p-p) –1.13393 x 10-5 (p-po)2 + 6.82509 x 10-9 (p-po)3] °C dimana p adalah tekanan atmosfer dalam hPa	| 373.15	| 100 |
+
 **Titik referensi sekunder dan suhunya pada IPTS**
+
+| Pernyataan Keseimbangan | Nilai yang ditetapkan IPT (K) | Nilai yang ditetapkan IPT (°C) |
+| --- | --- | --- |
+
+
 
 **Nilai hambatan khusus, Ro, dan koefisien suhu, a, beberapa logam umum dan campuran**

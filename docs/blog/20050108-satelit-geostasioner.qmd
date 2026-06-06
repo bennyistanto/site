@@ -2,7 +2,7 @@
 title: "Satelit Geostasioner"
 author: "Benny Istanto"
 date: "2005-01-08"
-description: "Mengamati bumi melalui satelit Geostasioner (GOES EAST, METEOSAT, IODC, GMS dan GOES WEST) tanggal 25 Oktober 2004, Jam 18"
+description: "Mengamati bumi melalui satelit Geostasioner (GOES EAST, METEOSAT, IODC, GMS dan GOES WEST) tanggal 25 Oktober 2004, Jam 18.00"
 image: "../assets/image-blog/20050108-satelit-geostasioner-02.jpg"
 categories:
   - "Remote Sensing"

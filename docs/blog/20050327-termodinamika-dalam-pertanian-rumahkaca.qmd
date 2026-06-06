@@ -2,7 +2,7 @@
 title: "Termodinamika dalam pertanian rumahkaca"
 author: "Benny Istanto"
 date: "2005-03-27"
-description: "Makalah berikut merupakan tugas dari mata kuliah Termodinamika di semester 4, dibimbing oleh Hanedi Darmasetiawan"
+description: "Makalah berikut merupakan tugas dari mata kuliah Termodinamika di semester 4, dibimbing oleh Pak Hanedi Darmasetiawan"
 image: "../assets/image-blog/20050327-termodinamika-dalam-pertanian-rumahkaca-01.jpg"
 categories:
   - "Research"
@@ -13,7 +13,7 @@ categories:
 
 ---
 
-Makalah berikut merupakan tugas dari mata kuliah Termodinamika di semester 4, dibimbing oleh Hanedi Darmasetiawan.
+Makalah berikut merupakan tugas dari mata kuliah Termodinamika di semester 4, dibimbing oleh Pak Hanedi Darmasetiawan.
 
 ::: {.image-gallery}
 ::: {.gallery-item}

@@ -73,6 +73,7 @@ Desktop GIS open-source applications evaluated for fire information system capab
 **Assessed Applications:** GRASS, Quantum GIS, uDig, gvSIG, SAGA, JUMP Family, ILWIS, KOSMO, MapWindow GIS
 
 **Implementation Criteria:**
+
 1. **Operating System Support** - UNIX, Linux, Windows, MacOS compatibility
 2. **Performance** - Speed and efficiency
 3. **Data Format Support** - Comprehensive format compatibility
@@ -103,14 +104,20 @@ The project demonstrated that open-source GIS software provides sufficient capab
 
 ::: {.gallery-item}
 ![](../../assets/image-projects/2008-floss-for-forest-fire-monitoring-01.jpg){.gallery-img}
+
+KOSMO
 :::
 
 ::: {.gallery-item}
 ![](../../assets/image-projects/2008-floss-for-forest-fire-monitoring-02.jpg){.gallery-img}
+
+ArcExplorer Java Edition for Education (AEJEE)
 :::
 
 ::: {.gallery-item}
 ![](../../assets/image-projects/2008-floss-for-forest-fire-monitoring-03.jpg){.gallery-img}
+
+ILWIS
 :::
 
 :::

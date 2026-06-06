@@ -6,27 +6,25 @@ toc: false
 css: styles/about.css
 ---
 
-</br>
 ![](assets/image-general/bi-about-aerialbold.jpg)
-</br>
 
-Hi! my name is **Benny Istanto**, an agricultural meteorologist by training and a certified [GIS Professional (GISP)](https://www.gisci.org/Already-a-GISP/GISP-Registry/pagesize/10/GISP/Active?Region=west+java). With over 15 years of experience working with the [United Nations](https://www.un.org/) and various international organizations, specializes in integrating advanced GIS modeling with climate technology to drive international development initiatives.
+Hi! My name is **Benny Istanto**. I am an agricultural meteorologist by training and a certified [GIS Professional (GISP)](https://www.gisci.org/Already-a-GISP/GISP-Registry/pagesize/10/GISP/Active?Region=west+java). With over 15 years of experience working with the [United Nations](https://www.un.org/) and various international organizations, I specialize in integrating advanced GIS modeling with climate technology to support international development initiatives.
 
 I create maps, play with spatial data and satellite imagery. In addition to technical activities, I enjoy listening to [Iwan Fals](https://en.wikipedia.org/wiki/Iwan_Fals), [Led Zeppelin](https://en.wikipedia.org/wiki/Led_Zeppelin), and [MR.BIG](https://en.wikipedia.org/wiki/Mr._Big_(American_band)), as well as other similar music genres. During my free time, I practice [pencak silat](https://en.wikipedia.org/wiki/Pencak_silat), hike, cycle, draw, and occasionally post on social media.
 
-My formal education background was actually [Meteorology](https://en.wikipedia.org/wiki/Meteorology), I got my Bachelor for this major in 2006 from [IPB](https://www.ipb.ac.id/). However my interest has been growing much broader since I was a student. I love GIS, Remote Sensing and computer programming and decided to work on those fields. I've been very lucky to get various working opportunities. Got the chances to work with governments, non-government and international organizations in disaster risk reduction, climate adaptation and mitigation and some other interesting fields.
+My formal academic background is in [Meteorology](https://en.wikipedia.org/wiki/Meteorology), and I earned my bachelor's degree in 2006 from [IPB](https://www.ipb.ac.id/). However, my interests began to expand while I was still a student. I grew to love GIS, remote sensing, and computer programming, and decided to build my work around those fields. I have been fortunate to work with governments, non-government organizations, and international organizations in disaster risk reduction, climate adaptation, mitigation, and other fascinating areas.
 
-From my work I've got chances to travel, live in some interesting places, learn interesting cultures, eat lots of delicious (or sometimes weird) foods! I love what I do and I am eager to keep continuing this path. People says that the more we get involved, the more interesting this is. The more I learn, the more I realized how much I do not know.
+Through my work, I have had the chance to travel, live in interesting places, learn from different cultures, and enjoy lots of delicious, and sometimes unusual, food. I love what I do and I am eager to keep following this path. People say that the more involved we become, the more interesting the journey gets. The more I learn, the more I realize how much I still do not know.
 
-From June 2012 - August 2021, I was an Earth Observation and Climate Analyst at the United Nations [World Food Programme](https://www.wfp.org/countries/indonesia) based in Indonesia, and played the role of geospatial and climate technologist for Indonesia Country Office and Regional Bureau Bangkok (RBB) for Asia and Pacific, covering 17 country offices and 5 oversight countries. During my service with WFP, my two-others colleagues and I started working on an [award-winning](https://medium.com/world-food-programme-insight/wfp-staff-show-entrepreneurial-side-in-annual-competition-be03924215) tech innovation project to solve hunger called [VAMPIRE](https://benny.istan.to/projects/2016-vampire) (Vulnerability Analysis and Monitoring Platform for Impact of Regional Events) in 2015, now rebranding as [PRISM](https://innovation.wfp.org/project/prism). In my last 4 years within WFP, I have been working on the process of transforming satellite-based data product into actionable and life-saving insight for hydro-meteorological hazards early-warning early-action.
+From June 2012 to August 2021, I was an Earth Observation and Climate Analyst at the United Nations [World Food Programme](https://www.wfp.org/countries/indonesia) in Indonesia, where I served as a geospatial and climate technologist for the Indonesia Country Office and the Regional Bureau in Bangkok (RBB) for Asia and the Pacific, covering 17 country offices and 5 oversight countries. During my time with WFP, two colleagues and I began working on an [award-winning](https://medium.com/world-food-programme-insight/wfp-staff-show-entrepreneurial-side-in-annual-competition-be03924215) technology innovation project called [VAMPIRE](https://benny.istan.to/projects/2016-vampire) (Vulnerability Analysis and Monitoring Platform for the Impact of Regional Events) in 2015, which is now being rebranded as [PRISM](https://innovation.wfp.org/project/prism). In my final four years at WFP, I focused on transforming satellite-based data products into actionable, life-saving insights for hydro-meteorological hazard early warning and early action.
 
 Currently, I work as a [Climate Geographer](https://worldbank.github.io/GOST/content/staff/bennyistanto.html) at Geospatial Operations Support Team ([GOST](https://www.worldbank.org/en/research/brief/geospatial-operations-support-team-at-the-world-bank)) of Development Economic Data Group (DECDG) at [The World Bank](https://www.worldbank.org/), Washington DC.
 
-I run a "casual weekend project" called [Climate Social Responsibility (CSR)](csr.qmd), to provide satellite-based climate and vegetation products for free, i.e. rainfall and anomaly, dry and wet spell, standardized precipitation index, and crop phenology.
+I run a "casual weekend project" called [Climate Social Responsibility (CSR)](csr.qmd) to provide satellite-based climate and vegetation products for free, including rainfall and rainfall anomaly, dry and wet spells, standardized precipitation index, and crop phenology.
 
 **Disclaimer**: All content on this website does not represent the views of my (current or previous) employer.
 
-**Acknowledgement**: Development of this website is supported by my cheering team [El](https://wijanging.ngelmu.art/about-me) and beloved-wife [Kiki Kartikasari](https://www.linkedin.com/in/kikikartikasari/).
+**Acknowledgement**: Development of this website is supported by my cheering team [El](https://wijanging.ngelmu.art/about-me) and my beloved wife, [Kiki Kartikasari](https://www.linkedin.com/in/kikikartikasari/).
 
 ---
 
@@ -112,11 +110,11 @@ VAMPIRE (Vulnerability Analysis Monitoring Platform for the Impact of Regional E
 ---
 
 ::: {style="text-align: center; padding: 2rem 0;"}
-## ???
+## Ask Me Something.
 
 *It all begins with a question.*
 
-I'm medium-active on Telegram, you can discuss or post question about gis and remote sensing at [@gis_id](https://t.me/gis_id) Telegram channel, and I will endeavour to answer them. Don't hesitate to contact me if you have something to say: my email is below, you can text me too via WhatsApp or via message box below. Find more about me in this website and get in touch, happy surfing!
+I'm moderately active on Telegram. You can discuss GIS and remote sensing, or post questions, in the [@gis_id](https://t.me/gis_id) channel, and I will do my best to answer. If you would like to get in touch, my email is below, and you can also reach me through WhatsApp or the message form on this page. Feel free to explore the site and say hello.
 :::
 
 ---
@@ -127,7 +125,6 @@ I'm medium-active on Telegram, you can discuss or post question about gis and re
 
 ::: {.g-col-12 .g-col-md-6}
 ### Get in Touch
-</br>
 [benny@istan.to](mailto:benny@istan.to)
 
 [+1 (940) 604-3852](https://wa.me/19406043852)

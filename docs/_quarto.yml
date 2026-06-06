@@ -4,14 +4,14 @@ project:
 
 website:
   title: ""
-  favicon: assets/image-logo/favicon.ico
+  favicon: assets/image-logo/favicon.png
   site-url: https://benny.istan.to/site
   repo-url: https://github.com/bennyistanto/site
   repo-actions: [source, issue]
   bread-crumbs: true
   back-to-top-navigation: true
   page-navigation: true
-  google-analytics: "G-371178116"
+  google-analytics: "G-C23GE2LS52"
   site-path: "/site/"  # For testing at bennyistanto.github.io/site/
 
   navbar:

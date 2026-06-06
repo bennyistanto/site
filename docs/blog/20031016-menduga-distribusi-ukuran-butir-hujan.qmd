@@ -2,7 +2,7 @@
 title: "Menduga distribusi ukuran butir hujan"
 author: "Benny Istanto"
 date: "2003-10-16"
-description: "Minggu kemarin kita melakukan praktikum mata kuliah Hidrometeorologi tentang pendugaan distribusi ukuran butir hujan pada berbagai kondisi atmosfer, awal atau akhir hujan"
+description: "Praktikum mata kuliah Hidrometeorologi tentang pendugaan distribusi ukuran butir hujan pada berbagai kondisi atmosfer, awal atau akhir hujan"
 image: "../assets/image-blog/20031016-menduga-distribusi-ukuran-butir-hujan-01.jpg"
 categories:
   - "Climate"
@@ -41,7 +41,7 @@ Proses mengukur butir hujan ini sangat melelahkan, membuat mata jereng. Saya har
 
 Gambar 1. Data butir hujan
 
-Selain itu bekerja dalam kelompok, kita harus melakukan kalibrasi butir hujan dalam berbagai ukuran milimeter dan dengan 2 kali ulangan kemudian dihitung diameter rataannya. Cukup menyenangkan tapi juga membosankan ketika harus mengukur butir satu-per-satu.
+Selain itu, bekerja dalam kelompok, kita harus melakukan kalibrasi butir hujan dalam berbagai ukuran milimeter dan dengan 2 kali ulangan kemudian dihitung diameter rataannya. Cukup menyenangkan tapi juga membosankan ketika harus mengukur butir satu-per-satu.
 
 ![Gambar 2. Kalibrasi data butir hujan](../assets/image-blog/20031016-menduga-distribusi-ukuran-butir-hujan-02.jpg) 
 

@@ -132,6 +132,10 @@ Click on any map to view it in full resolution in a new tab.
 
 ::: {.gallery-item}
 ![2018. WFP. Disaster snapshot. ArcGIS 10.4, Google Slide](../assets/image-maps-and-infographics/2018-wfp-disaster-snapshot.png){.gallery-img}
+
+The Agence France-Presse (AFP) Graphics team requested permission via email to adapt this map for international distribution.
+
+References: [Link 1](https://au.news.yahoo.com/sick-hungry-indonesia-tsunami-survivors-cram-shelters-032750961--spt.html){.external-link target="_blank"}, [Link 2](https://victorfairen.wordpress.com/wp-content/uploads/2019/02/map-showing-tsunami-affected-areas-around-sunda-strait.jpg){.external-link target="_blank"}, [Link 3](https://www.dailymail.co.uk/news/article-6529497/Indonesia-rescuers-scramble-reach-isolated-tsunami-struck-towns.html), [Link 4](https://www.lunion.fr/id25995/article/2018-12-27/lindonesie-releve-le-niveau-dalerte-du-volcan-responsable-du-tsunami)
 :::
 
 ::: {.gallery-item}

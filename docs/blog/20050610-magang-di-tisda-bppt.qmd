@@ -2,7 +2,7 @@
 title: "Magang di TISDA, BPPT"
 author: "Benny Istanto"
 date: "2005-06-10"
-description: "Pada tanggal 27 Juni 2004, saya memulai magang di Laboratorium Teknologi Geosystem, Pusat Pengkajian dan Penerapan Teknologi Inventarisasi Sumber Daya Alam (P3-TISDA), BPPT dibimbing oleh Pak Agus ..."
+description: "Pada tanggal 27 Juni 2004, saya memulai magang di Laboratorium Teknologi Geosystem, Pusat Pengkajian dan Penerapan Teknologi Inventarisasi Sumber Daya Alam (P3-TISDA), BPPT"
 image: "../assets/image-blog/20050610-magang-di-tisda-bppt-01.jpg"
 categories:
   - "GIS"
@@ -38,11 +38,15 @@ Pola sebuah fenomena dapat dilihat dari sebarannya secara spasial. Sebuah kawasa
 
 Hasil interpretasi dari sebuah fenomena dapat melalui peta tematik yang berbentuk statis maupun dinamis. SISR mampu memberikan informasi keadaan iklim suatu daerah berdasarkan data curah hujan yang dimiliki, sedangkan secara spasial mampu memberikan informasi (Gambar 1) yang berguna mengenai berbagai proses penyebab iklim untuk menjawab banyak masalah praktis yang berkaitan dengan kondisi di waktu yang akan datang.
 
-[caption id="" align="alignnone" width="2500"]![  Gambar 1.  Form utama dari SISR ](../assets/image-blog/20050610-magang-di-tisda-bppt-01.jpg) Gambar 1. Form utama dari SISR [/caption]
+![Gambar 1. Form utama dari SISR](../assets/image-blog/20050610-magang-di-tisda-bppt-01.jpg) 
+
+Gambar 1. Form utama dari SISR
 
 SISR memerlukan input berupa data curah hujan dengan resolusi bulanan. Setelah semua data curah hujan diolah menjadi peta Isohyet menggunakan extension Spatial Analyst yang ada pada ArcView, maka untuk memudahkan pemakai mengetahui distribusi curah hujan yang terjadi di semua stasiun, diperlukan suatu map display yang disusun menggunakan MapObject yang dikombinasikan dengan bahasa pemrograman Visual Basic. Desain SISR ini dibangun dengan bantuan CorelDRAW Graphics Suite 12. Hal ini dimaksudkan agar pengguna dapat melakukan pemilihan menu dalam aplikasi dengan mudah karena media penyaji ini dibangun sebagai aplikasi yang memiliki sifat kemudahan dan interaktif.
 
-[caption id="" align="alignnone" width="1632"]![  Gambar 2.  Info peta yang ada didalam SISR ](../assets/image-blog/20050610-magang-di-tisda-bppt-02.jpg) Gambar 2. Info peta yang ada didalam SISR [/caption]
+![Gambar 2. Info peta yang ada didalam SISR](../assets/image-blog/20050610-magang-di-tisda-bppt-02.jpg)
+
+Gambar 2. Info peta yang ada didalam SISR
 
 Hasil pengolahan dari SISR ditampilkan dalam tiga bentuk yaitu grafik, tabel dan peta. Dalam kasus ini dipilih Propinsi Sumatera Barat sebagai objek kajian. Karena letak Sumatera Barat yang membentuk sudut 45º terhadap garis lintang 0º menyebabkan wilayah ini dilintasi DKAT (Daerah Konvergensi Antar Tropis) sebanyak dua kali (bulan April dan Nopember) dan mempengaruhi peredaran angin setempat. Keberadaan Samudera Hindia disebelah barat yang berinteraksi dengan topografi wilayah yang bervariasi menjadikan iklim Sumatera Barat bersifat spesifik. Kondisi cuaca dan iklim di suatu wilayah dipengaruhi oleh faktor internal (lokal) dan faktor eksternal (regional dan global). Faktor lokal terbentuk karena posisi geografi dan topografi wilayah.
 
@@ -52,4 +56,6 @@ Sedangkan pengolahan untuk peta tematik dinamis berupa peta tematik iklim dinami
 
 Dari gambar di bawah dapat diketahui distribusi curah hujan tiap stasiun dan perubahannya tiap bulan selama 30 tahun di seluruh Sumatera Barat. Untuk masa mendatang SISR dapat dikembangkan lagi tidak sebatas sebagai sebuah informasi curah hujan saja, tetapi dapat juga sebagai informasi iklim. Atau bahkan mungkin juga sebagai sistem pengambilan keputusan (Decission Support System) untuk pembangunan suatu wilayah. Karena untuk mengembangkan suatu wilayah harus didahului dengan analisa iklim, bencana dan lainnya. Sehingga dari hasil tersebut dapat digunakan sebagai alat prediksi kejadian di masa depan dengan berdasar pada data yang ada pada masa lalu dan masa sekarang.
 
-[caption id="" align="alignnone" width="2500"]![  Gambar 3.  Curah Hujan bulan Desember 1960 – 2000 Sumatera Barat ](../assets/image-blog/20050610-magang-di-tisda-bppt-03.jpg) Gambar 3. Curah Hujan bulan Desember 1960 – 2000 Sumatera Barat [/caption]
+![Gambar 3. Curah Hujan bulan Desember 1960 – 2000 Sumatera Barat](../assets/image-blog/20050610-magang-di-tisda-bppt-03.jpg)
+
+Gambar 3. Curah Hujan bulan Desember 1960 – 2000 Sumatera Barat
