@@ -10,6 +10,7 @@ docs/_site/
 temp/
 temp2/
 temp3/
+docs/assets/image-general
 
 # R and RStudio
 .Rproj.user
