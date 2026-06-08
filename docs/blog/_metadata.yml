@@ -1,0 +1,20 @@
+# Applies to every post in docs/blog/ (not the blog listing or other site pages).
+# Comments powered by Giscus -> GitHub Discussions.
+#
+# SETUP: get repo-id and category-id from https://giscus.app
+#   1. Enter repo: bennyistanto/site
+#   2. Pick the Discussion category you created (e.g. "Comments")
+#   3. Copy the generated repo-id (R_...) and category-id (DIC_...) below.
+comments:
+  giscus:
+    repo: bennyistanto/site
+    repo-id: "R_kgDORFc9aQ"          # e.g. R_kgDOxxxxxx
+    category: "Comments"                    # must match the category name exactly
+    category-id: "DIC_kwDORFc9ac4C-wbw"   # e.g. DIC_kwDOxxxxxx
+    mapping: pathname                        # one thread per post URL (/blog/<slug>)
+    reactions-enabled: true
+    input-position: top                      # comment box above the thread
+    loading: lazy                            # don't load until scrolled near
+    language: en
+    # theme is intentionally omitted: Quarto auto-syncs Giscus with your
+    # light (cosmo) / dark (darkly) theme toggle.
