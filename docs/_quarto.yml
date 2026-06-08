@@ -5,14 +5,13 @@ project:
 website:
   title: ""
   favicon: assets/image-logo/favicon.png
-  site-url: https://benny.istan.to/site
+  site-url: https://benny.istan.to
   repo-url: https://github.com/bennyistanto/site
   repo-actions: [source, issue]
   bread-crumbs: true
   back-to-top-navigation: true
   page-navigation: true
   google-analytics: "G-C23GE2LS52"
-  site-path: "/site/"  # For testing at bennyistanto.github.io/site/
 
   navbar:
     logo: assets/image-logo/bi-logo-full-light.png
