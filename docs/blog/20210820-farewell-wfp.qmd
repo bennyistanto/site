@@ -1,7 +1,7 @@
 ---
 title: "Farewell WFP!"
 author: "Benny Istanto"
-date: "2021-08-19"
+date: "2021-08-20"
 description: "As you may have heard, I’m moving on to the World Bank HQ after 9 wonderful years at the UN WFP in Indonesia"
 image: "../assets/image-blog/20210820-farewell-wfp-01.jpg"
 categories:
@@ -16,5 +16,5 @@ Today is my last working days, I am visiting the office to clean up my things. Y
 
 Looking forward to doing more meaningful work in climate analytics and geospatial technology for greater impact.
 
-![](../assets/image-blog/20210820-farewell-wfp-01.jpg)
-![](../assets/image-blog/20210820-farewell-wfp-02.jpg)
+![My desk in VAM corner](../assets/image-blog/20210820-farewell-wfp-01.jpg)
+![WFP ID](../assets/image-blog/20210820-farewell-wfp-02.jpg)

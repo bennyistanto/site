@@ -26,13 +26,7 @@ And next picture is TileStream running in my local Mac
 
 ![](../assets/image-blog/20110810-first-try-using-tilemill-and-tilestream-01.jpg)
 
-Currently I am trying to visualize 2010 Indonesia Land Cover data from Ministry of Forestry. Below is the MSS code:
-
-**landcover.mss**
-
-**label.mss**
-
-**style.mss**
+Currently I am trying to visualize 2010 Indonesia Land Cover data from Ministry of Forestry. 
 
 ::: {.image-gallery}
 ::: {.gallery-item}

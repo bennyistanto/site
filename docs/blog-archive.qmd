@@ -1,0 +1,472 @@
+---
+title: "Blog Archive"
+subtitle: "Every post, oldest to newest, grouped by year"
+page-layout: full
+toc: true
+toc-title: Years
+css: styles/blog.css
+listing:
+  - id: y2025
+    contents: blog/2025*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2024
+    contents: blog/2024*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2023
+    contents: blog/2023*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2022
+    contents: blog/2022*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2021
+    contents: blog/2021*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2020
+    contents: blog/2020*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2019
+    contents: blog/2019*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2018
+    contents: blog/2018*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2017
+    contents: blog/2017*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2016
+    contents: blog/2016*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2015
+    contents: blog/2015*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2014
+    contents: blog/2014*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2013
+    contents: blog/2013*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2012
+    contents: blog/2012*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2011
+    contents: blog/2011*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2010
+    contents: blog/2010*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2009
+    contents: blog/2009*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2008
+    contents: blog/2008*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2007
+    contents: blog/2007*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2006
+    contents: blog/2006*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2005
+    contents: blog/2005*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2004
+    contents: blog/2004*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+  - id: y2003
+    contents: blog/2003*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
+---
+
+A chronological index of every post. Looking for something by topic instead?
+The [main blog page](blog.qmd) has category filters and search.
+
+## 2025
+
+1 post
+
+:::{#y2025}
+:::
+
+## 2024
+
+7 posts
+
+:::{#y2024}
+:::
+
+## 2023
+
+21 posts
+
+:::{#y2023}
+:::
+
+## 2022
+
+5 posts
+
+:::{#y2022}
+:::
+
+## 2021
+
+14 posts
+
+:::{#y2021}
+:::
+
+## 2020
+
+16 posts
+
+:::{#y2020}
+:::
+
+## 2019
+
+10 posts
+
+:::{#y2019}
+:::
+
+## 2018
+
+6 posts
+
+:::{#y2018}
+:::
+
+## 2017
+
+4 posts
+
+:::{#y2017}
+:::
+
+## 2016
+
+5 posts
+
+:::{#y2016}
+:::
+
+## 2015
+
+1 post
+
+:::{#y2015}
+:::
+
+## 2014
+
+2 posts
+
+:::{#y2014}
+:::
+
+## 2013
+
+3 posts
+
+:::{#y2013}
+:::
+
+## 2012
+
+3 posts
+
+:::{#y2012}
+:::
+
+## 2011
+
+5 posts
+
+:::{#y2011}
+:::
+
+## 2010
+
+3 posts
+
+:::{#y2010}
+:::
+
+## 2009
+
+2 posts
+
+:::{#y2009}
+:::
+
+## 2008
+
+3 posts
+
+:::{#y2008}
+:::
+
+## 2007
+
+2 posts
+
+:::{#y2007}
+:::
+
+## 2006
+
+6 posts
+
+:::{#y2006}
+:::
+
+## 2005
+
+3 posts
+
+:::{#y2005}
+:::
+
+## 2004
+
+4 posts
+
+:::{#y2004}
+:::
+
+## 2003
+
+6 posts
+
+:::{#y2003}
+:::

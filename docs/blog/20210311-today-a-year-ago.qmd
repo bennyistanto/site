@@ -2,6 +2,7 @@
 title: "Today - a year ago"
 author: "Benny Istanto"
 date: "2021-03-11"
+description: "A year since my office sent everyone home, and the arithmetic on what commuting between Bogor and Jakarta was quietly costing me"
 image: "../assets/image-blog/20210311-today-a-year-ago-01.gif"
 categories:
   - "General"

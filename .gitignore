@@ -11,6 +11,7 @@ temp/
 temp2/
 temp3/
 docs/assets/image-general
+blog-draft/
 
 # R and RStudio
 .Rproj.user
@@ -82,3 +83,11 @@ yarn.lock
 *.aux
 *.out
 *.toc
+
+# Markdown
+DEPLOYMENT.md
+FINAL-MIGRATION.md
+HANDOFF.md
+MIGRATION-SUMMARY.md
+QUICKSTART.md
+SETUP.md

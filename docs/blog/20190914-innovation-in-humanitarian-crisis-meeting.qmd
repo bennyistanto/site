@@ -15,6 +15,19 @@ categories:
 
 Last week I went to Rome for a workshop and a task force meeting. In the 1st day, I attend workshop on Innovation in Humanitarian Crisis: an integrated approach to innovative tools for food security analysis and response in emergency settings. I deliver a presentation on Linking remote sensing technology, socio-economic vulnerability data and field-collected information to measure risk and impact using VAMPIRE+PRISM.
 
+```{=html}
+<iframe
+  src="https://docs.google.com/presentation/d/e/2PACX-1vQu3qMiJTjlP6FhZ67av-cqtPNQime4h-bFsyp0iLObcXDUO-0iH_NFnQXnifC0vDBEfkcd8fmYLn7N/embed?start=false&loop=false&delayms=3000"
+  frameborder="0"
+  width="1280"
+  height="749"
+  allowfullscreen="true"
+  mozallowfullscreen="true"
+  webkitallowfullscreen="true">
+</iframe>
+```
+
+
 In day 2-4, I joined a task force meeting on Automated Livelihood Information Assistant (ALIA). The idea behind ALIA was generated from WFP programme officers who had several years of experience preparing for, responding to and recovering from climate-related disasters and understood the information gaps in place, and how enhanced predictive analytics could be harnessed to make WFP’s responses more effective.
 
 Last day was a meeting with VAM HQ on seasonal monitor and future product.
@@ -43,7 +56,7 @@ Last day was a meeting with VAM HQ on seasonal monitor and future product.
 :::
 :::
 
-After the workshop, spending time with friends sightseeing Rome, try the best Gelato and Pizza, dinner like Roman. 😂
+After the workshop, spending time with friends sightseeing Rome, try the best Gelato and Pizza, and having dinner like Roman. 😂
 
 ::: {.image-gallery}
 ::: {.gallery-item}

@@ -2,7 +2,8 @@
 title: "Skip PEARSON fitting on climate-indices python package"
 author: "Benny Istanto"
 date: "2024-05-03"
-description: "Source: <https://gist"
+description: "How to skip the Pearson fitting step in the climate-indices Python package, with the code kept in a Gist"
+image: "../assets/image-blog/20240503-skip-pearson-fitting-on-climate-indices-python-package-01.png"
 categories:
   - "Remote Sensing"
   - "Climate"
@@ -13,5 +14,700 @@ categories:
 #   - "pearson"
 
 ---
+
+I have been using `climate-indices` python packages years ago, and the tool developed by [James Adam](https://github.com/monocongo) is awesome, it help us to calculate various climate indices. There are two indices that I frequently produced using this tool: [SPI](https://climatedataguide.ucar.edu/climate-data/standardized-precipitation-index-spi) and [SPEI](https://www.researchgate.net/publication/252361460_The_Standardized_Precipitation-Evapotranspiration_Index_SPEI_a_multiscalar_drought_index).
+
+I also wrote a guideline on how to calculate these two indices using this package https://bennyistanto.github.io/spi/. 
+
+When I wrote this guideline, I never have any problem during the indices calculation. Then I noticed some people contacted me to ask about some error related to Pearson fitted also in the Github [repository](https://github.com/monocongo/climate_indices) there are lot of [Issues](https://github.com/monocongo/climate_indices/issues?q=is%3Aissue+Pearson+is%3Aclosed+is%3Aopen) submitted. And surprisingly, I also experiencing the similar error when I try to update the indices using latest data.
+
+Well, I doesn't need the Pearson-based calculation anyway and I always use the gamma-fitted based SPI and SPEI. I am sure James and other [contributors](https://github.com/monocongo/climate_indices/graphs/contributors) are working very hard to solve the various issue related to this Pearson computation, but this is not an easy problem to solve instantly.
+
+So, can I skip the Pearson fitting process? The answer is Yes.
+
+## How-to?
+
+Please follow below procedure!
+
+> [!NOTE]
+> Below steps has been tested using `climate-indices 2.0.0`
+
+### 1. Modify line in `indices.py`
+
+To enforce the usage of the Gamma distribution only and entirely prevent the Pearson distribution from being used, you would need to remove or modify the logic that handles the Pearson distribution within the `spi` and `spei` functions inside file `indices.py`.
+
+**For the `spi` function**
+
+Start the modifications right after the initial validations and before checking the distribution:
+
+Original code snippet from your `spi` function:
+
+```python
+    # reshape precipitation values to (years, 12) for monthly,
+    # or to (years, 366) for daily
+    if periodicity is compute.Periodicity.monthly:
+        values = utils.reshape_to_2d(values, 12)
+    elif periodicity is compute.Periodicity.daily:
+        values = utils.reshape_to_2d(values, 366)
+    else:
+        raise ValueError(f"Invalid periodicity argument: {periodicity}")
+```
+
+After the above code, directly continue with:
+
+```python
+    # Force the use of the Gamma distribution
+    if True:  # Ignore the 'distribution' argument, always use Gamma
+        if fitting_params is not None:
+            alphas = fitting_params["alpha"]
+            betas = fitting_params["beta"]
+        else:
+            alphas = None
+            betas = None
+
+        values = compute.transform_fitted_gamma(
+            values,
+            data_start_year,
+            calibration_year_initial,
+            calibration_year_final,
+            periodicity,
+            alphas,
+            betas,
+        )
+    values = np.clip(values, _FITTED_INDEX_VALID_MIN, _FITTED_INDEX_VALID_MAX).flatten()
+    return values[0:original_length]
+```
+
+After this modification, the `spi` function will be like below
+
+```python
+def spi(
+    values: np.ndarray,
+    scale: int,
+    distribution: Distribution,
+    data_start_year: int,
+    calibration_year_initial: int,
+    calibration_year_final: int,
+    periodicity: compute.Periodicity,
+    fitting_params: Dict = None,
+) -> np.ndarray:
+    """
+    Computes SPI (Standardized Precipitation Index).
+
+    :param values: 1-D numpy array of precipitation values, in any units,
+        first value assumed to correspond to January of the initial year if
+        the periodicity is monthly, or January 1st of the initial year if daily
+    :param scale: number of time steps over which the values should be scaled
+        before the index is computed
+    :param distribution: distribution type to be used for the internal
+        fitting/transform computation
+    :param data_start_year: the initial year of the input precipitation dataset
+    :param calibration_year_initial: initial year of the calibration period
+    :param calibration_year_final: final year of the calibration period
+    :param periodicity: the periodicity of the time series represented by the
+        input data, valid/supported values are 'monthly' and 'daily'
+        'monthly' indicates an array of monthly values, assumed to span full
+         years, i.e. the first value corresponds to January of the initial year
+         and any missing final months of the final year filled with NaN values,
+         with size == # of years * 12
+         'daily' indicates an array of full years of daily values with 366 days
+         per year, as if each year were a leap year and any missing final months
+         of the final year filled with NaN values, with array size == (# years * 366)
+    :param fitting_params: optional dictionary of pre-computed distribution
+        fitting parameters, if the distribution is gamma then this dict should
+        contain two arrays, keyed as "alpha" and "beta", and if the
+        distribution is Pearson then this dict should contain four arrays keyed
+        as "prob_zero", "loc", "scale", and "skew".
+    :return SPI values fitted to the gamma distribution at the specified time
+        step scale, unitless
+    :rtype: 1-D numpy.ndarray of floats of the same length as the input array
+        of precipitation values
+    """
+
+    # we expect to operate upon a 1-D array, so if we've been passed a 2-D array
+    # then we flatten it, otherwise raise an error
+    shape = values.shape
+    if len(shape) == 2:
+        values = values.flatten()
+    elif len(shape) != 1:
+        message = f"Invalid shape of input array: {shape} -- only 1-D and 2-D arrays are supported"
+        _logger.error(message)
+        raise ValueError(message)
+
+    # if we're passed all missing values then we can't compute
+    # anything, so we return the same array of missing values
+    if (np.ma.is_masked(values) and values.mask.all()) or np.all(np.isnan(values)):
+        return values
+
+    # clip any negative values to zero
+    if np.amin(values) < 0.0:
+        _logger.warning("Input contains negative values -- all negatives clipped to zero")
+        values = np.clip(values, a_min=0.0, a_max=None)
+
+    # remember the original length of the array, in order to facilitate
+    # returning an array of the same size
+    original_length = values.size
+
+    # get a sliding sums array, with each time step's value scaled
+    # by the specified number of time steps
+    values = compute.sum_to_scale(values, scale)
+
+    # reshape precipitation values to (years, 12) for monthly,
+    # or to (years, 366) for daily
+    if periodicity is compute.Periodicity.monthly:
+        values = utils.reshape_to_2d(values, 12)
+    elif periodicity is compute.Periodicity.daily:
+        values = utils.reshape_to_2d(values, 366)
+    else:
+        raise ValueError(f"Invalid periodicity argument: {periodicity}")
+
+    # if distribution is Distribution.gamma:
+    #     # get (optional) fitting parameters if provided
+    #     if fitting_params is not None:
+    #         alphas = fitting_params["alpha"]
+    #         betas = fitting_params["beta"]
+    #     else:
+    #         alphas = None
+    #         betas = None
+
+    #     # fit the scaled values to a gamma distribution
+    #     # and transform to corresponding normalized sigmas
+    #     values = compute.transform_fitted_gamma(
+    #         values,
+    #         data_start_year,
+    #         calibration_year_initial,
+    #         calibration_year_final,
+    #         periodicity,
+    #         alphas,
+    #         betas,
+    #     )
+    # elif distribution is Distribution.pearson:
+    #     # get (optional) fitting parameters if provided
+    #     if fitting_params is not None:
+    #         probabilities_of_zero = fitting_params["prob_zero"]
+    #         locs = fitting_params["loc"]
+    #         scales = fitting_params["scale"]
+    #         skews = fitting_params["skew"]
+    #     else:
+    #         probabilities_of_zero = None
+    #         locs = None
+    #         scales = None
+    #         skews = None
+
+    #     # fit the scaled values to a Pearson Type III distribution
+    #     # and transform to corresponding normalized sigmas
+    #     values = compute.transform_fitted_pearson(
+    #         values,
+    #         data_start_year,
+    #         calibration_year_initial,
+    #         calibration_year_final,
+    #         periodicity,
+    #         probabilities_of_zero,
+    #         locs,
+    #         scales,
+    #         skews,
+    #     )
+
+    # else:
+    #     message = f"Unsupported distribution argument: {distribution}"
+    #     _logger.error(message)
+    #     raise ValueError(message)
+
+    # Force the use of the Gamma distribution
+    if True:  # Ignore the 'distribution' argument, always use Gamma
+        if fitting_params is not None:
+            alphas = fitting_params["alpha"]
+            betas = fitting_params["beta"]
+        else:
+            alphas = None
+            betas = None
+
+        values = compute.transform_fitted_gamma(
+            values,
+            data_start_year,
+            calibration_year_initial,
+            calibration_year_final,
+            periodicity,
+            alphas,
+            betas,
+        )
+
+    # clip values to within the valid range, reshape the array back to 1-D
+    values = np.clip(values, _FITTED_INDEX_VALID_MIN, _FITTED_INDEX_VALID_MAX).flatten()
+
+    # return the original size array
+    return values[0:original_length]
+```
+
+**For the `spei` function:**
+
+Start the modifications right after you prepare the `scaled_values` variable:
+
+Original code snippet from your `spei` function:
+
+```python
+    # get a sliding sums array, with each element's value
+    # scaled by the specified number of time steps
+    scaled_values = compute.sum_to_scale(p_minus_pet, scale)
+```
+
+Immediately following this, continue with:
+
+```python
+    # Force the use of the Gamma distribution
+    if True:  # Ignore the 'distribution' argument, always use Gamma
+        if fitting_params is not None:
+            alphas = fitting_params["alpha"]
+            betas = fitting_params["beta"]
+        else:
+            alphas = None
+            betas = None
+
+        transformed_fitted_values = compute.transform_fitted_gamma(
+            scaled_values,
+            data_start_year,
+            calibration_year_initial,
+            calibration_year_final,
+            periodicity,
+            alphas,
+            betas,
+        )
+    values = np.clip(transformed_fitted_values, _FITTED_INDEX_VALID_MIN, _FITTED_INDEX_VALID_MAX).flatten()
+    return values[0:original_length]
+```
+
+After this modification, the `spei` function will be like below
+
+```python
+def spei(
+    precips_mm: np.ndarray,
+    pet_mm: np.ndarray,
+    scale: int,
+    distribution: Distribution,
+    periodicity: compute.Periodicity,
+    data_start_year: int,
+    calibration_year_initial: int,
+    calibration_year_final: int,
+    fitting_params: dict = None,
+) -> np.ndarray:
+    """
+    Compute SPEI fitted to the specified distribution.
+
+    PET values are subtracted from the precipitation values to come up with an array
+    of (P - PET) values, which is then scaled to the specified months scale and
+    finally fitted/transformed to SPEI values corresponding to the input
+    precipitation time series.
+
+    :param precips_mm: an array of monthly total precipitation values,
+        in millimeters, should be of the same size (and shape?) as the input PET array
+    :param pet_mm: an array of monthly PET values, in millimeters,
+        should be of the same size (and shape?) as the input precipitation array
+    :param scale: the number of months over which the values should be scaled
+        before computing the indicator
+    :param distribution: distribution type to be used for the internal
+        fitting/transform computation
+    :param periodicity: the periodicity of the time series represented by the
+        input data, valid/supported values are 'monthly' and 'daily'
+        'monthly' indicates an array of monthly values, assumed to span full
+         years, i.e. the first value corresponds to January of the initial year
+         and any missing final months of the final year filled with NaN values,
+         with size == # of years * 12
+         'daily' indicates an array of full years of daily values with 366 days
+         per year, as if each year were a leap year and any missing final months
+         of the final year filled with NaN values, with array size == (# years * 366)
+    :param data_start_year: the initial year of the input datasets (assumes that
+        the two inputs cover the same period)
+    :param calibration_year_initial: initial year of the calibration period
+    :param calibration_year_final: final year of the calibration period
+    :param fitting_params: optional dictionary of pre-computed distribution
+        fitting parameters, if the distribution is gamma then this dict should
+        contain two arrays, keyed as "alpha" and "beta", and if the
+        distribution is Pearson then this dict should contain four arrays keyed
+        as "prob_zero", "loc", "scale", and "skew"
+        Older keys such as "alphas" and "probabilities_of_zero" are deprecated.
+    :return: an array of SPEI values
+    :rtype: numpy.ndarray of type float, of the same size and shape as the input
+        PET and precipitation arrays
+    """
+
+    # Normalize fitting param keys
+    fitting_params = _norm_fitdict(fitting_params)
+
+    # if we're passed all missing values then we can't compute anything,
+    # so we return the same array of missing values
+    if (np.ma.is_masked(precips_mm) and precips_mm.mask.all()) or np.all(np.isnan(precips_mm)):
+        return precips_mm
+
+    # validate that the two input arrays are compatible
+    if precips_mm.size != pet_mm.size:
+        message = "Incompatible precipitation and PET arrays"
+        _logger.error(message)
+        raise ValueError(message)
+
+    # clip any negative values to zero
+    if np.amin(precips_mm) < 0.0:
+        _logger.warning("Input contains negative values -- all negatives clipped to zero")
+        precips_mm = np.clip(precips_mm, a_min=0.0, a_max=None)
+
+    # subtract the PET from precipitation, adding an offset
+    # to ensure that all values are positive
+    p_minus_pet = (precips_mm.flatten() - pet_mm.flatten()) + 1000.0
+
+    # remember the original length of the input array, in order to facilitate
+    # returning an array of the same size
+    original_length = precips_mm.size
+
+    # get a sliding sums array, with each element's value
+    # scaled by the specified number of time steps
+    scaled_values = compute.sum_to_scale(p_minus_pet, scale)
+
+    # if distribution is Distribution.gamma:
+    #     # get (optional) fitting parameters if provided
+    #     if fitting_params is not None:
+    #         alphas = fitting_params["alpha"]
+    #         betas = fitting_params["beta"]
+    #     else:
+    #         alphas = None
+    #         betas = None
+
+    #     # fit the scaled values to a gamma distribution and
+    #     # transform to corresponding normalized sigmas
+    #     transformed_fitted_values = compute.transform_fitted_gamma(
+    #         scaled_values,
+    #         data_start_year,
+    #         calibration_year_initial,
+    #         calibration_year_final,
+    #         periodicity,
+    #         alphas,
+    #         betas,
+    #     )
+
+    # elif distribution is Distribution.pearson:
+    #     # get (optional) fitting parameters if provided
+    #     if fitting_params is not None:
+    #         probabilities_of_zero = fitting_params["prob_zero"]
+    #         locs = fitting_params["loc"]
+    #         scales = fitting_params["scale"]
+    #         skews = fitting_params["skew"]
+    #     else:
+    #         probabilities_of_zero = None
+    #         locs = None
+    #         scales = None
+    #         skews = None
+
+    #     # fit the scaled values to a Pearson Type III distribution
+    #     # and transform to corresponding normalized sigmas
+    #     transformed_fitted_values = compute.transform_fitted_pearson(
+    #         scaled_values,
+    #         data_start_year,
+    #         calibration_year_initial,
+    #         calibration_year_final,
+    #         periodicity,
+    #         probabilities_of_zero,
+    #         locs,
+    #         scales,
+    #         skews,
+    #     )
+
+    # else:
+    #     message = "Unsupported distribution argument: " + "{dist}".format(dist=distribution)
+    #     _logger.error(message)
+    #     raise ValueError(message)
+
+    # Force the use of the Gamma distribution
+    if True:  # Ignore the 'distribution' argument, always use Gamma
+        if fitting_params is not None:
+            alphas = fitting_params["alpha"]
+            betas = fitting_params["beta"]
+        else:
+            alphas = None
+            betas = None
+
+        transformed_fitted_values = compute.transform_fitted_gamma(
+            scaled_values,
+            data_start_year,
+            calibration_year_initial,
+            calibration_year_final,
+            periodicity,
+            alphas,
+            betas,
+        )
+
+    # clip values to within the valid range, reshape the array back to 1-D
+    values = np.clip(transformed_fitted_values, _FITTED_INDEX_VALID_MIN, _FITTED_INDEX_VALID_MAX).flatten()
+
+    # return the original size array
+    return values[0:original_length]
+```
+
+These modifications will ensure that the `spi` and `spei` functions exclusively use the Gamma distribution, completely bypassing the code block that handles the Pearson distribution. This approach directly integrates into your original function flow and respects all existing data validations and setups.
+
+### 2. Modify line in `__main__.py`
+
+The code snippet from `__main__.py` indicates that the `spi` and `spei` functions are being called with the `distribution` parameter explicitly passed from the `parameters` dictionary. 
+
+Please go to line 1101-1123
+
+```python
+def _spi(precips, parameters):
+    return indices.spi(
+        values=precips,
+        scale=parameters["scale"],
+        distribution=parameters["distribution"],
+        data_start_year=parameters["data_start_year"],
+        calibration_year_initial=parameters["calibration_year_initial"],
+        calibration_year_final=parameters["calibration_year_final"],
+        periodicity=parameters["periodicity"],
+    )
+
+
+def _spei(precips, pet_mm, parameters):
+    return indices.spei(
+        precips_mm=precips,
+        pet_mm=pet_mm,
+        scale=parameters["scale"],
+        distribution=parameters["distribution"],
+        data_start_year=parameters["data_start_year"],
+        calibration_year_initial=parameters["calibration_year_initial"],
+        calibration_year_final=parameters["calibration_year_final"],
+        periodicity=parameters["periodicity"],
+    )
+```
+
+This setup is likely where the Pearson distribution option is getting included. To ensure that the Gamma distribution is always used regardless of the command line input or other configurations, you can modify these function calls in `__main__.py` to ignore the `distribution` setting from `parameters` and hard-code it to use `Distribution.gamma`. Here's how you can adjust your `__main__.py` functions:
+
+```python
+def _spi(precips, parameters):
+    return indices.spi(
+        values=precips,
+        scale=parameters["scale"],
+        distribution=indices.Distribution.gamma,  # Force Gamma distribution
+        data_start_year=parameters["data_start_year"],
+        calibration_year_initial=parameters["calibration_year_initial"],
+        calibration_year_final=parameters["calibration_year_final"],
+        periodicity=parameters["periodicity"],
+    )
+
+def _spei(precips, pet_mm, parameters):
+    return indices.spei(
+        precips_mm=precips,
+        pet_mm=pet_mm,
+        scale=parameters["scale"],
+        distribution=indices.Distribution.gamma,  # Force Gamma distribution
+        data_start_year=parameters["data_start_year"],
+        calibration_year_initial=parameters["calibration_year_initial"],
+        calibration_year_final=parameters["calibration_year_final"],
+        periodicity=parameters["periodicity"],
+    )
+```
+
+This modification:
+- **Hard-codes the `distribution` parameter**: This ensures that even if the `parameters` dictionary has a different distribution set (like Pearson), your function calls will always use the Gamma distribution.
+- **Overrides any external configuration**: By ignoring the `distribution` key from the `parameters` dictionary and setting it directly in the function calls, you prevent any external script or configuration from changing this behavior.
+
+Next is modifying some lines inside `def main()`.
+
+Please go to line 1593-1621
+
+```python
+        # compute SPI if specified
+        if arguments.index in ["spi", "scaled", "all"]:
+            # prepare precipitation NetCDF in case dimensions not (lat, lon, time) or if any coordinates are descending
+            netcdf_precip = _prepare_file(arguments.netcdf_precip, arguments.var_name_precip)
+
+            # run SPI computations for each scale/distribution in turn
+            for scale in arguments.scales:
+                for dist in indices.Distribution:
+                    # keyword arguments used for the SPI function
+                    kwrgs = {
+                        "index": "spi",
+                        "netcdf_precip": netcdf_precip,
+                        "var_name_precip": arguments.var_name_precip,
+                        "input_type": input_type,
+                        "scale": scale,
+                        "distribution": dist,
+                        "periodicity": arguments.periodicity,
+                        "calibration_start_year": arguments.calibration_start_year,
+                        "calibration_end_year": arguments.calibration_end_year,
+                        "output_file_base": arguments.output_file_base,
+                        "chunksizes": arguments.chunksizes,
+                    }
+
+                    # compute and write SPI
+                    _compute_write_index(kwrgs)
+
+            # remove temporary file if one was created
+            if netcdf_precip != arguments.netcdf_precip:
+                os.remove(netcdf_precip)
+```
+
+and line 1648-1680
+
+```python
+        if arguments.index in ["spei", "scaled", "all"]:
+            # prepare NetCDFs in case dimensions not (lat, lon, time) or if any coordinates are descending
+            netcdf_precip = _prepare_file(arguments.netcdf_precip, arguments.var_name_precip)
+            netcdf_pet = _prepare_file(arguments.netcdf_pet, arguments.var_name_pet)
+
+            # run SPEI computations for each scale/distribution in turn
+            for scale in arguments.scales:
+                for dist in indices.Distribution:
+                    # keyword arguments used for the SPI function
+                    kwrgs = {
+                        "index": "spei",
+                        "netcdf_precip": netcdf_precip,
+                        "var_name_precip": arguments.var_name_precip,
+                        "netcdf_pet": netcdf_pet,
+                        "var_name_pet": arguments.var_name_pet,
+                        "input_type": input_type,
+                        "scale": scale,
+                        "distribution": dist,
+                        "periodicity": arguments.periodicity,
+                        "calibration_start_year": arguments.calibration_start_year,
+                        "calibration_end_year": arguments.calibration_end_year,
+                        "output_file_base": arguments.output_file_base,
+                        "chunksizes": arguments.chunksizes,
+                    }
+
+                    # compute and write SPEI
+                    _compute_write_index(kwrgs)
+
+            # remove temporary file if one was created
+            if netcdf_precip != arguments.netcdf_precip:
+                os.remove(netcdf_precip)
+            if netcdf_pet != arguments.netcdf_pet:
+                os.remove(netcdf_pet)
+```
+
+You should adjust the loop where `dist in indices.Distribution` is iterated over. Currently, this loop iterates over all members of the `Distribution` enum, which includes both Gamma and Pearson distributions. This loop is a key point where the distribution type is being set for the computations, leading to both being executed.
+
+To enforce the use of only the Gamma distribution and avoid inadvertently triggering Pearson computations, you can modify this loop to only iterate over the Gamma distribution. However, since `indices.Distribution.gamma` is not an iterable, you would use a list containing only `indices.Distribution.gamma`:
+
+Change `for dist in indices.Distribution:` into `for dist in [indices.Distribution.gamma]:` in line 1600 and 1655, after modification it will be like below:
+
+**Line 1593-1621**
+
+```python
+        # compute SPI if specified
+        if arguments.index in ["spi", "scaled", "all"]:
+            # prepare precipitation NetCDF in case dimensions not (lat, lon, time) or if any coordinates are descending
+            netcdf_precip = _prepare_file(arguments.netcdf_precip, arguments.var_name_precip)
+
+            # run SPI computations for each scale/distribution in turn
+            for scale in arguments.scales:
+                for dist in [indices.Distribution.gamma]:
+                    # keyword arguments used for the SPI function
+                    kwrgs = {
+                        "index": "spi",
+                        "netcdf_precip": netcdf_precip,
+                        "var_name_precip": arguments.var_name_precip,
+                        "input_type": input_type,
+                        "scale": scale,
+                        "distribution": dist,
+                        "periodicity": arguments.periodicity,
+                        "calibration_start_year": arguments.calibration_start_year,
+                        "calibration_end_year": arguments.calibration_end_year,
+                        "output_file_base": arguments.output_file_base,
+                        "chunksizes": arguments.chunksizes,
+                    }
+
+                    # compute and write SPI
+                    _compute_write_index(kwrgs)
+
+            # remove temporary file if one was created
+            if netcdf_precip != arguments.netcdf_precip:
+                os.remove(netcdf_precip)
+```
+
+**Line 1648-1680**
+
+```python
+        if arguments.index in ["spei", "scaled", "all"]:
+            # prepare NetCDFs in case dimensions not (lat, lon, time) or if any coordinates are descending
+            netcdf_precip = _prepare_file(arguments.netcdf_precip, arguments.var_name_precip)
+            netcdf_pet = _prepare_file(arguments.netcdf_pet, arguments.var_name_pet)
+
+            # run SPEI computations for each scale/distribution in turn
+            for scale in arguments.scales:
+                for dist in [indices.Distribution.gamma]:
+                    # keyword arguments used for the SPI function
+                    kwrgs = {
+                        "index": "spei",
+                        "netcdf_precip": netcdf_precip,
+                        "var_name_precip": arguments.var_name_precip,
+                        "netcdf_pet": netcdf_pet,
+                        "var_name_pet": arguments.var_name_pet,
+                        "input_type": input_type,
+                        "scale": scale,
+                        "distribution": dist,
+                        "periodicity": arguments.periodicity,
+                        "calibration_start_year": arguments.calibration_start_year,
+                        "calibration_end_year": arguments.calibration_end_year,
+                        "output_file_base": arguments.output_file_base,
+                        "chunksizes": arguments.chunksizes,
+                    }
+
+                    # compute and write SPEI
+                    _compute_write_index(kwrgs)
+
+            # remove temporary file if one was created
+            if netcdf_precip != arguments.netcdf_precip:
+                os.remove(netcdf_precip)
+            if netcdf_pet != arguments.netcdf_pet:
+                os.remove(netcdf_pet)
+```
+
+By using `[indices.Distribution.gamma]`:
+- You limit the loop to only consider the Gamma distribution.
+- This change prevents any chance of Pearson being used within this part of the script, regardless of external configurations or command line arguments.
+
+This adjustment will ensure that when the `_compute_write_index` function (or any similar function that eventually calls your `spi` or `spei` functions) is invoked, it always uses the Gamma distribution, which matches your requirements to avoid Pearson calculations.
+
+### 3. Modify line in `__spi__.py`
+
+Let's take a look inside `__spi__.py` now.
+
+Based on the content of `__spi__.py`, the following modification should help to enforce the use of the Gamma distribution only during SPI calculations. This involves changing the distribution loop so it does not iterate over both Gamma and Pearson distributions.
+
+Please go to line 642-647. Here's the relevant code snippet that needs revision:
+
+```python
+    ...
+    for scale in keyword_arguments["scales"]:
+        for distribution in [indices.Distribution.gamma, indices.Distribution.pearson]:  # This line needs modification
+            _logger.info(
+                f"Computing {scale}-{keyword_arguments['periodicity'].unit()} "
+                f"SPI ({distribution.value.capitalize()})",
+            )
+            ...
+
+```
+
+To enforce only the Gamma distribution, modify the loop to iterate only over the Gamma distribution:
+
+```python
+    ...
+    for scale in keyword_arguments["scales"]:
+        for distribution in [indices.Distribution.gamma]:  # Force to only Gamma
+            _logger.info(
+                f"Computing {scale}-{keyword_arguments['periodicity'].unit()} "
+                f"SPI (Gamma)",
+            )
+            ...
+
+```
+This change will prevent the loop from entering the Pearson distribution block and ensure that only Gamma-related computations are performed.
+
+## Test
+
+After making this change, ensure to test the script thoroughly in your environment to confirm that only the Gamma distribution is used and that there are no unintended side effects or errors due to these modifications.
+
+* SPEI
+
+    ![Screenshot 2024-05-03 130719](https://gist.github.com/assets/722584/af9811de-313c-4452-a1fa-816d82fe5608)
+
+* SPI
+
+    ![Screenshot 2024-05-06 210135](https://gist.github.com/assets/722584/abb10d0d-c6ec-4f78-a893-a370b5492f57)
 
 Source: <https://gist.github.com/bennyistanto/e8710f89bfbebaf24498dd957a1fa961>

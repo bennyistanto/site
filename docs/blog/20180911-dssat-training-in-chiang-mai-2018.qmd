@@ -2,7 +2,7 @@
 title: "DSSAT training in Chiang Mai, 2018"
 author: "Benny Istanto"
 date: "2018-09-11"
-description: "Last month, I attended training on DSSAT and MWCropDSS: Efficient and precision agricultural resource utilization under changes with simulation models and GIS in Chiang Mai, Thailand from 27 Aug to..."
+description: "Training on DSSAT and MWCropDSS in Chiang Mai, using crop simulation models and GIS to study water and nitrogen use under changing weather and climate"
 image: "../assets/image-blog/20180911-dssat-training-in-chiang-mai-2018-55.jpg"
 categories:
   - "Travel"
@@ -22,7 +22,7 @@ There are 24 participants from Bhutan, China, Indonesia, Japan, Nepal and Thaila
 
 Here's some topic I learned during the training.
 
-1st day
+### 1st day
 
 1. History and overview of DSSSAT
 2. Exercises: Running Crop Models
@@ -44,7 +44,7 @@ Here's some topic I learned during the training.
 :::
 :::
 
-2nd day
+### 2nd day
 
 1. Simulating basic growth processes
 2. Weather data input and utilities
@@ -80,7 +80,7 @@ Here's some topic I learned during the training.
 :::
 :::
 
-3rd day
+### 3rd day
 
 1. Estimating Genetic Coefficients, Concepts Tools for Estimating Cultivar Coefficients
 2. Cultivar Coefficient Calibration using the Glue Tool
@@ -195,7 +195,7 @@ Here's some topic I learned during the training.
 :::
 :::
 
-4th day
+### 4th day
 
 1. Experimental Data Collection - Model Evaluation
 2. Experimental Data Files and Utilities
@@ -220,7 +220,7 @@ Here's some topic I learned during the training.
 :::
 :::
 
-5th day
+### 5th day
 
 1. Spatial Modeling Applications Demonstration: MWCropDSS
 2. Uncertainty, Risk, BMPs, and Sustainability
@@ -248,7 +248,7 @@ Here's some topic I learned during the training.
 :::
 :::
 
-6th day
+### 6th day
 
 1. Cropping Systems – Simulating Crop Rotations
 2. Creating FileX: Rotation/Sequence Analysis

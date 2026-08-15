@@ -2,6 +2,7 @@
 title: "Upgrade the MBP MC724 Early 2011"
 author: "Benny Istanto"
 date: "2021-08-30"
+description: "Ten years with the same MacBook Pro 13-inch Early 2011, and what upgrading it bought me instead of replacing it"
 image: "../assets/image-blog/20210830-upgrade-mbp-mc724-early-2011-01.jpg"
 categories:
   - "General"

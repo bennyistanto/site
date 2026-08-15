@@ -2,7 +2,7 @@
 title: "Ninth year and the 2020 Nobel Peace Prize Laureate"
 author: "Benny Istanto"
 date: "2021-06-11"
-description: "[caption id=\"\" align=\"alignnone\" width=\"2500\"]"
+description: "Nine years with the UN World Food Programme, the year it received the Nobel Peace Prize, and why making maps turned out to be my ikigai"
 image: "../assets/image-blog/20210611-ninth-year-and-the-2020-nobel-peace-prize-laureate-01.jpg"
 categories:
   - "General"
@@ -14,7 +14,7 @@ categories:
 
 ---
 
-[caption id="" align="alignnone" width="2500"]![  “until the day we have a vaccine, food is the best vaccine against chaos”  ](../assets/image-blog/20210611-ninth-year-and-the-2020-nobel-peace-prize-laureate-01.jpg) “until the day we have a vaccine, food is the best vaccine against chaos” [/caption]
+![“until the day we have a vaccine, food is the best vaccine against chaos”](../assets/image-blog/20210611-ninth-year-and-the-2020-nobel-peace-prize-laureate-01.jpg)
 
 Today marks my [ninth](/blog/20120611-first-day-at-wfp) year working with the UN World Food Programme, I feel honoured because this has been beyond a profession, but I found my definition of [ikigai](/blog/20201109-a-reason-for-being) (A Reason for Being).
 
@@ -23,7 +23,7 @@ Today marks my [ninth](/blog/20120611-first-day-at-wfp) year working with the UN
 * as one of crisis mapper at WFP, I GET PAID for it, of course
 * with WFP, I share the ideas of helping others and contribute to humanitarian NEEDS is as simple as I do
 
-Last year, WFP was awarded the Nobel Peace Prize! This completes my achievement at WFP: as the best GIS in the 1st WFP GIS Community Award in 2015, and with VAM team won 2017 WFP Innovation Challenge, for [VAMPIRE](/projects/2016-vampire) works.
+Last year, WFP was awarded the Nobel Peace Prize! This completes my achievement at WFP: as the best GIS in the 1st WFP GIS Community Award in 2015, and with VAM team won 2017 WFP Innovation Challenge, for [VAMPIRE](/works/projects/2016-vampire) works.
 
 Thank you WFP!
 

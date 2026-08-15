@@ -250,7 +250,7 @@ Untuk tujuan perekaman, instrumen sirkuit pnghubung tidak seimbang (*unbalance b
 
 Termocouples banyak digunakan ketika termometer dengan konstanta waktu yang sangat kecil dan kemampuan pembacaan jarak jauh dan perekaman diperlukan. Satu kerugian jika suhu mutlak diperlukan, peralatan penyokong untuk pengukuran gaya elektromotif perlu dipasang. Termocouples lebih cocok untuk pengukuran suhu yang berbeda.
 
-4.7.2.2 Metode prngukuran
+4.7.2.2 Metode pengukuran
 
 Sedikit teknik yang diperlukan dengan menggunakan pembelokan dari pergerakan meteran.
 
@@ -288,13 +288,27 @@ Pengukuran suhu udara harus dilakukan diareal terbuka, tanpa adanya halangan sep
 | --- | --- | --- |
 | Keseimbangan diantara fase cairan dan uap oksigen (titik didih oksigen) pada tekanan atmosfer standar (1013.25 hPa)	| 90.188 |	-182.962 |
 | Keseimbangan diantara fase padat, cair dan uap air (tiga kali titik air)	| 273.16	| 0.01 |
-| Keseimbangan diantara fase cairan dan gas air (titik didih air) pada tekana atmosfer standar Pp. Suhu t sebagai fungsi uap air diberikan oleh persamaan : t = [100 + 2.7655 x 10-2 (p-p) –1.13393 x 10-5 (p-po)2 + 6.82509 x 10-9 (p-po)3] °C dimana p adalah tekanan atmosfer dalam hPa	| 373.15	| 100 |
+| Keseimbangan diantara fase cairan dan gas air (titik didih air) pada tekana atmosfer standar Pp. Suhu t sebagai fungsi uap air diberikan oleh persamaan : t = [100 + 2.7655 x 10^-2 (p-p) –1.13393 x 10^-5 (p-po)^2 + 6.82509 x 10^-9 (p-po)^3] °C dimana p adalah tekanan atmosfer dalam hPa	| 373.15	| 100 |
 
 **Titik referensi sekunder dan suhunya pada IPTS**
 
 | Pernyataan Keseimbangan | Nilai yang ditetapkan IPT (K) | Nilai yang ditetapkan IPT (°C) |
 | --- | --- | --- |
-
-
+| Keseimbangan diantara fase padat dan uap  karbondioksida (titik sublimasi karbondioksida) pada tekanan atmosfer standar (1013.25 hPa). Suhu t sebagai fungsi tekanan uap karbondioksida diberikan oleh persamaan: r = [1.21036 x 10^-2  (p-po) – 8.91226 x 10^-6 (p-po)2 - 18.476]°C dimana p adalah tekanan atmosfer dalam hPa | 194.674 | -78.476 |
+| Keseimbangan diantara fase padat dan cair air raksa (titik beku air raksa) pada tekanan atmosfer standar | 234.288 | -38.862 |
+| Keseimbangan diantara es dan air udara jenuh (titik es) pada tekanan atmosfer standar | 273.15 | 0.00 |
+| Keseimbangan diantara fase padat, cair dan uap *phenoxybenzene* (*diphenyl ether*)(*tripel point of phenoxybenzene*) | 300.02 | 26.87 |
 
 **Nilai hambatan khusus, Ro, dan koefisien suhu, a, beberapa logam umum dan campuran**
+
+| Bahan	| Ro x 10^6 ohms cm	| a x 10^4  K |
+| ---- | ----- | ---- |
+| Tembaga | 1.55 to 1.78 | 42 to 43.3 |
+| Besi | 8.6 to 9.0 | 50 to 65 |
+| Nikel | 6.1 | 43 to 67.5 |
+| Platinum (pure) | 9.81 | 39.250 (IPTS) |
+| Silver | 1.49 to 1.63 | 36 to 43 |
+| Tungsten | 4.9 | 48 |
+| Constantan | 49 | +- 0.4 |
+| Mangan | 41.5 | +- 0.1 |
+| Nikrom | 108 | 0.8 |

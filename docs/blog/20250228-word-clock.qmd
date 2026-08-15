@@ -23,7 +23,7 @@ The clock updates every minute, automatically highlighting the words that form t
 
 It's a fun, more human way to experience time passing. Enjoy watching the words change as the minutes tick by!
 
-**Inspiration**
+### Inspiration
 
 Inspired by the Word Clock sold by [Walmart - The Word Clock - Shows The Time In A Sentence](https://www.walmart.com/ip/The-Word-Clock-Shows-The-Time-In-A-Sentence/102811752)
 

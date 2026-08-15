@@ -24,38 +24,42 @@ Development model describes the development phase of each plant phenological eve
 
 Economic analysis was done by seeing Benefit Cost Ratio (B/C), activities that benefit the farm system will have a B/C > 1.0, and the Break Event Point (BEP). For the government and related agencies, the resulting output is expected to be useful for the determination of agricultural development policy. As for farmers, is expected to help the timing of planting in order to obtain optimum production and profit.
 
-About the model
+## About the model
 
-**Shierary-Rice**
+### Shierary-Rice
 
 Shierary-Rice crop simulation model was first developed by Handoko (1998), the goal is to estimate the potential production of paddy in Indonesia. The development of crop simulation model with daily resolution, especially for paddy can not be separated from the state of the weather, because these elements provide a major influence on plant growth and development phase that requires the input of daily weather data including maximum and minimum temperature, humidity, solar radiation, wind speed (Handoko 1994).
 
 The use of Shierary-Rice model usually intended more paddy which made the source of water from rain or irrigation. This model consists of four main sub-sub-model development models, sub models of growth, water balance sub-model and sub models of nitrogen availability. In this study, Shierary-Rice simulation model was adopted and developed from a single point into the region and the results are presented spatially.
 
-**Growth model**
+### Growth model
 
 Growth model simulates the flow of biomass to leaves, stems, roots and seeds as well as the loss of respiration. Model calculates the increment of biomass growth based on solar radiation interception and crop water availability. Solar radiation interception (Qint) calculated from data of solar radiation (Qs) and leaf area index (LAI). The amount of biomass of photosynthesis is shared between vegetative and generative organs (seeds) based on the phase of plant development. Added total biomass is a function of the efficiency of the use of solar radiation and the amount of solar radiation is intercepted. Some of these biomass will be used in the process of respiration. Respiration rate is calculated based on the weight of each plant organ (roots, stems, leaves and seeds) and temperature are represented in the form of temperature quotient.
 
-**Development model**
+### Development model
 
 Model describing the development phase of development of plants from each of the phenological events suspected based on the concept of heat units. Based on this concept, the rate of plant growth occurs when the average daily temperature exceeds the base temperature. Base temperature is the minimum temperature required by a plant to grow to accumulate heat units. Base temperature for each plant will be different, for paddy to be used in the model used base temperature of 15 °C. Based on the concept of heat units, plant development phase will change from one phase to the next phase if the plant has reached a certain accumulation of heat units. For example, for certain varieties of paddy will reach the phase of maximum shoots after accumulating heat units of 750 HU.
 
 In general, the paddy phenological events began to be deployed to harvest given the scale of 0-1. The scale is divided into four events, namely seedling (s = 0.0), planting (0.25), maximum shoots (0.50), flowering (s = 0.75) and physiologically mature (s = 1.0).
 
-**Economic value model**
+### Economic value model
 
 This model was calculated on the basis of survey data needs and cost per hectare of paddy crop. Economic analysis of paddy farming is done by seeing Benefit Cost Ratio (B/C), activities that benefit the farm system will have a B/C > 1.0, and the Break Event Point (BEP).
 
-* B/C = (Planting area \* Production \* grain prices)/Cost
-* BEP = Cost/(Planting area \* Production)
+$$
+\begin{aligned}
+\text{B/C} &= \frac{\text{Planting area} \times \text{Production} \times \text{grain prices}}{\text{Cost}} \\[6pt]
+\text{BEP} &= \frac{\text{Cost}}{\text{Planting area} \times \text{Production}}
+\end{aligned}
+$$
 
-Application
+### Application
 
 This sub-model presents an estimate of potential production at various planting times. Estimation on potential production is based on weather data, nitrogen treatment and paddy varieties. Weather data and nitrogen treatment are related to the water requirements and nutrients of paddy in each phase of its development. Information on potential production estimation can be visaulised spatially and in one location (point). One cell on the map represents 100 hectares of paddy fields. In a one-point simulation, the output is an estimate of potential production at various planting date and the optimum planting time. The sub-model of economic value presents profit estimation based on cost component information and estimated potential production, both for one planting period and each phase of its development. Cost components can be modified according to conditions and prevailing prices.
 
 The results of this simulation can be useful for the government in making policies and programs related to the planting schedule and is expected to be used by farmers to find out the optimum planting time and estimate the amount of benefits that might be obtained.
 
-**User Interface**
+### User Interface
 
 The user interface was built as a software application package with the Visual Basic programming language and supported with a number of library files and ActiveX from other software. To display the results of the model, a map is built by adding MapObjects to the project component in Visual Basic. MapObject has several features such as zoom in, zoom out and display the coordinates of the map. The program offer two-methods to calculate the growth and development models, one point and regional.
 
@@ -90,16 +94,18 @@ After the simulation model is run, information on the length of development for 
 The magnitude of the component cost of farming has been made default when the simulation is run. If you want to make modifications to the cost components can be done on a separate page.
 
 ![](../assets/image-blog/20081130-paddys-growth-and-development-model-and-economic-value-of-farming-system-07.jpg)
+
 ![](../assets/image-blog/20081130-paddys-growth-and-development-model-and-economic-value-of-farming-system-08.jpg)
 
 In addition to simulations for one point, simulation can also be done for the region. Area simulations are carried out only on locations with paddy land cover, so previously the map that would be used as well as administrative also land cover maps. As an example of regional simulation, for the January 1 planting scenario (representing rainy season conditions) with 250 kg nitrogen treatment and rainfed paddy conditions and Ciliwung paddy varieties, most of the Karawang region in the northern part is only likely to produce 1-2 tons / ha. While in the southern part of Karawang, the yield potential is higher at more than 6 tons/ha. Whereas for the July 1 planting scenario (representing dry season conditions) with the same treatment, most of the Karawang region only has the potential to produce 2-3 tons/ha, only a small portion in the southern region has the potential to produce more than 6 tons.
 
 ![](../assets/image-blog/20081130-paddys-growth-and-development-model-and-economic-value-of-farming-system-09.jpg)
+
 ![](../assets/image-blog/20081130-paddys-growth-and-development-model-and-economic-value-of-farming-system-10.jpg)
 
 The agricultural sector has an important role in Indonesia. Therefore, businesses that support agricultural development are needed. The paddy growth and development simulation model presented spatially is very useful for the government in making program policies for certain areas, looking at the distribution of potential yields, and determining priority target areas. In addition, this model is expected to be useful for farmers to determine planting strategies such as the selection of varieties, determining the optimum planting time and capital preparation based on the estimated cost components and estimated profits obtained.
 
-Reference
+### Reference
 
 Binh ND, Murty VVN, Hoan DX. 1994. *Evaluation of the possibility for rainfed agriculture using a soil moisture simulation model.* Agric.Water.Manage, 26, 187-199.
 

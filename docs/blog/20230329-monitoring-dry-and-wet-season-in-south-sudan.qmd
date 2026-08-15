@@ -2,7 +2,7 @@
 title: "Monitoring dry and wet season in South Sudan"
 author: "Benny Istanto"
 date: "2023-03-29"
-description: "I am excited to share some news with you all"
+description: "My contribution to the World Bank publication Rising from the Depths: Water Security and Fragility in South Sudan, on monitoring the dry and wet seasons"
 image: "../assets/image-blog/20230329-monitoring-dry-and-wet-season-in-south-sudan-02.jpg"
 categories:
   - "Remote Sensing"

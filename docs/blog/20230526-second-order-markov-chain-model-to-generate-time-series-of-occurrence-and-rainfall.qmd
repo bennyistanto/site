@@ -2,7 +2,7 @@
 title: "Second-order Markov chain model to generate time series of occurrence and rainfall"
 author: "Benny Istanto"
 date: "2023-05-26"
-description: "1 Introduction In the realm of meteorological studies, the use of statistical models is pivotal for understanding and predicting various weather phenomena"
+description: "In the realm of meteorological studies, the use of statistical models is pivotal for understanding and predicting various weather phenomena"
 image: "../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-01.jpg"
 categories:
   - "Research"
@@ -118,11 +118,11 @@ The step-by-step guide for the model is readily accessible in Google Colab or Ju
 
 ---
 
-**Configuration**
+#### Configuration
 
 Configuration is a crucial aspect of setting up any data analysis or processing workflow. Proper configuration ensures seamless access to data, efficient execution of tasks, and smooth integration of required tools and libraries. This article covers several essential subtopics related to configuration, such as connecting Google Drive to Colab, installing packages, importing libraries, and setting up working directories.
 
-Google Drive directory into Colab
+#### Google Drive directory into Colab
 
 Connecting Google Drive to Colab is a vital step when working with data stored in Google Drive. It allows us to access and manipulate files directly from our Colab notebook. To connect our Google Drive, we can use the google.colab.drive module to mount our drive, enabling seamless access to our files and folders.
 
@@ -130,15 +130,66 @@ Notes
 
 This is only apply if we are working in Colab
 
-Working Directories
+#### Working Directories
 
 Setting up working directories involves defining the input and output directory paths for our project. This ensures that our code knows where to find the input data and where to store the results. Properly organizing our working directories makes it easier to manage our project, share it with others, and maintain a clean and structured codebase.
 
 ---
 
+```python
+import os
+
+# Define the Google Drive path
+drive_path = '/content/drive/MyDrive/MSc_IPB_Graduate_program/02_Fundamental_Courses/GFM1622_3_Advanced_Climatological_Methods/exercises/'
+
+# Define the specific folder within our Google Drive we want to use
+folder_path = 'climgen/'  # replace 'climgen/' with the name of our folder
+
+# Combine the paths
+full_path = os.path.join(drive_path, folder_path)
+
+# Change the working directory
+os.chdir(full_path)
+full_path
+```
+
 #### 4.1.1 Rainfall categorization
 
 In the first stage of the analysis, we import the data and categorize whether the day is rainy (value = 1) or sunny (value = 0).
+
+```python
+import os
+import pandas as pd
+import numpy as np
+
+# Load the data
+rainfall_df = pd.read_csv('./station/bogor_rainfall.csv', sep=';')
+
+# Convert 'date' column to datetime
+rainfall_df['date'] = pd.to_datetime(rainfall_df['date'])
+
+# Replace 8888 with 0
+rainfall_df['rainfall'] = rainfall_df['rainfall'].replace(8888, 0)
+
+# Set the threshold
+threshold = 1 # rainfall exceeding 1 mm/day categorized as rainy day
+
+# Add the binary rainday column
+rainfall_df['rainday'] = rainfall_df['rainfall'].apply(lambda x: 1 if x > threshold or np.isclose(x, threshold) else (0 if pd.notna(x) else x))
+rainfall_binary_df = rainfall_df
+
+# Check if output directory exists, create if not
+if not os.path.exists('./output'):
+    os.makedirs('./output')
+
+# Save the result as a csv file
+rainfall_binary_df.to_csv('./output/bogor_rainfall_binary.csv', index=False)
+
+print('Completed!')
+
+# Preview the data
+rainfall_binary_df
+```
 
 Above code will produce output previews like below.
 
@@ -159,6 +210,73 @@ This step explain the process to calculate the transition probabilities of weath
 
 The given code defines a function calculate\_transition\_probabilities\_orders\_2\_long that calculates transition probabilities based on weather conditions in a DataFrame (df). The function takes three conditions (condition1, condition2, and result) and checks if these conditions are met in consecutive rows of the DataFrame. It creates a new column with binary values indicating the occurrence of the specified conditions. NaN values are set for rows with missing data. The code then defines a list of conditions and results and iterates over them to calculate transition probabilities for each scenario. The resulting probabilities are stored in new columns in the DataFrame. The DataFrame is restructured and saved as a CSV file. Finally, the program prints 'Completed!' and displays a preview of the DataFrame.
 
+```python
+import numpy as np
+
+def calculate_transition_probabilities_orders_2_long(df, condition1, condition2, result):
+    # Calculate Pxyz for all days except the first two
+    new_column = ((df['rainday'].shift(2) == condition1) &
+                  (df['rainday'].shift(1) == condition2) &
+                  (df['rainday'] == result)).astype(int)
+
+    # If the input data is NaN, set the output for the next day to NaN
+    # Also check the rainday for the previous two days
+    mask = df['rainday'].isnull() | df['rainday'].shift(1).isnull() | df['rainday'].shift(2).isnull()
+    new_column[mask] = float('NaN')
+
+    # The first and second rows are NaN because they don't have previous day information
+    new_column.iloc[0] = float('NaN')
+    new_column.iloc[1] = float('NaN')
+
+    return new_column
+
+# Set the threshold
+threshold = 1 # rainfall exceeding 1 mm/day categorized as rainy day
+
+# Define the conditions and results
+conditions_results = [(0, 0, 0), (0, 1, 0), (1, 0, 0), (1, 1, 0),
+                      (0, 0, 1), (1, 0, 1), (0, 1, 1), (1, 1, 1)]
+
+# Load data
+rainfall_binary_df = pd.read_csv('./output/bogor_rainfall_binary.csv')
+
+# Convert the 'date' column to datetime
+rainfall_binary_df['date'] = pd.to_datetime(rainfall_binary_df['date'])
+
+# Calculate the transition probabilities for each scenario
+for condition1, condition2, result in conditions_results:
+    # Generate the column name
+    column_name = f"P{condition1}{condition2}{result}"
+    # Calculate the transition probabilities
+    rainfall_binary_df[column_name] = calculate_transition_probabilities_orders_2_long(rainfall_binary_df, condition1, condition2, result)
+
+# Multiply the rainfall with each of the probability columns
+for column in ['P000', 'P010', 'P100', 'P110', 'P001', 'P101', 'P011', 'P111']:
+    rainfall_binary_df[f'rain_{column}'] = rainfall_binary_df['rainfall'] * rainfall_binary_df[column]
+    rainfall_binary_df[f'rainday_{column}'] = rainfall_binary_df[f'rain_{column}'].apply(lambda x: 1 if x > threshold or np.isclose(x, threshold) else (0 if pd.notna(x) else x))
+
+# Define the column order
+column_order = ['date', 'rainfall', 'rainday', 'P000', 'P010', 'P100', 'P110', 'P001', 'P101', 'P011', 'P111',
+                'rain_P000', 'rain_P010', 'rain_P100', 'rain_P110', 'rain_P001', 'rain_P101', 'rain_P011', 'rain_P111',
+                'rainday_P000', 'rainday_P010', 'rainday_P100', 'rainday_P110', 'rainday_P001', 'rainday_P101', 'rainday_P011', 'rainday_P111'
+                ]
+
+# Restructure the DataFrame
+bin_df = rainfall_binary_df[column_order]
+
+# Create a copy of the DataFrame before adding a column
+bin_df = bin_df.copy()
+bin_df['day'] = bin_df['date'].dt.dayofyear
+
+# Save the result as a csv file
+bin_df.to_csv('./output/bogor_transition_probabilities.csv', index=False)
+
+print('Completed!')
+
+# Preview the data
+bin_df
+```
+
 Above code will produce output previews like below.
 
 ![](../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-02.jpg)
@@ -168,6 +286,34 @@ Above code will produce output previews like below.
 The provided code segment executes a series of steps to transform weather data from long to wide format, to make easy for further process.
 
 Firstly, it generates a list of unique scenarios represented by "P" values. Subsequently, a 'year' column is added to the DataFrame bin\_df based on the 'date' information. The code then iterates through each unique "P" value. For each iteration, it selects the relevant columns ('year', 'day', and the current "P" value) from bin\_df while removing rows with missing values. The "P" column is renamed as 'value'. The DataFrame is then pivoted, organizing the data with 'day' as the index, 'year' as the columns, and 'value' as the values. Each resulting pivoted DataFrame is saved as a CSV file, with the file name corresponding to the current "P" value.
+
+```python
+# Load data
+bin_df = pd.read_csv('./output/bogor_transition_probabilities.csv')
+
+# get the unique P's
+unique_Ps = ['P000', 'P010', 'P100', 'P110', 'P001', 'P101', 'P011', 'P111']
+
+# add a 'year' column to the dataframe
+bin_df['year'] = pd.DatetimeIndex(bin_df['date']).year
+
+# iterate over each unique P
+for P in unique_Ps:
+    # select the date, day, year and the current P columns
+    bin_reshape_df = bin_df[['year', 'day', P]]
+
+    # rename the P column to the current year
+    bin_reshape_df = bin_reshape_df.rename(columns={P: 'value'})
+
+    # pivot the dataframe
+    bin_reshape_df = bin_reshape_df.pivot(index='day', columns='year', values='value').reset_index()
+
+    # write to csv
+    bin_reshape_df.to_csv(f'./output/bogor_{P}.csv', index=False)
+
+# Preview the data
+bin_reshape_df
+```
 
 Above code will produce output previews like below.
 
@@ -183,6 +329,37 @@ The code first calculates the total number of occurrences per day for each weath
 
 Finally, the code saves this DataFrame to a CSV file for further analysis and previews the data. This step is crucial as it allows for the inspection of the calculated totals and ensures the data is correctly processed and ready for the next steps of the analysis.
 
+```python
+# Define the unique P's
+unique_Ps = ['P000', 'P010', 'P100', 'P110', 'P001', 'P101', 'P011', 'P111']
+
+# Initialize an empty dictionary to store each dataframe
+num_dfs = {}
+
+# Iterate over each unique P
+for P in unique_Ps:
+    # Load the CSV data for the current P
+    bin_reshape_df = pd.read_csv(f'./output/bogor_{P}.csv')
+
+    # Calculate the sum per day (across all years) for the current P
+    num_dfs[P] = bin_reshape_df.iloc[:, 1:].sum(axis=1)
+
+# Combine the dataframes
+num_df = pd.DataFrame(num_dfs)
+
+# Insert the 'day' column from one of the individual P dataframes
+num_df.insert(0, 'day', bin_reshape_df['day'])
+
+# Add a 'total' column which is the sum of all the P columns for each row
+num_df['total'] = num_df[unique_Ps].sum(axis=1)
+
+# Save the DataFrame to a CSV file
+num_df.to_csv('./output/bogor_totalp3.csv', index=False)
+
+# Preview the data
+num_df
+```
+
 Above code will produce output previews like below.
 
 ![](../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-04.jpg)
@@ -197,6 +374,34 @@ The calculated transition probabilities are then stored in a new DataFrame (prob
 
 Finally, the code saves this DataFrame to a CSV file for further analysis and previews the data. This step is crucial as it allows for the inspection of the calculated probabilities and ensures the data is correctly processed and ready for the next steps of the analysis.
 
+```python
+import numpy as np
+
+# Load data
+num_df = pd.read_csv('./output/bogor_totalp3.csv')
+
+# Calculate the probabilities where the current day is rainy
+prob_df_P001 = num_df['P001'] / (num_df['P001'] + num_df['P000']).replace(0, np.nan)
+prob_df_P011 = num_df['P011'] / (num_df['P011'] + num_df['P010']).replace(0, np.nan)
+prob_df_P101 = num_df['P101'] / (num_df['P101'] + num_df['P100']).replace(0, np.nan)
+prob_df_P111 = num_df['P111'] / (num_df['P111'] + num_df['P110']).replace(0, np.nan)
+
+# Create a new DataFrame with the probabilities
+prob_df = pd.DataFrame({
+    'day': num_df['day'],
+    'P001': prob_df_P001,
+    'P011': prob_df_P011,
+    'P101': prob_df_P101,
+    'P111': prob_df_P111
+})
+
+# Save the DataFrame to a CSV file
+prob_df.to_csv('./output/bogor_prob.csv', index=False)
+
+# Preview the data
+prob_df
+```
+
 Above code will produce output previews like below.
 
 ![](../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-05.jpg)
@@ -208,6 +413,91 @@ The code calculates Fourier coefficients and applies a logit transformation to t
 After that, the script computes the logit of the probabilities, g\_a\_df, which is the log of the odds ratio (i.e., the ratio of the probability of an event occurring to the probability of it not occurring). Fourier coefficients are calculated for each original column in prob\_df. The Fourier series is a way to represent a function as a sum of periodic components, and in this context, it's used to capture the cyclical patterns of the probabilities throughout the year.
 
 Finally, the script constructs a new DataFrame result\_df that includes the original probabilities, the calculated g\_a\_df values, fitted g\_fit values (based on the Fourier series representation), and final probabilities (the inverse logit of g\_a\_df). This DataFrame is saved to a CSV file and then returned for review.
+
+```python
+import numpy as np
+import pandas as pd
+import warnings
+warnings.filterwarnings('ignore')
+
+# Load data
+prob_df = pd.read_csv('./output/bogor_prob.csv')
+
+# Define a small constant
+epsilon = 1e-4
+
+# Replace 0 or 1 probabilities in prob_df with a small or large number, then update prob_df directly
+for col in prob_df.columns:
+    if col != 'day':
+        prob_df[col] = prob_df[col].mask(prob_df[col] == 0, epsilon)
+        prob_df[col] = prob_df[col].mask(prob_df[col] == 1, 1 - epsilon)
+
+# Calculate variables for equations
+pi = 3.14159
+t_prime = 2 * pi * (prob_df['day']) / 365
+
+# Calculate trigonometric variables
+sin_t_prime = np.sin(t_prime)
+cos_t_prime = np.cos(t_prime)
+sin_2t_prime = np.sin(2*t_prime)
+cos_2t_prime = np.cos(2*t_prime)
+
+# Calculate g_a_df
+g_a_df = np.log((prob_df.iloc[:, 1:] + epsilon) / (1 - prob_df.iloc[:, 1:] - epsilon))
+
+# Calculate Fourier coefficients
+n = len(t_prime)
+coefficients = {}
+original_prob_columns = prob_df.columns[1:]  # We only want to calculate for original columns in prob_df, not including 'day'
+for col in original_prob_columns:
+    y = g_a_df[col]
+    a0 = np.mean(y)
+    a1 = 2/n * np.sum(y * sin_t_prime)
+    b1 = 2/n * np.sum(y * cos_t_prime)
+    a2 = 2/n * np.sum(y * sin_2t_prime)
+    b2 = 2/n * np.sum(y * cos_2t_prime)
+    coefficients[col] = [a0, a1, b1, a2, b2]
+
+# Calculate g_fit_df
+g_fit_df = pd.DataFrame()
+for col in original_prob_columns:
+    a0, a1, b1, a2, b2 = coefficients[col]
+    g_fit_df['g_fit_' + col] = a0 + a1 * sin_t_prime + b1 * cos_t_prime + a2 * sin_2t_prime + b2 * cos_2t_prime
+
+# Calculate the inverse logit of g_fit_df
+final_prob_df = 1/(1+np.exp(-g_fit_df))
+
+# Create result DataFrame
+result_df = pd.DataFrame({
+    'day': prob_df['day'],
+    't_prime': t_prime,
+    'sin_t_prime': sin_t_prime,
+    'cos_t_prime': cos_t_prime,
+    'sin_2t_prime': sin_2t_prime,
+    'cos_2t_prime': cos_2t_prime,
+})
+
+# Add original probabilities to the result DataFrame
+result_df = pd.concat([result_df, prob_df.iloc[:, 1:]], axis=1)
+
+# Print the calculated Fourier coefficients
+for col, coeff in coefficients.items():
+    print(f"For column {col}, the Fourier coefficients are: a0={coeff[0]}, a1={coeff[1]}, b1={coeff[2]}, a2={coeff[3]}, b2={coeff[4]}")
+
+# Add calculated g_a_df values, g_fit values, and final_prob_df to the result DataFrame
+for col in g_a_df.columns:
+    result_df['g_' + col] = g_a_df[col]
+    result_df['g_fit_' + col] = g_fit_df['g_fit_' + col]
+    result_df['final_' + col] = final_prob_df['g_fit_' + col]  # use 'g_fit_' + col instead of col
+
+logit_and_invers_df = result_df
+
+# Save the DataFrame to a CSV file
+logit_and_invers_df.to_csv('./output/bogor_logit.csv', index=False)
+
+# Preview the data
+logit_and_invers_df
+```
 
 Above code will produce output previews like below.
 
@@ -223,9 +513,83 @@ The script then labels each subplot with its respective day type and scenario, s
 
 Finally, it adjusts the layout for better visualization and displays the plot. This way, it helps to analyze how well the fitted values (g\_fit) are approximating the calculated logit (g) values.
 
+```python
+import os
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Load data
+logit_and_invers_df = pd.read_csv('./output/bogor_logit.csv')
+
+# Define the P types
+P_types_rainy = ['P001', 'P011', 'P101', 'P111']
+
+# Define the number of rows and columns for the subplot grid
+nrows = 2  # Number of rows
+ncols = 2  # Number of columns
+
+# Create the subplots
+fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=(5*ncols, 5*nrows))
+
+# Iterate over each subplot and plot the scatter plot and line
+for j, P_type in enumerate(P_types_rainy):  # Plot the rainy day scenarios
+    data_g = logit_and_invers_df['g_' + P_type]  # Extract the relevant data for 'g'
+    data_g_fit = logit_and_invers_df['g_fit_' + P_type]  # Extract the relevant data for 'g_fit'
+
+    # Calculate the appropriate row and column indices for your subplot
+    row_index = j // ncols
+    col_index = j % ncols
+
+    axes[row_index, col_index].scatter(logit_and_invers_df['day'], data_g, label='g')  # Scatter plot for 'g'
+    axes[row_index, col_index].plot(logit_and_invers_df['day'], data_g_fit, color='red', label='g_fit')  # Line plot for 'g_fit'
+    axes[row_index, col_index].set_title(f'{P_type} Rainy Day')  # Set title
+    axes[row_index, col_index].set_xlabel('Day')  # Set x-label
+    axes[row_index, col_index].set_ylabel('Value')  # Set y-label
+    axes[row_index, col_index].legend()
+
+# Adjust the layout
+plt.tight_layout()
+
+# Check if output directory exists, create if not
+if not os.path.exists('./image'):
+    os.makedirs('./image')
+
+# Save the figure
+plt.savefig('./image/bogor_g_and_fitted.png', dpi=300)
+
+# Show the plot
+plt.show()
+```
+
 #### 4.1.8 Generate random numbers from a uniform distribution to get the rainfall events
 
 This code generates random numbers from a uniform distribution for each day and compares these to our probabilities to generate the events. Events are coded as 1 for rain and 0 for no rain. The new DataFrame event\_df only contains the event data, with columns named event\_Pxxx as specified. The data is saved in a CSV file called events.csv.
+
+```python
+import numpy as np
+
+# Load data
+logit_and_invers_df = pd.read_csv('./output/bogor_logit.csv')
+
+# Seed the random number generator for reproducibility
+np.random.seed(1000)
+
+# Prepare a DataFrame for storing event data
+event_df = logit_and_invers_df[['day']].copy()  # start with 'day' column
+
+for col in logit_and_invers_df.columns:
+    if 'final_' in col:  # We only want to process the columns containing final probabilities
+        # Generate random numbers
+        random_numbers = np.random.uniform(0, 1, size=logit_and_invers_df[col].shape)
+        # Create events
+        event_df['event_' + col[6:]] = (random_numbers < logit_and_invers_df[col]).astype(int)  # This creates a new column with event data
+
+# Save the DataFrame to a CSV file
+event_df.to_csv('./output/bogor_event.csv', index=False)
+
+# Preview the result
+event_df
+```
 
 Above code will produce output previews like below.
 
@@ -247,9 +611,124 @@ A legend is also created to indicate the meanings of the colors in the heatmaps.
 
 Before running below code, please make sure yopu already have “seaborn” installed. If not, please install it using “pip install seaborn”
 
+```python
+import seaborn as sns
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+
+# Load data
+event_df = pd.read_csv('./output/bogor_event.csv')
+
+# Define the P types
+P_types = ['P001', 'P011', 'P101', 'P111']
+
+# Define the number of rows and columns for the subplot grid
+nrows = len(P_types)  # Number of rows
+ncols = 1  # Number of columns
+
+# Create the subplots
+fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=(20*ncols, 5*nrows))
+
+# Define the number of days in each month (including for leap years)
+days_in_month = [31, 29 if len(event_df['day']) == 366 else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+for j, P_type in enumerate(P_types):  # Plot the scenarios
+    data_event = np.full((12, 31), np.nan)  # Create a 2D array filled with np.nan
+    event_monthly = np.split(event_df['event_' + P_type], np.cumsum(days_in_month)[:-1])  # Split data by month
+    for month in range(12):
+        data_event[month, :len(event_monthly[month])] = event_monthly[month]  # Fill in the actual data
+    sns.heatmap(data_event, cmap="Blues", cbar=False, ax=axes[j], linewidths=0.5, linecolor='black')  # Plot heatmap with block outlines
+    axes[j].set_title(f'{P_type} Scenario')  # Set title
+    axes[j].set_xlabel('Day of the month')  # Set x-label
+    axes[j].set_ylabel('Month')  # Set y-label
+    axes[j].set_yticklabels(range(1, 13))  # Set y-tick labels to start from 1
+
+    # Adjust line width and color of the axes
+    for location in ['bottom', 'left']:
+        axes[j].spines[location].set_linewidth(2)  # Set line width
+        axes[j].spines[location].set_color('black')  # Set color
+
+# Create a legend
+rainy_patch = mpatches.Patch(facecolor='#08306B', edgecolor='black', label='Rainy')
+sunny_patch = mpatches.Patch(facecolor='white', edgecolor='black', label='Sunny')
+plt.legend(handles=[rainy_patch, sunny_patch], bbox_to_anchor=(1.05, 0), loc='lower center', borderaxespad=0.)
+
+# Add main title
+plt.suptitle('Probability of rainfall if today is Rain', fontsize=20)
+
+# Adjust the layout
+plt.tight_layout(rect=[0, 0, 1, 0.96])
+
+# Save the figure
+plt.savefig('./image/bogor_prob_rain_todayisrain.png', dpi=300)
+
+# Show the plot
+plt.show()
+```
+
 #### 4.1.10 Gamma distribution
 
 This code analyses a dataset of rainfall patterns. It first loads the data, and prepares it by converting the 'date' column into a datetime format and adding a 'month' column. It then assigns each entry to a season (DJF, MAM, JJA, or SON) based on the month of the year. After isolating only the rainy days, the script applies a Gamma distribution model for each season's rainfall data. The parameters (alpha and beta) of the Gamma distribution for each season are corrected for small sample sizes using the Greenwood and Durand method. These corrected parameters are then stored in a new DataFrame, which is exported as a CSV file for future use or analysis. The resulting DataFrame provides a seasonal breakdown of the rainfall data, and offers insights into how the rainfall pattern is distributed for each season.
+
+```python
+import numpy as np
+import pandas as pd
+import logging
+from scipy.stats import gamma
+
+logging.basicConfig(level=logging.INFO)
+
+# Load the rainfall data
+rainfall_df = pd.read_csv('./output/bogor_transition_probabilities.csv')
+
+# Convert the 'date' column to datetime format
+rainfall_df['date'] = pd.to_datetime(rainfall_df['date'])
+
+# Add a 'month' column
+rainfall_df['month'] = rainfall_df['date'].dt.month
+
+# Define seasons
+seasons = {12: 'DJF', 1: 'DJF', 2: 'DJF',
+           3: 'MAM', 4: 'MAM', 5: 'MAM',
+           6: 'JJA', 7: 'JJA', 8: 'JJA',
+           9: 'SON', 10: 'SON', 11: 'SON'}
+
+# Map the seasons to the 'month' column
+rainfall_df['season'] = rainfall_df['month'].map(seasons)
+
+# List of the probability columns
+prob_columns = ['rain_P001', 'rain_P101', 'rain_P011', 'rain_P111']
+
+# Create an empty DataFrame to store the gamma parameters
+gamma_params_df = pd.DataFrame(columns=['season', 'rain_Ptype', 'alpha', 'beta'])
+
+for season in set(seasons.values()):
+    for rain_Ptype in prob_columns:
+        try:
+            logging.info(f'Processing season: {season} rain type: {rain_Ptype}')
+            seasonal_rainfall = rainfall_df[rainfall_df['season'] == season][rain_Ptype]
+
+            # Remove non-finite values
+            seasonal_rainfall = seasonal_rainfall[np.isfinite(seasonal_rainfall)]
+
+            # Remove zero values
+            seasonal_rainfall = seasonal_rainfall[seasonal_rainfall > 0]
+
+            if len(seasonal_rainfall) > 0:  # Check that there is data for this season
+                # Fit the gamma distribution using MLE
+                alpha, loc, beta = gamma.fit(seasonal_rainfall, floc=0)
+                gamma_params_df = pd.concat([gamma_params_df, pd.DataFrame({'season': [season], 'rain_Ptype': [rain_Ptype], 'alpha': [alpha], 'beta': [beta]})], ignore_index=True)
+        except Exception as e:
+            logging.error(f'Error processing season: {season} rain type: {rain_Ptype} Error: {str(e)}')
+
+# Save the DataFrame to a CSV file
+gamma_params_df.to_csv('./output/bogor_gamma_params.csv', index=False)
+
+# Preview the data
+gamma_params_df
+```
 
 Above code will produce output previews like below
 
@@ -264,6 +743,147 @@ The gamma distribution is only used to generate rainfall values for rainy days (
 In this script, we create a new rainfall\_PXXX column for each event\_PXXX column. For each season, we select the days where event\_PXXX = 1, and generate rainfall values for these days using the gamma distribution with the corresponding alpha and beta parameters. These generated values are then stored in the rainfall\_PXXX column. At the end, the updated DataFrame is saved to a new CSV file.
 
 Here's how we could do this for each P-type.
+
+```python
+import numpy as np
+import pandas as pd
+
+# Set the seed for the random number generator
+np.random.seed(1000)
+
+# Load the gamma parameters
+gamma_params_df = pd.read_csv('./output/bogor_gamma_params.csv')
+
+# Load the event data
+event_df = pd.read_csv('./output/bogor_event.csv')
+
+# Load the rainfall data
+rainfall_df = pd.read_csv('./output/bogor_transition_probabilities.csv')
+
+# Convert the 'date' column to datetime format
+rainfall_df['date'] = pd.to_datetime(rainfall_df['date'])
+
+# Add a 'month' and 'day_of_year' columns to the rainfall dataframe
+rainfall_df['month'] = rainfall_df['date'].dt.month
+rainfall_df['day_of_year'] = rainfall_df['date'].dt.dayofyear
+
+# Define seasons
+seasons = {12: 'DJF', 1: 'DJF', 2: 'DJF',
+           3: 'MAM', 4: 'MAM', 5: 'MAM',
+           6: 'JJA', 7: 'JJA', 8: 'JJA',
+           9: 'SON', 10: 'SON', 11: 'SON'}
+
+# Map the seasons to the 'month' column
+rainfall_df['season'] = rainfall_df['month'].map(seasons)
+
+# Initialize the output dataframe
+output_df = rainfall_df[['date', 'day_of_year']].copy()
+
+# Add 'day_of_year' column to event_df dataframe
+event_df['day_of_year'] = event_df['day']
+
+# Merge the event data
+output_df = pd.merge(output_df, event_df[['day_of_year', 'event_P001', 'event_P011', 'event_P101', 'event_P111']], on='day_of_year', how='left')
+
+# Loop through each P-type
+for col in ['event_P001', 'event_P011', 'event_P101', 'event_P111']:
+    # Create a new column for the generated rainfall
+    output_df['rainfall_predict_' + col[6:]] = np.nan  # Initialize with all NaNs
+    # Loop through each season
+    for season in set(seasons.values()):
+        # Get the alpha and beta parameters for this season and rain type
+        alpha = gamma_params_df.loc[(gamma_params_df['season'] == season) & (gamma_params_df['rain_Ptype'] == 'rain_' + col[6:]), 'alpha'].values[0]
+        beta = gamma_params_df.loc[(gamma_params_df['season'] == season) & (gamma_params_df['rain_Ptype'] == 'rain_' + col[6:]), 'beta'].values[0]
+        # Find the valid rainfall days in the same season
+        valid_rainfall_days = (rainfall_df['season'] == season) & (rainfall_df[f'rainday_{col[6:]}'] > 0)
+        # Calculate the total number of "rainy" days in the current season for the current event type
+        total_rainy_days = valid_rainfall_days.sum()
+        # Print number of valid rainfall days for this season and P-type
+        print(f"For Ptype {col[6:]}, Season {season}, there are {total_rainy_days} valid rainfall days.")
+        # Generate rainfall values for these days using the gamma distribution
+        rainfall_values = np.random.gamma(alpha, beta, size=int(total_rainy_days))
+        # Add generated rainfall values to the predicted rainfall column. Note that some randomness is introduced here since
+        # the ordering of the generated rainfall values is not specified. In other words, which specific days get the generated
+        # rainfall values is determined randomly.
+        rainfall_indices = np.random.choice(output_df.loc[valid_rainfall_days].index, size=int(total_rainy_days), replace=False)
+        output_df.loc[rainfall_indices, 'rainfall_predict_' + col[6:]] = rainfall_values
+
+# Replace NaN values in the rainfall prediction columns with 0
+for col in ['rainfall_predict_P001', 'rainfall_predict_P011', 'rainfall_predict_P101', 'rainfall_predict_P111']:
+    output_df[col] = output_df[col].fillna(0)
+
+# Save the updated DataFrame to a CSV file
+output_df.to_csv('./output/bogor_rainfall_prediction.csv', index=False)
+
+# Preview the data
+output_df
+
+import pandas as pd
+import numpy as np
+
+# Load dataset
+final_markov_df = pd.read_csv('./output/bogor_rainfall_prediction.csv')
+
+# Convert date to datetime
+final_markov_df['date'] = pd.to_datetime(final_markov_df['date'])
+
+# Calculate temp_rainfall_Ptype
+final_markov_df['temp_rainfall_P001'] = final_markov_df['rainfall_predict_P001'] * final_markov_df['event_P001']
+final_markov_df['temp_rainfall_P011'] = final_markov_df['rainfall_predict_P011'] * final_markov_df['event_P011']
+final_markov_df['temp_rainfall_P101'] = final_markov_df['rainfall_predict_P101'] * final_markov_df['event_P101']
+final_markov_df['temp_rainfall_P111'] = final_markov_df['rainfall_predict_P111'] * final_markov_df['event_P111']
+
+# Initialize final_rainfall
+final_markov_df['final_rainfall'] = np.nan
+
+# Create a dictionary to map the condition of the last two days to the temp_rainfall_Ptype
+dict_Ptype = {
+    (0, 0): 'temp_rainfall_P001',
+    (1, 0): 'temp_rainfall_P101',
+    (0, 1): 'temp_rainfall_P011',
+    (1, 1): 'temp_rainfall_P111',
+}
+
+# Calculate final_rainfall for the first two days
+final_markov_df.loc[0, 'final_rainfall'] = 0 # insufficient information for the first day
+final_markov_df.loc[1, 'final_rainfall'] = 0 # insufficient information for the second day
+
+# Calculate final_rainfall for the rest of the days
+for i in range(2, len(final_markov_df)):
+    condition = (final_markov_df.loc[i-2, 'final_rainfall'] > 0, final_markov_df.loc[i-1, 'final_rainfall'] > 0)
+    final_markov_df.loc[i, 'final_rainfall'] = final_markov_df.loc[i, dict_Ptype[condition]]
+
+# Add actual rainfall
+rainfall_df = pd.read_csv('./output/bogor_rainfall_binary.csv')
+rainfall_df['date'] = pd.to_datetime(rainfall_df['date'])
+final_markov_df = pd.merge(final_markov_df, rainfall_df[['date', 'rainfall', 'rainday']], on='date', how='left')
+
+# Calculate final_rainday_predict
+rainfall_threshold = 1
+final_markov_df['final_rainday_predict'] = np.where(final_markov_df['final_rainfall'] > rainfall_threshold, 1, 0)
+
+# List of columns to drop
+columns_to_drop = ['event_P001', 'event_P011', 'event_P101', 'event_P111',
+                   'rainfall_predict_P001', 'rainfall_predict_P011',
+                   'rainfall_predict_P101', 'rainfall_predict_P111',
+                   'temp_rainfall_P001', 'temp_rainfall_P011',
+                   'temp_rainfall_P101', 'temp_rainfall_P111']
+
+# Drop unwanted columns
+final_markov_df = final_markov_df.drop(columns_to_drop, axis=1)
+
+# Rename header
+final_markov_df = final_markov_df.rename(columns={'rainfall_x': 'rainfall', 'final_rainfall': 'final_rainfall_predict'})
+
+# Rearrange the columns
+final_markov_df = final_markov_df[['date', 'day_of_year', 'rainfall', 'final_rainfall_predict', 'rainday', 'final_rainday_predict']]
+
+# Save the final output
+final_markov_df.to_csv('./output/bogor_final_rainfall.csv', index=False)
+
+# Preview the output
+final_markov_df
+```
 
 Above code will produce output previews like below.
 
@@ -281,6 +901,67 @@ This code is meant to load, process, and plot data on annual rainfall and rainfa
 
 It initializes a plot with 10 rows and 4 columns to make room for a line plot for each year from 1984 to 2021. Each plot will compare actual rainfall (in light blue) with the predicted rainfall (in orange) over the course of a year.
 
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the final output dataset
+final_markov_df = pd.read_csv('./output/bogor_final_rainfall.csv')
+
+# Convert date to datetime
+final_markov_df['date'] = pd.to_datetime(final_markov_df['date'])
+
+# Set date as index
+final_markov_df.set_index('date', inplace=True)
+
+# Aggregate data on a monthly basis
+final_markov_df = final_markov_df.resample('M').sum()
+
+# Extract the year from the index
+final_markov_df['year'] = final_markov_df.index.year
+
+# Get the unique years
+years = final_markov_df['year'].unique()
+
+# Calculate the number of rows needed for the subplots
+num_rows = len(years) // 5
+if len(years) % 5 > 0:
+    num_rows += 1
+
+# Create a figure and axes for the subplots
+fig, axs = plt.subplots(num_rows, 5, figsize=(30, 5 * num_rows))
+
+# Flatten the axes array
+axs = axs.flatten()
+
+# For each unique year, plot the CDF of monthly accumulated rainfall and final_rainfall_predict
+for i, year in enumerate(years):
+    sns.kdeplot(final_markov_df[final_markov_df['year'] == year]['rainfall'], cumulative=True, label='monthly accumulated rainfall', ax=axs[i])
+    sns.kdeplot(final_markov_df[final_markov_df['year'] == year]['final_rainfall_predict'], cumulative=True, label='monthly accumulated rainfall prediction', ax=axs[i])
+    axs[i].set_title(f'Cumulative Distribution Function for Year {year}')
+    axs[i].set_xlabel('Monthly Accumulated Rainfall')
+    axs[i].set_ylabel('Cumulative Probability')
+    axs[i].legend()
+    axs[i].grid(True)
+
+# If the total number of plots is not a multiple of 5, delete the remaining axes
+if len(years) % 5 > 0:
+    for j in range(i+1, num_rows * 5):
+        fig.delaxes(axs[j])
+
+# Add a main title to the entire figure
+fig.suptitle('Cumulative Distribution Function for Monthly Accumulated Rainfall and Predicted Rainfall (1984 - 2021)', fontsize=20)
+
+# Adjust the layout
+plt.tight_layout(rect=[0, 0, 1, 0.96])
+
+# Save the figure
+plt.savefig('./image/bogor_cdf_monthly_accumulated_rainfall_vs_predicted.png', dpi=300)
+
+# Show the plot
+plt.show()
+```
+
 #### 4.2.2 Performance
 
 Distribution of Errors (Residuals): We can plot a histogram or a Kernel Density Estimate plot of the residuals, which are the differences between the actual and predicted values. If our model is a good fit, the residuals should be normally distributed around zero.
@@ -288,6 +969,62 @@ Distribution of Errors (Residuals): We can plot a histogram or a Kernel Density 
 Time Series of Residuals: Plotting residuals over time can show whether the errors are consistent throughout the time series, or if they vary significantly at certain time periods.
 
 Boxplot of Errors by Year: This can help us see if the model's performance varies significantly from year to year.
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the rainfall data
+final_markov_df = pd.read_csv('./output/bogor_final_rainfall.csv')
+
+# Convert the 'date' column to datetime format if not already
+final_markov_df['date'] = pd.to_datetime(final_markov_df['date'])
+
+# Set the 'date' column as the index
+final_markov_df.set_index('date', inplace=True)
+
+# Add 'month' and 'year' columns to the dataframe
+final_markov_df['month'] = final_markov_df.index.month
+final_markov_df['year'] = final_markov_df.index.year
+
+# Calculate monthly sums for 'rainfall' and 'final_rainfall_predict'
+monthly_final_markov_df = final_markov_df.groupby(['year', 'month'])[['rainfall', 'final_rainfall_predict']].sum().reset_index()
+
+# Calculate residuals for each month
+monthly_final_markov_df['residuals'] = monthly_final_markov_df['rainfall'] - monthly_final_markov_df['final_rainfall_predict']
+
+# Plot a histogram of residuals
+plt.figure(figsize=(15, 8))
+sns.histplot(monthly_final_markov_df['residuals'], kde=True)
+plt.xlabel('Residuals')
+plt.ylabel('Frequency')
+plt.title('Distribution of Residuals')
+# Save the figure
+plt.savefig('./image/bogor_distribution_residuals.png', dpi=300)
+plt.show()
+
+# Plot residuals over time
+plt.figure(figsize=(15, 8))
+# Set the x-axis to be the Year-Month
+x_axis = pd.to_datetime(monthly_final_markov_df[['year', 'month']].assign(day=1))
+plt.plot(x_axis, monthly_final_markov_df['residuals'])
+plt.xlabel('Year-Month')
+plt.ylabel('Residuals')
+plt.title('Time Series of Residuals')
+# Save the figure
+plt.savefig('./image/bogor_timeseries_residuals.png', dpi=300)
+plt.show()
+
+# Create a boxplot of residuals by year
+plt.figure(figsize=(15, 8))
+sns.boxplot(x='year', y='residuals', data=monthly_final_markov_df)
+plt.title('Boxplot of Residuals by Year')
+plt.xticks(rotation=90)  # Rotate the x-axis labels
+# Save the figure
+plt.savefig('./image/bogor_boxplot_residuals.png', dpi=300)
+plt.show()
+```
 
 ## 5 Results
 

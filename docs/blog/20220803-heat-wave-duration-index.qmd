@@ -2,7 +2,7 @@
 title: "Heat wave duration index"
 author: "Benny Istanto"
 date: "2022-08-03"
-description: "The World Meteorological Organization (WMO), defines a heat wave as five or more consecutive days of prolonged heat in which the daily maximum temperature is higher than the average maximum tempera..."
+description: "Calculating the heat wave duration index (HWDI) recommended by the IPCC, using the WMO definition of five or more consecutive days above the average maximum by 5°C"
 image: "../assets/image-blog/20220803-heat-wave-duration-index-01.jpg"
 categories:
   - "Remote Sensing"
@@ -52,51 +52,51 @@ NOTE
 
 1. Clip global data using bounding box
 
-   ```
+   ```bash
    for fl in ./00_chelsa_global_tasmax/*.nc; do cdo sellonlatbox,-8.3,-7.6,12.3,12.9 $fl ./01_tasmax_/usa_california_`basename $fl`; done
    ```
 2. Merge monthly data into annual
 
-   ```
+   ```bash
    for year in {1979..2016}; do cdo mergetime ./01_tasmax/usa_california_chelsa-w5e5v1.0_obsclim_tasmax_30arcsec_global_daily_${year}??.nc ./02_tasmax_annual/usa_california_chelsa_daily_tasmax_${year}.nc; done
    ```
 3. Delete data who has 29th February.
 
    According to <https://code.mpimet.mpg.de/boards/2/topics/9522>, dealing with leap years in climate model output has caused many scientists to stumble, since there are just about 25% February 29ths in the time series so that the sample size for February 29th is just not big enough. Therefore, remove it from the time series before analysing it.
 
-   ```
+   ```bash
    for year in {1979..2016}; do cdo -delete,month=2,day=29 ./02_tasmax_annual/usa_california_chelsa_daily_tasmax_${year}.nc ./03_tasmax_del29feb/usa_california_chelsa_daily_tasmax_${year}.nc; done
    ```
 
    below script also works, using `del29dfeb`
 
-   ```
+   ```bash
    for year in {1979..2016}; do cdo -del29feb ./02_tasmax_annual/usa_california_chelsa_daily_tasmax_${year}.nc ./03_tasmax_del29feb/usa_california_chelsa_daily_tasmax_${year}.nc; done
    ```
 4. Convert Kelvin to degree Celsius and don't forget to change the variable (here `tasmax`) units, too. Combining operators:
 
-   ```
+   ```bash
    for year in {1979..2016}; do cdo -b 32 -setattribute,tasmax@units="degC" -addc,-273.15 ./03_tasmax_del29feb/usa_california_chelsa_daily_tasmax_${year}.nc ./04_tasmax_celsius/usa_california_chelsa_daily_tasmax_${year}.nc; done
    ```
 5. Merge all nc files result from point 4 into single nc.
 
-   ```
+   ```bash
    cdo mergetime ./04_tasmax_celsius/usa_*.nc ./05_tasmax_all/usa_california_chelsa_daily_tasmax_1979_2016.nc
    ```
 6. Calculate the mean TXnorm of daily maximum temperatures for any period used as reference
 
-   ```
+   ```bash
    cdo ydrunmean,5,rm=c ./05_tasmax_all/usa_california_chelsa_daily_tasmax_1979_2016.nc ./06_tasmax_meanofreference/usa_california_chelsa_daily_tasmaxnorm_ref_1979_2016.nc
    ```
 7. Calculate annual heat wave duration index w.r.t mean of reference period
 
-   ```
+   ```bash
    for year in {1979..2016}; do cdo eca_hwdi ./04_tasmax_celsius/usa_california_chelsa_daily_tasmax_${year}.nc ./06_tasmax_meanofreference/usa_california_chelsa_daily_tasmaxnorm_ref_1979_2016.nc ./07_hwdi/usa_california_chelsa_daily_hwdi_${year}.nc; done
    ```
 
 #### Result
 
-**Year 2008**
+##### Year 2008
 
 ![](../assets/image-blog/20220803-heat-wave-duration-index-01.jpg)
 
@@ -105,7 +105,7 @@ Reference:
 * <https://web.archive.org/web/20100915191025/https://www.usatoday.com/weather/news/2008-06-19-socal-heat-wave_N.htm>
 * <https://www.upi.com/Top_News/2008/07/06/Heat-wave-coming-to-scorched-California/13351215345710/>
 
-**Year 2013**
+##### Year 2013
 
 ![](../assets/image-blog/20220803-heat-wave-duration-index-02.jpg)
 
@@ -114,7 +114,7 @@ Reference:
 * <https://www.nbclosangeles.com/news/local/Southern-California-Heat-Wave-Record-Hot-Temperatures-213729901.html>
 * <https://web.archive.org/web/20131105060318/http://www.wunderground.com/blog/JeffMasters/comment.html?entrynum=2451>
 
-**Year 2016**
+##### Year 2016
 
 ![](../assets/image-blog/20220803-heat-wave-duration-index-03.jpg)
 
@@ -133,7 +133,7 @@ Reference:
 5. https://data-infrastructure-services.gitlab-pages.dkrz.de/tutorials-and-use-cases/use-case\_climate-extremes-indices\_cdo.html
 6. https://en.wikipedia.org/wiki/List\_of\_heat\_waves
 
-**CDO operators**
+#### CDO operators
 
 * *sellonlatbox* - Select a longitude/latitude box. <https://code.mpimet.mpg.de/projects/cdo/embedded/index.html#x1-1760002.3.5>
 * *mergetime* - Merge datasets sorted by date and time. <https://code.mpimet.mpg.de/projects/cdo/embedded/index.html#x1-1130002.2.8>

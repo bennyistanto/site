@@ -26,15 +26,42 @@ GFS data description in GEE available in this link: <https://developers.google.c
 
 *The Global Forecast System (GFS) is a weather forecast model produced by the National Centers for Environmental Prediction (NCEP). The GFS dataset consists of selected model outputs (described below) as gridded forecast variables. The 384-hour forecasts, with 3-hour forecast interval, are made at 6-hour temporal resolution (i.e. updated four times daily). Use the 'creation\_time' and 'forecast\_time' properties to select data of interest.*
 
-I found good explanation about GFS data in GEE in [StackExchange](https://gis.stackexchange.com/a/335637), written by Kel Markert.
+I found good explanation about GFS data in GEE in [StackExchange](https://gis.stackexchange.com/a/335637), written by [Kel Markert](https://scholar.google.com/citations?user=H5IUXWwAAAAJ&hl=en).
 
-You have to be a little careful with GFS data because it can get pretty confusing with the timing (as you have already seen). First, the GFS forecast is initialized 4 times a day (at 00, 06, 12, 18 hours GMT) so you get 4 forecasts per day. Next, GFS forecast interval for an individual forecast is hourly for the first 5 days then goes to 3-hour intervals up to day 10 then goes to 12-hour interval for the rest up to 16 days as shown in the returned data from your example. So, theoretically you will get 60 (24+18+12+6) images per day with different forecast times *if you keep track of all the timing*.
-
-However, Earth Engine does not keep track of all of the timing for you. If you look at the metadata, you will see that the `system:time_start` is equal to the `creation_time` (i.e. initialization time). So, when you use `.filterDate()` in EE (which uses the `system:time_start` property internally for filtering) you only filter by the day that the forecast was created (all the forecast initialization and forecast hours) and you get (5\*24+5\*8+6\*2)\*4 which equals the 688 images from your example.
-
-Hopefully that helps make a little more sense on how the data is structured in terms of time and now we can use that understanding to start filtering. Here is an example getting a single day from different forecasts initializations:
-
-As you can see from the example, the `.filterDate()` is done on 6-hour intervals to get a specific forecast initialization, then the collection is filtered by the forecast time (within the date of interest).
+> You have to be a little careful with GFS data because it can get pretty confusing with the timing (as you have already seen). First, the GFS forecast is initialized 4 times a day (at 00, 06, 12, 18 hours GMT) so you get 4 forecasts per day. Next, GFS forecast interval for an individual forecast is hourly for the first 5 days then goes to 3-hour intervals up to day 10 then goes to 12-hour interval for the rest up to 16 days as shown in the returned data from your example. So, theoretically you will get 60 (24+18+12+6) images per day with different forecast times *if you keep track of all the timing*.
+>
+> However, Earth Engine does not keep track of all of the timing for you. If you look at the metadata, you will see that the `system:time_start` is equal to the `creation_time` (i.e. initialization time). So, when you use `.filterDate()` in EE (which uses the `system:time_start` property internally for filtering) you only filter by the day that the forecast was created (all the forecast initialization and forecast hours) and you get (5\*24+5\*8+6\*2)\*4 which equals the 688 images from your example.
+>
+> Hopefully that helps make a little more sense on how the data is structured in terms of time and now we can use that understanding to start filtering. Here is an example getting a single day from different forecasts initializations:
+>
+> ```js
+> var data_collection = ee.ImageCollection("NOAA/GFS0P25");
+>
+> // date that we want to focus on
+> var forecast_date = ee.Date('2019-03-04')
+>
+> // get 00Z initialization for the whole day
+> var forecast00 = data_collection.filterDate(forecast_date,forecast_date.advance(6,'hour'))
+>   .filter(ee.Filter.lt('forecast_time',forecast_date.advance(1,'day').millis()))
+> print('00Z initialization:',forecast00)
+>
+> // get 06Z initialization for the rest of the day
+> var forecast06 = data_collection.filterDate(forecast_date.advance(6,'hour'),forecast_date.advance(12,'hour'))
+>   .filter(ee.Filter.lt('forecast_time',forecast_date.advance(1,'day').millis()))
+> print('06Z initialization:',forecast06)
+>
+> // get 12Z initialization for the rest of the day
+> var forecast12 = data_collection.filterDate(forecast_date.advance(12,'hour'),forecast_date.advance(18,'hour'))
+>   .filter(ee.Filter.lt('forecast_time',forecast_date.advance(1,'day').millis()))
+> print('12Z initialization:',forecast12)
+>
+> // get 18Z initialization for the rest of the day
+> var forecast18 = data_collection.filterDate(forecast_date.advance(18,'hour'),forecast_date.advance(24,'hour'))
+>   .filter(ee.Filter.lt('forecast_time',forecast_date.advance(1,'day').millis()))
+> print('18Z initialization:',forecast18)
+> ```
+>
+> As you can see from the example, the `.filterDate()` is done on 6-hour intervals to get a specific forecast initialization, then the collection is filtered by the forecast time (within the date of interest).
 
 ![](../assets/image-blog/20210416-how-to-get-daily-rainfall-forecast-data-from-gfs-part-2-01.jpg)
 
@@ -48,6 +75,25 @@ Precipitation unit in GFS data: “kg m-2 s-1”, is the International System of
 
 Let’s start to write the code. As our area of interest is Indonesia, lets set the map center to Indonesia, symbology and set the date. In below example, I set the date to 4 April 2021, the day when Tropical Cyclone Seroja hit the eastern part of Nusa Tenggara, Indonesia
 
+```js
+// INITIALISATION AND SYMBOLOGY
+// Center of the map
+Map.setCenter(117.7, -2.5, 5);
+
+// Standard Symbology
+var visRainForecast = {min: 1, max: 100, palette: [
+    'cccccc','f9f3d5','dce2a8','a8c58d','77a87d','ace8f8',
+    '4cafd9','1d5ede','001bc0','9131f1','e983f3','f6c7ec'
+  ]};
+
+// Set the date and time of data
+// GFS forecast is initialized 4 times a day (at 00, 06, 12, 18 hours GMT) so you get 4 forecasts per day 
+var date = '2021-04-04' // Set your date with format 'YYYY-MM-DD', example '2021-04-04'
+var time = 18 // You can fill the time with 0, 06, 12 or 18
+var dt = ee.Date(date + 'T' + time.toString() + ':00:00');
+print(dt)
+```
+
 Now as the main input, Import GFS data from here <https://developers.google.com/earth-engine/datasets/catalog/NOAA_GFS0P25> and select Bands for “*total\_precipitation\_surface*” and do filtering based on date and “*forecast\_hours*”.
 
 Below script is example to grab forecast for hour-1 after the release hour. See details below:
@@ -55,7 +101,30 @@ Below script is example to grab forecast for hour-1 after the release hour. See 
 * Release date and time: 4 April 2021, 18:00 UTC ~ 5 April 2021 01:00 WIB
 * Forecast hours = 1, it means rainfall forecast for 01:00 to 02:00 WIB
 
+```js
+// Access GFS data hour-by-hour
+// HOUR 1
+var img1 = ee.ImageCollection('NOAA/GFS0P25')
+    .select('total_precipitation_surface')
+    .filterDate(dt, dt.advance(6,'hour'))
+    .filter(ee.Filter.inList('forecast_hours', [1])) // Value 1 represent hour 1 from the start of time, you can change this value to 2,3,12,24,or 120
+    .sum();
+
+Map.addLayer(img1,visRainForecast,'GFS hour1', false);
+```
+
 What if you want to have forecast for other hour periods (hour-2)? You can easily change value 1 in above script. See below.
+
+```js
+// HOUR 2
+var img2 = ee.ImageCollection('NOAA/GFS0P25')
+    .select('total_precipitation_surface')
+    .filterDate(dt, dt.advance(6,'hour'))
+    .filter(ee.Filter.inList('forecast_hours', [2]))
+    .sum();
+
+Map.addLayer(img2,visRainForecast,'GFS hour2', false);
+```
 
 Important notes related to GFS forecast data:
 
@@ -69,19 +138,188 @@ Important notes related to GFS forecast data:
 
 Now I will write process to calculate rainfall accumulation for 24-hours (1-day). The output will visualised using same standard symbology.
 
+```js
+// Access GFS data for 1-day
+var img24hv1_draft = ee.ImageCollection('NOAA/GFS0P25')
+    .select('total_precipitation_surface')
+    .filterDate(dt, dt.advance(6,'hour'))
+    .filter(ee.Filter.inList('forecast_hours', [6,12,18,24]))
+    .sum();
+
+// Masked rainfall less than 0.01
+var img24hv1 = img24hv1_draft.updateMask(img24hv1_draft.gt(0.01));
+Map.addLayer(img24hv1,visRainForecast,'GFS 1-day v1', true);
+```
+
 How about rainfall accumulation for 48-hours or 2-days. You can add below script.
+
+```js
+// Access GFS data for 2-day
+var img48hv1_draft = ee.ImageCollection('NOAA/GFS0P25')
+    .select('total_precipitation_surface')
+    .filterDate(dt, dt.advance(6,'hour'))
+    .filter(ee.Filter.inList('forecast_hours', [6,12,18,24,30,36,42,48]))
+    .sum();
+
+// Masked rainfall less than 0.01
+var img48hv1 = img48hv1_draft.updateMask(img48hv1_draft.gt(0.01));
+Map.addLayer(img48hv1,visRainForecast,'GFS 2-days v1', true);
+```
 
 Is there any alternative to calculate rainfall accumulation? You got it.
 
 Example below, I try to calculate rainfall accumulation for 1-day which coming from hour-6, 12, 18 and 24. I need to extract individual hours before added into single image and do calculation via image expression.
 
+```js
+// HOUR 6
+var img6 = ee.ImageCollection('NOAA/GFS0P25')
+    .select('total_precipitation_surface')
+    .filterDate(dt, dt.advance(6,'hour'))
+    .filter(ee.Filter.inList('forecast_hours', [6]))
+    .sum();
+
+Map.addLayer(img6,visRainForecast,'GFS hour6', false);
+
+
+// HOUR 12
+var img12 = ee.ImageCollection('NOAA/GFS0P25')
+    .select('total_precipitation_surface')
+    .filterDate(dt, dt.advance(6,'hour'))
+    .filter(ee.Filter.inList('forecast_hours', [12]))
+    .sum();
+
+Map.addLayer(img12,visRainForecast,'GFS hour12', false);
+
+
+// HOUR 18
+var img18 = ee.ImageCollection('NOAA/GFS0P25')
+    .select('total_precipitation_surface')
+    .filterDate(dt, dt.advance(6,'hour'))
+    .filter(ee.Filter.inList('forecast_hours', [18]))
+    .sum();
+
+Map.addLayer(img18,visRainForecast,'GFS hour18', false);
+
+
+// HOUR 24
+var img24 = ee.ImageCollection('NOAA/GFS0P25')
+    .select('total_precipitation_surface')
+    .filterDate(dt, dt.advance(6,'hour'))
+    .filter(ee.Filter.inList('forecast_hours', [24]))
+    .sum();
+
+Map.addLayer(img24,visRainForecast,'GFS hour24', false);
+
+
+//Mosaic into single image for 6,12,18,24
+var imghh_bands = img6
+  .addBands(img12)
+  .addBands(img18)
+  .addBands(img24);
+
+var img24hv2_draft = imghh_bands.expression(
+    'R1+R2+R3+R4', {
+      'R1': imghh_bands.select('total_precipitation_surface'),
+      'R2': imghh_bands.select('total_precipitation_surface_1'),
+      'R3': imghh_bands.select('total_precipitation_surface_2'),
+      'R4': imghh_bands.select('total_precipitation_surface_3')
+    }
+).float();
+
+// Masked rainfall less than 0.01
+var img24hv2 = img24hv2_draft.updateMask(img24hv2_draft.gt(0.01));    
+Map.addLayer(img24hv2,visRainForecast,'GFS 1-day v2', true);
+```
+
 Lets add the legend information into UI panel, to make user easy to understand how much rainfall will fall in certain areas.
+
+```js
+////////////////////////////////
+// Panel for legend
+// set position of panel
+var legend = ui.Panel({
+  style: {
+  position: 'bottom-right',
+  padding: '8px 15px'
+  }
+});
+ 
+// Create legend title
+var legendTitle = ui.Label({
+  value: 'GFS Rainfall Forecast',
+  style: {
+  fontWeight: 'bold',
+  fontSize: '18px',
+  margin: '0 0 4px 0',
+  padding: '0'
+  }
+});
+ 
+// Add the title to the panel
+legend.add(legendTitle);
+ 
+////////////////////////////////
+// Legend using standard symbology
+// create the legend image
+var lon = ee.Image.pixelLonLat().select('latitude');
+var gradient = lon.multiply((visRainForecast.max-visRainForecast.min)/100.0).add(visRainForecast.min);
+var legendImage = gradient.visualize(visRainForecast);
+ 
+// create text on top of legend
+var panel = ui.Panel({
+  widgets: [
+    ui.Label(visRainForecast['max'])
+    ],
+  });
+ 
+legend.add(panel);
+ 
+// create thumbnail from the image
+var thumbnail = ui.Thumbnail({
+  image: legendImage,
+  params: {bbox:'0,0,10,100', dimensions:'10x200'},
+  style: {padding: '1px', position: 'bottom-center'}
+  });
+ 
+// add the thumbnail to the legend
+legend.add(thumbnail);
+ 
+// create text on bottom of legend
+var panel = ui.Panel({
+  widgets: [
+    ui.Label(visRainForecast['min'])
+    ],
+  });
+ 
+legend.add(panel); 
+
+// Add legend to map 
+Map.add(legend);
+```
 
 Now this is the important task, downloading the data. Before write the download script, It’s better to clip it based on area of interest.
 
 I don’t need global data, I am only interest to get data from 60E to 180E. Then I can continue to export it to Google Drive for each number of days of forecast.
 
 Note: Please adjust folder name in your Google Drive.
+
+```js
+// Subset for downloading data
+var rectangle_RBB = ee.Geometry.Rectangle(60, -80, 180, 80);
+var bbox_RBB = ee.Feature(rectangle_RBB).geometry();
+
+// Export the result to Google Drive
+Export.image.toDrive({
+  image:img24hv1,
+  description:'1-day_gfs_rainfall_forecast',
+  folder:'GEE_GFS',
+  scale:5600,
+  region:bbox_RBB,
+  maxPixels:1e12
+});
+
+// End of script
+```
 
 Below is the result!
 

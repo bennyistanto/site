@@ -2,7 +2,7 @@
 title: "Drought Propagation"
 author: "Benny Istanto"
 date: "2024-01-24"
-description: "Last month I did experiment test to analyze the propagation of Meteorological Drought (Standardized Precipitation Index - SPI) to Hydrological Drought (Standardized Streamflow Index - SSI) using La..."
+description: "Tracing how meteorological drought (SPI) propagates into hydrological drought (SSI) across Indonesia, using lagged correlation at the pixel level"
 image: "../assets/image-blog/20240124-drought-propagation-01.png"
 categories:
   - "Remote Sensing"
@@ -41,7 +41,7 @@ There are 3 notebook along with support folder that required to run the analysis
 3. `prop` # File required to proceed the propagation using lagged correlation goes here.
 4. `subset` # In this folder I put `idn_subset_chirps.nc` file, a subset file to clip the input data to follow the area of interest. Basically this file are came from a shapefile polygon which has `land` attribute column with `value = 1`, then converting to raster based on `land` column, and set the cell size following our standard (I use 0.05 deg, because the SPI and SSI also has the same spatial resolution, 0.05 deg). After that, convert it to netCDF. All is done in ArcGIS Desktop.
 
-The notebook
+### The notebook
 
 1. [`1_Steps_to_Generate_SPI_Using_CHIRPS_Data.ipynb`](https://github.com/bennyistanto/drought-propagation/blob/main/1_Steps_to_Generate_SPI_Using_CHIRPS_Data.ipynb)
 2. [`2_Steps_to_Generate_SSI_Using_GloFAS-ERA5_Data.ipynb`](https://github.com/bennyistanto/drought-propagation/blob/main/2_Steps_to_Generate_SSI_Using_GloFAS-ERA5_Data.ipynb)
@@ -53,7 +53,7 @@ The notebook
 
 The analysis using combination from various time scale [`3`, `6`, `9`, and `12-month`] and Lag range from 1 - 12 month
 
-```
+```python
 time_scale_combinations = [
     "spi03_ssi03", "spi06_ssi03", "spi09_ssi03", "spi12_ssi03",
     "spi03_ssi06", "spi06_ssi06", "spi09_ssi06", "spi12_ssi06",
@@ -98,11 +98,11 @@ $$\rho_{xy}(\tau) = \frac{\sum((X_i - \bar{X})(Y_{i+\tau} - \bar{Y}))}{\sqrt{\su
 where:
 
 * $X_i$: Value of the first time series at time $i$
-* `Yi`: Value of the second time series at time `i + τ`
-* `τ`: Time lag
-* `X̄`: Mean of the first time series
-* `Ȳ`: Mean of the second time series
-* `N`: Number of data points
+* $Y_{i+\tau}$: Value of the second time series at time $i + \tau$
+* $\tau$: Time lag
+* $\bar{X}$: Mean of the first time series
+* $\bar{Y}$: Mean of the second time series
+* $N$: Number of data points
 
 This approach is essential for predicting the onset and progression of drought conditions, enabling timely decision-making and effective resource management to mitigate the adverse impacts of droughts.
 
@@ -122,54 +122,54 @@ Below some example of the individual Strength Map from various time scale combin
 
 1. SPI 03 and SSI 03, Lag 1-month
 
-   ![SM1](https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/cor_spi03_ssi03_lag01.png)
+   ![SM1](../assets/image-blog/20240124-drought-propagation-01-01.png)
 
 2. SPI 06 and SSI 03, Lag 1-month
 
-   ![SM2](https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/cor_spi06_ssi03_lag01.png)
+   ![SM2](../assets/image-blog/20240124-drought-propagation-01-02.png)
 
 3. SPI 06 and SSI 03, Lag 3-month
 
-   ![SM3](https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/cor_spi06_ssi03_lag03.png)
+   ![SM3](../assets/image-blog/20240124-drought-propagation-01-03.png)
 
 4. SPI 12 and SSI 06, Lag 6-month
 
-   ![SM4](https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/cor_spi12_ssi06_lag06.png)
+   ![SM4](../assets/image-blog/20240124-drought-propagation-01-04.png)
 
 
 And below some example of the composite Strength and Lag Map from various time scale combinations.
 
 1. Most frequent correlation and Lag where the most frequent observe of SPI to SSI 3-month
 
-   ![SM1](https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_freq_corr_combination_1.png)
+   ![SM1](../assets/image-blog/20240124-drought-propagation-01-05.png)
 
 2. Most frequent correlation and Lag where the most frequent observe of SPI to SSI 6-month
 
-   ![SM2](https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_freq_corr_combination_2.png)
+   ![SM2](../assets/image-blog/20240124-drought-propagation-01-06.png)
 
 3. Most frequent correlation and Lag where the most frequent observe of SPI to SSI 9-month
 
-   ![SM3](https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_freq_corr_combination_3.png)
+   ![SM3](../assets/image-blog/20240124-drought-propagation-01-07.png)
 
 4. Most frequent correlation and Lag where the most frequent observe of SPI to SSI 12-month
 
-   ![SM4](https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_freq_corr_combination_4.png)
+   ![SM4](../assets/image-blog/20240124-drought-propagation-01-08.png)
 
 5. Maximum correlation and Lag where the maximum observe of SPI to SSI 3-month
 
-   ![SM1](https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_max_corr_combination_1.png)
+   ![SM1](../assets/image-blog/20240124-drought-propagation-01-09.png)
 
 6. Maximum correlation and Lag where the maximum observe of SPI to SSI 6-month
 
-   ![SM2](https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_max_corr_combination_2.png)
+   ![SM2](../assets/image-blog/20240124-drought-propagation-01-10.png)
 
 7. Maximum correlation and Lag where the maximum observe of SPI to SSI 9-month
 
-   ![SM3](https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_max_corr_combination_3.png)
+   ![SM3](../assets/image-blog/20240124-drought-propagation-01-11.png)
    
 8. Maximum correlation and Lag where the maximum observe of SPI to SSI 12-month
 
-   ![SM4](https://raw.githubusercontent.com/bennyistanto/drought-propagation/main/prop/images/idn_cli_max_corr_combination_4.png)
+   ![SM4](../assets/image-blog/20240124-drought-propagation-01-12.png)
 
 ### To do
 
@@ -178,7 +178,9 @@ Number of Lag from 1-12 month in the existing simulation is good enough.
 Adding more time scale from `3, 6, 9, 12` to `1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12` and the combination, potentially produce more insight.  
   
   
-**THIS WORK STILL IN PROGRESS**
+::: {.callout-warning}
+This work is still in progress.
+:::
 
 ### Live testing
 

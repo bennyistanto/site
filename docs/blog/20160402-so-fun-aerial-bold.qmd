@@ -2,7 +2,7 @@
 title: "So fun Aerial Bold!"
 author: "Benny Istanto"
 date: "2016-04-02"
-description: "Have you heard about Aerial Bold"
+description: "Aerial Bold, a project that scours satellite imagery for the human-built letters of the world and turns them into a usable font"
 image: "../assets/image-blog/20160402-so-fun-aerial-bold-01.jpg"
 categories:
   - "Remote Sensing"
@@ -20,3 +20,15 @@ Have you heard about [Aerial Bold](http://type.aerial-bold.com/tw/)? - a project
 ![](../assets/image-blog/20160402-so-fun-aerial-bold-01.jpg)
 
 Here's the example of my daughter's name using Aerial Bold. If you are curious, yes it's real, W letter in the picture comes from Rosenhof Berlin-Zehlendorf Seniorenwohnanlage Betriebsgesellschaft mbH, Schlettstadter Straße 22, 14169 Berlin, Germany. <https://maps.app.goo.gl/TYBs856cSeDM9imz9>
+
+```{=html}
+<iframe 
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2432.1477195462976!2d13.2675548!3d52.440238799999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a85a3771522ad3%3A0x793c032bbea9b42a!2sRosenhof%20Berlin-Zehlendorf%20Seniorenwohnanlage%20Betriebsgesellschaft%20mbH!5e0!3m2!1sen!2sid!4v1712197681975!5m2!1sen!2sid" 
+  width="800" 
+  height="600" 
+  style="border:0;" 
+  allowfullscreen="" 
+  loading="lazy" 
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+```

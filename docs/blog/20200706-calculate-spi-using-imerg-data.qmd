@@ -2,7 +2,7 @@
 title: "Calculate SPI using IMERG data"
 author: "Benny Istanto"
 date: "2020-07-06"
-description: "NOTES - 1 Mar 2022 I have write a new and comprehensive guideline on SPI, you can access via this link <https://bennyistanto"
+description: "A step-by-step Jupyter Notebook for calculating the Standardized Precipitation Index from daily IMERG rainfall data, and my first time using Jupyter"
 image: "../assets/image-blog/20200706-calculate-spi-using-imerg-data-01.jpg"
 categories:
   - "Remote Sensing"
@@ -26,7 +26,7 @@ I have write a new and comprehensive guideline on SPI, you can access via this l
 
 ---
 
-I have completed step-by-step guideline written in [Jupyter Notebook](https://jupyter.org/index.html) , here’s the link <https://github.com/wfpidn/SPI/blob/master/SPI_based_on_IMERG.ipynb> and last week was my first time using Jupyter Notebook. I found some errors in bullets and numbering when displaying the notebook in Github, but seems ok when open it using Jupyter directly. Sorry for that.
+I have completed step-by-step guideline written in [Jupyter Notebook](https://jupyter.org/index.html), here’s the link <https://github.com/wfpidn/SPI/blob/master/SPI_based_on_IMERG.ipynb> and last week was my first time using Jupyter Notebook. I found some errors in bullets and numbering when displaying the notebook in Github, but seems ok when open it using Jupyter directly. Sorry for that.
 
 Below maps are example product for SPI 1 to 72-month, you can find more information about SPI and the application through below notebook.
 

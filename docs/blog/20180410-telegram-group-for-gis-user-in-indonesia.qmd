@@ -2,6 +2,7 @@
 title: "Telegram group for GIS user in Indonesia"
 author: "Benny Istanto"
 date: "2018-04-10"
+description: "A Telegram discussion group on GIS and remote sensing in the Indonesian context, with more than 900 practitioners and 31 volunteer-led sessions so far"
 image: "../assets/image-blog/20180410-telegram-group-for-gis-user-in-indonesia-01.jpg"
 categories:
   - "Remote Sensing"

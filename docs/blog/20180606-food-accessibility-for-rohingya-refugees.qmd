@@ -2,7 +2,7 @@
 title: "Food accessibility for Rohingya refugees"
 author: "Benny Istanto"
 date: "2018-06-06"
-description: "Following my visit to Rohingya camps in Cox’s Bazaar - Bangladesh two-months ago, I try to apply accessibility modeling to help understand on how well covered is Kutupalong megacamp in terms of WFP..."
+description: "Applying accessibility modeling to the Kutupalong megacamp, to see how well WFP food distribution points actually reach the Rohingya refugees they serve"
 image: "../assets/image-blog/20180606-food-accessibility-for-rohingya-refugees-09.jpg"
 categories:
   - "Remote Sensing"

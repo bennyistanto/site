@@ -22,21 +22,196 @@ categories:
 
 In the implementation phase of this analysis, we utilized Python and the `Scikit-Fuzzy` library to develop a fuzzy logic-based flood risk assessment model. This model took into account four essential factors affecting flood risks: precipitation intensity, soil moisture, land cover, and slope. By defining the fuzzy sets and rules for these variables, the model was able to estimate the flood risk for various combinations of input values. The ultimate goal of this implementation was to identify the conditions under which low flood risks could be achieved, even in situations where precipitation intensity was at its maximum.
 
+::: {.callout-note collapse="true" title="Python - imports"}
+```python
+import numpy as np
+import skfuzzy as fuzz
+from skfuzzy import control as ctrl
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+import mpl_toolkits.mplot3d
+from mpl_toolkits.mplot3d import Axes3D
+from scipy.optimize import minimize
+import seaborn as sns
+import pandas as pd
+```
+:::
+
 1.1 How-to?
 
 In the first stage of the analysis, we defined the variables that influence flood risk. These variables include precipitation intensity, soil moisture, land cover, and slope. Each of these variables was represented as a fuzzy variable using the `Scikit-Fuzzy` library's `Antecedent` class. Additionally, we defined the output variable `flood_risk` using the `Consequent` class. This stage set the foundation for the fuzzy logic-based flood risk assessment model by establishing the key variables that the model would use to estimate flood risk.
 
+::: {.callout-note collapse="true" title="Python - stage 1, define the variables"}
+```python
+# Stage 1:
+# Define the variables
+precipitation = ctrl.Antecedent(np.arange(0, 101, 1), 'precipitation')
+soil_moisture = ctrl.Antecedent(np.arange(0, 101, 1), 'soil_moisture')
+land_cover = ctrl.Antecedent(np.arange(0, 101, 1), 'land_cover')
+slope = ctrl.Antecedent(np.arange(0, 91, 1), 'slope')
+flood_risk = ctrl.Consequent(np.arange(0, 101, 1), 'flood_risk')
+
+# Define the output variable
+flood_risk = ctrl.Consequent(np.arange(0, 101, 1), 'flood_risk')
+```
+:::
+
 In the second and third stages, we focused on defining the fuzzy sets and their respective membership functions for each of the variables defined in the first stage. We used the `automf()` function to automatically generate triangular membership functions for precipitation intensity, soil moisture, and flood risk, each with three levels: `low`, `medium`, and `high`. For the land cover and slope variables, we manually defined triangular membership functions, specifying the appropriate ranges for each fuzzy set (`urban`, `vegetation`, and `bare_soil` for land cover, and `flat`, `moderate`, and `steep` for slope). These stages were critical for establishing the relationships between the input variables and the output flood risk, which would later be used to evaluate different combinations of input values in the fuzzy inference process.
+
+::: {.callout-note collapse="true" title="Python - stage 2 and 3, fuzzy sets and their membership functions"}
+```python
+# Stage 2 & 3:
+# Define the fuzzy sets and their membership functions
+precipitation.automf(3, names=['low', 'medium', 'high'])
+soil_moisture.automf(3, names=['low', 'medium', 'high'])
+
+land_cover['urban'] = fuzz.trimf(land_cover.universe, [0, 25, 50])
+land_cover['vegetation'] = fuzz.trimf(land_cover.universe, [25, 50, 75])
+land_cover['bare_soil'] = fuzz.trimf(land_cover.universe, [50, 75, 100])
+
+slope['flat'] = fuzz.trimf(slope.universe, [0, 15, 30])
+slope['moderate'] = fuzz.trimf(slope.universe, [15, 30, 60])
+slope['steep'] = fuzz.trimf(slope.universe, [30, 60, 90])
+
+flood_risk.automf(3, names=['low', 'medium', 'high'])
+flood_risk['very_low'] = fuzz.trimf(flood_risk.universe, [0, 0, 10])
+```
+:::
 
 In the fourth stage, we defined the rules that describe the relationships between the input variables (precipitation intensity, soil moisture, land cover, and slope) and the output variable (flood risk). We first created a list of classifications for each input variable and the output variable. Using the multiplication principle, we calculated the total number of possible combinations of these classifications, resulting in 81 unique rules.
 
 For each combination of input classifications, we determined the appropriate flood risk level based on a set of predefined conditions. These conditions were based on expert knowledge and domain understanding, considering factors such as high precipitation and soil moisture, bare soil land cover, and steep slopes. After determining the flood risk level for each combination, we created a fuzzy rule using the `Scikit-Fuzzy` library's `Rule` class, linking the input conditions with the corresponding flood risk level. These rules formed the basis of the fuzzy inference system that was used to evaluate different scenarios and estimate the corresponding flood risks.
 
+::: {.callout-note collapse="true" title="Python - stage 4, build the 81 rules"}
+```python
+# Stage 4:
+# Define the rules
+precipitation_levels = ['low', 'medium', 'high']
+soil_moisture_levels = ['low', 'medium', 'high']
+land_cover_types = ['urban', 'vegetation', 'bare_soil']
+slope_levels = ['flat', 'moderate', 'steep']
+flood_risk_levels = ['low', 'medium', 'high']
+
+# We can use the multiplication principle to calculate the total number of combinations.
+# If we have n variables and each variable can take on one of m classifications,
+# then the total number of combinations is m^n, total rules for this case will be 3^4 = 81 rules
+
+rules = []
+
+for p_level in precipitation_levels:
+    for sm_level in soil_moisture_levels:
+        for lc_type in land_cover_types:
+            for s_level in slope_levels:
+                # Determine the appropriate flood risk level based on the input conditions
+                if p_level == 'high' and sm_level == 'high' and lc_type == 'bare_soil' and s_level == 'steep':
+                    fr_level = 'high'
+                elif p_level == 'medium' and sm_level == 'medium' and lc_type == 'bare_soil' and s_level == 'steep':
+                    fr_level = 'high'
+                elif p_level == 'high' and sm_level == 'high' and s_level != 'flat':
+                    fr_level = 'high'
+                elif p_level == 'high' and sm_level == 'medium' and s_level != 'flat':
+                    fr_level = 'high'
+                elif p_level == 'high' and lc_type == 'bare_soil' and s_level != 'flat':
+                    fr_level = 'high'
+                elif p_level == 'medium' and sm_level == 'medium' and lc_type == 'bare_soil' and s_level != 'flat':
+                    fr_level = 'high'
+                elif p_level == 'medium' and sm_level == 'high' and s_level != 'flat':
+                    fr_level = 'high'
+                elif p_level == 'medium' and s_level == 'steep':
+                    fr_level = 'high'
+                elif p_level == 'high' and s_level != 'flat':
+                    fr_level = 'high'
+                elif p_level == 'high' and sm_level == 'low':
+                    fr_level = 'medium'
+                elif p_level == 'medium' and sm_level == 'low' and s_level == 'steep':
+                    fr_level = 'medium'
+                else:
+                    fr_level = 'low'
+
+                # Create the rule with the determined conditions and consequences
+                rule = ctrl.Rule(
+                    precipitation[p_level] & soil_moisture[sm_level] & land_cover[lc_type] & slope[s_level],
+                    flood_risk[fr_level]
+                )
+                rules.append(rule)
+
+                # This catch_all_rule will activate the 'very_low' flood risk when no other rules are fired.
+                # It uses the negation operator ~ to ensure that this rule is activated only when none of
+                # the other input fuzzy sets are activated.
+                catch_all_rule = ctrl.Rule(antecedent=(~precipitation['high'] & ~precipitation['medium'] & ~precipitation['low'] &
+                                                      ~soil_moisture['high'] & ~soil_moisture['medium'] & ~soil_moisture['low'] &
+                                                      ~land_cover['urban'] & ~land_cover['vegetation'] & ~land_cover['bare_soil'] &
+                                                      ~slope['flat'] & ~slope['moderate'] & ~slope['steep']),
+                                          consequent=flood_risk['very_low'])
+
+                rules.append(catch_all_rule)
+```
+:::
+
 In the fifth stage, we created the control system and simulation by combining the defined rules from the previous stage. The `Scikit-Fuzzy` library's `ControlSystem` and `ControlSystemSimulation` classes were used for this purpose. The `ControlSystem` class takes the set of rules as input and initializes the fuzzy inference system, while the `ControlSystemSimulation` class initializes a simulation environment that can be used to compute the output based on the input values.
+
+::: {.callout-note collapse="true" title="Python - stage 5, create the control system and simulation"}
+```python
+# Stage 5:
+# Create the control system and simulation
+flood_risk_ctrl = ctrl.ControlSystem(rules)
+flood_risk_sim = ctrl.ControlSystemSimulation(flood_risk_ctrl)
+```
+:::
 
 In the sixth stage, we provided example input values for each input variable (precipitation, soil moisture, land cover, and slope) to test the fuzzy inference system. The input values were assigned to their corresponding input variables in the simulation, and the compute method of the `ControlSystemSimulation` object was called to perform the fuzzy inference process and obtain the output flood risk level.
 
+::: {.callout-note collapse="true" title="Python - stage 6, feed in example values and compute the output"}
+```python
+# Stage 6:
+# Input example values and compute the output
+precipitation_value = 100
+soil_moisture_value = 50
+land_cover_value = 25
+slope_value = 30
+
+flood_risk_sim.input['precipitation'] = precipitation_value
+flood_risk_sim.input['soil_moisture'] = soil_moisture_value
+flood_risk_sim.input['land_cover'] = land_cover_value
+flood_risk_sim.input['slope'] = slope_value
+
+flood_risk_sim.compute()
+```
+:::
+
 In the final stage, we output the computed flood risk level and visualize the result using the `Scikit-Fuzzy` library's built-in plotting capabilities. The flood risk level was displayed as a numerical value, while the visualization provided a graphical representation of the membership functions and the defuzzified output. This allowed us to assess the performance of the fuzzy inference system and analyze the relationships between the input variables and the flood risk.
+
+::: {.callout-note collapse="true" title="Python - stage 7, flood risk category and the output plot"}
+```python
+# Stage 7:
+# Define the flood risk category
+def categorize_flood_risk(flood_risk_value):
+    if flood_risk_value < 34:
+        return "low"
+    elif flood_risk_value < 67:
+        return "medium"
+    else:
+        return "high"
+
+# Output the result
+flood_risk_value = flood_risk_sim.output['flood_risk']
+flood_risk_category = categorize_flood_risk(flood_risk_value)
+print("Flood Risk Value:", flood_risk_value)
+print("Flood Risk Category:", flood_risk_category)
+
+# Update the membership function values
+flood_risk['low'].mf = flood_risk['low'].mf
+flood_risk['medium'].mf = flood_risk['medium'].mf
+flood_risk['high'].mf = flood_risk['high'].mf
+
+# Remove the 'very_low' term
+if 'very_low' in flood_risk.terms:
+    del flood_risk.terms['very_low']
+
+# Plot the result without the 'very_low' term
+flood_risk.view(sim=flood_risk_sim)
+```
+:::
 
 This will returned:
 
@@ -63,6 +238,37 @@ The provided code visualizes the membership functions for each of the input vari
 * `slope.view(sim=flood_risk_sim)`: Plots the membership functions for the Slope variable, demonstrating how the input values are categorized into low, medium, and high slope levels.
 * `flood_risk.view()`: Plots the membership functions for the output variable, Flood Risk Level, indicating how the output values are categorized into low, medium, and high flood risk levels.
 * `flood_risk.view(sim=flood_risk_sim)`: Plots the final Flood Risk Level for given input values, illustrating how the fuzzy inference system computes the flood risk based on the input variable values and the defined fuzzy rules.
+
+::: {.callout-note collapse="true" title="Python - plot the membership functions of every variable"}
+```python
+# Plot the membership functions of the input variables
+precipitation.view(sim=flood_risk_sim)
+plt.title("Precipitation Intensity")
+plt.show()
+
+soil_moisture.view(sim=flood_risk_sim)
+plt.title("Soil Moisture")
+plt.show()
+
+land_cover.view(sim=flood_risk_sim)
+plt.title("Land Cover")
+plt.show()
+
+slope.view(sim=flood_risk_sim)
+plt.title("Slope")
+plt.show()
+
+# Plot the membership functions of the output variable
+flood_risk.view()
+plt.title("Flood Risk Level")
+plt.show()
+
+# Plot the final output (flood risk) given the input values
+flood_risk.view(sim=flood_risk_sim)
+plt.title("Flood Risk Level for Given Input Values")
+plt.show()
+```
+:::
 
 ::: {.image-gallery}
 ::: {.gallery-item}
@@ -100,6 +306,50 @@ The provided code generates a 2D contour plot of flood risk as a function of Pre
 * Plot the 2D contour plot: Using `plt.contourf()`, create a contour plot that visualizes the flood risk as a function of Precipitation Intensity and Land Cover. The color map 'viridis' is used to represent the flood risk levels, with 20 contour levels.
 * Add colorbar, labels, and title: Add a colorbar to represent the flood risk values, label the axes, and add a title that includes the fixed values of Soil Moisture and Slope.
 
+::: {.callout-note collapse="true" title="Python - 2D contour plot, precipitation vs land cover"}
+```python
+# 2D plot
+# Generate grid points for input variables
+P_values = np.linspace(0, 200, 100)
+M_values = np.linspace(0, 100, 100)
+L_values = np.linspace(0, 100, 100)
+S_values = np.linspace(0, 90, 100)
+
+# Define a function to compute flood risk given input values
+def compute_flood_risk(P, M, L, S):
+    flood_risk_sim.input['precipitation'] = P
+    flood_risk_sim.input['soil_moisture'] = M
+    flood_risk_sim.input['land_cover'] = L
+    flood_risk_sim.input['slope'] = S
+    try:
+        flood_risk_sim.compute()
+        return flood_risk_sim.output['flood_risk']
+    except ValueError:
+        # Return the lowest possible flood risk if the system cannot compute a valid output
+        return 0
+
+# Fix two of the input variables at specific values
+M_fixed = 50
+S_fixed = 45
+
+# Create flood risk matrix for different combinations of input variables
+flood_risk_matrix = np.zeros((len(P_values), len(L_values)))
+
+for i, P in enumerate(P_values):
+    for j, L in enumerate(L_values):
+        flood_risk_matrix[i, j] = compute_flood_risk(P, M_fixed, L, S_fixed)
+
+# Plot the 2D contour plot for Precipitation vs Land Cover
+X, Y = np.meshgrid(L_values, P_values)
+plt.contourf(X, Y, flood_risk_matrix, cmap='viridis', levels=20)
+plt.colorbar(label='Flood Risk')
+plt.xlabel('Land Cover')
+plt.ylabel('Precipitation Intensity')
+plt.title(f'Flood Risk (Soil Moisture = {M_fixed}, Slope = {S_fixed})')
+plt.show()
+```
+:::
+
 ![](../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-10.jpg)
 
 To interpret the plot, observe how the flood risk values change as the Precipitation Intensity and Land Cover values vary. The plot shows how the flood risk is influenced by these two input variables while keeping the other two (Soil Moisture and Slope) fixed at specific values.
@@ -113,6 +363,27 @@ The provided code generates a 3D surface plot of flood risk as a function of Pre
 * Create a 3D plot figure: Initialize a new figure using `plt.figure()` and add a 3D subplot with the `projection='3d'` argument.
 * Create the 3D surface plot: Use the `ax.plot_surface()` function to create a 3D surface plot for Precipitation Intensity (Y-axis) vs Land Cover (X-axis), with the flood risk as the Z-axis. The color map 'viridis' is used to represent the flood risk levels.
 * Add colorbar, labels, and title: Add a colorbar to represent the flood risk values, label the axes, and add a title that includes the fixed values of Soil Moisture and Slope.
+
+::: {.callout-note collapse="true" title="Python - 3D surface plot, precipitation vs land cover"}
+```python
+# 3D plot
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Create the 3D surface plot for Precipitation vs Land Cover
+X, Y = np.meshgrid(L_values, P_values)
+surf = ax.plot_surface(X, Y, flood_risk_matrix, cmap='viridis', linewidth=0, antialiased=False)
+
+fig.colorbar(surf, shrink=0.5, aspect=5, label='Flood Risk')
+
+ax.set_xlabel('Land Cover')
+ax.set_ylabel('Precipitation Intensity')
+ax.set_zlabel('Flood Risk')
+ax.set_title(f'Flood Risk (Soil Moisture = {M_fixed}, Slope = {S_fixed})')
+
+plt.show()
+```
+:::
 
 ![](../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-11.jpg)
 
@@ -139,6 +410,54 @@ The provided code performs a sensitivity analysis to minimize flood risks under 
 * Create a DataFrame containing the data points: Convert the list of data points into a pandas DataFrame, which makes it easier to analyze and visualize the data.
 * Create a scatterplot matrix: Use the seaborn library's `pairplot()` function to create a scatterplot matrix of the data points, with flood risk categories represented by different colors.
 
+::: {.callout-note collapse="true" title="Python - scatterplot matrix of the low-risk combinations"}
+```python
+# Maximum value to be used to define as high precipitation intensity
+max_precipitation = 100
+
+# Define the flood risk category based on all variables
+def get_flood_risk_category(precipitation, soil_moisture, land_cover, slope):
+    flood_risk_sim.input['precipitation'] = precipitation
+    flood_risk_sim.input['soil_moisture'] = soil_moisture
+    flood_risk_sim.input['land_cover'] = land_cover
+    flood_risk_sim.input['slope'] = slope
+
+    try:
+        flood_risk_sim.compute()
+        flood_risk_value = flood_risk_sim.output['flood_risk']
+        return categorize_flood_risk(flood_risk_value)
+    except ValueError:
+        return None
+
+# Generate data points for soil moisture, land cover, and slope
+soil_moisture_values = np.linspace(0, 100, num=20)
+land_cover_values = np.linspace(0, 100, num=20)
+slope_values = np.linspace(0, 90, num=20)
+
+data_points = []
+
+# Iterate through all combinations of soil moisture, land cover, and slope
+for soil_moisture in soil_moisture_values:
+    for land_cover in land_cover_values:
+        for slope in slope_values:
+            category = get_flood_risk_category(max_precipitation, soil_moisture, land_cover, slope)
+            if category is not None:
+                data_points.append({
+                    'Soil Moisture': soil_moisture,
+                    'Land Cover': land_cover,
+                    'Slope': slope,
+                    'Flood Risk Category': category
+                })
+
+# Create a DataFrame containing the data points
+data = pd.DataFrame(data_points)
+
+# Create a scatterplot matrix
+sns.pairplot(data, hue='Flood Risk Category', markers='o', diag_kind='hist')
+plt.show()
+```
+:::
+
 ![](../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-02.jpg)
 
 Here's how to read the scatterplot matrix:
@@ -159,7 +478,7 @@ By analyzing these plots, we can gain insights into the relationships between so
 
 After obtaining the flood risk assessment results from the Fuzzy Inference System (FIS), we can assess the quality of the model by comparing its predictions to observed data. To do this, we'll need a dataset containing historical flood events along with the corresponding values of the input variables (Precipitation Intensity, Soil Moisture, Land Cover, and Slope).
 
-**What if observation data on flood events never exist?**
+### What if observation data on flood events never exist?
 
 If we don't have any observation data to compare the FIS model results, evaluating the model's performance becomes more challenging. However, we can still follow some steps to ensure that your FIS model is reasonable and plausible:
 
@@ -171,7 +490,7 @@ If we don't have any observation data to compare the FIS model results, evaluati
 
 Remember that without observed data, it is more challenging to assess the performance of your FIS model accurately. However, following the steps outlined above can help us gain some confidence in your model and identify areas for potential improvement.
 
-**Let’s try Sensitivity Analysis**
+### Let’s try Sensitivity Analysis
 
 We'll use the One-at-a-time (OAT) sensitivity analysis method to understand the effect of varying each input variable while keeping the others fixed. Assume that we have the FIS model already built and implemented in Python using the variables and fuzzy rules defined earlier.
 
@@ -185,6 +504,108 @@ Here is a summary of the main steps in the code:
 * Plot the sensitivity analysis results, showing how flood risk varies with changes in the input variables.
 
 The plot consists of four subplots, one for each input variable, with flood risk on the y-axis and the input variable on the x-axis. The background of each plot is filled with colors corresponding to the flood risk categories (low, medium, and high). The data points are plotted with different markers ('o', 's', 'x') based on the input variable's categories (low, medium, and high).
+
+::: {.callout-note collapse="true" title="Python - sensitivity analysis"}
+```python
+# Sensitivity Analysis
+# Define the range and step size for each input variable
+P_range = np.arange(0.1, 101, 10)  # Precipitation Intensity: 0 to 100 mm/h, step size = 10 mm/h
+M_range = np.arange(0.1, 101, 10)  # Soil Moisture: 0 to 100%, step size = 10%
+L_range = np.arange(0.1, 101, 10)  # Land Cover: 0 to 100, step size = 10
+S_range = np.arange(0.1, 91, 10)   # Slope: 0 to 90 degrees, step size = 10 degrees
+
+# Calculate the flood risk for each input variable
+def sensitivity_analysis(input_ranges, fis_model):
+    def evaluate(inputs):
+        try:
+            fis_model.input['precipitation'] = inputs['Precipitation']
+            fis_model.input['soil_moisture'] = inputs['Soil Moisture']
+            fis_model.input['land_cover'] = inputs['Land Cover']
+            fis_model.input['slope'] = inputs['Slope']
+            fis_model.compute()
+            return fis_model.output['flood_risk']
+        except ValueError:
+            return None
+
+    results = {}
+    fixed_values = {key: np.median(value_range) for key, value_range in input_ranges.items()}
+
+    for variable, value_range in input_ranges.items():
+        varied_values = []
+        for value in value_range:
+            inputs = fixed_values.copy()
+            inputs[variable] = value
+            risk = evaluate(inputs)
+            if risk is not None:
+                varied_values.append(risk)
+            else:
+                varied_values.append(np.nan)
+        results[variable] = varied_values
+
+    return results
+
+def get_flood_risk_levels(results):
+    risk_levels = {}
+    for variable, varied_values in results.items():
+        risk_levels[variable] = [categorize_flood_risk(value) for value in varied_values]
+    return risk_levels
+
+flood_risk_upper_bound = {'low': 34, 'medium': 67, 'high': 100}  # Adjust these values according to your specific risk categorization
+
+input_ranges = {"Precipitation": P_range, "Soil Moisture": M_range, "Land Cover": L_range, "Slope": S_range}
+sensitivity_results = sensitivity_analysis(input_ranges, flood_risk_sim)
+
+sensitivity_risk_levels = get_flood_risk_levels(sensitivity_results)
+
+def plot_sensitivity_analysis(results, risk_levels):
+    fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(12, 10))
+    risk_level_colors = {'low': 'green', 'medium': 'yellow', 'high': 'red'}
+
+    variable_category_markers = {
+        'low': 'o',
+        'medium': 's',
+        'high': 'x',
+    }
+    point_color = 'blue'
+
+    for ax, (variable, varied_values) in zip(axes.flatten(), results.items()):
+        # Fill the entire plot area with colors based on flood risk categories
+        lower_bound = 0
+        for level, upper_bound in flood_risk_upper_bound.items():
+            ax.fill_between(input_ranges[variable], lower_bound, upper_bound,
+                            facecolor=risk_level_colors[level], alpha=0.5)
+            lower_bound = upper_bound
+
+        # Plot the data points with different markers based on their categories
+        for value, risk in zip(input_ranges[variable], varied_values):
+            if value <= 34:
+                category = 'low'
+            elif value <= 67:
+                category = 'medium'
+            else:
+                category = 'high'
+            marker = variable_category_markers[category]
+            ax.scatter(value, risk, marker=marker, color=point_color, label=category)
+
+        ax.set_xlabel(variable)
+        ax.set_ylabel("Flood Risk")
+        ax.set_title(f'Sensitivity of Flood Risk to {variable}')
+
+    # Create a single legend for data points with unique labels
+    handles, labels = ax.get_legend_handles_labels()
+    unique_labels = dict(zip(labels, handles))
+    point_legend = fig.legend(unique_labels.values(), unique_labels.keys(), loc='lower center', bbox_to_anchor=(0.5, 0.01), ncol=3, title='Risk Categories')
+
+    # Create a legend for flood risk categories
+    risk_category_patches = [mpatches.Patch(color=color, label=level, alpha=0.5) for level, color in risk_level_colors.items()]
+    risk_category_legend = fig.legend(handles=risk_category_patches, loc='lower center', bbox_to_anchor=(0.5, -0.05), ncol=3, title='Flood Risk Categories')
+
+    plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.2)  # Adjust the subplot parameters to reduce the blank space above the legend
+    plt.show()
+
+plot_sensitivity_analysis(sensitivity_results, sensitivity_risk_levels)
+```
+:::
 
 ![](../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-03.jpg)
 

@@ -3,6 +3,7 @@ title: "Utilizing CUDA"
 author: "Benny Istanto"
 date: "2024-04-16"
 description: "This week I try to utilize CUDA on my desktop, to support the upcoming activities on heavy geospatial and climate analytics"
+image: "../assets/image-blog/20240416-utilizing-cuda-01.png"
 categories:
   - "General"
 # tags:
@@ -60,13 +61,13 @@ Step 2-7 below, apply for both Windows and WSL
 
 Open Anaconda Prompt on Windows or Terminal on WSL (I am sure both are in the same Windows Terminal with different Tab). Please make sure we are outside the Conda environment, by typing:
 
-```
+```bash
 conda deactivate
 ```
 
 Let's create new Conda environment, called `cuda`with Python version `3.11`
 
-```
+```bash
 conda create -n cuda python==3.11
 ```
 
@@ -74,7 +75,7 @@ conda create -n cuda python==3.11
 
 I would like to use this `cuda` env to do heavy geospatial and climate data process, so I will install Python `geospatial` [package](https://geospatial.gishub.org/)
 
-```
+```bash
 conda install -c conda-forge geospatial
 ```
 
@@ -86,7 +87,7 @@ If needed, we can install other package too. Example: `cdo`, `nco`, `gdal`, `aws
 
 Install `cudatoolkit v11.8.0` - <https://anaconda.org/conda-forge/cudatoolkit>
 
-```
+```bash
 conda install -c conda-forge cudatoolkit
 ```
 
@@ -94,7 +95,7 @@ conda install -c conda-forge cudatoolkit
 
 Install `cudnn v8.9.7` - <https://anaconda.org/conda-forge/cudnn>
 
-```
+```bash
 conda install -c conda-forge cudnn
 ```
 
@@ -102,7 +103,7 @@ conda install -c conda-forge cudnn
 
 Install Pytorch - <https://pytorch.org/>
 
-```
+```bash
 conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 ```
 
@@ -110,7 +111,7 @@ conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvi
 
 Install Tensorflow 2.14.0, as this is the last Tensorflow compatible version with CUDA 11.8. Reference: <https://www.tensorflow.org/install/source#gpu>
 
-```
+```bash
 conda install -c conda-forge tensorflow=2.14.0=cuda118py311heb1bdc4_0
 ```
 
@@ -122,13 +123,13 @@ If we installed CUDA and cuDNN via Conda, then typically we should not need to m
 
 However, sometimes we are encountering issues like - errors related to cuDNN not being registered correctly - there might still be a need to ensure that TensorFlow is able to find and use the correct libraries provided by the Conda environment.
 
-**Why We Might Still Need to Set `LD_LIBRARY_PATH`?**
+##### Why We Might Still Need to Set `LD_LIBRARY_PATH`?
 
 Even though Conda generally manages library paths internally, in some cases, especially when integrating complex software stacks like TensorFlow with GPU support, the automatic configuration might not work perfectly out of the box.
 
 **Find the library paths**: We can look for CUDA and cuDNN libraries within the Conda environment's library directory:
 
-```
+```bash
 ls $CONDA_PREFIX/lib | grep libcudnn
 ls $CONDA_PREFIX/lib | grep libcublas
 ls $CONDA_PREFIX/lib | grep libcudart
@@ -138,13 +139,13 @@ ls $CONDA_PREFIX/lib | grep libcudart
 
 If we find that TensorFlow still fails to recognize these libraries despite them being present in the Conda environment, we might try setting `LD_LIBRARY_PATH` manually:
 
-```
+```bash
 export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
 ```
 
 In my case, I have set the PATH in `.zshrc`, so above approach is already done
 
-```
+```bash
 # Anaconda 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -165,7 +166,7 @@ unset __conda_setup
 
 Based on my `.zshrc` settings and the Conda environment settings, my `LD_LIBRARY_PATH` is already set to include the Conda libraries at `/home/bennyistanto/anaconda3/lib`. This should generally be sufficient for TensorFlow to locate and use the CUDA and cuDNN libraries installed via Conda, given that Conda typically manages its own library paths very well.
 
-**Evaluation of Current Setup**
+##### Evaluation of Current Setup
 
 Since I've already set `LD_LIBRARY_PATH` in my `.zshrc`, TensorFlow should correctly recognize and utilize the CUDA and cuDNN libraries installed in my Conda environment, assuming there are no other conflicting settings or installations. The `LD_LIBRARY_PATH` in my `.zshrc` appears correctly configured to point to the general Conda library directory, but there are a few additional things we might consider:
 
@@ -175,13 +176,13 @@ If TensorFlow continues to have issues finding or correctly using the cuDNN libr
 
 * **Activate Script** (`$CONDA_PREFIX/etc/conda/activate.d/env_vars.sh`):
 
-  ```
+  ```bash
   #! /bin/sh
   export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
   ```
 * **Deactivate Script** (`$CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh`):
 
-  ```
+  ```bash
   #! /bin/sh
   export LD_LIBRARY_PATH=$(echo $LD_LIBRARY_PATH | sed -e "s|$CONDA_PREFIX/lib:||g")
   ```
@@ -194,80 +195,80 @@ If the `env_vars.sh` file does not exist in both the `activate.d` and `deactivat
 
 Here’s how to create and use these scripts:
 
-**Step 1: Create the Directories**
+##### Step 1: Create the Directories
 
 If the `activate.d` and `deactivate.d` directories don't exist, we'll need to create them first. Here’s how we can do it:
 
-```
+```bash
 mkdir -p $CONDA_PREFIX/etc/conda/activate.d
 mkdir -p $CONDA_PREFIX/etc/conda/deactivate.d
 ```
 
-**Step 2: Create the Activation Script**
+##### Step 2: Create the Activation Script
 
 Create the `env_vars.sh` script in the `activate.d` directory. This script will run every time we activate the environment.
 
 1. Navigate to the directory:
 
-   ```
+   ```bash
    cd $CONDA_PREFIX/etc/conda/activate.d
    ```
 2. Create and edit the `env_vars.sh` file:
 
-   ```
+   ```bash
    nano env_vars.sh
    ```
 3. Add the following content to set up the `LD_LIBRARY_PATH`:
 
-   ```
+   ```bash
    #!/bin/sh
    export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
    ```
 4. Save and exit the editor (in nano, press `Ctrl+O`, `Enter`, and then `Ctrl+X`).
 
-**Step 3: Create the Deactivation Script**
+##### Step 3: Create the Deactivation Script
 
 Similarly, create the `env_vars.sh` script in the `deactivate.d` directory. This script will clear the environment variables when we deactivate the environment.
 
 1. Navigate to the directory:
 
-   ```
+   ```bash
    cd $CONDA_PREFIX/etc/conda/deactivate.d
    ```
 2. Create and edit the `env_vars.sh` file:
 
-   ```
+   ```bash
    nano env_vars.sh
    ```
 3. Add the following content to unset the `LD_LIBRARY_PATH`:
 
-   ```
+   ```bash
    #!/bin/sh
    export LD_LIBRARY_PATH=$(echo $LD_LIBRARY_PATH | sed -e "s|$CONDA_PREFIX/lib:||g")
    ```
 4. Save and exit the editor.
 
-**Step 4: Make Scripts Executable**
+##### Step 4: Make Scripts Executable
 
 Ensure that both scripts are executable:
 
-```
+```bash
 chmod +x $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
 chmod +x $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh
 ```
 
-**Step 5: Testing**
+##### Step 5: Testing
 
 Activate our environment again to test the changes:
 
-```
+```bash
 conda deactivate
 conda activate cuda
 ```
 
 Check that the `LD_LIBRARY_PATH` is correctly set:
 
-```
+```bash
 echo $LD_LIBRARY_PATH
 ```
 
@@ -279,7 +280,7 @@ In my case, the output from `echo $LD_LIBRARY_PATH` shows `/home/bennyistanto/an
 
 To configure Jupyter Notebook to use GPUs, we need to create a new kernel that uses the Conda environment we created earlier `cuda` and specifies the GPU device. We can do this by running the following command:
 
-```
+```bash
 python -m ipykernel install --user --name cuda --display-name "Python 3 (GPU)"
 ```
 

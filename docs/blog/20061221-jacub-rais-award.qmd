@@ -3,7 +3,7 @@ title: "Jacub Rais Award"
 author: "Benny Istanto"
 date: "2006-12-21"
 description: "Minggu lalu saya mengikuti Pertemuan Ilmiah Tahunan XV dan Kongres IV Masyarakat Ahli Penginderaan Jauh Indonesia (MAPIN), yang diadakan di Bandung, 13 - 14 Desember 2006"
-image: "../assets/image-blog/20061221-jacub-rais-award-03.jpg"
+image: "../assets/image-blog/20061221-jacub-rais-award-01.jpg"
 categories:
   - "Remote Sensing"
   - "GIS"
@@ -20,13 +20,26 @@ Saya mengirimkan makalah yang saya tulis bersama Pak Idung Risdiyanto dan Pak Ro
 
 Setelah selesai sesi presentasi dan tanya jawab yang berjalan cukup lancar, panitia memngumumkan bahwa saya mendapatkan Jacub Rais Award untuk kategori Penulis Terbaik.
 
+![Sertifikat dari MAPIN](../assets/image-blog/20061221-jacub-rais-award-03.jpg)
+
 Kaget dan senang tentunya.
 
-[caption id="" align="alignnone" width="2500"]![  Gambar 1.  Sertifikat dari MAPIN ](../assets/image-blog/20061221-jacub-rais-award-03.jpg) Gambar 1. Sertifikat dari MAPIN [/caption]
-![](../assets/image-blog/20061221-jacub-rais-award-01.jpg)
+![Plakat dari MAPIN](../assets/image-blog/20061221-jacub-rais-award-01.jpg)
 
 Jadwal PIT MAPIN 2016 bisa dilihat di link [ini](https://drive.google.com/file/d/1Of9VW-_tJ4EsEa7838JQ8RFZLRF896MU/view?usp=sharing) dan makalah lengkapnya ada di link [ini](https://drive.google.com/file/d/1RumlhYF2ZaUP9TlVyUpEISiyyN4VKd89/view?usp=sharing).
 
+```{=html}
+<iframe 
+  src="https://docs.google.com/presentation/d/e/2PACX-1vQLjqIuJWPF9gXx7IBjmJ2nDkn2BHgGOSaiRHZMwmbvA5hLF8JrJ2XQUdkatucTkjZ5FxNPl4JRf80C/embed?start=false&loop=false&delayms=3000" 
+  frameborder="0" 
+  width="960" 
+  height="749" 
+  allowfullscreen="true" 
+  mozallowfullscreen="true" 
+  webkitallowfullscreen="true">
+</iframe>
+```
+
 Gambar di bawah ini merupakan salah satu output yang saya tampilkan dalam presentasi, user interface pengolahan FDRS menggunakan input data wilayah.
 
-[caption id="" align="alignnone" width="2500"]![  Gambar 3.  Indonesia FDRS ](../assets/image-blog/20061221-jacub-rais-award-02.jpg) Gambar 3. Indonesia FDRS [/caption]
+![Indonesia FDRS](../assets/image-blog/20061221-jacub-rais-award-02.jpg)

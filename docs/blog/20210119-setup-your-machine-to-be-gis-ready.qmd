@@ -2,6 +2,7 @@
 title: "Setup your machine to be GIS ready!"
 author: "Benny Istanto"
 date: "2021-01-19"
+description: "How I install and configure a whole geospatial software stack on a new machine, after years of untangling geo tools and their dependencies"
 image: "../assets/image-blog/20210119-setup-your-machine-to-be-gis-ready-01.jpg"
 categories:
   - "Remote Sensing"
@@ -32,7 +33,9 @@ I prefer to use [Sublime Text](https://www.sublimetext.com) as my text editor, b
 
 * Install subl Terminal extension for Sublime Text 3, so you can call it via Terminal. Type below code in your Terminal
 
-  + *sudo ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl*
+  ```bash
+  sudo ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
+  ```
 
 Beside Sublime Text, there are many competitors which have similar feature, Give it try [Visual Studio Code](https://code.visualstudio.com) and [Atom](https://atom.io).
 
@@ -40,7 +43,9 @@ Beside Sublime Text, there are many competitors which have similar feature, Give
 
 Install Command Line Tools (CLT) for Xcode, paste below code in your terminal and follow the process.
 
-* *xcode-select --install*
+  ```bash
+  xcode-select --install
+  ```
 
 Or you can download it from Apple Developer website (you must have Apple Developer account): <https://download.developer.apple.com/Developer_Tools/Command_Line_Tools_for_Xcode_12.3/Command_Line_Tools_for_Xcode_12.3.dmg>
 
@@ -48,13 +53,17 @@ Or you can download it from Apple Developer website (you must have Apple Develop
 
 Next, install [Homebrew](https://brew.sh). As stated in their website, Homebrew installs [the stuff you need](https://formulae.brew.sh/formula/ "List of Homebrew packages") that Apple (or your Linux system) didn’t. Paste below code in your terminal and follow the process.
 
-* */bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"*
+  ```bash
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  ```
 
 #### Install Homebrew formula
 
-To install a formula, we just need to type *brew install formulaname* in Terminal, then Homebrew will do the job. I will install various tools to support our works. For example a famous download manager called WGET, below is the example:
+To install a formula, we just need to type `brew install formulaname` in Terminal, then Homebrew will do the job. I will install various tools to support our works. For example a famous download manager called WGET, below is the example:
 
-* *brew install wget*
+  ```bash
+  brew install wget
+  ```
 
 #### Install Homebrew geospatial and climate library
 
@@ -66,8 +75,9 @@ Climate: hdf4, hdf5, netcdf, cdo, nco, ncl
 
 I just type below code in Terminal, then everything will install automatically. But if you missed some formula, you can easily install it.
 
-* *brew install libgeotiff*
-* *brew install netcdf*
+  ```bash
+  brew install libgeotiff netcdf
+  ```
 
 and so on.
 
@@ -110,27 +120,37 @@ After you install Anaconda, I assume located in ~/opt/anaconda3 You need to conf
 
 * When you open Terminal after install Anaconda, it will activating the base environment by default. To prevent that, type below command
 
-  + *conda config --set auto\_activate\_base false*
+  ```bash
+  conda config --set auto_activate_base false
+  ```
 * Create conda environment called gis, when conda asks you to proceed, type y.
 
-  + *conda create --name gis*
+  ```bash
+  conda create --name gis
+  ```
 * Activate the environment
 
-  + *conda activate gis* to deactivate environment, type *conda deactivate*
+  + `conda activate gis` to deactivate environment, type `conda deactivate`
 * Install python, numpy, scipy, matplotlib and jupyter via Conda-Forge channel
 
-  + *conda install -c conda-forge python numpy scipy matplotlib jupyter*
+  ```bash
+  conda install -c conda-forge python numpy scipy matplotlib jupyter
+  ```
 * Install GIS (gdal, pandas, geopandas, rasterio, xarray, rioxarray, cartopy) and Climate (cdo, nco, ncl, metpy) package.
 
-  + *conda install -c conda-forge gdal pandas geopandas rasterio xarray rioxarray cartopy*
-  + *conda install -c conda-forge cdo nco ncl metpy*
+  ```bash
+  conda install -c conda-forge gdal pandas geopandas rasterio xarray rioxarray cartopy
+  ```
+  ```bash
+  conda install -c conda-forge cdo nco ncl metpy
+  ```
 * Please continue if you need more package.
 
 #### Python IDE
 
 I used [PyCharm](https://www.jetbrains.com/pycharm/) from Jetbrain as my IDE. You can download the latest installer for community edition via this link <https://www.jetbrains.com/pycharm/download/download-thanks.html?platform=mac&code=PCC>
 
-Configuring a conda environment in PyCharm
+## Configuring a conda environment in PyCharm
 
 * In the Settings/Preferences dialog (⌘,), select Project: <project name> | Project Interpreter.
 * Alternatively, from the Welcome screen, select Configure.
@@ -206,12 +226,12 @@ Then you can follow step-by-step above in macOS Spatial Stack section on creatin
    * Rename the copied folder arcgispro-py3 in C:\Anaconda3\envs to arcgispro
 2. Test the virtual environment
 
-   * At the Anaconda Command Prompt, type: *conda activate arcgispro*
+   * At the Anaconda Command Prompt, type: `conda activate arcgispro`
    * Type: conda list. You can see the list of packages installed
 3. Add more packages
 
    * Let's add the Python Spatial Analysis Library (pysal) module.
-   * Type the following command at the Anaconda Prompt: *conda install pysal*
+   * Type the following command at the Anaconda Prompt: `conda install pysal`
 4. Configure ArcGIS to see Anaconda and vice versa
 
    * Anaconda Python to ArcPy

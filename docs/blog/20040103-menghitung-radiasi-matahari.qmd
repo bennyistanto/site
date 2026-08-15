@@ -349,6 +349,7 @@ Gambar 1. UI program menghitung radiasi matahari.
 
 ### Radiasi harian
 
+::: {.callout-note collapse="true" title="Kode program - radiasi harian"}
 ```vb
 '++++++++++++++++++++++++
 ' Program untuk menghitung Radiasi harian
@@ -531,9 +532,11 @@ Close #2
 
 MsgBox "complete"
 ```
+:::
 
 ### Radiasi per jam atau 30 menit
 
+::: {.callout-note collapse="true" title="Kode program - radiasi per jam atau 30 menit"}
 ```vb
 '++++++++++++++++++++++++
 ' Program untuk menghitung Radiasi Ekstraterestrial per jam atau 30 menit
@@ -727,3 +730,4 @@ Close #2
 
 MsgBox "complete"
 ```
+:::

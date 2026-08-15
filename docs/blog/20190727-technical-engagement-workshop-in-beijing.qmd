@@ -13,7 +13,7 @@ categories:
 
 ---
 
-Last week I wen to Beijing for a technical engagement workshop on emergency preparedness and response at National Disaster Reduction Centre of China (NDRCC) office. The purpose of this workshop is:
+Last week I went to Beijing for a technical engagement workshop on emergency preparedness and response at National Disaster Reduction Centre of China (NDRCC) office. The purpose of this workshop is:
 
 * To build stronger capacity for both NDRCC and WFP itself on the data and technology for emergency preparedness and response The potential use cases may fall into analysis and tools to detect risks, produce alerts and assess humanitarian impact; collaboration for information sharing at technical levels (satellites, GIS, Early Warning, monitoring) and building systems for preparedness and response, with specific focus on natural hazards.
 * To build strong capacity for other countries, through leveraging China’s knowledge, expertise and experience in emergency management. The areas include, but are not limited to, disaster risk reduction, rapid impact assessments. This is in line with South-South cooperation.

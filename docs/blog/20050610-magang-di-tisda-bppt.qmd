@@ -2,7 +2,7 @@
 title: "Magang di TISDA, BPPT"
 author: "Benny Istanto"
 date: "2005-06-10"
-description: "Pada tanggal 27 Juni 2004, saya memulai magang di Laboratorium Teknologi Geosystem, Pusat Pengkajian dan Penerapan Teknologi Inventarisasi Sumber Daya Alam (P3-TISDA), BPPT"
+description: "Ringkasan magang saya di Laboratorium TISDA, BPPT pada 2004, merancang SISR - perangkat lunak penyaji peta tematik curah hujan untuk Sumatera Barat"
 image: "../assets/image-blog/20050610-magang-di-tisda-bppt-01.jpg"
 categories:
   - "GIS"

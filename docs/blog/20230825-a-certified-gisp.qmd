@@ -2,7 +2,8 @@
 title: "A certified GISP"
 author: "Benny Istanto"
 date: "2023-08-25"
-image: "../assets/image-blog/20230825-a-certified-gisp-01.jpg"
+description: "I am now a certified GIS Professional (GISP), recognised by the GIS Certification Institute"
+image: "../assets/image-blog/20230825-a-certified-gisp-00.jpg"
 categories:
   - "General"
 # tags:

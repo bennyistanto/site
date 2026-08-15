@@ -18,3 +18,5 @@ listing:
     items: 20
 ---
 
+Browsing for something specific? The [archive](blog-archive.qmd) lists every post by year.
+

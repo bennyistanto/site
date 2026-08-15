@@ -83,7 +83,7 @@ Example parameters
 
   Script: [https://nomads.ncep.noaa.gov/cgi-bin/filter\_gefs\_atmos\_0p25s.pl?file=geavg.t00z.pgrb2s.0p25.f006&lev\_surface=on&var\_APCP=on&subregion=&leftlon=94&rightlon=142&toplat=7&bottomlat=-12&dir=%2Fgefs.20210413%2F00%2Fatmos%2Fpgrb2sp25](https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?bottomlat=-12&dir=%2Fgefs.20210413%2F00%2Fatmos%2Fpgrb2sp25&file=geavg.t00z.pgrb2s.0p25.f006&leftlon=94&lev_surface=on&rightlon=142&subregion=&toplat=7&var_APCP=on)
 
-Download process
+### Download process
 
 * Each time we run the download process procedure (Example: Date 3 Nov 2020, release hour 00), it means we need to download all the forecast hour from f006 to f120
 

@@ -2,7 +2,8 @@
 title: "PyCPT config and notebook"
 author: "Benny Istanto"
 date: "2023-03-06"
-description: "PyCPT is a Python interface and enhancement for the command line version of the International Research Institute for Climate and Society's Climate Predictability Tool (CPT), for seasonal and sub-se..."
+description: "How to set up and configure PyCPT s2sv1.92 and seav1.92, the Python interface to IRI's Climate Predictability Tool, for forecasting in Indonesia"
+image: "../assets/image-blog/20230306-pycpt-config-and-notebook-01.png"
 categories:
   - "Climate"
   - "Remote Sensing"
@@ -17,6 +18,8 @@ categories:
 #   - "cpt"
 
 ---
+
+![](../assets/image-blog/20230306-pycpt-config-and-notebook-01.png)
 
 PyCPT is a Python interface and enhancement for the command line version of the [International Research Institute for Climate and Society](https://iri.columbia.edu/)'s Climate Predictability Tool ([CPT](https://iri.columbia.edu/cpt)), for seasonal and sub-seasonal skill assessment and forecast experiments.
 
@@ -33,19 +36,19 @@ This section will explain on how to install the PyCPT inside Windows Subsystem f
 * Select the release you want. I have a 64-bit computer, so I chose the latest release ending in `x86_64.sh`. If I had a 32-bit computer, I'd select the `x86.sh` version. If you accidentally try to install the wrong one, you'll get a warning in the terminal. I chose `Anaconda3-2022.10-Linux-x86_64`.
 * From the terminal run `wget https://repo.anaconda.com/archive/[YOUR VERSION]`. Example:
 
-  ```
+  ```bash
   wget https://repo.anaconda.com/archive/Anaconda3-2022.10-Linux-x86_64
   ```
 * After download process completed, Run the installation script: `bash Anaconda[YOUR VERSION].sh`
 
-  ```
+  ```bash
   bash Anaconda3-2022.10-Linux-x86_64.sh
   ```
 * Read the license agreement and follow the prompts to press Return/Enter to accept. Later will follow with question on accept the license terms, type `yes` and Enter. When asks you if you'd like the installer to prepend it to the path, press Return/Enter to confirm the location. Last question will be about initialize Anaconda3, type `yes` then Enter.
 * Close the terminal and reopen it to reload .bash configs. It will automatically activate `base` environment.
 * Deactivate `base` environment then set to `false` the confirguration of auto activate the `base` environment by typing
 
-  ```
+  ```bash
   conda deactivate && conda config --set auto_activate_base false
   ```
 * To test that it worked, `which python` in your Terminal. It should print a path that has anaconda in it. Mine is `/home/bennyistanto/anaconda3/bin/python`. If it doesn't have anaconda in the path, do the next step.
@@ -53,14 +56,14 @@ This section will explain on how to install the PyCPT inside Windows Subsystem f
 * You should use [Anaconda Virtual Environments](https://conda.io/docs/using/envs.html). This step must **only be done the first time**. Once the environment has been created there is no need to do it again.
 * First, open your Terminal (in your Ubuntu Linux on WSL), create the Python environment:
 
-  ```
+  ```bash
   conda create -n cpt
   ```
 
   Proceed with `y`
 * The environment created can now be ‘activated’ and ready to install the supporting packages:
 
-  ```
+  ```bash
   conda activate cpt
     conda install -c conda-forge xarray matplotlib scipy cartopy netcdf4 numpy pandas subprocess
   ```
@@ -73,7 +76,7 @@ Download the 16.5.8 version of CPT from <https://academiccommons.columbia.edu/do
 
 I f you don't have GCC and GFortran, please install it before continuing to install the CPT
 
-```
+```bash
 sudo apt install gcc gfortran make git
 ```
 
@@ -82,26 +85,26 @@ sudo apt install gcc gfortran make git
 * Navigate to your `home` directory by typing `cd ~` in your terminal
 * Untar the CPT tar file into CPT/XX.X.X
 
-  ```
+  ```bash
   tar xvzf CPT.16.5.8.tar.gz
   ```
 * Build CPT
 
-  ```
+  ```bash
   cd CPT/XX.X.X
     make distclean
     make
   ```
 * Install CPT: Determine where you want to install CPT, making sure this folder is in your PATH
 
-  ```
+  ```bash
   make INSTALL_DIR=~/CPT/16.5.8 install
   ```
 * Update your PATH and add CPT\_BIN\_DIR
 
   Edit the file ~/.bashrc, adding the following lines to the file:
 
-  ```
+  ```bash
   export PATH=$PATH:~/CPT/16.5.8/bin
     export CPT_BIN_DIR=~/CPT/16.5.8/bin
   ```
@@ -111,7 +114,7 @@ sudo apt install gcc gfortran make git
 
   use git clone to get iri-pycpt from bitbucket <https://bitbucket.org/py-iri/iri-pycpt.git>
 
-  ```
+  ```bash
   cd ~/CPT
     git clone https://bitbucket.org/py-iri/iri-pycpt.git
   ```
@@ -122,13 +125,15 @@ There are one authentication file that required to be available and also two mod
 
 ### 2.1 Authentication File
 
-**ONLY needed for the s2s version**
+::: {.callout-note}
+Only needed for the s2s version.
+:::
 
 Create the file .IRIDLAUTH in the main PyCPT folder. It must contain only one line with the Data Library S2S key (104 characters) obtained via [this link](https://iridl.ldeo.columbia.edu/auth/genkey). Please do not share your key.
 
 * If you have file `.IRIDLAUTH` in your PyCPT folder, don't forget to set the permission.
 
-  ```
+  ```bash
   chmod 644 ~/CPT/iri-pycpt/.IRIDLAUTH
   ```
 
@@ -146,14 +151,14 @@ Make sure you are inside the PyCPT folder or navigate your Terminal to `cd ~/CPT
 
 * Run the Jupyter Notebook.
 
-  ```
+  ```bash
   jupyter notebook
   ```
 * Try one of the notebook I have provided.
 
-  Seasonal Forecasts
+## Seasonal Forecasts
 
-  + ]PyCPT\_seav1.9.2-IDN\_CCA\_PRCP\_16N\_18S\_85E\_150E\_CHIRPS\_\_PRCP\_11N\_13S\_90E\_145E\_NCEP-CFSv2\_NASA-GEOSS2S\_Mar2023.ipynb](<https://gist.github.com/bennyistanto/3c87cca14fec4ce2bb35203b37593135/raw/0d964a18f93ac376302f9b8ca3c3fbe839fa4a5f/PyCPT_seav1.9.2-IDN_CCA_PRCP_16N_18S_85E_150E_CHIRPS__PRCP_11N_13S_90E_145E_NCEP-CFSv2_NASA-GEOSS2S_Mar2023.ipynb>)
+  + [PyCPT\_seav1.9.2-IDN\_CCA\_PRCP\_16N\_18S\_85E\_150E\_CHIRPS\_\_PRCP\_11N\_13S\_90E\_145E\_NCEP-CFSv2\_NASA-GEOSS2S\_Mar2023.ipynb](https://gist.github.com/bennyistanto/3c87cca14fec4ce2bb35203b37593135/raw/0d964a18f93ac376302f9b8ca3c3fbe839fa4a5f/PyCPT_seav1.9.2-IDN_CCA_PRCP_16N_18S_85E_150E_CHIRPS__PRCP_11N_13S_90E_145E_NCEP-CFSv2_NASA-GEOSS2S_Mar2023.ipynb)
   + [PyCPT\_seav1.9.2-IDN\_PCR\_PRCP\_16N\_18S\_85E\_150E\_CHIRPS\_\_PRCP\_11N\_13S\_90E\_145E\_NCEP-CFSv2\_NASA-GEOSS2S\_Mar2023.ipynb](https://gist.github.com/bennyistanto/3c87cca14fec4ce2bb35203b37593135/raw/0d964a18f93ac376302f9b8ca3c3fbe839fa4a5f/PyCPT_seav1.9.2-IDN_PCR_PRCP_16N_18S_85E_150E_CHIRPS__PRCP_11N_13S_90E_145E_NCEP-CFSv2_NASA-GEOSS2S_Mar2023.ipynb)
 
     Subseasonal Forecasts

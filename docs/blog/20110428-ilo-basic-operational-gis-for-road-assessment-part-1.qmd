@@ -25,7 +25,7 @@ Below is the outline:
 
 This document contains information about the material that was given to participants in the GPS training.
 
-Slide presentation
+#### Slide presentation
 
 The most important element during the presentation was that they understand: Survey Instrument, Navigation Concept, How the GPS system works, the importance of doing this measurement for the survey (important to be careful to take the measurement), The basic of the Garmin GPS receiver. It is important that the participants play with the GPS receiver trying themselves to follow the steps mentioned in presentation slide. This allowed them to be more familiar with the device and the data collection protocol. Some slide presentations that have been made are the following:
 
@@ -50,7 +50,7 @@ At the end of the lecture of the GPS survey method the participants was expected
 
 At the end of this practical exercise, the participants should be able to take the measurement of the latitude and longitude of any landmark (road section position registration) within the district and enter the correct information in the survey form.
 
-Module
+#### Module
 
 * 76csx Quick Guide: Handheld Garmin GPS 76csx is a common type of GPS is owned by government officials in Bireuen and Pidie.
 * eTrex Quick Guide: Handheld Garmin GPS eTrex H is suitable for the beginner, as it is easy to use, small, lightweight, low cost and able to make quick and reliable satellite fixes.
@@ -58,15 +58,15 @@ Module
 * Display GPS Data using GIS OpenSource Software: The module discusses about the installation of GIS software, Displays GPS Data in MapWindow, Viewing attribute information, Using a plug-in MapWindow. MAPWindow is software used in this module.
 * GPS and Google Earth: Google Earth is a software that is quite popular today, everyone can download it for free. Google Earth is also can be used together with GPS. This module will discuss how to Importing data from a GPS device and Viewing GPS track in Google Earth
 
-Software
+#### Software
 
 Software packages used in the training were free and open-sources software (FOSS) and downloadable from internet i.e. GPS Utility (<http://www.gpsu.co.uk/download.html>), Google Earth (<http://earth.google.com>) and MapWindow (<http://www.mapwindow.org>), DNR Garmin (<http://www.dnr.state.mn.us/mis/gis/tools/arcview/extensions/DNRGarmin/DNRGarmin.html>).
 
-GPS Maps
+#### GPS Maps
 
 To complete a map that has been available in the GPS, Indonesia maps that can be downloaded free through from Navigasi.net (<http://navigasi.net/>). Navigasi.net is a site and forum of a group of GPS users in Indonesia.
 
-Supporting Documents
+#### Supporting Documents
 
 * List of District Road Network in Bireuen was used as supporting data during field training
 * About GPS: This document discussed concept and the use of GPS Technology in various Industries
@@ -79,13 +79,13 @@ Supporting Documents
 
 This document contained information about the material that was delivered to participants in the GIS training.
 
-Slide presentation
+#### Slide presentation
 
 * What is GIS: The presentation discussed about the definition of GIS and geodata and Typical questions a GIS can answer.
 * Introduction to ArcGIS: This presentation was aimed to introduce participants to the basic use of ArcGIS. ArcGIS is a large program with many extensions and many uses. We will concentrate on ArcMap and ArcCatalog.
 * Working with external data source: The strength of GIS is that we can use many different information sources to bring together relevant information.
 
-Modules
+#### Modules
 
 * Installation: The step-by-step installation of ArcGIS Desktop.
 * Introduction to ArcMap: The purpose of this exercise is to get familiar with the application and learn how to use the basic map tools in order to create a map using a data set over Indonesia in ArcMap.
@@ -94,7 +94,7 @@ Modules
 * Joining Tables: The purpose of this exercise is to use different databases to combine data and visualize the result as unique values symbology.
 * Exercise - Working with External Geodata
 
-Software
+#### Software
 
 Software packages used in the training class were from ESRI, ArcGIS 9.3.1 Student licenses and downloadable from internet (http://www.esri.com/software/arcgis/arcview/eval/evaluate.html).
 

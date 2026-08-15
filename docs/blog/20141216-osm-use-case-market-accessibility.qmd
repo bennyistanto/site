@@ -19,7 +19,7 @@ OpenStreetMap ([OSM](https://www.openstreetmap.org/index.html)) is a collaborati
 
 I will explain on how OSM data can be applied in the humanitarian context to support WFP’s program activities in the field.
 
-## Market access in Sumba Island, Indonesia
+### Market access in Sumba Island, Indonesia
 
 #### DEFINITION AND RELEVANCE FOR FOOD SECURITY
 
@@ -68,7 +68,7 @@ The steps below will be followed:
 9. Estimating the population with poor access
 10. Integrating accessibility variables into household surveys
 
-![](../assets/image-blog/20141216-osm-use-case-market-accessibility-13.jpg)
+![The full model in ArcGIS: data layers in yellow, tools in orange, temporary outputs in green and final outputs in blue](../assets/image-blog/20141216-osm-use-case-market-accessibility-13.jpg)
 
 The following are the datasets used in this study and their sources:
 
@@ -80,11 +80,11 @@ The following are the datasets used in this study and their sources:
 6. [Landscan](http://web.ornl.gov/sci/landscan/index.shtml) population density dataset at 30 arc-second (about 1 km) resolution
 7. National boundaries downloaded from BIG
 
-![](../assets/image-blog/20141216-osm-use-case-market-accessibility-12.jpg)
+![The accessibility model end to end, from elevation, roads, rivers, land use and points of interest through to the share of population within three hours](../assets/image-blog/20141216-osm-use-case-market-accessibility-12.jpg)
 
 #### APPLICATION
 
-Characterizing markets catchments
+#### Characterizing markets catchments
 
 * Area of influence of markets is delineated
 * Characterized by land cover, livelihoods, poverty, food insecurity
@@ -94,20 +94,20 @@ Incorporating accessibility into analysis of household surveys
 * Extract travel time values at HH survey sampling locations
 * Incorporate in HH survey DBs
 
-Deriving a general measure of accessibility
+#### Deriving a general measure of accessibility
 
 * Define threshold T of travel time for “poor access”
 * Calculate population over admin
 * Calculate population within admin\*travel time < T
 * (Ratio) Proportion of both
 
-## Exercise
+### Exercise
 
 #### 1. ASSIGNING TRAVEL SPEED TO THE ROAD NETWORK
 
 Add a new field to the Road layer attribute table and assign a value for the average speed (m/min) of travel over each road type according to the table below:
 
-![](../assets/image-blog/20141216-osm-use-case-market-accessibility-01.jpg)
+![Travel speed assigned to each OSM highway class, in km/h and m/min](../assets/image-blog/20141216-osm-use-case-market-accessibility-01.jpg)
 
 This is a crucial stage in the model: needs ADAPTATION to country context
 
@@ -139,7 +139,7 @@ This implies that you cannot cross rivers, except through roads
 
 Classification for Land Cover classes
 
-![](../assets/image-blog/20141216-osm-use-case-market-accessibility-02.jpg)
+![Walking speed assigned to each Globcover land cover class, in m/min](../assets/image-blog/20141216-osm-use-case-market-accessibility-02.jpg)
 
 Re-classify the land cover data into travel speeds…
 
@@ -166,7 +166,7 @@ To define the correct spatial extent:
 
 * In the Extent field, use the explore button to browse to and select the Elevation data. Or set to Union of Inputs.
 
-![](../assets/image-blog/20141216-osm-use-case-market-accessibility-03.jpg)
+![Environment Settings, snapping new rasters to the SRTM elevation layer and matching its extent](../assets/image-blog/20141216-osm-use-case-market-accessibility-03.jpg)
 
 #### 6. CONVERTING ROADS, RIVERS, AND BORDER LAYERS TO RASTER
 
@@ -181,7 +181,7 @@ Spatial Analyst Tools | Convert | Features to Raster
 
 Then proceed to the others: Rivers and Borders, and save as RiverSpeed and BorderSpeed.
 
-![](../assets/image-blog/20141216-osm-use-case-market-accessibility-04.jpg)
+![Features to Raster, converting the road layer with AvgSpeed as the pixel value](../assets/image-blog/20141216-osm-use-case-market-accessibility-04.jpg)
 
 #### 7. MERGING ALL THE TRAVEL SPEED RASTERS TOGETHER
 
@@ -201,7 +201,7 @@ In Mosaic to new Raster interface:
 * Pixel Type: 16\_BIT\_UNSIGNED
 * Mosaic Operator: FIRST
 
-![](../assets/image-blog/20141216-osm-use-case-market-accessibility-05.jpg)
+![Mosaic to New Raster, combining border, road, river and land speeds in that order with the FIRST operator](../assets/image-blog/20141216-osm-use-case-market-accessibility-05.jpg)
 
 #### 8. CONVERTING TRAVEL SPEED TO COST DISTANCE
 
@@ -233,7 +233,7 @@ Import the DEM (yem\_dem) into your project
 * Z factor (Sumba): 0.00000912
 * Output: temp\_slope
 
-![](../assets/image-blog/20141216-osm-use-case-market-accessibility-06.jpg)
+![The Slope tool, output in percent with a Z factor of 0.00000912 for Sumba](../assets/image-blog/20141216-osm-use-case-market-accessibility-06.jpg)
 
 Environment Settings | Raster Analysis – select the dem raster for the Cell Size field.
 
@@ -250,13 +250,13 @@ Slope factor is derived from re-classification of Slope into weights that penali
 
 Spatial Analyst | Reclass | Reclassify
 
-![](../assets/image-blog/20141216-osm-use-case-market-accessibility-07.jpg)
+![Reclassifying slope into weights that penalise travel speed](../assets/image-blog/20141216-osm-use-case-market-accessibility-07.jpg)
 
 #### 10. DERIVE FINAL TRAVEL COST LAYER
 
 Apply the slope weight through a simple expression…
 
-* TravelCost = 100\*TravelCost0/(SlopeWeight)
+* `TravelCost = 100 * TravelCost0 / (SlopeWeight)`
 
 This done in Spatial Analyst Tools | Map Algebra | Raster Calculator
 
@@ -286,8 +286,9 @@ PREPARE A TRAVEL TIME MAP
 
 Display Travel time with proper symbology (Classified) using values in table
 
-![](../assets/image-blog/20141216-osm-use-case-market-accessibility-08.jpg)
-![](../assets/image-blog/20141216-osm-use-case-market-accessibility-09.jpg)
+![Travel time classes in minutes and their equivalent in hours and days](../assets/image-blog/20141216-osm-use-case-market-accessibility-08.jpg)
+
+![Travel time to the nearest market across Sumba, from under 15 minutes to more than 12 hours](../assets/image-blog/20141216-osm-use-case-market-accessibility-09.jpg)
 
 #### APPLICATION 1: CHARACTERIZE MARKET POPULATION
 
@@ -335,7 +336,7 @@ Steps:
 
 Using additional data: sub district boundary, population density, and additional analysis to calculate market service area using Cost Allocation tool, new product could be derived.
 
-![](../assets/image-blog/20141216-osm-use-case-market-accessibility-10.jpg)
+![The four inputs to the example: sub-district boundary, population, travel time and market catchment](../assets/image-blog/20141216-osm-use-case-market-accessibility-10.jpg)
 
 Proportion of population less than 3 hours from a market
 
@@ -343,4 +344,4 @@ At a glance quickly identify the more isolated population in Sumba
 
 This was one of the key variables used to prioritise populations for multi-agency food and nutrition security interventions
 
-![](../assets/image-blog/20141216-osm-use-case-market-accessibility-11.jpg)
+![Population by sub-district, classed from under 2,500 to over 35,000](../assets/image-blog/20141216-osm-use-case-market-accessibility-11.jpg)

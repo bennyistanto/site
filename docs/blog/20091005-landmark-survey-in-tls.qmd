@@ -2,8 +2,8 @@
 title: "Landmark survey in TLS"
 author: "Benny Istanto"
 date: "2009-10-05"
-description: "Since May 2009 I am working for UNFPA as Census Mapping Supervisor in Timor-Leste supporting Direksaun Jeral de Estatistika (DNE) conducting landmark survey as preparation before 2010 Population an..."
-image: "../assets/image-blog/East+Timor+(36"
+description: "Working for UNFPA as Census Mapping Supervisor in Timor-Leste, running the landmark survey and training field teams ahead of the 2010 Population and Housing Census"
+image: "../assets/image-blog/20091005-landmark-survey-in-tls-13.jpg"
 categories:
   - "GIS"
 # tags:
@@ -27,15 +27,6 @@ Beside above tasks, I also go around visiting every house of *‘chefe aldeia’
 But all of that was great fun and sometimes scary.
 
 ::: {.image-gallery}
-::: {.gallery-item}
-![](../assets/image-blog/East+Timor+(36)+(Custom).jpg)
-:::
-::: {.gallery-item}
-![](../assets/image-blog/20091005-landmark-survey-in-tls-10.jpg)
-:::
-::: {.gallery-item}
-![](../assets/image-blog/20091005-landmark-survey-in-tls-11.jpg)
-:::
 ::: {.gallery-item}
 ![](../assets/image-blog/20091005-landmark-survey-in-tls-01.jpg)
 :::
@@ -64,22 +55,31 @@ But all of that was great fun and sometimes scary.
 ![](../assets/image-blog/20091005-landmark-survey-in-tls-09.jpg)
 :::
 ::: {.gallery-item}
-![](../assets/image-blog/East+Timor+(26)+(Custom).jpg)
+![](../assets/image-blog/20091005-landmark-survey-in-tls-10.jpg)
 :::
 ::: {.gallery-item}
-![](../assets/image-blog/East+Timor+(37)+(Custom).jpg)
-:::
-::: {.gallery-item}
-![](../assets/image-blog/East+Timor+(70)+(Custom).jpg)
-:::
-::: {.gallery-item}
-![](../assets/image-blog/East+Timor+(108)+(Custom).jpg)
-:::
-::: {.gallery-item}
-![](../assets/image-blog/East+Timor+(113)+(Custom).jpg)
+![](../assets/image-blog/20091005-landmark-survey-in-tls-11.jpg)
 :::
 ::: {.gallery-item}
 ![](../assets/image-blog/20091005-landmark-survey-in-tls-12.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20091005-landmark-survey-in-tls-13.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20091005-landmark-survey-in-tls-14.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20091005-landmark-survey-in-tls-15.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20091005-landmark-survey-in-tls-16.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20091005-landmark-survey-in-tls-17.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20091005-landmark-survey-in-tls-18.jpg)
 :::
 :::
 

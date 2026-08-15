@@ -51,10 +51,10 @@ A new Anaconda [environment](https://conda.io/docs/using/envs.html) can be creat
 1. Navigate to “automap\_RBB” folder in your Terminal or Command-Prompt
 2. Create the environment from the “automapQGIS.yml” file.
 
-   Type *conda env create -f automapQGIS.yml* then execute.
+   Type `conda env create -f automapQGIS.yml` then execute.
 3. Activate the environment
 
-   Type *conda activate automapQGIS* then execute.
+   Type `conda activate automapQGIS` then execute.
 
 The environment now has been activated. The python scripts must be run inside this environment in order to work.
 
@@ -66,13 +66,15 @@ Then you can easily convert it to GeoTIFF using [GDAL](https://gdal.org). If you
 
 Get the data
 
-1. Install GDAL, type in your Terminal or Command-Prompt: *conda install -c conda-forge gdal*
+1. Install GDAL, type in your Terminal or Command-Prompt: `conda install -c conda-forge gdal`
 2. Download latest \*.rst files from above link, let assume the result are inside Downloads folder (It can be in “~/Downloads” or “C:/Downloads”) and your file is “drive-download-20210811T141722Z-001.zip”.
 3. Unzip file “drive-download-20210811T141722Z-001.zip”
 4. Navigate to folder “drive-download-20210811T141722Z-001”, and create a new folder called “TIF”
 5. Convert \*.rst to \*.tif by typing below script in your Terminal or Command-Prompt
 
-   *for i in `find \*.rst`; do gdal\_translate -of GTiff -co COMPRESS=LZW -co PREDICTOR=1 $i ./TIF/$i.tif; done*
+   ```bash
+   for i in `find *.rst`; do gdal_translate -of GTiff -co COMPRESS=LZW -co PREDICTOR=1 $i ./TIF/$i.tif; done
+   ```
 6. Move all the result (GeoTIFF files) inside TIF folder to “automap\_RBB/products”. The files must respect the naming convention.
 
 If your data already in GeoTIFF, you are good to go, no need to doing conversion as explain in above steps.
@@ -89,31 +91,19 @@ In your Terminal or Command-Prompt,
 
 When running the script, 4 additional flags can be added:
 
---select
+`--select`
+: A window with the available product types will appear so that the user can choose which products to map. By default all of the products are mapped.
 
-# A window with the available product types will appear so that the user can choose which products to map.
+`--overwrite`
+: All the products will be mapped. By default, only the products which are not present in the output folder will be mapped.
 
-# By default all of the products are mapped
+`--input`
+: Select input folder with the `.tiff` files. Default is `automap_RBB/products`.
 
---overwrite
+`--output`
+: Select output folder for the PNG maps. Default is `automap_RBB/maps`.
 
-# All the products will be mapped
-
-# By default, only the products which are not present in the output folder will be mapped
-
---input
-
-# Select input folder with the .tiff files
-
-# Default is automap\_RBB/products
-
---output
-
-# Select output folder for the PNG maps
-
-# Default is automap\_RBB/maps
-
-Example: *python automap.py –-select --input` or `python automap.py --overwrite*
+Example: `python automap.py –-select --input` or `python automap.py --overwrite`
 
 The user can add a new product type.
 

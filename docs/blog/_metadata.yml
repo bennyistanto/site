@@ -1,4 +1,11 @@
 # Applies to every post in docs/blog/ (not the blog listing or other site pages).
+
+# Match the width of the blog listing page, which uses page-layout: full.
+page-layout: full
+
+# Stylesheet for the post title block rule and the prev/next footer.
+css: ../styles/blog-post.css
+
 # Comments powered by Giscus -> GitHub Discussions.
 #
 # SETUP: get repo-id and category-id from https://giscus.app

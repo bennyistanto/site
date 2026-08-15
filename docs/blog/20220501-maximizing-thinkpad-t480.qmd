@@ -19,11 +19,13 @@ For my personal daily use, I am happy with my [Macbook Pro 13 2011](/blog/202108
 
 Recently, I have my first own Thinkpad T480 (released on April 2019) with standard spec (it’s secondhand btw, with very good condition, and still under warranty up to this month).
 
-[caption id="" align="alignnone" width="3024"]![ Unboxing the T480 ](../assets/image-blog/20220501-maximizing-thinkpad-t480-02.jpg) Unboxing the T480 [/caption]
+![Unboxing the T480](../assets/image-blog/20220501-maximizing-thinkpad-t480-02.jpg)
 
 I decided to choose the [T series](https://en.wikipedia.org/wiki/ThinkPad_T_series) (T14, L14, T480 and T490 on my list) and finally with T480 after few months learning the best type to support my works. It’s came with i7 8650U 1.9ghz vPro (8 CPUs), Intel UHD620 4GB, DDR4 8GB, 512GB SSD Sata3, HD display 1366x768, non backlight keyboard, 6-cell external and without wwan and internal batteries.
 
-[caption id="" align="alignnone" width="2913"]![ Let see inside ](../assets/image-blog/20220501-maximizing-thinkpad-t480-08.jpg) Let see inside [/caption]
+![Let see inside](../assets/image-blog/20220501-maximizing-thinkpad-t480-08.jpg)
+
+### First round of upgrades
 
 Then I start to upgrade some parts:
 
@@ -34,11 +36,13 @@ Then I start to upgrade some parts:
 * Internal Battery, 24 Wh. <https://www.amazon.com/01AV421-01AV419-SB10K97577-SB10K97576-Replacement/dp/B09N1HYTTX>
 * Install the new Windows 11 - <https://www.microsoft.com/software-download/windows11>, previously was Windows 10
 
-[caption id="" align="alignnone" width="4032"]![ Installing new SSD, RAM and internal battery ](../assets/image-blog/20220501-maximizing-thinkpad-t480-01.jpg) Installing new SSD, RAM and internal battery [/caption]
+![Installing new SSD, RAM and internal battery](../assets/image-blog/20220501-maximizing-thinkpad-t480-01.jpg)
 
 I also change the US non-backlight to backlight keyboard too. <https://www.tokopedia.com/laptopstorebatam/keyboard-thinkpad-t470-t480-keyboard-thinkpad-t480-t470-backlight>
 
-[caption id="" align="alignnone" width="4032"]![ Woohooo, it has backlight now ](../assets/image-blog/20220501-maximizing-thinkpad-t480-03.jpg) Woohooo, it has backlight now [/caption]
+![Woohooo, it has backlight now](../assets/image-blog/20220501-maximizing-thinkpad-t480-03.jpg)
+
+### Second round of upgrades
 
 And few days ago I just completed another upgrades:
 
@@ -69,12 +73,14 @@ And few days ago I just completed another upgrades:
 
 Have a look, cellular data option is available and my screen is better now!
 
-![](../assets/image-blog/Screenshot+(11).jpg)
-![](../assets/image-blog/Screenshot+(12).jpg)
+![](../assets/image-blog/20220501-maximizing-thinkpad-t480-09.jpg)
+![](../assets/image-blog/20220501-maximizing-thinkpad-t480-10.jpg)
 
 I did all the installation myself by following the awesome guideline [https://www.ifixit.com/Device/Lenovo\_ThinkPad\_T480](https://www.ifixit.com/Device/Lenovo_ThinkPad_T480.) and use Pro Tech Toolkit <https://www.ifixit.com/Store/Tools/Pro-Tech-Toolkit/IF145-307> from [IFIXIT](https://www.ifixit.com).
 
 I am quite satisfied and excited, hope it lasts until next 5 years.
+
+### Back to work
 
 Back to work, to support my daily activities on climate analytics and geospatial technology, I installed various application:
 
@@ -84,8 +90,8 @@ Back to work, to support my daily activities on climate analytics and geospatial
 * Total Commander
 * Windows Subsystem for Linux 2, and GDAL/OGR, CDO, NCO, geopandas, xarray, rasterio, jupyter notebook, etc inside Anaconda.
 
-UPDATE: 4 Jun 2022
+### Update - 4 Jun 2022
 
 I replaced existing Wi-Fi card Intel Model 8265NGW with Intel Killer 6E AX1675x Tri Band AX210 M.2 2230 Bluetooth 5.2 Wi-Fi Card.
 
-![](../assets/image-blog/Screenshot+(23).jpg)
+![](../assets/image-blog/20220501-maximizing-thinkpad-t480-11.png)

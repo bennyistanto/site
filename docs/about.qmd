@@ -37,10 +37,19 @@ I run a "casual weekend project" called [Climate Social Responsibility (CSR)](cs
 
 **[Bogor Agricultural University](https://ipb.ac.id/), Bogor, Indonesia** (09/2001 - 03/2006)
 
-Sarjana Sains (B.Sc.) in Meteorology with a focus on agriculture meteorology and climatology, computation and agriculture simulation model, satellite meteorology, with minor in geographic information system and remote sensing.
+*Sarjana Sains* (S.Si.) in Meteorology with a focus on agriculture meteorology and climatology, computation and agriculture simulation model, satellite meteorology, with minor in geographic information system and remote sensing.
 
 - **Supervisors**: [Idung Risdiyanto](https://scholar.google.co.id/citations?hl=id&user=WBIaIyYAAAAJ) (Bogor Agricultural University), [M. Rokhis Khomarudin](https://scholar.google.com/citations?hl=en&user=RA5YWWQAAAAJ) (Indonesian National Institute of Aeronautics and Spaces)
 - **Bachelor thesis**: Software development to determine the Canadian Forest Fire Weather Index System using remote sensing satellite. (in Bahasa Indonesia). [Source: IPB Scientific Repository](http://repository.ipb.ac.id/handle/123456789/47915/)
+
+---
+
+**[Bogor Agricultural University](https://ipb.ac.id/), Bogor, Indonesia** (09/2022 - 08/2026)
+
+*Magister Sains* (M.Si.) in Applied Climatology with a focus on satellite-derived climate data, statistical and deep learning bias correction models, gauge-satellite integration, and open-science methodologies.
+
+- **Supervisors**: [Rizaldi Boer](https://scholar.google.com/citations?user=jTPXEp8AAAAJ&hl=en) (Bogor Agricultural University), [I Putu Santikayasa](https://scholar.google.com/citations?user=DcQ58z8AAAAJ&hl=en) (Bogor Agricultural University)
+- **Master's thesis**: A Hybrid Bias Correction Framework for Daily Satellite Precipitation. [Source: IPB Scientific Repository](https://repository.ipb.ac.id/handle/123456789/177877)
 
 ---
 
@@ -127,7 +136,7 @@ I'm moderately active on Telegram. You can discuss GIS and remote sensing, or po
 ### Get in Touch
 [benny@istan.to](mailto:benny@istan.to)
 
-[+1 (940) 604-3852](https://wa.me/19406043852)
+[+1 (903) 890-3786](https://wa.me/19038903786)
 
 Currently living in Bogor, Indonesia
 
@@ -137,13 +146,6 @@ Currently living in Bogor, Indonesia
 - [<i class="bi bi-linkedin"></i> LinkedIn](https://linkedin.com/in/bennyistanto)
 - [<i class="bi bi-globe"></i> Website](https://benny.istan.to)
 
-```{=html}
-<div style="margin-top: 2rem; text-align: left;">
-  <a href="https://clustrmaps.com/site/1b87f" title="Visit tracker">
-    <img src="https://www.clustrmaps.com/map_v2.png?d=_htKfyfLH1wU5CKuYWQtjDzb10rG4s6rb33QTdF6tko&cl=ffffff" alt="ClustrMaps visitor map" />
-  </a>
-</div>
-```
 :::
 
 ::: {.g-col-12 .g-col-md-6}

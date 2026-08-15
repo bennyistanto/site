@@ -2,7 +2,7 @@
 title: "Visiting Rohingya refugees in Cox’s Bazaar"
 author: "Benny Istanto"
 date: "2018-04-29"
-description: "Two-weeks ago I visited Rohingya refugees camp in Cox’s Bazaar, Bangladesh to conduct the feasibility study of 72hrs approach related to the exposure of Rohingya refugee camps to the upcoming monso..."
+description: "Visiting the Rohingya refugee camps in Cox's Bazaar, Bangladesh, to test the 72hrs approach against the camps' exposure to the coming monsoon and cyclone season"
 image: "../assets/image-blog/20180429-visiting-rohingya-refugees-in-coxs-bazaar-17.jpg"
 categories:
   - "Travel"

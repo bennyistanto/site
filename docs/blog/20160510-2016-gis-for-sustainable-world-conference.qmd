@@ -1,7 +1,7 @@
 ---
 title: "2016 GIS for Sustainable World Conference"
 author: "Benny Istanto"
-date: "2016-05-14"
+date: "2016-05-10"
 description: "Early this month I had the opportunity to attend the 2016 GIS for a Sustainable World Conference held on May 2–4, 2016 in Campus Biotech, Geneva, Switzerland"
 image: "../assets/image-blog/20160510-2016-gis-for-sustainable-world-conference-07.jpg"
 categories:

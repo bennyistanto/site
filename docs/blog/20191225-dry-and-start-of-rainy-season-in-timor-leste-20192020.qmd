@@ -3,6 +3,7 @@ title: "Dry and Start of Rainy Season in Timor-Leste 2019/2020"
 author: "Benny Istanto"
 date: "2019-12-25"
 description: "For the last 6 weeks, I am working with my colleagues in Bangkok and Dili to produces climate monitoring bulletin related to dry season in the last 2019 and start of rainy season for 2019-2020"
+image: "../assets/image-blog/20191225-dry-and-start-of-rainy-season-in-timor-leste-20192020-01.png"
 categories:
   - "Remote Sensing"
   - "GIS"
@@ -20,5 +21,29 @@ categories:
 For the last 6 weeks, I am working with my colleagues in Bangkok and Dili to produces climate monitoring bulletin related to dry season in the last 2019 and start of rainy season for 2019-2020. The bulletin has already been published and is accessible online via <https://www.wfp.org/publications/wfp-timor-leste-rainy-season-2019-2020>.
 
 Or you can directly read both bulletin below.
+
+```{=html}
+<iframe
+  src="https://docs.google.com/presentation/d/e/2PACX-1vS_eDyO88PJCAeAYpqCZEnfG8BXfsN4nEU2hVm7g3eMHO08anPvCYOvXS8g7QddS-ZW8Rdx9_k7KeN4/embed?start=false&loop=false&delayms=3000"
+  frameborder="0"
+  width="1280"
+  height="749"
+  allowfullscreen="true"
+  mozallowfullscreen="true"
+  webkitallowfullscreen="true">
+</iframe>
+```
+
+```{=html}
+<iframe
+  src="https://docs.google.com/presentation/d/e/2PACX-1vR5gpHVbiNXvRfXJN_M1dp9YkXDlxu3o9nf7xeWm9Hjyh6XI07CxtLIMO_HshxqNqd_WfiAYaoQsogP/embed?start=false&loop=false&delayms=3000"
+  frameborder="0"
+  width="1280"
+  height="749"
+  allowfullscreen="true"
+  mozallowfullscreen="true"
+  webkitallowfullscreen="true">
+</iframe>
+```
 
 All data to produces the analysis and maps are publicly available on internet, and I GDAL/OGR, python and ArcGIS to process the data and create the maps.

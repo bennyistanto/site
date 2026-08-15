@@ -170,6 +170,7 @@ Selanjutnya untuk memudahkan perhitungan pendugaan biomassa dengan periode terte
 
 ### Program untuk menghitung pendugaan biomassa tanaman padi menggunakan Visual BASIC 6
 
+::: {.callout-note collapse="true" title="Kode program Visual BASIC 6"}
 ```vb
 '++++++++++++++++++++++++
 ' Program untuk menduga biomassa tanaman padi
@@ -430,3 +431,4 @@ Public Sub Grafik_Padi()
 
 End Sub
 ```
+:::

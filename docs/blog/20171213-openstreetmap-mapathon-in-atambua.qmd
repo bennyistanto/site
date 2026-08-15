@@ -2,7 +2,7 @@
 title: "OpenStreetMap Mapathon in Atambua"
 author: "Benny Istanto"
 date: "2017-12-13"
-description: "My office frequently conduct an OpenStreetMap (OSM) Mapathon series, to improve the quality and speed of disaster preparedness, response and recovery in Indonesia through the development of an up t..."
+description: "Running an OpenStreetMap mapathon in Atambua, Belu District, to build the detailed base map that disaster preparedness and response in the area was missing"
 image: "../assets/image-blog/20171213-openstreetmap-mapathon-in-atambua-01.jpg"
 categories:
   - "General"
@@ -22,9 +22,13 @@ Last week, I went to [Atambua](https://en.wikipedia.org/wiki/Atambua), [Belu](ht
 
 Belu District consists of 12 subdistricts directly adjacent to [East Timor](https://en.wikipedia.org/wiki/East_Timor). It is a mountainous area with the Atambua City takes place at its city centre. These places were among the main priorities during the survey so it can reach out to all areas in Belu. Before starting the survey, participants were equipped with basic OSM trainings for two days, and it continued with [QGIS](https://www.qgis.org/en/site/) training on the last day.
 
+### First day
+
 The first day was started with training courses on the introduction to OSM, creating account, operating [JOSM](https://josm.openstreetmap.de), operating [Tasking Manager](https://tasks.hotosm.org), and an introduction to surveying tools, such as GPS, [OSMTraker](https://learnosm.org/en/mobile-mapping/osmtracker/), [OMK](http://www.openmapkit.org), and [ODK Collect](https://docs.getodk.org/collect-intro/). Some of the participants already have experience using GPS for field surveys in their respective villages for Red Cross activities, making them familiar with field survey training materials. The session was concluded with assigning participants into smaller groups for exercises to survey the areas nearby the training venue using the newly introduced tools.
 
 Participants were divided into four smaller groups, each consisting of one trainer, one participant from Belu Red Cross, and 1 from Red Cross from outside of Belu. The group assignment remains the same for the infrastructure surveys in Day 3 and 4.
+
+### Second day
 
 In the second day, the training was started with a survey exercise surrounding the training venue within 2 km. In the exercise, each group brings smartphones with pre-downloaded satellite imagery for the survey area, complete with its administration boundaries.
 
@@ -39,17 +43,23 @@ Participants had previously digitized their villages using Tasking Manager creat
 5. Houses of worship
 6. Government offices
 
+### Day 3 and 4
+
 Participants collect infrastructure data for the whole Belu Regency on the Day 3 and 4 using rented cars. There are 12 subdistricts, divided among the four groups.
 
 The field survey run efficiently, as each group traveled with one group member who are from the local PMI community members that can help navigate and who already recognize the objects that become the field survey priority objects. The following is the outcome of the survey:
 
 Participants will continue with uploading their \*.gpx data from their respective area as the training venue’s internet connection could not support large files upload, there are still several objects data already collected but are yet to be uploaded to the OSM. Once participants thoroughly understand how to map with little difficulties, we continued with training how to download OSM data using HOT Export so they can use the data to make their own maps. Participants then learned how to process the data using QGIS. These data will then be customised with symbology and labels. The session ended with map making with Map Composer QGIS. Participants went through this course fairly smoothly as they already understood Geographic Information System and are comfortable using laptops.
 
+### Winners
+
 The data collection training was concluded by announcing the winners, evaluated with the following criteria:
 
 1. Participants with the highest points at the post test and the highest margin between post and pre test points.
 2. Participants with the best map composing skills and was most active during the training.
 3. Participants who could answer impromptu questions in the forum
+
+### Pictures from the Mapathon
 
 Below are some pictures from the Mapathon.
 

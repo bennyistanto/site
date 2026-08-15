@@ -2,7 +2,8 @@ project:
   type: website
   output-dir: ../_site
   post-render:
-    - strip-html-ext.py
+    - script/blog-prev-next.py
+    - script/strip-html-ext.py
 
 website:
   title: ""
@@ -29,7 +30,11 @@ website:
       - text: "CSR"
         href: csr.qmd
       - text: "Blog"
-        href: blog.qmd
+        menu:
+          - text: "All Posts"
+            href: blog.qmd
+          - text: "Archive by Year"
+            href: blog-archive.qmd
       - text: "Works"
         menu:
           - text: "Overview"

@@ -38,13 +38,13 @@ Descriptive statistics can be broken down into the following categories:
 
 Below are measures of central tendency and variability, respectively, used in descriptive statistics to summarize and describe a set of numerical data.
 
-* `min` (minimum value) is the smallest value in a dataset. It provides an idea of the lower limit of the data. It can be represented as the equation: $$\min = \min(x)$$ where $x$ is the set of data.
-* `mean` (average) is the sum of all values in the dataset divided by the number of data points. It provides an estimate of the central tendency of the data, but can be skewed by outliers. It can be represented as the equation: $$\bar{x} = \frac{\sum x}{n}$$ where $x$ is the set of data and $n$ is the number of data points in the set.
-* `median` is the value in the middle of a dataset when it is sorted in ascending or descending order. It provides a measure of the central tendency of the data, and is not affected by outliers. It can be represented as the equation: $$\text{median} = x_{[n/2]}$$ where $x$ is the sorted set of data and $n$ is the number of data points in the set. If $n$ is even, then the median is the average of the two middle values.
-* `mode` is the value that occurs most frequently in a dataset. It is useful in finding the most common value in a dataset, but it doesn't provide much insight into the spread or distribution of the data. It can be represented as the equation: $$\text{mode} = \max(f_i)$$ where $f_i$ is the frequency of each value in the set of data $x$.
-* `max` (maximum value) is the largest value in a dataset. It provides an idea of the upper limit of the data. It can be represented as the equation: $$\max = \max(x)$$ where $x$ is the set of data.
-* `range` is the difference between the maximum and minimum value in a dataset. It gives an idea of the spread of the data. It can be represented as the equation: $$\text{range} = \max(x) - \min(x)$$ where $x$ is the set of data.
-* `stdev` (standard deviation) is a measure of the spread of a dataset. It quantifies how much each value deviates from the mean. A low standard deviation means the values are clustered closely around the mean, while a high standard deviation indicates that the values are more spread out. It can be represented as the equation: $$s = \sqrt{\frac{\sum(x_i - \bar{x})^2}{n}}$$ where $x$ is the set of data, $\bar{x}$ is the mean of the data, and $n$ is the number of data points in the set.
+* `min` (minimum value) is the smallest value in a dataset. It provides an idea of the lower limit of the data. It can be represented as the equation: $\min = \min(x)$ where $x$ is the set of data.
+* `mean` (average) is the sum of all values in the dataset divided by the number of data points. It provides an estimate of the central tendency of the data, but can be skewed by outliers. It can be represented as the equation: $\bar{x} = \frac{\sum x}{n}$ where $x$ is the set of data and $n$ is the number of data points in the set.
+* `median` is the value in the middle of a dataset when it is sorted in ascending or descending order. It provides a measure of the central tendency of the data, and is not affected by outliers. It can be represented as the equation: $\text{median} = x_{[n/2]}$ where $x$ is the sorted set of data and $n$ is the number of data points in the set. If $n$ is even, then the median is the average of the two middle values.
+* `mode` is the value that occurs most frequently in a dataset. It is useful in finding the most common value in a dataset, but it doesn't provide much insight into the spread or distribution of the data. It can be represented as the equation: $\text{mode} = \max(f_i)$ where $f_i$ is the frequency of each value in the set of data $x$.
+* `max` (maximum value) is the largest value in a dataset. It provides an idea of the upper limit of the data. It can be represented as the equation: $\max = \max(x)$ where $x$ is the set of data.
+* `range` is the difference between the maximum and minimum value in a dataset. It gives an idea of the spread of the data. It can be represented as the equation: $\text{range} = \max(x) - \min(x)$ where $x$ is the set of data.
+* `stdev` (standard deviation) is a measure of the spread of a dataset. It quantifies how much each value deviates from the mean. A low standard deviation means the values are clustered closely around the mean, while a high standard deviation indicates that the values are more spread out. It can be represented as the equation: $s = \sqrt{\frac{\sum(x_i - \bar{x})^2}{n}}$ where $x$ is the set of data, $\bar{x}$ is the mean of the data, and $n$ is the number of data points in the set.
 
 ### Data and Tools
 
@@ -60,21 +60,21 @@ Here is a step-by-step guide for performing a statistical descriptive analysis o
 
    a. Point of Interest, to extract time series information by a coordinate. In this analysis, we would like to extract daily air temperature at below coordinate, which is the location of the Department of Geophysics and Meteorology - IPB.
 
-   ```
+   ```javascript
    //---  To extract timeseries information by location
    var geometry = ee.Geometry.Point([106.73079706340155, -6.557929971767509]);
    ```
 
    b. Data availability checking
 
-   ```
+   ```javascript
    //---  Check data availability
    var firstImage = ee.Date(ee.List(GLDAS.get('date_range')).get(0));
    var latestImage = ee.Date(GLDAS.limit(1, 'system:time_start',  false).first().get('system:time_start'));
    ```
 2. Access the GLDAS 2.1 and other boundary data and load the data into a GEE ImageCollection: You can access it using the Earth Engine Data Catalog and then load it into a GEE ImageCollection, which is a collection of images. This will allow you to process and analyze the data in GEE.
 
-   ```
+   ```javascript
    //---  Global Land Data Assimilation System Dataset Availability:
    var GLDAS = ee.ImageCollection('NASA/GLDAS/V021/NOAH/G025/T3H'); //GLDAS21
    // These are USDOS LSIB boundaries simplified for boundary visualization.
@@ -82,14 +82,14 @@ Here is a step-by-step guide for performing a statistical descriptive analysis o
    ```
 3. Filter the data based on the required time range: we can define the start and end dat for the analysis..
 
-   ```
+   ```javascript
    //---  Start and End date
    var startDate = ee.Date('2013-01-01'); 
    var endDate = ee.Date('2023-01-01');
    ```
 4. Write a function to convert Kelvin to Celsius
 
-   ```
+   ```javascript
    //---  Function to Celsius
    function toCelcius(image){
     var Temp = image.select('Tair_f_inst').subtract(273.15);
@@ -102,7 +102,7 @@ Here is a step-by-step guide for performing a statistical descriptive analysis o
    ```
 5. Reduce the data to a single image and perform the descriptive analysis: Use the reduce() function to reduce the ImageCollection to a single image, use the filterDate() function to extract only the data that you need for the analysis, then calculate descriptive statistics, such as mean, median, standard deviation, minimum and maximum values, and others, using the reducers in GEE.
 
-   ```
+   ```javascript
    //---  MEAN
    var Tair_mean = ee.ImageCollection(
     ee.List.sequence(0, numberOfDays.subtract(1))
@@ -126,14 +126,14 @@ Here is a step-by-step guide for performing a statistical descriptive analysis o
 
    a. Map
 
-   ```
+   ```javascript
    //---  Map visualisation
    Map.addLayer(Tair_mean_sorted.mean(), Tair_vis, '10-years daily Tmean');
    ```
 
    b. Chart
 
-   ```
+   ```javascript
    //---  Combine min, mean, median, mode and max into single image collection
    var Tair_temp = Tair_min.combine(Tair_mean)
                           .combine(Tair_median)
@@ -164,7 +164,7 @@ Here is a step-by-step guide for performing a statistical descriptive analysis o
    ```
 7. Save the data: Once we have completed the analysis, save the data to a format that can be easily shared with others, this could be a CSV file.
 
-   ```
+   ```javascript
    //---  Generate all temperature at single location
    var timeSeriesTair = Tair.map(function (image) {
     var mean = image.reduceRegion({

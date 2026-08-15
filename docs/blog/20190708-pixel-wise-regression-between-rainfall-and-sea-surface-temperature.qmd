@@ -2,7 +2,7 @@
 title: "Pixel-wise regression between rainfall and sea surface temperature"
 author: "Benny Istanto"
 date: "2019-07-08"
-description: "General sensitivity of rainfall to sea surface temperature (sst) changes in NINO region Climate variability directly influences many aspects of food and nutrition security, particularly food availa..."
+description: "Pixel-wise regression mapping how sensitive Indonesian rainfall is to sea surface temperature changes in the NINO regions, and why that matters for food security"
 image: "../assets/image-blog/20190708-pixel-wise-regression-between-rainfall-and-sea-surface-temperature-03.jpg"
 categories:
   - "Data Science"
@@ -34,7 +34,7 @@ The level of climate risk is measured based on the strength of ENSO signal on ra
 
 The NINO-3.4 region is optimal for monitoring El Niño-Southern Oscillation (ENSO) and its impacts in Indonesia and possibly Southeast Asia. Then I would like to see the correlation between rainfall and SST by looking the change in rainfall with 1° increase in sea surface temperature (SST) of NINO-3.4 region, as a signal for moderate El Niño.
 
-Method
+### Method
 
 For this analysis, I used monthly rainfall from CHIRPS - CHC UCSB: <https://www.chc.ucsb.edu/data/chirps> and SST anomaly from ERSST v4 - NOAA: <https://www.ncdc.noaa.gov/teleconnections/enso/indicators/sst/> for year 1981 - 2017. Rainfall data available in GeoTIFF, but SST is in text format. In order to do pixel-wise regression between two rasters, both data must available in GeoTIFF raster format and in the same dimension (width and height).
 
@@ -50,7 +50,7 @@ As the SST data is only from single location in NINO3.4 then I need to do some d
 
   and give name sst\_%Value%.tif as output raster.
 
-[caption id="" align="alignnone" width="2500"]![  Figure 1.  Model Builder for generating SST raster ](../assets/image-blog/20190708-pixel-wise-regression-between-rainfall-and-sea-surface-temperature-03.jpg) Figure 1. Model Builder for generating SST raster [/caption]
+![Figure 1. Model Builder for generating SST raster](../assets/image-blog/20190708-pixel-wise-regression-between-rainfall-and-sea-surface-temperature-03.jpg)
 
 Time series regression will apply to indicate the correlation between rainfall anomaly in each area to anomaly of SST in the Pacific Ocean which represent ENSO signals. And doing a pixel-wise regression between two raster time series can be useful for several reasons, for example:
 
@@ -59,29 +59,46 @@ Time series regression will apply to indicate the correlation between rainfall a
 
 Using [R Statistics](https://www.r-project.org), it is easy and fast to do pixel-wise time series regression between rainfall and sea surface temperature. Then put everything in one single stack and derive rasters showing the slope, intercept and R² of the two time series as pixel values:
 
+```r
+# Define stacks in folder
+rainanom_ <- paste0( '~/R/PWR/tls_rainanom/rainanom_' , 0 : 443 , ".tif" )
+rainanom <- stack(rainanom_)
+sstanom_ <- paste0( '~/R/PWR/tls_sstanom/sstanom_' , 0 : 443 , ".tif" )
+sstanom <- stack(sstanom_)
+s <- stack(rainanom, sstanom)
+a <- length(rainanom_)
+b <- length(sstanom_)
+```
+
 Then calculate the slope using below function
 
-[caption id="" align="alignnone" width="866"]![  Figure 2.  Slope map ](../assets/image-blog/20190708-pixel-wise-regression-between-rainfall-and-sea-surface-temperature-01.jpg) Figure 2. Slope map [/caption]
+```r
+# Slope Function
+fun <- function (x) { if (is.na(x[ 1 ]))   else {cochrane.orcutt(lm(x[ 1 :a] ~ x[( 1 +a):(a+b)]))$coefficients[ 2 ] }}
+slope <- calc(s, fun)
+```
+
+![Figure 2. Slope map](../assets/image-blog/20190708-pixel-wise-regression-between-rainfall-and-sea-surface-temperature-01.jpg)
 
 Slope map above shows the changes in monthly rainfall likely to result from a 1°C change in sea surface temperature (SST). Areas in white exhibit very high negative change in rainfall: those in light to dark green exhibit very low negative changes to normal. Each square in the grid represents a 5.6 x 5.6 km square.
 
 For correlation and p-value, we can used Gridded Correlation of Time Series Raster Data that available in Hakim Abdi's Github Gist: <https://gist.github.com/hakimabdi/7308bbd6d9d94cf0a1b8>
 
-[caption id="" align="alignnone" width="2500"]![  Figure 3.  Correlation and p-value map ](../assets/image-blog/20190708-pixel-wise-regression-between-rainfall-and-sea-surface-temperature-02.jpg) Figure 3. Correlation and p-value map [/caption]
+![Figure 3. Correlation and p-value map](../assets/image-blog/20190708-pixel-wise-regression-between-rainfall-and-sea-surface-temperature-02.jpg)
 
 Timor-Leste data was used to test the script, and its worked. So we can apply it using data from other areas or with bigger dimension.
 
-Reference:
+### References
 
 1. <https://matinbrandt.wordpress.com/2014/05/26/pixel-wise-regression-between-two-raster-time-series/>
 2. <https://matinbrandt.wordpress.com/2013/11/15/pixel-wise-time-series-trend-anaylsis-with-ndvi-gimms-and-r/>
 3. <https://www.hakimabdi.com/blog/test-pixelwise-correlation-between-two-time-series-of-gridded-satellite-data-in-r>
 
-Notes:
+### Notes
 
 1. I completed data manipulation process for SST using ArcGIS Model Builder in 4 Dec 2018, after got feedback and insight from discussion in [GIS ID](https://t.me/gis_id/22800) Telegram group.
-2. This works done by [Anggita Annisa](https://id.linkedin.com/in/anggita-nurul-annisa-862a91157), a final year student from Department of Statistics - IPB who is doing an internship under my supervision in VAM unit of WFP Indonesia from June - August 2019.
+2. This works done by [Anggita Annisa](https://id.linkedin.com/in/anggita-nurul-annisa-862a91157), a final year student from Department of Statistics - IPB, who is doing an internship under my supervision in VAM unit of WFP Indonesia, from June - August 2019.
 
-Update - 17 May 2020
+### Update - 17 May 2020
 
 Data and script: <https://github.com/wfpidn/Pixel-wise-Regression>

@@ -3,7 +3,7 @@ title: "Back to Aceh (again)"
 author: "Benny Istanto"
 date: "2011-02-10"
 description: "Starting from 1 February 2011, I am back to Aceh again"
-image: "../assets/image-blog/Pict+(00"
+image: "../assets/image-blog/20110210-back-to-aceh-again-02.jpg"
 categories:
   - "GIS"
 # tags:
@@ -23,5 +23,6 @@ The objective of the project is to provide technical assistance (TA) to address 
 
 I am based at Dinas Bina Marga and Cipta Karya office in Sigli, Pidie district and frequently travelling to Bireun.
 
-![](../assets/image-blog/Pict+(00).jpg)
+![](../assets/image-blog/20110210-back-to-aceh-again-02.jpg)
+
 ![](../assets/image-blog/20110210-back-to-aceh-again-01.jpg)

@@ -18,7 +18,7 @@ categories:
 
 November 12–18 is OSM Geography Awareness Week. 2017 OSMGeoWeek calls on community groups, teachers, students, governments, private sector, map lovers, and motivated individuals around the world to come together to celebrate geography, spatial data and its usage especially in humanitarian response, innovation and economic development.
 
-Last week I participated this event hosted by Humanitarian OpenStreetMap Organization (HOT). In Indonesia, the event run in parallel with WFP mapathon in Jakarta and Bali Mapathon with BNPB and Udaya University in Bali.
+Last week, I participated this event hosted by Humanitarian OpenStreetMap Organization (HOT). In Indonesia, the event run in parallel with WFP mapathon in Jakarta and Bali Mapathon with BNPB and Udaya University in Bali.
 
 The event featured HOT’s partners, from public, private, donor, IO, NGO, university, each explaining how they use OpenStreetMap or innovative using spatial technologies to tackle social, economic, and ecological challenges as well as to further the attainment of sustainable development goals and moderated by [Nadia Atmaji](https://nadiaatmaji.com) from Metro TV.
 
@@ -74,6 +74,19 @@ The event featured HOT’s partners, from public, private, donor, IO, NGO, unive
 :::
 
 My OSM presentation on [travel time and accessibility model](/blog/20141216-osm-use-case-market-accessibility) started at 55’
+
+```{=html}
+  <iframe 
+  width="560" 
+  height="315" 
+  src="https://www.youtube.com/embed/iikmGKfwEtc?si=chtmljdpr4ZzaqJX" 
+  title="YouTube video player" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+  referrerpolicy="strict-origin-when-cross-origin" 
+  allowfullscreen>
+</iframe>
+```
 
 OSM Geography Awareness Week 2017: Innovative Technology and Partnership for Resilient Communities. @america, Jakarta
 

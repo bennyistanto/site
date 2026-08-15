@@ -2,7 +2,7 @@
 title: "How’s 2021 rainfall in Indonesia?"
 author: "Benny Istanto"
 date: "2022-01-02"
-description: "I frequently used the Global Precipitation Measurement (GPM) - next-generation of the Tropical Rainfall Measuring Mission (TRMM - <https://pmm"
+description: "Looking back at Indonesia's 2021 rainfall through GPM IMERG, and what the year's totals and anomalies actually show"
 image: "../assets/image-blog/20220102-hows-2021-rainfall-in-indonesia-03.jpg"
 categories:
   - "Remote Sensing"

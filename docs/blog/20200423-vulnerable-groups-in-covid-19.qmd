@@ -2,8 +2,8 @@
 title: "Vulnerable groups in COVID-19"
 author: "Benny Istanto"
 date: "2020-04-23"
-description: "[caption id=\"\" align=\"alignnone\" width=\"2500\"]"
-image: "../assets/image-blog/accessmap.jpg"
+description: "Mapping access to health facilities by travel time, to find where the groups most vulnerable to COVID-19 are the least well served"
+image: "../assets/image-blog/20200423-vulnerable-groups-in-covid-19-01.png"
 categories:
   - "Remote Sensing"
   - "GIS"
@@ -20,7 +20,7 @@ categories:
 
 ---
 
-[caption id="" align="alignnone" width="2500"]![  Figure 1.  Elderly population (60+) and access to hospital ](../assets/image-blog/accessmap.jpg) Figure 1. Elderly population (60+) and access to hospital [/caption]
+![Figure 1. Elderly population (60+) and access to hospital](../assets/image-blog/20200423-vulnerable-groups-in-covid-19-01.png)
 
 **Good access** (to markets, health centers, education) **means**:
 

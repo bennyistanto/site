@@ -1,7 +1,8 @@
 ---
 title: "Firmware upgrade on Thuraya SatSleeve for iPhone"
 author: "Benny Istanto"
-date: "2024-01-04"
+date: "2024-01-03"
+description: "Fixing the intermittent bluetooth and GPS connection on a legacy Thuraya SatSleeve for iPhone with the v3.0.1 firmware upgrade"
 image: "../assets/image-blog/20240103-firmware-upgrade-on-thuraya-satsleeve-for-iphone-01.jpg"
 categories:
   - "General"

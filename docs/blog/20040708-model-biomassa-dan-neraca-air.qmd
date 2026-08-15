@@ -36,6 +36,7 @@ Gambar di bawah ini merupakan tampilan model biomassa dan neraca air.
 
 Script di bawah ini digunakan untuk menghitung neraca air pada model.
 
+::: {.callout-note collapse="true" title="Kode program neraca air"}
 ```vb
 '++++++++++++++++++++++++
 ' Script untuk menghitung neraca air
@@ -154,3 +155,4 @@ Script di bawah ini digunakan untuk menghitung neraca air pada model.
 
         If kat(i) < 0 Then kat(i) = 0
 ```
+:::

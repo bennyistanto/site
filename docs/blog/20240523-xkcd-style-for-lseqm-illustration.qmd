@@ -2,7 +2,8 @@
 title: "xkcd style for LSEQM illustration"
 author: "Benny Istanto"
 date: "2024-05-23"
-description: "Source: <https://gist"
+description: "Drawing the linear scaling and empirical quantile mapping (LSEQM) bias correction steps in xkcd style, with the plotting code in a Gist"
+image: "../assets/image-blog/20240523-xkcd-style-for-lseqm-illustration-01.png"
 categories:
   - "General"
   - "Climate"
@@ -13,5 +14,499 @@ categories:
 #   - "linear scaling"
 
 ---
+
+This is example result of Python script that could generate a [xkcd](https://xkcd.com/) graph-style to illustrate concept of Linear Scaling and Empirical Quantile Mapping (LSEQM) method for daily precipitation bias correction.
+
+- Version a
+
+![lseqm_xkcd_style_a](https://gist.github.com/assets/722584/6c38d5c1-259a-473d-954e-3e744edb5f89)
+
+- Version b
+
+![lseqm_xkcd_style_b](https://gist.github.com/assets/722584/71a979d4-8d8b-4fee-8bae-163f5d4547b0)
+
+- Version c
+
+![lseqm_xkcd_style_c](https://gist.github.com/user-attachments/assets/f5e3c9d7-f088-4d9c-8a33-de96bd60f44c)
+
+- Flowchart
+
+![lseqm_xkcd_flowchart](https://gist.github.com/assets/722584/c2df5d0d-b037-46ce-acc8-e3d3282e0508)
+
+You can paste the below code into an online Python compiler like https://python-fiddle.com/ and grab the result instantly.
+
+::: {.callout-note collapse="true" title="Python - XKCD version a"}
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Sample data (replace with your actual data)
+obs_precip = [10, 5, 18, 12, 7, 15, 20]
+sim_precip = [8, 3, 22, 15, 5, 12, 25]
+
+# Function to calculate scaling factor
+def scaling_factor(obs, sim):
+    return sum(obs) / sum(sim)
+
+# Linear scaling
+scaling_factor_value = scaling_factor(obs_precip, sim_precip)
+adjusted_precip = [p * scaling_factor_value for p in sim_precip]
+
+# Combine data for CDF
+data = sorted(obs_precip + adjusted_precip)
+
+# Cumulative Distribution Function (CDF)
+def cdf(data):
+    cdf_values = []
+    n = len(data)
+    for i, d in enumerate(data):
+        cdf_values.append((i + 1) / n)
+    return cdf_values
+
+obs_cdf = cdf(sorted(obs_precip))
+adj_cdf = cdf(sorted(adjusted_precip))
+
+# Bias correction using quantile mapping
+def bias_correct(obs_val, obs_precip, adjusted_precip):
+    obs_sorted = sorted(obs_precip)
+    adj_sorted = sorted(adjusted_precip)
+    obs_percentile = obs_sorted.index(obs_val) / len(obs_sorted)
+    adj_index = int(obs_percentile * len(adj_sorted))
+    return adj_sorted[adj_index]
+
+# Sample day for correction (change index for different day)
+day_to_correct = 5
+obs_val = obs_precip[day_to_correct]
+corr_precip = bias_correct(obs_val, obs_precip, adjusted_precip)
+
+# Plotting in XKCD style
+plt.xkcd()
+
+plt.figure(figsize=(10, 6))
+
+# Panel 1: Original Data
+plt.subplot(221)
+plt.bar(range(len(obs_precip)), obs_precip, color='blue', label='Observed')
+plt.bar(range(len(sim_precip)), sim_precip, color='orange', label='Simulated')
+plt.title('Original Precipitation')
+plt.xlabel('Day')
+plt.ylabel('Precipitation (mm)')
+plt.legend()
+
+# Panel 2: Linear Scaling
+plt.subplot(222)
+plt.bar(range(len(adjusted_precip)), adjusted_precip, color='green', label='Adjusted')
+plt.title('Linear Scaling (a = {:.2f})'.format(scaling_factor_value))
+plt.xlabel('Day')
+plt.ylabel('Precipitation (mm)')
+plt.legend()
+
+# Panel 3: CDFs
+plt.subplot(223)
+plt.plot(sorted(obs_precip), np.linspace(0, 1, len(obs_precip), endpoint=False), marker='.', linestyle='none', label='Observed CDF', color='blue')
+plt.plot(sorted(adjusted_precip), np.linspace(0, 1, len(adjusted_precip), endpoint=False), marker='.', linestyle='none', label='Adjusted CDF', color='red')
+plt.title('Cumulative Distribution Functions (CDFs)')
+plt.xlabel('Precipitation (mm)')
+plt.ylabel('Probability')
+plt.legend()
+
+# Panel 4: Quantile Mapping (example)
+plt.subplot(224)
+plt.axvline(x=obs_precip[day_to_correct], color='red', linestyle='--', label='Observed ({})'.format(obs_precip[day_to_correct]))
+plt.axvline(x=corr_precip, color='black', label='Bias-Corrected')
+plt.axhline(y=obs_cdf[day_to_correct], color='red', linestyle='--')
+plt.axhline(y=adj_cdf[int(obs_cdf[day_to_correct] * len(adj_cdf))], color='gray', linestyle='--')
+plt.bar(day_to_correct, sim_precip[day_to_correct], color='orange', alpha=0.5, label='Original Psim')
+plt.text(day_to_correct + 0.1, sim_precip[day_to_correct] + 0.5, '{:.1f}'.format(sim_precip[day_to_correct]), color='orange', ha='center', va='bottom')
+plt.title('Quantile Mapping (Day {})'.format(day_to_correct))
+plt.xlabel('Precipitation (mm)')
+plt.ylabel('CDF Value')
+plt.legend()
+
+plt.tight_layout()
+plt.show()
+```
+:::
+
+::: {.callout-note collapse="true" title="Python - XKCD version b"}
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Sample data (replace with your actual data)
+obs_precip = [10, 5, 18, 12, 7, 15, 20]
+sim_precip = [8, 3, 22, 15, 5, 12, 25]
+
+# Function to calculate scaling factor
+def scaling_factor(obs, sim):
+    return sum(obs) / sum(sim)
+
+# Linear scaling
+scaling_factor_value = scaling_factor(obs_precip, sim_precip)
+adjusted_precip = [p * scaling_factor_value for p in sim_precip]
+
+# Combine data for CDF
+data = sorted(obs_precip + adjusted_precip)
+
+# Cumulative Distribution Function (CDF)
+def cdf(data):
+    cdf_values = []
+    n = len(data)
+    for i, d in enumerate(data):
+        cdf_values.append((i + 1) / n)
+    return cdf_values
+
+obs_cdf = cdf(sorted(obs_precip))
+adj_cdf = cdf(sorted(adjusted_precip))
+
+# Bias correction using quantile mapping
+def bias_correct(obs_val, obs_precip, adjusted_precip):
+    obs_sorted = sorted(obs_precip)
+    adj_sorted = sorted(adjusted_precip)
+    obs_percentile = obs_sorted.index(obs_val) / len(obs_sorted)
+    adj_index = int(obs_percentile * len(adj_sorted))
+    return adj_sorted[adj_index]
+
+# Correcting all days using quantile mapping
+corr_precip_all = [bias_correct(val, obs_precip, adjusted_precip) for val in obs_precip]
+
+# Sample day for correction (change index for different day)
+day_to_correct = 5
+
+# Plotting in XKCD style
+plt.xkcd()
+
+plt.figure(figsize=(15, 10))
+
+# Panel 1: Original Data
+plt.subplot(231)
+width = 0.35
+x = np.arange(len(obs_precip))
+plt.bar(x - width/2, obs_precip, width, label='Observed', color='blue')
+plt.bar(x + width/2, sim_precip, width, label='Simulated', color='orange')
+plt.title('Original Precipitation Data')
+plt.xlabel('Day')
+plt.ylabel('Precipitation (mm)')
+plt.legend()
+
+# Panel 2: Mean Values
+plt.subplot(232)
+plt.bar(['Observed Mean', 'Simulated Mean'], [np.mean(obs_precip), np.mean(sim_precip)], color=['blue', 'orange'])
+plt.title('Mean Values Before Scaling')
+plt.ylabel('Precipitation (mm)')
+
+# Panel 3: Linear Scaling
+plt.subplot(233)
+plt.bar(range(len(adjusted_precip)), adjusted_precip, color='green', label='Adjusted')
+plt.title('Linear Scaling Applied')
+plt.xlabel('Day')
+plt.ylabel('Precipitation (mm)')
+plt.legend()
+
+# Panel 4: CDFs Comparison
+plt.subplot(234)
+plt.plot(sorted(obs_precip), np.linspace(0, 1, len(obs_precip), endpoint=False), marker='.', linestyle='none', label='Observed CDF', color='blue')
+plt.plot(sorted(adjusted_precip), np.linspace(0, 1, len(adjusted_precip), endpoint=False), marker='.', linestyle='none', label='Adjusted CDF', color='red')
+plt.title('Cumulative Distribution Functions (CDFs)')
+plt.xlabel('Precipitation (mm)')
+plt.ylabel('Probability')
+plt.legend()
+
+# Panel 5: Quantile Mapping (example)
+plt.subplot(235)
+plt.axvline(x=obs_precip[day_to_correct], color='red', linestyle='--', label='Observed ({})'.format(obs_precip[day_to_correct]))
+plt.axvline(x=corr_precip_all[day_to_correct], color='black', label='Bias-Corrected')
+plt.axhline(y=obs_cdf[day_to_correct], color='red', linestyle='--')
+plt.axhline(y=adj_cdf[int(obs_cdf[day_to_correct] * len(adj_cdf))], color='gray', linestyle='--')
+plt.bar(day_to_correct, sim_precip[day_to_correct], color='orange', alpha=0.5, label='Original Simulated')
+plt.text(day_to_correct + 0.1, sim_precip[day_to_correct] + 0.5, '{:.1f}'.format(sim_precip[day_to_correct]), color='orange', ha='center', va='bottom')
+plt.title('Quantile Mapping (Day {})'.format(day_to_correct))
+plt.xlabel('Precipitation (mm)')
+plt.ylabel('CDF Value')
+plt.legend()
+
+# Panel 6: Final Corrected Data
+plt.subplot(236)
+plt.bar(x - width/2, obs_precip, width, label='Observed', color='blue')
+plt.bar(x + width/2, corr_precip_all, width, label='Bias-Corrected', color='red')
+plt.title('Final Corrected Data')
+plt.xlabel('Day')
+plt.ylabel('Precipitation (mm)')
+plt.legend()
+
+plt.tight_layout()
+plt.show()
+```
+:::
+
+::: {.callout-note collapse="true" title="Python - XKCD version c"}
+```python
+# Install required packages
+!pip install -q requests matplotlib
+
+import requests
+import os
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+fm._load_fontmanager(try_read_cache=False)
+from pathlib import Path
+import warnings
+import numpy as np
+
+# Set the figure DPI to 300
+plt.rcParams['figure.dpi'] = 300
+
+# Suppress font-related warnings
+warnings.filterwarnings("ignore", 
+                       message="findfont: Font family .* not found", 
+                       category=UserWarning, 
+                       module="matplotlib.font_manager")
+
+# Download the xkcd font file
+font_url = "https://github.com/ipython/xkcd-font/raw/master/xkcd-script/font/xkcd-script.ttf"
+font_path = "/tmp/xkcd-script.ttf"
+
+# Download the font
+response = requests.get(font_url)
+with open(font_path, "wb") as f:
+    f.write(response.content)
+
+# Update matplotlib's font cache
+fm.fontManager.addfont(font_path)
+
+# Use XKCD style for a fun illustration
+plt.xkcd()
+
+# Increase the global font size
+plt.rcParams.update({
+    'font.size': 16,              # Increase base font size
+    'axes.titlesize': 18,         # Title font size
+    'axes.labelsize': 14,         # Axis label font size
+    'xtick.labelsize': 14,        # X-tick label size
+    'ytick.labelsize': 14,        # Y-tick label size
+    'legend.fontsize': 16,        # Legend font size
+    'figure.titlesize': 24        # Figure title size
+})
+
+# Sample data (replace with your actual data)
+obs_precip = [10, 5, 18, 12, 7, 15, 20]
+sim_precip = [8, 3, 22, 15, 5, 12, 25]
+
+# ----------------------------
+# Step 1: Linear Scaling (LS)
+# ----------------------------
+def scaling_factor(obs, sim):
+    return sum(obs) / sum(sim)
+
+ls_factor = scaling_factor(obs_precip, sim_precip)
+# LS adjusted precipitation is the simulated data scaled by LS factor
+adjusted_precip = [p * ls_factor for p in sim_precip]
+
+# ----------------------------
+# Step 2: Quantile Mapping (EQM)
+# ----------------------------
+# Compute cumulative distribution function (CDF)
+def cdf(data):
+    n = len(data)
+    return [(i + 1) / n for i in range(n)]
+
+# Compute CDFs for observed and LS-adjusted data
+obs_sorted = sorted(obs_precip)
+adjusted_sorted = sorted(adjusted_precip)
+obs_cdf = cdf(obs_sorted)
+adj_cdf = cdf(adjusted_sorted)
+
+# EQM: bias correction via quantile mapping
+def bias_correct(obs_val, obs_precip, adjusted_precip):
+    obs_sorted = sorted(obs_precip)
+    adj_sorted = sorted(adjusted_precip)
+    obs_percentile = obs_sorted.index(obs_val) / len(obs_sorted)
+    # Ensure index is within bounds
+    adj_index = min(int(obs_percentile * len(adj_sorted)), len(adj_sorted) - 1)
+    return adj_sorted[adj_index]
+
+# Compute bias-corrected precipitation using EQM
+corr_precip_all = [bias_correct(val, obs_precip, adjusted_precip) for val in obs_precip]
+
+# ----------------------------
+# Step 3: Deep Learning (DL) Correction
+# ----------------------------
+# Simulated DL adjustment: for extreme events (e.g., precipitation > 15), apply an additional factor.
+def apply_deep_learning_adjustment(precip_data, threshold=15, adjustment_factor=1.1):
+    corrected_data = []
+    for val in precip_data:
+        if val > threshold:
+            corrected_data.append(val * adjustment_factor)
+        else:
+            corrected_data.append(val)
+    return corrected_data
+
+# Apply DL correction on the EQM corrected values
+dl_corrected_precip_all = apply_deep_learning_adjustment(corr_precip_all, threshold=15, adjustment_factor=1.1)
+
+# Compute DL adjustment differences: DL correction minus EQM correction
+dl_diff = [dl - eqm for dl, eqm in zip(dl_corrected_precip_all, corr_precip_all)]
+
+# ----------------------------
+# Step 4: Define a Sample Day for Detailed Comparison
+# ----------------------------
+day_to_correct = 5  # change index if needed
+
+# ----------------------------
+# Step 5: Composite Plot: 2 Rows × 4 Columns (Figures 1 to 8)
+# ----------------------------
+
+# Increase figure size to give more room for text
+fig, axes = plt.subplots(2, 4, figsize=(24, 12))
+
+# --- Figure 1: Original Precipitation Data ---
+ax = axes[0, 0]
+width = 0.35
+x = np.arange(len(obs_precip))
+ax.bar(x - width/2, obs_precip, width, label='Observed', color='blue')
+ax.bar(x + width/2, sim_precip, width, label='Satellite', color='orange')
+ax.set_title('1: Precipitation Data')
+ax.set_xlabel('Day')
+ax.set_ylabel('Precip (mm)')
+ax.legend()
+
+# --- Figure 2: LS – Mean Values Before Scaling ---
+ax = axes[0, 1]
+ax.bar(['Observed Mean', 'Satellite Mean'], 
+       [np.mean(obs_precip), np.mean(sim_precip)], 
+       color=['blue', 'orange'])
+ax.set_title('2: Mean Values Before Scaling (LS)')
+ax.set_ylabel('Precip (mm)')
+
+# --- Figure 3: LS – Linear Scaling Applied ---
+ax = axes[0, 2]
+ax.bar(range(len(adjusted_precip)), adjusted_precip, color='green', label='LS Adjusted')
+ax.set_title('3: Linear Scaling Applied')
+ax.set_xlabel('Day')
+ax.set_ylabel('Precip (mm)')
+ax.legend()
+
+# --- Figure 4: LS/EQM – CDFs Comparison ---
+ax = axes[0, 3]
+# Plot observed and LS-adjusted sorted values vs. their CDF
+ax.plot(obs_sorted, np.linspace(0, 1, len(obs_sorted), endpoint=False), 
+        marker='.', markersize=12, linestyle='none', label='Observed CDF', color='blue')
+ax.plot(adjusted_sorted, np.linspace(0, 1, len(adjusted_sorted), endpoint=False),
+        marker='.', markersize=12, linestyle='none', label='LS Adjusted CDF', color='red')
+ax.set_title('4: CDFs Comparison (LS/EQM)')
+ax.set_xlabel('Precip (mm)')
+ax.set_ylabel('Probability')
+ax.legend()
+
+# --- Figure 5: EQM – Quantile Mapping Example ---
+ax = axes[1, 0]
+# Mark the observed value and the EQM-corrected value for the sample day
+ax.axvline(x=obs_precip[day_to_correct], color='red', linestyle='--', linewidth=2,
+           label=f'Observed ({obs_precip[day_to_correct]})')
+ax.axvline(x=corr_precip_all[day_to_correct], color='black', linewidth=2,
+           label='Bias-Corrected (EQM)')
+ax.axhline(y=obs_cdf[day_to_correct], color='red', linestyle='--', linewidth=2)
+# Plot original simulated value for reference
+ax.bar(day_to_correct, sim_precip[day_to_correct], color='orange', alpha=0.5, 
+       label='Original Satellite')
+ax.text(day_to_correct + 0.1, sim_precip[day_to_correct] + 0.005, 
+        f'{sim_precip[day_to_correct]:.1f}', color='orange', fontsize=14, ha='center', va='bottom')
+ax.set_title(f'5: Quantile Mapping Example (Day {day_to_correct})')
+ax.set_xlabel('Precip (mm)')
+ax.set_ylabel('CDF Value')
+ax.legend()
+
+# --- Figure 6: DL – DL Adjustment Differences ---
+ax = axes[1, 1]
+ax.bar(range(len(dl_diff)), dl_diff, color='purple')
+ax.set_title('6: DL Adjustment Differences\n(DL Correction minus EQM)')
+ax.set_xlabel('Day')
+ax.set_ylabel('Difference (mm)')
+
+# --- Figure 7: DL – Scatter Plot of EQM vs. DL Corrected Values ---
+ax = axes[1, 2]
+ax.scatter(corr_precip_all, dl_corrected_precip_all, color='magenta', s=100)  # Increased marker size
+ax.plot([min(corr_precip_all), max(corr_precip_all)], 
+        [min(corr_precip_all), max(corr_precip_all)], 
+        color='gray', linestyle='--', linewidth=2)  # thicker diagonal reference line
+ax.set_title('7: EQM vs. DL Corrected Values')
+ax.set_xlabel('Bias-Corrected (EQM)')
+ax.set_ylabel('DL Corrected')
+
+# --- Figure 8: Final Corrected Data with DL ---
+ax = axes[1, 3]
+ax.bar(x - width/2, obs_precip, width, label='Observed', color='blue')
+ax.bar(x + width/2, dl_corrected_precip_all, width, label='Bias-Corrected + DL', color='red')
+ax.set_title('8: Final Corrected Data')
+ax.set_xlabel('Day')
+ax.set_ylabel('Precip (mm)')
+ax.legend()
+
+# Add more space between subplots to prevent text overlap
+plt.subplots_adjust(wspace=0.3, hspace=0.4)
+
+plt.tight_layout()
+plt.show()
+```
+:::
+
+::: {.callout-note collapse="true" title="Python - XKCD flowchart"}
+```python
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+
+# Function to add a box with text
+def add_box(text, xy, ax, width=3, height=1, fontsize=18):
+    box = mpatches.FancyBboxPatch(xy, width=width, height=height, boxstyle="round,pad=0.3", edgecolor='black', facecolor='white')
+    ax.add_patch(box)
+    ax.text(xy[0] + width / 2, xy[1] + height / 2, text, ha='center', va='center', fontsize=fontsize)
+
+# Create the plot
+plt.xkcd()
+fig, ax = plt.subplots(figsize=(18, 8))
+
+# Adding boxes for each step in the flowchart
+steps = [
+    "Set up\nPython env\n(xarray, numpy, etc)",
+    "Load data as\nDataArray",
+    "Linear Scaling",
+    "Combine Data",
+    "Calculate CDFs\nCumulative\nDistribution\nFunction",
+    "Bias Correction\n(Quantile Mapping)",
+    "Output\nDataArray",
+    "Result"
+]
+
+positions = [
+    (1, 6), (5, 6), (9, 6), (13, 6),
+    (13, 3), (9, 3), (5, 3), (1, 3)
+]
+
+for step, pos in zip(steps, positions):
+    add_box(step, pos, ax, fontsize=18)
+
+# Adding arrows
+arrows = [
+    ((4, 6.5), (5, 6.5)),  # Step 1 to Step 2
+    ((8, 6.5), (9, 6.5)),  # Step 2 to Step 3
+    ((12, 6.5), (13, 6.5)),  # Step 3 to Step 4
+    ((15, 6), (15, 4.2)),  # Step 4 to Step 5 (down)
+    ((13, 3.5), (12, 3.5)),  # Step 5 to Step 6
+    ((9, 3.5), (8, 3.5)),  # Step 6 to Step 7
+    ((5, 3.5), (4, 3.5)),  # Step 7 to Step 8
+]
+
+for start, end in arrows:
+    plt.arrow(start[0], start[1], end[0] - start[0], end[1] - start[1], head_width=0.2, head_length=0.2, fc='black', ec='black')
+
+# Removing axes
+ax.set_xlim(0, 18)
+ax.set_ylim(2, 8)
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+:::
 
 Source: <https://gist.github.com/bennyistanto/b9e5d9c932dc6b034f559deaa26e2743>

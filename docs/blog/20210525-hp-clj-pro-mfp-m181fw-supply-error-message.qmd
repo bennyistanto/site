@@ -27,13 +27,13 @@ Here’s how-to guide to downgrade the firmware:
 
 (You need a computer/laptop with Windows 10 installed)
 
-**Step 1. Confirm Cartridge Policy is off.**
+### Step 1. Confirm Cartridge Policy is off.
 
 Newer HP mono/color printers have what they call a “cartridge policy”. Without turning this off, the printer will not accept aftermarket cartridges and may even write to the chip, rendering the cartridge useless. To turn of the Cartridge Policy setting, follow one of the paths described below according to the options available on your particular machine:
 
 * Home Screen > Setup Menu > System Setup > Supply Setting > Cartridge Policy > Off
 
-**Step 2. Find the Firmware Datecode**
+### Step 2. Find the Firmware Datecode
 
 * Home Screen > Setup Menu > Service > Firmware Datecode
 
@@ -42,14 +42,14 @@ If the firmware version is NOT 20201021, immediately disable the “Check Automa
 * Home Screen > Setup Menu > LaserJet update > Manage Updates > Check Automatically. Choose NO
 * Home Screen > Setup Menu > LaserJet update > Manage Updates > Allow Update. Choose NO
 
-**Step 3. ONLY Complete this Step if Your Firmware Date is 20201021**
+### Step 3. ONLY Complete this Step if Your Firmware Date is 20201021
 
 * Download Firmware Version 20200612 for HP Color Laserjet Pro M180 – M181 Series. Link: <https://on.istan.to/3TUk8Vg>
 * Run the downloaded application to roll back to the previous firmware, then click Send Firmware. The process should only take a few minutes.
 
 ![](../assets/image-blog/20210525-hp-clj-pro-mfp-m181fw-supply-error-message-02.jpg)
 
-**Step 4. Re-check the Firmware Datecode**
+### Step 4. Re-check the Firmware Datecode
 
 * Home Screen > Setup Menu > Service > Firmware Datecode
 

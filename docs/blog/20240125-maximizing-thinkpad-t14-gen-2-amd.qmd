@@ -1,8 +1,8 @@
 ---
 title: "Maximizing Thinkpad T14 Gen 2 AMD"
 author: "Benny Istanto"
-date: "2024-01-26"
-description: "I bought a Thinkpad T14 Gen 2 AMD (released on August 2022) end of December 2023, it’s second hand with mint condition and standard specification (AMD Ryzen™ 7 PRO 5850U Processor with Radeon Graph..."
+date: "2024-01-25"
+description: "Upgrading a second-hand ThinkPad T14 Gen 2 AMD with a 4K screen, more memory, a bigger SSD and a WWAN card, my second ThinkPad after the T480"
 image: "../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-01.jpg"
 categories:
   - "General"
@@ -26,10 +26,30 @@ I did all the installation myself by following the awesome guideline and use Pro
 
 See some of the picture below:
 
-[caption id="" align="alignnone" width="3333"]![ Remove the old screen and install the WWAN antenna ](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-01.jpg) Remove the old screen and install the WWAN antenna [/caption]
-[caption id="" align="alignnone" width="3333"]![ Install the new screen ](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-02.jpg) Install the new screen [/caption]
-[caption id="" align="alignnone" width="3333"]![ Put the memory in the free slot ](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-06.jpg) Put the memory in the free slot [/caption]
-[caption id="" align="alignnone" width="3333"]![ Replace the old SSD with new one, and put the WWAN card in place and antenna cable too ](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-07.jpg) Replace the old SSD with new one, and put the WWAN card in place and antenna cable too [/caption]
-[caption id="" align="alignnone" width="4032"]![ This is the machine with upgrades ](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-05.jpg) This is the machine with upgrades [/caption]
-[caption id="" align="alignnone" width="3024"]![ Look, the Cellular connection is available now ](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-04.jpg) Look, the Cellular connection is available now [/caption]
-[caption id="" align="alignnone" width="3024"]![ The new 4K screen is on and I just need to install the bezel 😎 ](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-03.jpg) The new 4K screen is on and I just need to install the bezel 😎 [/caption]
+Remove the old screen and install the WWAN antenna
+
+![Remove the old screen and install the WWAN antenna](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-01.jpg)
+
+Install the new screen
+
+![Install the new screen](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-02.jpg)
+
+Put the memory in the free slot
+
+![Put the memory in the free slot](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-06.jpg)
+
+Replace the old SSD with new one, and put the WWAN card in place and antenna cable too
+
+![Replace the old SSD with new one, and put the WWAN card in place and antenna cable too](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-07.jpg)
+
+This is the machine with upgrades
+
+![This is the machine with upgrades](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-05.jpg)
+
+Look, the Cellular connection is available now
+
+![Look, the Cellular connection is available now](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-04.jpg)
+
+The new 4K screen is on and I just need to install the bezel 😎
+
+![The new 4K screen is on and I just need to install the bezel 😎](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-03.jpg)

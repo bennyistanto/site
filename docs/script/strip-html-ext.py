@@ -28,12 +28,13 @@ from pathlib import Path
 
 # --- locate the rendered output directory -----------------------------------
 # When invoked by Quarto, CWD = project dir (docs/) and QUARTO_PROJECT_OUTPUT_DIR
-# is set (e.g. "../_site"). Fall back to ../_site relative to this script.
+# is set (e.g. "../_site"). This script lives in docs/script/, so the fallback
+# goes up two levels: docs/script -> docs -> repo root, then into _site.
 _env_out = os.environ.get("QUARTO_PROJECT_OUTPUT_DIR")
 if _env_out:
     OUTPUT_DIR = Path(_env_out).resolve()
 else:
-    OUTPUT_DIR = (Path(__file__).resolve().parent / ".." / "_site").resolve()
+    OUTPUT_DIR = (Path(__file__).resolve().parent.parent / ".." / "_site").resolve()
 
 # A path is "internal" if it has no URI scheme and is not a bare fragment /
 # protocol-relative / mailto / tel link.
