@@ -2,9 +2,12 @@
 title: "Cluster Atlas"
 subtitle: "West Sumatra Earthquake Response 2009"
 page-layout: full
-toc: true
+toc: false
+image: "../../assets/image-projects/2009-cluster-atlas-00.png"
 css: ../../styles/project-detail.css
 ---
+
+This atlas describes the activities and achievements of non-government members of the clusters in support of the relief and recovery efforts in West Sumatra. It illustrates both the progress made over the one-year period from September 2009 to September 2010 and some areas of remaining need.
 
 ::: {.project-meta}
 ::: {.meta-item}
@@ -12,17 +15,214 @@ css: ../../styles/project-detail.css
 Year
 :::
 ::: {.meta-value}
-2009
+2009 - 2010
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Organization
+:::
+::: {.meta-value}
+United Nations Office of the Humanitarian/Resident Coordinator (RC/HC) for West Sumatra
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Role
+:::
+::: {.meta-value}
+Information Management Officer
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Tools
+:::
+::: {.meta-value}
+ArcGIS, Adobe Illustrator, Adobe InDesign
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Team
+:::
+::: {.meta-value}
+Benny Istanto, [Indawati](https://id.linkedin.com/in/indawati), [Humam Zarodi](https://id.linkedin.com/in/humamzarodi), [Astri Arini Waluyo](https://id.linkedin.com/in/astriariniwaluyo)
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Advisors
+:::
+::: {.meta-value}
+[Ignacio Leon-Garcia](https://ch.linkedin.com/in/ignaciol1), [Faizal Thamrin](https://id.linkedin.com/in/faizalthamrin), [Mindaraga Rahardja](https://id.linkedin.com/in/mindaragarahardja), [Titi Moektijasih](https://id.linkedin.com/in/titimoektijasih)
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Reference
+:::
+::: {.meta-value}
+[Official download from the United Nations in Indonesia](http://www.un.or.id/en/media-room/publications/viewcategory/63-ocha)
 :::
 :::
 :::
 
-## Overview
+## My role
 
-Brief description of the project goes here.
+As Information Management Officer I led the Information Management Unit of the West Sumatra Recovery Network, covering data and information management, GIS technology and database services, and the interpreter/translator function for the atlas production. The scope of work included the collection, processing and analysis of cluster data, and the concept, content, editing and design of the atlas itself.
+
+## What the atlas covers
+
+The atlas summarises activities for the clusters. Thematic maps focus on ten clusters: Agriculture, Early Recovery, Education, Emergency Shelter, Emergency Telecommunication, Food and Nutrition, Health, Logistics, Protection, and Water, Sanitation and Hygiene. The three largest areas of assistance were shelter, health, and food and nutrition.
+
+It was compiled by the United Nations Office of the Humanitarian/Resident Coordinator for West Sumatra as part of the continuing response to the earthquake, with inputs from cluster members across all sectors.
+
+## Scope and limitations
+
+While the RC/HC office made every effort to obtain inputs from as many non-governmental actors as possible, there are inevitably gaps and omissions. Some organizations were not in a position to easily share information. Other omissions include private donations made by Indonesians and independent programmes implemented by organizations from the commercial sector. Commercial and private assistance is difficult to collect through the cluster system, yet it has without doubt been significant in both the relief and recovery phases.
+
+Despite those gaps, the atlas represents a best effort to characterise the size and composition of the assistance given to the earthquake affected people of West Sumatra province. It provides a record of non-governmental inputs and reflects the cooperation between the clusters and the provincial and central governments. The hope was that it could serve as a reference for the design of ongoing recovery and reconstruction work, and inform planning for disaster risk reduction so that West Sumatra might be better prepared should disaster strike again.
+
+West Sumatra gave us invaluable lessons on resilience across the broad aspects of daily life, in community, economy and culture. The international community also learned how government, at both national and local level, made space for working together constructively to assist disaster-affected people.
+
+## Download
+
+The complete atlas is available as a single PDF in two resolutions:
+
+- [High resolution](https://drive.google.com/file/d/1xQfYtinNX2t_7fw0IApOYFF8xEdHhES0/view?usp=drive_link) (320 MB)
+- [Low resolution](https://drive.google.com/file/d/1ZaEBDQpz1-mKyU-lrWxT2q7YKEmBWBu6/view?usp=drive_link) (128 MB)
+
+It is also split into 13 parts, all high resolution:
+
+| Part | Contents | Size | |
+|:--|:--|--:|:--|
+| 01 | Front cover, acknowledgment, summary, contents, foreword from the Humanitarian/Resident Coordinator, how we coordinate, Cluster Atlas | 21 MB | [PDF](https://drive.google.com/file/d/1lAjFN3A3LEC-E5kB2dpfxl3PYg95y_M0/view?usp=drive_link) |
+| 02 | Agriculture | 17 MB | [PDF](https://drive.google.com/file/d/1QRqcc6R-DznrwUvrp677ZGxekL-yBpg7/view?usp=drive_link) |
+| 03 | Early Recovery | 19 MB | [PDF](https://drive.google.com/file/d/12pMjQVOFkKeqkttA0cATGmpGJULgvxGw/view?usp=drive_link) |
+| 04 | Education | 13 MB | [PDF](https://drive.google.com/file/d/1iUxL9WLn9_EtB9vrt4lIuKObDXFtJ5gY/view?usp=drive_link) |
+| 05 | Emergency Shelter | 88 MB | [PDF](https://drive.google.com/file/d/1LhfC1aev8dxCOWTTtHYJLoO8EwY_L1mx/view?usp=drive_link) |
+| 06 | Emergency Telecommunication | 4 MB | [PDF](https://drive.google.com/file/d/1kWlQGyp16x9oD1fTwhhJE5PDYO_IKGgX/view?usp=drive_link) |
+| 07 | Food and Nutrition | 12 MB | [PDF](https://drive.google.com/file/d/1jm9kI_zIIXJTzk6FANgsZbUj33weiUy_/view?usp=drive_link) |
+| 08 | Health | 19 MB | [PDF](https://drive.google.com/file/d/1B0yKGWbb1OLr-fVoJesHoA3AG6Cz_DUJ/view?usp=drive_link) |
+| 09 | Logistics | 29 MB | [PDF](https://drive.google.com/file/d/1aFY4j8mqJSbRGpnFANW4krstTAJts4MC/view?usp=drive_link) |
+| 10 | Protection | 18 MB | [PDF](https://drive.google.com/file/d/1WtXb1qpyTQEiV04kzvL1DuNOnjJZ9-wQ/view?usp=drive_link) |
+| 11 | Sanitation, Water and Hygiene | 10 MB | [PDF](https://drive.google.com/file/d/1Cq6mBVaHw3W-vXFkMyB6m_TXsOGqSh0c/view?usp=drive_link) |
+| 12 | Funding, Government | 16 MB | [PDF](https://drive.google.com/file/d/1S0GIG2a5cOEXISs8TquGqDgROT9SIVkW/view?usp=drive_link) |
+| 13 | Annex, acronyms, back cover | 50 MB | [PDF](https://drive.google.com/file/d/1mgE2B1RKRUILddUZhm-JO7HEMmgy-Udz/view?usp=drive_link) |
+
+## Gallery
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-01.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-02.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-03.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-04.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-05.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-06.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-07.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-08.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-09.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-10.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-11.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-12.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-13.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-14.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-15.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-16.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-17.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-18.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-19.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-20.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-21.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-22.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-23.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-24.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-25.png){.gallery-img}
+:::
+
+:::
 
 ::: {.back-link}
 [← Back to Projects](../projects.qmd)
 :::
-
-*This is a placeholder page. Content will be added soon.*
