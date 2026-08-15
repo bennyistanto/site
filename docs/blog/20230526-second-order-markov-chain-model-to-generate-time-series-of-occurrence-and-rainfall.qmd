@@ -3,7 +3,7 @@ title: "Second-order Markov chain model to generate time series of occurrence an
 author: "Benny Istanto"
 date: "2023-05-26"
 description: "In the realm of meteorological studies, the use of statistical models is pivotal for understanding and predicting various weather phenomena"
-image: "../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-01.jpg"
+image: "../assets/image-blog/20230526-second-order-markov-chain-model-to-generate-time-series-of-occurrence-and-rainfall-19.jpg"
 categories:
   - "Research"
   - "Climate"

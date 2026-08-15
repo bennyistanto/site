@@ -76,12 +76,16 @@
   margin: 0;
 }
 
+/* Caption band. Left aligned: these captions are sentences (year, client,
+   subject, software), not centred titles, so a common left edge down the grid
+   is easier to scan than centred text of varying length. */
 .gallery-item figcaption {
   padding: 0.75rem;
   font-size: 0.85rem;
   line-height: 1.4;
-  color: #666;
-  background: white;
+  text-align: left;
+  color: #212529;
+  background: #f1f3f5;
 }
 
 .external-link {
@@ -111,8 +115,9 @@
   padding: 0 0.75rem 0.75rem;
   font-size: 0.85rem;
   line-height: 1.4;
-  color: #666;
-  background: white;
+  text-align: left;
+  color: #495057;
+  background: #f1f3f5;
 }
 
 .gallery-note p {
@@ -149,20 +154,27 @@
   }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .gallery-item {
-    background: #1e1e1e;
-  }
+/* Dark mode support.
+   Keyed to body.quarto-dark, which is what Quarto's own light/dark toggle sets
+   (the rendered body is `class="nav-fixed quarto-light"` by default).
+   This used to be an @media (prefers-color-scheme: dark) block, which reads the
+   OPERATING SYSTEM setting and knows nothing about the site toggle, so on a
+   machine set to dark the tiles stayed dark even in the site's light mode. */
+body.quarto-dark .gallery-item {
+  background: #1e1e1e;
+}
 
-  .gallery-item figcaption {
-    background: #1e1e1e;
-    color: #ccc;
-  }
+body.quarto-dark .gallery-item figcaption {
+  background: #1e1e1e;
+  color: #ccc;
+}
 
-  .gallery-item > .gallery-note,
-  .gallery-item > p {
-    background: #1e1e1e;
-    color: #ccc;
-  }
+body.quarto-dark .gallery-item > .gallery-note,
+body.quarto-dark .gallery-item > p {
+  background: #1e1e1e;
+  color: #ccc;
+}
+
+body.quarto-dark .gallery-note a:not(.external-link) {
+  color: #6ea8fe;
 }

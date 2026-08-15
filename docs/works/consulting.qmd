@@ -156,7 +156,7 @@ Structuring technical concepts into winning proposals for funding and project im
 Schedule a consultation or reach out to discuss your project needs.
 
 ::: {.cta-buttons}
-[📅 Schedule Appointment](https://app.acuityscheduling.com/schedule.php?owner=19707818){.btn-primary-custom target="_blank"}
+[📅 Schedule Appointment](https://calendar.app.google/C2dHn7C3VyTtw8As6){.btn-primary-custom target="_blank"}
 
 [✉️ Send Email](mailto:benny@istan.to?subject=Book appointment for consulting service){.btn-secondary-custom}
 :::

@@ -3,7 +3,7 @@ title: "Mean annual temperature and number of  hot days in a year"
 author: "Benny Istanto"
 date: "2021-12-11"
 description: "Using MODIS daily land surface temperature from 2000 to 2020 in Google Earth Engine to map mean annual temperature and count hot days per year"
-image: "../assets/image-blog/20211211-mean-annual-temperature-and-number-of-hot-days-in-a-year-01.jpg"
+image: "../assets/image-blog/20211211-mean-annual-temperature-and-number-of-hot-days-in-a-year-02.jpg"
 categories:
   - "Remote Sensing"
   - "Research"

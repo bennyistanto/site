@@ -3,7 +3,7 @@ title: "PyCPT for Subseasonal Forecasts in Indonesia"
 author: "Benny Istanto"
 date: "2023-03-15"
 description: "PyCPT is a Python library for statistical analysis and forecasting of climate data"
-image: "../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-07.jpg"
+image: "../assets/image-blog/20230315-pycpt-for-subseasonal-forecasts-in-indonesia-10.jpg"
 categories:
   - "Climate"
   - "Remote Sensing"

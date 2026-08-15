@@ -3,7 +3,7 @@ title: "Experimental climatological rainfall zone"
 author: "Benny Istanto"
 date: "2023-03-07"
 description: "Climatological rainfall zones represent distinct areas with different rainfall patterns"
-image: "../assets/image-blog/20230307-experimental-climatological-rainfall-zone-01.jpg"
+image: "../assets/image-blog/20230307-experimental-climatological-rainfall-zone-19.jpg"
 categories:
   - "Remote Sensing"
   - "Research"
