@@ -101,6 +101,39 @@
   color: white;
 }
 
+/* A note under a gallery caption: press mention, credit, source links.
+   figcaption carries its own padding, but this block is a SIBLING of the
+   figure, so without this it sits flush against the tile edge. The bare `> p`
+   selector catches any item still written without the wrapper. */
+.gallery-item > .gallery-note,
+.gallery-item > p {
+  margin: 0;
+  padding: 0 0.75rem 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #666;
+  background: white;
+}
+
+.gallery-note p {
+  margin: 0 0 0.4rem;
+}
+
+.gallery-note p:last-child {
+  margin-bottom: 0;
+}
+
+/* Source links stay lightweight. The bordered .external-link pill suits a
+   single featured mention; a row of them would dominate the tile. */
+.gallery-note a:not(.external-link) {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.gallery-note a:not(.external-link):hover {
+  text-decoration: underline;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .gallery-grid {
@@ -123,6 +156,12 @@
   }
 
   .gallery-item figcaption {
+    background: #1e1e1e;
+    color: #ccc;
+  }
+
+  .gallery-item > .gallery-note,
+  .gallery-item > p {
     background: #1e1e1e;
     color: #ccc;
   }

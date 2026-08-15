@@ -95,7 +95,10 @@ Click on any map to view it in full resolution in a new tab.
 ::: {.gallery-item}
 ![2020. WFP. COVID-19 data preparedness. ArcGIS 10.7](../assets/image-maps-and-infographics/2020-wfp-covid19-preparedness.jpg){.gallery-img}
 
+::: {.gallery-note}
 [Featured on ESRI Map Gallery](https://mapgallery.esri.com/submission-detail/609d7f2195ac006b209082e3){.external-link target="_blank"}
+:::
+
 :::
 
 ::: {.gallery-item}
@@ -133,9 +136,12 @@ Click on any map to view it in full resolution in a new tab.
 ::: {.gallery-item}
 ![2018. WFP. Disaster snapshot. ArcGIS 10.4, Google Slide](../assets/image-maps-and-infographics/2018-wfp-disaster-snapshot.png){.gallery-img}
 
-The Agence France-Presse (AFP) Graphics team requested permission via email to adapt this map for international distribution.
+::: {.gallery-note}
+Adapted by the Agence France-Presse graphics team for international distribution, on request by email.
 
-References: [Link 1](https://au.news.yahoo.com/sick-hungry-indonesia-tsunami-survivors-cram-shelters-032750961--spt.html){.external-link target="_blank"}, [Link 2](https://victorfairen.wordpress.com/wp-content/uploads/2019/02/map-showing-tsunami-affected-areas-around-sunda-strait.jpg){.external-link target="_blank"}, [Link 3](https://www.dailymail.co.uk/news/article-6529497/Indonesia-rescuers-scramble-reach-isolated-tsunami-struck-towns.html), [Link 4](https://www.lunion.fr/id25995/article/2018-12-27/lindonesie-releve-le-niveau-dalerte-du-volcan-responsable-du-tsunami)
+Appeared in [Yahoo News](https://au.news.yahoo.com/sick-hungry-indonesia-tsunami-survivors-cram-shelters-032750961--spt.html){target="_blank"} · [Victor Fairen](https://victorfairen.wordpress.com/wp-content/uploads/2019/02/map-showing-tsunami-affected-areas-around-sunda-strait.jpg){target="_blank"} · [Daily Mail](https://www.dailymail.co.uk/news/article-6529497/Indonesia-rescuers-scramble-reach-isolated-tsunami-struck-towns.html){target="_blank"} · [L'Union](https://www.lunion.fr/id25995/article/2018-12-27/lindonesie-releve-le-niveau-dalerte-du-volcan-responsable-du-tsunami){target="_blank"}
+:::
+
 :::
 
 ::: {.gallery-item}
@@ -149,7 +155,10 @@ References: [Link 1](https://au.news.yahoo.com/sick-hungry-indonesia-tsunami-sur
 ::: {.gallery-item}
 ![2018. WFP. Travel time. ArcGIS 10.4](../assets/image-maps-and-infographics/2018-wfp-travel-time.jpg){.gallery-img}
 
+::: {.gallery-note}
 [Featured on WFP Story](https://www.wfp.org/stories/technology-emergencies-gives-us-bigger-picture-it-helps-us-find-solutions){.external-link target="_blank"}
+:::
+
 :::
 
 ::: {.gallery-item}
