@@ -3,7 +3,7 @@ title: "SBR Market Day 2023: Demon Slayer colours on canvas"
 author: "Benny Istanto"
 date: "2023-02-15"
 description: "My fourth-grade daughter turned her love of Demon Slayer into a market day business for the IB Primary Years Programme at Sekolah Bogor Raya"
-image: "../assets/image-blog/20230215-sbr-market-day-2023-demon-slayer-colours-on-canvas-09.jpg"
+image: "../assets/image-blog/20230215-sbr-market-day-2023-demon-slayer-colours-on-canvas-19.jpg"
 categories:
   - "General"
 # tags:
