@@ -77,8 +77,8 @@ My OSM presentation on [travel time and accessibility model](/blog/20141216-osm-
 
 ```{=html}
   <iframe 
-  width="560" 
-  height="315" 
+  width="800" 
+  height="500" 
   src="https://www.youtube.com/embed/iikmGKfwEtc?si=chtmljdpr4ZzaqJX" 
   title="YouTube video player" 
   frameborder="0" 
