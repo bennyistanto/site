@@ -74,6 +74,7 @@ And few days ago I just completed another upgrades:
 Have a look, cellular data option is available and my screen is better now!
 
 ![](../assets/image-blog/20220501-maximizing-thinkpad-t480-09.jpg)
+
 ![](../assets/image-blog/20220501-maximizing-thinkpad-t480-10.jpg)
 
 I did all the installation myself by following the awesome guideline [https://www.ifixit.com/Device/Lenovo\_ThinkPad\_T480](https://www.ifixit.com/Device/Lenovo_ThinkPad_T480.) and use Pro Tech Toolkit <https://www.ifixit.com/Store/Tools/Pro-Tech-Toolkit/IF145-307> from [IFIXIT](https://www.ifixit.com).
