@@ -82,14 +82,15 @@ Featured projects demonstrating expertise in earth observation, climate analysis
 </a>
 
 <a href="projects/2011-district-road-network.html" class="project-card">
-  <img src="../assets/image-projects/2011-district-road-network-01.png" class="project-thumbnail" alt="Aceh District Road Network">
+  <img src="../assets/image-projects/2011-district-road-network-01.png" class="project-thumbnail" alt="Aceh Road Network">
   <div class="project-content">
     <div class="project-year">2011</div>
-    <h3 class="project-title">Aceh District Road Network</h3>
+    <h3 class="project-title">Aceh Road Network</h3>
   </div>
 </a>
 
 <a href="projects/2014-province-infographic.html" class="project-card">
+  <img src="../assets/image-projects/2014-province-infographic-00.png" class="project-thumbnail" alt="Province Infographic">
   <div class="project-content">
     <div class="project-year">2014</div>
     <h3 class="project-title">Province Infographic</h3>

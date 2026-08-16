@@ -16,7 +16,20 @@ San Diego Convention Center
 
 20 – 24 July 2015, San Diego, CA, USA
 
+::: {.image-gallery}
+::: {.gallery-item}
 ![](../assets/image-blog/20150801-2015-esri-user-conference-01.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20150801-2015-esri-user-conference-02.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20150801-2015-esri-user-conference-03.jpg)
+:::
+::: {.gallery-item}
+![](../assets/image-blog/20150801-2015-esri-user-conference-04.jpg)
+:::
+:::
 
 ### The Conference
 

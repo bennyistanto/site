@@ -1,10 +1,13 @@
 ---
 title: "Province Infographic"
-subtitle: "Project from 2014"
+subtitle: "Disaster preparedness and planning data, province by province"
 page-layout: full
-toc: true
+toc: false
+image: "../../assets/image-projects/2014-province-infographic-00.png"
 css: ../../styles/project-detail.css
 ---
+
+On 27 November 2014, at a national seminar in Jakarta, the Indonesia National Disaster Management Agency (BNPB) and the National Statistics Office (BPS) launched a new publication on data for disaster management. The "Province Infographic" book was developed in cooperation with BNPB and BPS, with technical support from several United Nations agencies including UNFPA, OCHA, WFP and UNDP. The multi-stakeholder cooperation behind it is an innovative way of using integrated data, collected from various parties, for humanitarian purposes.
 
 ::: {.project-meta}
 ::: {.meta-item}
@@ -15,14 +18,61 @@ Year
 2014
 :::
 :::
+
+::: {.meta-item}
+::: {.meta-label}
+Organization
+:::
+::: {.meta-value}
+BNPB and BPS, with technical support from UNFPA, OCHA, WFP and UNDP
+:::
 :::
 
-## Overview
+::: {.meta-item}
+::: {.meta-label}
+Tools
+:::
+::: {.meta-value}
+ArcGIS 10.2.2, Adobe Illustrator, Tableau
+:::
+:::
 
-Brief description of the project goes here.
+::: {.meta-item}
+::: {.meta-label}
+Team
+:::
+::: {.meta-value}
+[Dikot Pramdoni Harahap](https://id.linkedin.com/in/dharahap), [Suprapto](https://id.linkedin.com/in/suprapto-bnpb-34b02535), Ratih Nurmasari, [Theopilus Yanuarto](https://id.linkedin.com/in/theophilus-yanuarto-a36b15a0), [Narwawi Pramudhiarta](https://id.linkedin.com/in/awinxgeo), Muhammad Rifat, [Faizal Thamrin](https://id.linkedin.com/in/faizalthamrin), Benny Istanto, [Atik Widyastuti](https://id.linkedin.com/in/atikwidyastuti), [Adi Kurniawan](https://id.linkedin.com/in/samnawi), [Felix Yanuar](https://id.linkedin.com/in/felix-wicaksono)
+:::
+:::
+:::
+
+The infographics give BNPB, other government bodies, and national and international actors a fast and reliable reference for policy planning and analysis in disaster preparedness and humanitarian response.
+
+![The book is a joint product of BNPB, BPS, OCHA, UNFPA, WFP and UNDP, published November 2014](../../assets/image-projects/2014-province-infographic-00.png)
+
+The book contains maps and graphics on Indonesia's provinces and their populations, focused on seven sectors: population, food security, livelihoods, education, health, water and sanitation, and disasters.
+
+## Download the book
+
+- [English](https://reliefweb.int/report/indonesia/indonesia-province-infographic-book-27-nov-2014)
+- [Bahasa Indonesia](https://www.humanitarianresponse.info/sites/www.humanitarianresponse.info/files/documents/files/IDN_Province_infographic_BHS_27Nov2014.pdf)
+
+## Example: Aceh province
+
+Each province gets a two-page spread. The first page carries the population density map and the administrative summary; the second brings together the sectoral indicators.
+
+![Aceh: population counts at 1 km resolution, with 23 districts, 276 sub-districts and 6,445 villages, and the most and least dense and populated areas](../../assets/image-projects/2014-province-infographic-01.png)
+
+![Aceh: population, water and sanitation, health, natural disaster, food security, livelihood and education, with data sources and the provincial BPBD contact](../../assets/image-projects/2014-province-infographic-02.png)
+
+## References
+
+- [BNPB publication page](https://bnpb.go.id/buku/indonesia-infografis-provinsi)
+- [UNFPA Indonesia summary](https://indonesia.unfpa.org/en/publications/summary-indonesia-province-infographic-disaster-preparedness-and-planning-english)
+- [ReliefWeb report](https://reliefweb.int/report/indonesia/indonesia-province-infographic-book-27-nov-2014)
+- [Datasets on HDX](https://data.humdata.org/dataset/indonesia-province-infographic-datasets)
 
 ::: {.back-link}
 [← Back to Projects](../projects.qmd)
 :::
-
-*This is a placeholder page. Content will be added soon.*
