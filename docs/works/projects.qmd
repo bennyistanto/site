@@ -74,6 +74,7 @@ Featured projects demonstrating expertise in earth observation, climate analysis
 </a>
 
 <a href="projects/2009-cluster-atlas.html" class="project-card">
+  <img src="../assets/image-projects/2009-cluster-atlas-00.png" class="project-thumbnail" alt="Cluster Atlas">
   <div class="project-content">
     <div class="project-year">2009</div>
     <h3 class="project-title">Cluster Atlas: West Sumatra Earthquake Response</h3>
@@ -81,6 +82,7 @@ Featured projects demonstrating expertise in earth observation, climate analysis
 </a>
 
 <a href="projects/2011-district-road-network.html" class="project-card">
+  <img src="../assets/image-projects/2011-district-road-network-01.png" class="project-thumbnail" alt="Aceh District Road Network">
   <div class="project-content">
     <div class="project-year">2011</div>
     <h3 class="project-title">Aceh District Road Network</h3>

@@ -24,7 +24,7 @@ Year
 Organization
 :::
 ::: {.meta-value}
-United Nations Office of the Humanitarian/Resident Coordinator (RC/HC) for West Sumatra
+United Nations Office of the Humanitarian/Resident Coordinator (RC/HC)
 :::
 :::
 
@@ -120,6 +120,10 @@ It is also split into 13 parts, all high resolution:
 ## Gallery
 
 ::: {.gallery-grid}
+
+::: {.gallery-item}
+![](../../assets/image-projects/2009-cluster-atlas-00.png){.gallery-img}
+:::
 
 ::: {.gallery-item}
 ![](../../assets/image-projects/2009-cluster-atlas-01.png){.gallery-img}
