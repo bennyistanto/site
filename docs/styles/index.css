@@ -27,17 +27,19 @@
 }
 
 /* Dark mode for WIP banner */
-@media (prefers-color-scheme: dark) {
-  .wip-banner {
-    background: linear-gradient(135deg, #3a3a2e 0%, #4a4a3a 100%);
-    border-left-color: #f39c12;
-    color: #ffeaa7;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  }
+/* Keyed to body.quarto-dark, which is what Quarto's light/dark toggle sets.
+   An @media (prefers-color-scheme: dark) block reads the OPERATING SYSTEM
+   setting and ignores the site toggle, so the banner stayed dark in the site's
+   light mode and light when a visitor switched the site to dark. */
+body.quarto-dark .wip-banner {
+  background: linear-gradient(135deg, #3a3a2e 0%, #4a4a3a 100%);
+  border-left-color: #f39c12;
+  color: #ffeaa7;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
 
-  .wip-banner strong {
-    color: #ffd93d;
-  }
+body.quarto-dark .wip-banner strong {
+  color: #ffd93d;
 }
 
 /* Hero Section - Full Page Image Showcase */

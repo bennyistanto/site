@@ -216,20 +216,22 @@ header .description {
   }
 }
 
-/* Dark mode adjustments */
-@media (prefers-color-scheme: dark) {
-  .tech-tag {
-    background: rgba(13, 110, 253, 0.15);
-    border-color: #6ea8fe;
-    color: #6ea8fe;
-  }
+/* Dark mode adjustments.
+   Keyed to body.quarto-dark, which is what Quarto's light/dark toggle sets.
+   These were @media (prefers-color-scheme: dark), which reads the OPERATING
+   SYSTEM setting and ignores the site toggle, so on a machine set to dark the
+   tiles stayed dark even in the site's light mode. */
+body.quarto-dark .tech-tag {
+  background: rgba(13, 110, 253, 0.15);
+  border-color: #6ea8fe;
+  color: #6ea8fe;
+}
 
-  .gallery-item {
-    background: #1e1e1e;
-  }
+body.quarto-dark .gallery-item {
+  background: #1e1e1e;
+}
 
-  .gallery-item figcaption {
-    background: #1e1e1e;
-    color: #ccc;
-  }
+body.quarto-dark .gallery-item figcaption {
+  background: #1e1e1e;
+  color: #ccc;
 }

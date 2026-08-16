@@ -1,10 +1,13 @@
 ---
-title: "FSVA"
-subtitle: "Project from 2015"
+title: "Interactive FSVA"
+subtitle: "2015 Food Security and Vulnerability Atlas"
 page-layout: full
-toc: true
+toc: false
+image: "../../assets/image-projects/2015-fsva-02.png"
 css: ../../styles/project-detail.css
 ---
+
+Since 2003 the Government of Indonesia, in collaboration with WFP, has built up its understanding of food security in Indonesia, including at the local level, through the food security and vulnerability atlases (FSVA). The atlases are used to target programmes and design policy aimed at improving food and nutrition security across the country. The 2015 FSVA is the most recent product of that collaboration, and the first published as an interactive web atlas alongside the printed report.
 
 ::: {.project-meta}
 ::: {.meta-item}
@@ -15,14 +18,136 @@ Year
 2015
 :::
 :::
+
+::: {.meta-item}
+::: {.meta-label}
+Organization
+:::
+::: {.meta-value}
+Government of Indonesia and the World Food Programme
+:::
 :::
 
-## Overview
+::: {.meta-item}
+::: {.meta-label}
+Tools
+:::
+::: {.meta-value}
+ArcGIS Online, Node.js, Nginx, JavaScript, Highcharts
+:::
+:::
 
-Brief description of the project goes here.
+::: {.meta-item}
+::: {.meta-label}
+Team
+:::
+::: {.meta-value}
+[Amit Wadhwa](https://www.linkedin.com/in/amitwadhwa00), Benny Istanto, [Dedi Junadi](https://id.linkedin.com/in/dedijunadi), [Ridwan Mulyadi](https://www.linkedin.com/in/ridwan-mulyadi-a1100630), [Aminuddin Mohammad Ramdan](https://id.linkedin.com/in/aminuddin-ramdan), [Jeffry Pupella](https://id.linkedin.com/in/jpupella), [Fachrul Rizky](https://id.linkedin.com/in/rizky-fachrul-264b3371), [Eva Juniza](https://id.linkedin.com/in/eva-juniza-064526117), [Tarningsih Handayani](https://id.linkedin.com/in/tarningsih-handayani-784b1b28), [Ha'i Ragalawa](https://au.linkedin.com/in/hai-raga-lawa-53017614a), [Emily Turano](https://www.linkedin.com/in/emily-turano-a0b31853)
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Reference
+:::
+::: {.meta-value}
+[fsva.wfp.or.id](http://fsva.wfp.or.id/)
+:::
+:::
+:::
+
+## The indicators
+
+The FSVA uses 13 indicators, chosen by reviewing what data was available at district level and how well each measures an aspect of food and nutrition security. They fall into two sets: chronic food and nutrition insecurity, and transitory food insecurity. The chronic indicators measure food availability, food access and food utilization. The transitory indicators describe the climatic and environmental factors that affect food insecurity from an availability and access perspective. The nine chronic indicators are combined into a single composite indicator that gives each district its overall food security classification.
+
+The conceptual framework behind the analysis rests on three pillars, availability, access and utilization, and folds in nutrition and vulnerability. A fourth pillar, stability, appears in the FSVA as the split between chronic and transitory food insecurity.
+
+![The food and nutrition security conceptual framework, on the introduction screen of the interactive atlas](../../assets/image-projects/2015-fsva-01.png)
+
+## Overall district classification
+
+The nine chronic indicators combine into a composite index that sorts every district into one of six priority groups. Groups 1 and 2 are the most vulnerable to food and nutrition insecurity, groups 3 and 4 moderately so, and groups 5 and 6 the least. Clicking a district opens its profile, including how its priority group has moved across the 2005, 2009 and 2015 atlases.
+
+![The composite food security classification, with a district profile open and the underlying data available as CSV or a table](../../assets/image-projects/2015-fsva-02.png)
+
+## Exploring the indicators
+
+Each indicator has its own screen, grouped under food availability, food access, food utilization, and climatic and environmental factors.
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![](../../assets/image-projects/2015-fsva-03.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2015-fsva-04.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2015-fsva-05.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2015-fsva-06.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2015-fsva-07.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2015-fsva-08.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2015-fsva-09.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2015-fsva-10.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2015-fsva-11.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2015-fsva-12.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2015-fsva-13.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2015-fsva-14.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2015-fsva-15.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2015-fsva-16.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2015-fsva-17.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![](../../assets/image-projects/2015-fsva-18.png){.gallery-img}
+:::
+
+:::
+
+## Download the report
+
+The full FSVA report and a shorter advocacy version are available from the atlas itself, in Bahasa Indonesia and English.
+
+![The download screen of the interactive atlas](../../assets/image-projects/2015-fsva-19.png)
 
 ::: {.back-link}
 [← Back to Projects](../projects.qmd)
 :::
-
-*This is a placeholder page. Content will be added soon.*

@@ -218,23 +218,26 @@
 }
 
 /* Dark mode specific adjustments for student note */
-@media (prefers-color-scheme: dark) {
-  .student-note {
-    background: rgba(13, 110, 253, 0.15);
-    border-left-color: #6ea8fe;
-  }
+/* Keyed to body.quarto-dark, which is what Quarto's light/dark toggle sets.
+   An @media (prefers-color-scheme: dark) block reads the OPERATING SYSTEM
+   setting and ignores the site toggle, so on a machine set to dark this stayed
+   dark even in the site's light mode, and stayed light when a visitor switched
+   the site to dark. */
+body.quarto-dark .student-note {
+  background: rgba(13, 110, 253, 0.15);
+  border-left-color: #6ea8fe;
+}
 
-  .student-note h3 {
-    color: #6ea8fe;
-  }
+body.quarto-dark .student-note h3 {
+  color: #6ea8fe;
+}
 
-  .student-note p {
-    color: var(--bs-body-color);
-  }
+body.quarto-dark .student-note p {
+  color: var(--bs-body-color);
+}
 
-  .student-note a {
-    color: #6ea8fe;
-  }
+body.quarto-dark .student-note a {
+  color: #6ea8fe;
 }
 
 .logo-section {
