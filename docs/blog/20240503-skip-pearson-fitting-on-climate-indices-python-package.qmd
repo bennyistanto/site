@@ -29,8 +29,9 @@ So, can I skip the Pearson fitting process? The answer is Yes.
 
 Please follow below procedure!
 
-> [!NOTE]
-> Below steps has been tested using `climate-indices 2.0.0`
+::: {.callout-note}
+Below steps has been tested using `climate-indices 2.0.0`
+:::
 
 ### 1. Modify line in `indices.py`
 
@@ -80,6 +81,7 @@ After the above code, directly continue with:
 
 After this modification, the `spi` function will be like below
 
+::: {.callout-note collapse="true" title="Python - the complete `spi` function after the change"}
 ```python
 def spi(
     values: np.ndarray,
@@ -238,6 +240,7 @@ def spi(
     # return the original size array
     return values[0:original_length]
 ```
+:::
 
 **For the `spei` function:**
 
@@ -278,6 +281,7 @@ Immediately following this, continue with:
 
 After this modification, the `spei` function will be like below
 
+::: {.callout-note collapse="true" title="Python - the complete `spei` function after the change"}
 ```python
 def spei(
     precips_mm: np.ndarray,
@@ -439,6 +443,7 @@ def spei(
     # return the original size array
     return values[0:original_length]
 ```
+:::
 
 These modifications will ensure that the `spi` and `spei` functions exclusively use the Gamma distribution, completely bypassing the code block that handles the Pearson distribution. This approach directly integrates into your original function flow and respects all existing data validations and setups.
 
@@ -704,10 +709,10 @@ After making this change, ensure to test the script thoroughly in your environme
 
 * SPEI
 
-    ![Screenshot 2024-05-03 130719](https://gist.github.com/assets/722584/af9811de-313c-4452-a1fa-816d82fe5608)
+    ![Calculate SPEI using `climate-indices`](../assets/image-blog/20240503-skip-pearson-fitting-on-climate-indices-python-package-02.png)
 
 * SPI
 
-    ![Screenshot 2024-05-06 210135](https://gist.github.com/assets/722584/abb10d0d-c6ec-4f78-a893-a370b5492f57)
+    ![Calculate SPI using `climate-indices`](../assets/image-blog/20240503-skip-pearson-fitting-on-climate-indices-python-package-01.png)
 
 Source: <https://gist.github.com/bennyistanto/e8710f89bfbebaf24498dd957a1fa961>

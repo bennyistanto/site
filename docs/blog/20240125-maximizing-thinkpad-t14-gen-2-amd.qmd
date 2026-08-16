@@ -26,30 +26,16 @@ I did all the installation myself by following the awesome guideline and use Pro
 
 See some of the picture below:
 
-Remove the old screen and install the WWAN antenna
-
 ![Remove the old screen and install the WWAN antenna](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-01.jpg)
-
-Install the new screen
 
 ![Install the new screen](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-02.jpg)
 
-Put the memory in the free slot
-
 ![Put the memory in the free slot](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-06.jpg)
-
-Replace the old SSD with new one, and put the WWAN card in place and antenna cable too
 
 ![Replace the old SSD with new one, and put the WWAN card in place and antenna cable too](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-07.jpg)
 
-This is the machine with upgrades
-
 ![This is the machine with upgrades](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-05.jpg)
 
-Look, the Cellular connection is available now
-
 ![Look, the Cellular connection is available now](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-04.jpg)
-
-The new 4K screen is on and I just need to install the bezel 😎
 
 ![The new 4K screen is on and I just need to install the bezel 😎](../assets/image-blog/20240125-maximizing-thinkpad-t14-gen-2-amd-03.jpg)

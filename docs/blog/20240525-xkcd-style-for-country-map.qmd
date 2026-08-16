@@ -19,26 +19,26 @@ Example:
 
 ::: {.image-gallery}
 ::: {.gallery-item}
-![map_indonesia_xkcd_style](https://gist.github.com/assets/722584/30a237aa-bad9-45d1-827a-87dc0a0a9eea)
+![map_indonesia_xkcd_style](../assets/image-blog/20240525-xkcd-style-for-country-map-01.png)
 :::
 ::: {.gallery-item}
-![map_philippines_xkcd_style](https://gist.github.com/assets/722584/4537db4e-9816-4fc4-85e7-6bbc75b1f44e)
+![map_philippines_xkcd_style](../assets/image-blog/20240525-xkcd-style-for-country-map-02.png)
 :::
 ::: {.gallery-item}
-![map_china_xkcd_style](https://gist.github.com/assets/722584/7f1c85e6-deac-43d1-a3ca-50bc58f467b9)
+![map_china_xkcd_style](../assets/image-blog/20240525-xkcd-style-for-country-map-03.png)
 :::
 ::: {.gallery-item}
-![map_egypt_xkcd_style](https://gist.github.com/assets/722584/240c511c-5b8f-49b0-9aa7-f64dcdfd405a)
+![map_egypt_xkcd_style](../assets/image-blog/20240525-xkcd-style-for-country-map-04.png)
 :::
 ::: {.gallery-item}
-![map_italy_xkcd_style](https://gist.github.com/assets/722584/27e0d1e3-f93d-4382-80ea-e8f7eb829d18)
+![map_italy_xkcd_style](../assets/image-blog/20240525-xkcd-style-for-country-map-05.png)
 :::
 ::: {.gallery-item}
-![map_chile_xkcd_style](https://gist.github.com/assets/722584/e558a0c3-802a-4bf3-a099-799f0dabd6e2)
+![map_chile_xkcd_style](../assets/image-blog/20240525-xkcd-style-for-country-map-06.png)
 :::
 :::
 
-And the code is below, You can paste the below code into an online Python compiler like https://python-fiddle.com/ and grab the result instantly.
+And the code is below, You can paste the below code into an online Python compiler like <https://python-fiddle.com/> and grab the result instantly.
 
 ::: {.callout-note collapse="true" title="Python - XKCD country map"}
 ```python

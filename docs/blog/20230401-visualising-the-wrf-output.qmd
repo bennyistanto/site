@@ -59,9 +59,9 @@ Modifying the WRF registry can help to address some of these issues by allowing 
 
 To address this issue, users can use the NCL to translate the netCDF output into a format that follows the CF convention. This can help to standardize the metadata and units of the variables, making it easier to interpret and compare the data.
 
-wrfout\_to\_cf is an NCL based script designed to create CF compliant NetCDF files with user selectable variables, time reference, vertical levels, and spatial and temporal subsetting. This script is designed to be a simple, user-flexible post-processing utility and is particularly useful for research projects because it produces output files that are more convenient to work with.
+`wrfout\_to\_cf` is an NCL based script designed to create CF compliant NetCDF files with user selectable variables, time reference, vertical levels, and spatial and temporal subsetting. This script is designed to be a simple, user-flexible post-processing utility and is particularly useful for research projects because it produces output files that are more convenient to work with.
 
-However, wrfout\_to\_cf can be a relatively inefficient post-processing utility and may not be suitable for all applications. It is important to consider the pros and cons of each post-processing utility to determine which one is the best fit for any given research project
+However, `wrfout\_to\_cf` can be a relatively inefficient post-processing utility and may not be suitable for all applications. It is important to consider the pros and cons of each post-processing utility to determine which one is the best fit for any given research project
 
 1. After running the simulation, WRF will produce three output files, you can check it by typing command in your simulation folder:
 
@@ -69,7 +69,7 @@ It will return
 
 ![](../assets/image-blog/20230401-visualising-the-wrf-output-01.jpg)
 
-Download wrfout\_to\_cf.ncl from <https://sundowner.colorado.edu/wrfout_to_cf/wrfout_to_cf.ncl> and put it in the same folder with WRFOUT file. If you check one of file output using below:
+Download `wrfout\_to\_cf.ncl` from <https://sundowner.colorado.edu/wrfout_to_cf/wrfout_to_cf.ncl> and put it in the same folder with WRFOUT file. If you check one of file output using below:
 
 You will get responses and see the netCDF structure, but it is not easy to understand.
 
@@ -79,11 +79,11 @@ Start to convert the native WRFOUT netCDF file to new CF based netCDF file using
 
 ![](../assets/image-blog/20230401-visualising-the-wrf-output-03.jpg)
 
-You will find a new file wrfpost.nc in the folder. Let check it using ncdump command below:
+You will find a new file `wrfpost.nc` in the folder. Let check it using ncdump command below:
 
 ![](../assets/image-blog/20230401-visualising-the-wrf-output-04.jpg)
 
-After you get the wrfpost.nc in place, you are ready to visualize it using various tools.
+After you get the `wrfpost.nc` in place, you are ready to visualize it using various tools.
 
 ## 3 Visualizing the Wind
 

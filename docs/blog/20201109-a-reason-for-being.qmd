@@ -2,7 +2,7 @@
 title: "A Reason For Being"
 author: "Benny Istanto"
 date: "2020-11-09"
-description: "According to Wikipedia, Ikigai (生き甲斐) (pronounced [[ikiɡai]](https://en"
+description: "Ikigai is a Japanese concept that means a reason for being, and here is my version of it"
 image: "../assets/image-blog/20201109-a-reason-for-being-01.jpg"
 categories:
   - "General"

@@ -388,12 +388,18 @@ figcaption {
   padding: 0;
 }
 
-/* Gallery items */
+/* Gallery items.
+   The square used to sit on the TILE, with overflow:hidden. That clipped the
+   caption whenever the image was square or portrait: the image renders at its
+   natural aspect (height:100% is inert here, it resolves against an auto-height
+   <p>), so a tall image filled the square and pushed the caption outside the
+   clip. Landscape images happened to leave room, which is why it only failed
+   some of the time. Squaring the IMAGE instead keeps the grid uniform and lets
+   the tile grow so a caption is always visible. */
 .image-gallery .gallery-item {
   position: relative;
   overflow: hidden;
   border-radius: 0.5rem;
-  aspect-ratio: 1;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -405,10 +411,26 @@ figcaption {
 
 .image-gallery .gallery-item img {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1;
   object-fit: cover;
   display: block;
   transition: transform 0.3s ease;
+}
+
+.image-gallery .gallery-item figure {
+  margin: 0;
+}
+
+/* Caption under a gallery tile, for the posts that give one */
+.image-gallery .gallery-item figcaption {
+  padding: 0.5rem 0.6rem;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: #666;
+}
+
+body.quarto-dark .image-gallery .gallery-item figcaption {
+  color: #ccc;
 }
 
 .image-gallery .gallery-item:hover img {

@@ -29,4 +29,4 @@ Inspired by the Word Clock sold by [Walmart - The Word Clock - Shows The Time In
 
 ![](../assets/image-blog/20250228-word-clock-01.jpg)
 
-See it at Observable - https://observablehq.com/@bennyistanto/word-clock
+See it at Observable - <https://observablehq.com/@bennyistanto/word-clock>

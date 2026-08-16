@@ -224,6 +224,8 @@ ds_drought.close()
 print('Completed!')
 ```
 
+![Maximum drought magnitude over time](../assets/image-blog/20230811-spi-based-drought-characteristics-02.png)
+
 ### Drought Duration
 
 Here's what the updated script does to calculate the drought duration:
@@ -299,6 +301,8 @@ ds_drought.close()
 print('Completed!')
 ```
 
+![Maximum drought duration over time](../assets/image-blog/20230811-spi-based-drought-characteristics-03.png)
+
 ```python
 import xarray as xr
 import numpy as np
@@ -323,6 +327,8 @@ plt.show()
 # Close the original file
 ds_drought.close()
 ```
+
+![Mean drought severity over time](../assets/image-blog/20230811-spi-based-drought-characteristics-04.png)
 
 ### Drought Severity
 
@@ -394,6 +400,8 @@ ds_drought.close()
 
 print('Completed!')
 ```
+
+![Maximum drought severity over time](../assets/image-blog/20230811-spi-based-drought-characteristics-05.png)
 
 ### SPI Classification
 
@@ -643,6 +651,8 @@ plt.show()
 ds_drought.close()
 ```
 
+![Drought statistics mapped across Morocco](../assets/image-blog/20230811-spi-based-drought-characteristics-06.png)
+
 Visual interpretation of all time scale on a map
 
 ```python
@@ -750,6 +760,8 @@ fig.savefig("../SPI/mar/10_images/mar_cli_spi_drought_characteristics_chirps.png
 plt.show()
 ```
 
+![The same statistics across every SPI time scale, statistics as rows and time scales as columns](../assets/image-blog/20230811-spi-based-drought-characteristics-07.png)
+
 ### Chart visualization
 
 In addition to geographical maps, time series charts offer a compelling visualization tool that vividly captures the evolution of drought conditions. These charts, with their month-by-month and year-by-year granularity, effectively illustrate the changing dynamics of drought. Furthermore, they provide insightful details on the percentage of regions affected over time, painting a comprehensive picture of how droughts impact different areas periodically.
@@ -833,6 +845,8 @@ plt.savefig(f"../SPI/mar/10_images/charts/spi_6_month_{filename_country}.png", b
 # Preview the plot
 plt.show()
 ```
+
+![SPI-06 class distribution for Morocco as a whole, 1981 to 2023](../assets/image-blog/20230811-spi-based-drought-characteristics-08.png)
 
 ### Admin 1
 
@@ -921,6 +935,31 @@ for adm1 in unique_adm1:
     # Preview the plot
     plt.show()
 ```
+
+![SPI-06 class distribution for Beni Mellal Khenifra](../assets/image-blog/20230811-spi-based-drought-characteristics-09.png)
+
+The loop produces one chart per admin 1 region.
+
+::: {.callout-note collapse="true" title="The other nine regions"}
+![SPI-06 class distribution for Casablanca Settat](../assets/image-blog/20230811-spi-based-drought-characteristics-10.png)
+
+![SPI-06 class distribution for Draa Tafilalet](../assets/image-blog/20230811-spi-based-drought-characteristics-11.png)
+
+![SPI-06 class distribution for Fez Meknes](../assets/image-blog/20230811-spi-based-drought-characteristics-12.png)
+
+![SPI-06 class distribution for Guelmim Oued Noun](../assets/image-blog/20230811-spi-based-drought-characteristics-13.png)
+
+![SPI-06 class distribution for Marrakech Safi](../assets/image-blog/20230811-spi-based-drought-characteristics-14.png)
+
+![SPI-06 class distribution for Oriental](../assets/image-blog/20230811-spi-based-drought-characteristics-15.png)
+
+![SPI-06 class distribution for Rabat Sale Kenitra](../assets/image-blog/20230811-spi-based-drought-characteristics-16.png)
+
+![SPI-06 class distribution for Souss Massa](../assets/image-blog/20230811-spi-based-drought-characteristics-17.png)
+
+![SPI-06 class distribution for Tangier Tetouan Al Hoceima](../assets/image-blog/20230811-spi-based-drought-characteristics-18.png)
+
+:::
 
 ### Admin 2
 

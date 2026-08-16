@@ -33,7 +33,7 @@ This is example result of Python script that could generate a [xkcd](https://xkc
 
 ![lseqm_xkcd_flowchart](https://gist.github.com/assets/722584/c2df5d0d-b037-46ce-acc8-e3d3282e0508)
 
-You can paste the below code into an online Python compiler like https://python-fiddle.com/ and grab the result instantly.
+You can paste the below code into an online Python compiler like <https://python-fiddle.com/> and grab the result instantly.
 
 ::: {.callout-note collapse="true" title="Python - XKCD version a"}
 ```python
