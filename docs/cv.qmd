@@ -2,29 +2,20 @@
 title: "Curriculum Vitae"
 subtitle: "Benny Istanto"
 page-layout: article
-toc: true
+toc: false
 ---
 
-## Education
+This was last updated in August 2026, and is probably out of date. If you have questions, please [contact me](mailto:benny@istan.to?subject=Question about your CV).
 
-Content coming soon...
+[Download the PDF](https://s3.benny.istan.to/CV_ISTANTO_Benny_20260816.pdf) or [open it in Google Drive](https://drive.google.com/file/d/19Miq5AmQIL3tKJ_o317z3pt60AmzoSKi/view).
 
-## Professional Experience
-
-Content coming soon...
-
-## Skills
-
-Content coming soon...
-
-## Publications
-
-Content coming soon...
-
-## Certifications
-
-Content coming soon...
-
----
-
-*This is a placeholder page. CV content will be added soon.*
+```{=html}
+<iframe
+  src="https://drive.google.com/file/d/19Miq5AmQIL3tKJ_o317z3pt60AmzoSKi/preview"
+  title="Curriculum Vitae, Benny Istanto"
+  width="100%"
+  height="1150"
+  loading="lazy"
+  allow="autoplay">
+</iframe>
+```

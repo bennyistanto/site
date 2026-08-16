@@ -43,8 +43,11 @@
   }
 }
 
+/* Left aligned to match every other intro on the site. This was the only
+   centred one, which made the page read as a different layout even though the
+   container width is identical to its siblings. */
 .projects-intro {
-  text-align: center;
+  text-align: left;
   max-width: 100%;
   font-size: 1.1rem;
   line-height: 1.8;

@@ -1,10 +1,13 @@
 ---
 title: "Extreme Rainfall Monitoring"
-subtitle: "Project from 2021"
+subtitle: "Where extreme rainfall fell, and whether it will trigger a flood"
 page-layout: full
-toc: true
+toc: false
+image: "../../assets/image-projects/2021-extreme-rainfall-monitoring-01.png"
 css: ../../styles/project-detail.css
 ---
+
+Extreme Rainfall Monitoring (ERM) is an experimental tool built by the United Nations World Food Programme in Indonesia, written for the Google Earth Engine platform. I started work on it in November 2016 with Prof. Rizaldi Boer of the Climatology Laboratory at Bogor Agricultural University as scientific advisor, along with contributors from WFP headquarters and Indonesia.
 
 ::: {.project-meta}
 ::: {.meta-item}
@@ -12,17 +15,101 @@ css: ../../styles/project-detail.css
 Year
 :::
 ::: {.meta-value}
-2021
+2016 - 2021
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Organization
+:::
+::: {.meta-value}
+WFP Indonesia
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Scientific advisor
+:::
+::: {.meta-value}
+Prof. Rizaldi Boer, Climatology Laboratory, Bogor Agricultural University
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Tools
+:::
+::: {.meta-value}
+Google Earth Engine. Some inputs were prepared elsewhere: ArcGIS Pro, R and Excel
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Contributors
+:::
+::: {.meta-value}
+Rogerio Bonifacio, Rochelle O'Hagan, Pramashavira, Michael Manalili, Anggita Annisa, Jeffry Pupella, Ridwan Mulyadi, Diego Novoa
 :::
 :::
 :::
 
-## Overview
+## What it shows
 
-Brief description of the project goes here.
+ERM estimates where extreme rainfall has fallen in the last five days and where it is forecast up to five days ahead, from a date you choose, and what that means for population and crops. It is part of the hazard monitoring module of [VAMPIRE](2016-vampire.qmd), now rebranded as PRISM. Some of the analysis was modified to suit Earth Engine, given what data is available there and the computation limits of the platform, so the methodology in the documentation still reflects what was built in VAMPIRE.
+
+For any date, the app reports population affected and cropland affected across three alert levels, once for the near real-time window and again for the forecast window.
+
+## The layers
+
+Eight layers build up in four pairs. Each pair asks the same question twice, once looking back over the near real-time window and once looking forward over the forecast.
+
+### Rainfall
+
+Accumulated rainfall over the window.
+
+![Near real-time: rainfall](../../assets/image-projects/2021-extreme-rainfall-monitoring-01.png)
+
+![Forecast: rainfall](../../assets/image-projects/2021-extreme-rainfall-monitoring-02.png)
+
+### Rainfall exceeding threshold
+
+Only the cells where rainfall passes the threshold that matters locally.
+
+![Near real-time: rainfall exceeding threshold](../../assets/image-projects/2021-extreme-rainfall-monitoring-03.png)
+
+![Forecast: rainfall exceeding threshold](../../assets/image-projects/2021-extreme-rainfall-monitoring-04.png)
+
+### Likelihood of flooding
+
+Where that excess rainfall is likely to translate into flooding.
+
+![Near real-time: likelihood of flooding](../../assets/image-projects/2021-extreme-rainfall-monitoring-05.png)
+
+![Forecast: likelihood of flooding](../../assets/image-projects/2021-extreme-rainfall-monitoring-06.png)
+
+### Flood alert
+
+The alert itself, graded by severity and intersected with population and cropland.
+
+![Near real-time: flood alert](../../assets/image-projects/2021-extreme-rainfall-monitoring-07.png)
+
+![Forecast: flood alert](../../assets/image-projects/2021-extreme-rainfall-monitoring-08.png)
+
+## Try it
+
+- [Documentation](https://wfpidn.github.io/ERM)
+- [Live demo](https://bennyistanto.users.earthengine.app/view/wfpid-erm)
+- [Earth Engine code](https://code.earthengine.google.com/9726f90319b509450dc752a02663c066)
+
+The app needs at least a minute to finish computing before the affected population figures appear and the Render button becomes available.
+
+## Reference
+
+ERM on PRISM was presented as an example application, slide 25, at NASA's GPM event: [GPM Precipitation Data and Applications](https://gpm.nasa.gov/sites/default/files/meeting_files/2021_IPWG_Workshop/GPM%20Precipitation%20Data%20and%20Applications.pdf)
 
 ::: {.back-link}
 [← Back to Projects](../projects.qmd)
 :::
-
-*This is a placeholder page. Content will be added soon.*

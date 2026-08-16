@@ -78,6 +78,7 @@ Washington DC, US
 I supported 15+ projects (some of them are still ongoing) with various themes from Sustainable Development Flagship, Water and Climate, Urban Development, World Development Report, Poverty Alleviation, Data Partnership, Ukraine need assessment, and Climate-informed spatial planning. I collaborate with teams across the bank to deliver solutions addressing issues in sustainable development, agriculture, and hydrometeorological monitoring.
 
 List supported projects:
+
 1. National Food and Agriculture System Project - (P164448)
 2. Reforming Geospatial Information at the World Bank Group - (P161480)
 3. 50x2030 Data Production, Methods and Use - (P172771)

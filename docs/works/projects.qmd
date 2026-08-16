@@ -114,7 +114,7 @@ Featured projects demonstrating expertise in earth observation, climate analysis
 </a>
 
 <a href="projects/2021-extreme-rainfall-monitoring.html" class="project-card">
-  <img src="../assets/image-projects/2021-extreme-rainfall-monitoring-00.png" class="project-thumbnail" alt="Extreme Rainfall Monitoring">
+  <img src="../assets/image-projects/2021-extreme-rainfall-monitoring-01.png" class="project-thumbnail" alt="Extreme Rainfall Monitoring">
   <div class="project-content">
     <div class="project-year">2021</div>
     <h3 class="project-title">Extreme Rainfall Monitoring</h3>
