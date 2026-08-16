@@ -15,7 +15,7 @@ categories:
 
 [![](../assets/image-blog/20230128-history-of-climate-modeling-01.jpg)](https://nps.edu/-/nps-researchers-partner-on-next-generation-climate-model)
 
-Image source: https://nps.edu/-/nps-researchers-partner-on-next-generation-climate-model
+Image source: <https://nps.edu/-/nps-researchers-partner-on-next-generation-climate-model>
 
 Climate modeling goes back to the late 19th and early 20th centuries (Edwards, P.N. [2011](https://docs.google.com/document/d/1HnjTPiA7oZqkjordLtrjJjQMGJFrBSbu/edit#bookmark=id.30j0zll)). The earliest attempts date from the 1870s (Uppenbrink, J. [1996](https://docs.google.com/document/d/1HnjTPiA7oZqkjordLtrjJjQMGJFrBSbu/edit#bookmark=id.1fob9te)), and were concerned with atmospheric processes and with calculating how the climate would change (Arrhenius, S. [1896](https://docs.google.com/document/d/1HnjTPiA7oZqkjordLtrjJjQMGJFrBSbu/edit#bookmark=id.3znysh7)). Computing power in the mid-20th century (Ruttimann, J. [2006](https://docs.google.com/document/d/1HnjTPiA7oZqkjordLtrjJjQMGJFrBSbu/edit#bookmark=id.2et92p0)) is what turned those calculations into something that could be run at scale. Models are now used for both past (Otto-Bliesner, et.al. [2006](https://docs.google.com/document/d/1HnjTPiA7oZqkjordLtrjJjQMGJFrBSbu/edit#bookmark=id.tyjcwt)) and future (Fick, S.E. and R.J. Hijmans, [2017](https://docs.google.com/document/d/1HnjTPiA7oZqkjordLtrjJjQMGJFrBSbu/edit#bookmark=id.3dy6vkm)) climate scenarios.
 
