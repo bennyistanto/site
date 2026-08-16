@@ -23,6 +23,7 @@ Following my [visit to Rohingya camps](/blog/20180429-visiting-rohingya-refugees
 As a first draft, below maps provides information on accessibility (travel time and catchment area) to WFP facilities: Food Distribution Point, LogBase, eVoucher shop, BSFP/TSFP.  It estimates (at each pixel) the time it takes to travel to the nearest location of WFP facilities with key assumption: mixed transportation mode - by foot until road then vehicle.
 
 ![](../assets/image-blog/20180606-food-accessibility-for-rohingya-refugees-09.jpg)
+
 ![](../assets/image-blog/20180606-food-accessibility-for-rohingya-refugees-08.jpg)
 
 After having few discussion with team in the field, seems the mix transportation premise is not realistic for Kutupalong megacamp, and they would like to have walking-distance only maps, even on main roads. This will allow WFP to plan for the porter system for the Logbase, clinics, food and evouchers distribution points, as well as the areas that are less well covered by the current points.
@@ -30,6 +31,7 @@ After having few discussion with team in the field, seems the mix transportation
 I revised the maps based on their feedback, see below.
 
 ![](../assets/image-blog/20180606-food-accessibility-for-rohingya-refugees-07.jpg)
+
 ![](../assets/image-blog/20180606-food-accessibility-for-rohingya-refugees-06.jpg)
 
 ### Below is an example on how GIS can support WFP to determine the best location for food distribution point, improved supply chain and better serve refuges.
