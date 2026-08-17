@@ -121,6 +121,14 @@ Featured projects demonstrating expertise in earth observation, climate analysis
   </div>
 </a>
 
+
+<a href="projects/2026-precip-index.html" class="project-card">
+  <img src="../assets/image-projects/2026-precip-index-00.png" class="project-thumbnail" alt="precip-index">
+  <div class="project-content">
+    <div class="project-year">2026</div>
+    <h3 class="project-title">precip-index: SPI and SPEI for climate extremes</h3>
+  </div>
+</a>
 </div>
 ```
 

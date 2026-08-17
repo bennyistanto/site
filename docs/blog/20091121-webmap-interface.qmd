@@ -17,8 +17,6 @@ This training was part of ADB’s ETESP Package 39 Part 2 [project](/works/proje
 
 The training course is built around the concept of data severs, map servers and application servers and the open source software required at each tier to establish a scalable architecture capable of delivering spatial web services and web applications.
 
-![](../assets/image-blog/20091121-webmap-interface-01.png)
-
 ### Outcomes
 
 Participants will be up to date with the latest geospatial data standards and exchange formats which enable interoperability.
@@ -45,7 +43,7 @@ The length of the course is approximately 5 days
 
 An overview of the training course material is summarised below;
 
-**Module 1**, focuses on spatial web services, the standards, protocols and data exchange formats as well as practical applications including the creation, debugging and accessing of spatial web services. Link: https://drive.google.com/drive/folders/18sw7ek_z3qIUQkZjnJseFHc2lpg0rOcR?usp=sharing
+**Module 1**, focuses on spatial web services, the standards, protocols and data exchange formats as well as practical applications including the creation, debugging and accessing of spatial web services. Link: <https://drive.google.com/drive/folders/18sw7ek_z3qIUQkZjnJseFHc2lpg0rOcR?usp=sharing>
 
 #### MS4W
 
@@ -66,7 +64,7 @@ Download tools and materials
 * Notepad++ (<http://notepad-plus-plus.org/download/v5.9.3.html>)
 * uDig (<http://udig.refractions.net/download/>)
 
-**Module 2**, introduces the basic technologies that can be used to begin creating web applications, including client side javascript libraries and data formats. Link: https://drive.google.com/drive/folders/1nOmYcPmJnH2PpNVgWuNIChBkBIdKiRAc?usp=sharing
+**Module 2**, introduces the basic technologies that can be used to begin creating web applications, including client side javascript libraries and data formats. Link: <https://drive.google.com/drive/folders/1nOmYcPmJnH2PpNVgWuNIChBkBIdKiRAc?usp=sharing>
 
 #### HTML and CSS
 
@@ -91,7 +89,7 @@ Download tools and materials
 * imgs (Download [here](https://docs.google.com/viewer?a=v&chrome=true&hl=en_GB&pid=explorer&srcid=0BymH7PIKa_uINTFlYzdmNjctZTAzMy00ZmJiLTgwZTktZTY3NTJlYTRiYTgy))
 * Reference (Download [here](https://docs.google.com/viewer?a=v&chrome=true&hl=en_GB&pid=explorer&srcid=0BymH7PIKa_uIYzhiNmZjZTYtMDEwZC00YWUxLWJjYWEtYTZkZDhkM2IxOTY5))
 
-**Module 3**, introduces OpenLayers client side JavaScript libraries that are used to display web services and vector data formats, to enable the creation of dynamic maps in web applications. Link: https://drive.google.com/drive/folders/1qjUYT3w-1DwIiao7s0cGJfoiqfUt9JN-?usp=sharing
+**Module 3**, introduces OpenLayers client side JavaScript libraries that are used to display web services and vector data formats, to enable the creation of dynamic maps in web applications. Link: <https://drive.google.com/drive/folders/1qjUYT3w-1DwIiao7s0cGJfoiqfUt9JN-?usp=sharing>
 
 #### OpenLayers
 
@@ -105,7 +103,7 @@ Download tools and materials
 * MapFish (<http://mapfish.org/downloads/>)
 * OpenLayers (<http://openlayers.org/download/>)
 
-**Module 4**, investigates spatial database systems, in particular the object-relational PostgreSQL with PostGIS spatial extension including database and table management, loading SHP files, basic and spatial queries and database formats. Link: https://drive.google.com/drive/folders/1kKDXBGe_xaAToFm_EfBDfbQZQZdHPO27?usp=sharing
+**Module 4**, investigates spatial database systems, in particular the object-relational PostgreSQL with PostGIS spatial extension including database and table management, loading SHP files, basic and spatial queries and database formats. Link: <https://drive.google.com/drive/folders/1kKDXBGe_xaAToFm_EfBDfbQZQZdHPO27?usp=sharing>
 
 #### PostGIS
 
@@ -135,7 +133,8 @@ Annex A provides a background to geographic standards and software and the web s
 Reference sites to geographic standards, software downloads and supporting documentation
 
 Download Web Map Interface Training module:
-1. Training Manual - English. Link: https://drive.google.com/drive/folders/1Jkirp8B6AlZEy6_5irrPFFulJ7q2etmI?usp=sharing
-2. Training Manual - Bahasa Indonesia. Link: https://drive.google.com/drive/folders/1Z45nEFL-iV6RLjcfwsV2nP9G7rJWil2T?usp=sharing
-3. Slide Powerpoint. Link: https://docs.google.com/presentation/d/1W7hS_FNHru-yfAUCL5caIsVTg51DHutE/edit?usp=sharing&ouid=104182606454912191559&rtpof=true&sd=true
-4. Compiled Training Material. Link: https://docs.google.com/document/d/1rp25WBoEn370nq9iXrnM859jAOtmHFFg/edit?usp=sharing&ouid=104182606454912191559&rtpof=true&sd=true
+
+1. Training Manual - English. Link: <https://drive.google.com/drive/folders/1Jkirp8B6AlZEy6_5irrPFFulJ7q2etmI?usp=sharing>
+2. Training Manual - Bahasa Indonesia. Link: <https://drive.google.com/drive/folders/1Z45nEFL-iV6RLjcfwsV2nP9G7rJWil2T?usp=sharing>
+3. Slide Powerpoint. Link: <https://docs.google.com/presentation/d/1W7hS_FNHru-yfAUCL5caIsVTg51DHutE/edit?usp=sharing&ouid=104182606454912191559&rtpof=true&sd=true>
+4. Compiled Training Material. Link: <https://docs.google.com/document/d/1rp25WBoEn370nq9iXrnM859jAOtmHFFg/edit?usp=sharing&ouid=104182606454912191559&rtpof=true&sd=true>
