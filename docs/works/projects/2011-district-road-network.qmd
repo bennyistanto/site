@@ -24,7 +24,16 @@ Year
 Organization
 :::
 ::: {.meta-value}
-UNDP/ILO, with Public Works (BMCK) and Bappeda of Pidie and Bireuen
+[International Labour Organization](../experiences.qmd#exp-ilo-gis-consultant)
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Partners
+:::
+::: {.meta-value}
+UNDP, with Public Works (BMCK) and Bappeda of Pidie and Bireuen
 :::
 :::
 

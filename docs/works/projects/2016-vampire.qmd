@@ -24,7 +24,7 @@ Year
 Organization
 :::
 ::: {.meta-value}
-WFP Indonesia Country Office
+[WFP Indonesia Country Office](../experiences.qmd#exp-wfp-eo-climate-analyst)
 :::
 :::
 

@@ -62,6 +62,17 @@
   margin-bottom: 3rem;
   display: flex;
   align-items: flex-start;
+  /* Project pages deep-link to a specific entry; keep it clear of the navbar. */
+  scroll-margin-top: 5rem;
+}
+
+/* Mark the entry a project page sent the reader to, so it is obvious which of
+   the 23 they landed on. Outline rather than box-shadow, to leave the hover
+   shadow below alone. */
+.timeline-item:target .timeline-content {
+  border-color: var(--bs-primary);
+  outline: 2px solid var(--bs-primary);
+  outline-offset: 3px;
 }
 
 .timeline-item:nth-child(odd) {

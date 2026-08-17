@@ -45,13 +45,13 @@ Washington DC, US
 ::: {.timeline-summary}
 Making Hazard, Exposure, Vulnerability and Loss (HEVL) data play nice together for standardized risk insight, Findability, Accessibility, Interoperability, and Reusability (FAIR) data for unfair disaster. Risk Data Library project, an initiative of the Global Facility for Disaster Reduction and Recovery (GFDRR).
 
-https://riskdatalibrary.org/
+<https://riskdatalibrary.org/>
 :::
 :::
 :::
 
 <!-- World Bank - GOST -->
-::: {.timeline-item}
+::: {#exp-worldbank-climate-geographer .timeline-item}
 ::: {.timeline-dot}
 :::
 
@@ -100,7 +100,7 @@ List supported projects:
 :::
 
 <!-- WFP - Climate Analyst -->
-::: {.timeline-item}
+::: {#exp-wfp-eo-climate-analyst .timeline-item}
 ::: {.timeline-dot}
 :::
 
@@ -130,7 +130,7 @@ Support Bangkok Regional Bureau for Asia and Pacific (RBB) VAM team with climate
 :::
 
 <!-- WFP - GIS Officer -->
-::: {.timeline-item}
+::: {#exp-wfp-gis-officer .timeline-item}
 ::: {.timeline-dot}
 :::
 
@@ -208,7 +208,7 @@ UNDP/ILO Project in selected districts in Aceh and Nias.
 :::
 
 <!-- ILO - GIS Consultant -->
-::: {.timeline-item}
+::: {#exp-ilo-gis-consultant .timeline-item}
 ::: {.timeline-dot}
 :::
 
@@ -242,7 +242,7 @@ Aceh, Indonesia
 :::
 
 <!-- UN RCO -->
-::: {.timeline-item}
+::: {#exp-unrcho-im-officer .timeline-item}
 ::: {.timeline-dot}
 :::
 
@@ -250,7 +250,7 @@ Aceh, Indonesia
 [May - Dec 2010]{.timeline-date}
 
 ::: {.timeline-organization}
-United Nations Resident Coordinator Office
+United Nations Office of the Humanitarian/Resident Coordinator
 :::
 
 ::: {.timeline-position}
@@ -294,7 +294,7 @@ West Sumatra, Indonesia
 :::
 
 <!-- ADB - SKM -->
-::: {.timeline-item}
+::: {#exp-adb-gis-modeler-2009 .timeline-item}
 ::: {.timeline-dot}
 :::
 
@@ -356,7 +356,7 @@ Timor-Leste
 :::
 
 <!-- ADB - SECID -->
-::: {.timeline-item}
+::: {#exp-adb-gis-modeler-2008 .timeline-item}
 ::: {.timeline-dot}
 :::
 
@@ -444,7 +444,7 @@ Jakarta, Indonesia
 :::
 
 <!-- EU - GIS Consultant -->
-::: {.timeline-item}
+::: {#exp-eu-gis-consultant-2006 .timeline-item}
 ::: {.timeline-dot}
 :::
 
@@ -694,7 +694,7 @@ Teaching assistant for Satellite Meteorology (undergraduate) and Satellite Clima
 :::
 
 <!-- LAPAN - BAKL -->
-::: {.timeline-item}
+::: {#exp-lapan-research-assistant-2005 .timeline-item}
 ::: {.timeline-dot}
 :::
 

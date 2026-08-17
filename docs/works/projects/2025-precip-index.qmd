@@ -24,7 +24,7 @@ Year
 Organization
 :::
 ::: {.meta-value}
-GOST / DEC Data Group, The World Bank
+[GOST / DEC Data Group, The World Bank](../experiences.qmd#exp-worldbank-climate-geographer)
 :::
 :::
 

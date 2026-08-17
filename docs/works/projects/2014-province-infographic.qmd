@@ -24,7 +24,16 @@ Year
 Organization
 :::
 ::: {.meta-value}
-BNPB and BPS, with technical support from UNFPA, OCHA, WFP and UNDP
+[World Food Programme](../experiences.qmd#exp-wfp-gis-officer)
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Partners
+:::
+::: {.meta-value}
+BNPB and BPS, with UNFPA, OCHA and UNDP
 :::
 :::
 

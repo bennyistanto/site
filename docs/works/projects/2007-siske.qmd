@@ -24,7 +24,7 @@ Year
 Organization
 :::
 ::: {.meta-value}
-South Sumatra Forest Fire Management Project (SSFFMP)
+[South Sumatra Forest Fire Management Project (SSFFMP)](../experiences.qmd#exp-eu-gis-consultant-2006)
 :::
 :::
 

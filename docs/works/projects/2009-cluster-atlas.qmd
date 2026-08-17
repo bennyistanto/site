@@ -24,7 +24,7 @@ Year
 Organization
 :::
 ::: {.meta-value}
-United Nations Office of the Humanitarian/Resident Coordinator (RC/HC)
+[United Nations Office of the Humanitarian/Resident Coordinator (RC/HC)](../experiences.qmd#exp-unrcho-im-officer)
 :::
 :::
 

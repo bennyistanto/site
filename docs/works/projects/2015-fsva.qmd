@@ -24,7 +24,16 @@ Year
 Organization
 :::
 ::: {.meta-value}
-Government of Indonesia and the World Food Programme
+[World Food Programme](../experiences.qmd#exp-wfp-gis-officer)
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Partners
+:::
+::: {.meta-value}
+Government of Indonesia
 :::
 :::
 
