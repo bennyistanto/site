@@ -1,0 +1,109 @@
+---
+title: "TerraClimate SPEI"
+subtitle: "Standardized Precipitation Evapotranspiration Index, 1960 to 2025"
+page-layout: full
+toc: false
+image: "../assets/image-csr/terraclimate-spei-00.png"
+css: ../styles/project-detail.css
+---
+
+The Standardized Precipitation Evapotranspiration Index over the global land surface, monthly, at about 4 km, from 1960 to 2025. SPEI subtracts potential evapotranspiration from precipitation before standardizing, so unlike SPI it answers to evaporative demand as well as to rainfall. That makes it the better choice where warming, not just drying, is the question. Twelve accumulation periods are published, from 1 to 72 months.
+
+![Standardized Precipitation Evapotranspiration Index fitted with Pearson Type III, 12-month accumulation, December 2025](../assets/image-csr/terraclimate-spei-00.png)
+
+::: {.project-meta}
+::: {.meta-item}
+::: {.meta-label}
+Source
+:::
+::: {.meta-value}
+[TerraClimate](https://www.climatologylab.org/terraclimate.html)
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Spatial resolution
+:::
+::: {.meta-value}
+About 4 km, 1/24 degree
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Temporal resolution
+:::
+::: {.meta-value}
+Monthly
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Coverage
+:::
+::: {.meta-value}
+90N to 90S, 180W to 180E
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Period
+:::
+::: {.meta-value}
+1960 to 2025
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Format
+:::
+::: {.meta-value}
+netCDF
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
+Projection
+:::
+::: {.meta-value}
+EPSG:4326
+:::
+:::
+:::
+
+## Method
+
+SPEI is calculated with [precip-index](https://bennyistanto.github.io/precip-index/) from two TerraClimate variables: precipitation (`ppt`) and potential evapotranspiration (`pet`). The distribution is fitted with Pearson Type III, against 1991 to 2020 as the baseline period.
+
+## Download
+
+Each accumulation period is a separate netCDF covering the full record. Links go up as the files are uploaded.
+
+| Timescale | File | Download |
+|---|---|---|
+| 1 month | `wld_cli_terraclimate_spei_pearson3_1_month.nc` | *pending* |
+| 2 month | `wld_cli_terraclimate_spei_pearson3_2_month.nc` | *pending* |
+| 3 month | `wld_cli_terraclimate_spei_pearson3_3_month.nc` | *pending* |
+| 6 month | `wld_cli_terraclimate_spei_pearson3_6_month.nc` | *pending* |
+| 9 month | `wld_cli_terraclimate_spei_pearson3_9_month.nc` | *pending* |
+| 12 month | `wld_cli_terraclimate_spei_pearson3_12_month.nc` | *pending* |
+| 18 month | `wld_cli_terraclimate_spei_pearson3_18_month.nc` | *pending* |
+| 24 month | `wld_cli_terraclimate_spei_pearson3_24_month.nc` | *pending* |
+| 36 month | `wld_cli_terraclimate_spei_pearson3_36_month.nc` | *pending* |
+| 48 month | `wld_cli_terraclimate_spei_pearson3_48_month.nc` | *pending* |
+| 60 month | `wld_cli_terraclimate_spei_pearson3_60_month.nc` | *pending* |
+| 72 month | `wld_cli_terraclimate_spei_pearson3_72_month.nc` | *pending* |
+
+## License
+
+- **TerraClimate**, the source data: refer to the [Climatology Lab](https://www.climatologylab.org/terraclimate.html).
+- **SPEI derived from it**: [WTFPL](https://www.wtfpl.net/).
+
+::: {.back-link}
+[← Back to CSR](../csr.qmd)
+:::
