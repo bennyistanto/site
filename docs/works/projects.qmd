@@ -122,11 +122,19 @@ Featured projects demonstrating expertise in earth observation, climate analysis
 </a>
 
 
-<a href="projects/2026-precip-index.html" class="project-card">
-  <img src="../assets/image-projects/2026-precip-index-00.png" class="project-thumbnail" alt="precip-index">
+<a href="projects/2025-precip-index.html" class="project-card">
+  <img src="../assets/image-projects/2025-precip-index-00.png" class="project-thumbnail" alt="precip-index">
+  <div class="project-content">
+    <div class="project-year">2025</div>
+    <h3 class="project-title">precip-index: SPI and SPEI for climate extremes</h3>
+  </div>
+</a>
+
+<a href="projects/2026-hybrid-bias-correction.html" class="project-card">
+  <img src="../assets/image-projects/2026-hybrid-bias-correction-00.png" class="project-thumbnail" alt="Hybrid Bias Correction">
   <div class="project-content">
     <div class="project-year">2026</div>
-    <h3 class="project-title">precip-index: SPI and SPEI for climate extremes</h3>
+    <h3 class="project-title">Hybrid Bias Correction for daily satellite precipitation</h3>
   </div>
 </a>
 </div>

@@ -3,7 +3,7 @@ title: "precip-index"
 subtitle: "SPI and SPEI for climate extremes monitoring"
 page-layout: full
 toc: false
-image: "../../assets/image-projects/2026-precip-index-00.png"
+image: "../../assets/image-projects/2025-precip-index-00.png"
 css: ../../styles/project-detail.css
 ---
 
@@ -15,7 +15,7 @@ css: ../../styles/project-detail.css
 Year
 :::
 ::: {.meta-value}
-2026
+2025
 :::
 :::
 
@@ -77,53 +77,53 @@ Links
 
 ## Global output
 
-![SPI-12 (Gamma) from CHIRPS v3 at 0.05 degree resolution, December 2025](../../assets/image-projects/2026-precip-index-01.png)
+![SPI-12 (Gamma) from CHIRPS v3 at 0.05 degree resolution, December 2025](../../assets/image-projects/2025-precip-index-01.png)
 
-![SPEI-12 (Pearson III) from TerraClimate at 0.0417 degree, about 4 km, December 2025](../../assets/image-projects/2026-precip-index-02.png)
+![SPEI-12 (Pearson III) from TerraClimate at 0.0417 degree, about 4 km, December 2025](../../assets/image-projects/2025-precip-index-02.png)
 
 ## Run theory events
 
 Rather than counting threshold exceedances, each spell is treated as an event with its own properties.
 
-![Duration, inter-arrival time, magnitude and intensity, defined against a threshold and applied to both dry and wet spells](../../assets/image-projects/2026-precip-index-03.png)
+![Duration, inter-arrival time, magnitude and intensity, defined against a threshold and applied to both dry and wet spells](../../assets/image-projects/2025-precip-index-03.png)
 
-![Run theory metrics through time: the index with events shaded, then duration, cumulative magnitude, instantaneous severity and intensity for each event](../../assets/image-projects/2026-precip-index-06.png)
+![Run theory metrics through time: the index with events shaded, then duration, cumulative magnitude, instantaneous severity and intensity for each event](../../assets/image-projects/2025-precip-index-06.png)
 
 ## Dry and wet, the same way
 
 The threshold works in both directions, so a wet spell is described with the same metrics as a dry one and the two maps come from one code path.
 
-![Drought event count per grid cell, Bali, 2000 to 2023](../../assets/image-projects/2026-precip-index-07.png)
+![Drought event count per grid cell, Bali, 2000 to 2023](../../assets/image-projects/2025-precip-index-07.png)
 
-![Wet event count over the same period, produced by the same code path with the threshold reversed](../../assets/image-projects/2026-precip-index-08.png)
+![Wet event count over the same period, produced by the same code path with the threshold reversed](../../assets/image-projects/2025-precip-index-08.png)
 
 ## SPI, SPEI and the PET method
 
 SPEI subtracts potential evapotranspiration from precipitation, so the choice of PET method matters and the two indices drift apart as temperature rises.
 
-![SPI-12, SPEI-12 and the difference between them. SPEI runs wetter than SPI early in the record and drier after about 2015, which is the evaporative demand signal](../../assets/image-projects/2026-precip-index-09.png)
+![SPI-12, SPEI-12 and the difference between them. SPEI runs wetter than SPI early in the record and drier after about 2015, which is the evaporative demand signal](../../assets/image-projects/2025-precip-index-09.png)
 
-![Potential evapotranspiration from Thornthwaite and Hargreaves against the TerraClimate reference, r = 0.748 and r = 0.805](../../assets/image-projects/2026-precip-index-10.png)
+![Potential evapotranspiration from Thornthwaite and Hargreaves against the TerraClimate reference, r = 0.748 and r = 0.805](../../assets/image-projects/2025-precip-index-10.png)
 
 ## Classification and trends
 
-![SPI-12 for Bali, coloured by the 11-category WMO classification from exceptionally dry to exceptionally moist](../../assets/image-projects/2026-precip-index-04.png)
+![SPI-12 for Bali, coloured by the 11-category WMO classification from exceptionally dry to exceptionally moist](../../assets/image-projects/2025-precip-index-04.png)
 
-![Decadal view for Bali: drought frequency, mean index, spread by decade, and a ten-year running mean](../../assets/image-projects/2026-precip-index-11.png)
+![Decadal view for Bali: drought frequency, mean index, spread by decade, and a ten-year running mean](../../assets/image-projects/2025-precip-index-11.png)
 
 ## A worked example: Bali
 
-![A worked example for Bali: rainfall climatology, temperature trend, the SPI-12 distribution against a standard normal, the full series, and the spatial mean](../../assets/image-projects/2026-precip-index-12.png)
+![A worked example for Bali: rainfall climatology, temperature trend, the SPI-12 distribution against a standard normal, the full series, and the spatial mean](../../assets/image-projects/2025-precip-index-12.png)
 
-![Mean SPEI-12 over 1958 to 2024 next to a single month, December 2024](../../assets/image-projects/2026-precip-index-13.png)
+![Mean SPEI-12 over 1958 to 2024 next to a single month, December 2024](../../assets/image-projects/2025-precip-index-13.png)
 
-![The latest month on its own, SPI-12 fitted with Gamma for December 2024](../../assets/image-projects/2026-precip-index-14.png)
+![The latest month on its own, SPI-12 fitted with Gamma for December 2024](../../assets/image-projects/2025-precip-index-14.png)
 
 ## Operational mode
 
 For monitoring, refitting the distribution every time new data arrives is both slow and wrong: the index would shift under you. Operational mode fits once over a calibration period, saves the parameters, and applies them to everything that follows.
 
-![Calibrated on 1958 to 2021, then applied to 2022 to 2024. Loading saved parameters reproduces a full recalculation exactly, r = 1.0 and RMSE = 0](../../assets/image-projects/2026-precip-index-05.png)
+![Calibrated on 1958 to 2021, then applied to 2022 to 2024. Loading saved parameters reproduces a full recalculation exactly, r = 1.0 and RMSE = 0](../../assets/image-projects/2025-precip-index-05.png)
 
 ## Credits
 
