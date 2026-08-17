@@ -12,6 +12,34 @@ I am having fun playing with geospatial and remote sensing data. Have a look at 
 Click on any map to view it in full resolution in a new tab.
 :::
 
+## 2026
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2026. The World Bank. Lobito Corridor Spatial Analysis - A Configurable Decision Framework. Inkscape](../assets/image-maps-and-infographics/2026-worldbank-lc-sa1.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2026. The World Bank. Lobito Corridor Spatial Analysis - How the Analysis Works. Inkscape](../assets/image-maps-and-infographics/2026-worldbank-lc-sa2.png){.gallery-img}
+:::
+
+:::
+
+## 2025
+
+::: {.gallery-grid}
+
+::: {.gallery-item}
+![2025. The World Bank. Lobito Corridor Tropical Forest Moisture Annual Changes 2024. QGIS 3.22.9](../assets/image-maps-and-infographics/2025-worldbank-lc-tfm.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2025. The World Bank. Lobito Corridor Temperature-based Heat and Population Risk. QGIS 3.22.9](../assets/image-maps-and-infographics/2025-worldbank-lc-thrp.png){.gallery-img}
+:::
+
+:::
+
 ## 2024
 
 ::: {.gallery-grid}
