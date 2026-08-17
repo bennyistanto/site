@@ -113,6 +113,14 @@ Featured projects demonstrating expertise in earth observation, climate analysis
   </div>
 </a>
 
+<a href="projects/2017-vampire-geospatial-data-catalog.html" class="project-card">
+  <img src="../assets/image-projects/2017-vampire-geospatial-data-catalog-02.png" class="project-thumbnail" alt="VAMPIRE Geospatial Data Catalog">
+  <div class="project-content">
+    <div class="project-year">2017</div>
+    <h3 class="project-title">VAMPIRE Geospatial Data Catalog</h3>
+  </div>
+</a>
+
 <a href="projects/2021-extreme-rainfall-monitoring.html" class="project-card">
   <img src="../assets/image-projects/2021-extreme-rainfall-monitoring-01.png" class="project-thumbnail" alt="Extreme Rainfall Monitoring">
   <div class="project-content">

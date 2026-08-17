@@ -112,7 +112,7 @@ The framework is checked along three independent lines:
 
 ## Running it
 
-Google Earth Engine is not involved; this runs in Colab, where TensorFlow is already present and the GPU is provisioned. The repository ships an 11 MB Bali example that runs end to end in about fifteen minutes on a free Colab CPU, through a seven-notebook pipeline from AOI definition to visualisation.
+Colab is the recommended route, because TensorFlow is already installed there and the GPU is provisioned, so the CNN step works without any setup. The repository ships an 11 MB Bali example that runs end to end in about fifteen minutes on a free Colab CPU, through a seven-notebook pipeline from AOI definition to visualisation.
 
 The full Indonesia inputs and outputs are too large for a repository, so they are deposited on Zenodo with their own DOI.
 
