@@ -119,6 +119,10 @@ Click on any map to view it in full resolution in a new tab.
 ![2021. WFP. Timor Leste Wet-spell 10mm/day. ArcGIS 10.8](../assets/image-maps-and-infographics/2021-wfp-wetspell-10mm.jpg){.gallery-img}
 :::
 
+::: {.gallery-item}
+![2021. WFP. Timor Leste potential impact on cropland, caused by extreme rainfall. ArcGIS 10.8](../assets/image-maps-and-infographics/2021-wfp-croplandaffected.jpg){.gallery-img}
+:::
+
 :::
 
 ## 2020
@@ -208,6 +212,10 @@ Appeared in [Yahoo News](https://au.news.yahoo.com/sick-hungry-indonesia-tsunami
 
 ::: {.gallery-item}
 ![2018. WFP. Shake Map. ArcGIS 10.4](../assets/image-maps-and-infographics/2018-wfp-shakemap.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2018. WFP. Tropical Cyclone Gita. ArcGIS 10.4](../assets/image-maps-and-infographics/2018-wfp-tropical-cyclone-gita.png){.gallery-img}
 :::
 
 :::
