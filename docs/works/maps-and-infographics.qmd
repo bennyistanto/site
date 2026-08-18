@@ -248,6 +248,14 @@ Appeared in [Yahoo News](https://au.news.yahoo.com/sick-hungry-indonesia-tsunami
 ![2017. WFP. Travel time to nearest city, Ayeyarwady Region. ArcGIS 10.4](../assets/image-maps-and-infographics/2017-wfp-traveltime.png){.gallery-img}
 :::
 
+::: {.gallery-item}
+![2017. WFP. Disaster impact model, Mt Agung eruption contingency plan based on the 1963 event](../assets/image-maps-and-infographics/2017-wfp-disasterimpactmodel-mtagung.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2017. WFP. Disaster impact model, Sunda Strait M7.8 earthquake contingency plan](../assets/image-maps-and-infographics/2017-wfp-disasterimpactmodel-sundaeq.png){.gallery-img}
+:::
+
 :::
 
 ## 2016
@@ -267,7 +275,7 @@ Appeared in [Yahoo News](https://au.news.yahoo.com/sick-hungry-indonesia-tsunami
 :::
 
 ::: {.gallery-item}
-![2016. WFP. LAO Rainfall anomaly, JFM 2016. ArcGIS 10.3](../assets/image-maps-and-infographics/2016-wfp-vnm-rainfall-anomaly.jpg){.gallery-img}
+![2016. WFP. Viet Nam seasonal rainfall anomaly, January to March 2016, as a percent of the 1981-2015 average. ArcGIS 10.3](../assets/image-maps-and-infographics/2016-wfp-vnm-rainfall-anomaly.jpg){.gallery-img}
 :::
 
 ::: {.gallery-item}
@@ -286,6 +294,82 @@ Appeared in [Yahoo News](https://au.news.yahoo.com/sick-hungry-indonesia-tsunami
 
 ::: {.gallery-item}
 ![2015. WFP. Facebook population. ArcGIS 10.2.2](../assets/image-maps-and-infographics/2015-wfp-facebook-population.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: NCPR. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_01_ncpr_2015_A4L_eng.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: Poverty. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_02_poverty_2015_A4L_eng.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: Road and water access. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_03_roadwateraccess_2015_A4L_eng.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: Electricity. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_04_electricity_2015_A4L_eng.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: Health facilities. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_05_healthfacilities_2015_A4L_eng.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: Clean water. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_06_cleanwater_2015_A4L_eng.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: Female illiteracy. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_07_femaleilliteracy_2015_A4L_eng.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: Stunting. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_08_stunting_2015_A4L_eng.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: Life expectancy. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_09_lifeexpectancy_2015_A4L_eng.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: Natural disaster impact. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_10_natural_disasters_impact_2015_A4L_eng.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: Rainfall and sea surface temperature correlation. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_11_rainfall_sst_correlation_2015_A4L_eng.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: ENSO district classification. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_12_enso_district_classification_2015_A4L_eng.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: Rice production loss from drought. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_13_rice_production_loss_drought_2015_A4L_eng.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: Rice production loss from flood. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_14_rice_production_loss_flood_2015_A4L_eng.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: Deforestation area. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_15_deforestation_area_2015_A4L_eng.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: Deforestation percent. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_16_deforestation_percent_2015_A4L_eng.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: Deforestation hectares. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_17_deforestation_hectares_2015_A4L_eng.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: Priority district. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_18_priority_district_2015_A4L_eng.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2015. WFP. Food Security and Vulnerability Atlas: Change in priority district, 2009 to 2015. ArcGIS 10.2.2](../assets/image-maps-and-infographics/idn_wfp_fsva_19_change_priority_district_2009_to_2015_A4L_eng.png){.gallery-img}
 :::
 
 :::
@@ -338,6 +422,26 @@ Appeared in [Yahoo News](https://au.news.yahoo.com/sick-hungry-indonesia-tsunami
 
 ::: {.gallery-item}
 ![2010. UNOCHA. Mentawai Tsunami Response. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-01.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2010. UNOCHA. Mentawai Tsunami Response. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-03.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2010. UNOCHA. Mentawai Tsunami Response. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-04.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2010. UNOCHA. Mentawai Tsunami Response. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-05.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2010. UNOCHA. Mentawai Tsunami Response. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-06.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2010. UNOCHA. Mentawai Tsunami Response. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-07.jpg){.gallery-img}
 :::
 
 :::
