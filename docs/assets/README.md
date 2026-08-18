@@ -6,9 +6,10 @@ This directory contains all static assets for the website.
 
 ```
 assets/
-├── logo.png              # Site logo (navbar)
-├── favicon.ico           # Browser favicon
-└── spotlight/            # Homepage spotlight images
+└── image-logo/               # Homepage logo images
+    ├── logo.png              # Site logo (navbar)
+    ├── favicon.ico           # Browser favicon
+└── image-spotlight/            # Homepage spotlight images
     └── landsat-name.jpg  # Current showcase image
 ```
 
@@ -33,7 +34,7 @@ assets/
 
 ## Adding New Spotlight Images
 
-1. Add your image to `assets/spotlight/`
+1. Add your image to `assets/image-spotlight/`
 2. Update `index.qmd` with the new image path
 3. Update the spotlight text description
 
