@@ -1,309 +1,45 @@
-# Squarespace to Quarto Migration Process
+# Squarespace to Quarto migration
 
-This folder contains Python scripts (Jupyter notebooks) that automate the heavy lifting of migrating a Squarespace website to Quarto. These scripts handle the dirty work that would otherwise take months of manual conversion.
+Python notebooks that convert a Squarespace XML export into a Quarto site.
+They handle the bulk work: parsing the export, downloading the assets, and
+renaming those assets to match the posts that use them.
 
-**What these scripts do:** Convert XML exports, download assets, and organize files into a Quarto-ready structure.
+**The full write-up lives in a blog post**, and that is the canonical version:
 
-**What you still need to do:** After the scripts prepare your files, you'll need to customize the Quarto site to make it beautiful (styling, layouts, navigation, etc.). This part is relatively easy but still takes time.
+**[Migrating a Squarespace site to Quarto](https://benny.istan.to/blog/20260208-migrating-from-squarespace-to-quarto)**
 
-## Overview
+It covers what the Squarespace export includes and what it silently drops, the
+reasoning behind each step, the equation problem, and what is still left to do
+by hand once the scripts finish. Read that first.
 
-The migration process consists of two required steps and one optional step, each automated by a dedicated notebook:
+## Run order
 
-1. **Export and convert XML to Quarto markdown** (`1_squarespace_xmlexport_to_quarto.ipynb`) - **Required**
-2. **Download assets from Squarespace** (`2_squarespace_download_assets.ipynb`) - **Required**
-3. **Rename assets to match QMD files** (`3_squarespace_rename_assets.ipynb`) - **Optional** - Only needed if your image filenames are messy
+| | Notebook | |
+|---|---|---|
+| 1 | `1_squarespace_xmlexport_to_quarto.ipynb` | Required. XML export to `.qmd` files. |
+| 2 | `2_squarespace_download_assets.ipynb` | Required. Pulls the assets down off Squarespace. |
+| 3 | `3_squarespace_rename_assets.ipynb` | Optional. Only if your filenames are a mess. |
 
----
+Each notebook has a configuration cell at the top. Set the paths there, then
+run the cells in order. Notebook 3 has a `DRY_RUN` flag; leave it on for the
+first pass.
 
-## Prerequisites
+`convert_equations.py`, `convert_radiation_equations.py` and
+`convert_remaining_equations.py` are a separate one-off pass. Squarespace
+exports equations as images, and these rewrite them as LaTeX. Run them only if
+your posts contain equations.
 
-- Python 3.x with Jupyter Notebook
-- Active Squarespace site with export access
-- Required Python packages (listed in each notebook)
+## Requirements
 
----
+Python 3.x with Jupyter. Each notebook imports what it needs at the top.
 
-## Step 1: Export from Squarespace
+## Before you start
 
-### Exporting Your Content
+- Keep the Squarespace site live until the new one is working. The export is a
+  one-way door once the subscription lapses.
+- Keep the raw XML. You will want to re-run the conversion after improving the
+  script, and you cannot re-export from a site you no longer pay for.
+- Not everything migrates, and not every asset downloads. Both are expected;
+  the notebooks log what failed rather than stopping.
 
-Squarespace provides a feature to export site content into an XML file. This is primarily designed for WordPress imports, but we'll use it for Quarto conversion.
-
-**Important:** Not everything will export, as many Squarespace features rely on platform-specific JavaScript and CSS.
-
-### What Content Will Export
-
-✅ **Exports successfully:**
-
-- Blog posts (title, content, tags, categories)
-- Pages (title, content)
-- Text content and basic formatting
-- Image URLs and references
-- Publication dates and metadata
-
-❌ **Won't export:**
-
-- Custom CSS and JavaScript
-- Form submissions and data
-- Commerce data (products, orders)
-- Gallery blocks (structure only, not layout)
-- Custom blocks and integrations
-- Comments
-- Audio and video blocks (embedded content may export)
-- Site structure and navigation
-
-### Export Instructions
-
-1. **Go to Squarespace Export Page:**
-   - Visit: [Squarespace Export Settings](https://account.squarespace.com/project-picker?client_id=helpcenter&redirect_url=%2Fsettings%2Fadvanced%2Fimport-export)
-   - Log in to your Squarespace account
-
-2. **Select Your Site:**
-   - Choose the website you want to export
-
-3. **Export Your Content:**
-   - Click on "Export" or "Download XML"
-   - Wait for the export to complete
-
-4. **Download the XML File:**
-   - Save the `.xml` file to your local machine
-   - Note the file location for use in the notebooks
-
-**Reference:** [Squarespace Export Documentation](https://support.squarespace.com/hc/en-us/articles/206566687-Exporting-your-site?platform=v6&websiteId=5eb8f97b29c7c928b1fbaf3d)
-
----
-
-## Step 2: Run the Migration Notebooks
-
-### Notebook 1: Convert XML to Quarto Markdown
-
-**File:** `1_squarespace_xmlexport_to_quarto.ipynb`
-
-**Purpose:** Converts the Squarespace XML export into Quarto-compatible markdown documents (.qmd files).
-
-**What it does:**
-
-- Parses the XML export file
-- Extracts posts and pages
-- Converts HTML content to markdown
-- Creates QMD files with proper frontmatter (title, date, categories, tags)
-- Preserves image references and links
-- Organizes output into appropriate folders
-
-**Input:** Squarespace XML export file
-
-**Output:** QMD files for blog posts and pages
-
----
-
-### Notebook 2: Download Assets from Squarespace
-
-**File:** `2_squarespace_download_assets.ipynb`
-
-**Purpose:** Downloads images and other assets referenced in the QMD files from Squarespace.
-
-**What it does:**
-
-- Scans QMD files for asset URLs (images, PDFs, etc.)
-- Downloads assets from Squarespace servers
-- Saves assets to local folders
-- Maintains original filenames when possible
-- Handles download errors and retries
-
-**Input:** QMD files with Squarespace asset URLs
-
-**Output:** Downloaded assets in the assets folder
-
-**⚠️ Important Note:** Not all assets will successfully download. Some reasons include:
-
-- Private or restricted content
-- Expired or moved URLs
-- Assets that require authentication
-- Rate limiting from Squarespace servers
-
----
-
-### Notebook 3: Rename Assets to Match QMD Files (Optional)
-
-**File:** `3_squarespace_rename_assets.ipynb`
-
-**⚠️ This step is OPTIONAL.** If your original image filenames from Squarespace are clean and organized, you can skip this notebook.
-
-**When to use this:**
-
-- Your Squarespace exported images have messy, random filenames
-- You want better organization with meaningful filenames
-- You need to easily identify which images belong to which pages
-
-**What it does:**
-
-- Scans QMD files for image references
-- Identifies which assets are used in which QMD files
-- Renames assets based on the QMD filename and adds sequential numbering
-- Updates image paths in QMD files to reflect new names
-- Preserves unused assets with original names
-
-**Example:**
-If you have a page called `2025-blog-helloworld.qmd` with multiple images, the script will rename them as:
-
-- `2025-blog-helloworld-01.png`
-- `2025-blog-helloworld-02.png`
-- `2025-blog-helloworld-03.png`
-- And so on...
-
-This makes it easy to identify which images belong to which page at a glance.
-
-**Input:**
-
-- QMD files
-- Downloaded assets
-
-**Output:**
-
-- Renamed assets with meaningful filenames
-- Updated QMD files with corrected image paths
-
-**Note:** Assets that aren't referenced in any QMD file will not be renamed. This helps identify unused or orphaned assets.
-
----
-
-## Workflow Summary
-
-```
-┌─────────────────────────────┐
-│  1. Export from Squarespace │
-│     (Manual - via website)  │
-└──────────────┬──────────────┘
-               │
-               │ squarespace-export.xml
-               │
-               ▼
-┌─────────────────────────────┐
-│  2. Convert XML to QMD      │
-│  (Notebook 1) - REQUIRED    │
-└──────────────┬──────────────┘
-               │
-               │ *.qmd files
-               │
-               ▼
-┌─────────────────────────────┐
-│  3. Download Assets         │
-│  (Notebook 2) - REQUIRED    │
-└──────────────┬──────────────┘
-               │
-               │ Images, PDFs, etc.
-               │
-               ▼
-┌─────────────────────────────┐
-│  4. Rename Assets           │
-│  (Notebook 3) - OPTIONAL    │
-│  Skip if filenames are OK   │
-└──────────────┬──────────────┘
-               │
-               │ (with clean filenames)
-               │
-               ▼
-┌─────────────────────────────┐
-│  5. Build Quarto Site       │
-│     quarto render           │
-└─────────────────────────────┘
-```
-
----
-
-## Post-Migration Tasks
-
-After running all three notebooks, the automated conversion is complete. Your content is now in Quarto format, but the real work begins - making it beautiful and functional.
-
-**The scripts save you months** by automating:
-
-- XML parsing and markdown conversion
-- Bulk asset downloading
-- File organization and renaming
-
-**You still need to spend time on:**
-
-1. **Review QMD Files:**
-   - Check for formatting issues
-   - Verify that images are displaying correctly
-   - Update any broken links
-   - Clean up markdown formatting
-
-2. **Manual Adjustments:**
-   - Recreate custom layouts (Squarespace blocks won't transfer)
-   - Rebuild navigation structure
-   - Add custom CSS/styling
-   - Configure Quarto settings in `_quarto.yml`
-
-3. **Asset Management:**
-   - Verify all critical images downloaded successfully
-   - Manually download any missing assets
-   - Optimize images for web (compress, resize)
-   - Organize assets into logical folders
-
-4. **Test the Site:**
-   - Run `quarto preview` to test locally
-   - Check all pages and posts
-   - Test internal links
-   - Verify responsive design
-
-5. **Deploy:**
-   - Configure GitHub Pages or other hosting
-   - Set up custom domain (if applicable)
-   - Configure redirects from old Squarespace URLs
-
----
-
-## Disclaimer
-
-⚠️ **Use at Your Own Risk**
-
-This migration process is provided as-is without warranty. Please note:
-
-- **Not all content will migrate perfectly** - Manual review and cleanup are required
-- **Not all assets will download** - Some Squarespace content may not be publicly accessible
-- **Data loss is possible** - Always keep backups of your original Squarespace export
-- **Platform differences** - Squarespace and Quarto work differently; some features won't translate
-- **Testing required** - Thoroughly test your migrated site before going live
-
-**Recommendation:** Keep your Squarespace site active during migration and testing. Only deactivate after confirming the new Quarto site is working correctly.
-
----
-
-## Troubleshooting
-
-### Common Issues
-
-**Problem:** XML export is empty or incomplete
-
-- **Solution:** Check Squarespace export settings, ensure you're exporting the correct site
-
-**Problem:** Assets won't download (403/404 errors)
-
-- **Solution:** Assets may be private or moved. Download manually from Squarespace admin panel
-
-**Problem:** QMD files have broken formatting
-
-- **Solution:** Review and manually fix markdown. Some Squarespace HTML may not convert cleanly
-
-**Problem:** Images don't display in Quarto site
-
-- **Solution:** Check file paths in QMD files, ensure assets are in correct folders
-
----
-
-## Additional Resources
-
-- [Quarto Documentation](https://quarto.org/docs/guide/)
-- [Squarespace Export Guide](https://support.squarespace.com/hc/en-us/articles/206566687-Exporting-your-site)
-- [Markdown Guide](https://www.markdownguide.org/)
-- [Quarto Publishing](https://quarto.org/docs/publishing/)
-
----
-
-## License
-
-© 2026 Benny Istanto. All rights reserved.
-
-These notebooks are provided for personal use in migrating your own Squarespace site. Feel free to adapt them for your needs.
+Provided as-is. Back up your export before running anything.
