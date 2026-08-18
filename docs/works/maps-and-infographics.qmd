@@ -35,7 +35,7 @@ Click on any map to view it in full resolution in a new tab.
 :::
 
 ::: {.gallery-item}
-![2025. The World Bank. Lobito Corridor Temperature-based Heat and Population Risk. QGIS 3.22.9](../assets/image-maps-and-infographics/2025-worldbank-lc-thrp.png){.gallery-img}
+![2025. The World Bank. Lobito Corridor Temperature-based Heat and Population Risk. QGIS 3.22.9](../assets/image-maps-and-infographics/2025-worldbank-lc-thpr.png){.gallery-img}
 :::
 
 :::
