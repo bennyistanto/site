@@ -17,6 +17,14 @@ Click on any map to view it in full resolution in a new tab.
 ::: {.gallery-grid}
 
 ::: {.gallery-item}
+![2026. The World Bank. Global SPEI - 12 months, Dec 2025. Python](../assets/image-maps-and-infographics/2026-worldbank-spei12-202512.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2026. The World Bank. Global SPI - 12 months, Dec 2025. Python](../assets/image-maps-and-infographics/2026-worldbank-spi12-202512.png){.gallery-img}
+:::
+
+::: {.gallery-item}
 ![2026. The World Bank. Lobito Corridor Spatial Analysis - A Configurable Decision Framework. Inkscape](../assets/image-maps-and-infographics/2026-worldbank-lc-sa1.png){.gallery-img}
 :::
 
