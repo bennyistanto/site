@@ -5,8 +5,7 @@ date: "2026-02-08"
 description: "What the Squarespace XML export gives you, what it quietly drops, and the three notebooks that turned 132 posts into Quarto markdown"
 image: "../assets/image-blog/20260208-migrating-from-squarespace-to-quarto-00.png"
 categories:
-  - "Website"
-  - "Python"
+  - "General"
 ---
 
 I had been on Squarespace for years. It was fine until it was not: the content was mine but the shape of it was not, every layout decision went through someone else's editor, and nothing about the site was in version control. Quarto fixes all three, at the price of doing the move yourself.
@@ -16,6 +15,8 @@ This is what that move actually took. The short version: Squarespace will hand y
 ## What exports, and what does not
 
 Squarespace has an export built for WordPress imports. It is the only way out, so it is the way out. Point it at your site and you get one `.xml` file.
+
+![](../assets/image-blog/20260208-migrating-from-squarespace-to-quarto-00.png)
 
 What survives:
 
