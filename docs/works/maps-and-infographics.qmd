@@ -65,6 +65,10 @@ Click on any map to view it in full resolution in a new tab.
 ![2024. The World Bank. GEEST Level of Enablement Women. QGIS 3.22.9](../assets/image-maps-and-infographics/2024-worldbank-geest-women.jpg){.gallery-img}
 :::
 
+::: {.gallery-item}
+![2024. BIGC. Map using XKCD style. Python](../assets/image-maps-and-infographics/2024-bigc-xkcdmap.png){.gallery-img}
+:::
+
 :::
 
 ## 2023
