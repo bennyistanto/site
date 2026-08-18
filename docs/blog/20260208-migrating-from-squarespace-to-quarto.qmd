@@ -1,0 +1,1656 @@
+---
+title: "Migrating a Squarespace site to Quarto"
+author: "Benny Istanto"
+date: "2026-02-08"
+description: "What the Squarespace XML export gives you, what it quietly drops, and the three notebooks that turned 132 posts into Quarto markdown"
+categories:
+  - "Website"
+  - "Python"
+---
+
+I had been on Squarespace for years. It was fine until it was not: the content was mine but the shape of it was not, every layout decision went through someone else's editor, and nothing about the site was in version control. Quarto fixes all three, at the price of doing the move yourself.
+
+This is what that move actually took. The short version: Squarespace will hand you an XML file, that file is less than you hoped, and three notebooks get you from there to a Quarto site that builds. Everything after that is hand work, and there is more of it than you expect.
+
+## What exports, and what does not
+
+Squarespace has an export built for WordPress imports. It is the only way out, so it is the way out. Point it at your site and you get one `.xml` file.
+
+What survives:
+
+- Blog posts, with title, body, tags and categories
+- Pages, with title and body
+- Text and basic formatting
+- Image URLs, as references rather than files
+- Publication dates and metadata
+
+What does not:
+
+- Custom CSS and JavaScript
+- Gallery blocks, beyond the bare image list
+- Custom blocks and third-party integrations
+- Form submissions, commerce data, comments
+- Audio and video blocks, though some embeds come through as links
+- Site structure and navigation
+
+The pattern is that anything Squarespace renders with its own JavaScript is gone, because there is nothing in the XML to render it from. Plan on rebuilding every gallery and every layout by hand.
+
+The export lives under [Settings, Advanced, Import/Export](https://support.squarespace.com/hc/en-us/articles/206566687-Exporting-your-site). Save the `.xml` somewhere you will not lose it, and keep the Squarespace site live until the new one is genuinely working.
+
+## The pipeline
+
+Three steps, of which the third is optional.
+
+```{mermaid}
+flowchart TD
+    A["Squarespace export<br/><i>manual, via the website</i>"] --> B
+    B["1. XML to Quarto markdown<br/><i>required</i>"] --> C
+    C["2. Download the assets<br/><i>required</i>"] --> D
+    D["3. Rename assets to match posts<br/><i>optional</i>"] --> E
+    E["quarto render"]
+```
+
+## Step 1: XML to Quarto markdown
+
+The first notebook parses the export, pulls out posts and pages, converts the HTML bodies to markdown, and writes `.qmd` files with the frontmatter already filled in from the XML metadata. It keeps the page hierarchy if you ask it to, and it writes a manifest of every asset URL it saw, which the next step needs.
+
+Set the paths at the top, then run it.
+
+::: {.callout-note collapse="true" title="Python - configuration"}
+```python
+# ---------- CONFIG ----------
+INPUT_XML_FILE = r"C:\Users\benny\OneDrive\Documents\Github\site\downloads\Squarespace-Wordpress-Export-01-31-2026.xml"
+OUTPUT_DIR     = r"C:\Users\benny\OneDrive\Documents\Github\site\temp4"   # or just "site" for relative
+BASE_SITE_URL  = "https://benny.istan.to"  # used to resolve /s/... or /... links
+
+PRESERVE_HIERARCHY = True     # nest pages by wp:post_parent
+OVERWRITE          = False    # overwrite existing .qmd and manifest files
+ALLOW_BLOG_PAGE_OVERWRITE = False  # if a PAGE slug == "blog", write to pages/blog/ instead of blog/index.qmd
+```
+:::
+
+
+::: {.callout-note collapse="true" title="Python - the converter"}
+```python
+import os
+import re
+import csv
+from datetime import datetime
+from urllib.parse import urljoin
+
+import xml.etree.ElementTree as ET
+from bs4 import BeautifulSoup
+from markdownify import markdownify as md
+
+NAMESPACES = {
+    "wp": "http://wordpress.org/export/1.2/",
+    "content": "http://purl.org/rss/1.0/modules/content/",
+    "excerpt": "http://wordpress.org/export/1.2/excerpt/",
+    "dc": "http://purl.org/dc/elements/1.1/",
+}
+
+RAW_URL_RE = re.compile(r"https?://[^\s\"\'<>]+", re.IGNORECASE)
+
+
+def get_text(element: ET.Element, tag: str, ns: dict | None = None) -> str:
+    try:
+        found = element.find(tag, namespaces=ns) if ns else element.find(tag)
+        return (found.text or "").strip() if found is not None else ""
+    except Exception:
+        return ""
+
+
+def parse_rfc822_to_iso(pub_date: str) -> str:
+    if not pub_date:
+        return ""
+    try:
+        dt_obj = datetime.strptime(pub_date, "%a, %d %b %Y %H:%M:%S %z")
+        return dt_obj.strftime("%Y-%m-%d")
+    except Exception:
+        return ""
+
+
+def yaml_escape(s: str) -> str:
+    return (s or "").replace('"', "'").replace("\n", " ").strip()
+
+
+def format_yaml(title: str, date_rfc822: str, categories: list[str], tags: list[str],
+                author: str, summary: str = "") -> str:
+    title = title or "Untitled"
+    out = ["---", f'title: "{yaml_escape(title)}"']
+
+    if author:
+        out.append(f'author: "{yaml_escape(author)}"')
+
+    date_iso = parse_rfc822_to_iso(date_rfc822)
+    if date_iso:
+        out.append(f'date: "{date_iso}"')
+
+    merged = sorted({t for t in (categories or []) + (tags or []) if t})
+    if merged:
+        out.append("categories:")
+        for t in merged:
+            out.append(f'  - "{yaml_escape(t)}"')
+
+    if summary:
+        out.append(f'description: "{yaml_escape(summary)}"')
+
+    out.append("---\n")
+    return "\n".join(out)
+
+
+def pick_best_from_srcset(srcset: str) -> str:
+    if not srcset:
+        return ""
+    best_url, best_w = "", -1
+    for part in srcset.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        tokens = part.split()
+        url = tokens[0].strip()
+        w = 0
+        if len(tokens) > 1 and tokens[1].lower().endswith("w"):
+            try:
+                w = int(tokens[1][:-1])
+            except Exception:
+                w = 0
+        if w >= best_w:
+            best_w = w
+            best_url = url
+    return best_url
+
+
+def normalize_url(u: str, base_site_url: str) -> str:
+    u = (u or "").strip()
+    if not u:
+        return ""
+    if u.startswith("//"):
+        u = "https:" + u
+    if u.startswith("/"):
+        u = urljoin(base_site_url.rstrip("/") + "/", u.lstrip("/"))
+    return u
+
+
+def normalize_media_attributes(soup: BeautifulSoup, base_site_url: str) -> None:
+    # Images: promote real URL into src and drop srcset
+    for img in soup.find_all("img"):
+        cand = ""
+        for attr in ("data-src", "data-image", "data-original"):
+            if img.get(attr):
+                cand = img.get(attr)
+                break
+        if not cand and img.get("srcset"):
+            cand = pick_best_from_srcset(img.get("srcset"))
+        if not cand and img.get("src"):
+            cand = img.get("src")
+
+        cand = normalize_url(cand, base_site_url)
+        if cand:
+            img["src"] = cand
+        if img.get("srcset"):
+            del img["srcset"]
+
+    # Links
+    for a in soup.find_all("a"):
+        href = normalize_url(a.get("href", ""), base_site_url)
+        if href:
+            a["href"] = href
+
+    # Other common media
+    for tag_name, attr in [("source", "src"), ("video", "src"), ("audio", "src"), ("iframe", "src")]:
+        for t in soup.find_all(tag_name):
+            v = normalize_url(t.get(attr, ""), base_site_url)
+            if v:
+                t[attr] = v
+
+
+def clean_content_to_markdown(html_content: str, base_site_url: str) -> str:
+    if not html_content:
+        return ""
+    soup = BeautifulSoup(html_content, "lxml")
+
+    # Unwrap common Squarespace wrappers
+    for div in soup.find_all("div", class_="sqs-html-content"):
+        div.unwrap()
+
+    # Critical: normalize <img> / links BEFORE markdownify
+    normalize_media_attributes(soup, base_site_url)
+
+    markdown_text = md(str(soup), heading_style="ATX", bullets="-")
+    markdown_text = re.sub(r"\n{3,}", "\n\n", markdown_text).strip()
+    return markdown_text
+
+
+def extract_asset_urls_from_raw_html(html_content: str, base_site_url: str) -> set[str]:
+    urls: set[str] = set()
+    if not html_content:
+        return urls
+
+    soup = BeautifulSoup(html_content, "lxml")
+
+    attrs = ["src", "href", "data-src", "data-image", "data-original", "poster"]
+    for tag in soup.find_all(True):
+        for a in attrs:
+            if tag.get(a):
+                urls.add(normalize_url(tag.get(a), base_site_url))
+
+    # srcset candidates
+    for img in soup.find_all("img"):
+        if img.get("srcset"):
+            for part in img["srcset"].split(","):
+                part = part.strip()
+                if part:
+                    urls.add(normalize_url(part.split()[0].strip(), base_site_url))
+
+    # raw URL fallback
+    for u in RAW_URL_RE.findall(html_content):
+        urls.add(normalize_url(u, base_site_url))
+
+    return {u for u in urls if u}
+
+
+def write_blog_index(out_root: str, overwrite: bool = False) -> None:
+    blog_dir = os.path.join(out_root, "blog")
+    os.makedirs(blog_dir, exist_ok=True)
+    path = os.path.join(blog_dir, "index.qmd")
+    if os.path.exists(path) and not overwrite:
+        return
+    content = """---
+title: "Blog"
+listing:
+  contents: .
+  sort: "date desc"
+  type: default
+  categories: true
+  page-size: 20
+  exclude: "index.qmd"
+---
+
+Welcome to the blog.
+"""
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
+        f.write(content)
+
+
+def build_pages_map(channel: ET.Element) -> dict[str, dict]:
+    pages_map: dict[str, dict] = {}
+    for item in channel.findall("item"):
+        post_type = get_text(item, "wp:post_type", NAMESPACES)
+        if post_type == "attachment":
+            continue
+        post_id = get_text(item, "wp:post_id", NAMESPACES)
+        slug = get_text(item, "wp:post_name", NAMESPACES)
+        parent_id = get_text(item, "wp:post_parent", NAMESPACES)
+        if post_id:
+            pages_map[post_id] = {"slug": slug, "parent_id": parent_id}
+    return pages_map
+
+
+def get_parent_slug_path(pages_map: dict[str, dict], parent_id: str) -> str:
+    if not parent_id or parent_id == "0" or parent_id not in pages_map:
+        return ""
+    parent = pages_map[parent_id]
+    grand = get_parent_slug_path(pages_map, parent["parent_id"])
+    return os.path.join(grand, parent["slug"]) if grand else parent["slug"]
+
+
+def convert_wxr_to_quarto(
+    input_xml: str,
+    out_root: str,
+    base_site_url: str,
+    preserve_hierarchy: bool = True,
+    overwrite: bool = False,
+    allow_blog_page_overwrite: bool = False
+):
+    if not os.path.exists(input_xml):
+        raise FileNotFoundError(f"XML not found: {input_xml}")
+
+    os.makedirs(out_root, exist_ok=True)
+
+    manifest_txt = os.path.join(out_root, "_asset_manifest.txt")
+    manifest_csv = os.path.join(out_root, "_asset_manifest.csv")
+
+    if overwrite:
+        for p in (manifest_txt, manifest_csv):
+            if os.path.exists(p):
+                os.remove(p)
+
+    write_blog_index(out_root, overwrite=overwrite)
+
+    tree = ET.parse(input_xml)
+    root = tree.getroot()
+    channel = root.find("channel")
+    if channel is None:
+        raise ValueError("Invalid WXR: missing <channel>")
+
+    pages_map = build_pages_map(channel)
+
+    all_assets: set[str] = set()
+    manifest_rows: dict[str, list[str]] = {}  # url -> row
+    count_written = 0
+
+    for item in channel.findall("item"):
+        post_type = get_text(item, "wp:post_type", NAMESPACES)
+        status = get_text(item, "wp:status", NAMESPACES)
+
+        if status != "publish":
+            continue
+        if post_type in {"attachment", "nav_menu_item"}:
+            continue
+
+        title = get_text(item, "title")
+        post_name = get_text(item, "wp:post_name", NAMESPACES)
+        post_id = get_text(item, "wp:post_id", NAMESPACES)
+        parent_id = get_text(item, "wp:post_parent", NAMESPACES)
+        pub_date = get_text(item, "pubDate")
+        author = get_text(item, "dc:creator", NAMESPACES)
+        excerpt = get_text(item, "excerpt:encoded", NAMESPACES)
+
+        categories, tags = [], []
+        for cat in item.findall("category"):
+            domain = (cat.get("domain") or "").strip()
+            txt = (cat.text or "").strip()
+            if not txt:
+                continue
+            if domain == "category":
+                categories.append(txt)
+            elif domain == "post_tag":
+                tags.append(txt)
+
+        raw_html = get_text(item, "content:encoded", NAMESPACES)
+
+        # ---- Asset manifest extraction ----
+        asset_urls = extract_asset_urls_from_raw_html(raw_html, base_site_url)
+
+        attach_url = get_text(item, "wp:attachment_url", NAMESPACES)
+        if attach_url:
+            asset_urls.add(normalize_url(attach_url, base_site_url))
+
+        for u in asset_urls:
+            if u and u not in manifest_rows:
+                all_assets.add(u)
+                manifest_rows[u] = [u, post_type, post_name or "", post_id or ""]
+
+        # ---- HTML -> Markdown ----
+        body_md = clean_content_to_markdown(raw_html, base_site_url)
+        front = format_yaml(title, pub_date, categories, tags, author, excerpt)
+        final_content = front + body_md + "\n"
+
+        # ---- Output path ----
+        filename = "index.qmd"
+
+        if post_type == "post":
+            target_dir = os.path.join(out_root, "blog")
+            filename = f"{post_name}.qmd" if post_name else "untitled.qmd"
+        else:
+            if post_name == "home":
+                target_dir = out_root
+            elif post_name == "blog":
+                target_dir = os.path.join(out_root, "blog") if allow_blog_page_overwrite else os.path.join(out_root, "pages", "blog")
+            else:
+                if preserve_hierarchy:
+                    parent_path = get_parent_slug_path(pages_map, parent_id)
+                    target_dir = os.path.join(out_root, parent_path, post_name) if parent_path else os.path.join(out_root, post_name)
+                else:
+                    target_dir = os.path.join(out_root, post_name)
+
+        os.makedirs(target_dir, exist_ok=True)
+        full_path = os.path.join(target_dir, filename)
+
+        if (not overwrite) and os.path.exists(full_path):
+            base, ext = os.path.splitext(full_path)
+            i = 2
+            while os.path.exists(f"{base}-{i}{ext}"):
+                i += 1
+            full_path = f"{base}-{i}{ext}"
+
+        with open(full_path, "w", encoding="utf-8", newline="\n") as f:
+            f.write(final_content)
+
+        count_written += 1
+
+    # ---- Write manifest files ----
+    with open(manifest_txt, "w", encoding="utf-8", newline="\n") as f:
+        for u in sorted(all_assets):
+            f.write(u + "\n")
+
+    with open(manifest_csv, "w", encoding="utf-8", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["url", "post_type", "slug", "post_id"])
+        for u in sorted(manifest_rows.keys()):
+            w.writerow(manifest_rows[u])
+
+    print(f"Extraction complete! {count_written} QMD files created.")
+    print(f"Asset manifest: {manifest_txt} ({len(all_assets)} unique URLs)")
+    return count_written, len(all_assets)
+```
+:::
+
+
+::: {.callout-note collapse="true" title="Python - run it"}
+```python
+count_qmd, count_assets = convert_wxr_to_quarto(
+    input_xml=INPUT_XML_FILE,
+    out_root=OUTPUT_DIR,
+    base_site_url=BASE_SITE_URL,
+    preserve_hierarchy=PRESERVE_HIERARCHY,
+    overwrite=OVERWRITE,
+    allow_blog_page_overwrite=ALLOW_BLOG_PAGE_OVERWRITE,
+)
+
+count_qmd, count_assets
+```
+:::
+
+
+Out the other end: one `.qmd` per post and per page, with the image references still pointing at Squarespace's servers. Nothing is downloaded yet.
+
+## Step 2: download the assets
+
+The second notebook walks the `.qmd` files, finds every Squarespace URL, downloads it, and rewrites the reference to a local path.
+
+Expect losses here. Some URLs have moved, some assets were never public, and Squarespace will rate-limit you if you go too fast. The notebook logs what failed rather than stopping, so you get a list to work through by hand afterwards.
+
+::: {.callout-note collapse="true" title="Python - configuration"}
+```python
+import os
+
+SITE_DIR = r"C:\Users\benny\OneDrive\Documents\Github\site\temp4"   # where your .qmd are
+ASSETS_DIR = os.path.join(SITE_DIR, "assets")
+MANIFEST_PATH = os.path.join(SITE_DIR, "_asset_manifest.txt")
+
+BASE_SITE_URL = "https://benny.istan.to"  # for /s/... links if any
+DELAY_SECONDS = 1.0
+OVERWRITE_EXISTING = False  # if True, redownload even if file exists
+```
+:::
+
+
+::: {.callout-note collapse="true" title="Python - the downloader"}
+```python
+import os, re, csv, time, html, mimetypes
+from urllib.parse import urlparse, unquote, parse_qs, urljoin
+
+import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+    )
+}
+
+# Domains that usually host actual files
+ASSET_HOSTS = {
+    "images.squarespace-cdn.com",
+    "static1.squarespace.com",
+    "images.squarespace.com",
+    "static.squarespace.com",
+}
+
+# Your site domain CAN be kept, but only for /s/ file URLs
+SITE_HOST_ALLOW = {"benny.istan.to", "bennyistanto.squarespace.com"}
+
+DOWNLOADABLE_EXTS = {
+    ".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg",
+    ".pdf", ".zip", ".mp4", ".mov", ".mp3", ".wav",
+    ".doc", ".docx", ".ppt", ".pptx", ".xls", ".xlsx",
+}
+
+FENCED_CODE_RE = re.compile(r"```.*?```", re.DOTALL)
+MD_LINK_RE = re.compile(r"!\[[^\]]*\]\(([^)]+)\)|\[[^\]]*\]\(([^)]+)\)")
+HTML_ATTR_RE = re.compile(r"""(?:src|href|data-src|data-image|data-original|poster)\s*=\s*["']([^"']+)["']""", re.IGNORECASE)
+SRCSET_RE = re.compile(r"""srcset\s*=\s*["']([^"']+)["']""", re.IGNORECASE)
+CSS_URL_RE = re.compile(r"""url\(\s*['"]?([^'")]+)['"]?\s*\)""", re.IGNORECASE)
+RAW_URL_RE = re.compile(r"""https?://[^\s"'<>()]+""", re.IGNORECASE)
+
+ASSET_ID_RE = re.compile(r"(\d{13}-[A-Z0-9]{8,})")
+
+
+def create_session():
+    s = requests.Session()
+    s.headers.update(HEADERS)
+    retry = Retry(
+        total=6,
+        backoff_factor=1,
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=["HEAD", "GET", "OPTIONS"],
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    s.mount("https://", adapter)
+    s.mount("http://", adapter)
+    return s
+
+
+def strip_trailing_punct(u: str) -> str:
+    return u.rstrip(').,;:\'"!?]>')
+
+def normalize_url(u: str, base_site_url: str) -> str:
+    u = (u or "").strip().strip("<>")
+    u = html.unescape(u)
+    u = strip_trailing_punct(u)
+    if u.startswith("//"):
+        u = "https:" + u
+    if u.startswith("/"):
+        u = urljoin(base_site_url.rstrip("/") + "/", u.lstrip("/"))
+    return u
+
+
+def looks_like_downloadable_file(u: str) -> bool:
+    """
+    True if URL is likely a file asset (not a page).
+    """
+    try:
+        p = urlparse(u)
+        host = p.netloc.lower()
+        path = p.path or ""
+        ext = os.path.splitext(path)[1].lower()
+
+        # 1) Asset CDN hosts: require a file extension OR content-type query
+        if host in ASSET_HOSTS:
+            if ext in DOWNLOADABLE_EXTS:
+                return True
+            q = parse_qs(p.query)
+            if "content-type" in q:
+                return True
+            return False
+
+        # 2) Your own domain: only download if it's a Squarespace file link (/s/...) AND looks like a file
+        if host in SITE_HOST_ALLOW:
+            if path.startswith("/s/") and (ext in DOWNLOADABLE_EXTS or ext):
+                return True
+            return False
+
+        return False
+    except Exception:
+        return False
+
+
+def asset_key(u: str) -> str:
+    p = urlparse(u)
+    return f"{p.netloc.lower()}{p.path}"
+
+
+def best_quality_score(u: str, width_hint: int = 0) -> int:
+    score = width_hint or 0
+    try:
+        q = parse_qs(urlparse(u).query)
+        fmt = (q.get("format", [""])[0] or "").lower()
+        m = re.search(r"(\d{3,5})w", fmt)
+        if m:
+            score = max(score, int(m.group(1)))
+        if fmt in {"original", "raw"}:
+            score = max(score, 99999)
+    except Exception:
+        pass
+    return score
+
+
+def safe_filename(name: str) -> str:
+    name = unquote(name).replace(" ", "_")
+    name = re.sub(r"[^A-Za-z0-9._-]+", "", name)
+    name = re.sub(r"_{2,}", "_", name).strip("._-")
+    return name or "asset"
+
+
+def fix_extension(ext: str) -> str:
+    if not ext:
+        return ".jpg"
+    ext = ext.lower()
+    if ext in [".jpe", ".jpeg"]:
+        return ".jpg"
+    return ext
+
+
+def choose_base_name(final_url: str) -> str:
+    p = urlparse(final_url)
+    m = ASSET_ID_RE.search(p.path or "")
+    if m:
+        return m.group(1)
+    base = os.path.basename(p.path) or "asset"
+    stem = os.path.splitext(base)[0] or "asset"
+    return safe_filename(stem)
+
+
+def extract_urls_from_text(text: str, base_site_url: str):
+    text = FENCED_CODE_RE.sub("", text or "")
+    found = []
+
+    # Markdown links/images
+    for m in MD_LINK_RE.findall(text):
+        for raw in m:
+            if raw:
+                raw = raw.strip().strip('"').strip("'")
+                norm = normalize_url(raw, base_site_url)
+                found.append((raw, norm, 0))
+
+    # HTML attributes
+    for raw in HTML_ATTR_RE.findall(text):
+        raw = raw.strip()
+        norm = normalize_url(raw, base_site_url)
+        found.append((raw, norm, 0))
+
+    # srcset
+    for srcset in SRCSET_RE.findall(text):
+        parts = [p.strip() for p in srcset.split(",") if p.strip()]
+        for part in parts:
+            tokens = part.split()
+            raw = tokens[0].strip()
+            width_hint = 0
+            if len(tokens) > 1:
+                m = re.match(r"(\d{2,5})w", tokens[1].lower())
+                if m:
+                    width_hint = int(m.group(1))
+            norm = normalize_url(raw, base_site_url)
+            found.append((raw, norm, width_hint))
+
+    # CSS url(...)
+    for raw in CSS_URL_RE.findall(text):
+        raw = raw.strip()
+        norm = normalize_url(raw, base_site_url)
+        found.append((raw, norm, 0))
+
+    # Raw URLs
+    for raw in RAW_URL_RE.findall(text):
+        raw = raw.strip()
+        norm = normalize_url(raw, base_site_url)
+        found.append((raw, norm, 0))
+
+    # Keep only downloadables
+    out = []
+    for raw, norm, w in found:
+        if norm and looks_like_downloadable_file(norm):
+            out.append((raw, norm, w))
+    return out
+
+
+def collect_qmd_files(site_dir: str, assets_dir: str):
+    qmds = []
+    for root, _, files in os.walk(site_dir):
+        # skip the assets dir itself
+        if os.path.abspath(root).startswith(os.path.abspath(assets_dir)):
+            continue
+        for fn in files:
+            if fn.endswith(".qmd"):
+                qmds.append(os.path.join(root, fn))
+    qmds.sort()
+    return qmds
+
+
+def download_one(session, url, assets_path, delay_seconds: float, overwrite: bool):
+    try:
+        r = session.get(url, stream=True, allow_redirects=True, timeout=45)
+        if r.status_code != 200:
+            return False, None, r.url, f"HTTP {r.status_code}"
+
+        ctype = (r.headers.get("content-type") or "").split(";")[0].strip().lower()
+        if ctype.startswith("text/html"):
+            return False, None, r.url, "Got HTML (page/blocked/redirected)"
+
+        ext = os.path.splitext(urlparse(r.url).path)[1]
+        if not ext:
+            ext = mimetypes.guess_extension(ctype) or ""
+        ext = fix_extension(ext)
+
+        base = choose_base_name(r.url)
+        filename_asset = f"{base}{ext}"
+        save_path = os.path.join(assets_path, filename_asset)
+
+        if os.path.exists(save_path) and not overwrite:
+            return True, filename_asset, r.url, None
+
+        uniq = 1
+        final_name = filename_asset
+        while os.path.exists(save_path) and overwrite is False:
+            final_name = f"{base}_{uniq}{ext}"
+            save_path = os.path.join(assets_path, final_name)
+            uniq += 1
+
+        with open(save_path, "wb") as f_out:
+            for chunk in r.iter_content(chunk_size=1024 * 64):
+                if chunk:
+                    f_out.write(chunk)
+
+        time.sleep(delay_seconds)
+        return True, final_name, r.url, None
+
+    except Exception as e:
+        return False, None, url, str(e)
+
+
+def run_download(site_dir, assets_dir, manifest_path, base_site_url, delay_seconds=1.0, overwrite=False):
+    print(f"--- STARTING SCAN in: {site_dir} ---")
+    os.makedirs(assets_dir, exist_ok=True)
+
+    session = create_session()
+    qmd_files = collect_qmd_files(site_dir, assets_dir)
+    print(f"Found {len(qmd_files)} .qmd files.")
+
+    # key -> (best_url, score)
+    best = {}
+
+    # QMD scan
+    qmd_count = 0
+    for fp in qmd_files:
+        with open(fp, "r", encoding="utf-8") as f:
+            text = f.read()
+        triples = extract_urls_from_text(text, base_site_url)
+        for _raw, norm, w in triples:
+            k = asset_key(norm)
+            score = best_quality_score(norm, w)
+            prev = best.get(k)
+            if prev is None or score > prev[1]:
+                best[k] = (norm, score)
+        qmd_count += len(triples)
+
+    print(f"QMD scan: {len(best)} unique downloadable assets (from {qmd_count} URL hits).")
+
+    # Manifest scan
+    if manifest_path and os.path.exists(manifest_path):
+        before = len(best)
+        with open(manifest_path, "r", encoding="utf-8") as f:
+            for line in f:
+                u = normalize_url(line.strip(), base_site_url)
+                if u and looks_like_downloadable_file(u):
+                    k = asset_key(u)
+                    score = best_quality_score(u, 0)
+                    prev = best.get(k)
+                    if prev is None or score > prev[1]:
+                        best[k] = (u, score)
+        after = len(best)
+        print(f"Manifest added: {before} -> {after} unique downloadable assets.")
+    else:
+        print("Manifest not found / not used (this is why you only saw ~1013 previously).")
+
+    keys = list(best.keys())
+    print(f"Downloading {len(keys)} unique assets...")
+
+    success_csv = os.path.join(assets_dir, "_download_success.csv")
+    failed_txt = os.path.join(assets_dir, "_download_failed.txt")
+    url_map = {}
+    success_rows = []
+    failed = []
+
+    for i, k in enumerate(keys, 1):
+        url = best[k][0]
+        ok, local_name, final_url, err = download_one(session, url, assets_dir, delay_seconds, overwrite)
+        if ok:
+            url_map[k] = local_name
+            success_rows.append([k, url, final_url, local_name])
+            if i <= 20 or i % 200 == 0:
+                print(f"[{i}/{len(keys)}] OK  -> {local_name}")
+        else:
+            failed.append(f"{url}\t{err}")
+            if i <= 20 or i % 200 == 0:
+                print(f"[{i}/{len(keys)}] FAIL -> {url} ({err})")
+
+    with open(success_csv, "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["asset_key", "requested_url", "final_url", "local_filename"])
+        w.writerows(success_rows)
+
+    if failed:
+        with open(failed_txt, "w", encoding="utf-8") as f:
+            f.write("\n".join(failed) + "\n")
+
+    # Rewrite QMD links
+    changed_files = 0
+    for fp in qmd_files:
+        with open(fp, "r", encoding="utf-8") as f:
+            text = f.read()
+
+        triples = extract_urls_from_text(text, base_site_url)
+        if not triples:
+            continue
+
+        qmd_dir = os.path.dirname(fp)
+        rel_assets = os.path.relpath(assets_dir, qmd_dir).replace("\\", "/")
+
+        new_text = text
+        changed = False
+        for raw, norm, _w in triples:
+            k = asset_key(norm)
+            if k in url_map:
+                local_rel = f"{rel_assets}/{url_map[k]}".replace("\\", "/")
+                if raw in new_text:
+                    new_text = new_text.replace(raw, local_rel)
+                    changed = True
+
+        if changed and new_text != text:
+            with open(fp, "w", encoding="utf-8", newline="\n") as f:
+                f.write(new_text)
+            changed_files += 1
+
+    print("\nDone.")
+    print(f"- Downloaded: {len(url_map)}")
+    print(f"- Failed: {len(failed)} (see {failed_txt})" if failed else "- Failed: 0")
+    print(f"- Updated QMD files: {changed_files}")
+    print(f"- Logs: {success_csv}")
+```
+:::
+
+
+::: {.callout-note collapse="true" title="Python - run it"}
+```python
+run_download(
+    site_dir=SITE_DIR,
+    assets_dir=ASSETS_DIR,
+    manifest_path=MANIFEST_PATH,
+    base_site_url=BASE_SITE_URL,
+    delay_seconds=DELAY_SECONDS,
+    overwrite=OVERWRITE_EXISTING
+)
+```
+:::
+
+
+## Step 3: rename the assets, if you need to
+
+Skip this one if your Squarespace filenames are already sane. Mine were not: years of uploads had left me with images called things like `image-asset.jpeg` and a lot of hex strings, with no way to tell which post an image belonged to.
+
+This notebook works out which post uses which asset, renames each one after the post plus a sequence number, and updates the references to match. A post called `2025-blog-helloworld.qmd` ends up with `2025-blog-helloworld-01.png`, `-02.png` and so on.
+
+The useful side effect is that anything it does not rename is an asset no post references, which is how you find the orphans.
+
+It has a `DRY_RUN` flag. Use it.
+
+::: {.callout-note collapse="true" title="Python - configuration"}
+```python
+import os
+
+ROOT_DIR = r"C:\Users\benny\OneDrive\Documents\Github\site\temp4"  # your site folder containing .qmd + assets/
+ASSETS_DIR = os.path.join(ROOT_DIR, "assets")
+
+DRY_RUN = True   # <-- set to False to actually rename + write QMD updates
+```
+:::
+
+
+::: {.callout-note collapse="true" title="Python - the renamer"}
+```python
+import os
+import re
+import csv
+from collections import defaultdict
+from urllib.parse import unquote
+
+# Matches markdown links/images: (...assets/anything...)
+MD_ASSET_LINK_RE = re.compile(r'\(([^)\n]*assets/[^)\n]+)\)')
+# Matches HTML attributes: src="...assets/..." or href="...assets/..."
+HTML_ASSET_ATTR_RE = re.compile(r'''(?:src|href)\s*=\s*["']([^"']*assets/[^"']+)["']''', re.IGNORECASE)
+
+def extract_asset_links(text: str):
+    """Return unique asset link strings found in QMD text (preserve first-seen order)."""
+    links = []
+    for m in MD_ASSET_LINK_RE.finditer(text or ""):
+        links.append(m.group(1))
+    for m in HTML_ASSET_ATTR_RE.finditer(text or ""):
+        links.append(m.group(1))
+
+    seen = set()
+    out = []
+    for x in links:
+        if x not in seen:
+            seen.add(x)
+            out.append(x)
+    return out
+
+def find_file_on_disk(qmd_dir: str, link_path: str):
+    """
+    link_path like "../assets/file(1).png?format=1500w" or "assets/x.png"
+    Returns absolute path if exists, else None
+    """
+    clean = link_path.split("?")[0]  # drop query
+    candidates = [
+        os.path.normpath(os.path.join(qmd_dir, clean)),                            # literal
+        os.path.normpath(os.path.join(qmd_dir, unquote(clean))),                   # url-decoded
+        os.path.normpath(os.path.join(qmd_dir, clean.replace("+", " "))),          # plus->space
+        os.path.normpath(os.path.join(qmd_dir, unquote(clean).replace("+", " "))), # both
+    ]
+    for p in candidates:
+        if os.path.exists(p) and os.path.isfile(p):
+            return p
+    return None
+
+def relink_same_prefix(original_link: str, new_filename: str) -> str:
+    """
+    Keep the original link's path prefix (e.g., ../assets/) but replace the filename.
+    Also removes query params.
+    """
+    clean = original_link.split("?")[0]
+    prefix = clean.rsplit("/", 1)[0]  # everything before filename
+    return f"{prefix}/{new_filename}"
+
+def safe_new_name(base_stem: str, idx: int, ext: str) -> str:
+    ext = ext if ext else ".jpg"
+    return f"{base_stem}-{idx:02d}{ext}"
+
+def rename_assets_rename_only(root_dir: str, assets_dir: str, dry_run: bool = True):
+    if not os.path.isdir(assets_dir):
+        raise FileNotFoundError(f"Assets dir not found: {assets_dir}")
+
+    # Collect QMD files
+    qmd_files = []
+    for r, _, files in os.walk(root_dir):
+        if os.path.abspath(r).startswith(os.path.abspath(assets_dir)):
+            continue
+        for fn in files:
+            if fn.endswith(".qmd"):
+                qmd_files.append(os.path.join(r, fn))
+    qmd_files.sort()  # deterministic order
+
+    print(f"Found {len(qmd_files)} QMD files")
+
+    # 1) Build reference map: abs_asset_path -> list of (qmd_path, original_link, position)
+    refs = defaultdict(list)
+
+    # Also store per QMD the links in order for canonical indexing
+    qmd_link_order = {}
+
+    for qmd_path in qmd_files:
+        qmd_dir = os.path.dirname(qmd_path)
+        with open(qmd_path, "r", encoding="utf-8") as f:
+            text = f.read()
+
+        links = extract_asset_links(text)
+        qmd_link_order[qmd_path] = links
+
+        for pos, link in enumerate(links, start=1):
+            abs_path = find_file_on_disk(qmd_dir, link)
+            if abs_path:
+                refs[abs_path].append((qmd_path, link, pos))
+
+    print(f"Referenced unique asset files: {len(refs)}")
+
+    # 2) Decide canonical name per asset (rename-only):
+    #    Choose canonical QMD = first QMD (sorted) that references the asset.
+    #    Choose index based on first appearance order in that canonical QMD.
+    #    If collisions occur, bump index until free.
+    asset_plan = {}  # abs_asset_path -> dict(new_name, canonical_qmd, ref_count)
+
+    # Track counters per canonical QMD for naming
+    # BUT: we must ensure stable per-asset index = first appearance in canonical QMD,
+    # then collision bump if needed.
+    for abs_asset_path, occurrences in refs.items():
+        occurrences_sorted = sorted(occurrences, key=lambda x: (x[0], x[2]))  # by qmd_path then position
+        canonical_qmd, _link, pos = occurrences_sorted[0]
+        stem = os.path.splitext(os.path.basename(canonical_qmd))[0]
+        ext = os.path.splitext(abs_asset_path)[1] or os.path.splitext(_link.split("?")[0])[1] or ".jpg"
+
+        # base index = pos in canonical qmd order (so it "follows qmd filename" naturally)
+        idx = pos
+
+        new_name = safe_new_name(stem, idx, ext)
+        new_abs = os.path.join(assets_dir, new_name)
+
+        # collision resolution
+        bump = idx
+        while os.path.exists(new_abs) and os.path.normpath(new_abs) != os.path.normpath(abs_asset_path):
+            bump += 1
+            new_name = safe_new_name(stem, bump, ext)
+            new_abs = os.path.join(assets_dir, new_name)
+
+        asset_plan[abs_asset_path] = {
+            "canonical_qmd": canonical_qmd,
+            "ref_count": len(occurrences),
+            "new_name": new_name,
+            "new_abs": new_abs,
+        }
+
+    shared_assets = [p for p, info in asset_plan.items() if info["ref_count"] > 1]
+    print(f"Shared assets (used by >1 QMD): {len(shared_assets)}")
+    print(f"DRY_RUN={dry_run}")
+
+    # 3) Apply renames (each asset once)
+    rename_map = {}  # old_abs -> new_abs
+    for old_abs, info in asset_plan.items():
+        new_abs = info["new_abs"]
+        if os.path.normpath(old_abs) == os.path.normpath(new_abs):
+            continue  # already in desired name
+        rename_map[old_abs] = new_abs
+
+    # 4) Update QMD contents based on rename_map
+    updated_files = 0
+    total_replacements = 0
+
+    # pre-read all QMD to memory to avoid multiple disk writes
+    qmd_text = {}
+    for qmd_path in qmd_files:
+        with open(qmd_path, "r", encoding="utf-8") as f:
+            qmd_text[qmd_path] = f.read()
+
+    # create helper: old filename -> new filename (because QMD links are relative)
+    oldfile_to_newfile = {}
+    for old_abs, new_abs in rename_map.items():
+        oldfile_to_newfile[os.path.basename(old_abs)] = os.path.basename(new_abs)
+
+    # update links
+    for qmd_path in qmd_files:
+        text = qmd_text[qmd_path]
+        links = extract_asset_links(text)
+        if not links:
+            continue
+
+        new_text = text
+        changed = False
+        for link in links:
+            clean = link.split("?")[0]
+            filename = clean.rsplit("/", 1)[-1]
+            if filename in oldfile_to_newfile:
+                new_link = relink_same_prefix(link, oldfile_to_newfile[filename])
+                if link in new_text:
+                    new_text = new_text.replace(link, new_link)
+                    total_replacements += 1
+                    changed = True
+                elif clean in new_text:
+                    new_text = new_text.replace(clean, new_link)
+                    total_replacements += 1
+                    changed = True
+
+        if changed and new_text != text:
+            qmd_text[qmd_path] = new_text
+            updated_files += 1
+
+    # 5) Write logs
+    rename_csv = os.path.join(assets_dir, "_rename_map.csv")
+    shared_csv = os.path.join(assets_dir, "_shared_assets.csv")
+
+    rows = []
+    shared_rows = []
+    for old_abs, info in asset_plan.items():
+        old_name = os.path.basename(old_abs)
+        new_name = os.path.basename(info["new_abs"])
+        row = [
+            old_name,
+            new_name,
+            os.path.relpath(info["canonical_qmd"], root_dir).replace("\\", "/"),
+            info["ref_count"],
+        ]
+        rows.append(row)
+        if info["ref_count"] > 1:
+            shared_rows.append(row)
+
+    if not dry_run:
+        # apply filesystem renames
+        for old_abs, new_abs in rename_map.items():
+            os.rename(old_abs, new_abs)
+
+        # write updated QMDs
+        for qmd_path, text in qmd_text.items():
+            with open(qmd_path, "w", encoding="utf-8", newline="\n") as f:
+                f.write(text)
+
+        # write csv logs
+        with open(rename_csv, "w", newline="", encoding="utf-8") as f:
+            w = csv.writer(f)
+            w.writerow(["old_filename", "new_filename", "canonical_qmd", "ref_count"])
+            w.writerows(rows)
+
+        with open(shared_csv, "w", newline="", encoding="utf-8") as f:
+            w = csv.writer(f)
+            w.writerow(["old_filename", "new_filename", "canonical_qmd", "ref_count"])
+            w.writerows(shared_rows)
+
+    print("\n--- SUMMARY ---")
+    print(f"Planned renames: {len(rename_map)}")
+    print(f"QMD files to update: {updated_files}")
+    print(f"Total link replacements: {total_replacements}")
+    print(f"Rename log (will be written when DRY_RUN=False): {rename_csv}")
+    print(f"Shared assets report (will be written when DRY_RUN=False): {shared_csv}")
+
+    # return some quick stats for notebook inspection
+    return {
+        "qmd_files": len(qmd_files),
+        "unique_assets_referenced": len(refs),
+        "shared_assets": len(shared_assets),
+        "planned_renames": len(rename_map),
+        "qmd_files_to_update": updated_files,
+        "total_replacements": total_replacements,
+    }
+```
+:::
+
+
+::: {.callout-note collapse="true" title="Python - run it"}
+```python
+DRY_RUN = False
+stats = rename_assets_rename_only(ROOT_DIR, ASSETS_DIR, dry_run=DRY_RUN)
+stats
+```
+:::
+
+
+## The equations
+
+One thing the export does not warn you about: if you wrote equations in Squarespace, they come back as **images**. Not markup, pictures of maths. They do not scale, they do not respond to dark mode, they are invisible to search and to screen readers, and on a phone they overflow the column.
+
+I had enough of these across the older posts that fixing them by hand was not sensible, so they got their own scripts: one general pass, one for the radiation posts, which had a house style of their own, and one for the stragglers. They rewrite the image references as real LaTeX that MathJax renders.
+
+::: {.callout-note collapse="true" title="Python - convert_equations.py"}
+```python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Convert mathematical equations to LaTeX format in blog posts
+"""
+
+import re
+import os
+
+def convert_file(filepath):
+    """Convert equations in a single file"""
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    original_content = content
+
+    # File-specific conversions based on filename
+    filename = os.path.basename(filepath)
+
+    if filename == '20031028-pengukuran-suhu.qmd':
+        # Equation 4.2
+        content = content.replace(
+            'RT = Ro[1+ a (T-To)] ……………….(4.2)',
+            r'$$R_T = R_o[1+ a (T-T_o)] \tag{4.2}$$'
+        )
+        content = re.sub(
+            r'dimana \(t-To\) kecil',
+            r'dimana $(t-T_o)$ kecil',
+            content
+        )
+        content = re.sub(
+            r'RT adalah hambatan',
+            r'$R_T$ adalah hambatan',
+            content
+        )
+        content = re.sub(
+            r'Ro adalah koefisin suhu referensi To',
+            r'$R_o$ adalah koefisin suhu referensi $T_o$',
+            content
+        )
+        content = re.sub(
+            r'a adalah koefisien suhu dari hambatan disekitar To',
+            r'$a$ adalah koefisien suhu dari hambatan disekitar $T_o$',
+            content
+        )
+        # Equation 4.3
+        content = content.replace(
+            'RT = Ro [1 + a (t-To) + b (T-To)2] ….(4.3)',
+            r'$$R_T = R_o [1 + a (t-T_o) + b (T-T_o)^2] \tag{4.3}$$'
+        )
+        content = re.sub(
+            r'Jadi nilai koefisien a dan b dapat',
+            r'Jadi nilai koefisien $a$ dan $b$ dapat',
+            content
+        )
+        # Equation 4.4
+        content = content.replace(
+            'R = a exp (b/T)',
+            r'$$R = a \exp(b/T) \tag{4.4}$$'
+        )
+        content = re.sub(
+            r'dimana a dan b adalah konstan dan T adalah suhu',
+            r'dimana $a$ dan $b$ adalah konstan dan $T$ adalah suhu',
+            content
+        )
+        # Equation 4.5
+        content = re.sub(
+            r'R = Ro exp \[b/T-b/To\] ……………\.\(4\.5\)',
+            r'$$R = R_o \exp\left[\\frac{b}{T}-\\frac{b}{T_o}\right] \\tag{4.5}$$',
+            content
+        )
+        content = re.sub(
+            r'suhu referensi, To digunakan',
+            r'suhu referensi, $T_o$ digunakan',
+            content
+        )
+
+    elif filename == '20040103-menghitung-radiasi-matahari.qmd':
+        # Equation 1
+        content = re.sub(
+            r'Ra = \(24\(60\)\)/π \\\* Gsc \\\* dr \\\* \[ωs \\\* sin\(φ\) \\\* sin\(δ\) \+ cos\(φ\) \\\* cos\(δ\) \\\* sin\(ωs\)\] \(\*\*Persamaan 1\*\*\)',
+            r'$$R_a = \\frac{24(60)}{\\pi} G_{sc} d_r [\\omega_s \\sin(\\phi) \\sin(\\delta) + \\cos(\\phi) \\cos(\\delta) \\sin(\\omega_s)] \\tag{1}$$',
+            content
+        )
+        # Equation 2
+        content = re.sub(
+            r'evaporasi \[mm hari-1\] = 0,408 x Radiasi \[MJ m-2 hari-1\] \(\*\*Persamaan 2\*\*\)',
+            r'$$\\text{evaporasi [mm hari}^{-1}\\text{]} = 0.408 \\times \\text{Radiasi [MJ m}^{-2}\\text{ hari}^{-1}\\text{]} \\tag{2}$$',
+            content
+        )
+        # Equation 3
+        content = re.sub(
+            r'\[Radians\] = π/180 \\\* \[decimal degrees\] \(\*\*Persamaan 3\*\*\)',
+            r'$$[\\text{Radians}] = \\frac{\\pi}{180} \\times [\\text{decimal degrees}] \\tag{3}$$',
+            content
+        )
+        # Equation 4
+        content = re.sub(
+            r'dr = 1 \+ 0\.033 \\\* cos\(2π/365 \\\* J\) \(\*\*Persamaan 4\*\*\)',
+            r'$$d_r = 1 + 0.033 \\cos\\left(\\frac{2\\pi}{365} J\\right) \\tag{4}$$',
+            content
+        )
+        # Equation 5
+        content = re.sub(
+            r'δ = 0\.409 \\\* sin\(2π/365 \\\* J - 1\.39\) \(\*\*Persamaan 5\*\*\)',
+            r'$$\\delta = 0.409 \\sin\\left(\\frac{2\\pi}{365} J - 1.39\\right) \\tag{5}$$',
+            content
+        )
+
+    # Only write if content changed
+    if content != original_content:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        return True
+    return False
+
+# Main execution
+if __name__ == '__main__':
+    blog_dir = r'C:\Users\benny\OneDrive\Documents\Github\site\docs\blog'
+
+    files_to_convert = [
+        '20031028-pengukuran-suhu.qmd',
+        '20040103-menghitung-radiasi-matahari.qmd',
+    ]
+
+    for filename in files_to_convert:
+        filepath = os.path.join(blog_dir, filename)
+        if os.path.exists(filepath):
+            if convert_file(filepath):
+                print(f'Converted: {filename}')
+            else:
+                print(f'No changes: {filename}')
+        else:
+            print(f'File not found: {filename}')
+```
+:::
+
+
+::: {.callout-note collapse="true" title="Python - convert_radiation_equations.py"}
+```python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Convert mathematical equations to LaTeX format in radiation blog post
+"""
+
+import re
+
+def convert_radiation_file():
+    """Convert equations in 20040103-menghitung-radiasi-matahari.qmd"""
+    filepath = r'C:\Users\benny\OneDrive\Documents\Github\site\docs\blog\20040103-menghitung-radiasi-matahari.qmd'
+
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    # Store original for comparison
+    original_content = content
+
+    # Equation 1
+    content = re.sub(
+        r'Ra = \(24\(60\)\)/π \\\* Gsc \\\* dr \\\* \[ωs \\\* sin\(φ\) \\\* sin\(δ\) \+ cos\(φ\) \\\* cos\(δ\) \\\* sin\(ωs\)\] \(\*\*Persamaan 1\*\*\)',
+        r'$$R_a = \\frac{24(60)}{\\pi} G_{sc} d_r [\\omega_s \\sin(\\phi) \\sin(\\delta) + \\cos(\\phi) \\cos(\\delta) \\sin(\\omega_s)] \\tag{1}$$',
+        content
+    )
+
+    # Equation 2
+    content = re.sub(
+        r'evaporasi \[mm hari-1\] = 0,408 x Radiasi \[MJ m-2 hari-1\] \(\*\*Persamaan 2\*\*\)',
+        r'$$\\text{evaporasi [mm hari}^{-1}\\text{]} = 0.408 \\times \\text{Radiasi [MJ m}^{-2}\\text{ hari}^{-1}\\text{]} \\tag{2}$$',
+        content
+    )
+
+    # Equation 3
+    content = re.sub(
+        r'\[Radians\] = π/180 \\\* \[decimal degrees\] \(\*\*Persamaan 3\*\*\)',
+        r'$$[\\text{Radians}] = \\frac{\\pi}{180} \\times [\\text{decimal degrees}] \\tag{3}$$',
+        content
+    )
+
+    # Equation 4
+    content = re.sub(
+        r'dr = 1 \+ 0\.033 \\\* cos\(2π/365 \\\* J\) \(\*\*Persamaan 4\*\*\)',
+        r'$$d_r = 1 + 0.033 \\cos\\left(\\frac{2\\pi}{365} J\\right) \\tag{4}$$',
+        content
+    )
+
+    # Equation 5
+    content = re.sub(
+        r'δ = 0\.409 \\\* sin\(2π/365 \\\* J - 1\.39\) \(\*\*Persamaan 5\*\*\)',
+        r'$$\\delta = 0.409 \\sin\\left(\\frac{2\\pi}{365} J - 1.39\\right) \\tag{5}$$',
+        content
+    )
+
+    # Equation 6 (multi-line)
+    content = re.sub(
+        r'J = INTEGER \(275 M / 9 - 30 \+ D\) - 2\n\nIF \(M <3\) THEN J = J \+ 2\n\nIF \("tahun kabisat" and \(M> 2\)\) THEN J = J \+ 1 \(\*\*Persamaan 6\*\*\)',
+        r'$$J = \\text{INTEGER}\\left(\\frac{275M}{9} - 30 + D\\right) - 2$$\n\n$$\\text{IF } (M < 3) \\text{ THEN } J = J + 2$$\n\n$$\\text{IF ("tahun kabisat" and } (M > 2)) \\text{ THEN } J = J + 1 \\tag{6}$$',
+        content
+    )
+
+    # Equation 7
+    content = re.sub(
+        r'ωs = arccos\[-tan\(φ\) \\\* tan\(δ\)\] \(\*\*Persamaan 7\*\*\)',
+        r'$$\\omega_s = \\arccos[-\\tan(\\phi) \\tan(\\delta)] \\tag{7}$$',
+        content
+    )
+
+    # Equation 8
+    content = re.sub(
+        r'ωs = π/2 - arctan\[\(-tan\(φ\) \\\* tan\(δ\)\)/X\^0\.5\] \(\*\*Persamaan 8\*\*\)',
+        r'$$\\omega_s = \\frac{\\pi}{2} - \\arctan\\left[\\frac{-\\tan(\\phi) \\tan(\\delta)}{X^{0.5}}\\right] \\tag{8}$$',
+        content
+    )
+
+    # Equation 9
+    content = re.sub(
+        r'\* X = 1 - \[tan\(φ\)\]\^2 \[tan\(δ\)\]\^2 \(\*\*Persamaan 9\*\*\)\n\n  dan X = 0\.00001 jika X ≤ 0',
+        r'$$X = 1 - [\\tan(\\phi)]^2 [\\tan(\\delta)]^2 \\tag{9}$$\n\n  dan $X = 0.00001$ jika $X \\leq 0$',
+        content
+    )
+
+    # Equation 10
+    content = re.sub(
+        r'Ra = \(12\(60\)\)/π \\\* Gsc \\\* dr \\\* \[\(ω2 - ω1\) \\\* sin\(φ\) \\\* sin\(δ\) \+ cos\(φ\) \\\* cos\(δ\) \\\* \(sin\(ω2\)-sin\(ω1\)\)\] \(\*\*Persamaan 10\*\*\)',
+        r'$$R_a = \\frac{12(60)}{\\pi} G_{sc} d_r [(\\omega_2 - \\omega_1) \\sin(\\phi) \\sin(\\delta) + \\cos(\\phi) \\cos(\\delta) (\\sin(\\omega_2)-\\sin(\\omega_1))] \\tag{10}$$',
+        content
+    )
+
+    # Equations 11 and 12
+    content = re.sub(
+        r'ω1 = ω - \(πt1/24\) \(\*\*Persamaan 11\*\*\)\n\nω2 = ω \+ \(πt1/24\) \(\*\*Persamaan 12\*\*\)',
+        r'$$\\omega_1 = \\omega - \\frac{\\pi t_1}{24} \\tag{11}$$\n\n$$\\omega_2 = \\omega + \\frac{\\pi t_1}{24} \\tag{12}$$',
+        content
+    )
+
+    # Equation 13
+    content = re.sub(
+        r'ω = π/12 \\\* \[\(t \+ 0\.06667 \\\* \(Lz - Lm\) \+ Sc\) - 12\] \(\*\*Persamaan 13\*\*\)',
+        r'$$\\omega = \\frac{\\pi}{12} [(t + 0.06667 (L_z - L_m) + S_c) - 12] \\tag{13}$$',
+        content
+    )
+
+    # Equation 14
+    content = re.sub(
+        r'Sc = 0\.1645 \\\* sin\(2 b\) - 0\.1255 \\\* cos\(b\) - 0\.025 sin\(b\) \(\*\*Persamaan 14\*\*\)',
+        r'$$S_c = 0.1645 \\sin(2b) - 0.1255 \\cos(b) - 0.025 \\sin(b) \\tag{14}$$',
+        content
+    )
+
+    # Equation 15
+    content = re.sub(
+        r'b = \(2π\(J-81\)\)/364 \(\*\*Persamaan 15\*\*\)',
+        r'$$b = \\frac{2\\pi(J-81)}{364} \\tag{15}$$',
+        content
+    )
+
+    # Equation 16
+    content = re.sub(
+        r'N = 24/π \\\* ωs \(\*\*Persamaan 16\*\*\)',
+        r'$$N = \\frac{24}{\\pi} \\omega_s \\tag{16}$$',
+        content
+    )
+
+    # Equation 17
+    content = re.sub(
+        r'Rs = \(as \+ bs \\\* \(n/N\)\) \\\* Ra \(\*\*Persamaan 17\*\*\)',
+        r'$$R_s = (a_s + b_s \\frac{n}{N}) R_a \\tag{17}$$',
+        content
+    )
+
+    # Equation 18
+    content = re.sub(
+        r'Rso = \(as \+ bs\) Ra \(\*\*Persamaan 18\*\*\)',
+        r'$$R_{so} = (a_s + b_s) R_a \\tag{18}$$',
+        content
+    )
+
+    # Equation 19
+    content = re.sub(
+        r'Rso = \(0,75 \+ 2E10-5z\) Ra \(\*\*Persamaan 19\*\*\)',
+        r'$$R_{so} = (0.75 + 2 \\times 10^{-5}z) R_a \\tag{19}$$',
+        content
+    )
+
+    # Equation 20
+    content = re.sub(
+        r'Rns = \(1-a\) Rs \(\*\*Persamaan 20\*\*\)',
+        r'$$R_{ns} = (1-\\alpha) R_s \\tag{20}$$',
+        content
+    )
+
+    # Equation 21 (complex)
+    content = re.sub(
+        r'Rnl = σ\[\(\(Tmax \+ 273\.16\)\^4 \+ \(Tmin \+ 273\.16\)\^4\) / 2\] \\\* \(0\.34 - 0\.14√ea\) \\\* \[1\.35 \\\* Rs/Rso - 0\.35\] \(\*\*Persamaan 21\*\*\)',
+        r'$$R_{nl} = \\sigma\\left[\\frac{(T_{max} + 273.16)^4 + (T_{min} + 273.16)^4}{2}\\right] (0.34 - 0.14\\sqrt{e_a}) \\left[1.35 \\frac{R_s}{R_{so}} - 0.35\\right] \\tag{21}$$',
+        content
+    )
+
+    # Equation 22
+    content = re.sub(
+        r'Rn = Rns - Rnl \(\*\*Persamaan 22\*\*\)',
+        r'$$R_n = R_{ns} - R_{nl} \\tag{22}$$',
+        content
+    )
+
+    # Only write if content changed
+    if content != original_content:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        print(f'Successfully converted equations in 20040103-menghitung-radiasi-matahari.qmd')
+        return True
+    else:
+        print(f'No changes made to 20040103-menghitung-radiasi-matahari.qmd')
+        return False
+
+if __name__ == '__main__':
+    convert_radiation_file()
+```
+:::
+
+
+::: {.callout-note collapse="true" title="Python - convert_remaining_equations.py"}
+```python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Convert remaining mathematical equations to LaTeX format
+"""
+
+import re
+import sys
+
+# Set UTF-8 encoding for stdout
+if sys.platform == 'win32':
+    import codecs
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+
+def convert_pengukuran_suhu():
+    """Convert equations in 20031028-pengukuran-suhu.qmd"""
+    filepath = r'C:\Users\benny\OneDrive\Documents\Github\site\docs\blog\20031028-pengukuran-suhu.qmd'
+
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    original = content
+
+    # Equation 4.2 - handle with regex to catch any ellipsis variation
+    content = re.sub(
+        r'RT = Ro\[1\+ a \(T-To\)\] [.…]+\(4\.2\)',
+        r'$$R_T = R_o[1+ a (T-T_o)] \\tag{4.2}$$',
+        content
+    )
+
+    # Update variable descriptions after 4.2
+    content = re.sub(
+        r'dimana \(t-To\) kecil',
+        r'dimana $(t-T_o)$ kecil',
+        content
+    )
+    content = re.sub(
+        r'RT adalah hambatan logam',
+        r'$R_T$ adalah hambatan logam',
+        content
+    )
+    content = re.sub(
+        r'Ro adalah koefisin suhu referensi To',
+        r'$R_o$ adalah koefisin suhu referensi $T_o$',
+        content
+    )
+    content = re.sub(
+        r'a adalah koefisien suhu dari hambatan disekitar To\.',
+        r'$a$ adalah koefisien suhu dari hambatan disekitar $T_o$.',
+        content
+    )
+
+    # Equation 4.3
+    content = re.sub(
+        r'RT = Ro \[1 \+ a \(t-To\) \+ b \(T-To\)2\] [.…]+\(4\.3\)',
+        r'$$R_T = R_o [1 + a (t-T_o) + b (T-T_o)^2] \\tag{4.3}$$',
+        content
+    )
+    content = re.sub(
+        r'Jadi nilai koefisien a dan b dapat dicari',
+        r'Jadi nilai koefisien $a$ dan $b$ dapat dicari',
+        content
+    )
+
+    # Equation 4.5
+    content = re.sub(
+        r'Jika  suhu referensi, To digunakan',
+        r'Jika  suhu referensi, $T_o$ digunakan',
+        content
+    )
+    content = re.sub(
+        r'R = Ro exp \[b/T-b/To\] [.…]+\(4\.5\)',
+        r'$$R = R_o \\exp\\left[\\frac{b}{T}-\\frac{b}{T_o}\\right] \\tag{4.5}$$',
+        content
+    )
+
+    if content != original:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        print('Converted equations in 20031028-pengukuran-suhu.qmd')
+        return True
+    else:
+        print('No changes in 20031028-pengukuran-suhu.qmd')
+        return False
+
+def convert_biomassa_padi():
+    """Convert equations in 20040427-model-pendugaan-biomassa-tanaman-padi.qmd"""
+    filepath = r'C:\Users\benny\OneDrive\Documents\Github\site\docs\blog\20040427-model-pendugaan-biomassa-tanaman-padi.qmd'
+
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    original = content
+
+    # These equations were attempted before, verify they're converted
+    conversions = [
+        (r'Qint = Qs \(1 – exp -k LAI\)',
+         r'$$Q_{\\text{int}} = Q_s (1 - \\exp(-k \\cdot LAI))$$'),
+        (r'Qint = Radiasi diintersepsi',
+         r'$Q_{\\text{int}}$ = Radiasi diintersepsi'),
+        (r'Qs = Radiasi surya',
+         r'$Q_s$ = Radiasi surya'),
+        (r'k = koefisien pemadaman',
+         r'$k$ = koefisien pemadaman'),
+        (r'LAI = indek luas daun',
+         r'$LAI$ = indek luas daun'),
+        (r'dW = LUE \. Qint',
+         r'$$dW = LUE \\cdot Q_{\\text{int}}$$'),
+        (r'dW = pertambahan berat total',
+         r'$dW$ = pertambahan berat total'),
+        (r'LUE = efisiensi penggunaan',
+         r'$LUE$ = efisiensi penggunaan'),
+        (r'Rm = km \* Wx \* Q10',
+         r'$$R_m = k_m \\times W_x \\times Q_{10}$$'),
+        (r'Rm = Kehilangan biomassa',
+         r'$R_m$ = Kehilangan biomassa'),
+        (r'km = koefisensi respirasi',
+         r'$k_m$ = koefisensi respirasi'),
+        (r'Wx = biomassa organ x',
+         r'$W_x$ = biomassa organ x'),
+        (r'Q10 = temperature quotient',
+         r'$Q_{10}$ = temperature quotient'),
+    ]
+
+    for old, new in conversions:
+        content = re.sub(old, new, content)
+
+    if content != original:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        print('Verified/converted equations in 20040427-model-pendugaan-biomassa-tanaman-padi.qmd')
+        return True
+    else:
+        print('Already converted: 20040427-model-pendugaan-biomassa-tanaman-padi.qmd')
+        return False
+
+def convert_deret_hari_kering():
+    """Convert equations in 20040522-pendugaan-deret-hari-kering.qmd"""
+    filepath = r'C:\Users\benny\OneDrive\Documents\Github\site\docs\blog\20040522-pendugaan-deret-hari-kering.qmd'
+
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    original = content
+
+    # Verify these equations are converted
+    conversions = [
+        (r'Prerata = 0,051 p\(DHK ≤10\) \+0,041 p\(DHK ≥ 15\) \+ 0,97 p\(DHK ≥ 10\)',
+         r'$$P_{\\text{rerata}} = 0.051 \\cdot p(DHK \\leq 10) + 0.041 \\cdot p(DHK \\geq 15) + 0.97 \\cdot p(DHK \\geq 10)$$'),
+        (r'Y = 0,407 – 0,00259 X1 – 0,009X2 \+ 0,0426X3',
+         r'$$Y = 0.407 - 0.00259 X_1 - 0.009X_2 + 0.0426X_3$$'),
+    ]
+
+    for old, new in conversions:
+        content = re.sub(old, new, content)
+
+    if content != original:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        print('Verified/converted equations in 20040522-pendugaan-deret-hari-kering.qmd')
+        return True
+    else:
+        print('Already converted: 20040522-pendugaan-deret-hari-kering.qmd')
+        return False
+
+if __name__ == '__main__':
+    print("Converting remaining equations to LaTeX format...\n")
+    convert_pengukuran_suhu()
+    convert_biomassa_padi()
+    convert_deret_hari_kering()
+    print("\nCompleted conversion of partially finished files")
+```
+:::
+
+
+## What the scripts do not do
+
+The notebooks save months. They do not finish the job. When they stop, you have a site that builds and looks nothing like a site.
+
+Still ahead of you:
+
+- Reading every post. I went through all 132 of mine one at a time, and found broken formatting, wrong captions and dead links in a good fraction of them
+- Rebuilding every gallery and custom layout, because none of it exported
+- Writing the theme: navigation, light and dark styling, listings, the lot
+- Chasing the assets that failed to download
+- Setting up hosting, the custom domain, and redirects from the old Squarespace URLs so your existing links survive
+
+That last one matters more than it sounds. Every link anyone has ever shared to your old site points at a URL you are about to change.
+
+## If you want to do this
+
+The notebooks are in the [`notebook/`](https://github.com/bennyistanto/site/tree/main/notebook) folder of [the repository for this site](https://github.com/bennyistanto/site), and the whole site is there too, so you can see what the output turns into. Take them, change the paths, run them against your own export.
+
+Three things I would tell anyone starting:
+
+1. **Keep Squarespace running.** Do not cancel until the new site is live and you have checked it. The export is a one-way door if you let the subscription lapse.
+2. **Keep the raw XML.** You will want to re-run the conversion after you improve the script, and you cannot re-export from a site you no longer pay for.
+3. **Budget for the reading, not the scripting.** The automation took a few evenings. Going through the posts took considerably longer.
+
+It is worth it. The content is plain text in git, the site is a folder of files, and when I want to change how something looks I change it.
