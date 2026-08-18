@@ -24,6 +24,10 @@ Click on any map to view it in full resolution in a new tab.
 ![2026. The World Bank. Lobito Corridor Spatial Analysis - How the Analysis Works. Inkscape](../assets/image-maps-and-infographics/2026-worldbank-lc-sa2.png){.gallery-img}
 :::
 
+::: {.gallery-item}
+![2026. The World Bank. Lobito Corridor Protected Areas. QGIS 3.22.9](../assets/image-maps-and-infographics/2026-worldbank-lc-protectedareas.png){.gallery-img}
+:::
+
 :::
 
 ## 2025
@@ -37,6 +41,7 @@ Click on any map to view it in full resolution in a new tab.
 ::: {.gallery-item}
 ![2025. The World Bank. Lobito Corridor Temperature-based Heat and Population Risk. QGIS 3.22.9](../assets/image-maps-and-infographics/2025-worldbank-lc-thpr.png){.gallery-img}
 :::
+
 
 :::
 
@@ -108,6 +113,10 @@ Click on any map to view it in full resolution in a new tab.
 
 ::: {.gallery-item}
 ![2021. WFP. Tropical Cyclone Seroja. ArcGIS 10.8](../assets/image-maps-and-infographics/2021-wfp-cyclone-seroja.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2021. WFP. Timor Leste Wet-spell 10mm/day. ArcGIS 10.8](../assets/image-maps-and-infographics/2021-wfp-wetspell-10mm.jpg){.gallery-img}
 :::
 
 :::
@@ -197,6 +206,10 @@ Appeared in [Yahoo News](https://au.news.yahoo.com/sick-hungry-indonesia-tsunami
 ![2018. WFP. Dry-spell. ArcGIS 10.4](../assets/image-maps-and-infographics/2018-wfp-dry-spell.jpg){.gallery-img}
 :::
 
+::: {.gallery-item}
+![2018. WFP. Shake Map. ArcGIS 10.4](../assets/image-maps-and-infographics/2018-wfp-shakemap.png){.gallery-img}
+:::
+
 :::
 
 ## 2017
@@ -209,6 +222,10 @@ Appeared in [Yahoo News](https://au.news.yahoo.com/sick-hungry-indonesia-tsunami
 
 ::: {.gallery-item}
 ![2017. WFP. Dry-spell. ArcGIS 10.4](../assets/image-maps-and-infographics/2017-wfp-dry-spell.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2017. WFP. Travel time to nearest city, Ayeyarwady Region. ArcGIS 10.4](../assets/image-maps-and-infographics/2017-wfp-traveltime.png){.gallery-img}
 :::
 
 :::
@@ -230,11 +247,15 @@ Appeared in [Yahoo News](https://au.news.yahoo.com/sick-hungry-indonesia-tsunami
 :::
 
 ::: {.gallery-item}
-![2016. WFP. Rainfall anomaly. ArcGIS 10.3](../assets/image-maps-and-infographics/2016-wfp-rainfall-anomaly.jpg){.gallery-img}
+![2016. WFP. LAO Rainfall anomaly, JFM 2016. ArcGIS 10.3](../assets/image-maps-and-infographics/2016-wfp-vnm-rainfall-anomaly.jpg){.gallery-img}
 :::
 
 ::: {.gallery-item}
 ![2016. WFP. Vegetation health index. ArcGIS 10.3](../assets/image-maps-and-infographics/2016-wfp-vegetation-health.jpg){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2016. WFP. PHL Rainfall anomaly, JFM 2016. ArcGIS 10.3](../assets/image-maps-and-infographics/2016-wfp-phl-rainfall-anomaly.jpg){.gallery-img}
 :::
 
 :::
