@@ -1,62 +1,75 @@
-# Personal Website
+# benny.istan.to
 
-**Work in Progress**: Converting from Squarespace to Quarto-based static site https://bennyistanto.github.io/site.
+Source for my personal website: [benny.istan.to](https://benny.istan.to).
 
-## Overview
+Built with [Quarto](https://quarto.org), hosted on GitHub Pages. Blog posts,
+a works portfolio, and a small catalogue of free climate datasets.
 
-This repository contains the source code for https://benny.istan.to, currently being migrated from Squarespace to a Quarto-based static website.
+## What is here
 
-## Tech Stack
+| Path | What it holds |
+|---|---|
+| `docs/` | The Quarto project. Everything that becomes the site. |
+| `docs/blog/` | Posts, one `.qmd` per post, named `YYYYMMDD-slug`. |
+| `docs/works/` | Projects, experiences, consulting, maps and infographics. |
+| `docs/csr/` | Climate Social Responsibility: the free dataset pages. |
+| `docs/assets/` | Images, grouped by the section that uses them. |
+| `docs/styles/` | Per-page stylesheets. |
+| `docs/script/` | Post-render hooks, run by Quarto after every build. |
+| `notebook/` | The Squarespace migration tooling. See below. |
 
-- **Framework**: [Quarto](https://quarto.org)
-- **Hosting**: GitHub Pages
-- **Theme**: Custom light/dark themes
+Two post-render hooks run on every build, wired up in `docs/_quarto.yml`:
 
-## Local Development
+- `blog-prev-next.py` adds the previous/next links at the foot of each post
+- `strip-html-ext.py` removes the visible `.html` from internal links
 
-### Prerequisites
+## Running it locally
 
-- [Quarto](https://quarto.org/docs/get-started/) installed
-
-### Quick Start
+You need [Quarto](https://quarto.org/docs/get-started/). Nothing else.
 
 ```bash
-# Clone repository
 git clone https://github.com/bennyistanto/site.git
 cd site/docs
-
-# Preview locally
 quarto preview
-
-# Build site
-quarto render
 ```
 
-## Project Status
-
-🚧 **Under Active Development**
-
-Currently migrating content and features from Squarespace:
-
-- ✅ Homepage with spotlight showcase
-- ✅ About page
-- ✅ Blog section
-- ✅ Works portfolio (projects, experiences, consulting, maps)
-- ✅ CV page
-- ✅ CSR (Climate Social Responsibility) page
-- ✅ Custom 404 page
-- 🔄 Content migration in progress
+`quarto render` builds the whole site into `_site/`. That folder is generated
+and gitignored, so there is no need to commit it.
 
 ## Deployment
 
-The site automatically deploys to GitHub Pages on push to main branch.
+Pushing to `main` triggers a GitHub Actions workflow that renders the site and
+publishes it to GitHub Pages. Because the workflow checks out only tracked
+files, anything referenced by the site has to be committed, not merely present
+on your machine.
+
+## Want a site like this?
+
+This one started on Squarespace. Moving it off took a set of Python notebooks
+that convert the Squarespace XML export into Quarto markdown, pull down the
+assets, and rename them to match the posts they belong to.
+
+Those notebooks are in [`notebook/`](notebook/), and the process is written up
+here:
+
+**[Migrating a Squarespace site to Quarto](https://benny.istan.to/blog/20260208-migrating-from-squarespace-to-quarto)**
+
+You are welcome to take any of it. Fork the repository, point the notebooks at
+your own export, and strip out my content. The theme, the layouts and the
+post-render hooks are all plain files you can read and change.
+
+If you are not coming from Squarespace, skip the notebooks entirely: `docs/`
+on its own is a working example of a Quarto site with a blog, a portfolio and
+light/dark theming.
 
 ## Contact
 
+- Website: [benny.istan.to](https://benny.istan.to)
 - GitHub: [@bennyistanto](https://github.com/bennyistanto)
 - LinkedIn: [bennyistanto](https://linkedin.com/in/bennyistanto)
-- Website: [benny.istan.to](https://benny.istan.to)
 
----
+## License
 
-© 2026 Benny Istanto. All rights reserved.
+Site content, meaning the writing and images, is © 2026 Benny Istanto.
+
+The migration notebooks and the site machinery are free to reuse and adapt.
