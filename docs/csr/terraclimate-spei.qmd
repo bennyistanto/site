@@ -44,7 +44,7 @@ Monthly
 Coverage
 :::
 ::: {.meta-value}
-90N to 90S, 180W to 180E
+Global, 90N to 90S and 180W to 180E
 :::
 :::
 
@@ -82,22 +82,22 @@ SPEI is calculated with [precip-index](https://bennyistanto.github.io/precip-ind
 
 ## Download
 
-Each accumulation period is a separate netCDF covering the full record. Links go up as the files are uploaded.
+Each accumulation period is a separate netCDF covering the full record.
 
 | Timescale | File | Download |
 |---|---|---|
-| 1 month | `wld_cli_terraclimate_spei_pearson3_1_month.nc` | *pending* |
-| 2 month | `wld_cli_terraclimate_spei_pearson3_2_month.nc` | *pending* |
-| 3 month | `wld_cli_terraclimate_spei_pearson3_3_month.nc` | *pending* |
-| 6 month | `wld_cli_terraclimate_spei_pearson3_6_month.nc` | *pending* |
-| 9 month | `wld_cli_terraclimate_spei_pearson3_9_month.nc` | *pending* |
-| 12 month | `wld_cli_terraclimate_spei_pearson3_12_month.nc` | *pending* |
-| 18 month | `wld_cli_terraclimate_spei_pearson3_18_month.nc` | *pending* |
-| 24 month | `wld_cli_terraclimate_spei_pearson3_24_month.nc` | *pending* |
-| 36 month | `wld_cli_terraclimate_spei_pearson3_36_month.nc` | *pending* |
-| 48 month | `wld_cli_terraclimate_spei_pearson3_48_month.nc` | *pending* |
-| 60 month | `wld_cli_terraclimate_spei_pearson3_60_month.nc` | *pending* |
-| 72 month | `wld_cli_terraclimate_spei_pearson3_72_month.nc` | *pending* |
+| 1 month | `wld_cli_terraclimate_spei_pearson3_1_month.nc` | [24.39 GB](https://drive.google.com/file/d/1bFIbJguJn5dZzUJaV0X-EEGPa-xo_pX4/view?usp=sharing) |
+| 2 month | `wld_cli_terraclimate_spei_pearson3_2_month.nc` | [25.63 GB](https://drive.google.com/file/d/1aP3_utjiENpiZVDh6ayKpNtFHP3hz1de/view?usp=sharing) |
+| 3 month | `wld_cli_terraclimate_spei_pearson3_3_month.nc` | [26.2 GB](https://drive.google.com/file/d/1M8BJHphsOobJeCt5ZxUjCtygakFJylVm/view?usp=sharing) |
+| 6 month | `wld_cli_terraclimate_spei_pearson3_6_month.nc` | [27.1 GB](https://drive.google.com/file/d/1FDE18TvV-X-WN-651FV3ypBd5pIUxqWm/view?usp=sharing) |
+| 9 month | `wld_cli_terraclimate_spei_pearson3_9_month.nc` | [27.48 GB](https://drive.google.com/file/d/1CGlDJsIhCIKKO9Hug3aGi-oHCLPPQkUa/view?usp=sharing) |
+| 12 month | `wld_cli_terraclimate_spei_pearson3_12_month.nc` | [27.56 GB](https://drive.google.com/file/d/1Uqnj7DwivVQhQYrVnGCPNSOy3iOE_Jsl/view?usp=sharing) |
+| 18 month | `wld_cli_terraclimate_spei_pearson3_18_month.nc` | [27.26 GB](https://drive.google.com/file/d/1dh2YXXMYyQs835C37lvPCQmBlCPXVh5E/view?usp=sharing) |
+| 24 month | `wld_cli_terraclimate_spei_pearson3_24_month.nc` | [26.98 GB](https://drive.google.com/file/d/12NA-iyctgTsaGylziyCsFOtuOJwyWkOU/view?usp=sharing) |
+| 36 month | `wld_cli_terraclimate_spei_pearson3_36_month.nc` | [26.32 GB](https://drive.google.com/file/d/19WSo3Sx4F4-X7552I4TZ6xlFVHdKPo79/view?usp=sharing) |
+| 48 month | `wld_cli_terraclimate_spei_pearson3_48_month.nc` | [25.69 GB](https://drive.google.com/file/d/1PvKnn1LQUNZDlFtQJ730mMngsJCKY_eh/view?usp=sharing) |
+| 60 month | `wld_cli_terraclimate_spei_pearson3_60_month.nc` | [25.08 GB](https://drive.google.com/file/d/1QKM2LYPDzZRMo_wabJaVNRK62tAZaoOK/view?usp=sharing) |
+| 72 month | `wld_cli_terraclimate_spei_pearson3_72_month.nc` | [24.53 GB](https://drive.google.com/file/d/1nd28HfbpOmHuzkc_BsddACN2AZW31VsX/view?usp=sharing) |
 
 ## License
 

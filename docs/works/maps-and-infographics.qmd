@@ -256,6 +256,10 @@ Appeared in [Yahoo News](https://au.news.yahoo.com/sick-hungry-indonesia-tsunami
 ![2017. WFP. Disaster impact model, Sunda Strait M7.8 earthquake contingency plan](../assets/image-maps-and-infographics/2017-wfp-disasterimpactmodel-sundaeq.png){.gallery-img}
 :::
 
+::: {.gallery-item}
+![2017. WFP. General logistics and planning for Bali and surrounding areas: airports, ports, ferry routes and proposed landing craft tank sites](../assets/image-maps-and-infographics/2017-wfp-bali-genlogplan.png){.gallery-img}
+:::
+
 :::
 
 ## 2016
@@ -263,11 +267,11 @@ Appeared in [Yahoo News](https://au.news.yahoo.com/sick-hungry-indonesia-tsunami
 ::: {.gallery-grid}
 
 ::: {.gallery-item}
-![2016. WFP. Highlight activities. ArcGIS 10.4. CorelDRAW 12](../assets/image-maps-and-infographics/2016-wfp-highlight-activities-01.jpg){.gallery-img}
+![2016. WFP. Indonesia highlights 2012 to 2015: office and activity locations, and the shift in food security priority districts between 2005, 2009 and 2015. ArcGIS 10.4. CorelDRAW 12](../assets/image-maps-and-infographics/2016-wfp-highlight-activities-01.jpg){.gallery-img}
 :::
 
 ::: {.gallery-item}
-![2016. WFP. Highlight activities. ArcGIS 10.4. CorelDRAW 12](../assets/image-maps-and-infographics/2016-wfp-highlight-activities-02.jpg){.gallery-img}
+![2016. WFP. Indonesia highlights 2012 to 2015: nutrition and poverty indicators, programme beneficiaries, procurement and emergency preparedness. ArcGIS 10.4. CorelDRAW 12](../assets/image-maps-and-infographics/2016-wfp-highlight-activities-02.jpg){.gallery-img}
 :::
 
 ::: {.gallery-item}
@@ -284,6 +288,22 @@ Appeared in [Yahoo News](https://au.news.yahoo.com/sick-hungry-indonesia-tsunami
 
 ::: {.gallery-item}
 ![2016. WFP. PHL Rainfall anomaly, JFM 2016. ArcGIS 10.3](../assets/image-maps-and-infographics/2016-wfp-phl-rainfall-anomaly.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2016. WFP. Dekadal rainfall anomaly in Nusa Tenggara Timur, December 2015 to January 2016, as a percent of average](../assets/image-maps-and-infographics/2016-wfp-ntt-rainfallanomaly.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2016. WFP. Start of the planting season in West Java as of 31 March 2016, derived from MODIS MOD13Q1](../assets/image-maps-and-infographics/2016-wfp-startofseason-phenology.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2016. WFP. Harvested area status in West Java as of 31 March 2016, the end of season derived from MODIS MOD13Q1](../assets/image-maps-and-infographics/2016-wfp-endofseason-phenology.png){.gallery-img}
+:::
+
+::: {.gallery-item}
+![2016. WFP. Length of the second growing season in West Java, 2015 to 2016, derived from MODIS MOD13Q1](../assets/image-maps-and-infographics/2016-wfp-lengthofseason-phenology.png){.gallery-img}
 :::
 
 :::
@@ -393,6 +413,10 @@ Appeared in [Yahoo News](https://au.news.yahoo.com/sick-hungry-indonesia-tsunami
 :::
 
 ::: {.gallery-item}
+![2013. WFP. Bali BULOG warehouse capacity and PERTAMINA fuel depot locations](../assets/image-maps-and-infographics/2013-wfp-bali-warehouse.png){.gallery-img}
+:::
+
+::: {.gallery-item}
 ![2013. WFP and BNPB. Jakarta flood. ArcGIS 10.2.2](../assets/image-maps-and-infographics/2013-wfp-jakarta-flood.jpg){.gallery-img}
 :::
 
@@ -417,31 +441,31 @@ Appeared in [Yahoo News](https://au.news.yahoo.com/sick-hungry-indonesia-tsunami
 ::: {.gallery-grid}
 
 ::: {.gallery-item}
-![2010. UNOCHA. Mentawai Tsunami Response. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-02.jpg){.gallery-img}
+![2010. UNOCHA. Mentawai tsunami response: Pagai Utara orientation map, with elevation, roads and settlements, 31 October 2010. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-02.jpg){.gallery-img}
 :::
 
 ::: {.gallery-item}
-![2010. UNOCHA. Mentawai Tsunami Response. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-01.jpg){.gallery-img}
+![2010. UNOCHA. Mentawai tsunami response: number of agencies distributing relief materials by village, 30 November 2010. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-01.jpg){.gallery-img}
 :::
 
 ::: {.gallery-item}
-![2010. UNOCHA. Mentawai Tsunami Response. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-03.jpg){.gallery-img}
+![2010. UNOCHA. Mentawai tsunami response: ship and plane access to the islands, with the ferry timetable, 8 November 2010. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-03.jpg){.gallery-img}
 :::
 
 ::: {.gallery-item}
-![2010. UNOCHA. Mentawai Tsunami Response. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-04.jpg){.gallery-img}
+![2010. UNOCHA. Mentawai tsunami response: tsunami wave heights and arrival times by village after the M7.7 earthquake of 25 October 2010. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-04.jpg){.gallery-img}
 :::
 
 ::: {.gallery-item}
-![2010. UNOCHA. Mentawai Tsunami Response. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-05.jpg){.gallery-img}
+![2010. UNOCHA. Mentawai tsunami response: situation overview to 29 October 2010, with casualties, damage and the response so far. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-05.jpg){.gallery-img}
 :::
 
 ::: {.gallery-item}
-![2010. UNOCHA. Mentawai Tsunami Response. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-06.jpg){.gallery-img}
+![2010. UNOCHA. Mentawai tsunami response: affected settlements on Sipora Island over pre-disaster SPOT5 imagery, with population and casualty counts, 6 November 2010. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-06.jpg){.gallery-img}
 :::
 
 ::: {.gallery-item}
-![2010. UNOCHA. Mentawai Tsunami Response. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-07.jpg){.gallery-img}
+![2010. UNOCHA. Mentawai tsunami response: Pagai Selatan overview over pre-disaster ALOS imagery, 31 October 2010. ArcGIS 9.3](../assets/image-maps-and-infographics/2010-unocha-mentawai-tsunami-07.jpg){.gallery-img}
 :::
 
 :::
