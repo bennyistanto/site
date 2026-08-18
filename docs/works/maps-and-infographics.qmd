@@ -263,7 +263,7 @@ Appeared in [Yahoo News](https://au.news.yahoo.com/sick-hungry-indonesia-tsunami
 :::
 
 ::: {.gallery-item}
-![2016. WFP. PHL Rainfall anomaly, JFM 2016. ArcGIS 10.3](../assets/image-maps-and-infographics/2016-wfp-phl-rainfall-anomaly.jpg){.gallery-img}
+![2016. WFP. PHL Rainfall anomaly, JFM 2016. ArcGIS 10.3](../assets/image-maps-and-infographics/2016-wfp-phl-rainfall-anomaly.png){.gallery-img}
 :::
 
 :::
