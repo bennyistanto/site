@@ -6,6 +6,19 @@ toc: true
 toc-title: Years
 css: styles/blog.css
 listing:
+  - id: y2026
+    contents: blog/2026*.qmd
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories]
+    field-display-names:
+      date: "Date"
+      title: "Post"
+      categories: "Categories"
+    date-format: 'D MMM YYYY'
+    filter-ui: false
+    sort-ui: false
+    categories: false
   - id: y2025
     contents: blog/2025*.qmd
     sort: "date desc"
@@ -310,161 +323,168 @@ listing:
 A chronological index of every post. Looking for something by topic instead?
 The [main blog page](blog.qmd) has category filters and search.
 
-## 2025
+## 2026 {#year-2026}
 
 1 post
+
+:::{#y2026}
+:::
+
+## 2025 {#year-2025}
+
+2 posts
 
 :::{#y2025}
 :::
 
-## 2024
+## 2024 {#year-2024}
 
 7 posts
 
 :::{#y2024}
 :::
 
-## 2023
+## 2023 {#year-2023}
 
 21 posts
 
 :::{#y2023}
 :::
 
-## 2022
+## 2022 {#year-2022}
 
 5 posts
 
 :::{#y2022}
 :::
 
-## 2021
+## 2021 {#year-2021}
 
 14 posts
 
 :::{#y2021}
 :::
 
-## 2020
+## 2020 {#year-2020}
 
 16 posts
 
 :::{#y2020}
 :::
 
-## 2019
+## 2019 {#year-2019}
 
 10 posts
 
 :::{#y2019}
 :::
 
-## 2018
+## 2018 {#year-2018}
 
 6 posts
 
 :::{#y2018}
 :::
 
-## 2017
+## 2017 {#year-2017}
 
 4 posts
 
 :::{#y2017}
 :::
 
-## 2016
+## 2016 {#year-2016}
 
 5 posts
 
 :::{#y2016}
 :::
 
-## 2015
+## 2015 {#year-2015}
 
 1 post
 
 :::{#y2015}
 :::
 
-## 2014
+## 2014 {#year-2014}
 
 2 posts
 
 :::{#y2014}
 :::
 
-## 2013
+## 2013 {#year-2013}
 
 3 posts
 
 :::{#y2013}
 :::
 
-## 2012
+## 2012 {#year-2012}
 
 3 posts
 
 :::{#y2012}
 :::
 
-## 2011
+## 2011 {#year-2011}
 
 5 posts
 
 :::{#y2011}
 :::
 
-## 2010
+## 2010 {#year-2010}
 
 3 posts
 
 :::{#y2010}
 :::
 
-## 2009
+## 2009 {#year-2009}
 
 2 posts
 
 :::{#y2009}
 :::
 
-## 2008
+## 2008 {#year-2008}
 
 3 posts
 
 :::{#y2008}
 :::
 
-## 2007
+## 2007 {#year-2007}
 
 2 posts
 
 :::{#y2007}
 :::
 
-## 2006
+## 2006 {#year-2006}
 
 6 posts
 
 :::{#y2006}
 :::
 
-## 2005
+## 2005 {#year-2005}
 
 3 posts
 
 :::{#y2005}
 :::
 
-## 2004
+## 2004 {#year-2004}
 
 4 posts
 
 :::{#y2004}
 :::
 
-## 2003
+## 2003 {#year-2003}
 
 6 posts
 
