@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: ../_site
+  pre-render:
+    - script/build-blog-archive.py
   post-render:
     - script/blog-prev-next.py
     - script/strip-html-ext.py
