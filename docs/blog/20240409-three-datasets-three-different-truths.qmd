@@ -3,7 +3,7 @@ title: "Three datasets, three different truths"
 author: "Benny Istanto"
 date: "2024-04-09"
 description: "Before correcting a satellite rainfall product you have to pick something to correct it towards. Every candidate is wrong, and they are wrong in different ways."
-image: "../assets/image-blog/20240409-three-datasets-three-different-truths-00.png"
+image: "../assets/image-blog/20240409-three-datasets-three-different-truths-01.png"
 categories:
   - "Climate"
   - "Remote Sensing"

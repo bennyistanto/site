@@ -3,7 +3,7 @@ title: "Correct the parameters, not the data"
 author: "Benny Istanto"
 date: "2024-06-27"
 description: "The reference grid is five times coarser than the product being corrected. Regridding the rainfall is the obvious fix and the wrong one."
-image: "../assets/image-blog/20240627-correct-the-parameters-not-the-data-00.png"
+image: "../assets/image-blog/20240627-correct-the-parameters-not-the-data-01.png"
 categories:
   - "Climate"
   - "Data Science"

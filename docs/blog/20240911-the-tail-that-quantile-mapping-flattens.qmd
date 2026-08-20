@@ -3,7 +3,7 @@ title: "The tail that quantile mapping flattens"
 author: "Benny Istanto"
 date: "2024-09-11"
 description: "An empirical CDF cannot map a value larger than the largest one it has ever seen. For heavy rain, that is exactly the range you care about."
-image: "../assets/image-blog/20240911-the-tail-that-quantile-mapping-flattens-00.png"
+image: "../assets/image-blog/20240911-the-tail-that-quantile-mapping-flattens-01.png"
 categories:
   - "Climate"
   - "Data Science"

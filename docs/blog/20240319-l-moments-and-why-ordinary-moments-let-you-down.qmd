@@ -3,7 +3,7 @@ title: "L-moments, and why ordinary moments let you down"
 author: "Benny Istanto"
 date: "2024-03-19"
 description: "Fitting a distribution to a short, skewed rainfall sample. One freak day can quadruple your skewness estimate, and there is a well-established way to stop it."
-image: "../assets/image-blog/20240319-l-moments-and-why-ordinary-moments-let-you-down-00.png"
+image: "../assets/image-blog/20240319-l-moments-and-why-ordinary-moments-let-you-down-01.png"
 categories:
   - "Climate"
   - "Data Science"
