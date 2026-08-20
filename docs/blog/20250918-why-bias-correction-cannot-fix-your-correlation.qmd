@@ -1,0 +1,75 @@
+---
+title: "Why bias correction cannot fix your correlation"
+author: "Benny Istanto"
+date: "2025-09-18"
+description: "Two years of work, and daily correlation has not moved. It turns out it was never going to, and the reason is a property of the method rather than a failure of it."
+image: "../assets/image-blog/20250918-why-bias-correction-cannot-fix-your-correlation-02.png"
+categories:
+  - "Climate"
+  - "Data Science"
+  - "Research"
+---
+
+Everything else improved. The mean is right. The distribution matches. Dry days went from 32% correct to 73%. The extremes are no longer flattened.
+
+Daily correlation has not moved at all.
+
+I have been treating that as a problem to solve for most of this year, on the assumption that I was doing something wrong. I now think it is not a problem, in the sense that no amount of doing it better would change it, and I want to write down why because it took me an embarrassingly long time to see.
+
+## The thing I should have noticed immediately
+
+Quantile mapping is monotone. Given two values from the same cell and the same ten-day window, if the satellite says day 4 was wetter than day 6 before the correction, it says exactly the same thing afterwards. The correction changes what the numbers are. It never changes their order.
+
+That is not an implementation detail I could fix. It is what quantile mapping *is*. A monotone transformation is precisely a function that preserves rank.
+
+And Pearson correlation, against an independent series, is mostly a question about ordering. Whether the two series go up and down together on the same days. If the ordering of one series is fixed before you start, the correlation is very nearly fixed too.
+
+![Rank through the pipeline stages. The lines stay flat because nothing in a marginal correction reorders anything](../assets/image-blog/20250918-why-bias-correction-cannot-fix-your-correlation-02.png)
+
+Tracing every day's rank through all four stages, the lines are almost perfectly horizontal. The scaling stage introduces no reversals. The quantile mapping introduces none either, dry-day ties aside. The neural stage adds tiny perturbations and nothing more.
+
+The whole pipeline is a machine for moving values without moving days.
+
+## Watching it happen on one station
+
+![The bound on real data. One month at one station, then one dekad across the full record, then the domain-wide picture](../assets/image-blog/20250918-why-bias-correction-cannot-fix-your-correlation-01.png)
+
+The clearest example is a single January at Kalianget. The gauge has its wettest days on the 4th and the 6th; the satellite has its wettest on the 7th. The correction is fitted per dekad, so three different mappings apply across that month, and the only places where the corrected series crosses the raw one are the dekad hand-overs. Four crossings in thirty-one days.
+
+Meanwhile the spread moves decisively towards the gauge, from 0.69 to 0.95. The magnitudes are being fixed. The days are not.
+
+Widen to every 1 to 10 January across the whole record, 195 days under a single mapping, and corrected-against-raw is a near-monotone rising curve while the gauge sits around it as a cloud. Correlation goes from 0.368 to 0.357.
+
+Slightly down. Well inside noise. That is the answer, and it is the same answer everywhere I look.
+
+## The fifteen attempts
+
+Before accepting a theoretical argument I wanted to be sure I had not simply chosen bad parameters. So: fifteen combinations of the three settings that most plausibly affect this, swept across their sensible ranges.
+
+![Correlation across fifteen parameter combinations](../assets/image-blog/20250918-why-bias-correction-cannot-fix-your-correlation-03.png)
+
+Correlation stayed within [0.332, 0.348] across all fifteen.
+
+Not "improved slightly for the best setting". Not "one configuration stood out". A band of 0.016, which is smaller than the difference between two adjacent dekads of the same run.
+
+The parameter surface is not flat in general. Those settings move other things meaningfully. They just do not move this, because this is not the sort of thing they can move.
+
+## What I think this means
+
+There are two distinct claims and I had been running them together.
+
+**A marginal correction fixes the marginal distribution.** That is what it says on the tin, and it does it well. Every number describing what the rainfall at a pixel looks like as a population is better after correction.
+
+**Nothing about a marginal correction addresses the joint behaviour with an independent series in time.** Correlation is a joint property. It asks about pairing. And the pairing is inherited wholesale from the satellite, fixed before my code runs.
+
+So reporting flat correlation next to large distributional gains is not an awkward result to be explained away. It is the signature of a marginal correction behaving exactly as a marginal correction behaves.
+
+## The part that still bothers me
+
+I can now explain why correlation does not improve. I cannot explain why it is *0.35 in the first place*.
+
+The bound says a marginal correction cannot lift the timing skill of the underlying retrieval. Fine. But it says nothing about where that underlying level should sit. Published work on this region reports daily correlations in the 0.39 to 0.44 range for the same satellite product against Indonesian gauges, which is in the same neighbourhood but not identical, and none of it tells me whether 0.35 is the physical limit of what a satellite can know about tropical convection or whether something else is dragging it down.
+
+Two years in, having accounted for everything I know how to account for, that number is lower than I can justify. And a bound that explains why I cannot improve something is not the same as an explanation of the something.
+
+I keep coming back to a suspicion I first wrote down in February last year and have never actually tested. Which is next.

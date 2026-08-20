@@ -309,10 +309,6 @@ def lseqm(
         )
 
     return eqm_corrected_precip, cpc_dekad_data
-
-
-# ----
-# Full correction pipeline: LS → LSEQM → DL (Steps 7-10 of notebook 02)
 ```
 :::
 

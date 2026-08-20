@@ -100,9 +100,6 @@ def fit_generalized_pareto_distribution(
     except Exception:
         return (0.0, 0.0, 1.0)
     return params
-
-# ----
-# Cross-validate GPD fitting
 ```
 :::
 
@@ -159,10 +156,6 @@ def cross_validate_gpd(
     scale_avg = np.mean([params[2] for params in params_list])
 
     return shape_avg, loc_avg, scale_avg
-
-
-# ----
-# Fit CPC distribution parameters at native 0.5° resolution
 ```
 :::
 

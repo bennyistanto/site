@@ -1,0 +1,171 @@
+---
+title: "The bugs that never raised an exception"
+author: "Benny Istanto"
+date: "2025-08-14"
+description: "Five failures from this project, none of which crashed anything. Each produced a plausible number instead, which is considerably worse."
+image: "../assets/image-blog/20250814-the-bugs-that-never-raised-an-exception-01.png"
+categories:
+  - "Data Science"
+  - "Research"
+---
+
+A crash is a gift. It tells you where it happened, roughly when, and that something is wrong at all.
+
+These five did none of that. Every one produced output that ran to completion, wrote a valid file, and reported a number in the range you would expect. I found them all eventually, and in each case by noticing that a result was slightly odd rather than by anything failing.
+
+## One: the grids were upside down
+
+The gauge product stores latitude descending, north to south. The satellite product stores it ascending. Both are perfectly valid NetCDF, and neither declares the other wrong.
+
+Load both, compare them cell by cell without aligning first, and every calculation runs. The arrays are the same shape. Nothing errors.
+
+![Two fields with a north-south gradient. The right-hand one is the middle one loaded without checking the latitude direction](../assets/image-blog/20250814-the-bugs-that-never-raised-an-exception-01.png)
+
+Correctly aligned, those two fields correlate at 0.976. With one silently flipped, 0.369.
+
+That second number is the problem. It is not zero, not negative, not obviously broken. **0.369 is almost exactly what the literature reports for daily satellite rainfall against Indonesian gauges.** I could have written it in a paper, and a reviewer would have nodded.
+
+The fix is to align explicitly, every time, rather than trusting that two files from two agencies agree about which way is up. Two of the framework's modules now re-check on every dataset they open, which is redundant and which I am keeping.
+
+## Two: the ocean was voting
+
+Ocean cells have to be marked somehow. If they get written as 0.0, every spatial mean silently includes them.
+
+![The same rainfall field with the ocean written two different ways](../assets/image-blog/20250814-the-bugs-that-never-raised-an-exception-02.png)
+
+Same field, 28% of it land. Ocean as zero gives a mean of 3.74 mm/day. Ocean as NaN gives 13.12. A factor of three and a half, entirely determined by how you wrote down "there is no land here".
+
+And a bias correction driven by ratios of means will happily compute a scale factor from that. The correction would then be pulling every land pixel towards a target diluted by ocean.
+
+Ocean is now NaN throughout, never zero, so `nanmean` does the right thing without anyone having to remember. The symptom to watch for is a corrected mean that looks suspiciously low.
+
+## Three: the cross-validation quietly stopped
+
+The tail fit is cross-validated across five folds to stabilise the parameter estimate. If a cell has fewer exceedances than there are folds, the function falls back to a single fit on the whole sample and returns those parameters.
+
+Which is a reasonable fallback. What is not reasonable is that it happens in silence. There is no warning, no flag on the output, no way to know afterwards which cells were cross-validated and which took the fallback.
+
+They are not equally trustworthy, and the file cannot tell you which is which. In a strongly seasonal climate this hits the peak dry-season dekads hardest, which is where exceedances are thinnest.
+
+I do not think the fallback is wrong. I think a silent fallback is wrong. If a function quietly does something different from what its name says, the output should carry a mark.
+
+## Four: training kept stopping at epoch five
+
+Early stopping fired almost immediately, every time, and the validation loss curve was visibly noisy.
+
+The instinct is to blame the model. The actual cause is arithmetic: twenty-five years times ten days is 250 samples, a 20% validation split leaves 50, and validation loss computed on 50 samples bounces around enough that early stopping sees a plateau that is not there.
+
+Nothing was broken. The patience setting was simply wrong for the sample size, and it had been wrong since the first run.
+
+## Five: the edges of small regions came back empty
+
+Two variants, both from interpolation, both invisible until you look at a map of the output.
+
+The first was a floating-point precision mismatch. The mask coordinates were float64 and the data float32, and a float32 boundary value sits fractionally outside the float64 range, so nearest-neighbour interpolation returned NaN along the southern and western edges.
+
+The second was geometric. `interp(method='nearest')` returns NaN outside the convex hull of the source cell centres. If the coarse reference cells do not extend past the region boundary, the edge of the region falls outside that hull and comes back empty.
+
+The fix in both cases was the same, and it is a distinction worth knowing: `reindex(method='nearest')` is a pure label lookup with no convex-hull restriction, while `interp(method='nearest')` is interpolation that happens to pick the nearest point. They sound interchangeable. They are not.
+
+## The pattern
+
+Four of these five produced a number in the plausible range. The fifth produced an empty edge on a map that nobody looks at closely.
+
+I have come out of this with one working rule: **be suspicious of results that are only slightly surprising.** A wildly wrong answer announces itself. An answer that is off by a factor you could rationalise is the one that ends up in a paper.
+
+The other rule is that fallbacks should be loud. Every one of these except the latitude flip was code doing something defensible in a difficult case and not mentioning it. Defensible and silent is a bad combination.
+
+## The code that stops two of them
+
+The alignment helper, which is now the only sanctioned way to put the two grids on the same axes, and the mask application that keeps ocean as NaN rather than zero.
+
+::: {.callout-note collapse="true" title="Python - reindex_and_align_with_monotonicity, from src/utility.py"}
+```python
+def reindex_and_align_with_monotonicity(
+        reference_ds,
+        secondary_ds,
+        land_sea_mask
+    ):
+    """
+    Reindex and align the secondary dataset with a reference dataset while ensuring
+    the reference dataset has a strictly monotonic, duplicate-free time index.
+
+    Parameters
+    ----------
+    reference_ds : xarray.Dataset
+        The reference dataset (e.g., IMERG) to which we'll align.
+    secondary_ds : xarray.Dataset
+        The secondary dataset (e.g., CPC) that needs alignment.
+    land_sea_mask : xarray.DataArray
+        Land-sea mask for spatial alignment.
+
+    Returns
+    -------
+    tuple(xarray.Dataset, xarray.DataArray)
+        The aligned secondary dataset and a spatially aligned land-sea mask.
+    """
+    # Ensure strict monotonicity in time for both datasets
+    reference_ds = ensure_strict_monotonic_time(reference_ds)
+    secondary_ds = ensure_strict_monotonic_time(secondary_ds)
+
+    # Reindex and align secondary dataset to the reference dataset
+    secondary_ds_aligned = secondary_ds.reindex_like(reference_ds, method='nearest')
+
+    # Align land-sea mask spatially with the reference dataset
+    land_sea_mask_aligned = land_sea_mask.interp(lat=reference_ds.lat, lon=reference_ds.lon, method='nearest')
+
+    return secondary_ds_aligned, land_sea_mask_aligned
+```
+:::
+
+::: {.callout-note collapse="true" title="Python - apply_land_sea_mask, from src/utility.py"}
+```python
+def apply_land_sea_mask(
+        data,
+        mask_file,
+        mask_var=None
+    ):
+    """
+    Apply the land-sea mask to the input dataset.
+
+    Uses cached mask to avoid repeated file I/O. The mask is interpolated
+    (nearest-neighbor) to match the data resolution if needed.
+
+    Parameters:
+    ----------
+    data : xarray.DataArray or xarray.Dataset
+        The data to which the land-sea mask should be applied.
+    mask_file : str
+        Path to the NetCDF file containing the land-sea mask.
+    mask_var : str, optional
+        Variable name for the land mask. If None, uses config.MASK_VAR.
+
+    Returns:
+    ----------
+    xarray.DataArray or xarray.Dataset
+        The data with the land-sea mask applied (ocean pixels set to NaN).
+    """
+    # Load mask from cache
+    land_sea_mask = load_mask(mask_file, mask_var)
+
+    # Align the mask to the data grid. Use reindex(method='nearest') rather
+    # than interp(method='nearest'): reindex is a pure lookup tolerant of
+    # small numerical differences in coordinate values, while interp goes
+    # through scipy and returns NaN for any target outside the mask's
+    # coordinate range. The latter silently drops the southernmost row and
+    # westernmost column when data and mask coords differ in dtype (e.g.
+    # data is float32, mask is float64), because the float32 representation
+    # of the boundary value is slightly outside the float64 range.
+    land_sea_mask_reindexed = land_sea_mask.reindex(
+        lat=data.lat, lon=data.lon, method="nearest"
+    )
+
+    # Apply the mask: set ocean pixels to NaN (not drop)
+    # Using drop=False preserves the grid structure while marking ocean as NaN
+    masked_data = data.where(land_sea_mask_reindexed == 1)
+
+    return masked_data
+```
+:::
+
+[`src/utility.py`](https://github.com/bennyistanto/hybrid-bias-correction/blob/main/src/utility.py)

@@ -1,0 +1,57 @@
+---
+title: "Every improvement costs something"
+author: "Benny Istanto"
+date: "2025-05-15"
+description: "The correction more than doubled the rate at which a dry day is reported as dry. The same change made the product miss more light rain. Both numbers come from the same line of code."
+image: "../assets/image-blog/20250515-every-improvement-costs-something-01.png"
+categories:
+  - "Climate"
+  - "Data Science"
+  - "Research"
+---
+
+Nearly half the record is dry days. Forty-nine percent of the station-days I validate against report a true zero, which makes "did it correctly say nothing happened" as important as anything the correction does to the wet days.
+
+Raw satellite is bad at this. It rains too often. Not by much on any given day, but a persistent drizzle where the gauge recorded nothing, over and over, across the whole record.
+
+## What the correction does about it
+
+The quantile mapping stage matches the corrected product's dry-day fraction to the reference. In practice that means the smallest over-detected wet values, the ones sitting below where the reference says dry days should end, get reclassified to zero.
+
+The result is the largest single improvement anywhere in this project.
+
+![Before and after on the dry-day metrics, station by station](../assets/image-blog/20250515-every-improvement-costs-something-01.png)
+
+On days when the gauge reports a true zero, the raw satellite also reports zero **32%** of the time. After correction, **73%**.
+
+Across the 175 stations, the median improvement in correct-dry rate is +0.124, and 162 of them get better. Ninety-three percent. I have not found another change in this pipeline that moves that many stations in the same direction.
+
+The wet-day frequency ratio tells the same story from the other side: the raw product rains on about 1.21 days for every day the gauge does, and after correction that lands near 0.95. From over-detecting by a fifth to very slightly under-detecting.
+
+![What the products report instead of zero on gauge-dry days, and how the per-station improvement is distributed](../assets/image-blog/20250515-every-improvement-costs-something-02.png)
+
+## And now the part I would rather not report
+
+Probability of detection falls from about 0.78 to 0.65.
+
+That is the same change. Not a side effect in a different part of the pipeline, not a separate parameter I could tune independently. The operation that suppresses false drizzle is the operation that loses light-rain hits, because from inside the algorithm those two things are indistinguishable. A small non-zero value where the gauge says dry, and a small non-zero value where the gauge says a millimetre fell, look identical in a distribution.
+
+Push the threshold to catch fewer false alarms and you will drop more real light rain. Push it the other way and you get the drizzle back. There is no setting that gives you both.
+
+## Which one you want depends on what you are doing
+
+For drought monitoring, the dry-day improvement is the one that matters and the detection loss is close to irrelevant. A product that invents light rain during a dry spell will under-report the dry spell, which is precisely the failure that makes a drought index useless. Getting the zeros right is the whole job.
+
+For flood work it is the other way around. Missing a third more light-rain events matters, and the false-alarm rate you were tolerating was a price worth paying.
+
+So the honest statement is not "the correction improves dry-day performance". It is "the correction trades detection for dry-day accuracy, at roughly this exchange rate, and whether that is a good trade depends on your application".
+
+## Why I am writing this down
+
+The temptation to report only the first half is strong, and it would not even be dishonest by the standards of most method papers. The dry-day gain is real, large, and consistent across stations. It would make a good headline on its own.
+
+But it would leave a user to discover the detection cost themselves, probably after building something on top of the product, and they would be right to be annoyed.
+
+This is also why probability of detection is reported separately rather than folded into the composite quality score. If it went into a weighted average alongside seven metrics that improved, the average would go up and the trade would vanish. Kept out, it has to be looked at.
+
+I wrote that design decision down last November as a general principle, before I knew what it would catch. This is the first time it has caught something, and I am glad it was there.

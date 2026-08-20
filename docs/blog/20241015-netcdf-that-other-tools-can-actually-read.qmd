@@ -215,9 +215,6 @@ def save_corrected_precip(
     except IOError as e:
         logging.error(f"Failed to save file {output_file}: {str(e)}")
         return None
-
-# ----
-# Find the maximum day in `month` across all years
 ```
 :::
 

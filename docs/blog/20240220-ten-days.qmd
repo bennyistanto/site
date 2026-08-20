@@ -167,10 +167,6 @@ def aggregate_data_across_years(
         raise ValueError("No data found for the specified month and dekad.")
 
     return imerg_dekad_data, cpc_dekad_data
-
-
-# ----
-# Aggregate CPC at native 0.5° resolution for one dekad across all years
 ```
 :::
 

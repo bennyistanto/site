@@ -332,7 +332,7 @@ The [main blog page](blog.qmd) has category filters and search.
 
 ## 2025 {#year-2025}
 
-2 posts
+12 posts
 
 :::{#y2025}
 :::

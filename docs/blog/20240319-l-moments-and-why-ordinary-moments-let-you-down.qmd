@@ -135,9 +135,6 @@ def calculate_l_moments(
     t4 = l4 / l2 if l2 != 0 else np.nan  # L-kurtosis
 
     return l1, l2, l3, l4, t2, t3, t4
-
-# ----
-# Function to fit a gamma distribution
 ```
 :::
 
@@ -160,9 +157,6 @@ for extra in [0, 100, 200, 300, 400]:
     conventional = stats.skew(sample)
     l_skewness = calculate_l_moments(sample)[5]      # t3
     print(f"+{extra:3d} mm   skew={conventional:6.2f}   t3={l_skewness:.3f}")
-
-# +  0 mm   skew=  2.39   t3=0.461
-# +400 mm   skew= 10.33   t3=0.579
 ```
 :::
 

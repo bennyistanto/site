@@ -194,10 +194,6 @@ def fit_cpc_parameters_on_native_grid(
         )
 
     return cpc_params
-
-
-# ----
-# Bilinearly interpolate CPC parameters to the IMERG grid
 ```
 :::
 
@@ -272,10 +268,6 @@ def interpolate_cpc_params_to_imerg_grid(
     )
 
     return interp_params
-
-
-# ----
-# Gamma quantile mapping with pre-computed CPC parameters
 ```
 :::
 
