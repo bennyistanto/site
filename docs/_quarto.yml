@@ -3,6 +3,7 @@ project:
   output-dir: ../_site
   pre-render:
     - script/build-blog-archive.py
+    - script/build-blog-series.py
   post-render:
     - script/blog-prev-next.py
     - script/strip-html-ext.py
