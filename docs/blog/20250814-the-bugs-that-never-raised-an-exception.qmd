@@ -2,6 +2,7 @@
 title: "The bugs that never raised an exception"
 author: "Benny Istanto"
 date: "2025-08-14"
+series: "Bias Correction"
 description: "Five failures from this project, none of which crashed anything. Each produced a plausible number instead, which is considerably worse."
 image: "../assets/image-blog/20250814-the-bugs-that-never-raised-an-exception-01.png"
 categories:
@@ -9,71 +10,91 @@ categories:
   - "Research"
 ---
 
-A crash is a gift. It tells you where it happened, roughly when, and that something is wrong at all.
+A crash is a gift. It tells you where, roughly when, and that anything is wrong at all.
 
-These five did none of that. Every one produced output that ran to completion, wrote a valid file, and reported a number in the range you would expect. I found them all eventually, and in each case by noticing that a result was slightly odd rather than by anything failing.
+None of these five did that. Every one ran to completion, wrote a valid file, and reported a number in the range you would expect.
 
-## One: the grids were upside down
+| # | Symptom | Actually |
+|:--|---|---|
+| 1 | correlation of 0.369 | the grids were upside down |
+| 2 | mean rainfall of 3.7 mm/day | the ocean was voting |
+| 3 | tail parameters look fine | cross-validation had quietly stopped |
+| 4 | training stops at epoch 5 | 50 validation samples |
+| 5 | a blank strip on the map edge | `interp` is not `reindex` |
 
-The gauge product stores latitude descending, north to south. The satellite product stores it ascending. Both are perfectly valid NetCDF, and neither declares the other wrong.
+## 1. The grids were upside down
 
-Load both, compare them cell by cell without aligning first, and every calculation runs. The arrays are the same shape. Nothing errors.
+**Symptom.** A correlation of 0.369 between satellite and reference.
+
+**Cause.** The gauge product stores latitude descending, north to south. The satellite stores it ascending. Both are valid NetCDF; neither declares the other wrong. Load both, compare cell by cell without aligning, and every calculation runs because the arrays are the same shape.
 
 ![Two fields with a north-south gradient. The right-hand one is the middle one loaded without checking the latitude direction](../assets/image-blog/20250814-the-bugs-that-never-raised-an-exception-01.png)
 
-Correctly aligned, those two fields correlate at 0.976. With one silently flipped, 0.369.
+Correctly aligned those two fields correlate at 0.976. Flipped, 0.369.
 
-That second number is the problem. It is not zero, not negative, not obviously broken. **0.369 is almost exactly what the literature reports for daily satellite rainfall against Indonesian gauges.** I could have written it in a paper, and a reviewer would have nodded.
+**Why it is dangerous.** Not zero, not negative, not obviously broken. **0.369 is almost exactly what the literature reports for daily satellite rainfall against Indonesian gauges.** I could have put it in a paper and a reviewer would have nodded.
 
-The fix is to align explicitly, every time, rather than trusting that two files from two agencies agree about which way is up. Two of the framework's modules now re-check on every dataset they open, which is redundant and which I am keeping.
+**Fix.** Align explicitly, every time, rather than trusting two agencies to agree about which way is up. Two modules now re-check on every dataset they open, which is redundant, and which I am keeping.
 
-## Two: the ocean was voting
+## 2. The ocean was voting
 
-Ocean cells have to be marked somehow. If they get written as 0.0, every spatial mean silently includes them.
+**Symptom.** A domain mean that looked plausible and was a third of the truth.
+
+**Cause.** Ocean cells written as `0.0` instead of `NaN`. Every spatial mean then silently includes them.
 
 ![The same rainfall field with the ocean written two different ways](../assets/image-blog/20250814-the-bugs-that-never-raised-an-exception-02.png)
 
-Same field, 28% of it land. Ocean as zero gives a mean of 3.74 mm/day. Ocean as NaN gives 13.12. A factor of three and a half, entirely determined by how you wrote down "there is no land here".
+Same field, 28% of it land:
 
-And a bias correction driven by ratios of means will happily compute a scale factor from that. The correction would then be pulling every land pixel towards a target diluted by ocean.
+| Ocean written as | Domain mean |
+|---|---|
+| `0.0` | 3.74 mm/day |
+| `NaN` | 13.12 mm/day |
 
-Ocean is now NaN throughout, never zero, so `nanmean` does the right thing without anyone having to remember. The symptom to watch for is a corrected mean that looks suspiciously low.
+**Why it is dangerous.** A bias correction driven by ratios of means will happily compute a scale factor from that, pulling every land pixel towards a target diluted by open water.
 
-## Three: the cross-validation quietly stopped
+**Fix.** Ocean is `NaN` throughout, never zero, so `nanmean` does the right thing without anyone having to remember. Watch for a corrected mean that looks suspiciously low.
 
-The tail fit is cross-validated across five folds to stabilise the parameter estimate. If a cell has fewer exceedances than there are folds, the function falls back to a single fit on the whole sample and returns those parameters.
+## 3. The cross-validation quietly stopped
 
-Which is a reasonable fallback. What is not reasonable is that it happens in silence. There is no warning, no flag on the output, no way to know afterwards which cells were cross-validated and which took the fallback.
+**Symptom.** None whatsoever.
 
-They are not equally trustworthy, and the file cannot tell you which is which. In a strongly seasonal climate this hits the peak dry-season dekads hardest, which is where exceedances are thinnest.
+**Cause.** The tail fit is cross-validated across five folds. If a cell has fewer exceedances than there are folds, the function falls back to a single fit on the whole sample and returns those parameters.
 
-I do not think the fallback is wrong. I think a silent fallback is wrong. If a function quietly does something different from what its name says, the output should carry a mark.
+**Why it is dangerous.** The fallback is reasonable. The silence is not. No warning, no flag on the output, no way to know afterwards which cells were cross-validated and which were not. They are not equally trustworthy and the file cannot tell you which is which. In a strongly seasonal climate it bites hardest in the peak dry-season dekads, where exceedances are thinnest.
 
-## Four: training kept stopping at epoch five
+**Fix.** Not fully solved. I do not think the fallback is wrong; I think a silent fallback is wrong. If a function quietly does something other than what its name says, the output should carry a mark.
 
-Early stopping fired almost immediately, every time, and the validation loss curve was visibly noisy.
+## 4. Training stopped at epoch five
 
-The instinct is to blame the model. The actual cause is arithmetic: twenty-five years times ten days is 250 samples, a 20% validation split leaves 50, and validation loss computed on 50 samples bounces around enough that early stopping sees a plateau that is not there.
+**Symptom.** Early stopping fired almost immediately, every run, with a visibly noisy validation curve.
 
-Nothing was broken. The patience setting was simply wrong for the sample size, and it had been wrong since the first run.
+**Cause.** Arithmetic, not the model. Twenty-five years times ten days is 250 samples. A 20% validation split leaves 50. Validation loss on 50 samples bounces enough that early stopping sees a plateau that is not there.
 
-## Five: the edges of small regions came back empty
+**Fix.** The patience setting was wrong for the sample size, and had been since the first run. Nothing was broken.
 
-Two variants, both from interpolation, both invisible until you look at a map of the output.
+## 5. The edges came back empty
 
-The first was a floating-point precision mismatch. The mask coordinates were float64 and the data float32, and a float32 boundary value sits fractionally outside the float64 range, so nearest-neighbour interpolation returned NaN along the southern and western edges.
+**Symptom.** A blank strip along the southern and western edge of small regions, invisible unless you look at a map of the output.
 
-The second was geometric. `interp(method='nearest')` returns NaN outside the convex hull of the source cell centres. If the coarse reference cells do not extend past the region boundary, the edge of the region falls outside that hull and comes back empty.
+**Cause.** Two variants. The first is floating point: mask coordinates in float64, data in float32, and the float32 boundary value sits fractionally outside the float64 range. The second is geometric: `interp(method='nearest')` returns NaN outside the convex hull of the source cell centres, so if the coarse reference does not extend past the region boundary, the edge falls outside the hull.
 
-The fix in both cases was the same, and it is a distinction worth knowing: `reindex(method='nearest')` is a pure label lookup with no convex-hull restriction, while `interp(method='nearest')` is interpolation that happens to pick the nearest point. They sound interchangeable. They are not.
+**Fix.** The same in both cases, and the distinction is worth knowing:
+
+> `reindex(method='nearest')` is a pure label lookup with no convex-hull restriction.
+> `interp(method='nearest')` is interpolation that happens to pick the nearest point.
+
+They sound interchangeable. They are not.
 
 ## The pattern
 
-Four of these five produced a number in the plausible range. The fifth produced an empty edge on a map that nobody looks at closely.
+Four of the five produced a number in the plausible range. The fifth produced an empty edge on a map nobody looks at closely.
 
-I have come out of this with one working rule: **be suspicious of results that are only slightly surprising.** A wildly wrong answer announces itself. An answer that is off by a factor you could rationalise is the one that ends up in a paper.
+Two rules came out of it.
 
-The other rule is that fallbacks should be loud. Every one of these except the latitude flip was code doing something defensible in a difficult case and not mentioning it. Defensible and silent is a bad combination.
+**Be suspicious of results that are only slightly surprising.** A wildly wrong answer announces itself. An answer off by a factor you could rationalise is the one that ends up in a paper.
+
+**Fallbacks should be loud.** Every one of these except the latitude flip was code doing something defensible in a hard case and not mentioning it. Defensible and silent is a bad combination.
 
 ## The code that stops two of them
 

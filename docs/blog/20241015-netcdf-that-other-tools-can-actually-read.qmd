@@ -2,6 +2,7 @@
 title: "NetCDF that other tools can actually read"
 author: "Benny Istanto"
 date: "2024-10-15"
+series: "Bias Correction"
 description: "Your file opens. That is not the same as being readable. A short argument for CF conventions, and for the one attribute I deliberately leave out."
 image: "../assets/image-blog/20241015-netcdf-that-other-tools-can-actually-read-01.png"
 categories:
@@ -168,7 +169,7 @@ def save_corrected_precip(
             'summary': f'Precipitation data corrected using {method_full}',
             'source': 'IMERG and CPC-UNI',
             'history': f'Created on {pd.Timestamp.now()}',
-            'references': 'https://doi.org/10.3390/rs18142298',
+            'references': REFERENCES_DOI,   # manuscript DOI, once there is one
             'DOI': '10.5067/GPM/IMERGDL/DAY/07',
             'creator_name': 'Benny Istanto',
             'creator_role': 'Climate Geographer',

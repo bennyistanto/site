@@ -2,6 +2,7 @@
 title: "The twenty-three hour day"
 author: "Benny Istanto"
 date: "2025-10-16"
+series: "Bias Correction"
 description: "Correlation of 0.20 between the satellite and the gauges. Not because either was wrong, but because we disagreed about when the day starts. Shifting the window took it to 0.57."
 image: "../assets/image-blog/20251016-the-twenty-three-hour-day-01.png"
 categories:

@@ -2,6 +2,7 @@
 title: "The tail that quantile mapping flattens"
 author: "Benny Istanto"
 date: "2024-09-11"
+series: "Bias Correction"
 description: "An empirical CDF cannot map a value larger than the largest one it has ever seen. For heavy rain, that is exactly the range you care about."
 image: "../assets/image-blog/20240911-the-tail-that-quantile-mapping-flattens-01.png"
 categories:
@@ -49,6 +50,26 @@ Two parameters. The scale $\sigma$ sets how quickly exceedances fall away. The s
 Fit that above the 80th percentile, graft it onto the empirical body below, and both problems go away at once. The staircase becomes a curve because it is now a two-parameter function rather than eight isolated points. The ceiling disappears because a fitted distribution is happy to tell you the probability of 300 mm even though it has never seen 300 mm.
 
 In the figure the fitted shape came out at $\xi = 0.095$, mildly heavy, and the green curve carries on past 250 mm where the empirical one gave up at 156.
+
+::: {.callout-note title="Added later"}
+The two figures below are not from September 2024. They are the versions I finally trusted, redrawn much later against a real station once the whole pipeline existed, and they only look this clean because a lot of earlier attempts did not. I got the threshold wrong, then the location parameter, then the point where the fitted tail is grafted onto the empirical body. The `LSEQM+DL` line is the finished four-stage product, neural stage included, which is why it appears here in a post written before that stage was built.
+
+I have put them in this post rather than a later one because this is where the argument belongs. The tidy result hides how long it took, so it seems worth saying plainly that it took months.
+:::
+
+The first one is the whole distribution rather than the tail, and it makes the division of labour obvious.
+
+![Empirical CDF of wet-day rainfall at FL Tobing, North Sumatra. Linear scaling keeps the raw shape and only shifts it; the quantile mapping stage remaps the whole distribution onto the gauge](../assets/image-blog/20240911-the-tail-that-quantile-mapping-flattens-02.png)
+
+The grey and blue curves, raw and linearly scaled, sit well above the black gauge curve through the middle of the range: too many moderate days, which is the over-detection problem from a different angle. The orange and green curves lie on the gauge almost exactly. That is quantile mapping doing what it is for.
+
+But look at where the curves converge, around 60 mm and up. By 90 mm they are indistinguishable at this scale, and the plot has no way to show you what happens above that. So plot the same station on a survival curve instead, which is the tail seen properly.
+
+![Heavy-tail survival at the same station. Read downward for rarer. The raw and linearly scaled tails decay too fast; the grafted tail tracks the gauge out to 200 mm](../assets/image-blog/20240911-the-tail-that-quantile-mapping-flattens-03.png)
+
+This is the argument of the whole post in one panel. The grey and blue lines fall away from the gauge steadily and then drop off a cliff, which is the ceiling: no more data, no more curve. The orange and green lines stay with the black one, slightly above it for most of the range, out past 150 mm and to the end of the axis.
+
+Slightly above, not on top of. The grafted tail is a little too generous in the far tail, and I would rather that direction than the other, but it is not free and it is visible right there in the figure.
 
 ## The part that makes me uneasy
 

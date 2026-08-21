@@ -2,6 +2,7 @@
 title: "Where the graph stops"
 author: "Benny Istanto"
 date: "2025-07-03"
+series: "Bias Correction"
 description: "The heavy-rain skill curve ends at 50 mm. Not because the code breaks, but because six records out of 5,899 is not a result."
 image: "../assets/image-blog/20250703-where-the-graph-stops-01.png"
 categories:
@@ -33,6 +34,12 @@ So the framework follows the WMO verification guidance and writes NaN whenever a
 On the Bali example, with four stations, this was easy to dismiss. Four stations over twenty years simply never accumulate ten days above 100 mm inside a single ten-day window of the year. Of course the upper thresholds are empty. Get more stations.
 
 So I ran the full national validation. A hundred and seventy-two stations, twenty-one years, 5,899 station-dekad records.
+
+That figure of 172 is itself the same rule applied one level up. The archive holds 180 stations. Eight of them never reach the evaluation: some fall outside the land mask once you place their coordinates on a 0.1 degree grid, and some never accumulate thirty paired days inside a single dekadal window.
+
+![Two filters applied before any metric is computed, and what each one costs](../assets/image-blog/20250703-where-the-graph-stops-03.png)
+
+Neither filter is about rainfall. Both are about whether there is enough overlap between two records to compare them at all, which is the same question the ten-event rule asks, asked earlier.
 
 At 100 mm, **six** of those 5,899 records clear the ten-event minimum. Six. And their median critical success index is 0.000 for both methods, which is enough to plot a point and not remotely enough to say one method beats the other.
 

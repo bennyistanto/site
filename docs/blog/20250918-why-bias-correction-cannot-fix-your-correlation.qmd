@@ -2,6 +2,7 @@
 title: "Why bias correction cannot fix your correlation"
 author: "Benny Istanto"
 date: "2025-09-18"
+series: "Bias Correction"
 description: "Two years of work, and daily correlation has not moved. It turns out it was never going to, and the reason is a property of the method rather than a failure of it."
 image: "../assets/image-blog/20250918-why-bias-correction-cannot-fix-your-correlation-02.png"
 categories:
@@ -41,6 +42,14 @@ Meanwhile the spread moves decisively towards the gauge, from 0.69 to 0.95. The 
 Widen to every 1 to 10 January across the whole record, 195 days under a single mapping, and corrected-against-raw is a near-monotone rising curve while the gauge sits around it as a cloud. Correlation goes from 0.368 to 0.357.
 
 Slightly down. Well inside noise. That is the answer, and it is the same answer everywhere I look.
+
+Which is a claim worth putting a number on rather than asserting. Pooling every station and plotting the two quantities side by side gives the cleanest statement of the whole problem I have managed.
+
+![Per-station correlation and per-station spread ratio through the four stages, over the 171 stations with a valid per-dekad correlation. One panel does not move; the other moves onto its target](../assets/image-blog/20250918-why-bias-correction-cannot-fix-your-correlation-04.png)
+
+The left panel is four boxes at the same height. Median correlation sits at 0.23 before the correction and 0.22 after it, and the quartiles barely twitch. The right panel is the same stations, the same four stages, and the boxes walk up to the dashed line at 1.0 where the standard deviation ratio should be: 0.82 raw, 0.72 after scaling, then 1.03 and 1.00.
+
+Same code, same run, same stations. One thing the correction was built to fix, and one thing it structurally cannot.
 
 ## The fifteen attempts
 

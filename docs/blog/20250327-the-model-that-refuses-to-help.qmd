@@ -2,6 +2,7 @@
 title: "The model that refuses to help"
 author: "Benny Istanto"
 date: "2025-03-27"
+series: "Bias Correction"
 description: "A neural correction that switches itself off across most of the map, on purpose. Where there is nothing to check it against, it declines to make claims."
 image: "../assets/image-blog/20250327-the-model-that-refuses-to-help-02.png"
 categories:

@@ -2,6 +2,7 @@
 title: "Every improvement costs something"
 author: "Benny Istanto"
 date: "2025-05-15"
+series: "Bias Correction"
 description: "The correction more than doubled the rate at which a dry day is reported as dry. The same change made the product miss more light rain. Both numbers come from the same line of code."
 image: "../assets/image-blog/20250515-every-improvement-costs-something-01.png"
 categories:
@@ -10,7 +11,7 @@ categories:
   - "Research"
 ---
 
-Nearly half the record is dry days. Forty-nine percent of the station-days I validate against report a true zero, which makes "did it correctly say nothing happened" as important as anything the correction does to the wet days.
+About half the record is dry days. Half the station-days I validate against report a true zero, which makes "did it correctly say nothing happened" as important as anything the correction does to the wet days.
 
 Raw satellite is bad at this. It rains too often. Not by much on any given day, but a persistent drizzle where the gauge recorded nothing, over and over, across the whole record.
 
@@ -22,11 +23,11 @@ The result is the largest single improvement anywhere in this project.
 
 ![Before and after on the dry-day metrics, station by station](../assets/image-blog/20250515-every-improvement-costs-something-01.png)
 
-On days when the gauge reports a true zero, the raw satellite also reports zero **32%** of the time. After correction, **73%**.
+On days when the gauge reports a true zero, the raw satellite also reports zero **32%** of the time. After the full correction, **73%**.
 
-Across the 175 stations, the median improvement in correct-dry rate is +0.124, and 162 of them get better. Ninety-three percent. I have not found another change in this pipeline that moves that many stations in the same direction.
+Taking the median across the 175 stations with usable overlap, the improvement in correct-dry rate is +0.134, and 95% of stations get better. I have not found another change in this pipeline that moves that many stations in the same direction.
 
-The wet-day frequency ratio tells the same story from the other side: the raw product rains on about 1.21 days for every day the gauge does, and after correction that lands near 0.95. From over-detecting by a fifth to very slightly under-detecting.
+The wet-day frequency ratio tells the same story from the other side: the raw product rains on about 1.23 days for every day the gauge does, and after correction that lands near 0.97. From over-detecting by a fifth to very slightly under-detecting.
 
 ![What the products report instead of zero on gauge-dry days, and how the per-station improvement is distributed](../assets/image-blog/20250515-every-improvement-costs-something-02.png)
 
@@ -37,6 +38,20 @@ Probability of detection falls from about 0.78 to 0.65.
 That is the same change. Not a side effect in a different part of the pipeline, not a separate parameter I could tune independently. The operation that suppresses false drizzle is the operation that loses light-rain hits, because from inside the algorithm those two things are indistinguishable. A small non-zero value where the gauge says dry, and a small non-zero value where the gauge says a millimetre fell, look identical in a distribution.
 
 Push the threshold to catch fewer false alarms and you will drop more real light rain. Push it the other way and you get the drizzle back. There is no setting that gives you both.
+
+Two more go the wrong way, and unlike detection these are not a trade I chose.
+
+The clearest way I have found to look at all of this at once is a single scorecard: nine metrics, three stages of the pipeline, and a green band showing where each number is supposed to land. These are the pooled national numbers rather than the per-station medians above, so they shift by a point or two either way.
+
+![Nine metrics against three stages. Linear scaling wins on hit rate, critical success index and the squared-error pair; the distribution-matching stages win everything else](../assets/image-blog/20250515-every-improvement-costs-something-03.png)
+
+Read down the blue dots and you get a fair summary of what the extra machinery is for. Linear scaling holds two of the three detection rows, hit rate and critical success index, and the two squared-error rows at the bottom. It loses false-alarm ratio, which is the whole point of the trade: fewer false alarms bought with fewer hits. Everything between, wet-day frequency, wet-day intensity, the 95th and 99th percentiles, belongs to the later stages by a wide margin. 0.71 against 1.05 on wet-day intensity is not a close call.
+
+The bottom two rows are the ones I want to name explicitly, because they are easy to leave out of a summary table. Measured against the gauge analysis the correction is fitted to, root-mean-square error rises from 13.1 mm under linear scaling alone to 14.18 mm once quantile mapping is applied, and Nash-Sutcliffe efficiency falls from -0.273 to -0.548. By those two measures, the simplest stage in the pipeline is the best one.
+
+The reason is not mysterious once you look at what quantile mapping does. Linear scaling shrinks the satellite's spread; the corrected values cluster nearer the mean, and clustering near the mean is a good way to keep squared error down. Quantile mapping undoes that, deliberately, because a product whose variance is too small under-reports every extreme. It puts the spread back. On the days when satellite and gauge disagree about what happened, a value with the right spread is further from the gauge than a value hedged toward the middle, and the squared-error metrics record that as a loss.
+
+So there are two honest sentences here and they sit uncomfortably together. The distributions match the reference far better after quantile mapping. The day-by-day errors are larger. Both are true, and which one you quote decides what your paper appears to show.
 
 ## Which one you want depends on what you are doing
 

@@ -2,6 +2,7 @@
 title: "How to read a Taylor diagram"
 author: "Benny Istanto"
 date: "2024-07-30"
+series: "Bias Correction"
 description: "Three verification numbers plotted as one point, using a trick from the law of cosines. Useful, widely used, and quietly missing the one thing you most want to know."
 image: "../assets/image-blog/20240730-how-to-read-a-taylor-diagram-01.png"
 categories:

@@ -2,6 +2,7 @@
 title: "Forty gigabytes that cannot live in git"
 author: "Benny Istanto"
 date: "2025-04-24"
+series: "Bias Correction"
 description: "The code is eleven megabytes and the outputs are forty gigabytes. Working out which parts of a project belong in version control and which need somewhere else entirely."
 image: "../assets/image-blog/20250424-forty-gigabytes-that-cannot-live-in-git-01.png"
 categories:
@@ -47,7 +48,7 @@ The Colab mirror is the one I would flag to anyone doing this. A stale copy of y
 
 ## What this buys
 
-The claim I most wanted the release to support is that the headline numbers can be checked by someone who is not me and does not have institutional compute. The eleven-megabyte example runs the whole pipeline end to end in about 72 minutes on a free Colab CPU tier.
+The claim I most wanted the release to support is that the headline numbers can be checked by someone who is not me and does not have institutional compute. The eleven-megabyte example runs the whole pipeline end to end in about 72 minutes on a free [Colab](https://colab.research.google.com) CPU tier.
 
 That is the number I care about more than the 40 GB. Anyone can verify the pipeline does what it says in an afternoon, for nothing. The full archive is there for anyone who wants to reproduce the exact published figures, which is a smaller and more determined audience.
 

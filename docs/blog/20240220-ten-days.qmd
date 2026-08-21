@@ -2,6 +2,7 @@
 title: "Ten days"
 author: "Benny Istanto"
 date: "2024-02-20"
+series: "Bias Correction"
 description: "Fitting a rainfall correction needs a time window. A year washes out the monsoon, a day has no sample, a month smears the onset. Ten days is the compromise."
 image: "../assets/image-blog/20240220-ten-days-02.png"
 categories:

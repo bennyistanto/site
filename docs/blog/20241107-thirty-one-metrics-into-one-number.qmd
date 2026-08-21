@@ -2,6 +2,7 @@
 title: "Thirty-one metrics into one number"
 author: "Benny Istanto"
 date: "2024-11-07"
+series: "Bias Correction"
 description: "You cannot compare corrections across a hundred thousand pixels using thirty-one metrics. You also cannot trust the single score you collapse them into. Both are true."
 image: "../assets/image-blog/20241107-thirty-one-metrics-into-one-number-01.png"
 categories:

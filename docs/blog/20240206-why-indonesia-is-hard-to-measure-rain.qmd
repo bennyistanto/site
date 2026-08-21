@@ -2,6 +2,7 @@
 title: "Why Indonesia is the hardest place on earth to measure rain"
 author: "Benny Istanto"
 date: "2024-02-06"
+series: "Bias Correction"
 description: "Convective rain, three time zones, and a gauge network that thins out going east. Notes on why satellite rainfall and rain gauges disagree here more than they should."
 image: "../assets/image-blog/20240206-why-indonesia-is-hard-to-measure-rain-01.png"
 categories:
