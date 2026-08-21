@@ -32,6 +32,7 @@ SITE = os.path.join(OUTPUT_DIR, "blog")
 
 FM = re.compile(r"^---\s*\n(.*?)\n---\s*\n", re.S)
 NAV = re.compile(r'\n?<nav class="post-nav".*?</nav>\n?', re.S)
+SERIES = re.compile(r'\n?<aside class="post-series".*?</aside>\n?', re.S)
 
 
 def frontmatter(path):
@@ -40,7 +41,7 @@ def frontmatter(path):
     if not m:
         return {}
     out = {}
-    for key in ("title", "date"):
+    for key in ("title", "date", "series"):
         km = re.search(r'^%s:\s*"?(.*?)"?\s*$' % key, m.group(1), re.M)
         if km:
             out[key] = km.group(1).strip()
@@ -62,9 +63,34 @@ def collect():
             "title": fm["title"],
             # fall back to the filename date if frontmatter has none
             "date": fm.get("date") or "%s-%s-%s" % (fn[:4], fn[4:6], fn[6:8]),
+            "series": fm.get("series"),
         })
     posts.sort(key=lambda p: (p["date"], p["slug"]))
     return posts
+
+
+# A series is declared with a `series:` key in a post's frontmatter, and is
+# deliberately not a category (the site keeps a closed set of seven). Where a
+# post belongs to one, previous/next follow the series instead of the calendar,
+# so a reader working through it is not dropped into an unrelated post
+# published in between.
+SERIES_PAGES = {
+    "Bias Correction": "blog-series-bias-correction",
+}
+
+
+def build_series_header(series, index, total, page_slug):
+    """A one-line banner naming the series and this post's place in it."""
+    target = SERIES_PAGES.get(series)
+    if not target:
+        return ""
+    return (
+        '\n<aside class="post-series">'
+        '<a class="no-external" href="../{page}">{series}</a>'
+        '<span class="post-series-pos">Part {i} of {n}</span>'
+        "</aside>\n"
+    ).format(page=target, series=html.escape(series, quote=False),
+             i=index, n=total)
 
 
 def link(post, kind, label):
@@ -100,22 +126,54 @@ def main():
         print("blog-prev-next: no posts found", file=sys.stderr)
         return
 
-    written = skipped = 0
+    # Per-series orderings, alongside the global chronological one.
+    series_posts = {}
+    for p in posts:
+        if p.get("series"):
+            series_posts.setdefault(p["series"], []).append(p)
+
+    written = skipped = in_series = 0
     for i, post in enumerate(posts):
         target = os.path.join(SITE, post["slug"] + ".html")
         if not os.path.exists(target):
             skipped += 1
             continue
 
-        nav = build_nav(posts[i - 1] if i > 0 else None,
-                        posts[i + 1] if i + 1 < len(posts) else None)
-        if not nav:
-            continue
+        # Inside a series, neighbours come from the series, not the calendar.
+        header = ""
+        s = post.get("series")
+        if s and s in series_posts:
+            group = series_posts[s]
+            j = group.index(post)
+            prev_post = group[j - 1] if j > 0 else None
+            next_post = group[j + 1] if j + 1 < len(group) else None
+            header = build_series_header(s, j + 1, len(group), post["slug"])
+            in_series += 1
+        else:
+            prev_post = posts[i - 1] if i > 0 else None
+            next_post = posts[i + 1] if i + 1 < len(posts) else None
+
+        nav = build_nav(prev_post, next_post)
 
         with open(target, encoding="utf-8") as fh:
             page = fh.read()
 
         page = NAV.sub("\n", page)          # drop any nav from a previous run
+        page = SERIES.sub("", page)         # and any series banner
+
+        # The banner sits directly under the post's title block.
+        if header:
+            tb = page.find('id="title-block-header"')
+            if tb != -1:
+                close = page.find("</header>", tb)
+                if close != -1:
+                    cut = close + len("</header>")
+                    page = page[:cut] + header + page[cut:]
+
+        if not nav:
+            with open(target, "w", encoding="utf-8") as fh:
+                fh.write(page)
+            continue
 
         # Prefer to sit above the comments; otherwise close out the article.
         anchor = None
@@ -135,7 +193,8 @@ def main():
             fh.write(page)
         written += 1
 
-    print("blog-prev-next: %d posts linked, %d skipped" % (written, skipped))
+    print("blog-prev-next: %d posts linked, %d in a series, %d skipped"
+          % (written, in_series, skipped))
 
 
 if __name__ == "__main__":
