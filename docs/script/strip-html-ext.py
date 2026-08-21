@@ -10,6 +10,7 @@ Quarto bakes into the rendered output so visitors never *see* .html:
                                                      ../foo.html   -> ../foo
                                                      ./index.html  -> ./   (dir root)
                                                      foo.html#frag -> foo#frag
+                                                     ..\blog/foo   -> ../blog/foo
   - search.json : "href" and "objectID" values (so search results land clean)
   - *.xml       : sitemap.xml + RSS feed URLs (so Google indexes the clean form)
 
@@ -42,13 +43,19 @@ _EXTERNAL = re.compile(r"^(?:[a-zA-Z][a-zA-Z0-9+.\-]*:|//|#|mailto:|tel:)")
 
 
 def clean_path(url: str) -> str:
-    """Strip .html from a single internal link value, preserving #frag / ?query."""
+    """Normalise separators and strip .html, preserving #frag / ?query."""
     if not url or _EXTERNAL.match(url):
         return url
     m = re.match(r"^([^#?]*)([#?].*)?$", url)
     path, tail = m.group(1), m.group(2) or ""
+    # Quarto resolves root-relative links ("/blog/foo") using the host OS
+    # separator, so a Windows render emits "..\blog/foo". Browsers normalise
+    # backslashes for http(s), so those links do work, but a literal "\" is
+    # not valid in a URL path (it would have to be %5C) and it shows up in
+    # the status bar and in copied link text. Fix it at the source.
+    path = path.replace("\\", "/")
     if not path.endswith(".html"):
-        return url
+        return path + tail
     base = path[:-5]  # drop ".html"
     if base == "index":
         path = "./"
