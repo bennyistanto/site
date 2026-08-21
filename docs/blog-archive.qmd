@@ -325,7 +325,7 @@ The [main blog page](blog.qmd) has category filters and search.
 
 ## 2026 {#year-2026}
 
-1 post
+11 posts
 
 :::{#y2026}
 :::
