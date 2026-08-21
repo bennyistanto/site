@@ -1,0 +1,148 @@
+---
+title: "Bias Correction"
+subtitle: "Two years of correcting satellite rainfall, in order"
+page-layout: full
+toc: true
+toc-title: Years
+css: styles/blog.css
+---
+
+Everything below is one piece of work: a framework for correcting daily satellite precipitation over Indonesia, from the first attempt to understand the problem through to a published paper and a submitted thesis.
+
+The posts are interleaved with unrelated ones on the [main blog](blog.qmd), so this page is the reading order. Each post also links to the next one in the series rather than to whatever was published next.
+
+## 2024 {#year-2024}
+
+**Working out the pieces.** Before any correction could be judged, the scaffolding had to exist: what the rain is like, what to measure it against, and how to score anything at all.
+
+**1. [Why Indonesia is the hardest place on earth to measure rain](blog/20240206-why-indonesia-is-hard-to-measure-rain.qmd)**  
+*6 February 2024*  
+Convective rain, three time zones, and a gauge network that thins out going east. Notes on why satellite rainfall and rain gauges disagree here more than they should.
+
+**2. [Ten days](blog/20240220-ten-days.qmd)**  
+*20 February 2024*  
+Fitting a rainfall correction needs a time window. A year washes out the monsoon, a day has no sample, a month smears the onset. Ten days is the compromise.
+
+**3. [L-moments, and why ordinary moments let you down](blog/20240319-l-moments-and-why-ordinary-moments-let-you-down.qmd)**  
+*19 March 2024*  
+Fitting a distribution to a short, skewed rainfall sample. One freak day can quadruple your skewness estimate, and there is a well-established way to stop it.
+
+**4. [Three datasets, three different truths](blog/20240409-three-datasets-three-different-truths.qmd)**  
+*9 April 2024*  
+Before correcting a satellite rainfall product you have to pick something to correct it towards. Every candidate is wrong, and they are wrong in different ways.
+
+**5. [Correct the parameters, not the data](blog/20240627-correct-the-parameters-not-the-data.qmd)**  
+*27 June 2024*  
+The reference grid is five times coarser than the product being corrected. Regridding the rainfall is the obvious fix and the wrong one.
+
+**6. [How to read a Taylor diagram](blog/20240730-how-to-read-a-taylor-diagram.qmd)**  
+*30 July 2024*  
+Three verification numbers plotted as one point, using a trick from the law of cosines. Useful, widely used, and quietly missing the one thing you most want to know.
+
+**7. [The tail that quantile mapping flattens](blog/20240911-the-tail-that-quantile-mapping-flattens.qmd)**  
+*11 September 2024*  
+An empirical CDF cannot map a value larger than the largest one it has ever seen. For heavy rain, that is exactly the range you care about.
+
+**8. [NetCDF that other tools can actually read](blog/20241015-netcdf-that-other-tools-can-actually-read.qmd)**  
+*15 October 2024*  
+Your file opens. That is not the same as being readable. A short argument for CF conventions, and for the one attribute I deliberately leave out.
+
+**9. [Thirty-one metrics into one number](blog/20241107-thirty-one-metrics-into-one-number.qmd)**  
+*7 November 2024*  
+You cannot compare corrections across a hundred thousand pixels using thirty-one metrics. You also cannot trust the single score you collapse them into. Both are true.
+
+**10. [Start with the dumbest thing that works](blog/20241210-start-with-the-dumbest-thing-that-works.qmd)**  
+*10 December 2024*  
+Linear scaling is one multiplication per pixel per dekad. It cannot fix the distribution, cannot fix the tail, and is still the first thing I run.
+
+## 2025 {#year-2025}
+
+**Building, and two findings.** The model, the gate that keeps it quiet, the trade-offs, and then the wall and the way through it.
+
+**11. [Two convolutions and fifty million parameters](blog/20250123-two-convolutions-and-fifty-million-parameters.qmd)**  
+*23 January 2025*  
+A small CNN to clean up what the statistical correction leaves behind. Then I counted the parameters and found that almost none of them are doing the part I care about.
+
+**12. [TensorFlow will not install, and it is not your fault](blog/20250213-tensorflow-will-not-install.qmd)**  
+*13 February 2025*  
+Five ways the install fails, one per platform, and the two escape routes that mean you may not need it at all.
+
+**13. [The model that refuses to help](blog/20250327-the-model-that-refuses-to-help.qmd)**  
+*27 March 2025*  
+A neural correction that switches itself off across most of the map, on purpose. Where there is nothing to check it against, it declines to make claims.
+
+**14. [Forty gigabytes that cannot live in git](blog/20250424-forty-gigabytes-that-cannot-live-in-git.qmd)**  
+*24 April 2025*  
+The code is eleven megabytes and the outputs are forty gigabytes. Working out which parts of a project belong in version control and which need somewhere else entirely.
+
+**15. [Every improvement costs something](blog/20250515-every-improvement-costs-something.qmd)**  
+*15 May 2025*  
+The correction more than doubled the rate at which a dry day is reported as dry. The same change made the product miss more light rain. Both numbers come from the same line of code.
+
+**16. [Where the graph stops](blog/20250703-where-the-graph-stops.qmd)**  
+*3 July 2025*  
+The heavy-rain skill curve ends at 50 mm. Not because the code breaks, but because six records out of 5,899 is not a result.
+
+**17. [The bugs that never raised an exception](blog/20250814-the-bugs-that-never-raised-an-exception.qmd)**  
+*14 August 2025*  
+Five failures from this project, none of which crashed anything. Each produced a plausible number instead, which is considerably worse.
+
+**18. [Why bias correction cannot fix your correlation](blog/20250918-why-bias-correction-cannot-fix-your-correlation.qmd)**  
+*18 September 2025*  
+Two years of work, and daily correlation has not moved. It turns out it was never going to, and the reason is a property of the method rather than a failure of it.
+
+**19. [The twenty-three hour day](blog/20251016-the-twenty-three-hour-day.qmd)**  
+*16 October 2025*  
+Correlation of 0.20 between the satellite and the gauges. Not because either was wrong, but because we disagreed about when the day starts. Shifting the window took it to 0.57.
+
+**20. [The questions I answer with no](blog/20251211-the-questions-i-answer-with-no.qmd)**  
+*11 December 2025*  
+Closing the year on scope. Snow, sub-daily rainfall, event-based flood forecasting: three things people reasonably ask this method to do, and why the answer is no.
+
+## 2026 {#year-2026}
+
+**Writing and publishing.** Documentation, a paper, an examination that reframed the whole argument, and a graduation letter.
+
+**21. [Documenting a research project so someone else can run it](blog/20260115-documenting-a-research-project.qmd)**  
+*15 January 2026*  
+Fifty-four pages of documentation for a pipeline nobody has asked to use yet. An argument for writing it anyway, and for what the different pages are actually for.
+
+**22. [The dashboard nobody asked for](blog/20260319-the-dashboard-nobody-asked-for.qmd)**  
+*19 March 2026*  
+A static paper cannot let you ask a follow-up question. Thirteen interactive pages, and the three longest are all about the calendar.
+
+**23. [Measuring whether your own work reproduces](blog/20260521-measuring-whether-your-own-work-reproduces.qmd)**  
+*21 May 2026*  
+Claiming a pipeline is reproducible is easy. I put a number on it instead: 72.1 minutes, on a free tier, with no accelerator.
+
+**24. [Making research citable](blog/20260702-making-research-citable.qmd)**  
+*2 July 2026*  
+The code and the data have DOIs. The paper does not yet. Which turns out to be the clearest way to explain why one identifier was never going to be enough.
+
+**25. [Published](blog/20260716-published.qmd)**  
+*16 July 2026*  
+The paper is out in Remote Sensing. What it argues, where everything lives, and the one number in it I would most like people to take away.
+
+**26. [What the reviewers actually said](blog/20260725-what-the-reviewers-actually-said.qmd)**  
+*25 July 2026*  
+Three reviewers, and the first one found something structural: my tables were scored against the thing I had calibrated to, which made the simplest method look best.
+
+**27. [The defence that reframed the thesis](blog/20260731-the-defence-that-reframed-the-thesis.qmd)**  
+*31 July 2026*  
+Passed, revision required. The substantive feedback was not that anything was wrong, but that the whole thing started in the wrong place.
+
+**28. [The thesis, in LaTeX and in git](blog/20260806-the-thesis-in-latex-and-in-git.qmd)**  
+*6 August 2026*  
+I am not fluent in Word. Two hundred pages, a hundred and fifty figures and a moving bibliography made that a problem, and switching was the best decision I made.
+
+**29. [Two years, a full-time job, and a master's](blog/20260811-two-years-a-full-time-job-and-a-masters.qmd)**  
+*11 August 2026*  
+The graduation letter arrived today. What the two years actually cost, and the slides from the three points where the work had to be defended out loud.
+
+**30. [The same thesis, in a different typeface](blog/20260821-the-same-thesis-in-a-different-typeface.qmd)**  
+*21 August 2026*  
+Rebuilding the thesis in Latin Modern took about thirty kilobytes of shell script, and most of it was not about the font. It was about making sure nobody could mistake the result for the signed copy.
+
+---
+
+30 posts, 6 February 2024 to 21 August 2026.
