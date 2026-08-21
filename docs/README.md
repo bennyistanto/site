@@ -1,108 +1,57 @@
-# Benny Istanto's Personal Website
+# The Quarto project
 
-This is the source code for [benny.istan.to](https://benny.istan.to), built with [Quarto](https://quarto.org) and hosted on GitHub Pages.
+This directory is the site. Everything in it becomes [benny.istan.to](https://benny.istan.to).
 
-## Overview
+**The project README is one level up**, in [`../README.md`](../README.md), and that
+is the canonical one: what the repository holds, how deployment works, and how to
+reuse any of this for your own site. This file only covers what you need to know
+once you are working inside `docs/`.
 
-A personal website showcasing work in GIS, climate data science, and earth observation. The site features a minimal, elegant design with support for both light and dark themes.
+## Commands
 
-## Tech Stack
+Run from this directory:
 
-- **Framework**: Quarto
-- **Themes**: Custom light (Cosmo-based) and dark (Darkly-based) themes
-- **Hosting**: GitHub Pages
-- **Repository**: [github.com/bennyistanto/site](https://github.com/bennyistanto/site)
-
-## Local Development
-
-### Prerequisites
-
-- [Quarto](https://quarto.org/docs/get-started/) installed on your machine
-
-### Setup
-
-1. Clone the repository:
-```bash
-git clone https://github.com/bennyistanto/site.git
-cd site/docs
-```
-
-2. Preview the site locally:
 ```bash
 quarto preview
 ```
 
-3. Build the site:
 ```bash
 quarto render
 ```
 
-## Structure
+`render` writes to `../_site/`, which is generated and gitignored.
 
-```
-docs/
-├── _quarto.yml          # Main configuration file
-├── index.qmd            # Homepage with spotlight showcase
-├── about.qmd            # About page
-├── blog.qmd             # Blog listing
-├── works.qmd            # Portfolio/works overview
-│   └── works/           # Works sub-pages
-│       ├── experiences.qmd
-│       ├── projects.qmd
-│       ├── consulting.qmd
-│       └── maps-and-infographics.qmd
-├── cv.qmd               # Curriculum Vitae
-├── csr.qmd              # CSR page
-├── changelog.qmd        # Site changelog
-├── 404.qmd              # Custom 404 page
-├── styles.css           # Main stylesheet
-├── custom-light.scss    # Light theme customization
-├── custom-dark.scss     # Dark theme customization
-└── assets/              # Images, logos, etc.
-    ├── logo.png
-    ├── favicon.ico
-    └── spotlight/       # Inspired by MIT's homepage
+## Two files you should not edit
+
+`blog-archive.qmd` and `blog-series-bias-correction.qmd` are rebuilt from scratch
+by pre-render hooks on every build. Editing them does nothing that survives.
+
+Change `script/build-blog-archive.py` or `script/build-blog-series.py` instead.
+To add a post to the series, put one line in the post's own front matter:
+
+```yaml
+series: "Bias Correction"
 ```
 
-## Customization
+## Where things are
 
-### Changing the Spotlight Image
+| | |
+|---|---|
+| `_quarto.yml` | Site configuration, navigation, theme, and the four build hooks |
+| `styles/custom-light.scss` | Light theme, layered on Cosmo |
+| `styles/custom-dark.scss` | Dark theme, layered on Darkly |
+| `styles/styles.css` | Site-wide CSS |
+| `styles/*.css` | Per-page CSS, named after the page it serves |
+| `assets/image-spotlight/` | The homepage hero image |
+| `assets/image-logo/favicon.png` | Favicon |
 
-Inspired by MIT's homepage approach, edit `index.qmd` and update the image path:
-```markdown
-![](assets/spotlight/your-image.jpg)
-```
+Dark-mode rules key off `body.quarto-dark`, which is what Quarto's own toggle
+sets. An `@media (prefers-color-scheme: dark)` block reads the operating system
+instead and ignores the toggle, so a visitor switching the site to dark gets the
+light styling. The per-page stylesheets carry this note where it matters.
 
-### Updating the Spotlight Text
+## Changing the homepage
 
-Edit the content within the `.spotlight-box` div in `index.qmd`.
-
-### Theme Colors
-
-Modify colors in:
-- `custom-light.scss` for light theme
-- `custom-dark.scss` for dark theme
-
-## Deployment
-
-The site automatically deploys to GitHub Pages when changes are pushed to the main branch.
-
-### Manual Deployment
-
-```bash
-quarto publish gh-pages
-```
-
-## Contributing
-
-This is a personal website, but feel free to use it as a template for your own site.
-
-## License
-
-© 2026 Benny Istanto. All rights reserved.
-
-## Contact
-
-- GitHub: [@bennyistanto](https://github.com/bennyistanto)
-- LinkedIn: [bennyistanto](https://linkedin.com/in/bennyistanto)
-- Website: [benny.istan.to](https://benny.istan.to)
+The hero image and the spotlight text both live in `index.qmd`, inside the
+`.hero-section` and `.spotlight-box` divs. Layout for both is in
+`styles/index.css`.
