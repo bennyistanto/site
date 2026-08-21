@@ -8,40 +8,6 @@
   display: none !important;
 }
 
-/* WIP Banner - Index Page */
-.wip-banner {
-  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
-  border-left: 4px solid #f39c12;
-  padding: 1rem 1.5rem;
-  margin: 1.5rem auto;
-  max-width: 1200px;
-  border-radius: 0.5rem;
-  text-align: center;
-  font-size: 0.95rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.wip-banner strong {
-  font-weight: 600;
-  color: #856404;
-}
-
-/* Dark mode for WIP banner */
-/* Keyed to body.quarto-dark, which is what Quarto's light/dark toggle sets.
-   An @media (prefers-color-scheme: dark) block reads the OPERATING SYSTEM
-   setting and ignores the site toggle, so the banner stayed dark in the site's
-   light mode and light when a visitor switched the site to dark. */
-body.quarto-dark .wip-banner {
-  background: linear-gradient(135deg, #3a3a2e 0%, #4a4a3a 100%);
-  border-left-color: #f39c12;
-  color: #ffeaa7;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-body.quarto-dark .wip-banner strong {
-  color: #ffd93d;
-}
-
 /* Hero Section - Full Page Image Showcase */
 .hero-section {
   height: 100vh;
