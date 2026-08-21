@@ -11,17 +11,41 @@ a works portfolio, and a small catalogue of free climate datasets.
 |---|---|
 | `docs/` | The Quarto project. Everything that becomes the site. |
 | `docs/blog/` | Posts, one `.qmd` per post, named `YYYYMMDD-slug`. |
+| `docs/blog-draft/` | Unfinished posts. Currently still rendered, see the note below. |
 | `docs/works/` | Projects, experiences, consulting, maps and infographics. |
 | `docs/csr/` | Climate Social Responsibility: the free dataset pages. |
 | `docs/assets/` | Images, grouped by the section that uses them. |
-| `docs/styles/` | Per-page stylesheets. |
-| `docs/script/` | Post-render hooks, run by Quarto after every build. |
+| `docs/styles/` | Themes (`custom-light.scss`, `custom-dark.scss`) and per-page CSS. |
+| `docs/script/` | Pre- and post-render hooks, run by Quarto on every build. |
 | `notebook/` | The Squarespace migration tooling. See below. |
 
-Two post-render hooks run on every build, wired up in `docs/_quarto.yml`:
+## Build hooks
 
-- `blog-prev-next.py` adds the previous/next links at the foot of each post
-- `strip-html-ext.py` removes the visible `.html` from internal links
+Four scripts run on every build, wired up under `project:` in `docs/_quarto.yml`.
+
+| Stage | Script | What it does |
+|---|---|---|
+| pre | `build-blog-archive.py` | Rebuilds `blog-archive.qmd` by year from the post filenames |
+| pre | `build-blog-series.py` | Rebuilds `blog-series-bias-correction.qmd` from posts carrying a `series:` key |
+| post | `blog-prev-next.py` | Adds previous/next links to each post, following the series where a post is in one |
+| post | `strip-html-ext.py` | Drops the visible `.html` from internal links and normalises `\` to `/` in paths |
+
+**`blog-archive.qmd` and `blog-series-bias-correction.qmd` are generated files.**
+Edit the scripts, not the pages. Anything typed into those two is overwritten on
+the next render.
+
+A post joins the series by adding one line to its front matter:
+
+```yaml
+series: "Bias Correction"
+```
+
+Nothing else is needed. The archive picks up any post whose filename starts with
+`YYYYMMDD-`.
+
+Everything under `docs/blog-draft/` still renders and reaches the sitemap and the
+site search, even though no listing page links to it. Add a `render:` list to
+`docs/_quarto.yml` if you would rather it stayed private.
 
 ## Running it locally
 
