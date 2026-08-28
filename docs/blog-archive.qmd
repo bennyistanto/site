@@ -339,14 +339,14 @@ The [main blog page](blog.qmd) has category filters and search.
 
 ## 2024 {#year-2024}
 
-20 posts
+21 posts
 
 :::{#y2024}
 :::
 
 ## 2023 {#year-2023}
 
-21 posts
+22 posts
 
 :::{#y2023}
 :::
