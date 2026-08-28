@@ -1,5 +1,5 @@
 ---
-title: "Every improvement costs something"
+title: "Dry days and detection: every improvement costs something"
 author: "Benny Istanto"
 date: "2025-05-15"
 series: "Bias Correction"

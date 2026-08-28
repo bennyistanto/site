@@ -1,5 +1,5 @@
 ---
-title: "Where the graph stops"
+title: "Where the heavy-rain skill curve stops"
 author: "Benny Istanto"
 date: "2025-07-03"
 series: "Bias Correction"

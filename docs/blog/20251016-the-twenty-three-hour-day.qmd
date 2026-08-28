@@ -1,5 +1,5 @@
 ---
-title: "The twenty-three hour day"
+title: "The twenty-three hour day: satellite and gauge calendars"
 author: "Benny Istanto"
 date: "2025-10-16"
 series: "Bias Correction"

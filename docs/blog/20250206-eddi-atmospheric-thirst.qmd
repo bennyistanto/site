@@ -1,5 +1,5 @@
 ---
-title: "A drought index that never looks at rainfall"
+title: "EDDI, a drought index that never looks at rainfall"
 author: "Benny Istanto"
 date: "2025-02-06"
 description: "EDDI measures how thirsty the atmosphere is, using temperature, humidity, wind and radiation. No precipitation anywhere in the calculation. Here is what that buys you, worked through on one Indonesian island."

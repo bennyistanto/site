@@ -1,5 +1,5 @@
 ---
-title: "Drawing each border only once"
+title: "Admin boundaries: drawing each border only once"
 author: "Benny Istanto"
 date: "2025-06-15"
 description: "Admin boundary line files repeat every border from the level above, so a map layout draws the national border three times. A hierarchical merge fixes it, and the first version I wrote returned zero features."

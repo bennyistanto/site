@@ -1,5 +1,5 @@
 ---
-title: "Start with the dumbest thing that works"
+title: "Linear scaling: start with the dumbest thing that works"
 author: "Benny Istanto"
 date: "2024-12-10"
 series: "Bias Correction"

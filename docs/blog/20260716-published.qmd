@@ -1,5 +1,5 @@
 ---
-title: "Published"
+title: "Published: the paper is out in *Remote Sensing*"
 author: "Benny Istanto"
 date: "2026-07-16"
 series: "Bias Correction"

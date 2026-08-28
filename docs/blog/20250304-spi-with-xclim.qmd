@@ -1,5 +1,5 @@
 ---
-title: "Fifty-five minutes to twenty-four seconds"
+title: "SPI in xclim: fifty-five minutes to twenty-four seconds"
 author: "Benny Istanto"
 date: "2025-03-04"
 description: "My first attempt at SPI with xclim took an hour to fit the parameters. climate-indices did the same job in a minute and a half. The difference was one argument, and the xclim maintainers explained why."

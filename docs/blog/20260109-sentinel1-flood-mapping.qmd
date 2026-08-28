@@ -1,5 +1,5 @@
 ---
-title: "A flood map you can argue with"
+title: "Sentinel-1 flood mapping you can argue with"
 author: "Benny Istanto"
 date: "2026-01-09"
 description: "Rapid flood products from radar are genuinely useful, and every one of them contains choices you cannot see. After Cyclone Senyar I wrote a Sentinel-1 workflow in Earth Engine where all the choices are in one config block."

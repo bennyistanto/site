@@ -1,5 +1,5 @@
 ---
-title: "Getting climate data out of NetCDF and into a join"
+title: "NetCDF to H3: getting climate data into a join"
 author: "Benny Istanto"
 date: "2026-06-26"
 description: "NetCDF is the right home for gridded climate data and the wrong shape for combining it with anything else. Zonal statistics onto an H3 grid turns a raster into a table you can join on, four million hexagons at a time."

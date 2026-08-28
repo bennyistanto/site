@@ -2,8 +2,9 @@
 
 Source for my personal website: [benny.istan.to](https://benny.istan.to).
 
-Built with [Quarto](https://quarto.org), hosted on GitHub Pages. Blog posts,
-a works portfolio, and a small catalogue of free climate datasets.
+Built with [Quarto](https://quarto.org), hosted on GitHub Pages. Around 175 blog
+posts going back to 2003, a works portfolio, and a small catalogue of free
+climate datasets.
 
 ## What is here
 
@@ -11,13 +12,39 @@ a works portfolio, and a small catalogue of free climate datasets.
 |---|---|
 | `docs/` | The Quarto project. Everything that becomes the site. |
 | `docs/blog/` | Posts, one `.qmd` per post, named `YYYYMMDD-slug`. |
-| `docs/blog-draft/` | Unfinished posts. Currently still rendered, see the note below. |
 | `docs/works/` | Projects, experiences, consulting, maps and infographics. |
 | `docs/csr/` | Climate Social Responsibility: the free dataset pages. |
 | `docs/assets/` | Images, grouped by the section that uses them. |
 | `docs/styles/` | Themes (`custom-light.scss`, `custom-dark.scss`) and per-page CSS. |
 | `docs/script/` | Pre- and post-render hooks, run by Quarto on every build. |
 | `notebook/` | The Squarespace migration tooling. See below. |
+| `downloads/` | The original Squarespace XML export, kept for reference. |
+
+Two directories exist locally but are gitignored and never reach the deployed
+site: `docs/blog-draft/`, for posts that are not finished, and `temp/`, for
+scratch work. Drafts render if you build locally, so they show up in your own
+`_site/` and its search index, but CI only ever sees tracked files.
+
+## Requirements
+
+[Quarto](https://quarto.org/docs/get-started/) and Python 3.
+
+Quarto does the rendering. Python runs the four build hooks below, and they use
+only the standard library, so there is nothing to install beyond a working
+`python3` on your `PATH`.
+
+## Running it locally
+
+```bash
+git clone https://github.com/bennyistanto/site.git
+```
+
+```bash
+cd site/docs && quarto preview
+```
+
+`quarto render` builds the whole site into `_site/` at the repository root. That
+folder is generated and gitignored.
 
 ## Build hooks
 
@@ -25,47 +52,32 @@ Four scripts run on every build, wired up under `project:` in `docs/_quarto.yml`
 
 | Stage | Script | What it does |
 |---|---|---|
-| pre | `build-blog-archive.py` | Rebuilds `blog-archive.qmd` by year from the post filenames |
+| pre | `build-blog-archive.py` | Rebuilds `blog-archive.qmd`, grouped by year, from the post filenames |
 | pre | `build-blog-series.py` | Rebuilds `blog-series-bias-correction.qmd` from posts carrying a `series:` key |
-| post | `blog-prev-next.py` | Adds previous/next links to each post, following the series where a post is in one |
-| post | `strip-html-ext.py` | Drops the visible `.html` from internal links and normalises `\` to `/` in paths |
+| post | `blog-prev-next.py` | Adds previous and next links to each post, following the series where a post is in one |
+| post | `strip-html-ext.py` | Drops the visible `.html` from internal links, and normalises `\` to `/` in paths |
 
 **`blog-archive.qmd` and `blog-series-bias-correction.qmd` are generated files.**
 Edit the scripts, not the pages. Anything typed into those two is overwritten on
 the next render.
 
-A post joins the series by adding one line to its front matter:
+Adding a post needs nothing beyond the file itself. The archive picks up anything
+in `docs/blog/` whose filename starts with `YYYYMMDD-`. To put a post in the
+series as well, add one line to its front matter:
 
 ```yaml
 series: "Bias Correction"
 ```
 
-Nothing else is needed. The archive picks up any post whose filename starts with
-`YYYYMMDD-`.
-
-Everything under `docs/blog-draft/` still renders and reaches the sitemap and the
-site search, even though no listing page links to it. Add a `render:` list to
-`docs/_quarto.yml` if you would rather it stayed private.
-
-## Running it locally
-
-You need [Quarto](https://quarto.org/docs/get-started/). Nothing else.
-
-```bash
-git clone https://github.com/bennyistanto/site.git
-cd site/docs
-quarto preview
-```
-
-`quarto render` builds the whole site into `_site/`. That folder is generated
-and gitignored, so there is no need to commit it.
-
 ## Deployment
 
-Pushing to `main` triggers a GitHub Actions workflow that renders the site and
-publishes it to GitHub Pages. Because the workflow checks out only tracked
-files, anything referenced by the site has to be committed, not merely present
-on your machine.
+Pushing to `main` runs `.github/workflows/publish.yml`, which clears the Quarto
+cache, renders with `--no-cache`, and publishes `_site/` to the `gh-pages` branch
+with the `benny.istan.to` CNAME.
+
+The workflow checks out only tracked files, so anything the site references has
+to be committed. An image that renders locally but was never added to git will
+simply be missing once deployed, and nothing in the build will complain.
 
 ## Want a site like this?
 
@@ -79,8 +91,8 @@ here:
 **[Migrating a Squarespace site to Quarto](https://benny.istan.to/blog/20260208-migrating-from-squarespace-to-quarto)**
 
 You are welcome to take any of it. Fork the repository, point the notebooks at
-your own export, and strip out my content. The theme, the layouts and the
-post-render hooks are all plain files you can read and change.
+your own export, and strip out my content. The theme, the layouts and the build
+hooks are all plain files you can read and change.
 
 If you are not coming from Squarespace, skip the notebooks entirely: `docs/`
 on its own is a working example of a Quarto site with a blog, a portfolio and

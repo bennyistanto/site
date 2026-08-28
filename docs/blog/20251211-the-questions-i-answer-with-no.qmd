@@ -1,5 +1,5 @@
 ---
-title: "The questions I answer with no"
+title: "Scoping a thesis: the questions I answer with no"
 author: "Benny Istanto"
 date: "2025-12-11"
 series: "Bias Correction"

@@ -1,5 +1,5 @@
 ---
-title: "Two numbers decide everything"
+title: "Rainfall to flood probability: two numbers decide everything"
 author: "Benny Istanto"
 date: "2024-06-25"
 description: "A logistic model turns rainfall into a flood probability using a slope and an intercept. Plotting five plausible parameter sets against the same storm gives answers from 15% to 94%, which is a good argument for plotting them."

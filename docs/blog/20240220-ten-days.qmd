@@ -1,5 +1,5 @@
 ---
-title: "Ten days"
+title: "Ten days: why the dekad is the right time step"
 author: "Benny Istanto"
 date: "2024-02-20"
 series: "Bias Correction"

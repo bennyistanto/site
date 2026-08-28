@@ -1,5 +1,5 @@
 ---
-title: "The model that refuses to help"
+title: "The CNN that refuses to help where gauges are thin"
 author: "Benny Istanto"
 date: "2025-03-27"
 series: "Bias Correction"
