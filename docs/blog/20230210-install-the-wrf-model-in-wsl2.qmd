@@ -227,7 +227,7 @@ There are some straightforward tests that can be performed to ensure that the Fo
 
 ### 2.3. Other packages
 
-We need to install `json-c` and `valgrind` which will required during MPICH test. Here’s how you can install the latest available versions of JSON-C - https://json-c.github.io/json-c/json-c-current-release/doc/html/index.html and Valgrind - https://valgrind.org/ in WSL2 Debian 12:
+We need to install `json-c` and `valgrind` which will required during MPICH test. Here’s how you can install the latest available versions of JSON-C - <https://json-c.github.io/json-c/json-c-current-release/doc/html/index.html> and Valgrind - <https://valgrind.org/> in WSL2 Debian 12:
 
 * Update your package list:
 
@@ -305,12 +305,12 @@ cd LIBRARIES
 
 The required libraries for your desired run may vary. But the essential libraries are below.
 
-  1. **MPICH**, this library is required if you plan to run WRF in parallel mode on a machine with multiple processors. If your machine only has one processor or if you don't need to run WRF with multiple processors, you can skip the MPICH installation. Although any implementation of the MPI-2 standard should work with WRF, we have the most experience with MPICH, so that is the implementation that will be described. https://www.mpich.org/
-  2. **zlib**, is a general-purpose, lossless data-compression library that is used by many software programs. Installing it first after the MPI compiler ensures that any other libraries or applications requiring compression capabilities can utilize it. https://www.zlib.net/
-  3. **libpng**, is the official PNG reference library. It’s used for handling PNG images, potentially useful in visualizing data outputs from simulations if your configuration of WRF includes such capabilities. http://www.libpng.org/pub/png/libpng.html
-  4. **Jasper**, is a software library for image coding and compression using the JPEG 2000 standard. It's important for WRF if our data inputs or outputs include JPEG 2000 formats, which might be used in data assimilation or visualization. https://www.ece.uvic.ca/~frodo/jasper/
-  5. **HDF5**, this library required by NetCDF, is used for storing complex data arrays and is extensively used in scientific computing. HDF5 can utilize MPI for managing data in a parallel computing environment, which is why it’s beneficial to install MPICH before HDF5. https://www.hdfgroup.org/solutions/hdf5/
-  6. **NetCDF**, it consist of `netcdf-c` https://github.com/Unidata/netcdf-c/releases/tag/v4.8.1 and `netcdf-fortran` https://github.com/Unidata/netcdf-fortran/releases/tag/v4.5.4, both library is always necessary and essential for WRF as it is used for the creation, access, and sharing of array-oriented scientific data. This format is central to WRF data input and output. Installing NetCDF-C before NetCDF-Fortran is necessary because the Fortran interface depends on the C library.
+  1. **MPICH**, this library is required if you plan to run WRF in parallel mode on a machine with multiple processors. If your machine only has one processor or if you don't need to run WRF with multiple processors, you can skip the MPICH installation. Although any implementation of the MPI-2 standard should work with WRF, we have the most experience with MPICH, so that is the implementation that will be described. <https://www.mpich.org/>
+  2. **zlib**, is a general-purpose, lossless data-compression library that is used by many software programs. Installing it first after the MPI compiler ensures that any other libraries or applications requiring compression capabilities can utilize it. <https://www.zlib.net/>
+  3. **libpng**, is the official PNG reference library. It’s used for handling PNG images, potentially useful in visualizing data outputs from simulations if your configuration of WRF includes such capabilities. <http://www.libpng.org/pub/png/libpng.html>
+  4. **Jasper**, is a software library for image coding and compression using the JPEG 2000 standard. It's important for WRF if our data inputs or outputs include JPEG 2000 formats, which might be used in data assimilation or visualization. <https://www.ece.uvic.ca/~frodo/jasper/>
+  5. **HDF5**, this library required by NetCDF, is used for storing complex data arrays and is extensively used in scientific computing. HDF5 can utilize MPI for managing data in a parallel computing environment, which is why it’s beneficial to install MPICH before HDF5. <https://www.hdfgroup.org/solutions/hdf5/>
+  6. **NetCDF**, it consist of `netcdf-c` <https://github.com/Unidata/netcdf-c/releases/tag/v4.8.1> and `netcdf-fortran` <https://github.com/Unidata/netcdf-fortran/releases/tag/v4.5.4>, both library is always necessary and essential for WRF as it is used for the creation, access, and sharing of array-oriented scientific data. This format is central to WRF data input and output. Installing NetCDF-C before NetCDF-Fortran is necessary because the Fortran interface depends on the C library.
 
 Next we need to start downloading the libraries
 
@@ -413,7 +413,7 @@ Next we need to start downloading the libraries
 
 * Or we can install the library one-by-one using the following order, so it will much easier to track if there is an error on each package:
 
-  * `mpich`, details on installation and configuration are available at https://github.com/pmodels/mpich
+  * `mpich`, details on installation and configuration are available at <https://github.com/pmodels/mpich>
   
     ```
     # Untar the mpich library
@@ -431,7 +431,7 @@ Next we need to start downloading the libraries
     cd ..
     ```
   
-  * Build `zlib` like below, details on installation and configuration are available at https://www.zlib.net/zlib_faq.html#faq14
+  * Build `zlib` like below, details on installation and configuration are available at <https://www.zlib.net/zlib_faq.html#faq14>
 
     ```
     # Untar the zlib library
@@ -446,7 +446,7 @@ Next we need to start downloading the libraries
     cd ..
     ```
 
-  * `libpng`, details on installation and configuration are available at https://github.com/pnggroup/libpng/blob/libpng16/INSTALL
+  * `libpng`, details on installation and configuration are available at <https://github.com/pnggroup/libpng/blob/libpng16/INSTALL>
   
     ```
     # Untar the libpng library
@@ -461,7 +461,7 @@ Next we need to start downloading the libraries
     cd ..
     ```
   
-  * `jasper`, details on installation and configuration are available at https://github.com/jasper-software/jasper/blob/master/INSTALL.txt
+  * `jasper`, details on installation and configuration are available at <https://github.com/jasper-software/jasper/blob/master/INSTALL.txt>
   
     ```
     # Untar the jasper library
@@ -476,7 +476,7 @@ Next we need to start downloading the libraries
     cd ..
     ```
   
-  * Then you build `hdf5`, specifying the location of the zlib library. Details on compiling steps are available at [here] (https://docs.hdfgroup.org/hdf5/develop/_l_b_compiling.html)
+  * Then you build `hdf5`, specifying the location of the zlib library. Details on compiling steps are available at [here] (<https://docs.hdfgroup.org/hdf5/develop/_l_b_compiling.html>)
   
     ```
     # Untar the hdf5 library
@@ -517,7 +517,7 @@ Next we need to start downloading the libraries
 
     Other option also available, please check using `./configure --help`
   
-  * `netcdf-c`, details on installation and configuration are available at https://github.com/Unidata/netcdf-c/blob/main/INSTALL.md
+  * `netcdf-c`, details on installation and configuration are available at <https://github.com/Unidata/netcdf-c/blob/main/INSTALL.md>
   
     ```
     # Untar the netcdf library
@@ -700,7 +700,7 @@ Once you have confirmed that all libraries are compatible with the compilers, yo
 	> 
 	> DMPar means "Distributed-memory Parallelism," which means MPI will be used in the build. The resulting binary will run within and across multiple nodes of a distributed-memory system (or cluster).
 	> 
-	> Ref: https://forum.mmm.ucar.edu/threads/what-are-the-differences-between-serial-smpar-and-dmpar-compiles-of-wrf.65/
+	> Ref: <https://forum.mmm.ucar.edu/threads/what-are-the-differences-between-serial-smpar-and-dmpar-compiles-of-wrf.65/>
 
 	```
 	------------------------------------------------------------------------
@@ -999,7 +999,7 @@ After constructing the WRF model, the next step is to build the WPS (WRF Pre-Pro
 
 ## 7. Static Geography Data
 
-To use WRF to create real-data simulations, the location of the domain must first be determined. This requires a data set that contains fields such as topography and land use catergories. Such datasets can be found on the WRF website at http://www2.mmm.ucar.edu/wrf/users/download/getsourceswps_geog.html. 
+To use WRF to create real-data simulations, the location of the domain must first be determined. This requires a data set that contains fields such as topography and land use catergories. Such datasets can be found on the WRF website at <http://www2.mmm.ucar.edu/wrf/users/download/getsourceswps_geog.html>. 
 
 * Navigate to the main folder `Build_WRF`then download the data
 
@@ -1082,7 +1082,7 @@ To use WRF to create real-data simulations, the location of the domain must firs
 
 ## References
 
-This step-by-step was adapted from the WRF official tutorial: https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compilation_tutorial.php
+This step-by-step was adapted from the WRF official tutorial: <https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compilation_tutorial.php>
 
 ## Supporting Files
 

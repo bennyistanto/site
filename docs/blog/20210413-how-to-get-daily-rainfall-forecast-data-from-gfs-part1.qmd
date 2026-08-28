@@ -58,7 +58,7 @@ We will try to get forecast data issued on 13 April 2021, forecast hour 00.
 
 ![](../assets/image-blog/20210413-how-to-get-daily-rainfall-forecast-data-from-gfs-part1-01.jpg)
 
-* If you choose option Show the URL only for web programming, you will get URL information: https://nomads.ncep.noaa.gov/cgi-bin/filter\_gfs\_0p25.pl?file=gfs.t00z.pgrb2.0p25.f006&lev\_surface=on&var\_ACPCP=on&leftlon=94&rightlon=142&toplat=7&bottomlat=-12&dir=%2Fgfs.20210413%2F00%2Fatmos
+* If you choose option Show the URL only for web programming, you will get URL information: <https://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25.pl?file=gfs.t00z.pgrb2.0p25.f006&lev_surface=on&var_ACPCP=on&leftlon=94&rightlon=142&toplat=7&bottomlat=-12&dir=%2Fgfs.20210413%2F00%2Fatmos>
 * Using above URL, we can modified and make automation script to download all data that we required.
 
 #### Script for batch download

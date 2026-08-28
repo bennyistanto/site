@@ -13,7 +13,7 @@ categories:
 
 ---
 
-[![](../assets/image-blog/20230128-history-of-climate-modeling-01.jpg)](https://nps.edu/-/nps-researchers-partner-on-next-generation-climate-model)
+[![](../assets/image-blog/20230128-history-of-climate-modeling-01.jpg)](<https://nps.edu/-/nps-researchers-partner-on-next-generation-climate-model>)
 
 Image source: <https://nps.edu/-/nps-researchers-partner-on-next-generation-climate-model>
 

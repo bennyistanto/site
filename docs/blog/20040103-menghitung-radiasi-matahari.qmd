@@ -62,7 +62,7 @@ Berdasarkan hasil praktikum terlihat adanya perubahan radiasi netto pada siang d
 ```
 Grafik di atas menunjukkan bahwa nilai Radiasi Netto pada siang hari berkisar antara 0,5 mV sampai 1,5 mV. Nilai ini akan berubah-ubah tergantung pada kondisi cuaca, seperti apakah langit cerah atau mendung. Pada malam hari, nilai Radiasi Netto cenderung mendekati nol atau bahkan negatif, karena tidak ada sinar matahari yang mencapai permukaan bumi.
 
-Selanjutnya saya harus membandingkan nilai radiasi hasil pengukuran dengan hasil dugaan menggunakan rumus empiris. Referensi saya adalah dokumen dari FAO no 56: Crop evapotranspiration - Guidelines for computing crop water requirements - FAO Irrigation and drainage paper 56 (http://www.fao.org/3/x0490e/x0490e00.htm#Contents): Chapter 3 yang membahas tentang data meteorologi, sub topik radiasi: http://www.fao.org/3/x0490e/x0490e07.htm#radiation
+Selanjutnya saya harus membandingkan nilai radiasi hasil pengukuran dengan hasil dugaan menggunakan rumus empiris. Referensi saya adalah dokumen dari FAO no 56: Crop evapotranspiration - Guidelines for computing crop water requirements - FAO Irrigation and drainage paper 56 (<http://www.fao.org/3/x0490e/x0490e00.htm#Contents>): Chapter 3 yang membahas tentang data meteorologi, sub topik radiasi: <http://www.fao.org/3/x0490e/x0490e07.htm#radiation>
 
 Menurut dokumen di atas, konsep dari perhitungan radiasi adalah sebagai berikut:
 

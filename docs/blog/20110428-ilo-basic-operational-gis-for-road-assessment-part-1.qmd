@@ -96,7 +96,7 @@ This document contained information about the material that was delivered to par
 
 #### Software
 
-Software packages used in the training class were from ESRI, ArcGIS 9.3.1 Student licenses and downloadable from internet (http://www.esri.com/software/arcgis/arcview/eval/evaluate.html).
+Software packages used in the training class were from ESRI, ArcGIS 9.3.1 Student licenses and downloadable from internet (<http://www.esri.com/software/arcgis/arcview/eval/evaluate.html>).
 
 Spatial and Non-spatial data used in this module
 

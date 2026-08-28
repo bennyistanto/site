@@ -17,7 +17,7 @@ categories:
 
 I have been using `climate-indices` python packages years ago, and the tool developed by [James Adam](https://github.com/monocongo) is awesome, it help us to calculate various climate indices. There are two indices that I frequently produced using this tool: [SPI](https://climatedataguide.ucar.edu/climate-data/standardized-precipitation-index-spi) and [SPEI](https://www.researchgate.net/publication/252361460_The_Standardized_Precipitation-Evapotranspiration_Index_SPEI_a_multiscalar_drought_index).
 
-I also wrote a guideline on how to calculate these two indices using this package https://bennyistanto.github.io/spi/. 
+I also wrote a guideline on how to calculate these two indices using this package <https://bennyistanto.github.io/spi/>. 
 
 When I wrote this guideline, I never have any problem during the indices calculation. Then I noticed some people contacted me to ask about some error related to Pearson fitted also in the Github [repository](https://github.com/monocongo/climate_indices) there are lot of [Issues](https://github.com/monocongo/climate_indices/issues?q=is%3Aissue+Pearson+is%3Aclosed+is%3Aopen) submitted. And surprisingly, I also experiencing the similar error when I try to update the indices using latest data.
 

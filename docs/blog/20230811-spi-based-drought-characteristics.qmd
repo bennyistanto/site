@@ -34,8 +34,8 @@ For each category, we identified and analysed the following four main drought ch
 * Magnitude M: the absolute cumulative SPEI value during drought events. Unitless. (On Le's paper, Magnitude are called as Severity)
 * Severity S: the number came from magnitude divided by duration to get level of severity. Unitless. (According to attached picture, many papers also mixed up between last two variables, magnitude and severity and also intensity)
 
-[^1]: https://www.engr.colostate.edu/ce/facultystaff/yevjevich/papers/HydrologyPapers_n23_1967.pdf 
-[^2]: https://www.researchgate.net/publication/333171255_Space-time_variability_of_drought_over_Vietnam
+[^1]: <https://www.engr.colostate.edu/ce/facultystaff/yevjevich/papers/HydrologyPapers_n23_1967.pdf> 
+[^2]: <https://www.researchgate.net/publication/333171255_Space-time_variability_of_drought_over_Vietnam>
 
 ### Drought Event
 

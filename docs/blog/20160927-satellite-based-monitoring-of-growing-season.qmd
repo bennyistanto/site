@@ -30,7 +30,7 @@ In paddy cultivation, there are three growth stages, namely the vegetative (0-60
 
 ![Figure 1. Paddy growing stages](../assets/image-blog/20160927-satellite-based-monitoring-of-growing-season-15.png)
 
-Source: https://www.mdpi.com/1424-8220/15/1/769/htm
+Source: <https://www.mdpi.com/1424-8220/15/1/769/htm>
 
 The above stages can be easily observed using remote sensing data, such as NOAA, MODIS, Landsat and Sentinel. To observe the changes in the crop growing stages, the easiest way is to use a vegetation index. The 4 data mentioned have similar characteristics from the temporal aspect, which allows an area to be crossed by satellite every 1-16 days period and has a vegetation index product.
 
@@ -68,10 +68,10 @@ International
 
 1. USDA
 
-   * Crop Explorer - https://ipad.fas.usda.gov/cropexplorer/imageview.aspx?regionid=seasia#
+   * Crop Explorer - <https://ipad.fas.usda.gov/cropexplorer/imageview.aspx?regionid=seasia#>
 
      + PROBA-V and NOAA AVHRR
-   * Global Agricultural Monitoring - https://ipad.fas.usda.gov/glam.htm
+   * Global Agricultural Monitoring - <https://ipad.fas.usda.gov/glam.htm>
 
      + MODIS and NOAA AVHRR
 2. FAO
@@ -81,7 +81,7 @@ International
      + NOAA AVHRR and SPOT Vegetation
 3. GEO Group on Earth Observation
 
-* Geo-GLAM Crop Monitor - https://cropmonitor.org
+* Geo-GLAM Crop Monitor - <https://cropmonitor.org>
 
   + MODIS MOD09CMG
 
@@ -89,22 +89,22 @@ Indonesia
 
 1. BPS - BPPT
 
-   * Area Sampling Frame - https://ksa.bps.go.id/index.php
+   * Area Sampling Frame - <https://ksa.bps.go.id/index.php>
 
      + Field check using mobile data collection
 2. BPPT
 
-   * iSky - http://pii.or.id/wp-content/uploads/Junal\_PII\_2016\_Sidik\_Mulyono\_Edited.pdf
+   * iSky - <http://pii.or.id/wp-content/uploads/Junal_PII_2016_Sidik_Mulyono_Edited.pdf>
 
      + MODIS and Landsat 8
 3. LAPAN - Litbang Kementerian Pertanian
 
-   * Standing Crop dan Kalender Tanam (KATAM) – http://katam.litbang.pertanian.go.id/main.aspx
+   * Standing Crop dan Kalender Tanam (KATAM) – <http://katam.litbang.pertanian.go.id/main.aspx>
 
      + MODIS MOD09 and Sentinel 2
 4. Pusdatin - Kementerian Pertanian
 
-   * SIMOTANDI – http://sig.pertanian.go.id
+   * SIMOTANDI – <http://sig.pertanian.go.id>
 
      + Landsat 8
 

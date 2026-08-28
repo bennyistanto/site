@@ -14,7 +14,7 @@ categories:
 
 ---
 
-According to Wikipedia, ***Ikigai*** (生き甲斐) (pronounced [[ikiɡai]](https://en.wikipedia.org/wiki/Help:IPA/Japanese "Help:IPA/Japanese")) is a [Japanese](https://en.wikipedia.org/wiki/Japanese_language "Japanese language") concept that means "a reason for being". The word refers to having a meaningful direction or purpose in life, constituting the sense of one's life being made worthwhile, with actions (spontaneous and willing) taken towards achieving one's *ikigai* resulting in satisfaction and a sense of [meaning to life](https://en.wikipedia.org/wiki/Meaning_of_life "Meaning of life").
+According to Wikipedia, ***Ikigai*** (生き甲斐) (pronounced [[ikiɡai]](<https://en.wikipedia.org/wiki/Help:IPA/Japanese> "Help:IPA/Japanese")) is a [Japanese](https://en.wikipedia.org/wiki/Japanese_language "Japanese language") concept that means "a reason for being". The word refers to having a meaningful direction or purpose in life, constituting the sense of one's life being made worthwhile, with actions (spontaneous and willing) taken towards achieving one's *ikigai* resulting in satisfaction and a sense of [meaning to life](https://en.wikipedia.org/wiki/Meaning_of_life "Meaning of life").
 
 And here’s my version of Ikigai:
 

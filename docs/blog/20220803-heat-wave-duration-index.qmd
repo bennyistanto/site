@@ -28,13 +28,13 @@ To calculate the HWDI, you need to have timeseries daily maximum temperature dat
 
 #### Tools
 
-1. Windows Subsystem for Linux (WSL) - https://docs.microsoft.com/en-us/windows/wsl/install. Since Climate Data Operator (CDO) is not available for Windows, the easiest way to use it is via the WSL. If you are on Linux/macOS, then you are good to go.
+1. Windows Subsystem for Linux (WSL) - <https://docs.microsoft.com/en-us/windows/wsl/install>. Since Climate Data Operator (CDO) is not available for Windows, the easiest way to use it is via the WSL. If you are on Linux/macOS, then you are good to go.
 2. Anaconda or Miniconda
-3. Climate Data Operator (CDO) - https://code.mpimet.mpg.de/projects/cdo, installed using *conda install -c conda-forge cdo*. Please create a new environment to install CDO, just to make sure the CDO will not breaking your current python environment.
+3. Climate Data Operator (CDO) - <https://code.mpimet.mpg.de/projects/cdo>, installed using *conda install -c conda-forge cdo*. Please create a new environment to install CDO, just to make sure the CDO will not breaking your current python environment.
 
 #### Data
 
-1. Global high resolution (30 arc sec ~ 1km) daily maximum temperature data (`tasmax`), 1979 - 2016, available as 1 month data per 1 file, from CHELSA - https://chelsa-climate.org/, downloaded from https://data.isimip.org/datasets/92b05291-fbe5-4ed2-b3df-29ff0cded9f2/.
+1. Global high resolution (30 arc sec ~ 1km) daily maximum temperature data (`tasmax`), 1979 - 2016, available as 1 month data per 1 file, from CHELSA - <https://chelsa-climate.org/>, downloaded from <https://data.isimip.org/datasets/92b05291-fbe5-4ed2-b3df-29ff0cded9f2/>.
 
 #### Case
 
@@ -126,12 +126,12 @@ Reference:
 
 ### References
 
-1. https://www.wcrp-climate.org/etccdi
-2. http://etccdi.pacificclimate.org/list\_27\_indices.shtml
-3. https://code.mpimet.mpg.de/projects/cdo/embedded/cdo.pdf
-4. https://code.mpimet.mpg.de/projects/cdo/embedded/cdo\_eca.pdf
-5. https://data-infrastructure-services.gitlab-pages.dkrz.de/tutorials-and-use-cases/use-case\_climate-extremes-indices\_cdo.html
-6. https://en.wikipedia.org/wiki/List\_of\_heat\_waves
+1. <https://www.wcrp-climate.org/etccdi>
+2. <http://etccdi.pacificclimate.org/list_27_indices.shtml>
+3. <https://code.mpimet.mpg.de/projects/cdo/embedded/cdo.pdf>
+4. <https://code.mpimet.mpg.de/projects/cdo/embedded/cdo_eca.pdf>
+5. <https://data-infrastructure-services.gitlab-pages.dkrz.de/tutorials-and-use-cases/use-case_climate-extremes-indices_cdo.html>
+6. <https://en.wikipedia.org/wiki/List_of_heat_waves>
 
 #### CDO operators
 

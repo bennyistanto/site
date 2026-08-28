@@ -50,7 +50,7 @@ An effective disaster management system requires collection of baseline data tha
 
 * **Marine Boundaries**
   * Coverage: World, marine boundaries and Economic Exclusive Zone
-  * Reference: http://www.marineregions.org/sources.php#marbound
+  * Reference: <http://www.marineregions.org/sources.php#marbound>
   * Download link: <http://www.marineregions.org/downloads.php#marbound>
   * Methodology: <http://www.marineregions.org/eezmethodology.php>
 
@@ -117,8 +117,8 @@ Global mapping of population is rapidly growing in recent years. They are availa
 * **World Settlement Footprint (WSF) 2015**
   * AOI: Global
   * Reference:
-    * https://www.nature.com/articles/s41597-020-00580-5
-    * https://www.dlr.de/eoc/en/desktopdefault.aspx/tabid-9628/16557\_read-40454/
+    * <https://www.nature.com/articles/s41597-020-00580-5>
+    * <https://www.dlr.de/eoc/en/desktopdefault.aspx/tabid-9628/16557_read-40454/>
   * Source: DLR
   * Format and resolution: GeoTIFF, 10m spatial resolution
   * Download Link: WSF2015 can be downloaded from a dedicated repository
