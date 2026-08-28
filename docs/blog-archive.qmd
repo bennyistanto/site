@@ -325,21 +325,21 @@ The [main blog page](blog.qmd) has category filters and search.
 
 ## 2026 {#year-2026}
 
-12 posts
+14 posts
 
 :::{#y2026}
 :::
 
 ## 2025 {#year-2025}
 
-14 posts
+18 posts
 
 :::{#y2025}
 :::
 
 ## 2024 {#year-2024}
 
-18 posts
+20 posts
 
 :::{#y2024}
 :::
