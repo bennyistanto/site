@@ -645,6 +645,7 @@ After the system environment tests have confirmed that the target machine can bu
 	The following should print out to the screen for each test:
 
 	Test1: 
+
 	```
 	C function called by Fortran
 	Values are xx = 2.00 and ii = 1
@@ -652,12 +653,12 @@ After the system environment tests have confirmed that the target machine can bu
 	```
 
 	Test2: 
+	
 	```
 	C function called by Fortran
 	Values are xx = 2.00 and ii = 1
 	status = 2
 	SUCCESS test 2 fortran + c + netcdf + mpi
-
 	```
 
 * After passing the test, back to the working directory.
