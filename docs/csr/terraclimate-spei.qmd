@@ -101,8 +101,8 @@ Each accumulation period is a separate netCDF covering the full record.
 
 ## License
 
-- **TerraClimate**, the source data: refer to the [Climatology Lab](https://www.climatologylab.org/terraclimate.html).
-- **SPEI derived from it**: [WTFPL](https://www.wtfpl.net/).
+- **TerraClimate**, the source data: [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/legalcode), or refer to the [Climatology Lab](https://www.climatologylab.org/terraclimate.html).
+- **SPEI** derived from TerraClimate: [WTFPL](https://www.wtfpl.net/).
 
 ::: {.back-link}
 [← Back to CSR](../csr.qmd)
