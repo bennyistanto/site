@@ -81,9 +81,10 @@ blockquote {
   margin: 1.5rem 0;
 }
 
-.page-footer {
+// The border colour lives in styles.css, which loads after this file;
+// a neutral grey there works against both themes.
+.footer {
   background: linear-gradient(to top, #0d0d0d 0%, #1a1a1a 100%);
-  border-top-color: #333;
 }
 
 // Card styles
