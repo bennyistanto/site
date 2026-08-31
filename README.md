@@ -9,7 +9,7 @@ climate datasets.
 ## What is here
 
 | Path | What it holds |
-|---|---|
+| --- | --- |
 | `docs/` | The Quarto project. Everything that becomes the site. |
 | `docs/blog/` | Posts, one `.qmd` per post, named `YYYYMMDD-slug`. |
 | `docs/works/` | Projects, experiences, consulting, maps and infographics. |
@@ -51,7 +51,7 @@ folder is generated and gitignored.
 Four scripts run on every build, wired up under `project:` in `docs/_quarto.yml`.
 
 | Stage | Script | What it does |
-|---|---|---|
+| --- | --- | --- |
 | pre | `build-blog-archive.py` | Rebuilds `blog-archive.qmd`, grouped by year, from the post filenames |
 | pre | `build-blog-series.py` | Rebuilds `blog-series-bias-correction.qmd` from posts carrying a `series:` key |
 | post | `blog-prev-next.py` | Adds previous and next links to each post, following the series where a post is in one |
