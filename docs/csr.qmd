@@ -55,5 +55,13 @@ Everything here is provided as a public service, with no warranty as to accuracy
   </div>
 </a>
 
+<a href="csr/terraclimate-eddi.html" class="dataset-card">
+  <img src="assets/image-csr/terraclimate-eddi-00.png" class="dataset-thumbnail" alt="TerraClimate EDDI">
+  <div class="dataset-content">
+    <div class="dataset-year">1950-2025</div>
+    <h3 class="dataset-title">TerraClimate EDDI</h3>
+  </div>
+</a>
+
 </div>
 ```
