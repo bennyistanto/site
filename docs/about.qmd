@@ -108,12 +108,13 @@ VAMPIRE (Vulnerability Analysis Monitoring Platform for the Impact of Regional E
 ::: {.g-col-12 .g-col-md-6}
 ### Tools.
 
-- **ESRI ArcGIS Family**: Desktop, Pro, Server, Online, Portal
-- **FOSS4G**: QGIS, GDAL/OGR, SAGA, Whitebox, CDO, NCO
-- **Data Catalogue**: GeoNode, CKAN, JKAN
-- **Programming**: Google Earth Engine, bash, python, arcpy, jupyter or ESRI notebook
-- **Design**: Photoshop/GIMP and Illustrator/CorelDRAW/Inkscape, Avenza
-- **Documentation**: Markdown, Material for MkDocs, Jupyter Book, Quarto
+- **Remote Sensing & GIS**: ArcGIS Suite (Pro, Server, Image Server, Online), QGIS, GDAL/OGR, SAGA, Whitebox, ERMapper, ILWIS
+- **Programming & Scripting**: Python, Bash, Google Earth Engine (GEE), ArcPy
+- **Development Tools & Version Control**: Git, Visual Studio Code, Sublime Text, Jupyter/ESRI Notebooks
+- **Documentation & Publishing**: LaTeX, Quarto, Markdown, Material for MkDocs, Jupyter Book
+- **Geospatial Data Catalogs**: CKAN, GeoNode, Portal for ArcGIS
+- **Agriculture & Climate Modeling**: DSSAT, TIMESAT
+- **Cartography & Digital Imaging**: Avenza, Adobe Illustrator/Photoshop, CorelDRAW, Inkscape, GIMP
 :::
 
 :::
