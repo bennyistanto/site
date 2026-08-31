@@ -59,6 +59,15 @@ Period
 
 ::: {.meta-item}
 ::: {.meta-label}
+Baseline
+:::
+::: {.meta-value}
+1991 to 2020, the WMO normal. A 1950 to 2025 full climatology is in preparation
+:::
+:::
+
+::: {.meta-item}
+::: {.meta-label}
 Format
 :::
 ::: {.meta-value}
@@ -110,15 +119,19 @@ The classes in `eddi_cat` follow the [EDDI User Guide](https://psl.noaa.gov/eddi
 
 Note which end is which. EDDI runs the opposite way to SPI and SPEI: a **high** EDDI is dry, because it means high evaporative demand. The map above uses a diverging red to blue ramp with red at the dry end, so the colours read the same way round as on the other two pages even though the index underneath does not.
 
-## The two outermost classes never appear
+## On this baseline, the two outermost classes never appear
 
-`EW4` and `ED4` are defined in the file and drawn in the legend, and neither of them is ever populated. Not rarely: never.
+`EW4` and `ED4` are defined in the file and drawn in the legend, and in the files published here neither is ever populated. Not rarely: never. Across the whole grid from 1991 to 2025, some 84 million valid cell-months, the count for class 0 is zero and the count for class 10 is zero. The other nine are all well populated.
 
-I checked the whole grid over 1991 to 2025, some 84 million valid cell-months, and the count for class 0 is zero and the count for class 10 is zero. The other nine classes are all well populated.
+This is arithmetic rather than a bug, and it is a property of the baseline, not of EDDI. Thirty years gives thirty samples per calendar month, so the finest percentile step a rank can resolve is roughly one in thirty-one, about 3.2 percent. `EW4` spans 2 percent and `ED4` spans 2 percent, so neither bin is wide enough to catch a rank.
 
-This is arithmetic, not a bug. A thirty-year baseline gives thirty samples per calendar month, so the finest percentile step the ranking can resolve is about one in thirty-one, roughly 3.2 percent. The `EW4` bin is 2 percent wide and `ED4` is 2 percent wide, so neither bin is wide enough to catch a rank. The file says as much in its own `attainable_range` attribute, which caps the index at plus or minus 2.028.
+The file states the same limit in its own `attainable_range` attribute, which caps the index at plus or minus 2.028. That is worth converting: a z-score of 2.028 is the 97.87th percentile, and 97.87 never reaches the 98 where `ED4` begins. The attribute predicts the empty class before you count anything.
 
-The practical consequence: with this baseline **`ED3` is the driest class you will ever see**, and it should be read as the top of the scale rather than as one step below an unreached extreme. If you need the full eleven classes to be reachable you need a longer baseline, which is what the 1950 to 2025 variant is for.
+So on this baseline, read **`ED3` as the top of the scale** rather than as one step below an unreached extreme.
+
+A longer baseline lifts the ceiling, and a full-climatology version fitted against 1950 to 2025 instead of the WMO thirty-year normal is planned for this page. Seventy-six samples per calendar month resolve to about 1.3 percent, which clears the 2 percent bins at both ends: the attainable bound rises to 2.382, the 99.14th percentile, and all eleven classes come into reach.
+
+The two will be published side by side rather than one replacing the other, because they answer different questions. The 1991 to 2020 normal is the WMO reference period and the right choice when the number has to be comparable with other operational products. The full climatology is the one to reach for when the tails are the point, at the cost of a baseline that is no longer a standard thirty-year normal and that includes the warming trend it is measuring against.
 
 ## Coverage moves with the season
 
@@ -136,7 +149,13 @@ In practice: slice on the year and month and ignore the day. If your tooling wan
 
 ## Download
 
-Each accumulation period is a separate netCDF covering the full record, with all three variables inside.
+Each accumulation period is a separate netCDF covering the full 1950 to 2025 record, with all three variables inside. Every file also comes in a quarter-degree version, resampled from the same computation: at roughly a fifteenth of the size it is the more practical download for continental or global work, and the one to start with if you only want to look around.
+
+The filename carries the baseline, so `base1991_2020` and `base1950_2025` files can sit in the same directory without colliding.
+
+### Baseline 1991 to 2020, the WMO normal
+
+Native resolution, about 4 km.
 
 | Timescale | File | Size |
 |---|---|---|
@@ -145,7 +164,7 @@ Each accumulation period is a separate netCDF covering the full record, with all
 | 6 month | `wld_cli_terraclimate_eddi_06month_1950_2025_base1991_2020.nc` | 2.83 GB |
 | 12 month | `wld_cli_terraclimate_eddi_12month_1950_2025_base1991_2020.nc` | 2.52 GB |
 
-There is also a quarter-degree version of each, resampled from the same computation. At roughly a fifteenth of the size it is the more practical download for continental or global work, and it is the one to start with if you only want to look around.
+Quarter degree.
 
 | Timescale | File | Size |
 |---|---|---|
@@ -153,6 +172,28 @@ There is also a quarter-degree version of each, resampled from the same computat
 | 3 month | `wld_cli_terraclimate_eddi_03month_1950_2025_base1991_2020_025deg.nc` | 496.3 MB |
 | 6 month | `wld_cli_terraclimate_eddi_06month_1950_2025_base1991_2020_025deg.nc` | 290.1 MB |
 | 12 month | `wld_cli_terraclimate_eddi_12month_1950_2025_base1991_2020_025deg.nc` | 256.4 MB |
+
+### Baseline 1950 to 2025, the full climatology
+
+This is the variant that reaches all eleven classes, for the reason set out above. Same four accumulation periods, same two resolutions, same three variables inside each file. Sizes and links go here once the run is finished and uploaded.
+
+Native resolution, about 4 km.
+
+| Timescale | File | Size |
+|---|---|---|
+| 1 month | `wld_cli_terraclimate_eddi_01month_1950_2025_base1950_2025.nc` | In preparation |
+| 3 month | `wld_cli_terraclimate_eddi_03month_1950_2025_base1950_2025.nc` | In preparation |
+| 6 month | `wld_cli_terraclimate_eddi_06month_1950_2025_base1950_2025.nc` | In preparation |
+| 12 month | `wld_cli_terraclimate_eddi_12month_1950_2025_base1950_2025.nc` | In preparation |
+
+Quarter degree.
+
+| Timescale | File | Size |
+|---|---|---|
+| 1 month | `wld_cli_terraclimate_eddi_01month_1950_2025_base1950_2025_025deg.nc` | In preparation |
+| 3 month | `wld_cli_terraclimate_eddi_03month_1950_2025_base1950_2025_025deg.nc` | In preparation |
+| 6 month | `wld_cli_terraclimate_eddi_06month_1950_2025_base1950_2025_025deg.nc` | In preparation |
+| 12 month | `wld_cli_terraclimate_eddi_12month_1950_2025_base1950_2025_025deg.nc` | In preparation |
 
 ## License
 
