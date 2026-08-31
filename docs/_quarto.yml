@@ -61,6 +61,8 @@ website:
       Turning earth observation data into actionable, life-saving insights.
     center: |
       Built with [Quarto](https://quarto.org/)
+
+      [All content on this website does not represent the views of my (current or previous) employer.]{.footer-disclaimer}
     right: |
       [<i class="bi bi-github"></i>](https://github.com/bennyistanto){aria-label="GitHub"} [<i class="bi bi-linkedin"></i>](https://linkedin.com/in/bennyistanto){aria-label="LinkedIn"} [<i class="bi bi-globe"></i>](https://worldbank.github.io/GOST/content/staff/bennyistanto.html){aria-label="GOST"}
 
