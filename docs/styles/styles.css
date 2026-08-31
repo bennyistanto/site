@@ -87,50 +87,67 @@ body.quarto-dark .navbar-brand img.navbar-logo {
    Footer Customization
    ============================================ */
 
-.page-footer {
-  padding: 3rem 4rem;
-  margin-top: 4rem;
-  border-top: 1px solid var(--bs-border-color);
-  background: var(--bs-body-bg);
+/* Quarto emits <footer class="footer">, not .page-footer.
+   Vertical padding only: the horizontal inset comes from .nav-footer below,
+   whose 17px matches the navbar so footer and navbar content line up.
+   Background is left to the theme files, which load before this one. */
+.footer {
+  margin-top: 2.5rem;
+  padding: 2.5rem 0;
+  border-top: 1px solid rgba(128, 128, 128, 0.25);
 }
 
-.page-footer .container,
-.page-footer .container-fluid {
-  max-width: 100%;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.page-footer p {
+.footer p {
   margin: 0.5rem 0;
   font-size: 0.95rem;
 }
 
-.page-footer .bi-tree {
-  font-size: 1.5rem;
-  color: var(--bs-success);
-}
-
-/* Footer column widths - targeting Quarto's actual structure */
+/* Footer column widths - targeting Quarto's actual structure.
+   Two rows: identity left and links right, then Quarto's centre slot
+   stretched across the full width underneath as a bottom strip. */
 .nav-footer {
   display: grid;
-  grid-template-columns: minmax(250px, 500px) 1fr auto;
+  grid-template-columns: minmax(250px, 620px) 1fr auto;
+  grid-template-areas:
+    "left   .      right"
+    "bottom bottom bottom";
   gap: 2rem;
   align-items: start;
 }
 
-/* Left column */
+/* Left column. 620px lets the tagline settle on two lines instead of
+   three, which balances it against the two rows in the right column. */
 .nav-footer-left {
-  max-width: 500px;
+  grid-area: left;
+  max-width: 620px;
 }
 
-/* Center column */
+/* Bottom strip - spans all three columns on the second row.
+   Quarto appends its repo-action links here after the configured
+   content, so the order is set explicitly to keep the fine print last. */
 .nav-footer-center {
+  grid-area: bottom;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  padding-top: 1.5rem;
+  /* Neutral grey rather than --bs-border-color, which stays light in the
+     dark theme and would draw a near-white line across a black footer. */
+  border-top: 1px solid rgba(128, 128, 128, 0.25);
+}
+
+.nav-footer-center .toc-actions {
+  order: 1;
+}
+
+.nav-footer-center p:has(.footer-disclaimer) {
+  order: 2;
 }
 
 /* Right column */
 .nav-footer-right {
+  grid-area: right;
   text-align: right;
 }
 
@@ -162,6 +179,13 @@ body.quarto-dark .navbar-brand img.navbar-logo {
 .nav-footer-left p:first-child {
   font-weight: 600;
   margin-bottom: 1rem;
+}
+
+/* Employer disclaimer - fine print, last line on every page */
+.nav-footer-center .footer-disclaimer {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.7;
 }
 
 /* ============================================
@@ -197,14 +221,18 @@ body.quarto-dark .navbar-brand img.navbar-logo {
     font-size: 1rem;
   }
 
-  /* Footer mobile layout */
-  .page-footer {
-    padding: 2rem 1rem;
+  /* Footer mobile layout - margin-top is already 2.5rem, only trim padding */
+  .footer {
+    padding: 2rem 0;
   }
 
-  /* Stack footer columns vertically on mobile */
+  /* Stack footer columns vertically on mobile, fine print still last */
   .nav-footer {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "left"
+      "right"
+      "bottom";
     gap: 2rem;
   }
 
@@ -219,10 +247,6 @@ body.quarto-dark .navbar-brand img.navbar-logo {
   /* Ensure footer icons display properly */
   .nav-footer-right a {
     margin: 0 0.75rem;
-  }
-
-  .page-footer div[class*="col"] {
-    margin: 0.5rem 0;
   }
 }
 
