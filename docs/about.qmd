@@ -39,11 +39,12 @@ I run a "casual weekend project" called [Climate Social Responsibility (CSR)](cs
 
 *Sarjana Sains* (S.Si. - equal to Bachelor of Science B.Sc.) in Meteorology with a focus on agriculture meteorology and climatology, computation and agriculture simulation model, satellite meteorology, with minor in geographic information system and remote sensing.
 
-**Supervisors**: 
+**Supervisors**:
+
 - [Idung Risdiyanto](https://scholar.google.co.id/citations?hl=id&user=WBIaIyYAAAAJ) (Bogor Agricultural University)
 - [M. Rokhis Khomarudin](https://scholar.google.com/citations?hl=en&user=RA5YWWQAAAAJ) (Indonesian National Institute of Aeronautics and Spaces)
 
-**Bachelor thesis**: 
+**Bachelor thesis**:
 
 Software development to determine the Canadian Forest Fire Weather Index System using remote sensing satellite. (in Bahasa Indonesia). Source: [IPB Scientific Repository](https://repository.ipb.ac.id/handle/123456789/47915)
 
@@ -53,11 +54,12 @@ Software development to determine the Canadian Forest Fire Weather Index System 
 
 *Magister Sains* (M.Si. - equal to Master of Science M.Sc.) in Applied Climatology with a focus on satellite-derived climate data, statistical and deep learning bias correction models, gauge-satellite integration, and open-science methodologies.
 
-**Supervisors**: 
-- [Rizaldi Boer](https://scholar.google.com/citations?user=jTPXEp8AAAAJ&hl=en) (Bogor Agricultural University), 
+**Supervisors**:
+
+- [Rizaldi Boer](https://scholar.google.com/citations?user=jTPXEp8AAAAJ&hl=en) (Bogor Agricultural University)
 - [I Putu Santikayasa](https://scholar.google.com/citations?user=DcQ58z8AAAAJ&hl=en) (Bogor Agricultural University)
 
-**Master's thesis**: 
+**Master's thesis**:
 
 A Hybrid Bias Correction Framework for Daily Satellite Precipitation. Source: [IPB Scientific Repository](https://repository.ipb.ac.id/handle/123456789/177877) or [Zenodo](https://doi.org/10.5281/zenodo.21996372)
 :::
