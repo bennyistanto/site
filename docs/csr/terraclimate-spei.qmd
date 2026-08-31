@@ -80,6 +80,14 @@ EPSG:4326
 
 SPEI is calculated with [precip-index](https://bennyistanto.github.io/precip-index/) from two TerraClimate variables: precipitation (`ppt`) and potential evapotranspiration (`pet`). The distribution is fitted with Pearson Type III, against 1991 to 2020 as the baseline period.
 
+## Reading the time axis
+
+Every time step is stamped on the first of the month: `1960-01-01`, `1960-02-01`, and so on through `2025-12-01`.
+
+The day is there because a netCDF time coordinate has to be a complete date. It is not a claim about the first of the month. These are monthly values, each one covering its whole month, so `2025-12-01` means December 2025 and nothing narrower.
+
+In practice: slice on the year and month and ignore the day. If your tooling wants an exact match, either select with `method="nearest"` or group by month rather than indexing on a literal date.
+
 ## Download
 
 Each accumulation period is a separate netCDF covering the full record.
@@ -88,8 +96,8 @@ Each accumulation period is a separate netCDF covering the full record.
 |---|---|---|
 | 1 month | `wld_cli_terraclimate_spei_pearson3_1_month.nc` | [24.39 GB](https://drive.google.com/file/d/1bFIbJguJn5dZzUJaV0X-EEGPa-xo_pX4/view?usp=sharing) |
 | 2 month | `wld_cli_terraclimate_spei_pearson3_2_month.nc` | [25.63 GB](https://drive.google.com/file/d/1aP3_utjiENpiZVDh6ayKpNtFHP3hz1de/view?usp=sharing) |
-| 3 month | `wld_cli_terraclimate_spei_pearson3_3_month.nc` | [26.2 GB](https://drive.google.com/file/d/1M8BJHphsOobJeCt5ZxUjCtygakFJylVm/view?usp=sharing) |
-| 6 month | `wld_cli_terraclimate_spei_pearson3_6_month.nc` | [27.1 GB](https://drive.google.com/file/d/1FDE18TvV-X-WN-651FV3ypBd5pIUxqWm/view?usp=sharing) |
+| 3 month | `wld_cli_terraclimate_spei_pearson3_3_month.nc` | [26.20 GB](https://drive.google.com/file/d/1M8BJHphsOobJeCt5ZxUjCtygakFJylVm/view?usp=sharing) |
+| 6 month | `wld_cli_terraclimate_spei_pearson3_6_month.nc` | [27.10 GB](https://drive.google.com/file/d/1FDE18TvV-X-WN-651FV3ypBd5pIUxqWm/view?usp=sharing) |
 | 9 month | `wld_cli_terraclimate_spei_pearson3_9_month.nc` | [27.48 GB](https://drive.google.com/file/d/1CGlDJsIhCIKKO9Hug3aGi-oHCLPPQkUa/view?usp=sharing) |
 | 12 month | `wld_cli_terraclimate_spei_pearson3_12_month.nc` | [27.56 GB](https://drive.google.com/file/d/1Uqnj7DwivVQhQYrVnGCPNSOy3iOE_Jsl/view?usp=sharing) |
 | 18 month | `wld_cli_terraclimate_spei_pearson3_18_month.nc` | [27.26 GB](https://drive.google.com/file/d/1dh2YXXMYyQs835C37lvPCQmBlCPXVh5E/view?usp=sharing) |
@@ -102,7 +110,7 @@ Each accumulation period is a separate netCDF covering the full record.
 ## License
 
 - **TerraClimate**, the source data: [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/legalcode), or refer to the [Climatology Lab](https://www.climatologylab.org/terraclimate.html).
-- **SPEI** derived from TerraClimate: [WTFPL](https://www.wtfpl.net/).
+- **SPEI** derived from TerraClimate: [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/). Credit this site and TerraClimate, note it if you changed anything, and otherwise do as you like with it.
 
 ::: {.back-link}
 [← Back to CSR](../csr.qmd)
