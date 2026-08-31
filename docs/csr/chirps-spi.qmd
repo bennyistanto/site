@@ -82,6 +82,24 @@ SPI is calculated with [precip-index](https://bennyistanto.github.io/precip-inde
 
 Coverage stops at 60N and 60S because that is where CHIRPS stops. The grid is global in longitude, so the poleward rows are present in the file and simply carry no data.
 
+## Interpretation
+
+The eleven classes below are the WMO scheme, and they are what the colours on the map mean. The hex values are given so a map you make from this data can be read alongside one made from mine.
+
+| Category | SPI Value | Hex | RGB |
+| :--- | :--- | :--- | :--- |
+| **Exceptionally Dry** | -2.00 and below | <span style="background-color: #760005; border: 1px solid black; padding: 0 8px;">&nbsp;</span> `#760005` | rgb(118, 0, 5) |
+| **Extremely Dry** | -2.00 to -1.50 | <span style="background-color: #ec0013; border: 1px solid black; padding: 0 8px;">&nbsp;</span> `#ec0013` | rgb(236, 0, 19) |
+| **Severely Dry** | -1.50 to -1.20 | <span style="background-color: #ffa938; border: 1px solid black; padding: 0 8px;">&nbsp;</span> `#ffa938` | rgb(255, 169, 56) |
+| **Moderately Dry** | -1.20 to -0.70 | <span style="background-color: #fdd28a; border: 1px solid black; padding: 0 8px;">&nbsp;</span> `#fdd28a` | rgb(253, 210, 138) |
+| **Abnormally Dry** | -0.70 to -0.50 | <span style="background-color: #fefe53; border: 1px solid black; padding: 0 8px;">&nbsp;</span> `#fefe53` | rgb(254, 254, 83) |
+| **Near Normal** | -0.50 to +0.50 | <span style="background-color: #ffffff; border: 1px solid black; padding: 0 8px;">&nbsp;</span> `#ffffff` | rgb(255, 255, 255) |
+| **Abnormally Moist** | +0.50 to +0.70 | <span style="background-color: #a2fd6e; border: 1px solid black; padding: 0 8px;">&nbsp;</span> `#a2fd6e` | rgb(162, 253, 110) |
+| **Moderately Moist** | +0.70 to +1.20 | <span style="background-color: #00b44a; border: 1px solid black; padding: 0 8px;">&nbsp;</span> `#00b44a` | rgb(0, 180, 74) |
+| **Very Moist** | +1.20 to +1.50 | <span style="background-color: #008180; border: 1px solid black; padding: 0 8px;">&nbsp;</span> `#008180` | rgb(0, 129, 128) |
+| **Extremely Moist** | +1.50 to +2.00 | <span style="background-color: #2a23eb; border: 1px solid black; padding: 0 8px;">&nbsp;</span> `#2a23eb` | rgb(42, 35, 235) |
+| **Exceptionally Moist** | +2.00 and above | <span style="background-color: #a21fec; border: 1px solid black; padding: 0 8px;">&nbsp;</span> `#a21fec` | rgb(162, 31, 236) |
+
 ## Reading the time axis
 
 Every time step is stamped on the 21st of the month: `1981-01-21`, `1981-02-21`, and so on through `2025-12-21`. All 540 steps in the record use the 21st.
