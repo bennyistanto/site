@@ -74,6 +74,8 @@ A Hybrid Bias Correction Framework for Daily Satellite Precipitation. Source: [I
 - **Credential**: [View certificate](https://credentials.edx.org/credentials/5dc2c828afb74fdbb8f9bfe1cdbb554b/)
 - **Capstone Projects**: [HarvardX PH125.9x Data Science Capstone](https://github.com/bennyistanto/HarvardX-PH125.9x-Data-Science-Capstone)
 
+---
+
 **[GIS Certification Institute](https://www.gisci.org/), United States** (08/2023)
 
 *Geographic Information Systems Professional (GISP)*
