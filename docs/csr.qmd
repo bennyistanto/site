@@ -24,7 +24,9 @@ Gridded data ships as netCDF or GeoTIFF on a geographic coordinate system, EPSG:
 
 `+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs`
 
-Resolution, coverage, period, method and licence differ from one product to the next, so each dataset has its own page carrying those details and its download links.
+Resolution, coverage, period and method differ from one product to the next, so each dataset has its own page carrying those details and its download links.
+
+Everything derived here is released under [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/): use it for anything you like, including commercially, as long as you credit this site and the original data source and say so if you changed it. The source datasets keep their own licences, which each product page names.
 
 ### Disclaimer
 
@@ -42,6 +44,14 @@ Everything here is provided as a public service, with no warranty as to accuracy
   <div class="dataset-content">
     <div class="dataset-year">1960-2025</div>
     <h3 class="dataset-title">TerraClimate SPEI</h3>
+  </div>
+</a>
+
+<a href="csr/chirps-spi.html" class="dataset-card">
+  <img src="assets/image-csr/chirps-spi-00.png" class="dataset-thumbnail" alt="CHIRPS SPI">
+  <div class="dataset-content">
+    <div class="dataset-year">1981-2025</div>
+    <h3 class="dataset-title">CHIRPS SPI</h3>
   </div>
 </a>
 
