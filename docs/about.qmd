@@ -103,18 +103,19 @@ VAMPIRE (Vulnerability Analysis Monitoring Platform for the Impact of Regional E
 - Climate, geo-statistics and other scientific data processing
 - Impact science, early-warning and anticipatory-action
 - Capacity development on geospatial and climate analytics
+- Proposal development or funding and project implementation
 :::
 
 ::: {.g-col-12 .g-col-md-6}
 ### Tools.
 
-- **Remote Sensing & GIS**: ArcGIS Suite (Pro, Server, Image Server, Online), QGIS, GDAL/OGR, SAGA, Whitebox, ERMapper, ILWIS
-- **Programming & Scripting**: Python, Bash, Google Earth Engine (GEE), ArcPy
-- **Development Tools & Version Control**: Git, Visual Studio Code, Sublime Text, Jupyter/ESRI Notebooks
-- **Documentation & Publishing**: LaTeX, Quarto, Markdown, Material for MkDocs, Jupyter Book
-- **Geospatial Data Catalogs**: CKAN, GeoNode, Portal for ArcGIS
-- **Agriculture & Climate Modeling**: DSSAT, TIMESAT
-- **Cartography & Digital Imaging**: Avenza, Adobe Illustrator/Photoshop, CorelDRAW, Inkscape, GIMP
+- *Remote Sensing & GIS*: ArcGIS Suite (Pro, Server, Image Server, Online), QGIS, GDAL/OGR, SAGA, Whitebox, ERMapper, ILWIS
+- *Programming & Scripting*: Python, Bash, Google Earth Engine (GEE), ArcPy
+- *Development Tools & Version Control*: Git, Visual Studio Code, Sublime Text, Jupyter/ESRI Notebooks
+- *Documentation & Publishing*: LaTeX, Quarto, Markdown, Material for MkDocs, Jupyter Book
+- *Geospatial Data Catalogs*: CKAN, GeoNode, Portal for ArcGIS
+- *Agriculture & Climate Modeling*: DSSAT, TIMESAT
+- *Cartography & Digital Imaging*: Avenza, Adobe Illustrator/Photoshop, CorelDRAW, Inkscape, GIMP
 :::
 
 :::
