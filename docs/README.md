@@ -89,7 +89,7 @@ land in your own search index, but CI never sees them.
 ## Where things are
 
 | | |
-|---|---|
+| --- | --- |
 | `_quarto.yml` | Site configuration, navigation, theme, and the four build hooks |
 | `styles/custom-light.scss` | Light theme, layered on Cosmo |
 | `styles/custom-dark.scss` | Dark theme, layered on Darkly |
