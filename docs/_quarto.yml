@@ -80,6 +80,7 @@ format:
     link-external-newwindow: true
     link-external-icon: true
     default-image-extension: svg
+    include-in-header: adsense.txt
 
 execute:
   freeze: auto
