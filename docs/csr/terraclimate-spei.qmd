@@ -1,13 +1,13 @@
 ---
 title: "TerraClimate SPEI"
-subtitle: "Standardized Precipitation Evapotranspiration Index, 1960 to 2025"
+subtitle: "Standardized Precipitation Evapotranspiration Index, 1958 to 2025"
 page-layout: full
 toc: false
 image: "../assets/image-csr/terraclimate-spei-00.png"
 css: ../styles/project-detail.css
 ---
 
-The Standardized Precipitation Evapotranspiration Index over the global land surface, monthly, at about 4 km, from 1960 to 2025. SPEI subtracts potential evapotranspiration from precipitation before standardizing, so unlike SPI it answers to evaporative demand as well as to rainfall. That makes it the better choice where warming, not just drying, is the question. Twelve accumulation periods are published, from 1 to 72 months.
+The Standardized Precipitation Evapotranspiration Index over the global land surface, monthly, at about 4 km, from 1958 to 2025. SPEI subtracts potential evapotranspiration from precipitation before standardizing, so unlike SPI it answers to evaporative demand as well as to rainfall. That makes it the better choice where warming, not just drying, is the question. Twelve accumulation periods are published, from 1 to 72 months.
 
 ![Standardized Precipitation Evapotranspiration Index fitted with Pearson Type III, 12-month accumulation, December 2025](../assets/image-csr/terraclimate-spei-00.png)
 
@@ -53,7 +53,7 @@ Global, 90N to 90S and 180W to 180E
 Period
 :::
 ::: {.meta-value}
-1960 to 2025
+1958 to 2025
 :::
 :::
 
@@ -78,7 +78,9 @@ EPSG:4326
 
 ## Method
 
-SPEI is calculated with [precip-index](https://bennyistanto.github.io/precip-index/) from two TerraClimate variables: precipitation (`ppt`) and potential evapotranspiration (`pet`). The distribution is fitted with Pearson Type III, against 1991 to 2020 as the baseline period.
+SPEI is calculated with [precip-index](https://bennyistanto.github.io/precip-index/) from two TerraClimate v1.1 variables: precipitation (`ppt`) and potential evapotranspiration (`pet`). The distribution is fitted with Pearson Type III, against 1991 to 2020 as the baseline period.
+
+The record starts in 1958 because that is where TerraClimate's distributed record starts. Reaching further back means assembling a series from more than one source, and TerraClimate advises against mixing v1.0 with v1.1, so a single version is used throughout rather than splicing one into the other to gain years. That costs coverage and buys homogeneity, which is the right trade for an index whose purpose is comparing one period against another.
 
 ## Interpretation
 
@@ -98,9 +100,21 @@ The eleven classes below are the WMO scheme, and they are what the colours on th
 | **Extremely Moist** | +1.50 to +2.00 | <span style="background-color: #2a23eb; border: 1px solid black; padding: 0 8px;">&nbsp;</span> `#2a23eb` | rgb(42, 35, 235) |
 | **Exceptionally Moist** | +2.00 and above | <span style="background-color: #a21fec; border: 1px solid black; padding: 0 8px;">&nbsp;</span> `#a21fec` | rgb(162, 31, 236) |
 
+## Limitations inherited from TerraClimate
+
+SPEI is only as good as what goes into it, and both inputs come from TerraClimate. Its limitations pass straight through: fitting a Pearson Type III to the difference between precipitation and evaporative demand does not remove anything that was wrong with either. The [TerraClimate page](https://www.climatologylab.org/terraclimate.html) carries the full list; these are the ones that bear on SPEI.
+
+**Trends are not independent evidence.** Long-term trends in TerraClimate precipitation and temperature are inherited from its parent datasets, so a drying trend found in this SPEI record is a trend in those parents, re-expressed. It is not separate confirmation of them. This is the one to hold on to, because a standardised anomaly index invites exactly that misreading.
+
+**Apparent detail exceeds real detail.** The grid is about 4 km, but TerraClimate cannot resolve temporal variability finer than its parent datasets, and orographic precipitation ratios and inversions in particular are not captured. A sharp gradient across a mountain range may be an artefact of downscaling rather than a signal, which matters here because SPEI is often read at exactly that scale.
+
+**The water balance model is simple.** It uses a static reference landcover and does not account for heterogeneity in vegetation types. That feeds the potential evapotranspiration term, so it shapes the half of SPEI that separates it from a rainfall-only index.
+
+**Validation is thin where stations are thin.** TerraClimate reports limited validation in data-sparse regions, Antarctica among them, and likely unrealistic extrapolation of winter inversions into high elevations in boreal systems, inherited from WorldClim v2.1. The grid covers 90N to 90S, so a value exists in those places whether or not it has been checked against anything.
+
 ## Reading the time axis
 
-Every time step is stamped on the first of the month: `1960-01-01`, `1960-02-01`, and so on through `2025-12-01`.
+Every time step is stamped on the first of the month: `1958-01-01`, `1958-02-01`, and so on through `2025-12-01`.
 
 The day is there because a netCDF time coordinate has to be a complete date. It is not a claim about the first of the month. These are monthly values, each one covering its whole month, so `2025-12-01` means December 2025 and nothing narrower.
 
