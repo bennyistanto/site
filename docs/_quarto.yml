@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: ../_site
+  resources:
+    - ads.txt
   pre-render:
     - script/build-blog-archive.py
     - script/build-blog-series.py
@@ -13,6 +15,7 @@ website:
   favicon: assets/image-logo/favicon.png
   site-url: https://benny.istan.to
   repo-url: https://github.com/bennyistanto/site
+  repo-subdir: docs
   repo-actions: [source, issue]
   bread-crumbs: true
   back-to-top-navigation: true
@@ -61,6 +64,8 @@ website:
       Turning earth observation data into actionable, life-saving insights.
     center: |
       Built with [Quarto](https://quarto.org/)
+
+      [Privacy](/privacy.html)
 
       [All content on this website does not represent the views of my (current or previous) employer.]{.footer-disclaimer}
     right: |
