@@ -102,6 +102,15 @@ body.quarto-dark .navbar-brand img.navbar-logo {
   font-size: 0.95rem;
 }
 
+/* page-layout: custom (the home page) ends on a filled block, the spotlight
+   box, so the footer's top margin shows through as a white stripe between
+   two coloured areas. Every other layout ends on the page background, where
+   the same gap is invisible. The footer's own border and padding still
+   separate it. */
+body.fullcontent .footer {
+  margin-top: 0;
+}
+
 /* Footer column widths - targeting Quarto's actual structure.
    Two rows: identity left and links right, then Quarto's centre slot
    stretched across the full width underneath as a bottom strip. */
