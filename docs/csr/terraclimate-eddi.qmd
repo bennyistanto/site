@@ -1,13 +1,13 @@
 ---
 title: "TerraClimate EDDI"
-subtitle: "Evaporative Demand Drought Index, 1950 to 2025"
+subtitle: "Evaporative Demand Drought Index, 1958 to 2025"
 page-layout: full
 toc: false
 image: "../assets/image-csr/terraclimate-eddi-00.png"
 css: ../styles/project-detail.css
 ---
 
-The Evaporative Demand Drought Index over the global land surface, monthly, at about 4 km, from 1950 to 2025. EDDI asks how thirsty the atmosphere is, not how much rain fell. It ranks accumulated reference evapotranspiration against the same calendar month in a baseline period, so a high value means the air has been pulling harder at the surface than usual. That makes it an early signal: evaporative demand climbs before soil moisture falls, often before a rainfall index has anything to report. Four accumulation periods are published, from 1 to 12 months.
+The Evaporative Demand Drought Index over the global land surface, monthly, at about 4 km, from 1958 to 2025. EDDI asks how thirsty the atmosphere is, not how much rain fell. It ranks accumulated reference evapotranspiration against the same calendar month in a baseline period, so a high value means the air has been pulling harder at the surface than usual. That makes it an early signal: evaporative demand climbs before soil moisture falls, often before a rainfall index has anything to report. Four accumulation periods are published, from 1 to 12 months.
 
 ![Evaporative Demand Drought Index, 1-month accumulation, December 2025, based on NOAA's EDDI classification scheme](../assets/image-csr/terraclimate-eddi-00.png)
 
@@ -53,7 +53,7 @@ Global, 90N to 90S and 180W to 180E
 Period
 :::
 ::: {.meta-value}
-1950 to 2025
+1958 to 2025
 :::
 :::
 
@@ -62,7 +62,7 @@ Period
 Baseline
 :::
 ::: {.meta-value}
-1991 to 2020, the WMO normal. A 1950 to 2025 full climatology is in preparation
+1991 to 2020, the WMO normal. A 1958 to 2025 full climatology is in preparation
 :::
 :::
 
@@ -87,7 +87,7 @@ EPSG:4326
 
 ## Method
 
-EDDI is computed from a single TerraClimate variable, reference evapotranspiration (`pet`). For each pixel and each accumulation length, the trailing n-month sum is ranked against the same calendar month across the baseline period, and that rank becomes a non-exceedance probability. The baseline is 1991 to 2020, the WMO thirty-year normal.
+EDDI is computed from a single TerraClimate v1.1 variable, reference evapotranspiration (`pet`). For each pixel and each accumulation length, the trailing n-month sum is ranked against the same calendar month across the baseline period, and that rank becomes a non-exceedance probability. The baseline is 1991 to 2020, the WMO thirty-year normal.
 
 There is no fitted distribution. Unlike [SPI](chirps-spi.qmd) and [SPEI](terraclimate-spei.qmd), which fit a gamma or a Pearson Type III and then read the index off the fitted curve, EDDI is nonparametric: it is a rank, converted to a percentile. That is the method's strength, because nothing has to be assumed about the shape of the distribution, and it is also the source of the limit described two sections below.
 
@@ -129,7 +129,7 @@ The file states the same limit in its own `attainable_range` attribute, which ca
 
 So on this baseline, read **`ED3` as the top of the scale** rather than as one step below an unreached extreme.
 
-A longer baseline lifts the ceiling, and a full-climatology version fitted against 1950 to 2025 instead of the WMO thirty-year normal is planned for this page. Seventy-six samples per calendar month resolve to about 1.3 percent, which clears the 2 percent bins at both ends: the attainable bound rises to 2.382, the 99.14th percentile, and all eleven classes come into reach.
+A longer baseline lifts the ceiling, and a full-climatology version fitted against the whole 1958 to 2025 record instead of the WMO thirty-year normal is planned for this page. Sixty-eight samples per calendar month resolve to about 1.4 percent, comfortably inside the 2 percent bins at both ends, so all eleven classes come into reach.
 
 The two will be published side by side rather than one replacing the other, because they answer different questions. The 1991 to 2020 normal is the WMO reference period and the right choice when the number has to be comparable with other operational products. The full climatology is the one to reach for when the tails are the point, at the cost of a baseline that is no longer a standard thirty-year normal and that includes the warming trend it is measuring against.
 
@@ -139,9 +139,38 @@ EDDI is undefined where evaporative demand is effectively zero, which in practic
 
 Almost all of that swing is in the northern extratropics. Between 60N and 90N the count of valid cells goes from roughly 3,100 in December to 58,500 in July on the quarter-degree grid, while the tropics barely move, and south of 60S the pattern flips as you would expect. So a global count of drought-classified pixels is not comparable from one month to the next, though a given pixel compared against its own calendar month is.
 
+## Limitations inherited from TerraClimate
+
+The two sections above are limits of the index as computed here. These are limits of the source, and they pass straight through, because nothing in the ranking removes them. The [TerraClimate page](https://www.climatologylab.org/terraclimate.html) carries the full list; these are the ones that bear on EDDI.
+
+**Trends are not independent evidence.** Long-term trends in TerraClimate are inherited from its parent datasets, so a trend found in this EDDI record is a trend in those parents, re-expressed. It is not separate confirmation of them. This is the one to hold on to, because an index built to measure anomalies invites exactly that misreading.
+
+**Apparent detail exceeds real detail.** The grid is about 4 km, but TerraClimate cannot resolve temporal variability finer than its parent datasets, and orographic ratios and inversions in particular are not captured. A sharp gradient across a mountain range may be an artefact of downscaling rather than a signal.
+
+**The evaporative demand model is simple.** It uses a static reference landcover and does not account for heterogeneity in vegetation. EDDI is computed from reference evapotranspiration and nothing else, so this one applies to the whole product rather than to one input among several.
+
+**Validation is thin where stations are thin.** TerraClimate reports limited validation in data-sparse regions, Antarctica among them. The map above draws Antarctica because the grid extends there, not because the value is trustworthy. The same caution covers high-elevation boreal systems, where winter inversions inherited from WorldClim v2.1 are likely extrapolated unrealistically, and that is the same place where seasonal coverage is thinnest.
+
+## Why the record starts in 1958
+
+TerraClimate's distributed record begins in 1958, and a longer series has to be assembled rather than simply downloaded. That assembly is not free, and it is worth showing what it costs rather than asserting it.
+
+On a trial run reaching back to 1950, the spread of the EDDI z-score breaks cleanly at the join:
+
+| Years | Standard deviation of EDDI |
+|---|---|
+| 1950 to 1957 | 1.22 to 1.28 |
+| 1958 onward | 0.98 to 1.06 |
+
+About a quarter more spread in the earlier block, with the step landing exactly on the 1958 boundary rather than drifting across it. A discontinuity shaped like that is invisible on any single map and fatal to a trend, because a trend fitted across the join partly measures the join.
+
+So the record starts where the source does. Eight extra years are not worth a seam through the middle of every time series.
+
+The same reasoning settles the version question. TerraClimate advises against mixing v1.0 with v1.1, so a single version is used throughout rather than splicing one into the other to reach further back. Both decisions cost coverage and buy homogeneity, which is the right trade for an index whose whole purpose is comparing one period against another.
+
 ## Reading the time axis
 
-Every time step is stamped on the first of the month: `1950-01-01`, `1950-02-01`, and so on through `2025-12-01`.
+Every time step is stamped on the first of the month: `1958-01-01`, `1958-02-01`, and so on through `2025-12-01`.
 
 The day is there because a netCDF time coordinate has to be a complete date. It is not a claim about the first of the month. These are monthly values, each one covering its whole month, so `2025-12-01` means December 2025 and nothing narrower.
 
@@ -149,9 +178,9 @@ In practice: slice on the year and month and ignore the day. If your tooling wan
 
 ## Download
 
-Each accumulation period is a separate netCDF covering the full 1950 to 2025 record, with all three variables inside. Every file also comes in a quarter-degree version, resampled from the same computation: at roughly a fifteenth of the size it is the more practical download for continental or global work, and the one to start with if you only want to look around.
+Each accumulation period is a separate netCDF covering the full 1958 to 2025 record, with all three variables inside. Every file also comes in a quarter-degree version, resampled from the same computation: at roughly a fifteenth of the size it is the more practical download for continental or global work, and the one to start with if you only want to look around.
 
-The filename carries the baseline, so `base1991_2020` and `base1950_2025` files can sit in the same directory without colliding.
+The filename carries the baseline, so `base1991_2020` and `base1958_2025` files can sit in the same directory without colliding.
 
 ### Baseline 1991 to 2020, the WMO normal
 
@@ -159,21 +188,21 @@ Native resolution, about 4 km.
 
 | Timescale | File | Size |
 |---|---|---|
-| 1 month | `wld_cli_terraclimate_eddi_01month_1950_2025_base1991_2020.nc` | 6.34 GB |
-| 3 month | `wld_cli_terraclimate_eddi_03month_1950_2025_base1991_2020.nc` | 6.66 GB |
-| 6 month | `wld_cli_terraclimate_eddi_06month_1950_2025_base1991_2020.nc` | 2.83 GB |
-| 12 month | `wld_cli_terraclimate_eddi_12month_1950_2025_base1991_2020.nc` | 2.52 GB |
+| 1 month | `wld_cli_terraclimate_eddi_01month_1958_2025_base1991_2020.nc` | In preparation |
+| 3 month | `wld_cli_terraclimate_eddi_03month_1958_2025_base1991_2020.nc` | In preparation |
+| 6 month | `wld_cli_terraclimate_eddi_06month_1958_2025_base1991_2020.nc` | In preparation |
+| 12 month | `wld_cli_terraclimate_eddi_12month_1958_2025_base1991_2020.nc` | In preparation |
 
 Quarter degree.
 
 | Timescale | File | Size |
 |---|---|---|
-| 1 month | `wld_cli_terraclimate_eddi_01month_1950_2025_base1991_2020_025deg.nc` | 467.9 MB |
-| 3 month | `wld_cli_terraclimate_eddi_03month_1950_2025_base1991_2020_025deg.nc` | 496.3 MB |
-| 6 month | `wld_cli_terraclimate_eddi_06month_1950_2025_base1991_2020_025deg.nc` | 290.1 MB |
-| 12 month | `wld_cli_terraclimate_eddi_12month_1950_2025_base1991_2020_025deg.nc` | 256.4 MB |
+| 1 month | `wld_cli_terraclimate_eddi_01month_1958_2025_base1991_2020_025deg.nc` | In preparation |
+| 3 month | `wld_cli_terraclimate_eddi_03month_1958_2025_base1991_2020_025deg.nc` | In preparation |
+| 6 month | `wld_cli_terraclimate_eddi_06month_1958_2025_base1991_2020_025deg.nc` | In preparation |
+| 12 month | `wld_cli_terraclimate_eddi_12month_1958_2025_base1991_2020_025deg.nc` | In preparation |
 
-### Baseline 1950 to 2025, the full climatology
+### Baseline 1958 to 2025, the full climatology
 
 This is the variant that reaches all eleven classes, for the reason set out above. Same four accumulation periods, same two resolutions, same three variables inside each file. Sizes and links go here once the run is finished and uploaded.
 
@@ -181,19 +210,19 @@ Native resolution, about 4 km.
 
 | Timescale | File | Size |
 |---|---|---|
-| 1 month | `wld_cli_terraclimate_eddi_01month_1950_2025_base1950_2025.nc` | In preparation |
-| 3 month | `wld_cli_terraclimate_eddi_03month_1950_2025_base1950_2025.nc` | In preparation |
-| 6 month | `wld_cli_terraclimate_eddi_06month_1950_2025_base1950_2025.nc` | In preparation |
-| 12 month | `wld_cli_terraclimate_eddi_12month_1950_2025_base1950_2025.nc` | In preparation |
+| 1 month | `wld_cli_terraclimate_eddi_01month_1958_2025_base1958_2025.nc` | In preparation |
+| 3 month | `wld_cli_terraclimate_eddi_03month_1958_2025_base1958_2025.nc` | In preparation |
+| 6 month | `wld_cli_terraclimate_eddi_06month_1958_2025_base1958_2025.nc` | In preparation |
+| 12 month | `wld_cli_terraclimate_eddi_12month_1958_2025_base1958_2025.nc` | In preparation |
 
 Quarter degree.
 
 | Timescale | File | Size |
 |---|---|---|
-| 1 month | `wld_cli_terraclimate_eddi_01month_1950_2025_base1950_2025_025deg.nc` | In preparation |
-| 3 month | `wld_cli_terraclimate_eddi_03month_1950_2025_base1950_2025_025deg.nc` | In preparation |
-| 6 month | `wld_cli_terraclimate_eddi_06month_1950_2025_base1950_2025_025deg.nc` | In preparation |
-| 12 month | `wld_cli_terraclimate_eddi_12month_1950_2025_base1950_2025_025deg.nc` | In preparation |
+| 1 month | `wld_cli_terraclimate_eddi_01month_1958_2025_base1958_2025_025deg.nc` | In preparation |
+| 3 month | `wld_cli_terraclimate_eddi_03month_1958_2025_base1958_2025_025deg.nc` | In preparation |
+| 6 month | `wld_cli_terraclimate_eddi_06month_1958_2025_base1958_2025_025deg.nc` | In preparation |
+| 12 month | `wld_cli_terraclimate_eddi_12month_1958_2025_base1958_2025_025deg.nc` | In preparation |
 
 ## License
 
