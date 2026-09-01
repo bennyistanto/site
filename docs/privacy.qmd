@@ -1,0 +1,82 @@
+---
+title: "Privacy."
+subtitle: "What this site collects, and who else is involved"
+page-layout: full
+toc: true
+toc-title: On this page
+---
+
+The short version: I do not run a database of visitors, I do not sell anything, and I do not send email to anyone who has not written to me first. But this site does load a handful of third-party services, and those do collect data. This page lists them, because you should not have to read the page source to find out.
+
+*Last reviewed 1 September 2026.*
+
+## What I collect directly
+
+Nothing, with one exception.
+
+The contact form on the [about page](about.qmd) asks for a name, an email address and a message. Those are handled by [Formspree](https://formspree.io/), which forwards them to my inbox and stores a copy on its own servers under its [privacy policy](https://formspree.io/legal/privacy-policy/). I use what you send to reply and for nothing else: no mailing list, no sharing, no resale.
+
+If you would rather not use the form, my email address is on the same page and reaches me directly.
+
+## Third-party services that load on these pages
+
+Everything below runs in your browser when a page loads, not on my server. Each one can see your IP address, and most can set cookies.
+
+| Service | Where | What it is for |
+|---|---|---|
+| [Google Analytics 4](https://policies.google.com/privacy) | every page | Visitor counts and which pages get read |
+| [Google AdSense](https://policies.google.com/technologies/ads) | every page | Advertising |
+| [Giscus](https://giscus.app/) | every page | Comments, backed by GitHub Discussions |
+| [Formspree](https://formspree.io/legal/privacy-policy/) | about page | The contact form |
+| [YouTube](https://policies.google.com/privacy) | 2 blog posts | Embedded video |
+| [Google Slides](https://policies.google.com/privacy) | 8 pages | Embedded presentations |
+| cdnjs and jsDelivr | some interactive posts | Delivering JavaScript libraries |
+
+Giscus loads on every page so that the comment box is ready, but it holds nothing about you unless you sign in with GitHub and post. If you do, your comment is a GitHub Discussion in a public repository, and GitHub's terms apply to it rather than mine.
+
+The site is published with [GitHub Pages](https://docs.github.com/en/pages), so GitHub serves every request and logs it the way any web server does.
+
+Outbound links to other sites are just links. Nothing loads from them until you click.
+
+## Cookies
+
+I set no cookies of my own. The services above do:
+
+- **Analytics** cookies count visits and distinguish one session from another
+- **Advertising** cookies are used by Google and its partners to select ads and limit how often you see the same one
+
+Your browser controls both. Blocking or clearing cookies will not break anything here, and the site is readable with JavaScript disabled entirely, minus the comments.
+
+## Advertising
+
+Ads on this site are served by Google. Google and its partners may use cookies to personalise what you see based on your previous visits to this and other sites.
+
+You can turn personalisation off at [Google Ads Settings](https://adssettings.google.com/), which applies across every site Google serves, not only this one. [aboutads.info](https://optout.aboutads.info/) offers the same for a wider group of vendors.
+
+Turning personalisation off does not remove the ads. It makes them less relevant, which some people prefer.
+
+## Analytics opt-out
+
+Google offers a [browser add-on](https://tools.google.com/dlpage/gaoptout) that stops Analytics from collecting anything, on this site and on every other. Most content blockers achieve the same thing.
+
+## If you are in the EEA or the UK
+
+You have the right to see what a service holds about you, correct it, or have it deleted. For everything on this page, that data sits with the service rather than with me, so those requests go to them, and each one is linked above.
+
+For the contact form, which is the only thing that reaches me, write to the address on the about page and I will delete the message.
+
+## Children
+
+This site is not aimed at children and I do not knowingly collect anything from them.
+
+## Changes
+
+If this page changes, the review date at the top changes with it. There is no notification list, because there is no list.
+
+## Contact
+
+Questions about any of this go to the email address on the [about page](about.qmd).
+
+::: {.back-link}
+[← Back to home](index.qmd)
+:::
