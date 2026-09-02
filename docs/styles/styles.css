@@ -93,13 +93,15 @@ body.quarto-dark .navbar-brand img.navbar-logo {
    Background is left to the theme files, which load before this one. */
 .footer {
   margin-top: 2.5rem;
-  padding: 2.5rem 0;
+  padding: 1.75rem 0;
   border-top: 1px solid rgba(128, 128, 128, 0.25);
 }
 
 .footer p {
-  margin: 0.5rem 0;
+  margin: 0.25rem 0;
   font-size: 0.95rem;
+  /* Inherited body line-height is 1.7, generous for footer fine print. */
+  line-height: 1.45;
 }
 
 /* page-layout: custom (the home page) ends on a filled block, the spotlight
@@ -120,7 +122,7 @@ body.fullcontent .footer {
   grid-template-areas:
     "left   .      right"
     "bottom bottom bottom";
-  gap: 2rem;
+  gap: 1.25rem 2rem;
   align-items: start;
 }
 
@@ -140,7 +142,7 @@ body.fullcontent .footer {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding-top: 1.5rem;
+  padding-top: 1rem;
   /* Neutral grey rather than --bs-border-color, which stays light in the
      dark theme and would draw a near-white line across a black footer. */
   border-top: 1px solid rgba(128, 128, 128, 0.25);
@@ -148,6 +150,15 @@ body.fullcontent .footer {
 
 .nav-footer-center .toc-actions {
   order: 1;
+}
+
+/* Quarto's repo-action list ships with default list spacing, which adds a
+   blank line above and below a single row of links. */
+.nav-footer-center .toc-actions,
+.nav-footer-center .toc-actions ul,
+.nav-footer-center .toc-actions li {
+  margin: 0;
+  padding: 0;
 }
 
 .nav-footer-center p:has(.footer-disclaimer) {
@@ -187,7 +198,7 @@ body.fullcontent .footer {
 /* Footer copyright at top of left column */
 .nav-footer-left p:first-child {
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 /* Employer disclaimer - fine print, last line on every page */
@@ -232,7 +243,7 @@ body.fullcontent .footer {
 
   /* Footer mobile layout - margin-top is already 2.5rem, only trim padding */
   .footer {
-    padding: 2rem 0;
+    padding: 1.5rem 0;
   }
 
   /* Stack footer columns vertically on mobile, fine print still last */
@@ -242,7 +253,7 @@ body.fullcontent .footer {
       "left"
       "right"
       "bottom";
-    gap: 2rem;
+    gap: 1.25rem;
   }
 
   /* Center all footer content on mobile */
