@@ -31,7 +31,7 @@ The World Bank
 :::
 
 ::: {.timeline-position}
-Risk Data Librarian
+Data Scientist
 :::
 
 ::: {.timeline-project}
@@ -43,7 +43,7 @@ Washington DC, US
 :::
 
 ::: {.timeline-summary}
-Making Hazard, Exposure, Vulnerability and Loss (HEVL) data play nice together for standardized risk insight, Findability, Accessibility, Interoperability, and Reusability (FAIR) data for unfair disaster. Risk Data Library project, an initiative of the Global Facility for Disaster Reduction and Recovery (GFDRR).
+As a Risk Data Librarian, I am making Hazard, Exposure, Vulnerability and Loss (HEVL) data play nice together for standardized risk insight, Findability, Accessibility, Interoperability, and Reusability (FAIR) data for unfair disaster. Risk Data Library project, an initiative of the Global Facility for Disaster Reduction and Recovery (GFDRR).
 
 <https://riskdatalibrary.org/>
 :::
@@ -95,6 +95,8 @@ List supported projects:
 14. Sustainable Development Practice Group Flagship Report on Making Cities Green, Resilient and Inclusive - (P177249)
 15. R18 Support social protection COVID-19 response in Sao Tome and Principe - (P176471)
 16. ECCEE Poverty and Equity Program - (P172046)
+
+https://worldbank.github.io/GOST/README.html
 :::
 :::
 :::
