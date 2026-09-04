@@ -5,13 +5,13 @@ page-layout: article
 toc: false
 ---
 
-This was last updated in August 2026, and is probably out of date. If you have questions, please [contact me](mailto:benny@istan.to?subject=Question about your CV).
+Last updated: August 2026. If you have any questions, please [contact me](mailto:benny@istan.to?subject=Question about your resume).
 
-[Download the PDF](https://s3.benny.istan.to/CV_ISTANTO_Benny_20260816.pdf) or [open it in Google Drive](https://drive.google.com/file/d/19Miq5AmQIL3tKJ_o317z3pt60AmzoSKi/view).
+[Download the PDF](https://s3.benny.istan.to/Resume_ISTANTO_Benny_20260816.pdf). A full CV is available upon request.
 
 ```{=html}
 <iframe
-  src="https://drive.google.com/file/d/19Miq5AmQIL3tKJ_o317z3pt60AmzoSKi/preview"
+  src="https://drive.google.com/file/d/1BqKu9uxU_sc3owM1KeNso9BOk0W4pnYL/preview"
   title="Curriculum Vitae, Benny Istanto"
   width="100%"
   height="1150"
