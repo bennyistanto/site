@@ -35,7 +35,7 @@ I run a "casual weekend project" called [Climate Social Responsibility (CSR)](cs
 ::: {.g-col-12 .g-col-md-6}
 ### Education.
 
-**[Bogor Agricultural University](https://ipb.ac.id/), Bogor, Indonesia** (09/2001 - 03/2006)
+**[Bogor Agricultural University](https://www.ipb.ac.id/), Bogor, Indonesia** (09/2001 - 03/2006)
 
 *Sarjana Sains* (S.Si. - equal to Bachelor of Science B.Sc.) in Meteorology with a focus on agriculture meteorology and climatology, computation and agriculture simulation model, satellite meteorology, with minor in geographic information system and remote sensing.
 
@@ -50,7 +50,7 @@ Software development to determine the Canadian Forest Fire Weather Index System 
 
 ---
 
-**[Bogor Agricultural University](https://ipb.ac.id/), Bogor, Indonesia** (09/2022 - 08/2026)
+**[Bogor Agricultural University](https://www.ipb.ac.id/), Bogor, Indonesia** (09/2022 - 08/2026)
 
 *Magister Sains* (M.Si. - equal to Master of Science M.Sc.) in Applied Climatology with a focus on satellite-derived climate data, statistical and deep learning bias correction models, gauge-satellite integration, and open-science methodologies.
 
