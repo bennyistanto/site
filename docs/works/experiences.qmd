@@ -218,7 +218,7 @@ UNDP/ILO Project in selected districts in Aceh and Nias.
 [Feb - May 2011]{.timeline-date}
 
 ::: {.timeline-organization}
-International Labour Organization
+UN International Labour Organization
 :::
 
 ::: {.timeline-position}
