@@ -110,7 +110,7 @@ List supported projects:
 [Jan 2017 - Aug 2021]{.timeline-date}
 
 ::: {.timeline-organization}
-World Food Programme
+UN World Food Programme
 :::
 
 ::: {.timeline-position}
@@ -140,7 +140,7 @@ Support Bangkok Regional Bureau for Asia and Pacific (RBB) VAM team with climate
 [Jun 2012 - Dec 2016]{.timeline-date}
 
 ::: {.timeline-organization}
-World Food Programme
+UN World Food Programme
 :::
 
 ::: {.timeline-position}
@@ -180,7 +180,7 @@ Working under Vulnerability Analysis and Mapping (VAM) unit - capacity developme
 [Jul 2011 - Jun 2012]{.timeline-date}
 
 ::: {.timeline-organization}
-International Labour Organization
+UN International Labour Organization
 :::
 
 ::: {.timeline-position}
@@ -252,7 +252,7 @@ Aceh, Indonesia
 [May - Dec 2010]{.timeline-date}
 
 ::: {.timeline-organization}
-United Nations Office of the Humanitarian/Resident Coordinator
+UN Office of the Humanitarian/Resident Coordinator
 :::
 
 ::: {.timeline-position}
