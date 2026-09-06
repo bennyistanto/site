@@ -114,18 +114,18 @@ Each accumulation period is a separate netCDF covering the full record.
 
 | Timescale | File | Size |
 |---|---|---|
-| 1 month | `wld_cli_chirps3_spi_gamma_1_month.nc` | [7.78 GB](https://drive.google.com/file/d/1XY9nqHQQw6d0Xe3Ye4EZOwMIY2_Oj3CU/view?usp=sharing) |
-| 2 month | `wld_cli_chirps3_spi_gamma_2_month.nc` | [8.01 GB](https://drive.google.com/file/d/1JVGktnIF-aUkBEwfwP3JkLb3k9CWI3IO/view?usp=sharing) |
-| 3 month | `wld_cli_chirps3_spi_gamma_3_month.nc` | [8.04 GB](https://drive.google.com/file/d/1W0a4mP9NmDAfLU3UE8QDJ-rdigcTCm11/view?usp=sharing) |
-| 6 month | `wld_cli_chirps3_spi_gamma_6_month.nc` | [8.02 GB](https://drive.google.com/file/d/1gSWQuR1a7129kHH2ybtCchALWI4hQveK/view?usp=sharing) |
-| 9 month | `wld_cli_chirps3_spi_gamma_9_month.nc` | [7.98 GB](https://drive.google.com/file/d/159rjMzCoppDqkt8aEY9zUzLxONne6TGw/view?usp=sharing) |
-| 12 month | `wld_cli_chirps3_spi_gamma_12_month.nc` | [7.93 GB](https://drive.google.com/file/d/163cMg7XAfP07-fTCedNzbyqU0jMcLs8l/view?usp=sharing) |
-| 18 month | `wld_cli_chirps3_spi_gamma_18_month.nc` | [7.84 GB](https://drive.google.com/file/d/1808M2V9Duyou9hAnbfFhvEjEiyfVHnt7/view?usp=sharing) |
-| 24 month | `wld_cli_chirps3_spi_gamma_24_month.nc` | [7.75 GB](https://drive.google.com/file/d/1wYFXBHnFEhJh-R82aW39rn-IBwsSymEK/view?usp=sharing) |
-| 36 month | `wld_cli_chirps3_spi_gamma_36_month.nc` | [7.56 GB](https://drive.google.com/file/d/1A_TQjMsiDv93J7s4SHpT6pBE6Mrp80x6/view?usp=sharing) |
-| 48 month | `wld_cli_chirps3_spi_gamma_48_month.nc` | [7.37 GB](https://drive.google.com/file/d/1cgHj0eqdbWgnsaow9nf7yuE4ypfQb4rW/view?usp=sharing) |
-| 60 month | `wld_cli_chirps3_spi_gamma_60_month.nc` | [7.19 GB](https://drive.google.com/file/d/1tjSYajdJyn2S1jNAY_jxsJpIbtB2fqe6/view?usp=sharing) |
-| 72 month | `wld_cli_chirps3_spi_gamma_72_month.nc` | [7.01 GB](https://drive.google.com/file/d/1WhE9oDUrkaq-8tKQVSSbPZdO1Xl1U6Nu/view?usp=sharing) |
+| 1 month | `wld_cli_chirps3_spi_gamma_1_month.nc` | In preparation |
+| 2 month | `wld_cli_chirps3_spi_gamma_2_month.nc` | In preparation |
+| 3 month | `wld_cli_chirps3_spi_gamma_3_month.nc` | In preparation |
+| 6 month | `wld_cli_chirps3_spi_gamma_6_month.nc` | In preparation |
+| 9 month | `wld_cli_chirps3_spi_gamma_9_month.nc` | In preparation |
+| 12 month | `wld_cli_chirps3_spi_gamma_12_month.nc` | In preparation |
+| 18 month | `wld_cli_chirps3_spi_gamma_18_month.nc` | In preparation |
+| 24 month | `wld_cli_chirps3_spi_gamma_24_month.nc` | In preparation |
+| 36 month | `wld_cli_chirps3_spi_gamma_36_month.nc` | In preparation |
+| 48 month | `wld_cli_chirps3_spi_gamma_48_month.nc` | In preparation |
+| 60 month | `wld_cli_chirps3_spi_gamma_60_month.nc` | In preparation |
+| 72 month | `wld_cli_chirps3_spi_gamma_72_month.nc` | In preparation |
 
 ## License
 
