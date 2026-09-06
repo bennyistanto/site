@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Benny Istanto">
+<meta name="dcterms.date" content="2023-03-07">
+<meta name="description" content="Climatological rainfall zones represent distinct areas with different rainfall patterns">
+
+<title>Experimental climatological rainfall zone</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/image-logo/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-79c7fc7016c250864588f87350540d1e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7b0e90f543d335420a83bd87cfdb0e21.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-79c7fc7016c250864588f87350540d1e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C23GE2LS52"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-C23GE2LS52', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6008428404539750" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="../styles/styles.css">
+<link rel="stylesheet" href="../styles/blog-post.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo light-content">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../csr"> 
+<span class="menu-text">CSR</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-blog" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Blog</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-blog">    
+        <li>
+    <a class="dropdown-item" href="../blog">
+ <span class="dropdown-text">All Posts</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../blog-archive">
+ <span class="dropdown-text">Archive by Year</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-works" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Works</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-works">    
+        <li>
+    <a class="dropdown-item" href="../works">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/experiences">
+ <span class="dropdown-text">Experiences</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/projects">
+ <span class="dropdown-text">Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/consulting">
+ <span class="dropdown-text">Consulting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/maps-and-infographics">
+ <span class="dropdown-text">Maps &amp; Infographics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../cv"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Experimental climatological rainfall zone</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Remote Sensing</div>
+    <div class="quarto-category">Research</div>
+    <div class="quarto-category">Climate</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Climatological rainfall zones represent distinct areas with different rainfall patterns
+  </div>
+</div>
+
+
+<div class="quarto-title-meta column-page">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Benny Istanto </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 7, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Climatological rainfall zones represent distinct areas with different rainfall patterns. They are characterized by specific precipitation behaviors, including factors such as the amount, frequency, and timing of rainfall. Understanding these zones is crucial for a variety of reasons:</p>
+<ol type="1">
+<li><strong>Agriculture:</strong> Agriculture heavily relies on rainfall patterns. Knowing the climatological rainfall zones can help farmers and agricultural planners understand when to plant crops and which types of crops would be most suitable for a given area.</li>
+<li><strong>Water Resource Management:</strong> Rainfall contributes significantly to freshwater resources. Understanding the rainfall patterns can aid in planning and managing these resources effectively.</li>
+<li><strong>Climate Change Studies:</strong> Changes in rainfall patterns can be an indicator of larger climatic changes. Studying these zones over time can provide insights into climate change.</li>
+<li><strong>Disaster Planning:</strong> Areas prone to heavy rainfall could be at a higher risk of flooding. Knowledge of these zones can inform disaster planning and mitigation strategies.</li>
+</ol>
+<section id="what-the-workflow-does" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-workflow-does">What the workflow does</h3>
+<p>The Python code provided below aids in the process of identifying climatological rainfall zones. The code does this through the following steps:</p>
+<ol type="1">
+<li><strong>Preprocessing:</strong> The code first preprocesses the rainfall data to make it suitable for clustering. This includes standardizing the data and reducing its dimensionality using Principal Component Analysis (PCA).</li>
+<li><strong>Clustering:</strong> The code then applies a clustering algorithm (KMeans or Agglomerative Clustering) to the preprocessed data to identify distinct rainfall patterns, representing different climate zones. The optimal number of clusters is determined using the Calinski-Harabasz and Silhouette methods.</li>
+<li><strong>Assignment:</strong> Each location is then assigned to the climate zone of the nearest cluster centroid.</li>
+<li><strong>Visualization:</strong> Finally, the code visualizes the identified climate zones on a map, allowing for easy interpretation and application of the results.</li>
+</ol>
+<p>In essence, the code facilitates the data-driven identification and visualization of climatological rainfall zones, providing valuable insights for various applications.</p>
+<p>The full notebook is available as a Gist: <a href="https://gist.github.com/bennyistanto/f0ef305c7d494fc13ab3adcd24088abe" class="uri">https://gist.github.com/bennyistanto/f0ef305c7d494fc13ab3adcd24088abe</a></p>
+<hr>
+</section>
+<section id="walkthrough" class="level3">
+<h3 class="anchored" data-anchor-id="walkthrough">Walkthrough</h3>
+<p>This Python code performs an analysis of climatological rainfall zones, with study case for Uganda, applying KMeans or Agglomerative Clustering to precipitation data sourced from CHIRPS (Climate Hazards Group InfraRed Precipitation with Station) for two time periods: <a href="https://www.dropbox.com/s/atbudxdcpx4bv1y/chirps_precip_1981_2010.csv?dl=0">1981-2010</a> and <a href="https://www.dropbox.com/s/205vgwvq3ydcpv2/chirps_precip_1991_2020.csv?dl=0">1991-2020</a>. This data is contained in a CSV file that includes unique identifiers, longitude, latitude, and dates.</p>
+<p>Here’s a summary of what the code does:</p>
+<ol type="1">
+<li><strong>Import necessary libraries:</strong> The code begins by importing necessary libraries for data manipulation, clustering, standardization, calculating metrics, and visualization.</li>
+<li><strong>Choose the clustering method:</strong> The variable <code>cluster_method</code> is set to ‘KMeans’ by default, but can be changed to ‘AgglomerativeClustering’.</li>
+<li><strong>Load the precipitation data:</strong> The CSV data file is loaded into a pandas dataframe. By default, the code reads data for the period 1991-2020, but it can be switched to load the 1981-2010 data.</li>
+<li><strong>Data Transformation:</strong> The date columns in the dataframe are renamed and reformatted to a datetime object. The dataframe is then ‘melted’ to convert it into long format, which makes it easier to manage and analyze. The ‘date’ column is again converted into a datetime object.</li>
+<li><strong>Calculate monthly mean precipitation:</strong> The code then calculates the monthly mean precipitation for each location (defined by unique id, longitude, and latitude) by extracting the month from the ‘date’ column and using it to group the data. This monthly mean precipitation data is then rearranged into a pivot table format for further processing.</li>
+<li><strong>Data Visualization:</strong> Finally, the transformed dataframe is displayed for visual inspection.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans, MiniBatchKMeans, AgglomerativeClustering</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> calinski_harabasz_score, silhouette_samples, silhouette_score</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> joblib <span class="im">import</span> Parallel, delayed</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="loading-and-preparing-the-data" class="level4">
+<h4 class="anchored" data-anchor-id="loading-and-preparing-the-data">Loading and preparing the data</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose the clustering method</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>cluster_method <span class="op">=</span> <span class="st">'KMeans'</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cluster_method = 'AgglomerativeClustering'</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the precipitation data</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># precip_df = pd.read_csv("../csv/chirps_precip_1981_2010.csv", sep=";")</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>precip_df <span class="op">=</span> pd.read_csv(<span class="st">"../csv/chirps_precip_1991_2020.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the date columns for each dataframe</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>precip_df.rename(columns<span class="op">=</span>{<span class="st">'id'</span>: <span class="st">'id'</span>, <span class="op">**</span>{col: pd.to_datetime(col, <span class="bu">format</span><span class="op">=</span><span class="st">'%Y%m</span><span class="sc">%d</span><span class="st">'</span>) <span class="cf">for</span> col <span class="kw">in</span> precip_df.columns[<span class="dv">3</span>:]}}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt the precipitation and temperature dataframes to a long format</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>precip_df <span class="op">=</span> pd.melt(precip_df, id_vars<span class="op">=</span>[<span class="st">'id'</span>, <span class="st">'lon'</span>, <span class="st">'lat'</span>], var_name<span class="op">=</span><span class="st">'date'</span>, value_name<span class="op">=</span><span class="st">'precipitation'</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the date column to datetime type</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>precip_df[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(precip_df[<span class="st">'date'</span>])</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the monthly mean precipitation for each location</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>precip_df[<span class="st">"month"</span>] <span class="op">=</span> precip_df[<span class="st">"date"</span>].dt.month</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>monthly_precip_df <span class="op">=</span> precip_df.groupby([<span class="st">"id"</span>, <span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"month"</span>], as_index<span class="op">=</span><span class="va">False</span>).mean()</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>monthly_precip_df <span class="op">=</span> monthly_precip_df.pivot_table(index<span class="op">=</span>[<span class="st">"id"</span>, <span class="st">"lon"</span>, <span class="st">"lat"</span>], columns<span class="op">=</span><span class="st">"month"</span>, values<span class="op">=</span><span class="st">"precipitation"</span>).reset_index()</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>monthly_precip_df.columns.name <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>monthly_precip_df.columns <span class="op">=</span> [<span class="st">"id"</span>, <span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"JAN"</span>, <span class="st">"FEB"</span>, <span class="st">"MAR"</span>, <span class="st">"APR"</span>, <span class="st">"MAY"</span>, <span class="st">"JUN"</span>, <span class="st">"JUL"</span>, <span class="st">"AUG"</span>, <span class="st">"SEP"</span>, <span class="st">"OCT"</span>, <span class="st">"NOV"</span>, <span class="st">"DEC"</span>]</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the data visually</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>monthly_precip_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This initial portion of the code is focused on loading and preparing the data for clustering analysis, which is performed in subsequent steps (not shown in the provided code). Depending on the chosen method, KMeans or Agglomerative Clustering is applied to this monthly mean precipitation data to classify the different climatological rainfall zones. The number of clusters can be a specific integer or determined using an optimal result generated by the Calinski-Harabasz or Silhouette method.</p>
+</section>
+<section id="standardisation-and-pca" class="level4">
+<h4 class="anchored" data-anchor-id="standardisation-and-pca">Standardisation and PCA</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the PCA 90</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> monthly_precip_df.drop(columns<span class="op">=</span>[<span class="st">"id"</span>, <span class="st">"lon"</span>, <span class="st">"lat"</span>])</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>X_scaled <span class="op">=</span> scaler.fit_transform(X)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="fl">0.90</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>X_pca <span class="op">=</span> pca.fit_transform(X_scaled)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Done!'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This section of the code is about data standardization and dimensionality reduction using Principal Component Analysis (PCA).</p>
+<p>Here’s the step-by-step explanation:</p>
+<ol type="1">
+<li><strong>Remove unnecessary columns:</strong> The code first creates a new dataframe <code>X</code> that drops the “id”, “lon”, and “lat” columns from the <code>monthly_precip_df</code> dataframe. This is done because clustering should be based on the rainfall data, not identifiers or coordinates.</li>
+<li><strong>Standardize the data:</strong> The data is then standardized using <code>StandardScaler()</code>, which scales the data to have a mean of 0 and a standard deviation of 1. This is a common requirement for many machine learning estimators, as they might behave badly if the individual features do not more or less look like standard normally distributed data.</li>
+<li><strong>Apply PCA:</strong> Next, PCA is applied to the scaled data to reduce its dimensionality. <code>PCA(n_components=0.90)</code> means that PCA will keep enough components to explain 90% of the variance in the data. This is a way to reduce the complexity of the model and avoid overfitting.</li>
+<li><strong>Fit and transform the data:</strong> The <code>fit_transform()</code> function fits the PCA model with the scaled data <code>X_scaled</code> and applies the dimensionality reduction on <code>X_scaled</code>.</li>
+</ol>
+<p>The print statement ‘Done!’ indicates the successful completion of these steps. Now, the data is ready for the clustering step. The transformed data, <code>X_pca</code>, can be used as the input for the clustering algorithms. The PCA transformation is beneficial especially for visualization purposes, as it allows us to plot high-dimensional data in 2D or 3D space, and it can also improve the computational efficiency and performance of the clustering algorithm.</p>
+</section>
+<section id="cluster-count-calinski-harabasz-score" class="level4">
+<h4 class="anchored" data-anchor-id="cluster-count-calinski-harabasz-score">Cluster count: Calinski-Harabasz score</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_optimal_plot_calinski(X, cluster_method):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute the optimal number of clusters and plot the Calinski-Harabasz score as a function of the number of clusters.</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">    - X: input data array</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">    - cluster_method: clustering algorithm to use, either "KMeans" or "AgglomerativeClustering"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">    - optimal_k: optimal number of clusters</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> cluster_method <span class="op">==</span> <span class="st">"KMeans"</span>:</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> KMeans</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> cluster_method <span class="op">==</span> <span class="st">"AgglomerativeClustering"</span>:</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> AgglomerativeClustering</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Invalid cluster_method type. Must be either 'KMeans' or 'AgglomerativeClustering'."</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> compute_score(k):</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        score_k <span class="op">=</span> model(n_clusters<span class="op">=</span>k)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        score_k.fit(X)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        score <span class="op">=</span> calinski_harabasz_score(X, score_k.labels_)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> score</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define the range of k values to explore</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    k_values <span class="op">=</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">21</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute the Calinski-Harabasz score for each value of k</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> Parallel(n_jobs<span class="op">=-</span><span class="dv">1</span>)(delayed(compute_score)(k) <span class="cf">for</span> k <span class="kw">in</span> tqdm(k_values, desc<span class="op">=</span><span class="st">"Calculating Calinski-Harabasz Scores"</span>))</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find the index of the maximum score</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    max_idx <span class="op">=</span> np.argmax(scores)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    optimal_k <span class="op">=</span> k_values[max_idx]</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the scores</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    plt.plot(k_values, scores)</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    plt.axvline(optimal_k, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    plt.text(optimal_k<span class="op">+</span><span class="fl">0.2</span>, <span class="bu">max</span>(scores), <span class="ss">f"Optimal k: </span><span class="sc">{</span>optimal_k<span class="sc">}</span><span class="ss">"</span>, color<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f"</span><span class="sc">{</span>cluster_method<span class="sc">}</span><span class="ss"> - Calinski-Harabasz Method"</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"Number of Clusters"</span>)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"Calinski-Harabasz Score"</span>)</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> optimal_k</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This function <code>get_optimal_plot_calinski()</code> calculates the optimal number of clusters for a given dataset <code>X</code> and a specified clustering method (<code>KMeans</code> or <code>AgglomerativeClustering</code>), and then visualizes the results. It does this using the Calinski-Harabasz criterion, which is a method for determining the optimal number of clusters. It operates on the principle that clusters should be compact and well separated.</p>
+<p>Here’s what the code does, step-by-step:</p>
+<ol type="1">
+<li><strong>Define the model:</strong> Depending on the <code>cluster_method</code> parameter, it sets the <code>model</code> to either <code>KMeans</code> or <code>AgglomerativeClustering</code>. If another value is passed, it raises a ValueError.</li>
+<li><strong>Define the compute_score function:</strong> This inner function creates a model with <code>k</code> clusters, fits the model to the data <code>X</code>, and returns the Calinski-Harabasz score. The Calinski-Harabasz score is a measure of cluster validity; higher scores indicate better clustering configurations.</li>
+<li><strong>Calculate scores for range of clusters:</strong> It then calculates the Calinski-Harabasz score for each number of clusters in the range from 2 to 20. These computations are performed in parallel to speed up the process, especially beneficial for large datasets.</li>
+<li><strong>Find the optimal number of clusters:</strong> The number of clusters (<code>k</code>) that yields the maximum Calinski-Harabasz score is identified as the optimal number of clusters.</li>
+<li><strong>Plot the scores:</strong> Finally, it visualizes these scores in a plot, where the x-axis represents the number of clusters and the y-axis represents the corresponding Calinski-Harabasz scores. The optimal number of clusters is marked with a vertical red dashed line, and its value is also displayed on the plot.</li>
+<li><strong>Return the optimal number of clusters:</strong> The function returns the optimal number of clusters as determined by the Calinski-Harabasz criterion.</li>
+</ol>
+<p>This function is used to explore and determine the optimal number of clusters for the dataset, which can then be used in the actual clustering process. It’s an essential step in unsupervised machine learning tasks like clustering, as deciding on the number of clusters can often be non-trivial.</p>
+</section>
+<section id="cluster-count-silhouette-score" class="level4">
+<h4 class="anchored" data-anchor-id="cluster-count-silhouette-score">Cluster count: Silhouette score</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_optimal_plot_silhouette(X, cluster_method):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute the optimal number of clusters for KMeans or AgglomerativeClustering using the Silhouette score,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">    and plot the Silhouette score as a function of the number of clusters.</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">    - X: input data array</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">    - cluster_method: clustering algorithm to use ("KMeans" or "AgglomerativeClustering")</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> compute_score(k):</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cluster_method <span class="op">==</span> <span class="st">"KMeans"</span>:</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            clusterer <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>k)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> cluster_method <span class="op">==</span> <span class="st">"AgglomerativeClustering"</span>:</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>            clusterer <span class="op">=</span> AgglomerativeClustering(n_clusters<span class="op">=</span>k)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Invalid cluster_method parameter. Must be 'KMeans' or 'AgglomerativeClustering'."</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        cluster_labels <span class="op">=</span> clusterer.fit_predict(X)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        silhouette_avg <span class="op">=</span> silhouette_score(X, cluster_labels)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        sample_silhouette_values <span class="op">=</span> silhouette_samples(X, cluster_labels)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> silhouette_avg, sample_silhouette_values</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define the range of k values to explore</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    k_values <span class="op">=</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">21</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute the Silhouette score for each value of k</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> Parallel(n_jobs<span class="op">=-</span><span class="dv">1</span>)(delayed(compute_score)(k) <span class="cf">for</span> k <span class="kw">in</span> tqdm(k_values, desc<span class="op">=</span><span class="st">"Calculating Silhouette Scores"</span>))</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract the Silhouette score and sample Silhouette values for each k</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    silhouette_scores, sample_silhouette_values <span class="op">=</span> <span class="bu">zip</span>(<span class="op">*</span>scores)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find the index of the maximum score</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    max_idx <span class="op">=</span> np.argmax(silhouette_scores)</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    max_k <span class="op">=</span> k_values[max_idx]</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the scores</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    plt.plot(k_values, silhouette_scores)</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    plt.axvline(max_k, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    plt.text(max_k<span class="op">+</span><span class="fl">0.2</span>, <span class="bu">max</span>(silhouette_scores), <span class="ss">f"Optimal k: </span><span class="sc">{</span>max_k<span class="sc">}</span><span class="ss">"</span>, color<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f"</span><span class="sc">{</span>cluster_method<span class="sc">}</span><span class="ss"> - Silhouette Method"</span>)</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"Number of Clusters"</span>)</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"Silhouette Score"</span>)</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return the optimal number of clusters</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> max_k</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This function <code>get_optimal_plot_silhouette()</code> is designed to compute the optimal number of clusters for a given dataset <code>X</code> using either the KMeans or Agglomerative Clustering method, using the silhouette score as a measure of cluster quality. It also produces a plot of the silhouette scores as a function of the number of clusters.</p>
+<p>Here’s a step-by-step breakdown of what the code does:</p>
+<ol type="1">
+<li><strong>Define the compute_score function:</strong> The function <code>compute_score</code> is defined to calculate the silhouette score for a given number of clusters. The silhouette score measures the quality of a clustering. A higher silhouette score indicates that the instances in the same cluster are similar to each other and different from the instances in other clusters.</li>
+<li><strong>Calculate scores for range of clusters:</strong> It then calculates the silhouette score for each number of clusters in the range from 2 to 20. These computations are performed in parallel to speed up the process, which can be especially beneficial for large datasets.</li>
+<li><strong>Find the optimal number of clusters:</strong> The number of clusters (<code>k</code>) that yields the maximum silhouette score is identified as the optimal number of clusters.</li>
+<li><strong>Plot the scores:</strong> The silhouette scores are then plotted against the number of clusters. The optimal number of clusters is marked with a vertical red dashed line, and its value is also displayed on the plot.</li>
+<li><strong>Return the optimal number of clusters:</strong> Finally, the function returns the optimal number of clusters as determined by the silhouette score.</li>
+</ol>
+<p>The silhouette score is an alternative to the Calinski-Harabasz score for finding the optimal number of clusters in a dataset. It considers both the compactness of the clusters (how close the instances in the same cluster are) and the separation between the clusters (how far apart the clusters are). The optimal number of clusters is the one that maximizes the average silhouette score over all instances.</p>
+</section>
+<section id="running-both-methods" class="level4">
+<h4 class="anchored" data-anchor-id="running-both-methods">Running both methods</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the optimal number of clusters using various method</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Calinski-Harabasz</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>optimal_c <span class="op">=</span> get_optimal_plot_calinski(X_pca, cluster_method)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Silhouette</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>optimal_s <span class="op">=</span> get_optimal_plot_silhouette(X_pca, cluster_method)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The optimal number of clusters using Calinski-Harabasz is: "</span>, optimal_c)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The optimal number of clusters using Silhouette is: "</span>, optimal_s)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Done!'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This part of the code calculates the optimal number of clusters for the PCA-transformed data <code>X_pca</code> using two different methods: the Calinski-Harabasz method and the Silhouette method. The clustering method is defined by the variable <code>cluster_method</code>.</p>
+<ol type="1">
+<li><strong>Calinski-Harabasz:</strong> The function <code>get_optimal_plot_calinski(X_pca, cluster_method)</code> is called to calculate the optimal number of clusters using the Calinski-Harabasz method. This function computes the Calinski-Harabasz scores for different numbers of clusters, plots the scores as a function of the number of clusters, and returns the optimal number of clusters that yields the highest Calinski-Harabasz score. The optimal number of clusters is stored in the variable <code>optimal_c</code>.</li>
+<li><strong>Silhouette:</strong> Similarly, the function <code>get_optimal_plot_silhouette(X_pca, cluster_method)</code> is called to calculate the optimal number of clusters using the Silhouette method. This function computes the Silhouette scores for different numbers of clusters, plots the scores as a function of the number of clusters, and returns the optimal number of clusters that yields the highest Silhouette score. The optimal number of clusters is stored in the variable <code>optimal_s</code>.</li>
+</ol>
+<p>Then, it prints out the optimal number of clusters as determined by both the Calinski-Harabasz and Silhouette methods. The ‘Done!’ print statement indicates the successful completion of these steps.</p>
+<p>This section of the code is crucial as it determines the most suitable number of clusters for the data, which is a key parameter for clustering algorithms. The Calinski-Harabasz and Silhouette methods are two popular methods for determining this optimal number, and comparing their results can provide additional validation for the chosen number of clusters.</p>
+<p><img src="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-01.jpg" class="img-fluid"> <img src="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-02.jpg" class="img-fluid"></p>
+</section>
+<section id="clustering" class="level4">
+<h4 class="anchored" data-anchor-id="clustering">Clustering</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cluster_data(X_pca, cluster_method, n_clusters<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Cluster the input data using the specified method and number of clusters.</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">    - X_pca: input data array</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">    - cluster_method: clustering method, either 'KMeans' or 'AgglomerativeClustering'</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">    - n_clusters: number of clusters, can be a specific integer or one of 'optimal_c' and 'optimal_s'</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">    - labels: array of cluster labels</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n_clusters <span class="op">==</span> <span class="st">'optimal_c'</span>:</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cluster_method <span class="op">==</span> <span class="st">'KMeans'</span>:</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>            n_clusters <span class="op">=</span> get_optimal_plot_calinski(X_pca, <span class="st">'KMeans'</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> mcluster_method <span class="op">==</span> <span class="st">'AgglomerativeClustering'</span>:</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>            n_clusters <span class="op">=</span> get_optimal_plot_calinski(X_pca, <span class="st">'AgglomerativeClustering'</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Invalid clustering method. Choose 'KMeans' or 'AgglomerativeClustering'."</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> n_clusters <span class="op">==</span> <span class="st">'optimal_s'</span>:</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cluster_method <span class="op">==</span> <span class="st">'KMeans'</span>:</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>            n_clusters <span class="op">=</span> get_optimal_plot_silhouette(X_pca, <span class="st">'KMeans'</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> cluster_method <span class="op">==</span> <span class="st">'AgglomerativeClustering'</span>:</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>            n_clusters <span class="op">=</span> get_optimal_plot_silhouette(X_pca, <span class="st">'AgglomerativeClustering'</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Invalid clustering method. Choose 'KMeans' or 'AgglomerativeClustering'."</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="bu">isinstance</span>(n_clusters, <span class="bu">int</span>):</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Invalid value for n_clusters parameter."</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> cluster_method <span class="op">==</span> <span class="st">'KMeans'</span>:</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>        cluster_model <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>n_clusters)</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> cluster_method <span class="op">==</span> <span class="st">'AgglomerativeClustering'</span>:</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>        cluster_model <span class="op">=</span> AgglomerativeClustering(n_clusters<span class="op">=</span>n_clusters)</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    pbar <span class="op">=</span> tqdm(total<span class="op">=</span><span class="dv">1</span>, desc<span class="op">=</span><span class="ss">f"Performing </span><span class="sc">{</span>cluster_method<span class="sc">}</span><span class="ss"> Clustering"</span>)</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    cluster_model.fit(X_pca)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    pbar.update(<span class="dv">1</span>)</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> cluster_model.labels_</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> labels, n_clusters</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Done!'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>cluster_data()</code> function takes in the input data array <code>X_pca</code>, the chosen clustering method <code>cluster_method</code>, and an optional number of clusters <code>n_clusters</code>. It performs clustering on the data and returns the cluster labels.</p>
+<p>Here’s a step-by-step breakdown of what the code does:</p>
+<ol type="1">
+<li><strong>Check for optimal cluster number:</strong> If <code>n_clusters</code> is set to <code>'optimal_c'</code> or <code>'optimal_s'</code>, the function calls the previously defined functions <code>get_optimal_plot_calinski()</code> or <code>get_optimal_plot_silhouette()</code>, respectively, to compute the optimal number of clusters. It does this for the specified clustering method, either <code>'KMeans'</code> or <code>'AgglomerativeClustering'</code>.</li>
+<li><strong>Raise an error for invalid input:</strong> If <code>n_clusters</code> is not one of the allowed strings and it is not an integer, the function raises a <code>ValueError</code>.</li>
+<li><strong>Create the cluster model:</strong> Depending on the value of <code>cluster_method</code>, the function creates a <code>KMeans</code> or <code>AgglomerativeClustering</code> model with the specified number of clusters.</li>
+<li><strong>Fit the model to the data:</strong> The function then fits the clustering model to the input data. It also provides a progress bar to track the process.</li>
+<li><strong>Retrieve the cluster labels:</strong> After the model has been fitted, the function retrieves the cluster labels, which indicate the cluster to which each data point has been assigned.</li>
+<li><strong>Return the labels and number of clusters:</strong> Finally, the function returns the cluster labels and the number of clusters used in the clustering model.</li>
+</ol>
+<p>By encapsulating the clustering process into a function, the code allows for easy and repeatable clustering of the data using different methods and numbers of clusters. The function also handles the computation of the optimal number of clusters, making it easy to compare the results of different clustering approaches.</p>
+<p>This section of the code conducts clustering of the data with the specified clustering method and the defined number of clusters (14 in this case). Once the clusters are determined, it assigns a climatic zone to each row based on the nearest centroid. Here’s a step-by-step breakdown:</p>
+<ol type="1">
+<li><strong>Perform Clustering:</strong> The function <code>cluster_data(X_pca, cluster_method, n_clusters=14)</code> is invoked to perform clustering on the data. The function returns the labels of the clusters and the number of clusters used, which are stored in <code>labels</code> and <code>n_clusters</code> respectively.</li>
+<li><strong>Calculate Centroids:</strong> A centroid is a point at the center of each cluster. It’s the mean position of all the points in a cluster. The code calculates these centroids for each cluster and stores them in the <code>centroids</code> array.</li>
+<li><strong>Calculate Euclidean Distances:</strong> The code then calculates the Euclidean distance between each data point (each row) and each of the cluster centroids. The Euclidean distance is a measure of the straight line distance between two points in a space. These distances are stored in the <code>distances</code> array.</li>
+<li><strong>Assign Closest Cluster:</strong> For each row in the dataset, the code assigns the cluster that is closest (has the smallest Euclidean distance) to it. This is achieved using the <code>np.argmin()</code> function, which returns the index of the smallest value along an axis. The assigned clusters are added as a new column <code>climate_zone</code> in the <code>monthly_precip_df</code> dataframe.</li>
+<li><strong>Grouping Data:</strong> The dataset is then grouped by <code>id</code>, <code>lon</code> (longitude), and <code>lat</code> (latitude), and for each group, the mode (the most frequently appearing value) of the <code>climate_zone</code> is calculated. This essentially assigns a single climate zone to each unique location based on the most frequent climate zone assigned to it over the timeseries. This grouped data is stored in <code>monthly_precip_df_centroid</code>.</li>
+<li><strong>Completion Message:</strong> Upon successful completion of these steps, a ‘Done!’ message is printed.</li>
+</ol>
+</section>
+<section id="assigning-a-zone-to-each-location" class="level4">
+<h4 class="anchored" data-anchor-id="assigning-a-zone-to-each-location">Assigning a zone to each location</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Other ways to assign a single cluster to each row based on the 360 monthly timeseries </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># of precipitation and temperature data. One approach is to calculate the distance </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># between each row and the centroids of the clusters obtained from K-Means clustering. </span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Then, assign the closest cluster to each row as its climate zone.</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Cluster the data using the defined cluster_method</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>labels, n_clusters <span class="op">=</span> cluster_data(X_pca, cluster_method, n_clusters<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the centroids for each cluster</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>centroids <span class="op">=</span> np.zeros((n_clusters, X_pca.shape[<span class="dv">1</span>]))</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_clusters):</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> (labels <span class="op">==</span> i)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    centroids[i,:] <span class="op">=</span> np.mean(X_pca[mask,:], axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the Euclidean distance between each row and the centroids</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>(np.square(X_pca[:, <span class="va">None</span>] <span class="op">-</span> centroids), axis<span class="op">=</span><span class="dv">2</span>))</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># In this code, we use the np.argmin() function to find the index of the closest centroid </span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># to each row. This approach preserves the details of climate characteristics captured by </span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># the monthly timeseries data.</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the closest cluster to each row</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>monthly_precip_df[<span class="st">"climate_zone"</span>] <span class="op">=</span> np.argmin(distances, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Group the merged dataframe by id, lon, and lat and take the mode of the climate zone for each group</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>monthly_precip_df_centroid <span class="op">=</span> monthly_precip_df.groupby([<span class="st">"id"</span>, <span class="st">"lon"</span>, <span class="st">"lat"</span>])[<span class="st">"climate_zone"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.mode()[<span class="dv">0</span>]).reset_index()</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Done!'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This section of the code allows each location (represented by a unique combination of <code>id</code>, <code>lon</code>, and <code>lat</code>) in the dataset to be assigned to a specific climatological rainfall zone based on the monthly timeseries precipitation data. This information can be useful for various climatological and environmental studies.</p>
+</section>
+<section id="mapping-the-zones" class="level4">
+<h4 class="anchored" data-anchor-id="mapping-the-zones">Mapping the zones</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_climate_zone_map(climate_zone_csv, shapefile_path):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Plot the climate zones as a point map.</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">    - climate_zone_csv: path to the CSV file with lon, lat, and climate_zone columns</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load the data from the CSV file</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(climate_zone_csv)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract the lon, lat, and climate_zone columns</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    lon <span class="op">=</span> df[<span class="st">"lon"</span>]</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    lat <span class="op">=</span> df[<span class="st">"lat"</span>]</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    climate_zone <span class="op">=</span> df[<span class="st">"climate_zone"</span>]</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create a scatter plot of the climate zones</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">10</span>))</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    plt.scatter(lon, lat, c<span class="op">=</span>climate_zone, cmap<span class="op">=</span><span class="st">"tab20"</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load the polygon shapefile using geopandas</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    gdf <span class="op">=</span> gpd.read_file(shapefile_path)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the polygon shapefile</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    gdf.plot(ax<span class="op">=</span>plt.gca(), facecolor<span class="op">=</span><span class="st">"None"</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add a colorbar</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    cbar <span class="op">=</span> plt.colorbar()</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    cbar.set_label(<span class="st">"New Rainfall Zone and the 1995 Climatological Rainfall Zone"</span>)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set the x and y axis labels</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># You need to adjust the title with the year of data information if needed</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"Rainfall Zone based on monthly CHIRPS, 1991-2020</span><span class="ch">\n</span><span class="st">Algorithm: "</span><span class="ss">f"</span><span class="sc">{</span>cluster_method<span class="sc">}</span><span class="ss">"</span>, fontsize<span class="op">=</span><span class="dv">16</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, ha<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    plt.text(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.15</span>, <span class="st">"The existing climatological rainfall zone based on study from C.P.K.Basalirwa in 1995</span><span class="ch">\n</span><span class="st">using monthly record from 102 rain-gauge stations for the years 1940-1975</span><span class="ch">\n</span><span class="st">https://doi.org/10.1002/joc.3370151008"</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">'normal'</span>, ha<span class="op">=</span><span class="st">'center'</span>, transform<span class="op">=</span>plt.gca().transAxes)</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"Longitude"</span>)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"Latitude"</span>)</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Show the plot</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The function <code>plot_climate_zone_map(climate_zone_csv, shapefile_path)</code> is designed to generate a scatter plot of climate zones over a given geographical region, which could be a country or a continent, for instance. The plot utilizes longitude and latitude coordinates from a CSV file and a polygon shapefile to depict the geographical boundaries of the region of interest. Here’s a breakdown of the steps:</p>
+<ol type="1">
+<li><strong>Load the Data:</strong> The function starts by loading a CSV file containing longitude (<code>lon</code>), latitude (<code>lat</code>), and climate zone (<code>climate_zone</code>) data.</li>
+<li><strong>Create a Scatter Plot:</strong> A scatter plot is generated using the longitude and latitude values as x and y coordinates, respectively. The climate zone data is used to color-code the points on the scatter plot.</li>
+<li><strong>Load the Polygon Shapefile:</strong> A polygon shapefile, which represents the geographical boundaries of the region of interest, is loaded using the geopandas library.</li>
+<li><strong>Plot the Polygon Shapefile:</strong> The loaded polygon shapefile is overlaid on the scatter plot to provide geographical context. The boundaries are shown as black lines.</li>
+<li><strong>Add a Colorbar:</strong> A colorbar is added to the plot to provide a reference for the color-coding of the climate zones.</li>
+<li><strong>Set the Title and Axis Labels:</strong> The plot is given a title, and the x and y axes are labeled as longitude and latitude, respectively. A footnote reference to the study providing the climatological rainfall zone is also included.</li>
+<li><strong>Display the Plot:</strong> Finally, the plot is displayed using <code>plt.show()</code>.</li>
+</ol>
+<p>This function provides a visual representation of the climate zones within a specific geographical region, which can help researchers and policymakers understand the spatial distribution of different climate characteristics based on rainfall patterns.</p>
+</section>
+<section id="saving-the-output" class="level4">
+<h4 class="anchored" data-anchor-id="saving-the-output">Saving the output</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the grouped dataframe to a new CSV file</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>output_df_centroid <span class="op">=</span> monthly_precip_df_centroid[[<span class="st">'id'</span>, <span class="st">'lon'</span>, <span class="st">'lat'</span>, <span class="st">'climate_zone'</span>]]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust the output filename with the year of data information if needed</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>output_df_centroid.to_csv(<span class="st">"../csv/uga_climatezone_eucl_</span><span class="sc">{0}</span><span class="st">_</span><span class="sc">{1}</span><span class="st">_p_ai.csv"</span>.<span class="bu">format</span>(n_clusters, cluster_method), index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Save the output to csv completed"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"----------------------------------------------------------"</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot map</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>plot_climate_zone_map(<span class="st">"../csv/uga_climatezone_eucl_</span><span class="sc">{0}</span><span class="st">_</span><span class="sc">{1}</span><span class="st">_p_ai.csv"</span>.<span class="bu">format</span>(n_clusters, cluster_method), <span class="st">"../shapefiles/uga_cli_climatezone_unma.shp"</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"----------------------------------------------------------"</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Done!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The code snippet provided is performing the following steps:</p>
+<ol type="1">
+<li><strong>Save DataFrame to CSV:</strong> It saves the <code>monthly_precip_df_centroid</code> DataFrame, which contains the ‘id’, ‘lon’, ‘lat’, and ‘climate_zone’ columns, into a CSV file. This file will be saved in the location specified by the path string. The filename is constructed using the method of clustering and the number of clusters.</li>
+<li><strong>Print Confirmation Message:</strong> After saving the file, a confirmation message is printed stating “Save the output to csv completed”. A separator line is then printed for clarity.</li>
+<li><strong>Plot Climate Zone Map:</strong> The <code>plot_climate_zone_map</code> function is then called, which generates a scatter plot of climate zones over a given geographical region based on the CSV file saved in the previous step and a shapefile which represents the geographical boundaries.</li>
+<li><strong>Print Separator Line:</strong> Another separator line is printed for clarity.</li>
+<li><strong>Print Completion Message:</strong> Finally, a message is printed stating “Done!” to signify the end of the code execution.</li>
+</ol>
+<p>Remember to ensure that the directory paths used in the code (“../csv/” and “../shapefiles/”) exist in your current working directory and contain the necessary files. If not, you will need to change these paths to the appropriate ones that are relevant to your working environment.</p>
+<div class="image-gallery">
+<div class="gallery-item">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-03.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Rainfall zone from monthly CHIRPS, 1981-2010, Agglomerative Clustering"><img src="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-03.jpg" class="img-fluid figure-img" alt="Rainfall zone from monthly CHIRPS, 1981-2010, Agglomerative Clustering"></a></p>
+<figcaption>Rainfall zone from monthly CHIRPS, 1981-2010, Agglomerative Clustering</figcaption>
+</figure>
+</div>
+</div>
+<div class="gallery-item">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-04.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Rainfall zone from monthly CHIRPS, 1991-2020, Agglomerative Clustering"><img src="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-04.jpg" class="img-fluid figure-img" alt="Rainfall zone from monthly CHIRPS, 1991-2020, Agglomerative Clustering"></a></p>
+<figcaption>Rainfall zone from monthly CHIRPS, 1991-2020, Agglomerative Clustering</figcaption>
+</figure>
+</div>
+</div>
+<div class="gallery-item">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-05.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Rainfall zone from monthly CHIRPS, 1981-2010, KMeans Clustering"><img src="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-05.jpg" class="img-fluid figure-img" alt="Rainfall zone from monthly CHIRPS, 1981-2010, KMeans Clustering"></a></p>
+<figcaption>Rainfall zone from monthly CHIRPS, 1981-2010, KMeans Clustering</figcaption>
+</figure>
+</div>
+</div>
+<div class="gallery-item">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-06.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Rainfall zone from monthly CHIRPS, 1991-2020, KMeans Clustering"><img src="../assets/image-blog/20230307-experimental-climatological-rainfall-zone-06.jpg" class="img-fluid figure-img" alt="Rainfall zone from monthly CHIRPS, 1991-2020, KMeans Clustering"></a></p>
+<figcaption>Rainfall zone from monthly CHIRPS, 1991-2020, KMeans Clustering</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a>
+<nav class="post-nav" aria-label="Post navigation">
+  <a class="post-nav-prev no-external" href="./20230306-pycpt-config-and-notebook" rel="prev"><span class="post-nav-label">Previous</span><span class="post-nav-title">PyCPT config and notebook</span></a>
+  <a class="post-nav-next no-external" href="./20230315-pycpt-for-subseasonal-forecasts-in-indonesia" rel="next"><span class="post-nav-label">Next</span><span class="post-nav-title">PyCPT for Subseasonal Forecasts in Indonesia</span></a>
+</nav>
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/benny\.istan\.to");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "bennyistanto/site";
+    script.dataset.repoId = "R_kgDORFc9aQ";
+    script.dataset.category = "Comments";
+    script.dataset.categoryId = "DIC_kwDORFc9ac4C-wbw";
+    script.dataset.mapping = "pathname";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026, Benny Istanto.</p>
+<p>Exploring Climate with GIS and Data Science, solving old problems in new ways. Turning earth observation data into actionable, life-saving insights.</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+<p><a href="../privacy">Privacy</a></p>
+<p><span class="footer-disclaimer">All content on this website does not represent the views of my (current or previous) employer.</span></p>
+<div class="toc-actions"><ul><li><a href="https://github.com/bennyistanto/site/blob/main/docs/blog/20230307-experimental-climatological-rainfall-zone.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/bennyistanto/site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/bennyistanto" aria-label="GitHub"><i class="bi bi-github"></i></a> <a href="https://linkedin.com/in/bennyistanto" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a> <a href="https://worldbank.github.io/GOST/content/staff/bennyistanto.html" aria-label="GOST"><i class="bi bi-globe"></i></a></p>
+<p><a href="https://buymeacoffee.com/bennyistanto">Buy Me a Coffee</a></p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

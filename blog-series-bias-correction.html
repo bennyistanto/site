@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Bias Correction</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./assets/image-logo/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-79c7fc7016c250864588f87350540d1e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-7b0e90f543d335420a83bd87cfdb0e21.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-79c7fc7016c250864588f87350540d1e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C23GE2LS52"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-C23GE2LS52', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6008428404539750" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="styles/styles.css">
+<link rel="stylesheet" href="styles/blog.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./" class="navbar-brand navbar-brand-logo">
+    <img src="./assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo light-content">
+    <img src="./assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./csr"> 
+<span class="menu-text">CSR</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-blog" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Blog</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-blog">    
+        <li>
+    <a class="dropdown-item" href="./blog">
+ <span class="dropdown-text">All Posts</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./blog-archive">
+ <span class="dropdown-text">Archive by Year</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-works" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Works</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-works">    
+        <li>
+    <a class="dropdown-item" href="./works">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./works/experiences">
+ <span class="dropdown-text">Experiences</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./works/projects">
+ <span class="dropdown-text">Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./works/consulting">
+ <span class="dropdown-text">Consulting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./works/maps-and-infographics">
+ <span class="dropdown-text">Maps &amp; Infographics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./cv"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Years</h2>
+   
+  <ul>
+  <li><a href="#year-2024" id="toc-year-2024" class="nav-link active" data-scroll-target="#year-2024">2024</a></li>
+  <li><a href="#year-2025" id="toc-year-2025" class="nav-link" data-scroll-target="#year-2025">2025</a></li>
+  <li><a href="#year-2026" id="toc-year-2026" class="nav-link" data-scroll-target="#year-2026">2026</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/bennyistanto/site/blob/main/docs/blog-series-bias-correction.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/bennyistanto/site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Bias Correction</h1>
+<p class="subtitle lead">Two years of correcting satellite rainfall, in order</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Everything below is one piece of work: a framework for correcting daily satellite precipitation over Indonesia, from the first attempt to understand the problem through to a published paper and a submitted thesis.</p>
+<p>The posts are interleaved with unrelated ones on the <a href="./blog">main blog</a>, so this page is the reading order. Each post also links to the next one in the series rather than to whatever was published next.</p>
+<section id="year-2024" class="level2">
+<h2 class="anchored" data-anchor-id="year-2024">2024</h2>
+<p><strong>Working out the pieces.</strong> Before any correction could be judged, the scaffolding had to exist: what the rain is like, what to measure it against, and how to score anything at all.</p>
+<p><strong>1. <a href="./blog/20240206-why-indonesia-is-hard-to-measure-rain">Why Indonesia is the hardest place on earth to measure rain</a></strong><br>
+<em>6 February 2024</em><br>
+Convective rain, three time zones, and a gauge network that thins out going east. Notes on why satellite rainfall and rain gauges disagree here more than they should.</p>
+<p><strong>2. <a href="./blog/20240220-ten-days">Ten days: why the dekad is the right time step</a></strong><br>
+<em>20 February 2024</em><br>
+Fitting a rainfall correction needs a time window. A year washes out the monsoon, a day has no sample, a month smears the onset. Ten days is the compromise.</p>
+<p><strong>3. <a href="./blog/20240319-l-moments-and-why-ordinary-moments-let-you-down">L-moments, and why ordinary moments let you down</a></strong><br>
+<em>19 March 2024</em><br>
+Fitting a distribution to a short, skewed rainfall sample. One freak day can quadruple your skewness estimate, and there is a well-established way to stop it.</p>
+<p><strong>4. <a href="./blog/20240409-three-datasets-three-different-truths">Three datasets, three different truths</a></strong><br>
+<em>9 April 2024</em><br>
+Before correcting a satellite rainfall product you have to pick something to correct it towards. Every candidate is wrong, and they are wrong in different ways.</p>
+<p><strong>5. <a href="./blog/20240627-correct-the-parameters-not-the-data">Correct the parameters, not the data</a></strong><br>
+<em>27 June 2024</em><br>
+The reference grid is five times coarser than the product being corrected. Regridding the rainfall is the obvious fix and the wrong one.</p>
+<p><strong>6. <a href="./blog/20240730-how-to-read-a-taylor-diagram">How to read a Taylor diagram</a></strong><br>
+<em>30 July 2024</em><br>
+Three verification numbers plotted as one point, using a trick from the law of cosines. Useful, widely used, and quietly missing the one thing you most want to know.</p>
+<p><strong>7. <a href="./blog/20240911-the-tail-that-quantile-mapping-flattens">The tail that quantile mapping flattens</a></strong><br>
+<em>11 September 2024</em><br>
+An empirical CDF cannot map a value larger than the largest one it has ever seen. For heavy rain, that is exactly the range you care about.</p>
+<p><strong>8. <a href="./blog/20241015-netcdf-that-other-tools-can-actually-read">NetCDF that other tools can actually read</a></strong><br>
+<em>15 October 2024</em><br>
+Your file opens. That is not the same as being readable. A short argument for CF conventions, and for the one attribute I deliberately leave out.</p>
+<p><strong>9. <a href="./blog/20241107-thirty-one-metrics-into-one-number">Thirty-one metrics into one number</a></strong><br>
+<em>7 November 2024</em><br>
+You cannot compare corrections across a hundred thousand pixels using thirty-one metrics. You also cannot trust the single score you collapse them into. Both are true.</p>
+<p><strong>10. <a href="./blog/20241210-start-with-the-dumbest-thing-that-works">Linear scaling: start with the dumbest thing that works</a></strong><br>
+<em>10 December 2024</em><br>
+Linear scaling is one multiplication per pixel per dekad. It cannot fix the distribution, cannot fix the tail, and is still the first thing I run.</p>
+</section>
+<section id="year-2025" class="level2">
+<h2 class="anchored" data-anchor-id="year-2025">2025</h2>
+<p><strong>Building, and two findings.</strong> The model, the gate that keeps it quiet, the trade-offs, and then the wall and the way through it.</p>
+<p><strong>11. <a href="./blog/20250123-two-convolutions-and-fifty-million-parameters">Two convolutions and fifty million parameters</a></strong><br>
+<em>23 January 2025</em><br>
+A small CNN to clean up what the statistical correction leaves behind. Then I counted the parameters and found that almost none of them are doing the part I care about.</p>
+<p><strong>12. <a href="./blog/20250213-tensorflow-will-not-install">TensorFlow will not install, and it is not your fault</a></strong><br>
+<em>13 February 2025</em><br>
+Five ways the install fails, one per platform, and the two escape routes that mean you may not need it at all.</p>
+<p><strong>13. <a href="./blog/20250327-the-model-that-refuses-to-help">The CNN that refuses to help where gauges are thin</a></strong><br>
+<em>27 March 2025</em><br>
+A neural correction that switches itself off across most of the map, on purpose. Where there is nothing to check it against, it declines to make claims.</p>
+<p><strong>14. <a href="./blog/20250424-forty-gigabytes-that-cannot-live-in-git">Forty gigabytes that cannot live in git</a></strong><br>
+<em>24 April 2025</em><br>
+The code is eleven megabytes and the outputs are forty gigabytes. Working out which parts of a project belong in version control and which need somewhere else entirely.</p>
+<p><strong>15. <a href="./blog/20250515-every-improvement-costs-something">Dry days and detection: every improvement costs something</a></strong><br>
+<em>15 May 2025</em><br>
+The correction more than doubled the rate at which a dry day is reported as dry. The same change made the product miss more light rain. Both numbers come from the same line of code.</p>
+<p><strong>16. <a href="./blog/20250703-where-the-graph-stops">Where the heavy-rain skill curve stops</a></strong><br>
+<em>3 July 2025</em><br>
+The heavy-rain skill curve ends at 50 mm. Not because the code breaks, but because six records out of 5,899 is not a result.</p>
+<p><strong>17. <a href="./blog/20250814-the-bugs-that-never-raised-an-exception">The bugs that never raised an exception</a></strong><br>
+<em>14 August 2025</em><br>
+Five failures from this project, none of which crashed anything. Each produced a plausible number instead, which is considerably worse.</p>
+<p><strong>18. <a href="./blog/20250918-why-bias-correction-cannot-fix-your-correlation">Why bias correction cannot fix your correlation</a></strong><br>
+<em>18 September 2025</em><br>
+Two years of work, and daily correlation has not moved. It turns out it was never going to, and the reason is a property of the method rather than a failure of it.</p>
+<p><strong>19. <a href="./blog/20251016-the-twenty-three-hour-day">The twenty-three hour day: satellite and gauge calendars</a></strong><br>
+<em>16 October 2025</em><br>
+Correlation of 0.20 between the satellite and the gauges. Not because either was wrong, but because we disagreed about when the day starts. Shifting the window took it to 0.57.</p>
+<p><strong>20. <a href="./blog/20251211-the-questions-i-answer-with-no">Scoping a thesis: the questions I answer with no</a></strong><br>
+<em>11 December 2025</em><br>
+Closing the year on scope. Snow, sub-daily rainfall, event-based flood forecasting: three things people reasonably ask this method to do, and why the answer is no.</p>
+</section>
+<section id="year-2026" class="level2">
+<h2 class="anchored" data-anchor-id="year-2026">2026</h2>
+<p><strong>Writing and publishing.</strong> Documentation, a paper, an examination that reframed the whole argument, and a graduation letter.</p>
+<p><strong>21. <a href="./blog/20260115-documenting-a-research-project">Documenting a research project so someone else can run it</a></strong><br>
+<em>15 January 2026</em><br>
+Fifty-four pages of documentation for a pipeline nobody has asked to use yet. An argument for writing it anyway, and for what the different pages are actually for.</p>
+<p><strong>22. <a href="./blog/20260319-the-dashboard-nobody-asked-for">The dashboard nobody asked for</a></strong><br>
+<em>19 March 2026</em><br>
+A static paper cannot let you ask a follow-up question. Thirteen interactive pages, and the three longest are all about the calendar.</p>
+<p><strong>23. <a href="./blog/20260521-measuring-whether-your-own-work-reproduces">Measuring whether your own work reproduces</a></strong><br>
+<em>21 May 2026</em><br>
+Claiming a pipeline is reproducible is easy. I put a number on it instead: 72.1 minutes, on a free tier, with no accelerator.</p>
+<p><strong>24. <a href="./blog/20260702-making-research-citable">Making research citable</a></strong><br>
+<em>2 July 2026</em><br>
+The code and the data have DOIs. The paper does not yet. Which turns out to be the clearest way to explain why one identifier was never going to be enough.</p>
+<p><strong>25. <a href="./blog/20260716-published">Published: the paper is out in <em>Remote Sensing</em></a></strong><br>
+<em>16 July 2026</em><br>
+The paper is out in Remote Sensing. What it argues, where everything lives, and the one number in it I would most like people to take away.</p>
+<p><strong>26. <a href="./blog/20260725-what-the-reviewers-actually-said">What the reviewers actually said</a></strong><br>
+<em>25 July 2026</em><br>
+Three reviewers, and the first one found something structural: my tables were scored against the thing I had calibrated to, which made the simplest method look best.</p>
+<p><strong>27. <a href="./blog/20260731-the-defence-that-reframed-the-thesis">The defence that reframed the thesis</a></strong><br>
+<em>31 July 2026</em><br>
+Passed, revision required. The substantive feedback was not that anything was wrong, but that the whole thing started in the wrong place.</p>
+<p><strong>28. <a href="./blog/20260806-the-thesis-in-latex-and-in-git">The thesis, in LaTeX and in git</a></strong><br>
+<em>6 August 2026</em><br>
+I am not fluent in Word. Two hundred pages, a hundred and fifty figures and a moving bibliography made that a problem, and switching was the best decision I made.</p>
+<p><strong>29. <a href="./blog/20260811-two-years-a-full-time-job-and-a-masters">Two years, a full-time job, and a master’s</a></strong><br>
+<em>11 August 2026</em><br>
+The graduation letter arrived today. What the two years actually cost, and the slides from the three points where the work had to be defended out loud.</p>
+<p><strong>30. <a href="./blog/20260821-the-same-thesis-in-a-different-typeface">The same thesis, in a different typeface</a></strong><br>
+<em>21 August 2026</em><br>
+Rebuilding the thesis in Latin Modern took about thirty kilobytes of shell script, and most of it was not about the font. It was about making sure nobody could mistake the result for the signed copy.</p>
+<hr>
+<p>30 posts, 6 February 2024 to 21 August 2026.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/benny\.istan\.to");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026, Benny Istanto.</p>
+<p>Exploring Climate with GIS and Data Science, solving old problems in new ways. Turning earth observation data into actionable, life-saving insights.</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+<p><a href="./privacy">Privacy</a></p>
+<p><span class="footer-disclaimer">All content on this website does not represent the views of my (current or previous) employer.</span></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bennyistanto/site/blob/main/docs/blog-series-bias-correction.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/bennyistanto/site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/bennyistanto" aria-label="GitHub"><i class="bi bi-github"></i></a> <a href="https://linkedin.com/in/bennyistanto" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a> <a href="https://worldbank.github.io/GOST/content/staff/bennyistanto.html" aria-label="GOST"><i class="bi bi-globe"></i></a></p>
+<p><a href="https://buymeacoffee.com/bennyistanto">Buy Me a Coffee</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

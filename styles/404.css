@@ -1,0 +1,54 @@
+/* 404 Error Page Styles */
+
+/* Hide the automatically generated page title */
+header.page-title,
+.quarto-title {
+  display: none !important;
+}
+
+.error-page {
+  text-align: center;
+  padding: 4rem 2rem;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-page h1 {
+  font-size: 8rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1;
+  opacity: 0.3;
+}
+
+.error-page h2 {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+.error-page p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--bs-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--bs-primary-dark);
+  transform: translateY(-2px);
+}

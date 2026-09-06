@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>TerraClimate EDDI</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/image-logo/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-79c7fc7016c250864588f87350540d1e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7b0e90f543d335420a83bd87cfdb0e21.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-79c7fc7016c250864588f87350540d1e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C23GE2LS52"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-C23GE2LS52', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6008428404539750" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="../styles/styles.css">
+<link rel="stylesheet" href="../styles/project-detail.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo light-content">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../csr"> 
+<span class="menu-text">CSR</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-blog" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Blog</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-blog">    
+        <li>
+    <a class="dropdown-item" href="../blog">
+ <span class="dropdown-text">All Posts</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../blog-archive">
+ <span class="dropdown-text">Archive by Year</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-works" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Works</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-works">    
+        <li>
+    <a class="dropdown-item" href="../works">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/experiences">
+ <span class="dropdown-text">Experiences</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/projects">
+ <span class="dropdown-text">Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/consulting">
+ <span class="dropdown-text">Consulting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/maps-and-infographics">
+ <span class="dropdown-text">Maps &amp; Infographics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../cv"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">TerraClimate EDDI</h1>
+<p class="subtitle lead">Evaporative Demand Drought Index, 1958 to 2025</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The Evaporative Demand Drought Index over the global land surface, monthly, at about 4 km, from 1958 to 2025. EDDI asks how thirsty the atmosphere is, not how much rain fell. It ranks accumulated reference evapotranspiration against the same calendar month in a baseline period, so a high value means the air has been pulling harder at the surface than usual. That makes it an early signal: evaporative demand climbs before soil moisture falls, often before a rainfall index has anything to report. Four accumulation periods are published, from 1 to 12 months.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/image-csr/terraclimate-eddi-00.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Evaporative Demand Drought Index, 1-month accumulation, December 2025, based on NOAA’s EDDI classification scheme"><img src="../assets/image-csr/terraclimate-eddi-00.png" class="img-fluid figure-img" alt="Evaporative Demand Drought Index, 1-month accumulation, December 2025, based on NOAA’s EDDI classification scheme"></a></p>
+<figcaption>Evaporative Demand Drought Index, 1-month accumulation, December 2025, based on NOAA’s EDDI classification scheme</figcaption>
+</figure>
+</div>
+<div class="project-meta">
+<div class="meta-item">
+<div class="meta-label">
+<p>Source</p>
+</div>
+<div class="meta-value">
+<p><a href="https://www.climatologylab.org/terraclimate.html">TerraClimate</a></p>
+</div>
+</div>
+<div class="meta-item">
+<div class="meta-label">
+<p>Spatial resolution</p>
+</div>
+<div class="meta-value">
+<p>About 4 km, 1/24 degree</p>
+</div>
+</div>
+<div class="meta-item">
+<div class="meta-label">
+<p>Temporal resolution</p>
+</div>
+<div class="meta-value">
+<p>Monthly</p>
+</div>
+</div>
+<div class="meta-item">
+<div class="meta-label">
+<p>Coverage</p>
+</div>
+<div class="meta-value">
+<p>Global, 90N to 90S and 180W to 180E</p>
+</div>
+</div>
+<div class="meta-item">
+<div class="meta-label">
+<p>Period</p>
+</div>
+<div class="meta-value">
+<p>1958 to 2025</p>
+</div>
+</div>
+<div class="meta-item">
+<div class="meta-label">
+<p>Baseline</p>
+</div>
+<div class="meta-value">
+<p>1991 to 2020, the WMO normal. A 1958 to 2025 full climatology is in preparation</p>
+</div>
+</div>
+<div class="meta-item">
+<div class="meta-label">
+<p>Format</p>
+</div>
+<div class="meta-value">
+<p>netCDF</p>
+</div>
+</div>
+<div class="meta-item">
+<div class="meta-label">
+<p>Projection</p>
+</div>
+<div class="meta-value">
+<p>EPSG:4326</p>
+</div>
+</div>
+</div>
+<section id="method" class="level2">
+<h2 class="anchored" data-anchor-id="method">Method</h2>
+<p>EDDI is computed from a single TerraClimate v1.1 variable, reference evapotranspiration (<code>pet</code>). For each pixel and each accumulation length, the trailing n-month sum is ranked against the same calendar month across the baseline period, and that rank becomes a non-exceedance probability. The baseline is 1991 to 2020, the WMO thirty-year normal.</p>
+<p>There is no fitted distribution. Unlike <a href="../csr/chirps-spi">SPI</a> and <a href="../csr/terraclimate-spei">SPEI</a>, which fit a gamma or a Pearson Type III and then read the index off the fitted curve, EDDI is nonparametric: it is a rank, converted to a percentile. That is the method’s strength, because nothing has to be assumed about the shape of the distribution, and it is also the source of the limit described two sections below.</p>
+</section>
+<section id="what-is-in-the-file" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-in-the-file">What is in the file</h2>
+<p>Three variables, all exact functions of one another, so use whichever suits your workflow.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>What it holds</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>eddi</code></td>
+<td>The standardised anomaly, a z-score. Positive means higher evaporative demand than normal, so drier</td>
+</tr>
+<tr class="even">
+<td><code>eddi_pct</code></td>
+<td>The non-exceedance percentile, 0 to 100. 100 is the driest, 0 the wettest</td>
+</tr>
+<tr class="odd">
+<td><code>eddi_cat</code></td>
+<td>The NOAA class, an integer 0 to 10</td>
+</tr>
+</tbody>
+</table>
+<p>The classes in <code>eddi_cat</code> follow the <a href="https://psl.noaa.gov/eddi/">EDDI User Guide</a>, and the percentile cut points travel with the file in the <code>percentile_bounds</code> attribute.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Class</th>
+<th style="text-align: left;">Category</th>
+<th style="text-align: left;">Code</th>
+<th style="text-align: left;">Percentile</th>
+<th style="text-align: left;">Hex</th>
+<th style="text-align: left;">RGB</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;"><strong>Exceptionally Wet</strong></td>
+<td style="text-align: left;"><code>EW4</code></td>
+<td style="text-align: left;">0 to 2</td>
+<td style="text-align: left;"><span style="background-color: #053061; border: 1px solid black; padding: 0 8px;">&nbsp;</span> <code>#053061</code></td>
+<td style="text-align: left;">rgb(5, 48, 97)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"><strong>Extremely Wet</strong></td>
+<td style="text-align: left;"><code>EW3</code></td>
+<td style="text-align: left;">2 to 5</td>
+<td style="text-align: left;"><span style="background-color: #2166ac; border: 1px solid black; padding: 0 8px;">&nbsp;</span> <code>#2166ac</code></td>
+<td style="text-align: left;">rgb(33, 102, 172)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"><strong>Severely Wet</strong></td>
+<td style="text-align: left;"><code>EW2</code></td>
+<td style="text-align: left;">5 to 10</td>
+<td style="text-align: left;"><span style="background-color: #4393c3; border: 1px solid black; padding: 0 8px;">&nbsp;</span> <code>#4393c3</code></td>
+<td style="text-align: left;">rgb(67, 147, 195)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;"><strong>Moderately Wet</strong></td>
+<td style="text-align: left;"><code>EW1</code></td>
+<td style="text-align: left;">10 to 20</td>
+<td style="text-align: left;"><span style="background-color: #92c5de; border: 1px solid black; padding: 0 8px;">&nbsp;</span> <code>#92c5de</code></td>
+<td style="text-align: left;">rgb(146, 197, 222)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"><strong>Abnormally Wet</strong></td>
+<td style="text-align: left;"><code>EW0</code></td>
+<td style="text-align: left;">20 to 30</td>
+<td style="text-align: left;"><span style="background-color: #d1e5f0; border: 1px solid black; padding: 0 8px;">&nbsp;</span> <code>#d1e5f0</code></td>
+<td style="text-align: left;">rgb(209, 229, 240)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"><strong>Normal</strong></td>
+<td style="text-align: left;"><code>Normal</code></td>
+<td style="text-align: left;">30 to 70</td>
+<td style="text-align: left;"><span style="background-color: #f7f7f7; border: 1px solid black; padding: 0 8px;">&nbsp;</span> <code>#f7f7f7</code></td>
+<td style="text-align: left;">rgb(247, 247, 247)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;"><strong>Abnormally Dry</strong></td>
+<td style="text-align: left;"><code>ED0</code></td>
+<td style="text-align: left;">70 to 80</td>
+<td style="text-align: left;"><span style="background-color: #fddbc7; border: 1px solid black; padding: 0 8px;">&nbsp;</span> <code>#fddbc7</code></td>
+<td style="text-align: left;">rgb(253, 219, 199)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">7</td>
+<td style="text-align: left;"><strong>Moderate Drought</strong></td>
+<td style="text-align: left;"><code>ED1</code></td>
+<td style="text-align: left;">80 to 90</td>
+<td style="text-align: left;"><span style="background-color: #f4a582; border: 1px solid black; padding: 0 8px;">&nbsp;</span> <code>#f4a582</code></td>
+<td style="text-align: left;">rgb(244, 165, 130)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">8</td>
+<td style="text-align: left;"><strong>Severe Drought</strong></td>
+<td style="text-align: left;"><code>ED2</code></td>
+<td style="text-align: left;">90 to 95</td>
+<td style="text-align: left;"><span style="background-color: #d6604d; border: 1px solid black; padding: 0 8px;">&nbsp;</span> <code>#d6604d</code></td>
+<td style="text-align: left;">rgb(214, 96, 77)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">9</td>
+<td style="text-align: left;"><strong>Extreme Drought</strong></td>
+<td style="text-align: left;"><code>ED3</code></td>
+<td style="text-align: left;">95 to 98</td>
+<td style="text-align: left;"><span style="background-color: #b2182b; border: 1px solid black; padding: 0 8px;">&nbsp;</span> <code>#b2182b</code></td>
+<td style="text-align: left;">rgb(178, 24, 43)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10</td>
+<td style="text-align: left;"><strong>Exceptional Drought</strong></td>
+<td style="text-align: left;"><code>ED4</code></td>
+<td style="text-align: left;">98 to 100</td>
+<td style="text-align: left;"><span style="background-color: #67001f; border: 1px solid black; padding: 0 8px;">&nbsp;</span> <code>#67001f</code></td>
+<td style="text-align: left;">rgb(103, 0, 31)</td>
+</tr>
+</tbody>
+</table>
+<p>Note which end is which. EDDI runs the opposite way to SPI and SPEI: a <strong>high</strong> EDDI is dry, because it means high evaporative demand. The map above uses a diverging red to blue ramp with red at the dry end, so the colours read the same way round as on the other two pages even though the index underneath does not.</p>
+</section>
+<section id="on-this-baseline-the-two-outermost-classes-never-appear" class="level2">
+<h2 class="anchored" data-anchor-id="on-this-baseline-the-two-outermost-classes-never-appear">On this baseline, the two outermost classes never appear</h2>
+<p><code>EW4</code> and <code>ED4</code> are defined in the file and drawn in the legend, and in the files published here neither is ever populated. Not rarely: never. Across the whole grid from 1991 to 2025, some 84 million valid cell-months, the count for class 0 is zero and the count for class 10 is zero. The other nine are all well populated.</p>
+<p>This is arithmetic rather than a bug, and it is a property of the baseline, not of EDDI. Thirty years gives thirty samples per calendar month, so the finest percentile step a rank can resolve is roughly one in thirty-one, about 3.2 percent. <code>EW4</code> spans 2 percent and <code>ED4</code> spans 2 percent, so neither bin is wide enough to catch a rank.</p>
+<p>The file states the same limit in its own <code>attainable_range</code> attribute, which caps the index at plus or minus 2.028. That is worth converting: a z-score of 2.028 is the 97.87th percentile, and 97.87 never reaches the 98 where <code>ED4</code> begins. The attribute predicts the empty class before you count anything.</p>
+<p>So on this baseline, read <strong><code>ED3</code> as the top of the scale</strong> rather than as one step below an unreached extreme.</p>
+<p>A longer baseline lifts the ceiling, and a full-climatology version fitted against the whole 1958 to 2025 record instead of the WMO thirty-year normal is planned for this page. Sixty-eight samples per calendar month resolve to about 1.4 percent, comfortably inside the 2 percent bins at both ends, so all eleven classes come into reach.</p>
+<p>The two will be published side by side rather than one replacing the other, because they answer different questions. The 1991 to 2020 normal is the WMO reference period and the right choice when the number has to be comparable with other operational products. The full climatology is the one to reach for when the tails are the point, at the cost of a baseline that is no longer a standard thirty-year normal and that includes the warming trend it is measuring against.</p>
+</section>
+<section id="coverage-moves-with-the-season" class="level2">
+<h2 class="anchored" data-anchor-id="coverage-moves-with-the-season">Coverage moves with the season</h2>
+<p>EDDI is undefined where evaporative demand is effectively zero, which in practice means the high-latitude winter. Coverage is therefore not constant through the year: about 14 percent of the global grid carries a value in December, against about 24 percent in July.</p>
+<p>Almost all of that swing is in the northern extratropics. Between 60N and 90N the count of valid cells goes from roughly 3,100 in December to 58,500 in July on the quarter-degree grid, while the tropics barely move, and south of 60S the pattern flips as you would expect. So a global count of drought-classified pixels is not comparable from one month to the next, though a given pixel compared against its own calendar month is.</p>
+</section>
+<section id="limitations-inherited-from-terraclimate" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-inherited-from-terraclimate">Limitations inherited from TerraClimate</h2>
+<p>The two sections above are limits of the index as computed here. These are limits of the source, and they pass straight through, because nothing in the ranking removes them. The <a href="https://www.climatologylab.org/terraclimate.html">TerraClimate page</a> carries the full list; these are the ones that bear on EDDI.</p>
+<p><strong>Trends are not independent evidence.</strong> Long-term trends in TerraClimate are inherited from its parent datasets, so a trend found in this EDDI record is a trend in those parents, re-expressed. It is not separate confirmation of them. This is the one to hold on to, because an index built to measure anomalies invites exactly that misreading.</p>
+<p><strong>Apparent detail exceeds real detail.</strong> The grid is about 4 km, but TerraClimate cannot resolve temporal variability finer than its parent datasets, and orographic ratios and inversions in particular are not captured. A sharp gradient across a mountain range may be an artefact of downscaling rather than a signal.</p>
+<p><strong>The evaporative demand model is simple.</strong> It uses a static reference landcover and does not account for heterogeneity in vegetation. EDDI is computed from reference evapotranspiration and nothing else, so this one applies to the whole product rather than to one input among several.</p>
+<p><strong>Validation is thin where stations are thin.</strong> TerraClimate reports limited validation in data-sparse regions, Antarctica among them. The map above draws Antarctica because the grid extends there, not because the value is trustworthy. The same caution covers high-elevation boreal systems, where winter inversions inherited from WorldClim v2.1 are likely extrapolated unrealistically, and that is the same place where seasonal coverage is thinnest.</p>
+</section>
+<section id="why-the-record-starts-in-1958" class="level2">
+<h2 class="anchored" data-anchor-id="why-the-record-starts-in-1958">Why the record starts in 1958</h2>
+<p>TerraClimate’s distributed record begins in 1958, and a longer series has to be assembled rather than simply downloaded. That assembly is not free, and it is worth showing what it costs rather than asserting it.</p>
+<p>On a trial run reaching back to 1950, the spread of the EDDI z-score breaks cleanly at the join:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Years</th>
+<th>Standard deviation of EDDI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1950 to 1957</td>
+<td>1.22 to 1.28</td>
+</tr>
+<tr class="even">
+<td>1958 onward</td>
+<td>0.98 to 1.06</td>
+</tr>
+</tbody>
+</table>
+<p>About a quarter more spread in the earlier block, with the step landing exactly on the 1958 boundary rather than drifting across it. A discontinuity shaped like that is invisible on any single map and fatal to a trend, because a trend fitted across the join partly measures the join.</p>
+<p>So the record starts where the source does. Eight extra years are not worth a seam through the middle of every time series.</p>
+<p>The same reasoning settles the version question. TerraClimate advises against mixing v1.0 with v1.1, so a single version is used throughout rather than splicing one into the other to reach further back. Both decisions cost coverage and buy homogeneity, which is the right trade for an index whose whole purpose is comparing one period against another.</p>
+</section>
+<section id="reading-the-time-axis" class="level2">
+<h2 class="anchored" data-anchor-id="reading-the-time-axis">Reading the time axis</h2>
+<p>Every time step is stamped on the first of the month: <code>1958-01-01</code>, <code>1958-02-01</code>, and so on through <code>2025-12-01</code>.</p>
+<p>The day is there because a netCDF time coordinate has to be a complete date. It is not a claim about the first of the month. These are monthly values, each one covering its whole month, so <code>2025-12-01</code> means December 2025 and nothing narrower.</p>
+<p>In practice: slice on the year and month and ignore the day. If your tooling wants an exact match, either select with <code>method="nearest"</code> or group by month rather than indexing on a literal date.</p>
+</section>
+<section id="download" class="level2">
+<h2 class="anchored" data-anchor-id="download">Download</h2>
+<p>Each accumulation period is a separate netCDF covering the full 1958 to 2025 record, with all three variables inside. Every file also comes in a quarter-degree version, resampled from the same computation: at roughly a fifteenth of the size it is the more practical download for continental or global work, and the one to start with if you only want to look around.</p>
+<p>The filename carries the baseline, so <code>base1991_2020</code> and <code>base1958_2025</code> files can sit in the same directory without colliding.</p>
+<section id="baseline-1991-to-2020-the-wmo-normal" class="level3">
+<h3 class="anchored" data-anchor-id="baseline-1991-to-2020-the-wmo-normal">Baseline 1991 to 2020, the WMO normal</h3>
+<p>Native resolution, about 4 km.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Timescale</th>
+<th>File</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 month</td>
+<td><code>wld_cli_terraclimate_eddi_01month_1958_2025_base1991_2020.nc</code></td>
+<td>In preparation</td>
+</tr>
+<tr class="even">
+<td>3 month</td>
+<td><code>wld_cli_terraclimate_eddi_03month_1958_2025_base1991_2020.nc</code></td>
+<td>In preparation</td>
+</tr>
+<tr class="odd">
+<td>6 month</td>
+<td><code>wld_cli_terraclimate_eddi_06month_1958_2025_base1991_2020.nc</code></td>
+<td>In preparation</td>
+</tr>
+<tr class="even">
+<td>12 month</td>
+<td><code>wld_cli_terraclimate_eddi_12month_1958_2025_base1991_2020.nc</code></td>
+<td>In preparation</td>
+</tr>
+</tbody>
+</table>
+<p>Quarter degree.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Timescale</th>
+<th>File</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 month</td>
+<td><code>wld_cli_terraclimate_eddi_01month_1958_2025_base1991_2020_025deg.nc</code></td>
+<td>In preparation</td>
+</tr>
+<tr class="even">
+<td>3 month</td>
+<td><code>wld_cli_terraclimate_eddi_03month_1958_2025_base1991_2020_025deg.nc</code></td>
+<td>In preparation</td>
+</tr>
+<tr class="odd">
+<td>6 month</td>
+<td><code>wld_cli_terraclimate_eddi_06month_1958_2025_base1991_2020_025deg.nc</code></td>
+<td>In preparation</td>
+</tr>
+<tr class="even">
+<td>12 month</td>
+<td><code>wld_cli_terraclimate_eddi_12month_1958_2025_base1991_2020_025deg.nc</code></td>
+<td>In preparation</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="baseline-1958-to-2025-the-full-climatology" class="level3">
+<h3 class="anchored" data-anchor-id="baseline-1958-to-2025-the-full-climatology">Baseline 1958 to 2025, the full climatology</h3>
+<p>This is the variant that reaches all eleven classes, for the reason set out above. Same four accumulation periods, same two resolutions, same three variables inside each file. Sizes and links go here once the run is finished and uploaded.</p>
+<p>Native resolution, about 4 km.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Timescale</th>
+<th>File</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 month</td>
+<td><code>wld_cli_terraclimate_eddi_01month_1958_2025_base1958_2025.nc</code></td>
+<td>In preparation</td>
+</tr>
+<tr class="even">
+<td>3 month</td>
+<td><code>wld_cli_terraclimate_eddi_03month_1958_2025_base1958_2025.nc</code></td>
+<td>In preparation</td>
+</tr>
+<tr class="odd">
+<td>6 month</td>
+<td><code>wld_cli_terraclimate_eddi_06month_1958_2025_base1958_2025.nc</code></td>
+<td>In preparation</td>
+</tr>
+<tr class="even">
+<td>12 month</td>
+<td><code>wld_cli_terraclimate_eddi_12month_1958_2025_base1958_2025.nc</code></td>
+<td>In preparation</td>
+</tr>
+</tbody>
+</table>
+<p>Quarter degree.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Timescale</th>
+<th>File</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 month</td>
+<td><code>wld_cli_terraclimate_eddi_01month_1958_2025_base1958_2025_025deg.nc</code></td>
+<td>In preparation</td>
+</tr>
+<tr class="even">
+<td>3 month</td>
+<td><code>wld_cli_terraclimate_eddi_03month_1958_2025_base1958_2025_025deg.nc</code></td>
+<td>In preparation</td>
+</tr>
+<tr class="odd">
+<td>6 month</td>
+<td><code>wld_cli_terraclimate_eddi_06month_1958_2025_base1958_2025_025deg.nc</code></td>
+<td>In preparation</td>
+</tr>
+<tr class="even">
+<td>12 month</td>
+<td><code>wld_cli_terraclimate_eddi_12month_1958_2025_base1958_2025_025deg.nc</code></td>
+<td>In preparation</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="license" class="level2">
+<h2 class="anchored" data-anchor-id="license">License</h2>
+<ul>
+<li><strong>TerraClimate</strong>, the source data: <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode">CC0-1.0</a>, or refer to the <a href="https://www.climatologylab.org/terraclimate.html">Climatology Lab</a>.</li>
+<li><strong>EDDI</strong> derived from TerraClimate: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a>. Credit this site and TerraClimate, note it if you changed anything, and otherwise do as you like with it.</li>
+</ul>
+<div class="back-link">
+<p><a href="../csr">← Back to CSR</a></p>
+</div>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/benny\.istan\.to");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026, Benny Istanto.</p>
+<p>Exploring Climate with GIS and Data Science, solving old problems in new ways. Turning earth observation data into actionable, life-saving insights.</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+<p><a href="../privacy">Privacy</a></p>
+<p><span class="footer-disclaimer">All content on this website does not represent the views of my (current or previous) employer.</span></p>
+<div class="toc-actions"><ul><li><a href="https://github.com/bennyistanto/site/blob/main/docs/csr/terraclimate-eddi.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/bennyistanto/site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/bennyistanto" aria-label="GitHub"><i class="bi bi-github"></i></a> <a href="https://linkedin.com/in/bennyistanto" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a> <a href="https://worldbank.github.io/GOST/content/staff/bennyistanto.html" aria-label="GOST"><i class="bi bi-globe"></i></a></p>
+<p><a href="https://buymeacoffee.com/bennyistanto">Buy Me a Coffee</a></p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

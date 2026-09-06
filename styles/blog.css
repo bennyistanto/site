@@ -1,0 +1,33 @@
+/* Blog Page Styles */
+
+/* Hide description field from individual blog posts */
+.description {
+  display: none !important;
+}
+
+/* Add "Blog" section indicator above blog post titles */
+/* Only target individual blog posts (with date prefix), not the main blog.qmd page */
+main.content[data-quarto-source*="/blog/20"] #title-block-header::before {
+  content: "Blog";
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bs-primary);
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+/* Breadcrumb styling */
+.breadcrumb {
+  font-size: 0.875rem;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: "›";
+  padding: 0 0.5rem;
+  color: var(--bs-secondary);
+}

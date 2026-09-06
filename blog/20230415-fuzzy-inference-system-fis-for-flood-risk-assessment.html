@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Benny Istanto">
+<meta name="dcterms.date" content="2023-04-15">
+<meta name="description" content="1 Implementation In the implementation phase of this analysis, we utilized Python and the Scikit-Fuzzy library to develop a fuzzy logic-based flood risk assessment model">
+
+<title>Fuzzy Inference System (FIS) for Flood Risk Assessment</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/image-logo/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-79c7fc7016c250864588f87350540d1e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7b0e90f543d335420a83bd87cfdb0e21.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-79c7fc7016c250864588f87350540d1e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C23GE2LS52"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-C23GE2LS52', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6008428404539750" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="../styles/styles.css">
+<link rel="stylesheet" href="../styles/blog-post.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo light-content">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../csr"> 
+<span class="menu-text">CSR</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-blog" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Blog</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-blog">    
+        <li>
+    <a class="dropdown-item" href="../blog">
+ <span class="dropdown-text">All Posts</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../blog-archive">
+ <span class="dropdown-text">Archive by Year</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-works" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Works</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-works">    
+        <li>
+    <a class="dropdown-item" href="../works">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/experiences">
+ <span class="dropdown-text">Experiences</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/projects">
+ <span class="dropdown-text">Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/consulting">
+ <span class="dropdown-text">Consulting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/maps-and-infographics">
+ <span class="dropdown-text">Maps &amp; Infographics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../cv"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Fuzzy Inference System (FIS) for Flood Risk Assessment</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Data Science</div>
+    <div class="quarto-category">Climate</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    1 Implementation In the implementation phase of this analysis, we utilized Python and the Scikit-Fuzzy library to develop a fuzzy logic-based flood risk assessment model
+  </div>
+</div>
+
+
+<div class="quarto-title-meta column-page">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Benny Istanto </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 15, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>1 Implementation</p>
+<p>In the implementation phase of this analysis, we utilized Python and the <code>Scikit-Fuzzy</code> library to develop a fuzzy logic-based flood risk assessment model. This model took into account four essential factors affecting flood risks: precipitation intensity, soil moisture, land cover, and slope. By defining the fuzzy sets and rules for these variables, the model was able to estimate the flood risk for various combinations of input values. The ultimate goal of this implementation was to identify the conditions under which low flood risks could be achieved, even in situations where precipitation intensity was at its maximum.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Python - imports">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Python - imports
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> skfuzzy <span class="im">as</span> fuzz</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skfuzzy <span class="im">import</span> control <span class="im">as</span> ctrl</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> mpatches</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mpl_toolkits.mplot3d</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>1.1 How-to?</p>
+<p>In the first stage of the analysis, we defined the variables that influence flood risk. These variables include precipitation intensity, soil moisture, land cover, and slope. Each of these variables was represented as a fuzzy variable using the <code>Scikit-Fuzzy</code> library’s <code>Antecedent</code> class. Additionally, we defined the output variable <code>flood_risk</code> using the <code>Consequent</code> class. This stage set the foundation for the fuzzy logic-based flood risk assessment model by establishing the key variables that the model would use to estimate flood risk.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Python - stage 1, define the variables">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Python - stage 1, define the variables
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stage 1:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the variables</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>precipitation <span class="op">=</span> ctrl.Antecedent(np.arange(<span class="dv">0</span>, <span class="dv">101</span>, <span class="dv">1</span>), <span class="st">'precipitation'</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>soil_moisture <span class="op">=</span> ctrl.Antecedent(np.arange(<span class="dv">0</span>, <span class="dv">101</span>, <span class="dv">1</span>), <span class="st">'soil_moisture'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>land_cover <span class="op">=</span> ctrl.Antecedent(np.arange(<span class="dv">0</span>, <span class="dv">101</span>, <span class="dv">1</span>), <span class="st">'land_cover'</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>slope <span class="op">=</span> ctrl.Antecedent(np.arange(<span class="dv">0</span>, <span class="dv">91</span>, <span class="dv">1</span>), <span class="st">'slope'</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>flood_risk <span class="op">=</span> ctrl.Consequent(np.arange(<span class="dv">0</span>, <span class="dv">101</span>, <span class="dv">1</span>), <span class="st">'flood_risk'</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the output variable</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>flood_risk <span class="op">=</span> ctrl.Consequent(np.arange(<span class="dv">0</span>, <span class="dv">101</span>, <span class="dv">1</span>), <span class="st">'flood_risk'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>In the second and third stages, we focused on defining the fuzzy sets and their respective membership functions for each of the variables defined in the first stage. We used the <code>automf()</code> function to automatically generate triangular membership functions for precipitation intensity, soil moisture, and flood risk, each with three levels: <code>low</code>, <code>medium</code>, and <code>high</code>. For the land cover and slope variables, we manually defined triangular membership functions, specifying the appropriate ranges for each fuzzy set (<code>urban</code>, <code>vegetation</code>, and <code>bare_soil</code> for land cover, and <code>flat</code>, <code>moderate</code>, and <code>steep</code> for slope). These stages were critical for establishing the relationships between the input variables and the output flood risk, which would later be used to evaluate different combinations of input values in the fuzzy inference process.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Python - stage 2 and 3, fuzzy sets and their membership functions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Python - stage 2 and 3, fuzzy sets and their membership functions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stage 2 &amp; 3:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the fuzzy sets and their membership functions</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>precipitation.automf(<span class="dv">3</span>, names<span class="op">=</span>[<span class="st">'low'</span>, <span class="st">'medium'</span>, <span class="st">'high'</span>])</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>soil_moisture.automf(<span class="dv">3</span>, names<span class="op">=</span>[<span class="st">'low'</span>, <span class="st">'medium'</span>, <span class="st">'high'</span>])</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>land_cover[<span class="st">'urban'</span>] <span class="op">=</span> fuzz.trimf(land_cover.universe, [<span class="dv">0</span>, <span class="dv">25</span>, <span class="dv">50</span>])</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>land_cover[<span class="st">'vegetation'</span>] <span class="op">=</span> fuzz.trimf(land_cover.universe, [<span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">75</span>])</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>land_cover[<span class="st">'bare_soil'</span>] <span class="op">=</span> fuzz.trimf(land_cover.universe, [<span class="dv">50</span>, <span class="dv">75</span>, <span class="dv">100</span>])</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>slope[<span class="st">'flat'</span>] <span class="op">=</span> fuzz.trimf(slope.universe, [<span class="dv">0</span>, <span class="dv">15</span>, <span class="dv">30</span>])</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>slope[<span class="st">'moderate'</span>] <span class="op">=</span> fuzz.trimf(slope.universe, [<span class="dv">15</span>, <span class="dv">30</span>, <span class="dv">60</span>])</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>slope[<span class="st">'steep'</span>] <span class="op">=</span> fuzz.trimf(slope.universe, [<span class="dv">30</span>, <span class="dv">60</span>, <span class="dv">90</span>])</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>flood_risk.automf(<span class="dv">3</span>, names<span class="op">=</span>[<span class="st">'low'</span>, <span class="st">'medium'</span>, <span class="st">'high'</span>])</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>flood_risk[<span class="st">'very_low'</span>] <span class="op">=</span> fuzz.trimf(flood_risk.universe, [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">10</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>In the fourth stage, we defined the rules that describe the relationships between the input variables (precipitation intensity, soil moisture, land cover, and slope) and the output variable (flood risk). We first created a list of classifications for each input variable and the output variable. Using the multiplication principle, we calculated the total number of possible combinations of these classifications, resulting in 81 unique rules.</p>
+<p>For each combination of input classifications, we determined the appropriate flood risk level based on a set of predefined conditions. These conditions were based on expert knowledge and domain understanding, considering factors such as high precipitation and soil moisture, bare soil land cover, and steep slopes. After determining the flood risk level for each combination, we created a fuzzy rule using the <code>Scikit-Fuzzy</code> library’s <code>Rule</code> class, linking the input conditions with the corresponding flood risk level. These rules formed the basis of the fuzzy inference system that was used to evaluate different scenarios and estimate the corresponding flood risks.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Python - stage 4, build the 81 rules">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Python - stage 4, build the 81 rules
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stage 4:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the rules</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>precipitation_levels <span class="op">=</span> [<span class="st">'low'</span>, <span class="st">'medium'</span>, <span class="st">'high'</span>]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>soil_moisture_levels <span class="op">=</span> [<span class="st">'low'</span>, <span class="st">'medium'</span>, <span class="st">'high'</span>]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>land_cover_types <span class="op">=</span> [<span class="st">'urban'</span>, <span class="st">'vegetation'</span>, <span class="st">'bare_soil'</span>]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>slope_levels <span class="op">=</span> [<span class="st">'flat'</span>, <span class="st">'moderate'</span>, <span class="st">'steep'</span>]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>flood_risk_levels <span class="op">=</span> [<span class="st">'low'</span>, <span class="st">'medium'</span>, <span class="st">'high'</span>]</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># We can use the multiplication principle to calculate the total number of combinations.</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># If we have n variables and each variable can take on one of m classifications,</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># then the total number of combinations is m^n, total rules for this case will be 3^4 = 81 rules</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>rules <span class="op">=</span> []</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p_level <span class="kw">in</span> precipitation_levels:</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> sm_level <span class="kw">in</span> soil_moisture_levels:</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> lc_type <span class="kw">in</span> land_cover_types:</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> s_level <span class="kw">in</span> slope_levels:</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Determine the appropriate flood risk level based on the input conditions</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> p_level <span class="op">==</span> <span class="st">'high'</span> <span class="kw">and</span> sm_level <span class="op">==</span> <span class="st">'high'</span> <span class="kw">and</span> lc_type <span class="op">==</span> <span class="st">'bare_soil'</span> <span class="kw">and</span> s_level <span class="op">==</span> <span class="st">'steep'</span>:</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>                    fr_level <span class="op">=</span> <span class="st">'high'</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> p_level <span class="op">==</span> <span class="st">'medium'</span> <span class="kw">and</span> sm_level <span class="op">==</span> <span class="st">'medium'</span> <span class="kw">and</span> lc_type <span class="op">==</span> <span class="st">'bare_soil'</span> <span class="kw">and</span> s_level <span class="op">==</span> <span class="st">'steep'</span>:</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                    fr_level <span class="op">=</span> <span class="st">'high'</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> p_level <span class="op">==</span> <span class="st">'high'</span> <span class="kw">and</span> sm_level <span class="op">==</span> <span class="st">'high'</span> <span class="kw">and</span> s_level <span class="op">!=</span> <span class="st">'flat'</span>:</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>                    fr_level <span class="op">=</span> <span class="st">'high'</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> p_level <span class="op">==</span> <span class="st">'high'</span> <span class="kw">and</span> sm_level <span class="op">==</span> <span class="st">'medium'</span> <span class="kw">and</span> s_level <span class="op">!=</span> <span class="st">'flat'</span>:</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                    fr_level <span class="op">=</span> <span class="st">'high'</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> p_level <span class="op">==</span> <span class="st">'high'</span> <span class="kw">and</span> lc_type <span class="op">==</span> <span class="st">'bare_soil'</span> <span class="kw">and</span> s_level <span class="op">!=</span> <span class="st">'flat'</span>:</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>                    fr_level <span class="op">=</span> <span class="st">'high'</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> p_level <span class="op">==</span> <span class="st">'medium'</span> <span class="kw">and</span> sm_level <span class="op">==</span> <span class="st">'medium'</span> <span class="kw">and</span> lc_type <span class="op">==</span> <span class="st">'bare_soil'</span> <span class="kw">and</span> s_level <span class="op">!=</span> <span class="st">'flat'</span>:</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>                    fr_level <span class="op">=</span> <span class="st">'high'</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> p_level <span class="op">==</span> <span class="st">'medium'</span> <span class="kw">and</span> sm_level <span class="op">==</span> <span class="st">'high'</span> <span class="kw">and</span> s_level <span class="op">!=</span> <span class="st">'flat'</span>:</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>                    fr_level <span class="op">=</span> <span class="st">'high'</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> p_level <span class="op">==</span> <span class="st">'medium'</span> <span class="kw">and</span> s_level <span class="op">==</span> <span class="st">'steep'</span>:</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>                    fr_level <span class="op">=</span> <span class="st">'high'</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> p_level <span class="op">==</span> <span class="st">'high'</span> <span class="kw">and</span> s_level <span class="op">!=</span> <span class="st">'flat'</span>:</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>                    fr_level <span class="op">=</span> <span class="st">'high'</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> p_level <span class="op">==</span> <span class="st">'high'</span> <span class="kw">and</span> sm_level <span class="op">==</span> <span class="st">'low'</span>:</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>                    fr_level <span class="op">=</span> <span class="st">'medium'</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> p_level <span class="op">==</span> <span class="st">'medium'</span> <span class="kw">and</span> sm_level <span class="op">==</span> <span class="st">'low'</span> <span class="kw">and</span> s_level <span class="op">==</span> <span class="st">'steep'</span>:</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>                    fr_level <span class="op">=</span> <span class="st">'medium'</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span>:</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>                    fr_level <span class="op">=</span> <span class="st">'low'</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Create the rule with the determined conditions and consequences</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>                rule <span class="op">=</span> ctrl.Rule(</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>                    precipitation[p_level] <span class="op">&amp;</span> soil_moisture[sm_level] <span class="op">&amp;</span> land_cover[lc_type] <span class="op">&amp;</span> slope[s_level],</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>                    flood_risk[fr_level]</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>                )</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>                rules.append(rule)</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>                <span class="co"># This catch_all_rule will activate the 'very_low' flood risk when no other rules are fired.</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>                <span class="co"># It uses the negation operator ~ to ensure that this rule is activated only when none of</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>                <span class="co"># the other input fuzzy sets are activated.</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>                catch_all_rule <span class="op">=</span> ctrl.Rule(antecedent<span class="op">=</span>(<span class="op">~</span>precipitation[<span class="st">'high'</span>] <span class="op">&amp;</span> <span class="op">~</span>precipitation[<span class="st">'medium'</span>] <span class="op">&amp;</span> <span class="op">~</span>precipitation[<span class="st">'low'</span>] <span class="op">&amp;</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>                                                      <span class="op">~</span>soil_moisture[<span class="st">'high'</span>] <span class="op">&amp;</span> <span class="op">~</span>soil_moisture[<span class="st">'medium'</span>] <span class="op">&amp;</span> <span class="op">~</span>soil_moisture[<span class="st">'low'</span>] <span class="op">&amp;</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>                                                      <span class="op">~</span>land_cover[<span class="st">'urban'</span>] <span class="op">&amp;</span> <span class="op">~</span>land_cover[<span class="st">'vegetation'</span>] <span class="op">&amp;</span> <span class="op">~</span>land_cover[<span class="st">'bare_soil'</span>] <span class="op">&amp;</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>                                                      <span class="op">~</span>slope[<span class="st">'flat'</span>] <span class="op">&amp;</span> <span class="op">~</span>slope[<span class="st">'moderate'</span>] <span class="op">&amp;</span> <span class="op">~</span>slope[<span class="st">'steep'</span>]),</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>                                          consequent<span class="op">=</span>flood_risk[<span class="st">'very_low'</span>])</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>                rules.append(catch_all_rule)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>In the fifth stage, we created the control system and simulation by combining the defined rules from the previous stage. The <code>Scikit-Fuzzy</code> library’s <code>ControlSystem</code> and <code>ControlSystemSimulation</code> classes were used for this purpose. The <code>ControlSystem</code> class takes the set of rules as input and initializes the fuzzy inference system, while the <code>ControlSystemSimulation</code> class initializes a simulation environment that can be used to compute the output based on the input values.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Python - stage 5, create the control system and simulation">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Python - stage 5, create the control system and simulation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stage 5:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the control system and simulation</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>flood_risk_ctrl <span class="op">=</span> ctrl.ControlSystem(rules)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>flood_risk_sim <span class="op">=</span> ctrl.ControlSystemSimulation(flood_risk_ctrl)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>In the sixth stage, we provided example input values for each input variable (precipitation, soil moisture, land cover, and slope) to test the fuzzy inference system. The input values were assigned to their corresponding input variables in the simulation, and the compute method of the <code>ControlSystemSimulation</code> object was called to perform the fuzzy inference process and obtain the output flood risk level.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Python - stage 6, feed in example values and compute the output">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Python - stage 6, feed in example values and compute the output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stage 6:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Input example values and compute the output</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>precipitation_value <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>soil_moisture_value <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>land_cover_value <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>slope_value <span class="op">=</span> <span class="dv">30</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>flood_risk_sim.<span class="bu">input</span>[<span class="st">'precipitation'</span>] <span class="op">=</span> precipitation_value</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>flood_risk_sim.<span class="bu">input</span>[<span class="st">'soil_moisture'</span>] <span class="op">=</span> soil_moisture_value</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>flood_risk_sim.<span class="bu">input</span>[<span class="st">'land_cover'</span>] <span class="op">=</span> land_cover_value</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>flood_risk_sim.<span class="bu">input</span>[<span class="st">'slope'</span>] <span class="op">=</span> slope_value</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>flood_risk_sim.compute()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>In the final stage, we output the computed flood risk level and visualize the result using the <code>Scikit-Fuzzy</code> library’s built-in plotting capabilities. The flood risk level was displayed as a numerical value, while the visualization provided a graphical representation of the membership functions and the defuzzified output. This allowed us to assess the performance of the fuzzy inference system and analyze the relationships between the input variables and the flood risk.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Python - stage 7, flood risk category and the output plot">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Python - stage 7, flood risk category and the output plot
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stage 7:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the flood risk category</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> categorize_flood_risk(flood_risk_value):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> flood_risk_value <span class="op">&lt;</span> <span class="dv">34</span>:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"low"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> flood_risk_value <span class="op">&lt;</span> <span class="dv">67</span>:</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"medium"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"high"</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the result</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>flood_risk_value <span class="op">=</span> flood_risk_sim.output[<span class="st">'flood_risk'</span>]</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>flood_risk_category <span class="op">=</span> categorize_flood_risk(flood_risk_value)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Flood Risk Value:"</span>, flood_risk_value)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Flood Risk Category:"</span>, flood_risk_category)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the membership function values</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>flood_risk[<span class="st">'low'</span>].mf <span class="op">=</span> flood_risk[<span class="st">'low'</span>].mf</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>flood_risk[<span class="st">'medium'</span>].mf <span class="op">=</span> flood_risk[<span class="st">'medium'</span>].mf</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>flood_risk[<span class="st">'high'</span>].mf <span class="op">=</span> flood_risk[<span class="st">'high'</span>].mf</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the 'very_low' term</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'very_low'</span> <span class="kw">in</span> flood_risk.terms:</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">del</span> flood_risk.terms[<span class="st">'very_low'</span>]</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the result without the 'very_low' term</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>flood_risk.view(sim<span class="op">=</span>flood_risk_sim)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>This will returned:</p>
+<pre><code>Flood Risk Value: 83.33333333333336
+Flood Risk Category: high</code></pre>
+<p>And a plot below</p>
+<p><a href="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-01.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-01.jpg" class="img-fluid"></a></p>
+<p>The initial implementation of the fuzzy inference system for flood risk assessment has been completed successfully. By providing example input values for precipitation (<code>100</code>), soil moisture (<code>50</code>), land cover (<code>25</code>), and slope (<code>30</code>) in Stage 6, we have demonstrated the functionality of the fuzzy system. The system processes these inputs through the defined membership functions, rules, and defuzzification methods to produce an output flood risk value and the corresponding flood risk category.</p>
+<p>Upon evaluating the system with the given input values, a flood risk value is generated, and the <code>flood_risk.view(sim=flood_risk_sim)</code> function provides a visual representation of the output. The plot displays the aggregated output membership functions and indicates the defuzzified crisp value. In this case, the plot reflects the flood risk level based on the provided inputs, and the computed flood risk category helps to understand the risk associated with the given conditions. With this initial implementation, we have set the foundation for further analyses and can adapt or extend the fuzzy system as needed to address specific flood risk assessment scenarios.</p>
+<p>1.2 Plot the membership function of the input variables</p>
+<p>The provided code visualizes the membership functions for each of the input variables (Precipitation Intensity, Soil Moisture, Land Cover, and Slope) and the output variable (Flood Risk Level) in the fuzzy inference system. Here’s a summary of what each part of the code does:</p>
+<ul>
+<li><code>precipitation.view(sim=flood_risk_sim)</code>: Plots the membership functions for the Precipitation Intensity variable, displaying how the input values are categorized into low, medium, and high precipitation levels.</li>
+<li><code>soil_moisture.view(sim=flood_risk_sim)</code>: Plots the membership functions for the Soil Moisture variable, showing how the input values are categorized into low, medium, and high soil moisture levels.</li>
+<li><code>land_cover.view(sim=flood_risk_sim)</code>: Plots the membership functions for the Land Cover variable, illustrating how the input values are categorized into low, medium, and high land cover levels.</li>
+<li><code>slope.view(sim=flood_risk_sim)</code>: Plots the membership functions for the Slope variable, demonstrating how the input values are categorized into low, medium, and high slope levels.</li>
+<li><code>flood_risk.view()</code>: Plots the membership functions for the output variable, Flood Risk Level, indicating how the output values are categorized into low, medium, and high flood risk levels.</li>
+<li><code>flood_risk.view(sim=flood_risk_sim)</code>: Plots the final Flood Risk Level for given input values, illustrating how the fuzzy inference system computes the flood risk based on the input variable values and the defined fuzzy rules.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Python - plot the membership functions of every variable">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Python - plot the membership functions of every variable
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the membership functions of the input variables</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>precipitation.view(sim<span class="op">=</span>flood_risk_sim)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Precipitation Intensity"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>soil_moisture.view(sim<span class="op">=</span>flood_risk_sim)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Soil Moisture"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>land_cover.view(sim<span class="op">=</span>flood_risk_sim)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Land Cover"</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>slope.view(sim<span class="op">=</span>flood_risk_sim)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Slope"</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the membership functions of the output variable</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>flood_risk.view()</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Flood Risk Level"</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the final output (flood risk) given the input values</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>flood_risk.view(sim<span class="op">=</span>flood_risk_sim)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Flood Risk Level for Given Input Values"</span>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="image-gallery">
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-04.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-04.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-05.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-05.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-06.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-06.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-07.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-07.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-08.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-08.jpg" class="img-fluid"></a></p>
+</div>
+<div class="gallery-item">
+<p><a href="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-09.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-09.jpg" class="img-fluid"></a></p>
+</div>
+</div>
+<p>To interpret the plots, observe how each input variable is divided into categories (low, medium, high) based on the membership functions. These categories represent the degree to which an input value belongs to a particular category.</p>
+<p>The output variable plot shows how the flood risk levels are determined based on the input variables’ membership values and the fuzzy rules defined in the system. The final plot, Flood Risk Level for Given Input Values, displays the aggregated output membership functions and the computed flood risk level as a single value.</p>
+<p>1.3 2D Plot</p>
+<p>The provided code generates a 2D contour plot of flood risk as a function of Precipitation Intensity and Land Cover, while fixing the values of Soil Moisture and Slope. Here’s a summary of what each part of the code does:</p>
+<ul>
+<li>Create grid points for input variables: Define a range of values for each input variable (Precipitation Intensity, Soil Moisture, Land Cover, and Slope) using <code>np.linspace()</code>.</li>
+<li>Define <code>compute_flood_risk()</code> function: This function takes Precipitation Intensity (P), Soil Moisture (M), Land Cover (L), and Slope (S) as inputs and computes the flood risk using the fuzzy inference system (<code>flood_risk_sim</code>).</li>
+<li>Fix Soil Moisture and Slope values: Assign fixed values to Soil Moisture (M_fixed) and Slope (S_fixed).</li>
+<li>Create flood risk matrix: Initialize a matrix with the size of the combination of Precipitation Intensity (P_values) and Land Cover (L_values). Iterate through each combination of these values and compute the flood risk using the <code>compute_flood_risk()</code> function with the fixed values of Soil Moisture and Slope.</li>
+<li>Plot the 2D contour plot: Using <code>plt.contourf()</code>, create a contour plot that visualizes the flood risk as a function of Precipitation Intensity and Land Cover. The color map ‘viridis’ is used to represent the flood risk levels, with 20 contour levels.</li>
+<li>Add colorbar, labels, and title: Add a colorbar to represent the flood risk values, label the axes, and add a title that includes the fixed values of Soil Moisture and Slope.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Python - 2D contour plot, precipitation vs land cover">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Python - 2D contour plot, precipitation vs land cover
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2D plot</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate grid points for input variables</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>P_values <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">200</span>, <span class="dv">100</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>M_values <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">100</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>L_values <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">100</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>S_values <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dv">100</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to compute flood risk given input values</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_flood_risk(P, M, L, S):</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    flood_risk_sim.<span class="bu">input</span>[<span class="st">'precipitation'</span>] <span class="op">=</span> P</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    flood_risk_sim.<span class="bu">input</span>[<span class="st">'soil_moisture'</span>] <span class="op">=</span> M</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    flood_risk_sim.<span class="bu">input</span>[<span class="st">'land_cover'</span>] <span class="op">=</span> L</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    flood_risk_sim.<span class="bu">input</span>[<span class="st">'slope'</span>] <span class="op">=</span> S</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        flood_risk_sim.compute()</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> flood_risk_sim.output[<span class="st">'flood_risk'</span>]</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Return the lowest possible flood risk if the system cannot compute a valid output</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix two of the input variables at specific values</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>M_fixed <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>S_fixed <span class="op">=</span> <span class="dv">45</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Create flood risk matrix for different combinations of input variables</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>flood_risk_matrix <span class="op">=</span> np.zeros((<span class="bu">len</span>(P_values), <span class="bu">len</span>(L_values)))</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, P <span class="kw">in</span> <span class="bu">enumerate</span>(P_values):</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j, L <span class="kw">in</span> <span class="bu">enumerate</span>(L_values):</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>        flood_risk_matrix[i, j] <span class="op">=</span> compute_flood_risk(P, M_fixed, L, S_fixed)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the 2D contour plot for Precipitation vs Land Cover</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(L_values, P_values)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>plt.contourf(X, Y, flood_risk_matrix, cmap<span class="op">=</span><span class="st">'viridis'</span>, levels<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>plt.colorbar(label<span class="op">=</span><span class="st">'Flood Risk'</span>)</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Land Cover'</span>)</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Precipitation Intensity'</span>)</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f'Flood Risk (Soil Moisture = </span><span class="sc">{</span>M_fixed<span class="sc">}</span><span class="ss">, Slope = </span><span class="sc">{</span>S_fixed<span class="sc">}</span><span class="ss">)'</span>)</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p><a href="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-10.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-10.jpg" class="img-fluid"></a></p>
+<p>To interpret the plot, observe how the flood risk values change as the Precipitation Intensity and Land Cover values vary. The plot shows how the flood risk is influenced by these two input variables while keeping the other two (Soil Moisture and Slope) fixed at specific values.</p>
+<p>The contour lines in the plot represent different levels of flood risk, with the color intensity indicating the flood risk level. Darker colors represent lower flood risk, and lighter colors represent higher flood risk.</p>
+<p>1.4 3D Plot</p>
+<p>The provided code generates a 3D surface plot of flood risk as a function of Precipitation Intensity and Land Cover, while fixing the values of Soil Moisture and Slope. Here’s a summary of what each part of the code does:</p>
+<ul>
+<li>Create a 3D plot figure: Initialize a new figure using <code>plt.figure()</code> and add a 3D subplot with the <code>projection='3d'</code> argument.</li>
+<li>Create the 3D surface plot: Use the <code>ax.plot_surface()</code> function to create a 3D surface plot for Precipitation Intensity (Y-axis) vs Land Cover (X-axis), with the flood risk as the Z-axis. The color map ‘viridis’ is used to represent the flood risk levels.</li>
+<li>Add colorbar, labels, and title: Add a colorbar to represent the flood risk values, label the axes, and add a title that includes the fixed values of Soil Moisture and Slope.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Python - 3D surface plot, precipitation vs land cover">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Python - 3D surface plot, precipitation vs land cover
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3D plot</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">'3d'</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the 3D surface plot for Precipitation vs Land Cover</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(L_values, P_values)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>surf <span class="op">=</span> ax.plot_surface(X, Y, flood_risk_matrix, cmap<span class="op">=</span><span class="st">'viridis'</span>, linewidth<span class="op">=</span><span class="dv">0</span>, antialiased<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>fig.colorbar(surf, shrink<span class="op">=</span><span class="fl">0.5</span>, aspect<span class="op">=</span><span class="dv">5</span>, label<span class="op">=</span><span class="st">'Flood Risk'</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Land Cover'</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Precipitation Intensity'</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>ax.set_zlabel(<span class="st">'Flood Risk'</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f'Flood Risk (Soil Moisture = </span><span class="sc">{</span>M_fixed<span class="sc">}</span><span class="ss">, Slope = </span><span class="sc">{</span>S_fixed<span class="sc">}</span><span class="ss">)'</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p><a href="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-11.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-11.jpg" class="img-fluid"></a></p>
+<p>To interpret the plot, observe how the flood risk values (Z-axis) change as the Precipitation Intensity and Land Cover values (X and Y axes) vary. The plot shows how the flood risk is influenced by these two input variables while keeping the other two (Soil Moisture and Slope) fixed at specific values. The color intensity on the surface indicates the flood risk level, with darker colors representing lower flood risk and lighter colors representing higher flood risk.</p>
+<p>The 3D surface plot provides a more detailed visualization of the relationship between flood risk, Precipitation Intensity, and Land Cover compared to the 2D contour plot. You can observe the shape of the surface to identify areas with high or low flood risk and better understand the interaction between the input variables.</p>
+<p>2 Minimizing Flood Risks under Maximum Precipitation</p>
+<p>This chapter emphasizes the focus on reducing flood risks under the most challenging conditions (maximum precipitation) while highlighting the three main variables (soil moisture, land cover, and slope) being examined in the analysis.</p>
+<p>Flood risk management is a critical aspect of urban planning and environmental protection. Understanding the factors that contribute to flood risks and identifying strategies to minimize these risks is essential for creating resilient communities. In this analysis, we explore the relationships between four key variables - precipitation intensity, soil moisture, land cover, and slope - to determine their influence on flood risk. <strong>Our goal is to identify the combinations of these variables that result in low flood risks, even under conditions of maximum precipitation.</strong></p>
+<p>Using a fuzzy logic-based simulation model, we examine the interactions between these variables and their impact on flood risk. The model incorporates expert knowledge and rule-based systems to predict flood risk levels based on various input scenarios. By analyzing the simulation results, we aim to provide insights into the conditions that can effectively mitigate flood risks, helping policymakers and urban planners make informed decisions for better flood management strategies.</p>
+<p>The analysis includes a scatterplot matrix visualization that highlights the relationships between soil moisture, land cover, and slope under maximum precipitation conditions. By interpreting this matrix, we can identify patterns and correlations between these variables that contribute to lower flood risks. These insights will help guide future efforts in designing urban areas and implementing flood management measures that are both effective and sustainable.</p>
+<p>The provided code performs a sensitivity analysis to minimize flood risks under maximum precipitation conditions. It evaluates flood risk categories based on all input variables, generates a dataset of data points with different combinations of soil moisture, land cover, and slope values, and finally creates a scatterplot matrix. Here’s a summary of what each part of the code does:</p>
+<ul>
+<li>Define the maximum precipitation intensity: Set the value of <code>max_precipitation</code> to 100, which is considered high precipitation intensity.</li>
+<li>Define the flood risk category function: Create a function <code>get_flood_risk_category()</code> that takes precipitation, soil moisture, land cover, and slope as input variables, and returns the flood risk category using the previously defined <code>categorize_flood_risk()</code> function.</li>
+<li>Generate data points for soil moisture, land cover, and slope: Create arrays of evenly spaced values for each of these input variables.</li>
+<li>Iterate through all combinations of soil moisture, land cover, and slope: For each combination, use the maximum precipitation value and the <code>get_flood_risk_category()</code> function to obtain the flood risk category. If the category is not <code>None</code>, append the combination to the <code>data_points</code> list.</li>
+<li>Create a DataFrame containing the data points: Convert the list of data points into a pandas DataFrame, which makes it easier to analyze and visualize the data.</li>
+<li>Create a scatterplot matrix: Use the seaborn library’s <code>pairplot()</code> function to create a scatterplot matrix of the data points, with flood risk categories represented by different colors.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Python - scatterplot matrix of the low-risk combinations">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Python - scatterplot matrix of the low-risk combinations
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Maximum value to be used to define as high precipitation intensity</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>max_precipitation <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the flood risk category based on all variables</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_flood_risk_category(precipitation, soil_moisture, land_cover, slope):</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    flood_risk_sim.<span class="bu">input</span>[<span class="st">'precipitation'</span>] <span class="op">=</span> precipitation</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    flood_risk_sim.<span class="bu">input</span>[<span class="st">'soil_moisture'</span>] <span class="op">=</span> soil_moisture</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    flood_risk_sim.<span class="bu">input</span>[<span class="st">'land_cover'</span>] <span class="op">=</span> land_cover</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    flood_risk_sim.<span class="bu">input</span>[<span class="st">'slope'</span>] <span class="op">=</span> slope</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        flood_risk_sim.compute()</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        flood_risk_value <span class="op">=</span> flood_risk_sim.output[<span class="st">'flood_risk'</span>]</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> categorize_flood_risk(flood_risk_value)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate data points for soil moisture, land cover, and slope</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>soil_moisture_values <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">100</span>, num<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>land_cover_values <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">100</span>, num<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>slope_values <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">90</span>, num<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>data_points <span class="op">=</span> []</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate through all combinations of soil moisture, land cover, and slope</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> soil_moisture <span class="kw">in</span> soil_moisture_values:</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> land_cover <span class="kw">in</span> land_cover_values:</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> slope <span class="kw">in</span> slope_values:</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>            category <span class="op">=</span> get_flood_risk_category(max_precipitation, soil_moisture, land_cover, slope)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> category <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>                data_points.append({</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Soil Moisture'</span>: soil_moisture,</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Land Cover'</span>: land_cover,</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Slope'</span>: slope,</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Flood Risk Category'</span>: category</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>                })</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DataFrame containing the data points</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame(data_points)</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatterplot matrix</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data, hue<span class="op">=</span><span class="st">'Flood Risk Category'</span>, markers<span class="op">=</span><span class="st">'o'</span>, diag_kind<span class="op">=</span><span class="st">'hist'</span>)</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p><a href="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-02.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-02.jpg" class="img-fluid"></a></p>
+<p>Here’s how to read the scatterplot matrix:</p>
+<ul>
+<li>The diagonal plots (from the top-left to the bottom-right) are bar plots showing the distribution of each variable. These plots give an idea of the frequency of different values for each variable when the flood risk is low under maximum precipitation conditions.</li>
+<li>The off-diagonal plots are scatter plots showing the relationships between pairs of variables. These plots help identify any patterns or correlations between the variables. The color of the dots indicates the flood risk category associated with each data point.</li>
+<li>In the off-diagonal plots, if you see that dots of a specific color (in this case, low flood risk) are clustered in a particular region, it indicates that certain combinations of variables are more likely to result in low flood risk conditions.</li>
+</ul>
+<p>To interpret the plots, consider the following:</p>
+<ul>
+<li>In the scatterplot between soil moisture and land cover, if there is a pattern or a specific region where low flood risk dots are clustered, it would suggest that there’s a relationship between these two variables that contributes to lower flood risks under maximum precipitation conditions.</li>
+<li>Similarly, in the scatterplot between soil moisture and slope, look for clusters or patterns of low flood risk dots to identify any relationships between these variables that contribute to lower flood risks.</li>
+<li>Finally, in the scatterplot between land cover and slope, examine the distribution of low flood risk dots to determine if there’s a connection between these variables that leads to lower flood risks.</li>
+</ul>
+<p>By analyzing these plots, we can gain insights into the relationships between soil moisture, land cover, and slope that contribute to low flood risks even under maximum precipitation conditions.</p>
+<p>3 Sensitivity Analysis</p>
+<p>After obtaining the flood risk assessment results from the Fuzzy Inference System (FIS), we can assess the quality of the model by comparing its predictions to observed data. To do this, we’ll need a dataset containing historical flood events along with the corresponding values of the input variables (Precipitation Intensity, Soil Moisture, Land Cover, and Slope).</p>
+<section id="what-if-observation-data-on-flood-events-never-exist" class="level3">
+<h3 class="anchored" data-anchor-id="what-if-observation-data-on-flood-events-never-exist">What if observation data on flood events never exist?</h3>
+<p>If we don’t have any observation data to compare the FIS model results, evaluating the model’s performance becomes more challenging. However, we can still follow some steps to ensure that your FIS model is reasonable and plausible:</p>
+<ul>
+<li>Expert knowledge: Consult with experts in the field of flood risk assessment to ensure that your fuzzy sets, membership functions, and fuzzy rules are realistic and based on sound principles. This can help us refine our FIS model even without actual observation data.</li>
+<li>Sensitivity analysis: Perform a sensitivity analysis to understand how the output flood risk varies with changes in input variables. By altering the input variables within their expected range and studying the corresponding changes in flood risk, we can gain insight into the behavior of the model and identify any unrealistic responses.</li>
+<li>Comparison with other models: If there are other flood risk assessment models available (either deterministic or statistical), compare your FIS model’s predictions with those from the other models. Although this is not a direct comparison with observed data, it can provide some indication of how your model’s performance compares to alternative approaches.</li>
+<li>Simulation data: If we have access to hydrological or hydraulic models that can simulate flood events, we can use the simulated data as a proxy for observed data. Although this approach has its limitations, as the simulated data may not perfectly represent real-world conditions, it can still provide valuable information for evaluating your FIS model.</li>
+<li>Temporal validation: If we have historical data for some of the input variables but not for the flood risk, we can still evaluate your FIS model by analyzing its performance over time. For instance, we can assess whether the model’s predictions of high flood risk align with periods of heavy rainfall, high soil moisture, or other conditions known to increase flood risk.</li>
+</ul>
+<p>Remember that without observed data, it is more challenging to assess the performance of your FIS model accurately. However, following the steps outlined above can help us gain some confidence in your model and identify areas for potential improvement.</p>
+</section>
+<section id="lets-try-sensitivity-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="lets-try-sensitivity-analysis">Let’s try Sensitivity Analysis</h3>
+<p>We’ll use the One-at-a-time (OAT) sensitivity analysis method to understand the effect of varying each input variable while keeping the others fixed. Assume that we have the FIS model already built and implemented in Python using the variables and fuzzy rules defined earlier.</p>
+<p>This code performs a sensitivity analysis to study the relationship between input variables (Precipitation, Soil Moisture, Land Cover, and Slope) and the output variable (Flood Risk) in a FIS. It evaluates the FIS model for different values of the input variables, keeping the other input variables at their median values.</p>
+<p>Here is a summary of the main steps in the code:</p>
+<ul>
+<li>Define the range and step size for each input variable.</li>
+<li>Calculate the flood risk for each input variable using the FIS model. The sensitivity_analysis function iterates over different values of each input variable while keeping the other input variables fixed at their median values.</li>
+<li>Categorize the flood risk levels (low, medium, high) based on the computed flood risk values.</li>
+<li>Plot the sensitivity analysis results, showing how flood risk varies with changes in the input variables.</li>
+</ul>
+<p>The plot consists of four subplots, one for each input variable, with flood risk on the y-axis and the input variable on the x-axis. The background of each plot is filled with colors corresponding to the flood risk categories (low, medium, and high). The data points are plotted with different markers (‘o’, ‘s’, ‘x’) based on the input variable’s categories (low, medium, and high).</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Python - sensitivity analysis">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Python - sensitivity analysis
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sensitivity Analysis</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the range and step size for each input variable</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>P_range <span class="op">=</span> np.arange(<span class="fl">0.1</span>, <span class="dv">101</span>, <span class="dv">10</span>)  <span class="co"># Precipitation Intensity: 0 to 100 mm/h, step size = 10 mm/h</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>M_range <span class="op">=</span> np.arange(<span class="fl">0.1</span>, <span class="dv">101</span>, <span class="dv">10</span>)  <span class="co"># Soil Moisture: 0 to 100%, step size = 10%</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>L_range <span class="op">=</span> np.arange(<span class="fl">0.1</span>, <span class="dv">101</span>, <span class="dv">10</span>)  <span class="co"># Land Cover: 0 to 100, step size = 10</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>S_range <span class="op">=</span> np.arange(<span class="fl">0.1</span>, <span class="dv">91</span>, <span class="dv">10</span>)   <span class="co"># Slope: 0 to 90 degrees, step size = 10 degrees</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the flood risk for each input variable</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sensitivity_analysis(input_ranges, fis_model):</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> evaluate(inputs):</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>            fis_model.<span class="bu">input</span>[<span class="st">'precipitation'</span>] <span class="op">=</span> inputs[<span class="st">'Precipitation'</span>]</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>            fis_model.<span class="bu">input</span>[<span class="st">'soil_moisture'</span>] <span class="op">=</span> inputs[<span class="st">'Soil Moisture'</span>]</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>            fis_model.<span class="bu">input</span>[<span class="st">'land_cover'</span>] <span class="op">=</span> inputs[<span class="st">'Land Cover'</span>]</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>            fis_model.<span class="bu">input</span>[<span class="st">'slope'</span>] <span class="op">=</span> inputs[<span class="st">'Slope'</span>]</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>            fis_model.compute()</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> fis_model.output[<span class="st">'flood_risk'</span>]</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> {}</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    fixed_values <span class="op">=</span> {key: np.median(value_range) <span class="cf">for</span> key, value_range <span class="kw">in</span> input_ranges.items()}</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> variable, value_range <span class="kw">in</span> input_ranges.items():</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>        varied_values <span class="op">=</span> []</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> value <span class="kw">in</span> value_range:</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>            inputs <span class="op">=</span> fixed_values.copy()</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>            inputs[variable] <span class="op">=</span> value</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>            risk <span class="op">=</span> evaluate(inputs)</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> risk <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>                varied_values.append(risk)</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>                varied_values.append(np.nan)</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>        results[variable] <span class="op">=</span> varied_values</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> results</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_flood_risk_levels(results):</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>    risk_levels <span class="op">=</span> {}</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> variable, varied_values <span class="kw">in</span> results.items():</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>        risk_levels[variable] <span class="op">=</span> [categorize_flood_risk(value) <span class="cf">for</span> value <span class="kw">in</span> varied_values]</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> risk_levels</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>flood_risk_upper_bound <span class="op">=</span> {<span class="st">'low'</span>: <span class="dv">34</span>, <span class="st">'medium'</span>: <span class="dv">67</span>, <span class="st">'high'</span>: <span class="dv">100</span>}  <span class="co"># Adjust these values according to your specific risk categorization</span></span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>input_ranges <span class="op">=</span> {<span class="st">"Precipitation"</span>: P_range, <span class="st">"Soil Moisture"</span>: M_range, <span class="st">"Land Cover"</span>: L_range, <span class="st">"Slope"</span>: S_range}</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>sensitivity_results <span class="op">=</span> sensitivity_analysis(input_ranges, flood_risk_sim)</span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>sensitivity_risk_levels <span class="op">=</span> get_flood_risk_levels(sensitivity_results)</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_sensitivity_analysis(results, risk_levels):</span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">2</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">10</span>))</span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>    risk_level_colors <span class="op">=</span> {<span class="st">'low'</span>: <span class="st">'green'</span>, <span class="st">'medium'</span>: <span class="st">'yellow'</span>, <span class="st">'high'</span>: <span class="st">'red'</span>}</span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>    variable_category_markers <span class="op">=</span> {</span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>        <span class="st">'low'</span>: <span class="st">'o'</span>,</span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>        <span class="st">'medium'</span>: <span class="st">'s'</span>,</span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>        <span class="st">'high'</span>: <span class="st">'x'</span>,</span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>    point_color <span class="op">=</span> <span class="st">'blue'</span></span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ax, (variable, varied_values) <span class="kw">in</span> <span class="bu">zip</span>(axes.flatten(), results.items()):</span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Fill the entire plot area with colors based on flood risk categories</span></span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a>        lower_bound <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> level, upper_bound <span class="kw">in</span> flood_risk_upper_bound.items():</span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>            ax.fill_between(input_ranges[variable], lower_bound, upper_bound,</span>
+<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a>                            facecolor<span class="op">=</span>risk_level_colors[level], alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a>            lower_bound <span class="op">=</span> upper_bound</span>
+<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Plot the data points with different markers based on their categories</span></span>
+<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> value, risk <span class="kw">in</span> <span class="bu">zip</span>(input_ranges[variable], varied_values):</span>
+<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> value <span class="op">&lt;=</span> <span class="dv">34</span>:</span>
+<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a>                category <span class="op">=</span> <span class="st">'low'</span></span>
+<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> value <span class="op">&lt;=</span> <span class="dv">67</span>:</span>
+<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a>                category <span class="op">=</span> <span class="st">'medium'</span></span>
+<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a>                category <span class="op">=</span> <span class="st">'high'</span></span>
+<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a>            marker <span class="op">=</span> variable_category_markers[category]</span>
+<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a>            ax.scatter(value, risk, marker<span class="op">=</span>marker, color<span class="op">=</span>point_color, label<span class="op">=</span>category)</span>
+<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a>        ax.set_xlabel(variable)</span>
+<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a>        ax.set_ylabel(<span class="st">"Flood Risk"</span>)</span>
+<span id="cb13-83"><a href="#cb13-83" aria-hidden="true" tabindex="-1"></a>        ax.set_title(<span class="ss">f'Sensitivity of Flood Risk to </span><span class="sc">{</span>variable<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create a single legend for data points with unique labels</span></span>
+<span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a>    handles, labels <span class="op">=</span> ax.get_legend_handles_labels()</span>
+<span id="cb13-87"><a href="#cb13-87" aria-hidden="true" tabindex="-1"></a>    unique_labels <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(labels, handles))</span>
+<span id="cb13-88"><a href="#cb13-88" aria-hidden="true" tabindex="-1"></a>    point_legend <span class="op">=</span> fig.legend(unique_labels.values(), unique_labels.keys(), loc<span class="op">=</span><span class="st">'lower center'</span>, bbox_to_anchor<span class="op">=</span>(<span class="fl">0.5</span>, <span class="fl">0.01</span>), ncol<span class="op">=</span><span class="dv">3</span>, title<span class="op">=</span><span class="st">'Risk Categories'</span>)</span>
+<span id="cb13-89"><a href="#cb13-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-90"><a href="#cb13-90" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create a legend for flood risk categories</span></span>
+<span id="cb13-91"><a href="#cb13-91" aria-hidden="true" tabindex="-1"></a>    risk_category_patches <span class="op">=</span> [mpatches.Patch(color<span class="op">=</span>color, label<span class="op">=</span>level, alpha<span class="op">=</span><span class="fl">0.5</span>) <span class="cf">for</span> level, color <span class="kw">in</span> risk_level_colors.items()]</span>
+<span id="cb13-92"><a href="#cb13-92" aria-hidden="true" tabindex="-1"></a>    risk_category_legend <span class="op">=</span> fig.legend(handles<span class="op">=</span>risk_category_patches, loc<span class="op">=</span><span class="st">'lower center'</span>, bbox_to_anchor<span class="op">=</span>(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.05</span>), ncol<span class="op">=</span><span class="dv">3</span>, title<span class="op">=</span><span class="st">'Flood Risk Categories'</span>)</span>
+<span id="cb13-93"><a href="#cb13-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-94"><a href="#cb13-94" aria-hidden="true" tabindex="-1"></a>    plt.subplots_adjust(left<span class="op">=</span><span class="fl">0.1</span>, right<span class="op">=</span><span class="fl">0.9</span>, top<span class="op">=</span><span class="fl">0.9</span>, bottom<span class="op">=</span><span class="fl">0.2</span>)  <span class="co"># Adjust the subplot parameters to reduce the blank space above the legend</span></span>
+<span id="cb13-95"><a href="#cb13-95" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb13-96"><a href="#cb13-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-97"><a href="#cb13-97" aria-hidden="true" tabindex="-1"></a>plot_sensitivity_analysis(sensitivity_results, sensitivity_risk_levels)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p><a href="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-03.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="../assets/image-blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment-03.jpg" class="img-fluid"></a></p>
+<p>To interpret the plot, observe how the flood risk changes as the input variable value increases or decreases. A steep slope in the plot indicates that the flood risk is highly sensitive to changes in the input variable. If the flood risk remains relatively constant despite changes in the input variable, it suggests that the flood risk is less sensitive to that input variable.</p>
+<p>To understand the meaning of the plot, consider that it represents how much the flood risk is affected by each input variable, given that other input variables are kept constant. By analyzing the plot, you can identify which input variables have a more significant impact on flood risk and prioritize interventions or mitigation strategies accordingly.</p>
+<p>4 Summary</p>
+<p>Flood risk assessment is a critical component of disaster management and urban planning. Accurate and reliable flood risk estimation helps authorities make informed decisions, prioritize resources, and implement effective mitigation strategies. With the increasing impacts of climate change and urbanization, there is a growing need for advanced techniques that can provide better insights into flood risk under varying conditions.</p>
+<p>Fuzzy Inference Systems (FIS) offer a robust and flexible approach to model complex relationships between multiple input variables and an output variable, such as flood risk. By incorporating expert knowledge and handling uncertainties, FIS models can capture the intricacies of real-world systems, providing more accurate and reliable estimates of flood risk compared to traditional methods.</p>
+<p>FIS models have gained popularity in the field of hydrological modeling and flood risk assessment due to their ability to handle imprecise and incomplete data, as well as their capability to incorporate human reasoning and intuition in the form of linguistic rules. This ability to integrate expert knowledge with quantitative data provides a valuable advantage, especially in situations where data availability is limited or uncertain.</p>
+<p>The utilization of FIS in flood risk assessment typically involves defining input variables that influence flood risk, such as precipitation intensity, soil moisture, land cover, and slope. These variables are then used to estimate the flood risk level, which can be categorized into different levels, such as low, medium, or high.</p>
+<p>To build an FIS model for flood risk assessment, the first step is to identify relevant input variables and their value domains. Next, fuzzy sets and membership functions are defined for each variable, followed by the formulation of fuzzy rules that describe the relationship between input variables and flood risk. These rules are derived from expert knowledge or empirical data and are used to determine the output flood risk level.</p>
+<p>One of the critical aspects of FIS models is their ability to handle uncertainties and vagueness in the input data. This is particularly important in the context of flood risk assessment, where data can be scarce or subject to significant measurement errors. By using fuzzy sets and membership functions, FIS models can accommodate these uncertainties, providing more reliable and robust estimates of flood risk.</p>
+<p>Sensitivity analysis is a valuable tool for evaluating the performance of FIS models in flood risk assessment. By varying input variables within their expected range and studying the corresponding changes in flood risk, modelers can gain insight into the behavior of the model and identify any unrealistic responses or potential areas for improvement.</p>
+<p>FIS models can be further enhanced by incorporating optimization techniques to identify the most critical factors contributing to flood risk. This can help decision-makers focus on specific areas or interventions that have the most significant impact on reducing flood risk and improving overall resilience.</p>
+<p>One of the challenges in applying FIS models for flood risk assessment is the lack of observed data for model validation. In such cases, the performance of the model can be evaluated using expert knowledge, sensitivity analysis, comparison with other models, or the use of simulated data from hydrological or hydraulic models.</p>
+<p>In conclusion, FIS provides a promising approach for flood risk assessment, offering a flexible and robust framework for modeling complex relationships and handling uncertainties. By incorporating expert knowledge and quantitative data, FIS models have the potential to significantly improve our understanding of flood risk and support more effective decision-making in disaster management and urban planning.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a>
+<nav class="post-nav" aria-label="Post navigation">
+  <a class="post-nav-prev no-external" href="./20230401-visualising-the-wrf-output" rel="prev"><span class="post-nav-label">Previous</span><span class="post-nav-title">Visualising the WRF output</span></a>
+  <a class="post-nav-next no-external" href="./20230525-impact-of-climate-change-in-cities" rel="next"><span class="post-nav-label">Next</span><span class="post-nav-title">Impact of climate change in cities</span></a>
+</nav>
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/benny\.istan\.to");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "bennyistanto/site";
+    script.dataset.repoId = "R_kgDORFc9aQ";
+    script.dataset.category = "Comments";
+    script.dataset.categoryId = "DIC_kwDORFc9ac4C-wbw";
+    script.dataset.mapping = "pathname";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026, Benny Istanto.</p>
+<p>Exploring Climate with GIS and Data Science, solving old problems in new ways. Turning earth observation data into actionable, life-saving insights.</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+<p><a href="../privacy">Privacy</a></p>
+<p><span class="footer-disclaimer">All content on this website does not represent the views of my (current or previous) employer.</span></p>
+<div class="toc-actions"><ul><li><a href="https://github.com/bennyistanto/site/blob/main/docs/blog/20230415-fuzzy-inference-system-fis-for-flood-risk-assessment.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/bennyistanto/site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/bennyistanto" aria-label="GitHub"><i class="bi bi-github"></i></a> <a href="https://linkedin.com/in/bennyistanto" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a> <a href="https://worldbank.github.io/GOST/content/staff/bennyistanto.html" aria-label="GOST"><i class="bi bi-globe"></i></a></p>
+<p><a href="https://buymeacoffee.com/bennyistanto">Buy Me a Coffee</a></p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

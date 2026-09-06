@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Benny Istanto">
+<meta name="dcterms.date" content="2023-02-10">
+<meta name="description" content="Installing the Weather Research and Forecasting (WRF) model under WSL2 on Windows, with the full steps kept in a Gist">
+
+<title>Install the WRF Model in WSL2</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/image-logo/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-79c7fc7016c250864588f87350540d1e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7b0e90f543d335420a83bd87cfdb0e21.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-79c7fc7016c250864588f87350540d1e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C23GE2LS52"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-C23GE2LS52', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6008428404539750" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="../styles/styles.css">
+<link rel="stylesheet" href="../styles/blog-post.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo light-content">
+    <img src="../assets/image-logo/bi-logo-full-light.png" alt="Benny Istanto Logo" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../csr"> 
+<span class="menu-text">CSR</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-blog" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Blog</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-blog">    
+        <li>
+    <a class="dropdown-item" href="../blog">
+ <span class="dropdown-text">All Posts</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../blog-archive">
+ <span class="dropdown-text">Archive by Year</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-works" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Works</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-works">    
+        <li>
+    <a class="dropdown-item" href="../works">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/experiences">
+ <span class="dropdown-text">Experiences</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/projects">
+ <span class="dropdown-text">Projects</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/consulting">
+ <span class="dropdown-text">Consulting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../works/maps-and-infographics">
+ <span class="dropdown-text">Maps &amp; Infographics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../cv"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Install the WRF Model in WSL2</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Remote Sensing</div>
+    <div class="quarto-category">Research</div>
+    <div class="quarto-category">Climate</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Installing the Weather Research and Forecasting (WRF) model under WSL2 on Windows, with the full steps kept in a Gist
+  </div>
+</div>
+
+
+<div class="quarto-title-meta column-page">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Benny Istanto </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 10, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This section will explain on how to install the Weather Research and Forecasting (<a href="https://www.mmm.ucar.edu/models/wrf">WRF</a>) Model inside Windows Subsystem for Linux (WSL) 2. This step-by-step guide was tested using Windows 11 with WSL2 - Debian 12 enabled running on ThinkStation P720.</p>
+<p>–<br> Benny Istanto, Climate Geographer<br> GOST/DECSC/DECDG, The World Bank<br></p>
+<section id="index" class="level2">
+<h2 class="anchored" data-anchor-id="index">Index</h2>
+<ul>
+<li><a href="#1-working-directory">1. Working Directory</a></li>
+<li><a href="#2-software-requirement">2. Software Requirement</a></li>
+<li><a href="#3-building-libraries">3. Building Libraries</a></li>
+<li><a href="#4-library-compatibility-test">4. Library Compatibility Test</a></li>
+<li><a href="#5-building-wrf">5. Building WRF</a></li>
+<li><a href="#6-building-wps">6. Building WPS</a></li>
+<li><a href="#7-static-geography-data">7. Static Geography Data</a></li>
+<li><a href="#8-real-time-data">8. Real-time Data</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</section>
+<section id="working-directory" class="level2">
+<h2 class="anchored" data-anchor-id="working-directory">1. Working Directory</h2>
+<p>When you start the WSL, you will be in the user’s home directory: <code>/home/&lt;username&gt;/</code>. If you are not sure, to jump from any directory back to home from within a WSL command, you can use the command: <code>cd ~</code></p>
+<p>For this tutorial, I am working on these folder <code>/home/bennyistanto/</code>.</p>
+<p>In the user’s home directory: Create a new, clean directory called <code>Build_WRF</code>, and another one called <code>TESTS</code></p>
+<pre><code>mkdir Build_WRF
+mkdir TESTS</code></pre>
+<p>Make sure you update the packages in WSL by execute below:</p>
+<pre><code>sudo apt-get update
+sudo apt-get install build-essential
+sudo apt-get upgrade</code></pre>
+</section>
+<section id="software-requirement" class="level2">
+<h2 class="anchored" data-anchor-id="software-requirement">2. Software Requirement</h2>
+<p>Before you can use your personal computers, it is necessary to ensure that all necessary programs and compilers are installed and that their functionality and compatibility have been confirmed through testing.</p>
+<section id="compiler" class="level3">
+<h3 class="anchored" data-anchor-id="compiler">2.1. Compiler</h3>
+<p>Before anything else, it is crucial to have <code>gfortran</code>, <code>gcc</code>, and <code>cpp</code> compilers on your system. To check if they are present, enter the following command:</p>
+<pre><code>which gfortran cpp gcc g++</code></pre>
+<p>If they are installed, you will receive information about the location of each compiler.</p>
+<p>If not, you need to install it before continue the rest.</p>
+<pre><code>sudo apt-get install gfortran cpp gcc g++</code></pre>
+<p>It is recommended to use a Fortran compiler that complies with the Fortran 2003 standard (version 4.6 or higher). To determine the version of gfortran installed, enter the following command:</p>
+<pre><code>gcc --version</code></pre>
+<p>Besides the compilers needed to create the WRF executables, the WRF build process uses scripts as the primary interface for users. For the WRF scripting system to function properly, it is essential to have the following installed: <code>csh</code>, <code>perl</code> and <code>sh</code>.</p>
+<p>To check if they are present, enter the following command:</p>
+<pre><code>which csh perl</code></pre>
+<p>For sh, it’s usually part of the default shell and should already be available. If it’s somehow missing or you encounter problems, it might be indicative of a larger issue with your shell environment.</p>
+<p>If they are installed, you will receive information about the location of each compiler.</p>
+<p>If not, you need to install it before continue the rest.</p>
+<pre><code>sudo apt-get install csh perl -y</code></pre>
+<p>This command will install both <code>csh</code> and <code>perl</code> at the same time, making the process more efficient. The <code>-y</code> flag automatically answers “yes” to any prompts during the installation process, ensuring that the installation proceeds without requiring interactive input.</p>
+</section>
+<section id="compiler-test" class="level3">
+<h3 class="anchored" data-anchor-id="compiler-test">2.2. Compiler Test</h3>
+<p>There are some straightforward tests that can be performed to ensure that the Fortran compiler has been properly constructed and is compatible with the C compiler.</p>
+<ul>
+<li><p>Navigate to <code>TESTS</code> directory</p>
+<pre><code>cd TESTS</code></pre></li>
+<li><p>Download and extract the test file.</p>
+<pre><code>wget https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/Fortran_C_tests.tar
+tar -xf Fortran_C_tests.tar</code></pre></li>
+<li><p>Download file <a href="https://gist.github.com/bennyistanto/fb5dcfb1f9d9b3b8745e199523368a62#file-fortran-c-test-sh"><code>fortran-c-test.sh</code></a> and put inside <code>TESTS</code> directory, and execute it.</p>
+<pre><code>sh fortran-c-test.sh</code></pre>
+<p>There should be seven tests that should all display a SUCCESS message. If so, then everything is in good shape and you can proceed to building the required libraries.</p></li>
+<li><p>Or you can try to execute the test one-by-one:</p>
+<p>Test #1: Fixed Format Fortran Test</p>
+<pre><code>gfortran TEST_1_fortran_only_fixed.f
+./a.out</code></pre>
+<p>Test #2: Free Format Fortran</p>
+<pre><code>gfortran TEST_2_fortran_only_free.f90
+./a.out</code></pre>
+<p>Test #3: C: TEST_3_c_only.c</p>
+<pre><code>gcc TEST_3_c_only.c
+./a.out</code></pre>
+<p>Test #4: Fortran Calling a C Function</p>
+<pre><code>gcc -c -m64 TEST_4_fortran+c_c.c
+gfortran -c -m64 TEST_4_fortran+c_f.f90
+gfortran -m64 TEST_4_fortran+c_f.o TEST_4_fortran+c_c.o
+./a.out</code></pre>
+<p>Test #5: csh</p>
+<pre><code>./TEST_csh.csh</code></pre>
+<p>Test #6: perl</p>
+<pre><code>./TEST_perl.pl</code></pre>
+<p>Test #7: sh</p>
+<pre><code>./TEST_sh.sh</code></pre>
+<p>The following should print out to the screen for each test:</p>
+<p>Test1:</p>
+<pre><code>SUCCESS test 1 fortran only fixed format</code></pre>
+<p>Test2:</p>
+<pre><code>Assume Fortran 2003: has FLUSH, ALLOCATABLE, derived type, and ISO C Binding
+SUCCESS test 2 fortran only free format</code></pre>
+<p>Test3:</p>
+<pre><code>SUCCESS test 3 c only</code></pre>
+<p>Test4:</p>
+<pre><code>C function called by Fortran
+Values are xx = 2.00 and ii = 1
+SUCCESS test 4 fortran calling c</code></pre>
+<p>Test5:</p>
+<pre><code>SUCCESS csh test</code></pre>
+<p>Test6:</p>
+<pre><code>SUCCESS perl test</code></pre>
+<p>Test7:</p>
+<pre><code>SUCCESS sh test</code></pre></li>
+<li><p>After passing the test, back to the working directory.</p>
+<pre><code>cd ..</code></pre></li>
+</ul>
+</section>
+<section id="other-packages" class="level3">
+<h3 class="anchored" data-anchor-id="other-packages">2.3. Other packages</h3>
+<p>We need to install <code>json-c</code> and <code>valgrind</code> which will required during MPICH test. Here’s how you can install the latest available versions of JSON-C - <a href="https://json-c.github.io/json-c/json-c-current-release/doc/html/index.html" class="uri">https://json-c.github.io/json-c/json-c-current-release/doc/html/index.html</a> and Valgrind - <a href="https://valgrind.org/" class="uri">https://valgrind.org/</a> in WSL2 Debian 12:</p>
+<ul>
+<li><p>Update your package list:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get update</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Install JSON-C:</p>
+<p>You can install the latest version available in the Debian repository using:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install libjson-c-dev</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Install Valgrind:</p>
+<p>Install Valgrind using:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install valgrind</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+</section>
+<section id="conda" class="level3">
+<h3 class="anchored" data-anchor-id="conda">2.4. Conda</h3>
+<p><strong>OPTIONAL</strong> Conda will use later after successfully run the WRF model and would like to utilizing the WRF output. If you just need to install the WRF, you can skip Conda installation.</p>
+<p>Skip this step if you already have <a href="https://www.anaconda.com/products/individual">Anaconda</a> or <a href="https://docs.conda.io/projects/conda/en/stable/#">Miniconda</a> inside your WSL. This case I will use Anaconda instead of Miniconda.</p>
+<ul>
+<li><p>Go to <a href="https://repo.anaconda.com/archive/">https://repo.anaconda.com/archive/</a> to find the list of Anaconda releases</p></li>
+<li><p>Select the release you want. I have a 64-bit computer, so I chose the latest release ending in <code>x86_64.sh</code>. If I had a 32-bit computer, I’d select the <code>x86.sh</code> version. If you accidentally try to install the wrong one, you’ll get a warning in the terminal. I chose <code>Anaconda3-2023.09-0-Linux-x86_64.sh</code>.</p></li>
+<li><p>From the terminal run <code>wget https://repo.anaconda.com/archive/[YOUR VERSION]</code>. Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>After download process completed, Run the installation script: <code>bash Anaconda[YOUR VERSION].sh</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> Anaconda3-2023.09-0-Linux-x86_64.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Read the license agreement and follow the prompts to press Return/Enter to accept. Later will follow with question on accept the license terms, type <code>yes</code> and Enter. When asks you if you’d like the installer to prepend it to the path, press Return/Enter to confirm the location. Last question will be about initialize Anaconda3, type <code>yes</code> then Enter.</p></li>
+<li><p>Close the terminal and reopen it to reload .bash configs. It will automatically activate <code>base</code> environment.</p></li>
+<li><p>Deactivate <code>base</code> environment then set to <code>false</code> the confirguration of auto activate the <code>base</code> environment by typing</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> deactivate <span class="kw">&amp;&amp;</span> <span class="ex">conda</span> config <span class="at">--set</span> auto_activate_base false</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>To test that it worked, <code>which python</code> in your Terminal. It should print a path that has anaconda in it. Mine is <code>/home/bennyistanto/anaconda3/bin/python</code>. If it doesn’t have anaconda in the path, do the next step.</p></li>
+<li><p>Manually add the Anaconda bin folder to your PATH. To do this, I added <code>"export PATH=/home/bennyistanto/anaconda3/bin:$PATH"</code> to the bottom of my <code>~/.zshrc</code> file.</p></li>
+</ul>
+</section>
+</section>
+<section id="building-libraries" class="level2">
+<h2 class="anchored" data-anchor-id="building-libraries">3. Building Libraries</h2>
+<p>Before getting started, it is necessary to create another directory. First, navigate to the <code>Build_WRF</code> directory by entering the following command:</p>
+<pre><code>cd Build_WRF</code></pre>
+<p>Then, create a directory called <code>LIBRARIES</code> using the following command:</p>
+<pre><code>mkdir LIBRARIES
+cd LIBRARIES</code></pre>
+<p>The required libraries for your desired run may vary. But the essential libraries are below.</p>
+<ol type="1">
+<li><strong>MPICH</strong>, this library is required if you plan to run WRF in parallel mode on a machine with multiple processors. If your machine only has one processor or if you don’t need to run WRF with multiple processors, you can skip the MPICH installation. Although any implementation of the MPI-2 standard should work with WRF, we have the most experience with MPICH, so that is the implementation that will be described. <a href="https://www.mpich.org/" class="uri">https://www.mpich.org/</a></li>
+<li><strong>zlib</strong>, is a general-purpose, lossless data-compression library that is used by many software programs. Installing it first after the MPI compiler ensures that any other libraries or applications requiring compression capabilities can utilize it. <a href="https://www.zlib.net/" class="uri">https://www.zlib.net/</a></li>
+<li><strong>libpng</strong>, is the official PNG reference library. It’s used for handling PNG images, potentially useful in visualizing data outputs from simulations if your configuration of WRF includes such capabilities. <a href="http://www.libpng.org/pub/png/libpng.html" class="uri">http://www.libpng.org/pub/png/libpng.html</a></li>
+<li><strong>Jasper</strong>, is a software library for image coding and compression using the JPEG 2000 standard. It’s important for WRF if our data inputs or outputs include JPEG 2000 formats, which might be used in data assimilation or visualization. <a href="https://www.ece.uvic.ca/~frodo/jasper/" class="uri">https://www.ece.uvic.ca/~frodo/jasper/</a></li>
+<li><strong>HDF5</strong>, this library required by NetCDF, is used for storing complex data arrays and is extensively used in scientific computing. HDF5 can utilize MPI for managing data in a parallel computing environment, which is why it’s beneficial to install MPICH before HDF5. <a href="https://www.hdfgroup.org/solutions/hdf5/" class="uri">https://www.hdfgroup.org/solutions/hdf5/</a></li>
+<li><strong>NetCDF</strong>, it consist of <code>netcdf-c</code> <a href="https://github.com/Unidata/netcdf-c/releases/tag/v4.8.1" class="uri">https://github.com/Unidata/netcdf-c/releases/tag/v4.8.1</a> and <code>netcdf-fortran</code> <a href="https://github.com/Unidata/netcdf-fortran/releases/tag/v4.5.4" class="uri">https://github.com/Unidata/netcdf-fortran/releases/tag/v4.5.4</a>, both library is always necessary and essential for WRF as it is used for the creation, access, and sharing of array-oriented scientific data. This format is central to WRF data input and output. Installing NetCDF-C before NetCDF-Fortran is necessary because the Fortran interface depends on the C library.</li>
+</ol>
+<p>Next we need to start downloading the libraries</p>
+<ul>
+<li><p>Download file <a href="https://gist.github.com/bennyistanto/fb5dcfb1f9d9b3b8745e199523368a62#file-library-download-sh"><code>library-download.sh</code></a>, and execute it.</p>
+<pre><code>sh library-download.sh</code></pre>
+<p>Or you can download it one-by-one using below:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://github.com/pmodels/mpich/releases/download/v3.4.3/mpich-3.4.3.tar.gz</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/zlib-1.2.11.tar.gz</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/libpng-1.2.50.tar.gz</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/jasper-1.900.1.tar.gz</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://docs.hdfgroup.org/archive/support/ftp/HDF5/releases/hdf5-1.12/hdf5-1.12.0/src/hdf5-1.12.0.tar.gz</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://github.com/Unidata/netcdf-c/archive/refs/tags/v4.8.1.tar.gz <span class="at">-O</span> netcdf-c-4.8.1.tar.gz</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://github.com/Unidata/netcdf-fortran/archive/refs/tags/v4.5.4.tar.gz <span class="at">-O</span> netcdf-fortran-4.5.4.tar.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Inside the folder you will find seven libraries: <code>mpich</code>, <code>zlib</code>, <code>libpng</code>, <code>jasper</code>, <code>hdf5</code>, <code>netcdf-c</code> and <code>netcdf-fortran</code>.</p></li>
+<li><p>For WRF, especially if you’re planning to use parallel processing capabilities, it is essential that libraries which directly support parallel I/O operations (like HDF5, NetCDF-C, and NetCDF-Fortran) are compiled with a parallel-aware compiler such as MPICH. Here’s a detailed breakdown:</p>
+<p><strong>Library Installation Order and Compiler Choices:</strong><br></p>
+<ol type="1">
+<li><strong>MPICH</strong>: This should definitely be installed first, as it provides the necessary MPI libraries and compilers (like mpicc and mpif90) that are needed for parallel computing support in other libraries.</li>
+<li><strong>Zlib</strong>: This library is used for compression and is a dependency for HDF5 and NetCDF. Zlib does not directly benefit from parallelization, so you can compile it with GCC or any standard C compiler.</li>
+<li><strong>Libpng</strong>: This is used for handling PNG files and is also a dependency for Jasper. Like Zlib, it does not require parallelization capabilities, so a standard compiler can be used here.</li>
+<li><strong>Jasper</strong>: Jasper is a library for handling JPEG2000 files, often used in conjunction with weather data formats. It also does not require MPI for its functionalities, so a standard C compiler is sufficient.</li>
+<li><strong>HDF5</strong>: This is critical to compile with MPICH if you want to enable parallel I/O capabilities, which are essential for handling large datasets efficiently in a parallel computing environment like WRF.</li>
+<li><strong>NetCDF-C</strong>: Since NetCDF builds on top of HDF5 for data access, it should also be compiled with MPICH to support parallel operations, especially for large data sets used in high-resolution models.</li>
+<li><strong>NetCDF-Fortran</strong>: This provides a Fortran interface to the NetCDF-C libraries and should be compiled with MPICH for consistency and to enable parallel data handling in Fortran-based applications like WRF.</li>
+</ol></li>
+<li><p>Before installing the libraries, some paths must be set:</p>
+<p>Download file <a href="https://gist.github.com/bennyistanto/fb5dcfb1f9d9b3b8745e199523368a62#file-set-env-sh"><code>set-env.sh</code></a>, and execute it.</p>
+<pre><code>sh set-env.sh</code></pre>
+<p>To make sure all paths are correctly set, check file <code>.zshrc</code> in user’s home directory using <code>nano</code>.</p>
+<pre><code>nano ~/.zshrc</code></pre>
+<p>Make sure all text written in script <code>set-env.sh</code> is there, usually at the bottom. If the list is there, you can close the <code>nano</code> window by pressing <code>ctrl</code> + <code>X</code>.</p>
+<p>If the above-mentioned path list is not there, you can manually add it. Don’t forget to adjust the user’s home directory folder with yours.</p>
+<pre><code># WRF Configuration Setting
+# Compilers
+export CC=/usr/bin/gcc
+export CXX=/usr/bin/g++
+export FC=/usr/bin/gfortran
+export FCFLAGS="-m64"
+export F77=/usr/bin/gfortran
+export FFLAGS="-m64"
+# Directory
+export DIR=/home/bennyistanto/Build_WRF/LIBRARIES
+export WRF_DIR=/home/bennyistanto/Build_WRF/WRF
+export MPICH=$DIR/mpich
+export NETCDF=$DIR/netcdf
+export JASPERLIB=$DIR/grib2/lib
+export JASPERINC=$DIR/grib2/include
+export PATH=$DIR/grib2/bin:$MPICH/bin:$NETCDF/bin:$PATH
+# Libraries
+export LD_LIBRARY_PATH=$DIR/grib2/lib:$LD_LIBRARY_PATH
+export LDFLAGS="-L$DIR/grib2/lib"
+export CPPFLAGS="-I$DIR/grib2/include"</code></pre>
+<p>When you are done making your changes, press <code>ctrl</code> + <code>O</code> and hit <code>ENTER</code> to save the changes. Close <code>nano</code> by press <code>ctrl</code> + <code>X</code></p>
+<blockquote class="blockquote">
+<p><strong>Notes:</strong><br> Above WRF environment setting, especially after “# Libraries” are works for <code>mpich</code>, <code>zlib</code>, <code>libpng</code>, <code>jasper</code>, <code>hdf5</code>, <code>netcdf-c</code>. Then you will modify those part before installing the <code>netcdf-fortran</code>. If you would like to re-install one of the first 6 libraries, don’t forget to change back the environment setting, especially after “# Libraries” to the original setting.</p>
+</blockquote></li>
+<li><p>To see whats available configuration on each libraries, we can enter into each libraries folder, and execute below script:</p>
+<p>Example to check the configuration setting that available in <code>mpich</code></p>
+<pre><code>tar xzvf mpich-3.4.3.tar.gz
+cd mpich-3.4.3
+./configure --help</code></pre>
+<p>The choice of configuration on each libraries are very subjective, we can explore it, try-and-error, implement depend on our need.</p></li>
+<li><p>It is important to ensure that these libraries are installed using the same compilers that will be used for the WRF and WPS installations.</p>
+<p>Download file <a href="https://gist.github.com/bennyistanto/fb5dcfb1f9d9b3b8745e199523368a62#file-library-build-sh"><code>library-build.sh</code></a>, and execute it.</p>
+<pre><code>sh library-build.sh</code></pre></li>
+<li><p>Or we can install the library one-by-one using the following order, so it will much easier to track if there is an error on each package:</p>
+<ul>
+<li><p><code>mpich</code>, details on installation and configuration are available at <a href="https://github.com/pmodels/mpich" class="uri">https://github.com/pmodels/mpich</a></p>
+<pre><code># Untar the mpich library
+tar xzvf mpich-3.4.3.tar.gz
+# Entering the directory
+cd mpich-3.4.3
+# Configuration and install
+export FFLAGS=-fallow-argument-mismatch
+./configure --prefix=$DIR/mpich --with-device=ch3:nemesis --enable-fast=all,O3 --disable-float --enable-threads=multiple
+make check
+make install
+# Set mpich path
+export PATH=$DIR/mpich/bin:$PATH
+# Back to LIBRARIES folder
+cd ..</code></pre></li>
+<li><p>Build <code>zlib</code> like below, details on installation and configuration are available at <a href="https://www.zlib.net/zlib_faq.html#faq14" class="uri">https://www.zlib.net/zlib_faq.html#faq14</a></p>
+<pre><code># Untar the zlib library
+tar xzvf zlib-1.2.11.tar.gz
+# Entering the directory
+cd zlib-1.2.11
+# Configuration and install
+./configure --prefix=$DIR/grib2
+make check 
+make install
+# Back to LIBRARIES folder
+cd ..</code></pre></li>
+<li><p><code>libpng</code>, details on installation and configuration are available at <a href="https://github.com/pnggroup/libpng/blob/libpng16/INSTALL" class="uri">https://github.com/pnggroup/libpng/blob/libpng16/INSTALL</a></p>
+<pre><code># Untar the libpng library
+tar xzvf libpng-1.2.50.tar.gz
+# Entering the directory
+cd libpng-1.2.50
+# Configuration and install
+./configure --prefix=$DIR/grib2
+make check 
+make install
+# Back to LIBRARIES folder
+cd ..</code></pre></li>
+<li><p><code>jasper</code>, details on installation and configuration are available at <a href="https://github.com/jasper-software/jasper/blob/master/INSTALL.txt" class="uri">https://github.com/jasper-software/jasper/blob/master/INSTALL.txt</a></p>
+<pre><code># Untar the jasper library
+tar xzvf jasper-1.900.1.tar.gz
+# Entering the directory
+cd jasper-1.900.1
+# Configuration and install
+./configure --prefix=$DIR/grib2
+make check
+make install
+# Back to LIBRARIES folder
+cd ..</code></pre></li>
+<li><p>Then you build <code>hdf5</code>, specifying the location of the zlib library. Details on compiling steps are available at [here] (<a href="https://docs.hdfgroup.org/hdf5/develop/_l_b_compiling.html" class="uri">https://docs.hdfgroup.org/hdf5/develop/_l_b_compiling.html</a>)</p>
+<pre><code># Untar the hdf5 library
+tar xzvf hdf5-1.12.0.tar.gz
+# Entering the directory
+cd hdf5-1.12.0
+# Configuration and install
+./configure --prefix=$DIR/grib2 --with-zlib=$DIR/grib2 --enable-hl --enable-fortran
+make check 
+make install
+# Back to LIBRARIES folder
+cd ..</code></pre>
+<p>Make sure you run <code>make check</code> after the configure process. If you get FAIL, then you can adjust the <code>configure</code> script by add/remove/modify the Optional Features. Check the option list using <code>./configure --help</code>.</p>
+<p>They are very well-behaved distributions, but sometimes the build doesn’t work (perhaps because of something subtly misconfigured on the target machine). If one of these libraries is not working, netCDF will have serious problems.</p>
+<p>For parallel I/O: The configure script sets CFLAGS appropriately for standard compilers, but if you are building with parallel I/O using wrappers such as <code>mpicc</code>, <code>mpif90</code>, and <code>mpif77</code>, specify compilers using the CC, FC, and F77 variables before configure.</p>
+<p>You can change the configuration line above with below line.</p>
+<pre><code>CC=mpicc FC=mpif90 F77=mpif77 CXX=mpicxx ./configure --prefix=$DIR/grib2 --with-zlib=$DIR/grib2 --enable-hl --enable-fortran --enable-parallel</code></pre>
+<p><strong>Notes</strong>:<br> <strong>Compiler Environment Variables</strong>: Specifying <code>CC=mpicc FC=mpif90 F77=mpif77</code> is correct for setting the C, Fortran 90, and Fortran 77 compilers to the MPICH wrappers. This will ensure that HDF5 is compiled with MPI support.</p>
+<p><strong><code>--prefix=$DIR/grib2</code></strong>: This setting is supposed to define where HDF5 will be installed. Ensure that <code>$DIR</code> is correctly defined in your environment and that <code>/grib2</code> is the intended directory for HDF5. If you’re installing HDF5 and not specifically related to GRIB2 data handling, consider a more descriptive directory, like <code>$DIR/hdf5</code>.</p>
+<p><strong><code>--with-zlib=$DIR/grib2</code></strong>: This specifies where the configure script should look for the zlib library.</p>
+<p><strong>Flags</strong>:</p>
+<ul>
+<li><code>--enable-hl</code>: This enables the high-level API, which is generally recommended.<br></li>
+<li><code>--enable-fortran</code>: Necessary if you plan to use HDF5 from Fortran applications.<br></li>
+<li><code>--enable-parallel</code>: This is crucial for enabling parallel I/O capabilities in HDF5 using MPI.<br></li>
+</ul>
+<p>Other option also available, please check using <code>./configure --help</code></p></li>
+<li><p><code>netcdf-c</code>, details on installation and configuration are available at <a href="https://github.com/Unidata/netcdf-c/blob/main/INSTALL.md" class="uri">https://github.com/Unidata/netcdf-c/blob/main/INSTALL.md</a></p>
+<pre><code># Untar the netcdf library
+tar xzvf netcdf-c-4.8.1.tar.gz
+# Entering the directory
+cd netcdf-c-4.8.1
+# Configuration and install
+CPPFLAGS=-I$DIR/grib2/include LDFLAGS=-L$DIR/grib2/lib ./configure --prefix=$DIR/netcdf --with-hdf5=$DIR/grib2 --disable-dap --enable-netcdf-4 --enable-netcdf4 --enable-shared --enable-static --enable-large-file-tests --enable-parallel-tests --enable-hdf5 --enable-nczarr
+make check
+make install
+# Registering library
+libtool --finish $DIR/netcdf/lib
+# Back to LIBRARIES folder
+cd ..</code></pre>
+<p>For parallel I/O: The configure script sets CFLAGS appropriately for standard compilers, but if you are building with parallel I/O using wrappers such as <code>mpicc</code>, <code>mpif90</code>, and <code>mpif77</code>, specify compilers using the CC, FC, and F77 variables before configure.</p>
+<p>You can change the configuration line above with below line.</p>
+<pre><code>CC=mpicc FC=mpif90 F77=mpif77 CXX=mpicxx CPPFLAGS=-I$DIR/grib2/include LDFLAGS=-L$DIR/grib2/lib ./configure --prefix=$DIR/netcdf --with-hdf5=$DIR/grib2 --disable-dap --enable-netcdf-4 --enable-netcdf4 --enable-shared --enable-static --enable-large-file-tests --enable-parallel-tests --enable-hdf5 --enable-nczarr</code></pre>
+<blockquote class="blockquote">
+<p>Before continuing with <code>netcdf-fortran</code> installation, you need to update the <code>.zshrc</code>, so the <code>CPPFLAGS</code>, <code>LDFLAGS</code> and <code>LD_LIBRARY_PATH</code> are recognized the <code>netcdf-c</code> library that has been installed in previous step. Download file <a href="https://gist.github.com/bennyistanto/fb5dcfb1f9d9b3b8745e199523368a62#file-update-zshrc-sh"><code>update_zshrc.sh</code></a> and put inside <code>LIBRARIES</code> directory, and execute it.</p>
+<pre><code>sh update_zshrc.sh</code></pre>
+<p>Details on above script is below.</p>
+<pre><code>#!/bin/bash
+
+# Path to your .zshrc file
+ZSHRC="$HOME/.zshrc"
+
+# Backup original .zshrc file before making changes
+cp "$ZSHRC" "$ZSHRC.backup"
+
+# Update environment variables for netcdf-fortran installation
+sed -i 's|export CPPFLAGS="-I$DIR/grib2/include"|export CPPFLAGS="-I$DIR/netcdf/include -I$DIR/grib2/include"|' "$ZSHRC"
+sed -i 's|export LDFLAGS="-L$DIR/grib2/lib"|export LDFLAGS="-L$DIR/netcdf/lib -L$DIR/grib2/lib"|' "$ZSHRC"
+sed -i 's|export LD_LIBRARY_PATH=$DIR/grib2/lib:$LD_LIBRARY_PATH|export LD_LIBRARY_PATH=$DIR/netcdf/lib:$DIR/grib2/lib:$LD_LIBRARY_PATH|' "$ZSHRC"
+
+# Add LIBS="-lnetcdf -lz -lhdf5_hl -lhdf5 -lm" if not already present
+if ! grep -q 'export LIBS="-lnetcdf -lz -lhdf5_hl -lhdf5 -lm"' "$ZSHRC"; then
+ echo 'export LIBS="-lnetcdf -lz -lhdf5_hl -lhdf5 -lm"' &gt;&gt; "$ZSHRC"
+fi
+
+echo "Updated .zshrc for netcdf-fortran installation. Original .zshrc backed up to $ZSHRC.backup"</code></pre>
+<p>Or you can manually update the <code>.zshrc</code> file. Replace lines below.</p>
+<pre><code># Libraries
+export LD_LIBRARY_PATH=$DIR/grib2/lib:$LD_LIBRARY_PATH
+export LDFLAGS="-L$DIR/grib2/lib"
+export CPPFLAGS="-I$DIR/grib2/include"</code></pre>
+<p>With below lines.</p>
+<pre><code># Libraries
+export CPPFLAGS="-I$DIR/netcdf/include -I$DIR/grib2/include"
+export LDFLAGS="-L$DIR/netcdf/lib -L$DIR/grib2/lib"
+export LD_LIBRARY_PATH=$DIR/netcdf/lib:$DIR/grib2/lib:$LD_LIBRARY_PATH
+export LIBS="-lnetcdf -lz -lhdf5_hl -lhdf5 -lm"</code></pre>
+</blockquote></li>
+<li><p><code>netcdf-fortran</code></p>
+<pre><code># Untar the netcdf-fortran library
+tar xzvf netcdf-fortran-4.5.4.tar.gz
+# Entering the directory
+cd netcdf-fortran-4.5.4
+# Configuration and install
+CPPFLAGS="-I$DIR/netcdf/include -I$DIR/grib2/include" LDFLAGS="-L$DIR/netcdf/lib -L$DIR/grib2/lib" ./configure --prefix=$DIR/netcdf --enable-shared --enable-static --enable-large-file-tests --disable-fortran-type-check
+make check
+make install
+# Back to LIBRARIES folder
+cd ..</code></pre>
+<p>If in previous <code>netcdf-c</code> installation, you are using <code>mpich</code> compiler to enable parallelization, then you need to do the same for the <code>netcdf-fortran</code>. You can change the configuration line above with below line.</p>
+<pre><code>CC=mpicc FC=mpif90 F77=mpif77 CXX=mpicxx CPPFLAGS="-I$DIR/netcdf/include -I$DIR/grib2/include" LDFLAGS="-L$DIR/netcdf/lib -L$DIR/grib2/lib" ./configure --prefix=$DIR/netcdf --enable-shared --enable-static --enable-large-file-tests --disable-fortran-type-check</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/image-blog/20230210-install-the-wrf-model-in-wsl2-01.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="NetCDF Fortran successfully installed"><img src="../assets/image-blog/20230210-install-the-wrf-model-in-wsl2-01.png" class="img-fluid figure-img" alt="NetCDF Fortran successfully installed"></a></p>
+<figcaption>NetCDF Fortran successfully installed</figcaption>
+</figure>
+</div></li>
+</ul>
+<p>In all cases, the installation location specified with the <code>--prefix</code> option must be different from the source directory where the software is being built.</p>
+<p>Note that for shared libraries, you may need to add the install directory to the <code>LD_LIBRARY_PATH</code> environment variable.</p></li>
+</ul>
+</section>
+<section id="library-compatibility-test" class="level2">
+<h2 class="anchored" data-anchor-id="library-compatibility-test">4. Library Compatibility Test</h2>
+<p>After the system environment tests have confirmed that the target machine can build small Fortran and C executables and the NetCDF and MPI libraries have been constructed (as described in the Building Libraries section), two additional tests are necessary to mimic the behavior of the WRF code. These tests are needed to confirm that the libraries are compatible with the compilers that will be used for the WPS and WRF builds.</p>
+<ul>
+<li><p>Navigate to <code>TESTS</code> directory</p>
+<pre><code>cd ~/TESTS</code></pre></li>
+<li><p>Download and extract the test file.</p>
+<pre><code>wget https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/Fortran_C_NETCDF_MPI_tests.tar
+tar -xf Fortran_C_NETCDF_MPI_tests.tar</code></pre></li>
+<li><p>Download file <a href="https://gist.github.com/bennyistanto/fb5dcfb1f9d9b3b8745e199523368a62#file-fortran-lib-test-sh"><code>fortran-lib-test.sh</code></a> and put inside <code>TESTS</code> directory, and execute it.</p>
+<pre><code>sh fortran-lib-test.sh</code></pre>
+<p>There should be two tests that should all display a SUCCESS message. If so, then everything is in good shape and you can proceed to building the WRF.</p>
+<p>The following should print out to the screen for each test:</p>
+<p>Test1:</p>
+<pre><code>C function called by Fortran
+Values are xx = 2.00 and ii = 1
+SUCCESS test 1 fortran + c + netcdf</code></pre>
+<p>Test2:</p>
+<pre><code>C function called by Fortran
+Values are xx = 2.00 and ii = 1
+status = 2
+SUCCESS test 2 fortran + c + netcdf + mpi</code></pre></li>
+<li><p>After passing the test, back to the working directory.</p>
+<pre><code>cd ~/Build_WRF</code></pre></li>
+</ul>
+</section>
+<section id="building-wrf" class="level2">
+<h2 class="anchored" data-anchor-id="building-wrf">5. Building WRF</h2>
+<p>Once you have confirmed that all libraries are compatible with the compilers, you can proceed to build WRF. The source code for WRF can be obtained from the WRF’s <a href="https://github.com/wrf-model/">Github</a> repo.</p>
+<ul>
+<li><p>To obtain the source code, execute below code:</p>
+<pre><code>git clone https://github.com/wrf-model/WRF</code></pre>
+<p>Inside folder <code>Build_WRF</code>, you will have a folder <code>WRF</code> which contain the source code.</p></li>
+<li><p>Once you obtain the WRF source code, go into the WRF directory:</p>
+<pre><code>cd WRF</code></pre></li>
+<li><p>Create a configuration file for your computer and compiler:</p>
+<pre><code>./configure</code></pre>
+<p>You will encounter different options. Select the option that corresponds to the compiler you are using and the desired method of building WRF (e.g.&nbsp;serial or parallel). There are 3 parallel options (smpar, dmpar, and dm+sm), but dmpar is the most commonly used and recommended choice.</p>
+<blockquote class="blockquote">
+<p>What are the differences between Serial, SMPar, and DMPar compiles of WRF?</p>
+<p>Serial is used for a single CPU, SMPar is for multi-core/multi CPUs, and DMPar is for clusters.</p>
+<p>SMPar means “Shared-memory Parallelism.” In practice the OpenMP directives are enabled and the resulting binary will only run within a single shared-memory system. This option is not highly tested, however, and is usually not recommended if the option for DMPar is available.</p>
+<p>DMPar means “Distributed-memory Parallelism,” which means MPI will be used in the build. The resulting binary will run within and across multiple nodes of a distributed-memory system (or cluster).</p>
+<p>Ref: <a href="https://forum.mmm.ucar.edu/threads/what-are-the-differences-between-serial-smpar-and-dmpar-compiles-of-wrf.65/" class="uri">https://forum.mmm.ucar.edu/threads/what-are-the-differences-between-serial-smpar-and-dmpar-compiles-of-wrf.65/</a></p>
+</blockquote>
+<pre><code>------------------------------------------------------------------------
+Please select from among the following Linux x86_64 options:
+
+  1. (serial)   2. (smpar)   3. (dmpar)   4. (dm+sm)   PGI (pgf90/gcc)
+  5. (serial)   6. (smpar)   7. (dmpar)   8. (dm+sm)   PGI (pgf90/pgcc): SGI MPT
+  9. (serial)  10. (smpar)  11. (dmpar)  12. (dm+sm)   PGI (pgf90/gcc): PGI accelerator
+ 13. (serial)  14. (smpar)  15. (dmpar)  16. (dm+sm)   INTEL (ifort/icc)
+                                         17. (dm+sm)   INTEL (ifort/icc): Xeon Phi (MIC architecture)
+ 18. (serial)  19. (smpar)  20. (dmpar)  21. (dm+sm)   INTEL (ifort/icc): Xeon (SNB with AVX mods)
+ 22. (serial)  23. (smpar)  24. (dmpar)  25. (dm+sm)   INTEL (ifort/icc): SGI MPT
+ 26. (serial)  27. (smpar)  28. (dmpar)  29. (dm+sm)   INTEL (ifort/icc): IBM POE
+ 30. (serial)               31. (dmpar)                PATHSCALE (pathf90/pathcc)
+ 32. (serial)  33. (smpar)  34. (dmpar)  35. (dm+sm)   GNU (gfortran/gcc)
+ 36. (serial)  37. (smpar)  38. (dmpar)  39. (dm+sm)   IBM (xlf90_r/cc_r)
+ 40. (serial)  41. (smpar)  42. (dmpar)  43. (dm+sm)   PGI (ftn/gcc): Cray XC CLE
+ 44. (serial)  45. (smpar)  46. (dmpar)  47. (dm+sm)   CRAY CCE (ftn $(NOOMP)/cc): Cray XE and XC
+ 48. (serial)  49. (smpar)  50. (dmpar)  51. (dm+sm)   INTEL (ftn/icc): Cray XC
+ 52. (serial)  53. (smpar)  54. (dmpar)  55. (dm+sm)   PGI (pgf90/pgcc)
+ 56. (serial)  57. (smpar)  58. (dmpar)  59. (dm+sm)   PGI (pgf90/gcc): -f90=pgf90
+ 60. (serial)  61. (smpar)  62. (dmpar)  63. (dm+sm)   PGI (pgf90/pgcc): -f90=pgf90
+ 64. (serial)  65. (smpar)  66. (dmpar)  67. (dm+sm)   INTEL (ifort/icc): HSW/BDW
+ 68. (serial)  69. (smpar)  70. (dmpar)  71. (dm+sm)   INTEL (ifort/icc): KNL MIC
+ 72. (serial)  73. (smpar)  74. (dmpar)  75. (dm+sm)   AMD (flang/clang) :  AMD ZEN1/ ZEN2/ ZEN3 Architectures
+ 76. (serial)  77. (smpar)  78. (dmpar)  79. (dm+sm)   INTEL (ifx/icx) : oneAPI LLVM
+ 80. (serial)  81. (smpar)  82. (dmpar)  83. (dm+sm)   FUJITSU (frtpx/fccpx): FX10/FX100 SPARC64 IXfx/Xlfx
+
+ Enter selection [1-83] :</code></pre>
+<p>Type <code>34</code> then press <code>ENTER</code></p>
+<p>Then choose nesting options <code>(0=no nesting, 1=basic, 2=preset moves, 3=vortex following) [default 0]</code>: <code>1</code></p>
+<p>If everything going well, you will found below message</p>
+<pre><code>Configuration successful!
+------------------------------------------------------------------------
+testing for fseeko and fseeko64
+fseeko64 is supported
+------------------------------------------------------------------------
+
+# Settings for    Linux x86_64 ppc64le, gfortran compiler with gcc   (dmpar)
+#
+...
+...
+######################
+------------------------------------------------------------------------
+Settings listed above are written to configure.wrf.
+If you wish to change settings, please edit that file.
+If you wish to change the default options, edit the file:
+     arch/configure.defaults
+NetCDF users note:
+ This installation of NetCDF supports large file support.  To DISABLE large file
+ support in NetCDF, set the environment variable WRFIO_NCD_NO_LARGE_FILE_SUPPORT
+ to 1 and run configure again. Set to any other value to avoid this message.
+
+
+Testing for NetCDF, C and Fortran compiler
+
+This installation of NetCDF is 64-bit
+         C compiler is 64-bit
+       Fortran compiler is 64-bit
+          It will build in 64-bit
+
+NetCDF version: 4.8.1
+Enabled NetCDF-4/HDF-5: yes
+NetCDF built with PnetCDF: no
+
+
+************************** W A R N I N G ************************************
+
+The moving nest option is not available due to missing rpc/types.h file.
+Copy landread.c.dist to landread.c in share directory to bypass compile error.
+
+*****************************************************************************
+*****************************************************************************
+This build of WRF will use NETCDF4 with HDF5 compression
+*****************************************************************************</code></pre></li>
+<li><p>After finishing your configuration, you should have a <code>configure.wrf</code> file and be prepared to compile WRF. You must choose which type of case you want to compile from the following options:</p>
+<pre><code>em_real (3d real case)
+em_quarter_ss (3d ideal case)
+em_b_wave (3d ideal case)
+em_les (3d ideal case)
+em_heldsuarez (3d ideal case)
+em_tropical_cyclone (3d ideal case)
+em_hill2d_x (2d ideal case)
+em_squall2d_x (2d ideal case)
+em_squall2d_y (2d ideal case)
+em_grav2d_x (2d ideal case)
+em_seabreeze2d_x (2d ideal case)
+em_scm_xy (1d ideal case)</code></pre>
+<p>Run <code>compile</code> function where <code>case_name</code> is one of the options listed above.</p>
+<pre><code>./compile case_name &gt;&amp; log.compile</code></pre>
+<p>If you have multi processor and want to leverage it, you can mention the number of processor would like to use. Example: <code>./compile [-j n] case_name</code> where <code>n</code> is number of processor, default is <code>2</code>. See below:</p>
+<pre><code>./compile -j 8 em_real</code></pre>
+<p>Compilation should take about 20-30 minutes. And youwill get printed message like below</p>
+<pre><code>( cd test/em_real ; /bin/rm -f GENPARM.TBL ; ln -s ../../run/GENPARM.TBL . )
+( cd test/em_real ; /bin/rm -f LANDUSE.TBL ; ln -s ../../run/LANDUSE.TBL . )
+( cd test/em_real ; /bin/rm -f SOILPARM.TBL ; ln -s ../../run/SOILPARM.TBL . )
+( cd test/em_real ; /bin/rm -f URBPARM.TBL ; ln -s ../../run/URBPARM.TBL . )
+( cd test/em_real ; /bin/rm -f URBPARM_LCZ.TBL ; ln -s ../../run/URBPARM_LCZ.TBL . )
+( cd test/em_real ; /bin/rm -f VEGPARM.TBL ; ln -s ../../run/VEGPARM.TBL . )
+( cd test/em_real ; /bin/rm -f MPTABLE.TBL ; ln -s ../../run/MPTABLE.TBL . )
+( cd test/em_real ; /bin/rm -f tr49t67 ; ln -s ../../run/tr49t67 . )
+( cd test/em_real ; /bin/rm -f tr49t85 ; ln -s ../../run/tr49t85 . )
+( cd test/em_real ; /bin/rm -f tr67t85 ; ln -s ../../run/tr67t85 . )
+( cd test/em_real ; /bin/rm -f gribmap.txt ; ln -s ../../run/gribmap.txt . )
+( cd test/em_real ; /bin/rm -f grib2map.tbl ; ln -s ../../run/grib2map.tbl . )
+( cd run ; /bin/rm -f real.exe ; ln -s ../main/real.exe . )
+( cd run ; /bin/rm -f tc.exe ; ln -s ../main/tc.exe . )
+( cd run ; /bin/rm -f ndown.exe ; ln -s ../main/ndown.exe . )
+( cd run ; if test -f namelist.input ; then \
+    /bin/cp -f namelist.input namelist.input.backup.`date +%Y-%m-%d_%H_%M_%S` ; fi ; \
+    /bin/rm -f namelist.input ; cp ../test/em_real/namelist.input . )
+
+==========================================================================
+build started:   Mon Apr 22 21:43:14 WIB 2024
+build completed: Mon Apr 22 22:01:41 WIB 2024
+
+---&gt;                  Executables successfully built                  &lt;---
+
+-rwxr-xr-x 1 bennyistanto bennyistanto 46327520 Apr 22 22:01 main/ndown.exe
+-rwxr-xr-x 1 bennyistanto bennyistanto 46470888 Apr 22 22:01 main/real.exe
+-rwxr-xr-x 1 bennyistanto bennyistanto 45594520 Apr 22 22:01 main/tc.exe
+-rwxr-xr-x 1 bennyistanto bennyistanto 54865048 Apr 22 22:00 main/wrf.exe
+
+==========================================================================</code></pre></li>
+<li><p>Once the compilation completes, to check whether it was successful, you need to look for executables in the <code>WRF/main</code> directory:</p>
+<pre><code>ls -ls main/*.exe</code></pre>
+<p>If you compiled a real case, you should see:</p>
+<ul>
+<li><code>wrf.exe</code> (model executable)</li>
+<li><code>real.exe</code> (real data initialization)</li>
+<li><code>ndown.exe</code> (one-way nesting)</li>
+<li><code>tc.exe</code> (for tc bogusing–serial only)</li>
+</ul>
+<p>These executables are linked to 2 different directories:</p>
+<ul>
+<li><code>WRF/run</code></li>
+<li><code>WRF/test/em_real</code></li>
+</ul>
+<p>You can choose to run WRF from either directory.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/image-blog/20230210-install-the-wrf-model-in-wsl2-00.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="WRF successfully run"><img src="../assets/image-blog/20230210-install-the-wrf-model-in-wsl2-00.png" class="img-fluid figure-img" alt="WRF successfully run"></a></p>
+<figcaption>WRF successfully run</figcaption>
+</figure>
+</div></li>
+</ul>
+</section>
+<section id="building-wps" class="level2">
+<h2 class="anchored" data-anchor-id="building-wps">6. Building WPS</h2>
+<p>After constructing the WRF model, the next step is to build the WPS (WRF Pre-Processing System) program if you intend to run real cases instead of idealized cases. It is crucial that the WRF model is built correctly before attempting to build the WPS programs. You can acquire the WPS code by following the same process for obtaining the WRF code.</p>
+<ul>
+<li><p>Navigate to the WRF main directory:</p>
+<pre><code>cd ~/Build_WRF</code></pre></li>
+<li><p>To obtain the source code, execute below code:</p>
+<pre><code>git clone https://github.com/wrf-model/WPS</code></pre>
+<p>Inside folder <code>Build_WRF</code>, you will have two folders <code>WPS</code> adn <code>WRF</code> from previous step.</p></li>
+<li><p>Once you obtain the WPS source code, go into the WPS directory:</p>
+<pre><code>cd WPS</code></pre></li>
+<li><p>Similar to the WRF model, make sure the WPS directory is clean, by issuing:</p>
+<pre><code>./clean</code></pre></li>
+<li><p>The next step is to configure WPS, however, you first need to set some paths for the ungrib libraries:</p>
+<pre><code>export JASPERLIB=$DIR/grib2/lib
+export JASPERINC=$DIR/grib2/include</code></pre></li>
+<li><p>The environment variable needs to be set with the path to the compiled WRF. Don’t forget to adjust the user’s home directory below.</p>
+<pre><code>export WRF_DIR=/home/bennyistanto/Build_WRF/WRF</code></pre></li>
+<li><p>Then you can configure:</p>
+<pre><code>./configure</code></pre>
+<p>To build the WPS program, you will need to choose from various options including the compiler type, whether to compile in serial or parallel, and if ungrib should be compiled with GRIB2 capability. It is recommended to compile WPS in serial mode, even if WRF was compiled in parallel, unless you plan to create very large domains. Furthermore, it is advisable to select a GRIB2 option, as most data is now in that format. You can still run grib1 data even if you have built with grib2. Select the option that matches the compiler you used to compile WRF, is set to serial mode, and has GRIB2 enabled. Please note that the option number may differ from the one you chose for WRF.</p>
+<pre><code>------------------------------------------------------------------------
+Please select from among the following supported platforms.
+
+   1.  Linux x86_64, gfortran    (serial)
+   2.  Linux x86_64, gfortran    (serial_NO_GRIB2)
+   3.  Linux x86_64, gfortran    (dmpar)
+   4.  Linux x86_64, gfortran    (dmpar_NO_GRIB2)
+   5.  Linux x86_64, PGI compiler   (serial)
+   6.  Linux x86_64, PGI compiler   (serial_NO_GRIB2)
+   7.  Linux x86_64, PGI compiler   (dmpar)
+   8.  Linux x86_64, PGI compiler   (dmpar_NO_GRIB2)
+   9.  Linux x86_64, PGI compiler, SGI MPT   (serial)
+  10.  Linux x86_64, PGI compiler, SGI MPT   (serial_NO_GRIB2)
+  11.  Linux x86_64, PGI compiler, SGI MPT   (dmpar)
+  12.  Linux x86_64, PGI compiler, SGI MPT   (dmpar_NO_GRIB2)
+  13.  Linux x86_64, IA64 and Opteron    (serial)
+  14.  Linux x86_64, IA64 and Opteron    (serial_NO_GRIB2)
+  15.  Linux x86_64, IA64 and Opteron    (dmpar)
+  16.  Linux x86_64, IA64 and Opteron    (dmpar_NO_GRIB2)
+  17.  Linux x86_64, Intel compiler    (serial)
+  18.  Linux x86_64, Intel compiler    (serial_NO_GRIB2)
+  19.  Linux x86_64, Intel compiler    (dmpar)
+  20.  Linux x86_64, Intel compiler    (dmpar_NO_GRIB2)
+  21.  Linux x86_64, Intel compiler, SGI MPT    (serial)
+  22.  Linux x86_64, Intel compiler, SGI MPT    (serial_NO_GRIB2)
+  23.  Linux x86_64, Intel compiler, SGI MPT    (dmpar)
+  24.  Linux x86_64, Intel compiler, SGI MPT    (dmpar_NO_GRIB2)
+  25.  Linux x86_64, Intel compiler, IBM POE    (serial)
+  26.  Linux x86_64, Intel compiler, IBM POE    (serial_NO_GRIB2)
+  27.  Linux x86_64, Intel compiler, IBM POE    (dmpar)
+  28.  Linux x86_64, Intel compiler, IBM POE    (dmpar_NO_GRIB2)
+  29.  Linux x86_64 g95 compiler     (serial)
+  30.  Linux x86_64 g95 compiler     (serial_NO_GRIB2)
+  31.  Linux x86_64 g95 compiler     (dmpar)
+  32.  Linux x86_64 g95 compiler     (dmpar_NO_GRIB2)
+  33.  Cray XE/XC CLE/Linux x86_64, Cray compiler   (serial)
+  34.  Cray XE/XC CLE/Linux x86_64, Cray compiler   (serial_NO_GRIB2)
+  35.  Cray XE/XC CLE/Linux x86_64, Cray compiler   (dmpar)
+  36.  Cray XE/XC CLE/Linux x86_64, Cray compiler   (dmpar_NO_GRIB2)
+  37.  Cray XC CLE/Linux x86_64, Intel compiler   (serial)
+  38.  Cray XC CLE/Linux x86_64, Intel compiler   (serial_NO_GRIB2)
+  39.  Cray XC CLE/Linux x86_64, Intel compiler   (dmpar)
+  40.  Cray XC CLE/Linux x86_64, Intel compiler   (dmpar_NO_GRIB2)
+
+Enter selection [1-40] :</code></pre>
+<p>Type <code>3</code> then press <code>ENTER</code></p>
+<p>The <code>metgrid.exe</code> and <code>geogrid.exe</code> programs require the I/O libraries from the WRF model. The location of these libraries already set in previous step by add <code>WRF_DIR = /home/bennyistanto/Build_WRF/WRF</code> to the <code>PATH</code> and usually also automatically specified in the <code>configure.wps</code>.</p>
+<p>This is the default setting and will be accurate if the top-level directory for the WRF model is named <code>WRF</code> and both the <code>WPS</code> and <code>WRF</code> directories are located at the same level. If this is not the case, you need to modify the configure file before compiling and saving the changes.</p></li>
+<li><p>You can now compile WPS:</p>
+<pre><code>./compile &gt;&amp; log.compile</code></pre>
+<p>Compilation should only take a few minutes.</p></li>
+<li><p>If the compilation is successful, there should be 3 executables in the WPS top-level directory, that are linked to their corresponding src/ directories:</p>
+<ul>
+<li><code>geogrid.exe</code> -&gt; <code>geogrid/src/geogrid.exe</code></li>
+<li><code>ungrib.exe</code> -&gt; <code>ungrib/src/ungrib.exe</code></li>
+<li><code>metgrid.exe</code> -&gt; <code>metgrid/src/metgrid.exe</code></li>
+</ul>
+<p>Verify that they are not zero-sized (inside the <code>*/src/</code> directory). To see file size, you can type (for e.g.,):</p>
+<pre><code>ls -ls geogrid/src/geogrid.exe</code></pre></li>
+</ul>
+</section>
+<section id="static-geography-data" class="level2">
+<h2 class="anchored" data-anchor-id="static-geography-data">7. Static Geography Data</h2>
+<p>To use WRF to create real-data simulations, the location of the domain must first be determined. This requires a data set that contains fields such as topography and land use catergories. Such datasets can be found on the WRF website at <a href="http://www2.mmm.ucar.edu/wrf/users/download/getsourceswps_geog.html" class="uri">http://www2.mmm.ucar.edu/wrf/users/download/getsourceswps_geog.html</a>.</p>
+<ul>
+<li><p>Navigate to the main folder <code>Build_WRF</code>then download the data</p>
+<pre><code>cd ~/Build_WRF
+wget https://www2.mmm.ucar.edu/wrf/src/wps_files/geog_high_res_mandatory.tar.gz</code></pre>
+<p>When downloading the complete dataset, be aware that it is a large file. To prevent individual users from having to download the file multiple times, consider placing it in a central location that can be accessed by all.</p></li>
+<li><p>After downloading, uncompress and un-tar the file to make it ready for use.</p>
+<pre><code>gunzip geog.tar.gz
+tar -xf geog.tar</code></pre></li>
+<li><p>When you untar the file, it will be called “geog.” Rename the file to “WPS_GEOG.”</p>
+<pre><code>mv geog WPS_GEOG</code></pre></li>
+<li><p>The directory infomation is given to the geogrid program in the <code>/Build_WRF/WPS/namelist.wps</code> file in the <code>&amp;geogrid</code> section. Navigate to the <code>WPS</code> folder and change the path directory according to user’s home directory.</p>
+<pre><code>cd WPS
+nano namelist.wps</code></pre>
+<p>Change <code>geog_data_path = /home/bennyistanto/Build_WRF/WPS_GEOG</code></p>
+<p>When you are done making your changes, press <code>ctrl</code> + <code>O</code> and hit <code>ENTER</code> to save the changes. Close <code>nano</code> by press <code>ctrl</code> + <code>X</code></p>
+<p>The data expands to approximately 10 GB. This data allows a user to run the <code>geogrid.exe</code> program.</p></li>
+</ul>
+</section>
+<section id="real-time-data" class="level2">
+<h2 class="anchored" data-anchor-id="real-time-data">8. Real-time Data</h2>
+<ul>
+<li><p>To run real-data cases, the WRF model requires current meteorological information for both initial and lateral boundary conditions. This data is traditionally provided as a Grib file obtained from a previously run external model or analysis. For a semi-operational set-up, the meteorological data is generally sourced from a global model, which permits locating the WRF model’s domains anywhere on the globe.</p></li>
+<li><p>The National Centers for Environmental Prediction (NCEP) operates the Global Forecast System (GFS) model, which is available four times a day (initializations valid for 0000, 0600, 1200, and 1800 UTC). This is a global, isobaric, 0.5-degree latitude/longitude, forecast dataset that is freely available and is usually accessible four hours after the initialization time period.</p></li>
+<li><p>To access the required data, a single file must be acquired for each requested time period. For instance, if you need hours 0, 6, and 12 of a forecast that was initialized on July 12, 2019, at 0000 UTC, you will require the following times:</p>
+<pre><code>2019071200 – 0 h
+2019071206 – 6 h
+2019071212 – 12 h</code></pre>
+<p>These times correspond to the following file names:</p>
+<pre><code>gfs.2019071200/gfs.t00z.pgrb2.0p50.f000
+gfs.2019071200/gfs.t00z.pgrb2.0p50.f006
+gfs.2019071200/gfs.t00z.pgrb2.0p50.f012</code></pre>
+<p>Note that the initialization data and time (gfs.2019071200) remain the same, and the forecast cycle remains the same (t00z). The forecast hour (f00, f06, f12) is incremented.</p></li>
+<li><p>To obtain the data, create a directory in <code>Build_WRF</code> named <code>DATA</code> and then navigate to that directory.</p>
+<pre><code>cd ~/Build_WRF
+mkdir DATA
+cd DATA</code></pre></li>
+<li><p>A straightforward set of interactive commands to obtain these files from the NCEP servers in real-time would look like:</p>
+<ul>
+<li>The time and date presented above is just an example, as the NCEP data servers usually have only the latest 2-3 days’ data available. Therefore, if you want to use current real-time data, you must modify the commands to reflect the current date and time.</li>
+<li>Typically, these commands will return a complete file within a couple of minutes, and the files will be in Grib Edition 2 format, which can be directly used by the ungrib program.</li>
+<li>The following three commands are separate commands to download data for three distinct times. Each command includes the “wget” command and the full https address and file name.</li>
+</ul>
+<pre><code>wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20230201/00/atmos/gfs.t00z.pgrb2.0p25.f000
+wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20230201/00/atmos/gfs.t00z.pgrb2.0p25.f003
+wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20230201/00/atmos/gfs.t00z.pgrb2.0p25.f006</code></pre></li>
+</ul>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>This step-by-step was adapted from the WRF official tutorial: <a href="https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compilation_tutorial.php" class="uri">https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compilation_tutorial.php</a></p>
+</section>
+<section id="supporting-files" class="level2">
+<h2 class="anchored" data-anchor-id="supporting-files">Supporting Files</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Shell - fortran-c-test.sh">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Shell - fortran-c-test.sh
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb89"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="co"># System Environment Tests</span></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Test1</span></span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Test #1: Fixed Format Fortran Test"</span></span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a><span class="ex">gfortran</span> TEST_1_fortran_only_fixed.f</span>
+<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a><span class="ex">./a.out</span></span>
+<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">""</span></span>
+<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-9"><a href="#cb89-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Test2</span></span>
+<span id="cb89-10"><a href="#cb89-10" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Test #2: Free Format Fortran"</span></span>
+<span id="cb89-11"><a href="#cb89-11" aria-hidden="true" tabindex="-1"></a><span class="ex">gfortran</span> TEST_2_fortran_only_free.f90</span>
+<span id="cb89-12"><a href="#cb89-12" aria-hidden="true" tabindex="-1"></a><span class="ex">./a.out</span></span>
+<span id="cb89-13"><a href="#cb89-13" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">""</span></span>
+<span id="cb89-14"><a href="#cb89-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-15"><a href="#cb89-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Test3</span></span>
+<span id="cb89-16"><a href="#cb89-16" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Test #3: C: TEST_3_c_only.c"</span></span>
+<span id="cb89-17"><a href="#cb89-17" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> TEST_3_c_only.c</span>
+<span id="cb89-18"><a href="#cb89-18" aria-hidden="true" tabindex="-1"></a><span class="ex">./a.out</span></span>
+<span id="cb89-19"><a href="#cb89-19" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">""</span></span>
+<span id="cb89-20"><a href="#cb89-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-21"><a href="#cb89-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Test4</span></span>
+<span id="cb89-22"><a href="#cb89-22" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Test #4: Fortran Calling a C Function"</span></span>
+<span id="cb89-23"><a href="#cb89-23" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> <span class="at">-c</span> <span class="at">-m64</span> TEST_4_fortran+c_c.c</span>
+<span id="cb89-24"><a href="#cb89-24" aria-hidden="true" tabindex="-1"></a><span class="ex">gfortran</span> <span class="at">-c</span> <span class="at">-m64</span> TEST_4_fortran+c_f.f90</span>
+<span id="cb89-25"><a href="#cb89-25" aria-hidden="true" tabindex="-1"></a><span class="ex">gfortran</span> <span class="at">-m64</span> TEST_4_fortran+c_f.o TEST_4_fortran+c_c.o</span>
+<span id="cb89-26"><a href="#cb89-26" aria-hidden="true" tabindex="-1"></a><span class="ex">./a.out</span></span>
+<span id="cb89-27"><a href="#cb89-27" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">""</span></span>
+<span id="cb89-28"><a href="#cb89-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-29"><a href="#cb89-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Test5</span></span>
+<span id="cb89-30"><a href="#cb89-30" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Test #5: csh"</span></span>
+<span id="cb89-31"><a href="#cb89-31" aria-hidden="true" tabindex="-1"></a><span class="ex">./TEST_csh.csh</span></span>
+<span id="cb89-32"><a href="#cb89-32" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">""</span></span>
+<span id="cb89-33"><a href="#cb89-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-34"><a href="#cb89-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Test6</span></span>
+<span id="cb89-35"><a href="#cb89-35" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Test #6: perl"</span></span>
+<span id="cb89-36"><a href="#cb89-36" aria-hidden="true" tabindex="-1"></a><span class="ex">./TEST_perl.pl</span></span>
+<span id="cb89-37"><a href="#cb89-37" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">""</span></span>
+<span id="cb89-38"><a href="#cb89-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-39"><a href="#cb89-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Test7</span></span>
+<span id="cb89-40"><a href="#cb89-40" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Test #7: sh"</span></span>
+<span id="cb89-41"><a href="#cb89-41" aria-hidden="true" tabindex="-1"></a><span class="ex">./TEST_sh.sh</span></span>
+<span id="cb89-42"><a href="#cb89-42" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Shell - fortran-lib-test.sh">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Shell - fortran-lib-test.sh
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb90"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Library Compatibility Tests</span></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Test1</span></span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Test #1: Fortran + C + NetCDF"</span></span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"The NetCDF-only test requires the netcdf.inc file from the NETCDF package be in this directory. Copying the file."</span></span>
+<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="va">${NETCDF}</span>/include/netcdf.inc .</span>
+<span id="cb90-7"><a href="#cb90-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Compile the Fortran and C codes for the purpose of this test (the -c option says to not try to build an executable)."</span></span>
+<span id="cb90-8"><a href="#cb90-8" aria-hidden="true" tabindex="-1"></a><span class="ex">gfortran</span> <span class="at">-c</span> 01_fortran+c+netcdf_f.f</span>
+<span id="cb90-9"><a href="#cb90-9" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> <span class="at">-c</span> 01_fortran+c+netcdf_c.c</span>
+<span id="cb90-10"><a href="#cb90-10" aria-hidden="true" tabindex="-1"></a><span class="ex">gfortran</span> 01_fortran+c+netcdf_f.o 01_fortran+c+netcdf_c.o <span class="at">-L</span><span class="va">${NETCDF}</span>/lib <span class="at">-lnetcdff</span> <span class="at">-lnetcdf</span></span>
+<span id="cb90-11"><a href="#cb90-11" aria-hidden="true" tabindex="-1"></a><span class="ex">./a.out</span></span>
+<span id="cb90-12"><a href="#cb90-12" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">""</span></span>
+<span id="cb90-13"><a href="#cb90-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-14"><a href="#cb90-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Test2</span></span>
+<span id="cb90-15"><a href="#cb90-15" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Test #2: Fortran + C + NetCDF + MP"</span></span>
+<span id="cb90-16"><a href="#cb90-16" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"The NetCDF+MPI test requires include files from both of these packages be in this directory,"</span></span>
+<span id="cb90-17"><a href="#cb90-17" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"but the MPI scripts automatically make the mpif.h file available without assistance,"</span></span>
+<span id="cb90-18"><a href="#cb90-18" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"so no need to copy that one. Copying the NetCDF file"</span></span>
+<span id="cb90-19"><a href="#cb90-19" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="va">${NETCDF}</span>/include/netcdf.inc .</span>
+<span id="cb90-20"><a href="#cb90-20" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Note that the MPI executables mpif90 and mpicc are used below when compiling."</span></span>
+<span id="cb90-21"><a href="#cb90-21" aria-hidden="true" tabindex="-1"></a><span class="ex">mpif90</span> <span class="at">-c</span> 02_fortran+c+netcdf+mpi_f.f</span>
+<span id="cb90-22"><a href="#cb90-22" aria-hidden="true" tabindex="-1"></a><span class="ex">mpicc</span> <span class="at">-c</span> 02_fortran+c+netcdf+mpi_c.c</span>
+<span id="cb90-23"><a href="#cb90-23" aria-hidden="true" tabindex="-1"></a><span class="ex">mpif90</span> 02_fortran+c+netcdf+mpi_f.o 02_fortran+c+netcdf+mpi_c.o <span class="at">-L</span><span class="va">${NETCDF}</span>/lib <span class="at">-lnetcdff</span> <span class="at">-lnetcdf</span></span>
+<span id="cb90-24"><a href="#cb90-24" aria-hidden="true" tabindex="-1"></a><span class="ex">mpirun</span> ./a.out</span>
+<span id="cb90-25"><a href="#cb90-25" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Shell - library-build.sh">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Shell - library-build.sh
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb91"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mpich</span></span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Untar the mpich library</span></span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xzvf mpich-3.4.3.tar.gz</span>
+<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Entering the directory</span></span>
+<span id="cb91-6"><a href="#cb91-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> mpich-3.4.3</span>
+<span id="cb91-7"><a href="#cb91-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuration and install</span></span>
+<span id="cb91-8"><a href="#cb91-8" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">FFLAGS</span><span class="op">=</span>-fallow-argument-mismatch</span>
+<span id="cb91-9"><a href="#cb91-9" aria-hidden="true" tabindex="-1"></a><span class="ex">./configure</span> <span class="at">--prefix</span><span class="op">=</span><span class="va">$DIR</span>/mpich <span class="at">--with-device</span><span class="op">=</span>ch3:nemesis <span class="at">--enable-fast</span><span class="op">=</span>all,O3 <span class="at">--disable-float</span> <span class="at">--enable-threads</span><span class="op">=</span>multiple</span>
+<span id="cb91-10"><a href="#cb91-10" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> check</span>
+<span id="cb91-11"><a href="#cb91-11" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> install</span>
+<span id="cb91-12"><a href="#cb91-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Back to LIBRARIES folder</span></span>
+<span id="cb91-13"><a href="#cb91-13" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
+<span id="cb91-14"><a href="#cb91-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-15"><a href="#cb91-15" aria-hidden="true" tabindex="-1"></a><span class="co"># zlib</span></span>
+<span id="cb91-16"><a href="#cb91-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Untar the zlib library</span></span>
+<span id="cb91-17"><a href="#cb91-17" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xzvf zlib-1.2.11.tar.gz</span>
+<span id="cb91-18"><a href="#cb91-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Entering the directory</span></span>
+<span id="cb91-19"><a href="#cb91-19" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> zlib-1.2.11</span>
+<span id="cb91-20"><a href="#cb91-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuration and install</span></span>
+<span id="cb91-21"><a href="#cb91-21" aria-hidden="true" tabindex="-1"></a><span class="ex">./configure</span> <span class="at">--prefix</span><span class="op">=</span><span class="va">$DIR</span>/grib2</span>
+<span id="cb91-22"><a href="#cb91-22" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> check</span>
+<span id="cb91-23"><a href="#cb91-23" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> install</span>
+<span id="cb91-24"><a href="#cb91-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Back to LIBRARIES folder</span></span>
+<span id="cb91-25"><a href="#cb91-25" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
+<span id="cb91-26"><a href="#cb91-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-27"><a href="#cb91-27" aria-hidden="true" tabindex="-1"></a><span class="co"># libpng</span></span>
+<span id="cb91-28"><a href="#cb91-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Untar the libpng library</span></span>
+<span id="cb91-29"><a href="#cb91-29" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xzvf libpng-1.2.50.tar.gz</span>
+<span id="cb91-30"><a href="#cb91-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Entering the directory</span></span>
+<span id="cb91-31"><a href="#cb91-31" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> libpng-1.2.50</span>
+<span id="cb91-32"><a href="#cb91-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuration and install</span></span>
+<span id="cb91-33"><a href="#cb91-33" aria-hidden="true" tabindex="-1"></a><span class="ex">./configure</span> <span class="at">--prefix</span><span class="op">=</span><span class="va">$DIR</span>/grib2</span>
+<span id="cb91-34"><a href="#cb91-34" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> check </span>
+<span id="cb91-35"><a href="#cb91-35" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> install</span>
+<span id="cb91-36"><a href="#cb91-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Back to LIBRARIES folder</span></span>
+<span id="cb91-37"><a href="#cb91-37" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
+<span id="cb91-38"><a href="#cb91-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-39"><a href="#cb91-39" aria-hidden="true" tabindex="-1"></a><span class="co"># jasper</span></span>
+<span id="cb91-40"><a href="#cb91-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Untar the jasper library</span></span>
+<span id="cb91-41"><a href="#cb91-41" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xzvf jasper-1.900.1.tar.gz</span>
+<span id="cb91-42"><a href="#cb91-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Entering the directory</span></span>
+<span id="cb91-43"><a href="#cb91-43" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> jasper-1.900.1</span>
+<span id="cb91-44"><a href="#cb91-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuration and install</span></span>
+<span id="cb91-45"><a href="#cb91-45" aria-hidden="true" tabindex="-1"></a><span class="ex">./configure</span> <span class="at">--prefix</span><span class="op">=</span><span class="va">$DIR</span>/grib2</span>
+<span id="cb91-46"><a href="#cb91-46" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> check</span>
+<span id="cb91-47"><a href="#cb91-47" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> install</span>
+<span id="cb91-48"><a href="#cb91-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Back to LIBRARIES folder</span></span>
+<span id="cb91-49"><a href="#cb91-49" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
+<span id="cb91-50"><a href="#cb91-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-51"><a href="#cb91-51" aria-hidden="true" tabindex="-1"></a><span class="co"># hdf5</span></span>
+<span id="cb91-52"><a href="#cb91-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Untar the hdf5 library</span></span>
+<span id="cb91-53"><a href="#cb91-53" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xzvf hdf5-1.12.0.tar.gz</span>
+<span id="cb91-54"><a href="#cb91-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Entering the directory</span></span>
+<span id="cb91-55"><a href="#cb91-55" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> hdf5-1.12.0</span>
+<span id="cb91-56"><a href="#cb91-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuration and install</span></span>
+<span id="cb91-57"><a href="#cb91-57" aria-hidden="true" tabindex="-1"></a><span class="ex">./configure</span> <span class="at">--prefix</span><span class="op">=</span><span class="va">$DIR</span>/grib2 <span class="at">--with-zlib</span><span class="op">=</span><span class="va">$DIR</span>/grib2 <span class="at">--enable-hl</span> <span class="at">--enable-fortran</span></span>
+<span id="cb91-58"><a href="#cb91-58" aria-hidden="true" tabindex="-1"></a><span class="co">#CC=mpicc FC=mpif90 F77=mpif77 CXX=mpicxx ./configure --prefix=$DIR/grib2 --with-zlib=$DIR/grib2 --enable-hl --enable-fortran --enable-parallel</span></span>
+<span id="cb91-59"><a href="#cb91-59" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> check</span>
+<span id="cb91-60"><a href="#cb91-60" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> install</span>
+<span id="cb91-61"><a href="#cb91-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Back to LIBRARIES folder</span></span>
+<span id="cb91-62"><a href="#cb91-62" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
+<span id="cb91-63"><a href="#cb91-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-64"><a href="#cb91-64" aria-hidden="true" tabindex="-1"></a><span class="co"># netcdf-c</span></span>
+<span id="cb91-65"><a href="#cb91-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Untar the netcdf library</span></span>
+<span id="cb91-66"><a href="#cb91-66" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xzvf netcdf-c-4.8.1.tar.gz</span>
+<span id="cb91-67"><a href="#cb91-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Entering the directory</span></span>
+<span id="cb91-68"><a href="#cb91-68" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> netcdf-c-4.8.1</span>
+<span id="cb91-69"><a href="#cb91-69" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuration and install</span></span>
+<span id="cb91-70"><a href="#cb91-70" aria-hidden="true" tabindex="-1"></a><span class="va">CPPFLAGS</span><span class="op">=</span>-I<span class="va">$DIR</span>/grib2/include <span class="va">LDFLAGS</span><span class="op">=</span>-L<span class="va">$DIR</span>/grib2/lib <span class="ex">./configure</span> <span class="at">--prefix</span><span class="op">=</span><span class="va">$DIR</span>/netcdf <span class="at">--with-hdf5</span><span class="op">=</span><span class="va">$DIR</span>/grib2 <span class="at">--disable-dap</span> <span class="at">--enable-netcdf-4</span> <span class="at">--enable-netcdf4</span> <span class="at">--enable-shared</span> <span class="at">--enable-static</span> <span class="at">--enable-large-file-tests</span> <span class="at">--enable-parallel-tests</span> <span class="at">--enable-hdf5</span> <span class="at">--enable-nczarr</span></span>
+<span id="cb91-71"><a href="#cb91-71" aria-hidden="true" tabindex="-1"></a><span class="co">#CC=mpicc FC=mpif90 F77=mpif77 CXX=mpicxx CPPFLAGS=-I$DIR/grib2/include LDFLAGS=-L$DIR/grib2/lib ./configure --prefix=$DIR/netcdf --with-hdf5=$DIR/grib2 --disable-dap --enable-netcdf-4 --enable-netcdf4 --enable-shared --enable-static --enable-large-file-tests --enable-parallel-tests --enable-hdf5 --enable-nczarr</span></span>
+<span id="cb91-72"><a href="#cb91-72" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> check</span>
+<span id="cb91-73"><a href="#cb91-73" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> install</span>
+<span id="cb91-74"><a href="#cb91-74" aria-hidden="true" tabindex="-1"></a><span class="co"># Registering the library</span></span>
+<span id="cb91-75"><a href="#cb91-75" aria-hidden="true" tabindex="-1"></a><span class="ex">libtool</span> <span class="at">--finish</span> <span class="va">$DIR</span>/netcdf/lib</span>
+<span id="cb91-76"><a href="#cb91-76" aria-hidden="true" tabindex="-1"></a><span class="co"># Update environment variables for netcdf-fortran installation</span></span>
+<span id="cb91-77"><a href="#cb91-77" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CPPFLAGS</span><span class="op">=</span><span class="st">"-I</span><span class="va">$DIR</span><span class="st">/netcdf/include -I</span><span class="va">$DIR</span><span class="st">/grib2/include"</span></span>
+<span id="cb91-78"><a href="#cb91-78" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LDFLAGS</span><span class="op">=</span><span class="st">"-L</span><span class="va">$DIR</span><span class="st">/netcdf/lib -L</span><span class="va">$DIR</span><span class="st">/grib2/lib"</span></span>
+<span id="cb91-79"><a href="#cb91-79" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LD_LIBRARY_PATH</span><span class="op">=</span><span class="va">$DIR</span>/netcdf/lib:<span class="va">$DIR</span>/grib2/lib:<span class="va">$LD_LIBRARY_PATH</span></span>
+<span id="cb91-80"><a href="#cb91-80" aria-hidden="true" tabindex="-1"></a><span class="co"># Add LIBS="-lnetcdf -lz" if not already present</span></span>
+<span id="cb91-81"><a href="#cb91-81" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LIBS</span><span class="op">=</span><span class="st">"-lnetcdf -lz -lhdf5_hl -lhdf5 -lm"</span></span>
+<span id="cb91-82"><a href="#cb91-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Back to LIBRARIES folder</span></span>
+<span id="cb91-83"><a href="#cb91-83" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
+<span id="cb91-84"><a href="#cb91-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-85"><a href="#cb91-85" aria-hidden="true" tabindex="-1"></a><span class="co"># netcdf-fortran</span></span>
+<span id="cb91-86"><a href="#cb91-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Untar the netcdf-fortran library</span></span>
+<span id="cb91-87"><a href="#cb91-87" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xzvf netcdf-fortran-4.5.4.tar.gz</span>
+<span id="cb91-88"><a href="#cb91-88" aria-hidden="true" tabindex="-1"></a><span class="co"># Entering the directory</span></span>
+<span id="cb91-89"><a href="#cb91-89" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> netcdf-fortran-4.5.4</span>
+<span id="cb91-90"><a href="#cb91-90" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuration and install</span></span>
+<span id="cb91-91"><a href="#cb91-91" aria-hidden="true" tabindex="-1"></a><span class="va">CPPFLAGS</span><span class="op">=</span><span class="st">"-I</span><span class="va">$DIR</span><span class="st">/netcdf/include -I</span><span class="va">$DIR</span><span class="st">/grib2/include"</span> <span class="va">LDFLAGS</span><span class="op">=</span><span class="st">"-L</span><span class="va">$DIR</span><span class="st">/netcdf/lib -L</span><span class="va">$DIR</span><span class="st">/grib2/lib"</span> <span class="ex">./configure</span> <span class="at">--prefix</span><span class="op">=</span><span class="va">$DIR</span>/netcdf <span class="at">--enable-shared</span> <span class="at">--enable-static</span> <span class="at">--enable-large-file-tests</span> <span class="at">--disable-fortran-type-check</span></span>
+<span id="cb91-92"><a href="#cb91-92" aria-hidden="true" tabindex="-1"></a><span class="co">#CC=mpicc FC=mpif90 F77=mpif77 CXX=mpicxx CPPFLAGS="-I$DIR/netcdf/include -I$DIR/grib2/include" LDFLAGS="-L$DIR/netcdf/lib -L$DIR/grib2/lib" ./configure --prefix=$DIR/netcdf --enable-shared --enable-static --enable-large-file-tests --disable-fortran-type-check</span></span>
+<span id="cb91-93"><a href="#cb91-93" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> check</span>
+<span id="cb91-94"><a href="#cb91-94" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> install</span>
+<span id="cb91-95"><a href="#cb91-95" aria-hidden="true" tabindex="-1"></a><span class="co"># Back to LIBRARIES folder</span></span>
+<span id="cb91-96"><a href="#cb91-96" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Shell - library-download.sh">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Shell - library-download.sh
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb92"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Download the library</span></span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Original source https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/</span></span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="co">#wget https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/mpich-3.0.4.tar.gz</span></span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://github.com/pmodels/mpich/releases/download/v3.4.3/mpich-3.4.3.tar.gz</span>
+<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://docs.hdfgroup.org/archive/support/ftp/HDF5/releases/hdf5-1.12/hdf5-1.12.0/src/hdf5-1.12.0.tar.gz</span>
+<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a><span class="co">#wget https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/netcdf-c-4.7.2.tar.gz</span></span>
+<span id="cb92-8"><a href="#cb92-8" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://github.com/Unidata/netcdf-c/archive/refs/tags/v4.8.1.tar.gz <span class="at">-O</span> netcdf-c-4.8.1.tar.gz</span>
+<span id="cb92-9"><a href="#cb92-9" aria-hidden="true" tabindex="-1"></a><span class="co">#wget https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/netcdf-fortran-4.5.2.tar.gz</span></span>
+<span id="cb92-10"><a href="#cb92-10" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://github.com/Unidata/netcdf-fortran/archive/refs/tags/v4.5.4.tar.gz <span class="at">-O</span> netcdf-fortran-4.5.4.tar.gz</span>
+<span id="cb92-11"><a href="#cb92-11" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/jasper-1.900.1.tar.gz</span>
+<span id="cb92-12"><a href="#cb92-12" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/libpng-1.2.50.tar.gz</span>
+<span id="cb92-13"><a href="#cb92-13" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/zlib-1.2.11.tar.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Shell - set-env.sh">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Shell - set-env.sh
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb93"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="co"># WRF Configuration Setting</span></span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compilers</span></span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CC</span><span class="op">=</span>/usr/bin/gcc</span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CXX</span><span class="op">=</span>/usr/bin/g++</span>
+<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">FC</span><span class="op">=</span>/usr/bin/gfortran</span>
+<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">FCFLAGS</span><span class="op">=</span><span class="st">"-m64"</span></span>
+<span id="cb93-8"><a href="#cb93-8" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">F77</span><span class="op">=</span>/usr/bin/gfortran</span>
+<span id="cb93-9"><a href="#cb93-9" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">FFLAGS</span><span class="op">=</span><span class="st">"-m64"</span></span>
+<span id="cb93-10"><a href="#cb93-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Directory</span></span>
+<span id="cb93-11"><a href="#cb93-11" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">DIR</span><span class="op">=</span>/home/bennyistanto/Build_WRF/LIBRARIES</span>
+<span id="cb93-12"><a href="#cb93-12" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">WRF_DIR</span><span class="op">=</span>/home/bennyistanto/Build_WRF/WRF</span>
+<span id="cb93-13"><a href="#cb93-13" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">MPICH</span><span class="op">=</span><span class="va">$DIR</span>/mpich</span>
+<span id="cb93-14"><a href="#cb93-14" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">NETCDF</span><span class="op">=</span><span class="va">$DIR</span>/netcdf</span>
+<span id="cb93-15"><a href="#cb93-15" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JASPERLIB</span><span class="op">=</span><span class="va">$DIR</span>/grib2/lib</span>
+<span id="cb93-16"><a href="#cb93-16" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JASPERINC</span><span class="op">=</span><span class="va">$DIR</span>/grib2/include</span>
+<span id="cb93-17"><a href="#cb93-17" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">$DIR</span>/grib2/bin:<span class="va">$MPICH</span>/bin:<span class="va">$NETCDF</span>/bin:<span class="va">$PATH</span></span>
+<span id="cb93-18"><a href="#cb93-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Libraries</span></span>
+<span id="cb93-19"><a href="#cb93-19" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LD_LIBRARY_PATH</span><span class="op">=</span><span class="va">$DIR</span>/grib2/lib:<span class="va">$LD_LIBRARY_PATH</span></span>
+<span id="cb93-20"><a href="#cb93-20" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LDFLAGS</span><span class="op">=</span><span class="st">"-L</span><span class="va">$DIR</span><span class="st">/grib2/lib"</span></span>
+<span id="cb93-21"><a href="#cb93-21" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CPPFLAGS</span><span class="op">=</span><span class="st">"-I</span><span class="va">$DIR</span><span class="st">/grib2/include"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Shell - update_zshrc.sh">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Shell - update_zshrc.sh
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb94"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Path to your .zshrc file</span></span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a><span class="va">ZSHRC</span><span class="op">=</span><span class="st">"</span><span class="va">$HOME</span><span class="st">/.zshrc"</span></span>
+<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-6"><a href="#cb94-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Backup original .zshrc file before making changes</span></span>
+<span id="cb94-7"><a href="#cb94-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="st">"</span><span class="va">$ZSHRC</span><span class="st">"</span> <span class="st">"</span><span class="va">$ZSHRC</span><span class="st">.backup"</span></span>
+<span id="cb94-8"><a href="#cb94-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-9"><a href="#cb94-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Update environment variables for netcdf-fortran installation</span></span>
+<span id="cb94-10"><a href="#cb94-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'s|export CPPFLAGS="-I$DIR/grib2/include"|export CPPFLAGS="-I$DIR/netcdf/include -I$DIR/grib2/include"|'</span> <span class="st">"</span><span class="va">$ZSHRC</span><span class="st">"</span></span>
+<span id="cb94-11"><a href="#cb94-11" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'s|export LDFLAGS="-L$DIR/grib2/lib"|export LDFLAGS="-L$DIR/netcdf/lib -L$DIR/grib2/lib"|'</span> <span class="st">"</span><span class="va">$ZSHRC</span><span class="st">"</span></span>
+<span id="cb94-12"><a href="#cb94-12" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'s|export LD_LIBRARY_PATH=$DIR/grib2/lib:$LD_LIBRARY_PATH|export LD_LIBRARY_PATH=$DIR/netcdf/lib:$DIR/grib2/lib:$LD_LIBRARY_PATH|'</span> <span class="st">"</span><span class="va">$ZSHRC</span><span class="st">"</span></span>
+<span id="cb94-13"><a href="#cb94-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-14"><a href="#cb94-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add LIBS="-lnetcdf -lz" if not already present</span></span>
+<span id="cb94-15"><a href="#cb94-15" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="ot">! </span><span class="fu">grep</span> <span class="at">-q</span> <span class="st">'export LIBS="-lnetcdf -lz -lhdf5_hl -lhdf5 -lm"'</span> <span class="st">"</span><span class="va">$ZSHRC</span><span class="st">"</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb94-16"><a href="#cb94-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">'export LIBS="-lnetcdf -lz -lhdf5_hl -lhdf5 -lm"'</span> <span class="op">&gt;&gt;</span> <span class="st">"</span><span class="va">$ZSHRC</span><span class="st">"</span></span>
+<span id="cb94-17"><a href="#cb94-17" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb94-18"><a href="#cb94-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-19"><a href="#cb94-19" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Updated .zshrc for netcdf-fortran installation. Original .zshrc backed up to </span><span class="va">$ZSHRC</span><span class="st">.backup"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a>
+<nav class="post-nav" aria-label="Post navigation">
+  <a class="post-nav-prev no-external" href="./20230131-descriptive-statistics-analysis-using-climate-data" rel="prev"><span class="post-nav-label">Previous</span><span class="post-nav-title">Descriptive statistics analysis using climate data</span></a>
+  <a class="post-nav-next no-external" href="./20230215-sbr-market-day-2023-demon-slayer-colours-on-canvas" rel="next"><span class="post-nav-label">Next</span><span class="post-nav-title">SBR Market Day 2023: Demon Slayer colours on canvas</span></a>
+</nav>
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/benny\.istan\.to");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "bennyistanto/site";
+    script.dataset.repoId = "R_kgDORFc9aQ";
+    script.dataset.category = "Comments";
+    script.dataset.categoryId = "DIC_kwDORFc9ac4C-wbw";
+    script.dataset.mapping = "pathname";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026, Benny Istanto.</p>
+<p>Exploring Climate with GIS and Data Science, solving old problems in new ways. Turning earth observation data into actionable, life-saving insights.</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+<p><a href="../privacy">Privacy</a></p>
+<p><span class="footer-disclaimer">All content on this website does not represent the views of my (current or previous) employer.</span></p>
+<div class="toc-actions"><ul><li><a href="https://github.com/bennyistanto/site/blob/main/docs/blog/20230210-install-the-wrf-model-in-wsl2.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/bennyistanto/site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/bennyistanto" aria-label="GitHub"><i class="bi bi-github"></i></a> <a href="https://linkedin.com/in/bennyistanto" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a> <a href="https://worldbank.github.io/GOST/content/staff/bennyistanto.html" aria-label="GOST"><i class="bi bi-globe"></i></a></p>
+<p><a href="https://buymeacoffee.com/bennyistanto">Buy Me a Coffee</a></p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

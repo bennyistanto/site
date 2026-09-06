@@ -1,0 +1,44 @@
+/* About Page - Wider Content Layout for Full Page Layout */
+
+/* Constrain the full layout to readable width */
+.page-layout-full .quarto-container,
+.page-layout-full #quarto-content,
+.page-layout-full main.content {
+  max-width: 1400px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+/* Grid should use full available width */
+.grid {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Ensure content columns are properly sized */
+.column-page,
+.column-body,
+.column-screen {
+  max-width: 100% !important;
+}
+
+/* Extra wide screens */
+@media (min-width: 1600px) {
+  .page-layout-full .quarto-container,
+  .page-layout-full #quarto-content,
+  .page-layout-full main.content {
+    max-width: 1600px !important;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .page-layout-full .quarto-container,
+  .page-layout-full #quarto-content,
+  .page-layout-full main.content {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
