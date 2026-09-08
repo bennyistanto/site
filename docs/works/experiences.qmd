@@ -75,26 +75,42 @@ Washington DC, US
 :::
 
 ::: {.timeline-summary}
-I supported 15+ projects (some of them are still ongoing) with various themes from Sustainable Development Flagship, Water and Climate, Urban Development, World Development Report, Poverty Alleviation, Data Partnership, Ukraine need assessment, and Climate-informed spatial planning. I collaborate with teams across the bank to deliver solutions addressing issues in sustainable development, agriculture, and hydrometeorological monitoring.
+I supported 30+ projects (some of them are still ongoing) with various themes from Sustainable Development Flagship, Water and Climate, Urban Development, World Development Report, Poverty Alleviation, Data Partnership, Ukraine need assessment, and Climate-informed spatial planning. I collaborate with teams across the bank to deliver solutions addressing issues in sustainable development, agriculture, and hydrometeorological monitoring.
 
 List supported projects:
 
-1. National Food and Agriculture System Project - (P164448)
-2. Reforming Geospatial Information at the World Bank Group - (P161480)
-3. 50x2030 Data Production, Methods and Use - (P172771)
-4. Water for a Livable Planet Global Solutions Group (GSG) Knowledge Platform - (P179144)
-5. Geographic Considerations in Evaluating Women's Employment Opportunities - (P179212)
-6. Pacific Observatory - (P177189)
-7. Water and Climate Economics Research and Analytics - (P178647)
-8. World Development Report 2023: Migrants, Refugees, and Societies - (P178269)
-9. Building Climate Resilience of Families, Farms and Firms - (P180502)
-10. Fragility and water security in Sudan and South Sudan - (P177566)
-11. Primary Health Care Centered Integrated Care for an Aging Population - (P175832)
-12. Territorial and Spatial Development - (P171873)
-13. Development Data Partnership - (P167097)
-14. Sustainable Development Practice Group Flagship Report on Making Cities Green, Resilient and Inclusive - (P177249)
-15. R18 Support social protection COVID-19 response in Sao Tome and Principe - (P176471)
-16. ECCEE Poverty and Equity Program - (P172046)
+1. CRP Global Public Goods Activities
+2. Lobito Corridor
+3. ESG Landcover Data Portal (P179597)
+4. ILASP (P180860)
+5. Morocco Economic Monitor
+6. Biodiversity Evaluation, Data Science & Innovation IEG
+7. Kenya Forest Cover
+8. Ivory Coast Forest Cover
+9. Gender Enabling Environments Spatial Tool - GEEST (P179212)
+10. Mozambique Spatial Growth (P176664)
+11. Nutrition Hotspot (P163590, P504774)
+12. Space2Stats (P180913)
+13. DECSC GeospatialAnalysis
+14. Turkiye Earthquake Impact Assessment
+15. Lebanon Economic Monitor
+16. Syria Economic Monitor
+17. National Food and Agriculture System Project (P164448)
+18. Reforming Geospatial Information at the World Bank Group (P161480)
+19. 50x2030 Data Production, Methods and Use (P172771)
+20. Water for a Livable Planet Global Solutions Group (GSG) Knowledge Platform (P179144)
+21. Geographic Considerations in Evaluating Women's Employment Opportunities (P179212)
+22. Pacific Observatory (P177189)
+23. Water and Climate Economics Research and Analytics (P178647)
+24. World Development Report 2023: Migrants, Refugees, and Societies (P178269)
+25. Building Climate Resilience of Families, Farms and Firms (P180502)
+26. Fragility and water security in Sudan and South Sudan (P177566)
+27. Primary Health Care Centered Integrated Care for an Aging Population (P175832)
+28. Territorial and Spatial Development (P171873)
+29. Development Data Partnership (P167097)
+30. Sustainable Development Practice Group Flagship Report on Making Cities Green, Resilient and Inclusive (P177249)
+31. R18 Support social protection COVID-19 response in Sao Tome and Principe (P176471)
+32. ECCEE Poverty and Equity Program (P172046)
 
 <https://worldbank.github.io/GOST/README.html>
 :::
