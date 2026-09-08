@@ -193,6 +193,10 @@ What it does show is the actual argument: when the ground cannot see, a ten-minu
 
 On 15 January 2022 the submarine volcano Hunga Tonga-Hunga Ha'apai produced what is probably the best-observed explosion in the instrument record. The plume went more than 30 kilometres up with overshooting tops above 55 kilometres.
 
+![](../assets/image-blog/20260907-ten-minutes-over-the-sunda-strait-11.png)
+
+*Hunga Tonga-Hunga Ha'apai at 04:20 UTC, Himawari-8, ash RGB. The coldest pixel in that frame is 179.4 K. This came out of the same pipeline as everything above, pointed at a different volcano, hemisphere and satellite by editing one configuration file.*
+
 Two things happened next that only a ten-minute geostationary cadence could catch.
 
 The first is that scientists at NASA's Langley Research Center measured the plume height by **stereoscopy**. GOES-17 and Himawari-8 both watched Tonga, from different longitudes, both every ten minutes. Match the same cloud feature in two simultaneous images from two viewpoints and you can triangulate its altitude, the way two eyes give you depth. They found the plume rose from the ocean surface to 58 kilometres in about half an hour. Conventional infrared methods fail up there, because in the mesosphere the temperature structure inverts and a cold pixel no longer means a high cloud.
