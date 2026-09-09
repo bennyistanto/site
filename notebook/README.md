@@ -24,11 +24,6 @@ Each notebook has a configuration cell at the top. Set the paths there, then
 run the cells in order. Notebook 3 has a `DRY_RUN` flag; leave it on for the
 first pass.
 
-`convert_equations.py`, `convert_radiation_equations.py` and
-`convert_remaining_equations.py` are a separate one-off pass. Squarespace
-exports equations as images, and these rewrite them as LaTeX. Run them only if
-your posts contain equations.
-
 ## Requirements
 
 Python 3.x with Jupyter. Each notebook imports what it needs at the top.
