@@ -58,7 +58,7 @@ Over the Maritime Continent in SON, agreement averages **0.97 for demand and 0.9
 
 Elsewhere the map is patchier, and the patchy places are exactly where a confident-looking mean should not be trusted. Northern South America averages 0.76 for demand in SON. The Sahel, 0.68, is barely above the 0.5 that an even split would give.
 
-The global land average is **0.73**. Read that number first: on most of the world's land, five seasons is not enough for a composite to say anything with confidence, and the regions above are the exceptions rather than the rule.
+The global land average is **0.73**. Read that number first: on most of the world's land, five seasons is not enough for a composite to say anything with confidence, and the regions above are the exceptions.
 
 One line of that field was wrong for a week. It is shown here because the mistake is invisible in prose and obvious in code:
 
@@ -127,7 +127,7 @@ Tarutung is the interesting one and the reason it is in the set. Rainfall **abov
 
 The result does not hang on the choice of five. Recomputing the Maritime Continent SON composite from only the three closest analogues instead of five moves it from +1.119 to +1.126, a difference of less than one per cent. The picture is not an artefact of where the cut was drawn.
 
-It is a floor rather than a forecast. The analogue median for SON is +2.03 and the forecast is +2.47. These maps show what happened in seasons the forecast is expected to exceed. If the relationship between the Pacific and the land holds at that level, the coming season would be *stronger* than what is drawn here, not weaker.
+Read these maps as a floor, not a forecast. The analogue median for SON is +2.03 and the forecast is +2.47. These maps show what happened in seasons the forecast is expected to exceed. If the relationship between the Pacific and the land holds at that level, the coming season would be *stronger* than what is drawn here, not weaker.
 
 It says nothing yet about skill. Everything above describes what happened. Whether the underlying relationship can predict anything at a given location, on a year it has not already seen, is a separate question with a much less comfortable answer, and it gets its own post.
 
