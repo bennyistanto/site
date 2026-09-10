@@ -113,7 +113,7 @@ Everything above is computed from two land datasets. The rest of this post is th
 | TerraClimate `ppt`, `pet` | 1/24°, about 4.6 km | 1950-01 to 2025-12 |
 | EDDI, derived here | 1/24° and 0.25° | 1950-01 to 2025-12 |
 | SPI, scales 1, 3, 6, 12 | 1/24° | 1950-01 to 2025-12 |
-| **[AgERA5](https://cds.climate.copernicus.eu/datasets/sis-agrometeorological-indicators) reference ET** | **0.1°** | **1979-01 to the last closed month** |
+| **[AgERA5](https://doi.org/10.24381/cds.6c68c9bb) reference ET** | **0.1°** | **1979-01 to the last closed month** |
 | **AgERA5 EDDI-3** | **0.1°** | **1979-01 to the last closed month** |
 | RONI, ONI | Niño 3.4 | 1950-01 to 2026-06 |
 | CPC RONI outlook | 9 seasons | 2026-07 onward |
@@ -126,7 +126,7 @@ The land data carries `version V1.1`, `date_created 2026-06-02` and `source Worl
 
 ## TerraClimate is not an observation
 
-TerraClimate is built by taking anomalies from a **reanalysis**, [ERA5](https://rmets.onlinelibrary.wiley.com/doi/10.1002/qj.3803), and applying them to a high-resolution climatology, [WorldClim v2.1](https://rmets.onlinelibrary.wiley.com/doi/abs/10.1002/joc.5086). A reanalysis is a weather model run back over the past, pulling in every observation it can find as it goes, so what comes out is an estimate that obeys physics everywhere, including in the places where nobody was measuring. It is an interpolation, not a measurement. No instrument recorded 4.6 km reference evapotranspiration in the Sahel in 1953.
+TerraClimate is built by taking anomalies from a **reanalysis**, [ERA5](https://doi.org/10.1002/qj.3803), and applying them to a high-resolution climatology, [WorldClim v2.1](https://doi.org/10.1002/joc.5086). A reanalysis is a weather model run back over the past, pulling in every observation it can find as it goes, so what comes out is an estimate that obeys physics everywhere, including in the places where nobody was measuring. It is an interpolation, not a measurement. No instrument recorded 4.6 km reference evapotranspiration in the Sahel in 1953.
 
 That has a consequence people routinely miss. The **grid** is 1/24 of a degree. The **information** is at the resolution of the coarser input. A fine grid can be produced from coarse information, and it will look convincing.
 
