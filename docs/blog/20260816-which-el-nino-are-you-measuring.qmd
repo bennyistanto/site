@@ -137,7 +137,7 @@ Testing a quarter of a million places at once creates a problem that testing one
 
 **Testing many places at once.** Run the same test on 245,484 cells and a few
 thousand will look convincing by luck alone. *False discovery rate* control,
-in the [Benjamini-Hochberg](https://academic.oup.com/jrsssb/article/57/1/289/7035855) form used here at q < 0.05, sets the bar higher the
+in the [Benjamini-Hochberg](https://doi.org/10.1111/j.2517-6161.1995.tb02031.x) form used here at q < 0.05, sets the bar higher the
 more places you ask about, so that no more than about five per cent of the
 cells declared interesting are flukes.
 
