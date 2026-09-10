@@ -19,7 +19,7 @@ Almost every drought product in operational use measures the first half.
 
 ![](../assets/image-blog/20260822-two-ways-to-see-a-drought-01.png)
 
-A single TerraClimate cell over Indramayu, on the north coast of Java, through two strong El Niños. Rainfall on one axis, reference evapotranspiration on the other. Reference ET is the standard way to put a number on how hard the air is pulling: the depth of water a well watered grass field would lose in a month, given the heat, sun, wind and humidity actually recorded. The definition and the equation behind it are [FAO Irrigation and Drainage Paper 56](https://www.fao.org/4/x0490e/x0490e00.htm), Allen, Pereira, Raes and Smith (1998). It is measured in millimetres, like rain, which is what makes the two halves of this figure comparable.
+A single cell of **TerraClimate**, a global gridded record of monthly climate at about 4 km, over Indramayu on the north coast of Java, through two strong El Niños. How it is built matters and is set out later in this post. Rainfall on one axis, reference evapotranspiration on the other. Reference ET is the standard way to put a number on how hard the air is pulling: the depth of water a well watered grass field would lose in a month, given the heat, sun, wind and humidity actually recorded. The definition and the equation behind it are [FAO Irrigation and Drainage Paper 56](https://www.fao.org/4/x0490e/x0490e00.htm), Allen, Pereira, Raes and Smith (1998). It is measured in millimetres, like rain, which is what makes the two halves of this figure comparable.
 
 For the August to October window at that cell:
 
