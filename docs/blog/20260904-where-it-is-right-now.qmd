@@ -25,11 +25,11 @@ Both halves are here, on the same grid and the same 1991-2020 baseline. That mat
 
 **August 2026**, the most recent month, over 2.39 million land cells on the supply side and 2.33 million on the demand side.
 
-One caveat about that month before anything is read off it. The rainfall side covers all **31 days** of August. The demand side covers **29**, because AgERA5's reference evapotranspiration had not published the last two days when this was built. Both indices accumulate over three months, so those two days are missing from a 92-day window: the demand totals run about **2 per cent** short, and every EDDI figure below should be read as a floor rather than a level. It is small, and it points the same way everywhere, so it widens the gap between the two axes rather than narrowing it.
+One caveat about that month before anything is read off it. The rainfall side covers all **31 days** of August. The demand side covers **29**, because AgERA5's reference evapotranspiration had not published the last two days when this was built. Both indices accumulate over three months, so those two days are missing from a 92-day window: the demand totals run about **2 per cent** short, and every EDDI figure below is a floor. It is small, and it points the same way everywhere, so it widens the gap between the two axes rather than narrowing it.
 
 Both panels are drawn so that **red means dry**: less rain in the top panel, more evaporative demand in the bottom. That is a deliberate choice, because the two indices point in opposite directions by construction. A low SPI is a shortfall; a high EDDI is a shortfall. Drawing them raw would have made the reader flip one of them in their head at every comparison.
 
-It is one sign, carried in the configuration rather than inferred, because getting it backwards would report a wet anomaly as a drought with no error anywhere:
+It is one sign, carried in the configuration and never inferred, because getting it backwards would report a wet anomaly as a drought with no error anywhere:
 
 ```python
 AX = {"supply": dict(label="rainfall supply, SPI-3", sign=-1),
@@ -86,7 +86,7 @@ Counting a cell as dry on an axis if it lands in the driest quarter of its own r
 
 ![](../assets/image-blog/20260904-where-it-is-right-now-04.png)
 
-Run theory applied to the observed record rather than to a forecast: consecutive months up to August 2026 beyond the dry threshold on each axis.
+Run theory on the observed record, with no forecast in it: consecutive months up to August 2026 beyond the dry threshold on each axis.
 
 | region | rain-short spell | demand spell |
 |---|---|---|
@@ -138,11 +138,11 @@ Eastern Australia is going the other way on both halves too, at the 38.6th and 1
 
 Indramayu is the case that makes the argument. The demand-only draft of this post put it at +0.08 EDDI, the 63rd percentile, not in a spell, and moved on. Its rainfall sits at the **90th dry percentile**. A monitor watching evaporative demand alone would have called this an unremarkable month on the north coast of Java, which is precisely the failure this series was built to argue against. It happened here, in my own first draft.
 
-Tarutung has flipped. Post 6 identifies it as the one case cell sitting in the rare wet-and-thirsty quadrant historically. In August 2026 it is wet and *calm*, with the demand half doing the opposite of what its own historical response predicts. One month does not overturn a seventy-six year regression. It is a reminder that a cell's average behaviour and its behaviour this month are different things.
+Tarutung has flipped. Post 6 identifies it as the one case cell sitting in the rare wet-and-thirsty quadrant historically. In August 2026 it is wet and *calm*, with the demand half doing the opposite of what its own historical response predicts. One month does not overturn a seventy-six year regression. A cell's average behaviour and its behaviour this month are different things.
 
 Makassar and Baubau both read exactly +2.028, which is neither a coincidence nor a measurement. It is the ceiling. Post 4 showed that a thirty-year rank baseline offers only 31 possible levels, the most extreme of them ±2.028, and **9.3 per cent of land by area is pinned there**.
 
-Those cells cannot get worse *in the index* however much worse conditions get, and any regression fitted against a saturated top end has its slope pulled down. It is a property of the baseline length, not of the weather. Rebuilding EDDI on the full 1979-2025 record would lift the ceiling to **+2.20**, enough to reach all eleven NOAA classes. (Post 4 quotes +2.17 for the same move, because it is working on TerraClimate's seventy-six years, where this post has AgERA5's forty-seven. A longer record raises the ceiling; the two numbers are the same rule on two records.) That has not been done, and until it is, "+2.03" should be read as "at least +2.03". Note that the supply axis has no such problem: SPI is parametric and clips at ±3.09, so a saturated EDDI beside an unsaturated SPI is not evidence that demand is the larger anomaly.
+Those cells cannot get worse *in the index* however much worse conditions get, and any regression fitted against a saturated top end has its slope pulled down. The ceiling is a property of the baseline length, not of the weather. Rebuilding EDDI on the full 1979-2025 record would lift the ceiling to **+2.20**, enough to reach all eleven NOAA classes. (Post 4 quotes +2.17 for the same move, because it is working on TerraClimate's seventy-six years, where this post has AgERA5's forty-seven. A longer record raises the ceiling; the two numbers are the same rule on two records.) That has not been done, and until it is, "+2.03" should be read as "at least +2.03". Note that the supply axis has no such problem: SPI is parametric and clips at ±3.09, so a saturated EDDI beside an unsaturated SPI is not evidence that demand is the larger anomaly.
 
 ## The limits of a single month
 
