@@ -3,7 +3,7 @@ title: "A very strong El Niño is forecast"
 author: "Benny Istanto"
 date: "2026-08-14"
 series: "El Nino 2026"
-description: "In six months the Pacific swung from La Niña to El Niño, and the official outlook has it climbing past anything in the record. For four consecutive seasons the central forecast sits above every value observed since 1950."
+description: "In six months the Pacific swung from La Niña to El Niño conditions, and the official outlook has it climbing past anything in the record. For four consecutive seasons the central forecast sits above every value observed since 1950."
 image: "../assets/image-blog/20260814-a-very-strong-el-nino-01.png"
 categories:
   - "Climate"
@@ -11,7 +11,7 @@ categories:
   - "Research"
 ---
 
-In December 2025 the tropical Pacific was in a La Niña. Eight months later it is in an El Niño, and the official outlook has it becoming one of the strongest ever measured.
+In December 2025 the tropical Pacific was in a La Niña. Eight months later it has crossed into El Niño territory, and the official outlook has it becoming one of the strongest ever measured.
 
 This series is about what that does to the land, and about how much of the answer the historical record can actually support. It starts here, with the ocean, because everything else follows from it.
 
@@ -19,7 +19,9 @@ This series is about what that does to the land, and about how much of the answe
 
 ![](../assets/image-blog/20260814-a-very-strong-el-nino-01.png)
 
-The index on that chart is **RONI**, the Relative Oceanic Niño Index, which the Climate Prediction Center adopted as its primary standard in February 2026. The next post explains what it is and why the choice matters. For now, read it the way you would read the older Niño 3.4: above +0.5 is El Niño, below −0.5 is La Niña.
+The index on that chart is **RONI**, the Relative Oceanic Niño Index, which the Climate Prediction Center adopted as its primary standard in February 2026. The next post explains what it is and why the choice matters. For now, read it the way you would read the older Niño 3.4: above +0.5 is El Niño territory, below −0.5 is La Niña.
+
+Crossing the line is not the same as being a catalogued event, and the difference matters later. An event needs **five consecutive overlapping three-month seasons** past the threshold. As of the last observed season there is one, so 2026 is not yet in the record of 44 events that post 3 counts. What follows is a forecast of an event, not a report of one.
 
 | | RONI |
 |---|---|
@@ -80,7 +82,7 @@ For SON, the five closest analogues have a median RONI of **+2.03** against a fo
 
 So the method does not degrade gently as conditions get more extreme. It runs out of past to draw on **precisely where the event is strongest**, which is where a reader most wants an answer.
 
-Nothing solves that, and this series does not pretend to. What it does instead is state the size of the gap every time it uses an analogue, and set a second, independent method beside the first so neither has to be trusted alone.
+Nothing solves that, and this series does not pretend to. What it does instead is state the size of the gap every time it uses an analogue, and set a second method beside the first so neither has to be trusted alone. Not an independent one, to be clear: the composite and the fitted regression read the same Pacific index and the same land record. They fail in different ways, which is useful, but they are not two witnesses.
 
 ## Two things the forecast is not saying
 
