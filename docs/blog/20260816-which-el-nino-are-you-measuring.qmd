@@ -132,14 +132,14 @@ Testing a quarter of a million places at once creates a problem that testing one
 
 **Testing many places at once.** Run the same test on 245,484 cells and a few
 thousand will look convincing by luck alone. *False discovery rate* control,
-in the Benjamini-Hochberg form used here at q < 0.05, sets the bar higher the
+in the [Benjamini-Hochberg](https://academic.oup.com/jrsssb/article/57/1/289/7035855) form used here at q < 0.05, sets the bar higher the
 more places you ask about, so that no more than about five per cent of the
 cells declared interesting are flukes.
 
 **Months that repeat themselves.** Statistics assume each observation is a
 fresh piece of news. Evaporative demand in July tells you most of what August
 will say, so 910 months is nowhere near 910 pieces of news. The *effective
-sample size*, in the Bretherton form, works out how many independent months
+sample size*, in the [Bretherton](https://journals.ametsoc.org/view/journals/clim/12/7/1520-0442_1999_012_1990_tenosd_2.0.co_2.xml) form, works out how many independent months
 the record is really worth, using how strongly each series resembles its own
 previous month.
 :::

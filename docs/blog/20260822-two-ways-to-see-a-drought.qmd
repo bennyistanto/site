@@ -19,7 +19,7 @@ Almost every drought product in operational use measures the first half.
 
 ![](../assets/image-blog/20260822-two-ways-to-see-a-drought-01.png)
 
-A single TerraClimate cell over Indramayu, on the north coast of Java, through two strong El Niños. Rainfall on one axis, reference evapotranspiration on the other. Reference ET is the standard way to put a number on how hard the air is pulling: the depth of water a well watered grass field would lose in a month, given the heat, sun, wind and humidity actually recorded. It is measured in millimetres, like rain, which is what makes the two halves of this figure comparable.
+A single TerraClimate cell over Indramayu, on the north coast of Java, through two strong El Niños. Rainfall on one axis, reference evapotranspiration on the other. Reference ET is the standard way to put a number on how hard the air is pulling: the depth of water a well watered grass field would lose in a month, given the heat, sun, wind and humidity actually recorded. The definition and the equation behind it are [FAO Irrigation and Drainage Paper 56](https://www.fao.org/4/x0490e/x0490e00.htm), Allen, Pereira, Raes and Smith (1998). It is measured in millimetres, like rain, which is what makes the two halves of this figure comparable.
 
 For the August to October window at that cell:
 
@@ -37,11 +37,11 @@ That is the case for measuring both, and it is the whole reason this series exis
 
 ## Which two indices, and which one is deliberately excluded
 
-The supply side is the **Standardized Precipitation Index**, SPI, computed here at 1, 3, 6 and 12 month accumulations. The demand side is the **Evaporative Demand Drought Index**, EDDI, at the same four. Both from TerraClimate v1.1, both 1950 to 2025, both against the same 1991-2020 baseline. Same input, same period, same calibration, so a difference between them is a difference in what they measure rather than in how they were built.
+The supply side is the [**Standardized Precipitation Index**](https://www.droughtmanagement.info/literature/AMS_Relationship_Drought_Frequency_Duration_Time_Scales_1993.pdf), SPI, after McKee, Doesken and Kleist (1993), computed here at 1, 3, 6 and 12 month accumulations. The demand side is the [**Evaporative Demand Drought Index**](https://journals.ametsoc.org/view/journals/hydr/17/6/jhm-d-15-0121_1.xml), EDDI, after Hobbins and colleagues (2016), at the same four. Both from TerraClimate v1.1, both 1950 to 2025, both against the same 1991-2020 baseline. Same input, same period, same calibration, so a difference between them is a difference in what they measure rather than in how they were built.
 
 There is an obvious third candidate, and it is deliberately not used.
 
-The Standardized Precipitation Evapotranspiration Index takes precipitation *minus* reference evapotranspiration and standardises the difference. It is a good index and it is widely used. It is the wrong index here, because it already contains the demand term. Pairing SPEI with EDDI would put reference ET on both axes and then report the resulting correlation as a finding.
+The [Standardized Precipitation Evapotranspiration Index](https://journals.ametsoc.org/view/journals/clim/23/7/2009jcli2909.1.xml), from Vicente-Serrano and colleagues (2010), takes precipitation *minus* reference evapotranspiration and standardises the difference. It is a good index and it is widely used. It is the wrong index here, because it already contains the demand term. Pairing SPEI with EDDI would put reference ET on both axes and then report the resulting correlation as a finding.
 
 This is not a subtle worry, it is arithmetic:
 
@@ -59,7 +59,7 @@ The two axes are still coupled, of course. On the rebuilt files the climatologic
 
 ![](../assets/image-blog/20260822-two-ways-to-see-a-drought-02.png)
 
-At one cell, for one window. Take the 76 August-to-October accumulations of reference ET from 1950 to 2025, which at this cell run from **327 to 508 mm**. Rank the current year against the 30 baseline years, turn that rank into a probability, and turn the probability into a **z-score**, which is distance from normal counted in units of the usual year-to-year spread. A z of +1 sits further from normal than about five years in six. The rule for turning a rank into a probability is called a *plotting position*, and post 7 gives the exact one.
+At one cell, for one window. Take the 76 August-to-October accumulations of reference ET from 1950 to 2025, which at this cell run from **327 to 508 mm**. Rank the current year against the 30 baseline years, turn that rank into a probability with the **Tukey plotting position**, the same rule EDDI itself uses ([Hoylman and colleagues, 2024](https://doi.org/10.1029/2023WR036087)), and turn the probability into a **z-score**, which is distance from normal counted in units of the usual year-to-year spread. A z of +1 sits further from normal than about five years in six. The rule for turning a rank into a probability is called a *plotting position*, and post 7 gives the exact one.
 
 **Positive EDDI means higher than normal evaporative demand: a thirstier atmosphere, drier conditions.**
 
@@ -80,7 +80,7 @@ If the index is a rank among $k$ baseline years, then there are only $k+1$ possi
 
 The two rows answer slightly different questions, and the difference is not a rounding detail. A month scored *against* a baseline it is not part of has $k+1$ places to land. A month scored inside its own baseline ties with itself, takes a mid-rank, and has $k$. The first row is the 1991-2020 case, where 2026 sits outside; the second is the full-record case, where every month is inside. Each row uses the convention that applies to it.
 
-NOAA's EDDI classification has eleven categories, and on a thirty-year baseline **the outermost class at each end, EW4 and ED4, cannot be reached at all**. ED4 begins at the 98th percentile, and a thirty-year rank tops out at the 97.87th. This is not a matter of those categories being rare or unlikely. There is no arrangement of the data that produces one.
+NOAA's [EDDI classification](https://psl.noaa.gov/eddi/pdf/EDDI_UserGuide_v1.0.pdf) has eleven categories, and on a thirty-year baseline **the outermost class at each end, EW4 and ED4, cannot be reached at all**. ED4 begins at the 98th percentile, and a thirty-year rank tops out at the 97.87th. This is not a matter of those categories being rare or unlikely. There is no arrangement of the data that produces one.
 
 That follows from the baseline this project chose and says nothing against NOAA's scheme. NOAA standardises EDDI against the whole period of record instead of a thirty-year normal: PSL uses 1980-2015, reaching the 98.21st percentile, and CPC uses 1980-2021, reaching the 98.46th. Both clear the 98th, so both can report an exceptional drought. The WMO 1991-2020 window used here cannot, and that is the price of making this product line up with everything else in the series.
 
@@ -111,7 +111,7 @@ Everything above is computed from two land datasets. The rest of this post is th
 | TerraClimate `ppt`, `pet` | 1/24°, about 4.6 km | 1950-01 to 2025-12 |
 | EDDI, derived here | 1/24° and 0.25° | 1950-01 to 2025-12 |
 | SPI, scales 1, 3, 6, 12 | 1/24° | 1950-01 to 2025-12 |
-| **AgERA5 reference ET** | **0.1°** | **1979-01 to 2026-08** |
+| **[AgERA5](https://cds.climate.copernicus.eu/datasets/sis-agrometeorological-indicators) reference ET** | **0.1°** | **1979-01 to 2026-08** |
 | **AgERA5 EDDI-3** | **0.1°** | **1979-01 to 2026-08** |
 | RONI, ONI | Niño 3.4 | 1950-01 to 2026-06 |
 | CPC RONI outlook | 9 seasons | 2026-07 onward |
@@ -120,11 +120,11 @@ Those spans are read out of the files rather than quoted from a plan.
 
 The two rows in bold are the reason this series can say anything about the present. **TerraClimate stops at December 2025**, eight months before the event began. **AgERA5 reaches August 2026**, with 2.33 million land cells in that month. One dataset is the history and the other is the news, and post 7 is written entirely from the second.
 
-The land data carries `version V1.1`, `date_created 2026-06-02` and `source WorldClim v2.1, ERA5`, from the University of California Merced, after Abatzoglou, Hegewisch, Yin and Kalashinkov (2026).
+The land data carries `version V1.1`, `date_created 2026-06-02` and `source WorldClim v2.1, ERA5`, from the University of California Merced. Its own `references` attribute names Abatzoglou, Hegewisch, Yin and Kalashinkov (2026) for this version; the dataset was introduced in [Abatzoglou, Dobrowski, Parks and Hegewisch (2018)](https://www.nature.com/articles/sdata2017191).
 
 ## TerraClimate is not an observation
 
-TerraClimate is built by taking anomalies from a **reanalysis**, ERA5, and applying them to a high-resolution climatology, WorldClim v2.1. A reanalysis is a weather model run back over the past, pulling in every observation it can find as it goes, so what comes out is an estimate that obeys physics everywhere, including in the places where nobody was measuring. It is an interpolation, not a measurement. No instrument recorded 4.6 km reference evapotranspiration in the Sahel in 1953.
+TerraClimate is built by taking anomalies from a **reanalysis**, [ERA5](https://rmets.onlinelibrary.wiley.com/doi/10.1002/qj.3803), and applying them to a high-resolution climatology, [WorldClim v2.1](https://rmets.onlinelibrary.wiley.com/doi/abs/10.1002/joc.5086). A reanalysis is a weather model run back over the past, pulling in every observation it can find as it goes, so what comes out is an estimate that obeys physics everywhere, including in the places where nobody was measuring. It is an interpolation, not a measurement. No instrument recorded 4.6 km reference evapotranspiration in the Sahel in 1953.
 
 That has a consequence people routinely miss. The **grid** is 1/24 of a degree. The **information** is at the resolution of the coarser input. A fine grid can be produced from coarse information, and it will look convincing.
 

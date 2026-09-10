@@ -15,6 +15,20 @@ This series measures both, globally, across seventy-six years of record, and ask
 
 The posts are interleaved with unrelated ones on the [main blog](blog.qmd), so this page is the reading order. Each post also links to the next one in the series rather than to whatever was published next.
 
+### The whole series, in six findings
+
+**Globally, El Nino barely touches dry spells.** It raises the share of dry months by one to fourteen per cent of itself, which is real and close to useless. Rainfall moves around the tropics rather than leaving the planet.
+
+**Regionally it changes a great deal.** Nineteen more months in every hundred come in short of rain over the Maritime Continent, with the sign reversed over southwestern North America.
+
+**It starts dry spells rather than stretching them**, by up to 1.9 times in onsets against at most 1.16 in duration. A monitor already watching a spell would not see it coming.
+
+**Both halves of the balance move together, not apart.** The case this project was built to find, normal rain with abnormal thirst, is 0.3 per cent of the land where both responses are solid. The other 99.7 per cent sits on the diagonal.
+
+**Record-breaking evaporative demand runs four to five times likelier than chance** across the coming seven seasons, and about half of that is the warming trend rather than the Pacific.
+
+**On 56 to 74 per cent of land the relationship predicts nothing.** Hide a season, refit, predict it, and the fit does worse than guessing that season's own average. The series is really about the 18 per cent where it holds, and the maps do not look like they are.
+
 ## 2026 {#year-2026}
 
 **Two halves of a balance.** What arrives, what leaves, how long each lasts, and how far forty-four events will stretch.

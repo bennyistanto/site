@@ -57,7 +57,7 @@ Ranked against every August from 1979 to 2025, on the dry side of each axis so t
 
 **The Sahel is at SPI-3 of −2.39**, a severe rainfall shortfall. The typical cell there beat 46 of the 47 Augusts on record, so for most of the region only one August since 1979 was drier. The supply axis is further from normal than the demand axis alone suggested.
 
-The rank is a **Tukey plotting position**, the same convention used to build EDDI itself, with $r$ the number of earlier years this year beats and $k$ the number of years available:
+The rank is a **Tukey plotting position**, the same rule EDDI itself uses to turn a rank into a probability ([Hoylman and colleagues, 2024](https://doi.org/10.1029/2023WR036087), describing the EDDI method), with $r$ the number of earlier years this year beats and $k$ the number of years available:
 
 $$
 F = \frac{r + 1 - \tfrac{1}{3}}{k + 1 + \tfrac{1}{3}}

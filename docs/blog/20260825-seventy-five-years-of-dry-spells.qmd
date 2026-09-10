@@ -17,7 +17,7 @@ Not the average anomaly. Dry spells: how often one starts, how long it lasts, ho
 
 ## What counts as a spell
 
-A **run** is a continuous stretch where an index stays beyond a threshold. Dry is a **low SPI** and a **high EDDI**, so the same physical condition is `SPI < −1.0` and `EDDI > +1.0`. Two consecutive months qualify; one does not.
+A **run** is a continuous stretch where an index stays beyond a threshold. The framework is [Yevjevich's](https://mountainscholar.org/items/caa939a5-98a9-4ca3-8ea3-308c310cdad7), set out in Hydrology Paper 23 at Colorado State University in 1967, and it is still the standard way to turn a drought index into countable events. Dry is a **low SPI** and a **high EDDI**, so the same physical condition is `SPI < −1.0` and `EDDI > +1.0`. Two consecutive months qualify; one does not.
 
 Each run has three properties, kept separate because they answer different questions. For a run covering months $t = a \ldots b$, with both indices flipped so that a larger
 number always means drier, written $z_t$:
