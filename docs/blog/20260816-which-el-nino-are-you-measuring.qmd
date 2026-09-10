@@ -21,7 +21,7 @@ Until recently that would have been a footnote, because only one of them counted
 
 ## The index changed this year
 
-Effective February 2026, NOAA's Climate Prediction Center adopted the Relative Oceanic Niño Index for official monitoring and prediction of ENSO. Its [information circular](https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso/roni/pdf/roni-info-may-2026.pdf) states that RONI "is now the primary standard for official advisories and classifications of ENSO events", and that historical episodes are being re-evaluated with it.
+Effective February 2026, NOAA's Climate Prediction Center adopted the Relative Oceanic Niño Index for official monitoring and prediction of ENSO, the El Niño-Southern Oscillation. That is the name for the whole cycle: El Niño at the warm end, La Niña at the cool end, and the neutral state that occupies about half of the record in between. Its [information circular](https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso/roni/pdf/roni-info-may-2026.pdf) states that RONI "is now the primary standard for official advisories and classifications of ENSO events", and that historical episodes are being re-evaluated with it.
 
 What did not change is the definition of an event: ±0.5 °C for five consecutive overlapping three-month seasons. The circular is explicit that "Thresholds and definitions stay the same, only the measurement improves."
 
@@ -31,7 +31,7 @@ So the question in the title is not rhetorical. Anything written before this yea
 
 The **Oceanic Niño Index** is the three-month running mean sea surface temperature anomaly in the Niño 3.4 region, 5°N to 5°S and 120° to 170°W, measured against a thirty-year climatology that CPC re-centres every five years.
 
-The **Relative Oceanic Niño Index** starts from the same Niño 3.4 anomalies, subtracts the average anomaly across the global tropical belt, 20°S to 20°N, taken against the current WMO standard normal of 1991-2020, and then rescales the difference so its overall variability matches ONI's:
+The **Relative Oceanic Niño Index** starts from the same Niño 3.4 anomalies, subtracts the average anomaly across the global tropical belt, 20°S to 20°N, taken against the current standard normal of 1991-2020 set by the World Meteorological Organization, and then rescales the difference so its overall variability matches ONI's:
 
 $$
 \mathrm{RONI} \;\propto\; \mathrm{SSTA}_{\text{Niño 3.4}} \;-\; \overline{\mathrm{SSTA}}_{\,20°S-20°N}
@@ -73,11 +73,13 @@ The first is that ONI is the series with no trend. Its rolling thirty-year windo
 
 The second is that RONI carries a mild negative trend, which says the Niño 3.4 region has warmed slightly *less* than the tropical ocean around it. That is a real statement about the Pacific rather than a side effect of the subtraction.
 
-What the difference between them really is: a composite of the tropical-belt subtraction, the variance rescaling, and the fact that the two indices use different climatologies. Empirically it is trend-dominated and near-orthogonal to ENSO. The data supports that much and no more, which is enough for what follows.
+What the difference between them really is: a mixture of the tropical-belt subtraction, the variance rescaling, and the fact that the two indices use different reference periods. Measured, it is dominated by the trend and carries almost none of the ENSO signal itself. The data supports that much and no more, which is enough for what follows.
 
 ## Does the choice change any answer?
 
 An index is only worth arguing about if the argument changes a result. So run the same regression twice.
+
+That needs something on the land to test against. The measure used here is **EDDI**, the Evaporative Demand Drought Index: how unusual the atmosphere's thirst is for the time of year at that place, worked out from temperature, humidity, wind and sunshine. A high EDDI means a thirsty atmosphere. Post 4 builds it from scratch and explains why it is half of what a drought is; for now that one sentence is enough.
 
 For each 0.25° land cell, regress EDDI over three months on the Pacific index, within each calendar month so the seasonal cycle is removed by construction, once against RONI and once against ONI. Then subtract.
 
@@ -102,7 +104,7 @@ The coefficient is the answer that fit gives back: how much EDDI moves for each 
 
 ![](../assets/image-blog/20260816-which-el-nino-are-you-measuring-02.png)
 
-The map is one-signed almost everywhere. Orange, where RONI gives the lower coefficient, covers the Sahara, the Sahel, central Africa, Amazonia, interior Asia and most of North America. Purple is confined to peninsular India, parts of the Maritime Continent, and interior Australia.
+The map is one-signed almost everywhere. Orange, where RONI gives the lower coefficient, covers the Sahara, the Sahel, central Africa, Amazonia, interior Asia and most of North America. Purple is confined to peninsular India, parts of the Maritime Continent, and interior Australia. The Maritime Continent is the belt of islands and shallow seas between the Indian and Pacific oceans, running from Sumatra east to New Guinea; this series takes it as the box from 11°S to 8°N and 95°E to 141°E, and it turns out to be where most of the signal lives.
 
 ### A number that sounds alarming
 
@@ -177,7 +179,7 @@ That global table averages over a world where most land has no ENSO signal at al
 | Northern South America | 25.2% | 9.0% | **11.1%** | 0.0% | 14.1% |
 | Whole land surface | 7.9% | 1.5% | 1.2% | 3.8% | 2.9% |
 
-The Maritime Continent is a different world from the global average. Seventy per cent of its cells carry a signal, and **47% survive leave-one-event-out cross-validation** against a global figure of 1.5%. The strongest cell, near Luwuk in Indonesia, gives r = +0.68, +0.73 EDDI units per °C, and a cross-validated R² of +0.45. The relationship there is genuine and checkable, well clear of marginal.
+The Maritime Continent is a different world from the global average. Seventy per cent of its cells carry a signal, and **47% survive leave-one-event-out cross-validation** against a global figure of 1.5%. That test hides one El Niño, refits the relationship without it, and asks the fit to predict the event it never saw. Surviving it is a much higher bar than merely fitting the past, and post 9 is largely about how few places clear it. The strongest cell, near Luwuk in Indonesia, gives r = +0.68, +0.73 EDDI units per °C, and a cross-validated R² of +0.45. The relationship there is genuine and checkable, well clear of marginal.
 
 The other two regions carry a real signal that is weaker and much less predictive. Eastern Australia has a signal on 37% of cells but only 3.2% cross-validate; its strongest cell, on the Queensland coast near Ayr, reaches r = +0.38. Northern South America sits between them, with its strongest cell in the interior near Cottica in Suriname at r = +0.51.
 
