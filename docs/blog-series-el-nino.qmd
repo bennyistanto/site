@@ -35,7 +35,7 @@ The posts are interleaved with unrelated ones on the [main blog](blog.qmd), so t
 
 **1. [A very strong El Niño is forecast](blog/20260814-a-very-strong-el-nino.qmd)**  
 *14 August 2026*  
-In six months the Pacific swung from La Niña to El Niño, and the official outlook has it climbing past anything in the record. For four consecutive seasons the central forecast sits above every value observed since 1950.
+In six months the Pacific swung from La Niña to El Niño conditions, and the official outlook has it climbing past anything in the record. For four consecutive seasons the central forecast sits above every value observed since 1950.
 
 **2. [Which El Niño are you measuring?](blog/20260816-which-el-nino-are-you-measuring.qmd)**  
 *16 August 2026*  
