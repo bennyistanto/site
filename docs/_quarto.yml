@@ -41,6 +41,11 @@ website:
             href: blog.qmd
           - text: "Archive by Year"
             href: blog-archive.qmd
+          - text: "---"
+          - text: "Series: Bias Correction"
+            href: blog-series-bias-correction.qmd
+          - text: "Series: El Niño 2026"
+            href: blog-series-el-nino.qmd
       - text: "Works"
         menu:
           - text: "Overview"
