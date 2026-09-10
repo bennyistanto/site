@@ -76,6 +76,7 @@ def collect():
 # published in between.
 SERIES_PAGES = {
     "Bias Correction": "blog-series-bias-correction",
+    "El Nino 2026": "blog-series-el-nino",
 }
 
 
