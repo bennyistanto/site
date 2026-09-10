@@ -1,0 +1,184 @@
+/* ============================================
+   Individual blog post
+   Title block rule + previous/next navigation
+   ============================================ */
+
+/* --------------------------------------------
+   Rule between the title block and the content
+   The title block holds title, categories, description,
+   author and date. A single line separates it from the post.
+   -------------------------------------------- */
+#title-block-header.quarto-title-block.default {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.28);
+  padding-bottom: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+/* Keep the post readable on a full-width page: the layout goes
+   edge to edge, but the prose column stays a comfortable measure. */
+main.content > *:not(.quarto-title-block):not(.cell-output-display):not(.image-gallery) {
+  max-width: 60rem;
+}
+
+main.content > .image-gallery,
+main.content > p > img,
+main.content > figure {
+  max-width: 100%;
+}
+
+/* --------------------------------------------
+   Display equations
+   A long equation is wider than the text column on a phone.
+   MathJax does not wrap, so without this it pushes the whole
+   page sideways. Let the equation scroll inside its own box.
+   -------------------------------------------- */
+main.content mjx-container[display="true"] {
+  /* MathJax puts an inline min-width on a tagged equation so the number can sit
+     at the right edge. That inline value beats max-width, so it has to be
+     overridden with !important or the box refuses to shrink. */
+  min-width: 0 !important;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.35rem;
+}
+
+/* --------------------------------------------
+   Previous / next post navigation
+   Injected after render by blog-prev-next.py
+   -------------------------------------------- */
+.post-nav {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 3rem 0 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(128, 128, 128, 0.28);
+}
+
+.post-nav a {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid rgba(128, 128, 128, 0.25);
+  border-radius: var(--border-radius, 0.5rem);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.post-nav a:hover {
+  border-color: rgba(128, 128, 128, 0.55);
+  transform: translateY(-2px);
+}
+
+.post-nav .post-nav-next {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.post-nav .post-nav-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.post-nav .post-nav-title {
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+/* A single neighbour should not stretch across the full row */
+.post-nav a:only-child {
+  flex: 0 1 50%;
+}
+
+.post-nav a:only-child.post-nav-next {
+  margin-left: auto;
+}
+
+@media (max-width: 640px) {
+  .post-nav {
+    flex-direction: column;
+  }
+
+  .post-nav .post-nav-next {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .post-nav a:only-child.post-nav-next {
+    margin-left: 0;
+  }
+}
+
+/* Series banner, injected under the title block by script/blog-prev-next.py
+   for any post carrying a `series:` key. Quiet on purpose: it is a signpost,
+   not a headline, and it sits directly above the opening paragraph. */
+.post-series {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.85rem;
+  margin: 0 0 2rem;
+  padding: 0.6rem 0.9rem;
+  border-left: 3px solid var(--bs-primary);
+  background: var(--bs-tertiary-bg, rgba(127, 127, 127, 0.08));
+  border-radius: 0 0.35rem 0.35rem 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.post-series a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.post-series a:hover {
+  text-decoration: underline;
+}
+
+.post-series .post-series-pos {
+  color: var(--bs-secondary-color, #6c757d);
+}
+
+.post-series .post-series-pos::before {
+  content: "\00b7";
+  margin-right: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .post-series .post-series-pos::before {
+    content: none;
+    margin-right: 0;
+  }
+}
+
+/* --- embedded PDF preview -------------------------------------------------
+   Used for Google Drive /preview iframes inside a collapsed callout. Height
+   is clamped rather than driven by an A4 aspect ratio: the Drive viewer adds
+   its own toolbar, and a true 1:1.414 box leaves a tall empty strip on wide
+   screens while overflowing short ones. */
+.pdf-embed {
+  width: 100%;
+  height: clamp(420px, 78vh, 900px);
+  margin: 0.35rem 0 0.75rem;
+}
+
+.pdf-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-radius: 4px;
+  background: var(--bs-body-bg, #fff);
+}
+
+.pdf-embed + .pdf-embed-note {
+  font-size: 0.9em;
+  color: var(--bs-secondary-color, #6c757d);
+}

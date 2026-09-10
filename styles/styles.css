@@ -1,0 +1,579 @@
+/* ============================================
+   Main Styles for Benny Istanto's Website
+   Minimal, Elegant, Light/Dark Theme Compatible
+   ============================================ */
+
+/* Import Bootstrap Icons */
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css');
+
+/* ============================================
+   Typography & Base Styles
+   ============================================ */
+
+:root {
+  --transition-speed: 0.3s;
+  --border-radius: 0.5rem;
+  --spacing-unit: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+/* ============================================
+   Navbar Customization
+   ============================================ */
+
+.navbar {
+  transition: background-color var(--transition-speed) ease;
+  padding: 0.75rem 2rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  min-height: 100px;
+}
+
+.navbar-brand {
+  margin-right: 2rem;
+  height: auto !important;
+}
+
+.navbar-brand img {
+  height: 60px !important;
+  max-height: none !important;
+  width: auto !important;
+  transition: transform var(--transition-speed) ease;
+}
+
+/* Navbar logo sizing + theme-based swap (CSS-only) */
+.navbar-brand img.navbar-logo {
+  height: 60px !important;
+  width: auto !important;
+  max-height: none !important;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+
+  /* default (light) */
+  content: url("../assets/image-logo/bi-logo-full-light.png");
+}
+
+/* dark mode: Quarto may set theme on <html> OR <body>, depending on version */
+html[data-bs-theme="dark"] .navbar-brand img.navbar-logo,
+body[data-bs-theme="dark"] .navbar-brand img.navbar-logo,
+body.quarto-dark .navbar-brand img.navbar-logo {
+  content: url("../assets/image-logo/bi-logo-full-dark.png");
+}
+
+.navbar-brand:hover img.navbar-logo {
+  transform: scale(1.05);
+}
+
+.navbar-nav .nav-link {
+  margin: 0 0.5rem;
+  transition: all var(--transition-speed) ease;
+  font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover {
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   Footer Customization
+   ============================================ */
+
+/* Quarto emits <footer class="footer">, not .page-footer.
+   Vertical padding only: the horizontal inset comes from .nav-footer below,
+   whose 17px matches the navbar so footer and navbar content line up.
+   Background is left to the theme files, which load before this one. */
+.footer {
+  margin-top: 2.5rem;
+  padding: 1.75rem 0;
+  border-top: 1px solid rgba(128, 128, 128, 0.25);
+}
+
+.footer p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+  /* Inherited body line-height is 1.7, generous for footer fine print. */
+  line-height: 1.45;
+}
+
+/* page-layout: custom (the home page) ends on a filled block, the spotlight
+   box, so the footer's top margin shows through as a white stripe between
+   two coloured areas. Every other layout ends on the page background, where
+   the same gap is invisible. The footer's own border and padding still
+   separate it. */
+body.fullcontent .footer {
+  margin-top: 0;
+}
+
+/* Footer column widths - targeting Quarto's actual structure.
+   Two rows: identity left and links right, then Quarto's centre slot
+   stretched across the full width underneath as a bottom strip. */
+.nav-footer {
+  display: grid;
+  grid-template-columns: minmax(250px, 620px) 1fr auto;
+  grid-template-areas:
+    "left   .      right"
+    "bottom bottom bottom";
+  gap: 1.25rem 2rem;
+  align-items: start;
+}
+
+/* Left column. 620px lets the tagline settle on two lines instead of
+   three, which balances it against the two rows in the right column. */
+.nav-footer-left {
+  grid-area: left;
+  max-width: 620px;
+}
+
+/* Bottom strip - spans all three columns on the second row.
+   Quarto appends its repo-action links here after the configured
+   content, so the order is set explicitly to keep the fine print last. */
+.nav-footer-center {
+  grid-area: bottom;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 1rem;
+  /* Neutral grey rather than --bs-border-color, which stays light in the
+     dark theme and would draw a near-white line across a black footer. */
+  border-top: 1px solid rgba(128, 128, 128, 0.25);
+}
+
+.nav-footer-center .toc-actions {
+  order: 1;
+}
+
+/* Quarto's repo-action list ships with default list spacing, which adds a
+   blank line above and below a single row of links. */
+.nav-footer-center .toc-actions,
+.nav-footer-center .toc-actions ul,
+.nav-footer-center .toc-actions li {
+  margin: 0;
+  padding: 0;
+}
+
+.nav-footer-center p:has(.footer-disclaimer) {
+  order: 2;
+}
+
+/* Right column */
+.nav-footer-right {
+  grid-area: right;
+  text-align: right;
+}
+
+/* Footer links - remove external link icons */
+.nav-footer-right a {
+  text-decoration: none;
+  color: var(--bs-body-color);
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+  margin: 0 0.5rem;
+}
+
+.nav-footer-right a:hover {
+  color: var(--bs-primary);
+  transform: translateY(-2px);
+}
+
+/* Hide external link icon in footer */
+.nav-footer-right a .external-icon,
+.nav-footer-right a::after {
+  display: none !important;
+}
+
+.nav-footer-right .bi {
+  font-size: 1.5rem;
+}
+
+/* Footer copyright at top of left column */
+.nav-footer-left p:first-child {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Employer disclaimer - fine print, last line on every page */
+.nav-footer-center .footer-disclaimer {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+
+  .hero-section {
+    margin-top: -52px;
+    padding-top: 52px;
+  }
+
+  .hero-image {
+    min-height: 60vh;
+  }
+
+  .spotlight-box {
+    padding: 2rem 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .spotlight-box h2 {
+    font-size: 2rem;
+    white-space: normal;
+  }
+
+  .spotlight-box p {
+    font-size: 1rem;
+  }
+
+  /* Footer mobile layout - margin-top is already 2.5rem, only trim padding */
+  .footer {
+    padding: 1.5rem 0;
+  }
+
+  /* Stack footer columns vertically on mobile, fine print still last */
+  .nav-footer {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "left"
+      "right"
+      "bottom";
+    gap: 1.25rem;
+  }
+
+  /* Center all footer content on mobile */
+  .nav-footer-left,
+  .nav-footer-center,
+  .nav-footer-right {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  /* Ensure footer icons display properly */
+  .nav-footer-right a {
+    margin: 0 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .spotlight-box {
+    padding: 1.5rem 1rem;
+  }
+
+  .spotlight-box h2 {
+    font-size: 1.75rem;
+  }
+}
+
+/* ============================================
+   Smooth Scrolling & Animations
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+.container-custom {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* ============================================
+   Code Blocks & Syntax Highlighting
+   ============================================ */
+
+pre {
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+code {
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+}
+
+/* ============================================
+   Links & Buttons
+   ============================================ */
+
+a {
+  transition: all var(--transition-speed) ease;
+}
+
+.btn {
+  transition: all var(--transition-speed) ease;
+  border-radius: var(--border-radius);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   Images & Media
+   ============================================ */
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+figure {
+  margin: 2rem 0;
+}
+
+figcaption {
+  font-size: 0.9rem;
+  font-style: italic;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* ============================================
+   Page Layout - Wider Content for Article Layout
+   ============================================ */
+
+/* Increase max-width ONLY for article layout pages (not custom or full) */
+.quarto-container.page-layout-article {
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Ensure main content area uses available space ONLY for article layout */
+.page-layout-article main.content {
+  max-width: 100%;
+  width: 100%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* Override default Quarto content width for article pages */
+.page-layout-article .page-columns {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+  .quarto-container.page-layout-article {
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .quarto-container.page-layout-article {
+    max-width: 100%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .page-layout-article main.content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* ============================================
+   Image Gallery for Blog Posts
+   ============================================ */
+
+/* Gallery container */
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 0;
+}
+
+/* Gallery items.
+   The square used to sit on the TILE, with overflow:hidden. That clipped the
+   caption whenever the image was square or portrait: the image renders at its
+   natural aspect (height:100% is inert here, it resolves against an auto-height
+   <p>), so a tall image filled the square and pushed the caption outside the
+   clip. Landscape images happened to leave room, which is why it only failed
+   some of the time. Squaring the IMAGE instead keeps the grid uniform and lets
+   the tile grow so a caption is always visible. */
+.image-gallery .gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-gallery .gallery-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.image-gallery .gallery-item img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.image-gallery .gallery-item figure {
+  margin: 0;
+}
+
+/* Caption under a gallery tile, for the posts that give one */
+.image-gallery .gallery-item figcaption {
+  padding: 0.5rem 0.6rem;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: #666;
+}
+
+body.quarto-dark .image-gallery .gallery-item figcaption {
+  color: #ccc;
+}
+
+.image-gallery .gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Lightbox overlay */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  cursor: zoom-out;
+}
+
+.lightbox-overlay.active {
+  display: flex;
+}
+
+.lightbox-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  box-shadow: 0 0 30px rgba(255,255,255,0.3);
+}
+
+/* Close button */
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  z-index: 10000;
+  background: transparent;
+  border: none;
+  padding: 0;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.lightbox-close:hover {
+  opacity: 1;
+}
+
+/* Navigation arrows */
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 50px;
+  color: white;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 20px;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+  z-index: 10000;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  opacity: 1;
+}
+
+.lightbox-prev {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .image-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    font-size: 30px;
+    padding: 10px;
+  }
+
+  .lightbox-close {
+    font-size: 30px;
+    top: 10px;
+    right: 15px;
+  }
+}
