@@ -14,9 +14,11 @@ listing:
   fields: [image, date, title, author, categories, description]
   feed:
     title: "Benny Istanto's Blog"
-    description: "Exploring climate, GIS, and data science - with stories from work, family moments, and journeys around the world"
+    description: "Exploring climate with GIS, and data science - with stories from work, family moments, and journeys around the world"
     items: 20
 ---
 
 Browsing for something specific? The [archive](blog-archive.qmd) lists every post by year.
+
+Two runs are written to be read in order rather than dipped into. [Bias Correction](blog-series-bias-correction.qmd) is 30 posts over two and a half years, from why Indonesia is the hardest place on earth to measure rain through to the published paper and the thesis behind it. [El Niño 2026](blog-series-el-nino.qmd) is 10 posts and counting on the forecast event as it develops, and on why drought is what arrives minus what leaves.
 
