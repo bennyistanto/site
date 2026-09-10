@@ -11,7 +11,7 @@ categories:
   - "Research"
 ---
 
-The last post built two indices and argued they measure different things. This one asks the historical question that has been implicit since the first post: **over seventy-five years, what does El Niño actually change about dry spells?**
+Two indices are now on the table, measuring different halves of the same balance. That makes it possible to ask the question sitting behind the whole series: **over seventy-five years, what does El Niño actually change about dry spells?**
 
 Not the average anomaly. Dry spells: how often one starts, how long it lasts, how deep it gets.
 
@@ -48,7 +48,7 @@ cur_mag   = np.where(beyond, cur_mag + inst, cur_mag)
 ending = (cur_dur > 0) & ~beyond
 ```
 
-Crediting at the end instead would let a spell that began under El Niño and outlived it count as evidence about neutral conditions. Runs still open at December 2025 are discarded rather than reported at their truncated length.
+Crediting at the end instead would let a spell that began under El Niño and outlived it count as evidence about neutral conditions. Runs still open at December 2025 are discarded, never reported at their truncated length.
 
 Two counts come out of this and they are not the same thing. The **spell**
 statistics below are about runs: how many begin, how long they last, how deep
@@ -62,8 +62,8 @@ This is computed at TerraClimate's full 1/24° for both indices at accumulation 
 
 ### What "El Niño minus Neutral" means
 
-Nearly every number from here on is a comparison written that way, so it is
-worth being exact about it.
+Nearly every number from here on is a comparison written that way, so here is
+exactly what it means.
 
 Every month between 1950 and 2025 carries one of three labels, taken from the
 RONI event catalogue built in post 3:
@@ -84,11 +84,9 @@ percentage change: **+19.3 means nineteen more months in every hundred**, not
 nineteen per cent more. Where a figure gives a ratio instead, it says so on the
 axis.
 
-Two consequences are worth carrying into the figures. Neutral is the yardstick
-rather than "all months", because all months would include the El Niño ones and
-so dilute the contrast against itself. And **La Niña's 224 months take no part
-in any of these numbers**; setting the two extremes against each other would
-roughly double the apparent size of the effect and answer a different question.
+Two consequences follow into the figures. Neutral is the yardstick rather than "all months", because all months would include the El Niño ones and so dilute the contrast against itself. And **La Niña's 224 months take no part in any of these numbers**.
+
+That second choice needs defending, because post 4 promised that every post attributing something to El Niño would take the warming trend out first, and this one does not. The reason is in the dates. El Niño months average **1984.5** and neutral months **1983.9**, about six months apart, which at the measured trend of +0.115 EDDI per decade is worth 0.007 index units: nothing. La Niña months average **1998.0**, fourteen years later, and would inherit roughly **+0.16** from timing alone. So the El Niño against neutral contrast is safe undetrended and the La Niña one is not, which is why La Niña is left out here and gets its own detrended treatment elsewhere in the project.
 
 ## The global average says almost nothing
 
@@ -111,9 +109,9 @@ Start with the answer that is least useful, because it is the one a careless ver
 
 Across all land, El Niño raises the share of dry months by somewhere between one and fourteen per cent of itself. The effect is real and it is close to useless. El Niño moves rainfall around the tropics; it does not remove it from the planet. Average over every continent and most of that movement cancels out.
 
-Two rows of that table are still worth carrying forward.
+Two rows of that table still matter.
 
-The demand axis carries the stronger signal at every matching length: 1.14 against 1.08 at three months, 1.09 against 1.05 at one, 1.10 against 1.06 at six. Up to here the case for measuring evaporative demand has been an argument. This is the first place the data makes it without help.
+The demand axis carries the stronger signal at every matching length: 1.14 against 1.08 at three months, 1.09 against 1.05 at one, 1.10 against 1.06 at six. Up to here the case for measuring evaporative demand has been an argument. Here the data makes it without help.
 
 By twelve months the signal has gone on both axes, and on demand it turns over to 0.97. A twelve-month window covers the event and the recovery afterwards inside the same number, so the two ends eat each other. Anyone reaching for a longer accumulation because it looks steadier should know what they are buying. It is steadier, and there is less in it.
 
@@ -195,11 +193,15 @@ Counting a cell as responsive on an axis if El Niño raises its share of dry mon
 | demand only | 15.0% |
 | **both** | **31.3%** |
 
-Nearly a third of land responds on both axes, and **another 31 per cent responds on exactly one**, split almost evenly between supply-only and demand-only. If either index were quietly standing in for the other, that middle band would be small. It is the same size as the agreement.
+Nearly a third of land responds on both axes, and **another 31 per cent responds on exactly one**, split almost evenly between supply-only and demand-only. If either index were quietly standing in for the other, that middle band would be small. Instead it matches the agreement.
+
+One caution on that table, because post 2 spent a section warning about exactly this shape of statistic. The one-in-a-hundred cut is a bare threshold with no significance test behind it, so some cells land in "supply only" or "demand only" because one axis cleared the line by luck. The split is suggestive rather than solid. Post 6 asks the same question with a false discovery rate test attached, and that is the version to trust.
 
 ## The five cells
 
 ![](../assets/image-blog/20260825-seventy-five-years-of-dry-spells-08.png)
+
+These five are not a shortlist of the most striking places, and it matters that they are not. Indramayu was chosen first on external grounds, for documented 1997 and 2015 impacts at the tail of an irrigation system, then audited afterwards: it sits at the 92nd percentile globally and the 67th within Indonesia, so it sits in the middle of the Indonesian range. The other four were picked to span the national range, being the cells nearest the 95th, 75th, 45th and 15th percentiles of Indonesia's distribution, each within 45 km of a named settlement and at least 300 km from the others. Tarutung is in the set because it sits low in that range, not because it later turned out to be the exception.
 
 Change in the share of dry months, El Niño minus Neutral, at every accumulation length:
 
