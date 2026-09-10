@@ -55,6 +55,37 @@ SERIES = {
                      "whole argument, and a graduation letter."),
         },
     },
+    "El Nino 2026": {
+        "file": "blog-series-el-nino.qmd",
+        "title": "El Niño 2026",
+        "subtitle": "Drought is what arrives minus what leaves. "
+                    "Most maps measure only the arriving half",
+        "lede": (
+            "An El Niño developed through 2026. The question that follows is "
+            "always the same: where will it be dry, and how dry.\n\n"
+            "Drought is a balance. Water arrives as rain and leaves as "
+            "evaporation, and the atmosphere's capacity to pull it out varies "
+            "on its own, driven by temperature, humidity, wind and sunlight. "
+            "Both halves have standard, well-documented indices behind them. In "
+            "practice almost everything published measures the first half and "
+            "stops.\n\n"
+            "This series measures both, globally, across seventy-six years of "
+            "record, and asks what El Niño does to each. Nothing here is a new "
+            "method. The indices are the ones climate services already run, and "
+            "the framework for turning them into events dates to 1967. What is "
+            "unusual is the combination, and the insistence on reporting how "
+            "much the record can actually carry.\n\n"
+            "The posts are interleaved with unrelated ones on the "
+            "[main blog](blog.qmd), so this page is the reading order. Each "
+            "post also links to the next one in the series rather than to "
+            "whatever was published next."
+        ),
+        "acts": {
+            "2026": ("Two halves of a balance",
+                     "What arrives, what leaves, how long each lasts, and how "
+                     "far forty-four events will stretch."),
+        },
+    },
 }
 
 
