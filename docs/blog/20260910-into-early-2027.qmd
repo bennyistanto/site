@@ -11,7 +11,7 @@ categories:
   - "Research"
 ---
 
-Nine posts have made claims. This one is about what those claims rest on, and it is thinner than the record makes it sound.
+Nine posts of claims. What holds them up is thinner than seventy-six years of record makes it sound.
 
 If you have arrived here first, the whole series in six lines:
 
@@ -66,7 +66,7 @@ When neither series repeats itself, $r_1 r_2 = 0$ and $N_{\text{eff}} = N$. When
 
 Two things follow.
 
-The demand axis costs about twice as much record to say the same thing. Rainfall anomalies sit closer to noise from one month to the next, so nearly every month counts for something, while demand carries most of itself forward. That is why the rainfall response is statistically solid on 13.1 per cent of land against 4.5 per cent for demand. The demand signal is not weaker. It is harder to prove with the record available.
+The demand axis costs about twice as much record to say the same thing. Rainfall anomalies sit closer to noise from one month to the next, so nearly every month counts for something, while demand carries most of itself forward. That is why the rainfall response is statistically solid on 13.1 per cent of land against 4.5 per cent for demand. The demand signal is not weaker, only harder to prove with the record available.
 
 And the honest denominator is the last two rows. A claim of the form "this is what El Niño does" rests on twenty-two events. A claim about a strong El Niño rests on eight, every one of them, as post 3 showed, an eastern Pacific event.
 
@@ -105,7 +105,7 @@ Checked against brute-force refitting: the two agree to 4.4e-16.
 | FMA | 71.3% | 9.9% |
 | MAM | 74.4% | 7.8% |
 
-On 56 to 74 per cent of land, depending on the season, the fitted relationship predicts worse than simply guessing that season's own average. A negative cross-validated R² is neither a bug nor a marginal case here. It is the ordinary condition of a weak teleconnection, and it covers most of the world.
+On 56 to 74 per cent of land, depending on the season, the fitted relationship predicts worse than simply guessing that season's own average. A negative cross-validated R² is neither a bug nor a marginal case here. That is the ordinary condition of a weak teleconnection, and it covers most of the world.
 
 At its best, in DJF, **18 per cent of land** clears the bar. Four fifths of the planet does not, in any season.
 
@@ -125,7 +125,7 @@ The pattern in all three is the same: **the error was not in the hard part.** Th
 
 ## What this series can say
 
-About the Maritime Continent, quite a lot. Rainfall at 61 per cent of normal in the analogue seasons, nearly every analogue agreeing, cross-validated skill over 79 per cent of the region's land in SON, a third of it elevated for four or more consecutive seasons, and an observed August 2026 already at the 92nd percentile with half the region's land in a dry spell. Five lines of evidence, computed five different ways, all landing in the same place.
+About the Maritime Continent, quite a lot. Rainfall at 61 per cent of normal in the analogue seasons, nearly every analogue agreeing, cross-validated skill over 79 per cent of the region's land in SON, a third of it elevated for four or more consecutive seasons, and an observed August 2026 already at the 92nd percentile with half the region's land in a dry spell. That reads like five independent lines, and it is not. The first two come from the same five analogue seasons, and the sign agreement is a measure of how tightly those seasons cluster rather than a separate test of them. The third and fourth both rest on the same season-specific regression. Only the observed August is independent of the rest. Call it three lines, one of which does not lean on the historical fit at all, and they land in the same place.
 
 About the timing, something genuinely useful. Elevated risk arrives early and does not stay: half the affected land is affected in the very first season of the horizon, and the typical episode lasts two seasons out of seven.
 
@@ -145,4 +145,4 @@ And it cannot turn a sea surface temperature into a harvest. The forecast's own 
 
 Everything in these ten posts sits underneath that sentence.
 
-*This is the tenth and final post in the series. The reading order is on the [El Niño 2026](../blog-series-el-nino.qmd) page. The analysis code is in the project repository, and every figure is produced by a script that recomputes its numbers from the source data rather than quoting them.*
+*This is the tenth and final post in the series. The reading order is on the [El Niño 2026](../blog-series-el-nino.qmd) page. The analysis code is in the project repository, and every figure is produced by a script that recomputes its numbers from the source data instead of quoting them.*
