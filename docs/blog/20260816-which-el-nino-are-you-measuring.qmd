@@ -31,7 +31,7 @@ So the question in the title is not rhetorical. Anything written before this yea
 
 The **Oceanic Niño Index** is the three-month running mean sea surface temperature anomaly in the Niño 3.4 region, 5°N to 5°S and 120° to 170°W, measured against a thirty-year climatology that CPC re-centres every five years.
 
-The **Relative Oceanic Niño Index** starts from the same Niño 3.4 anomalies, subtracts the average anomaly across the global tropical belt from 20°N to 20°S against the fixed 1991-2020 base, and then rescales the difference so its overall variability matches ONI's:
+The **Relative Oceanic Niño Index** starts from the same Niño 3.4 anomalies, subtracts the average anomaly across the global tropical belt, 20°S to 20°N, taken against the current WMO standard normal of 1991-2020, and then rescales the difference so its overall variability matches ONI's:
 
 $$
 \mathrm{RONI} \;\propto\; \mathrm{SSTA}_{\text{Niño 3.4}} \;-\; \overline{\mathrm{SSTA}}_{\,20°S-20°N}
@@ -43,7 +43,10 @@ Two words there carry a lot of weight. An **anomaly** is how far a
 value sits from what is normal for that place at that time of year, so +1.4 °C
 means a degree and a half warmer than an average June. The **climatology** is
 the stretch of years used to decide what normal is. ONI keeps sliding its
-thirty-year window forward; RONI holds still at 1991-2020.
+thirty-year window forward every five years; RONI uses the current WMO
+standard normal, 1991-2020 today. The circular's claim is that RONI is *less
+sensitive* to which thirty-year period is chosen, not that it escapes the
+choice altogether.
 
 The reasoning is that ENSO impacts depend on how warm the east-central Pacific
 is *relative to the rest of the tropics*, not relative to a moving average of its own past. As the whole tropical ocean warms, a fixed regional threshold gradually stops meaning what it used to.
@@ -70,7 +73,7 @@ The first is that ONI is the series with no trend. Its rolling thirty-year windo
 
 The second is that RONI carries a mild negative trend, which says the Niño 3.4 region has warmed slightly *less* than the tropical ocean around it. That is a real statement about the Pacific rather than a side effect of the subtraction.
 
-What the difference between them really is: a composite of the tropical-belt subtraction, the variance rescaling, and the fact that the two indices use different climatologies. Empirically it is trend-dominated and near-orthogonal to ENSO. That is as far as this data supports, and it is enough for what follows.
+What the difference between them really is: a composite of the tropical-belt subtraction, the variance rescaling, and the fact that the two indices use different climatologies. Empirically it is trend-dominated and near-orthogonal to ENSO. The data supports that much and no more, which is enough for what follows.
 
 ## Does the choice change any answer?
 
@@ -117,9 +120,11 @@ A one-signed map invites a mechanical explanation, and there is a testable one. 
 
 It does, at a correlation of **0.974**.
 
-The relationship is proportional rather than one to one: the fitted slope is 0.080. The median response to the differing component is **+1.00 EDDI units per °C**, positive on **95.0%** of land, and that near-universal positive response is why the map is one-signed. Almost everywhere gets thirstier when the removed component rises, so almost everywhere has something to remove.
+The relationship is proportional, and the fitted slope is 0.080, well short of one to one. The median response to the differing component is **+1.00 EDDI units per °C**, positive on **95.0%** of land, and that near-universal positive response is why the map is one-signed. Almost everywhere gets thirstier when the removed component rises, so almost everywhere has something to remove.
 
-This is a consistency check rather than a discovery. It confirms the shift is systematic and mechanical, not noise. It does not by itself say which index is the better description of the ocean; CPC's adoption decision does that.
+A consistency check, then, and not a discovery. What it confirms is that the shift is systematic and mechanical, with no noise in it. It does not by itself say which index is the better description of the ocean; CPC's adoption decision does that.
+
+There is more to say about what that mechanism largely **is**. The component separating the two indices is trend-dominated, as the table above shows at R² = 0.45 against time. Evaporative demand is also trending, on most of the world, as post 4 will show. Measured across the same cells, a pixel's response to the removed component correlates with that pixel's own EDDI trend at **+0.888**. So "almost everywhere gets thirstier when the removed component rises" is, to a large degree, two series rising together over seventy-six years. That is a real reason to prefer the index without the trend in it, which is the case for RONI. It is not evidence of a physical response to the tropical mean, and nothing on this page has been detrended. Whether RONI's advantage in finding signal survives detrending is a question this series does not test.
 
 ## Removing signal, or revealing it
 
@@ -172,7 +177,7 @@ That global table averages over a world where most land has no ENSO signal at al
 | Northern South America | 25.2% | 9.0% | **11.1%** | 0.0% | 14.1% |
 | Whole land surface | 7.9% | 1.5% | 1.2% | 3.8% | 2.9% |
 
-The Maritime Continent is a different world from the global average. Seventy per cent of its cells carry a signal, and **47% survive leave-one-event-out cross-validation** against a global figure of 1.5%. The strongest cell, near Luwuk in Indonesia, gives r = +0.68, +0.73 EDDI units per °C, and a cross-validated R² of +0.45. That is a genuine, checkable relationship, not a marginal one.
+The Maritime Continent is a different world from the global average. Seventy per cent of its cells carry a signal, and **47% survive leave-one-event-out cross-validation** against a global figure of 1.5%. The strongest cell, near Luwuk in Indonesia, gives r = +0.68, +0.73 EDDI units per °C, and a cross-validated R² of +0.45. The relationship there is genuine and checkable, well clear of marginal.
 
 The other two regions carry a real signal that is weaker and much less predictive. Eastern Australia has a signal on 37% of cells but only 3.2% cross-validate; its strongest cell, on the Queensland coast near Ayr, reaches r = +0.38. Northern South America sits between them, with its strongest cell in the interior near Cottica in Suriname at r = +0.51.
 
