@@ -82,7 +82,7 @@ For SON, the five closest analogues have a median RONI of **+2.03** against a fo
 
 So the method does not degrade gently as conditions get more extreme. It runs out of past to draw on **precisely where the event is strongest**, which is where a reader most wants an answer.
 
-Nothing solves that, and this series does not pretend to. What it does instead is state the size of the gap every time it uses an analogue, and set a second method beside the first so neither has to be trusted alone. Not an independent one, to be clear: the composite and the fitted regression read the same Pacific index and the same land record. They fail in different ways, which is useful, but they are not two witnesses.
+Nothing solves that, and this series does not pretend to. What it does instead is state the size of the gap every time it uses an analogue, and set a second method beside the first so neither has to be trusted alone. Not an independent one, to be clear: the analogue average and the fitted regression read the same Pacific index and the same land record. They fail in different ways, which is useful, but they are not two witnesses.
 
 ## Two things the forecast is not saying
 
