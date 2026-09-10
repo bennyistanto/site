@@ -11,7 +11,7 @@ categories:
   - "Research"
 ---
 
-The last post described what five past seasons did. This one does something more ambitious and more fragile: it takes the fitted relationship between the Pacific and the land, evaluates it at the forecast, and asks two questions the composite cannot answer.
+Describing what five past seasons did is the safe version of this question. The ambitious and much more fragile version takes the fitted relationship between the Pacific and the land, evaluates it at the forecast, and asks two things a composite cannot answer.
 
 **Where does this become worse than anything on record?** And **when in the horizon does it arrive, and for how long?**
 
@@ -34,7 +34,7 @@ The obvious way to ask "where does it get worse than it has ever been" is to pro
 
 That returns **almost nowhere**: the projected value clears the 1950-2025 record on **0.29 per cent** of land in SON, falling to **0.00 per cent** by MAM.
 
-The number is not a finding. It is an artefact of comparing two different things. A projection is a **conditional mean**, the average outcome given a forecast. A record is an **extreme realisation**, the single most unusual season in seventy-six. Even a very strong forcing moves a mean by far less than the distance out to a record, so the test was always going to answer "nowhere", whatever the climate did.
+The number is not a finding. The number is an artefact of comparing two different things. A projection is a **conditional mean**, the average outcome given a forecast. A record is an **extreme realisation**, the single most unusual season in seventy-six. Even a very strong forcing moves a mean by far less than the distance out to a record, so the test was always going to answer "nowhere", whatever the climate did.
 
 ![](../assets/image-blog/20260908-where-it-bites-and-when-03.png)
 
@@ -70,7 +70,7 @@ Record-breaking evaporative demand is **four to five times more likely than chan
 
 That number comes with two qualifications, and they belong right beside it.
 
-About half of it is the warming trend rather than El Niño. Take the trend out of both sides and SON drops from 5.65 to 3.36 per cent, DJF from 6.98 to 3.55, so roughly **41 per cent** of the elevated risk in SON and **49 per cent** in DJF is the climate arriving rather than the Pacific. What survives is still 2.6 times chance, which stands up without the trend propping it, and it is the figure I would quote.
+The warming trend owns about half of it. Take the trend out of both sides and SON drops from 5.65 to 3.36 per cent, DJF from 6.98 to 3.55, so roughly **41 per cent** of the elevated risk in SON and **49 per cent** in DJF is the climate arriving rather than the Pacific. What survives is still 2.6 times chance, which stands up without the trend propping it, and it is the figure I would quote.
 
 The supply side is far less exposed. The same calculation on rainfall gives 1.2 to 2.2 times chance against 3.3 to 5.4 for demand. A record-dry season is a coin this record has already flipped many times. A record-thirsty one is not.
 
@@ -92,7 +92,7 @@ The Maritime Continent starts with 79 per cent of its land skilful in SON and fa
 
 ![](../assets/image-blog/20260908-where-it-bites-and-when-02.png)
 
-That is the same probability map with everything unskilful removed. It is a fairer picture and a much emptier one.
+That is the same probability map with everything unskilful removed. A fairer picture, and a much emptier one.
 
 So the honest form of the claim is not "we can forecast drought risk". It is: **for this region, in these seasons, the relationship holds up out of sample, and here is what it says.** Everywhere else, it is a fit and not a forecast.
 
@@ -100,7 +100,7 @@ So the honest form of the claim is not "we can forecast drought risk". It is: **
 
 ![](../assets/image-blog/20260908-where-it-bites-and-when-05.png)
 
-A probability map for a single season says nothing about duration. Run theory, applied forward across all seven seasons rather than backward across the record, does.
+A probability map for a single season says nothing about duration. Run theory does, applied forward across all seven seasons instead of backward across the record.
 
 Two design choices need explaining, because I changed my mind on both.
 
@@ -129,6 +129,8 @@ Among land elevated at any point in the horizon:
 And the episodes are short. **The most common outcome is a single elevated season, at 31.9 per cent**, then two at 28.9 and three at 18.1. The mean is **2.57 elevated seasons out of seven**. Only 21 per cent runs for four or more.
 
 So the characteristic signature is: **arrives in SON, lasts two seasons, gone.**
+
+One large caveat about where that shape comes from. These are projections of the fitted relationship at the CPC forecast median for each season, and that median falls steeply across the horizon: +2.66 at OND, +2.23 by DJF, +0.83 by MAM. A projection driven by a predictor that decays by two thirds will decay as well, whatever the land is doing. Part of this signature is genuinely about the land, because the fit and the skill mask are both season-specific and they move in different directions by region. But the headline shape is substantially the outlook's own shape read back out, and it should not be taken for an independent discovery about how long droughts last. Post 8's finding that the land peaks a season before the ocean is the stronger claim of that kind, because it compares observed composites rather than projections.
 
 That is the operational sentence of this series, and it is invisible in any single-season map. A map of DJF tells you DJF looks bad. It cannot tell you that for most places DJF is the tail of something that started in September, or that the thing which started in September is usually over by the new year.
 
