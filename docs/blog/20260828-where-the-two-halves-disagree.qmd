@@ -11,7 +11,7 @@ categories:
   - "Research"
 ---
 
-The last post counted dry spells on each axis separately. This one puts them together, because the reason the project was built with two axes was a specific hypothesis, and it is time to test it.
+Counting dry spells on each axis separately leaves the obvious question unasked. The two axes exist because of one specific hypothesis, and putting them together is how it gets tested.
 
 Drought is usually measured on the supply side: how much rain arrived. But the atmosphere also takes water away, and the two need not move together. The interesting case would be places where El Niño leaves rainfall roughly alone while raising evaporative demand sharply. Normal rain, abnormal thirst. A drought that a rainfall-based monitor would not see.
 
@@ -70,7 +70,7 @@ A hypothesis dying is usually a deflating result. This one is not, and it took m
 
 "Wet but thirsty" would have been a *monitoring* problem: a kind of drought that rainfall-based systems miss. Awkward, fixable by adding an index.
 
-What is there instead is a *compound hazard*. On nearly two thirds of the land where the response is solid, El Niño reduces the water arriving and increases the water leaving, **at the same time, in the same season**. Those effects do not add. They multiply into soil moisture, and the deficit runs deeper than either axis suggests alone.
+What is there instead is a *compound hazard*. On nearly two thirds of the land where the response is solid, El Niño reduces the water arriving and increases the water leaving, **at the same time, in the same season**. What that costs on the ground is outside what this data can see. There is no soil moisture in the analysis, and post 9 is explicit that the path from an index to an impact runs through soil, planting date and irrigation, none of which is here. What can be said is narrower, and it still matters: the two shortfalls arrive in the same season, not in different ones, so a monitor watching either axis alone catches one and misses the other.
 
 The Maritime Continent composite in an earlier post is exactly this: rainfall at 61 per cent of normal while demand ran 1.12 standard deviations above it.
 
