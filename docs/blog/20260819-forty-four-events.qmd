@@ -57,6 +57,8 @@ That is not a flaw in the data; it is simply what the data is. Strong El Niños 
 
 ![](../assets/image-blog/20260819-forty-four-events-03.png)
 
+One provenance note before the numbers, because this claim carries a lot of weight later. The events themselves are identified on RONI, which is built from ERSST v6. The eastern-against-central classification comes from the Niño-region indices, and this project's copy of those is **ERSST v5**. The two are close but not the same product, so the flavour label is v5 evidence attached to a v6 event list.
+
 El Niño is not one thing. The warming can be centred in the **eastern Pacific**, off South America, or near the **date line** in the central Pacific. The two have different atmospheric responses and different consequences on land, which is why the distinction is tracked at all.
 
 Across the twenty-two El Niños: **seventeen eastern Pacific, five central Pacific.**
@@ -75,11 +77,11 @@ The 2026 event is developing with Niño 1+2 at +2.82 °C, well ahead of the cent
 
 The habit of naming events by a single year ("the 1997 El Niño") hides how long they occupy.
 
-Length is counted in overlapping three-month seasons, the ASO, SON, OND units from the first post. Because each one shares two months with the next, eight seasons is about ten calendar months rather than twenty-four.
+Length is counted in overlapping three-month seasons, the ASO, SON, OND units from the first post. Because each one shares two months with the next, eight seasons covers about ten calendar months, well short of the twenty-four that multiplying would give.
 
 | | overlapping three-month seasons |
 |---|---|
-| median El Niño | **8** |
+| median El Niño | **8.5** |
 | range | 5 to 17 |
 | weak or moderate, mean | 8.4 |
 | **strong or above, mean** | **12.6** |
@@ -92,7 +94,7 @@ It also means the phases overlap the calendar awkwardly. An event that starts in
 
 ![](../assets/image-blog/20260819-forty-four-events-05.png)
 
-Each of the eight strong events aligned on its own peak season, with the 2026 outlook aligned the same way rather than by calendar date.
+Each of the eight strong events aligned on its own peak season, with the 2026 outlook aligned the same way, ignoring calendar date.
 
 The strongest event peak in the record is **+2.40 °C**, in 1983. The outlook's peak season, OND 2026, has a median of **+2.66**.
 
@@ -108,6 +110,6 @@ Composites average five to eight seasons, never seventy-six. When post 8 reports
 
 The record cannot speak about central Pacific strong events at all, so nothing in this series applies to one.
 
-And any claim about a strong El Niño rests on eight events. The last post comes back to this and puts a number on how much information eight events, and 912 months, actually carry. It is less than either figure sounds like.
+And any claim about a strong El Niño rests on eight events. The last post comes back to this and puts a number on how much information eight events, and 912 months, actually carry. Less, in both cases, than the figure sounds.
 
 *Next: [Two ways to see a drought](20260822-two-ways-to-see-a-drought.qmd), on why one index is not enough and which two this series uses.*
