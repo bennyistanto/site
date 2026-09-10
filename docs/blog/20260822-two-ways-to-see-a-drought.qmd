@@ -31,7 +31,7 @@ For the August to October window at that cell:
 
 Both halves moved, and they moved in the direction that compounds. Less water arrived and more of it was pulled out.
 
-Now notice the asymmetry in the numbers. Rainfall fell by roughly 90 per cent of a small quantity. Demand rose by roughly 10 per cent of a large one. **In absolute millimetres the increase in demand is comparable to the entire normal rainfall of the month.** An index that tracks only the rainfall reports the first column and is silent about the second.
+Now notice the asymmetry in the numbers. Rainfall fell by roughly 90 per cent of a small quantity. Demand rose by roughly 10 per cent of a large one. **In absolute millimetres the increase in demand, 19.7 mm, is around two thirds of the month's entire normal rainfall of 30.9 mm.** An index that tracks only the rainfall reports the first column and is silent about the second.
 
 That is the case for measuring both, and it is the whole reason this series exists.
 
@@ -41,7 +41,7 @@ The supply side is the [**Standardized Precipitation Index**](https://www.drough
 
 There is an obvious third candidate, and it is deliberately not used.
 
-The [Standardized Precipitation Evapotranspiration Index](https://journals.ametsoc.org/view/journals/clim/23/7/2009jcli2909.1.xml), from Vicente-Serrano and colleagues (2010), takes precipitation *minus* reference evapotranspiration and standardises the difference. It is a good index and it is widely used. It is the wrong index here, because it already contains the demand term. Pairing SPEI with EDDI would put reference ET on both axes and then report the resulting correlation as a finding.
+The [Standardized Precipitation Evapotranspiration Index](https://journals.ametsoc.org/view/journals/clim/23/7/2009jcli2909.1.xml), from Vicente-Serrano and colleagues (2010), takes precipitation *minus* reference evapotranspiration and standardises the difference. SPEI is a good index and widely used. It is the wrong index here, because it already contains the demand term. Pairing SPEI with EDDI would put reference ET on both axes and then report the resulting correlation as a finding.
 
 This is not a subtle worry, it is arithmetic:
 
@@ -71,7 +71,7 @@ Note that this is a **rank** index, not a fitted distribution. It makes no assum
 
 ![](../assets/image-blog/20260822-two-ways-to-see-a-drought-03.png)
 
-If the index is a rank among $k$ baseline years, then there are only $k+1$ possible answers, and the most extreme of them is bounded. Compute the bound rather than assume it:
+If the index is a rank among $k$ baseline years, then there are only $k+1$ possible answers, and the most extreme of them is bounded. Compute the bound; do not assume it:
 
 | baseline | distinct levels | attainable z | attainable percentile | NOAA classes reachable |
 |---|---|---|---|---|
@@ -80,9 +80,9 @@ If the index is a rank among $k$ baseline years, then there are only $k+1$ possi
 
 The two rows answer slightly different questions, and the difference is not a rounding detail. A month scored *against* a baseline it is not part of has $k+1$ places to land. A month scored inside its own baseline ties with itself, takes a mid-rank, and has $k$. The first row is the 1991-2020 case, where 2026 sits outside; the second is the full-record case, where every month is inside. Each row uses the convention that applies to it.
 
-NOAA's [EDDI classification](https://psl.noaa.gov/eddi/pdf/EDDI_UserGuide_v1.0.pdf) has eleven categories, and on a thirty-year baseline **the outermost class at each end, EW4 and ED4, cannot be reached at all**. ED4 begins at the 98th percentile, and a thirty-year rank tops out at the 97.87th. This is not a matter of those categories being rare or unlikely. There is no arrangement of the data that produces one.
+NOAA's [EDDI classification](https://psl.noaa.gov/eddi/pdf/EDDI_UserGuide_v1.0.pdf) has eleven categories, and on a thirty-year baseline **the outermost class at each end, EW4 and ED4, cannot be reached at all**. ED4 begins at the 98th percentile, and a thirty-year rank tops out at the 97.87th. Those categories are not rare, and not unlikely. There is no arrangement of the data that produces one.
 
-That follows from the baseline this project chose and says nothing against NOAA's scheme. NOAA standardises EDDI against the whole period of record instead of a thirty-year normal: PSL uses 1980-2015, reaching the 98.21st percentile, and CPC uses 1980-2021, reaching the 98.46th. Both clear the 98th, so both can report an exceptional drought. The WMO 1991-2020 window used here cannot, and that is the price of making this product line up with everything else in the series.
+That follows from the baseline this project chose and says nothing against NOAA's scheme. NOAA standardises EDDI against the whole period of record instead of a thirty-year normal. The [EDDI User Guide](https://psl.noaa.gov/eddi/pdf/EDDI_UserGuide_v1.0.pdf) (p.15) puts the climatology at "1980-present" and NOAA PSL's current page says 1979-present, so the window grows every year: by 2026 it is around forty-seven years, which reaches roughly the 98.6th percentile. It clears the 98th comfortably, so NOAA can report an exceptional drought. The WMO 1991-2020 window used here cannot, and that is the price of making this product line up with everything else in the series.
 
 This matters for what comes later. During a strong El Niño a non-trivial share of cells will sit exactly at the +2.03 bound, and a cell already at the bound cannot get worse in the index even when conditions do. Post 7 finds two of the five case cells pinned there in August 2026. A fit run against that flattened top end comes out shallower than the truth, because part of its evidence has nowhere left to move.
 
@@ -98,7 +98,9 @@ Across 261,334 land cells, the trend in EDDI-3 over 1950-2025 has a median of **
 
 Over seventy-six years that median trend accumulates to roughly +0.87 in EDDI units, which is most of a category.
 
-This is not a small correction to be waved at. It is the single largest source of error in this project, and it caught me three separate times in three different disguises, described in the final post. Every later post that attributes something to El Niño removes this trend first and reports the before-and-after, because the difference between them is often larger than the effect being claimed.
+The trend is not a small correction to be waved at. It is the single largest source of error in this project, and it caught me three separate times in three different disguises, described in the final post. Where a later post attributes something to El Niño it removes this trend first and reports the before-and-after, because the difference between them is often larger than the effect being claimed. That holds for the composites, the projection, the skill mask and the horizon, which is posts 8 to 10.
+
+Two posts are exceptions and it is better to say so here than to let a reader find out. Post 5 contrasts El Niño months against neutral ones, and those two sets sit six months apart in mean year, so the trend cancels almost exactly; that post shows the arithmetic. **Post 6 has no such defence.** It correlates both indices against RONI over the whole record without detrending either. Since RONI drifts slightly downward and demand drifts upward, the trend pushes the measured demand response *down*, which makes post 6's dominant dry-and-thirsty finding conservative but also thins the wet-and-thirsty corner it concludes is empty. The effect is small next to the correlations that post reports, and it has not been quantified.
 
 ## The ledger
 
@@ -116,7 +118,7 @@ Everything above is computed from two land datasets. The rest of this post is th
 | RONI, ONI | Niño 3.4 | 1950-01 to 2026-06 |
 | CPC RONI outlook | 9 seasons | 2026-07 onward |
 
-Those spans are read out of the files rather than quoted from a plan.
+Those spans are read out of the files. None is quoted from a plan.
 
 The two rows in bold are the reason this series can say anything about the present. **TerraClimate stops at December 2025**, eight months before the event began. **AgERA5 reaches August 2026**, with 2.33 million land cells in that month. One dataset is the history and the other is the news, and post 7 is written entirely from the second.
 
@@ -152,9 +154,9 @@ Where that step happens matters, and it is not the same everywhere in this serie
 
 The last row is the one to keep in mind. Fitting on spatially averaged values removes some of the noise the fit would otherwise have to contend with, so a skill estimate from 0.25° data is, if anything, generous. Post 9 finds that even so, most of the world has no usable skill.
 
-The trade is acceptable for all of these, which use the mean and the variance. It would not be acceptable for a question about the most extreme cell in a district, which is exactly what the tail comparison above shows. Java is close to the hardest case for aggregation, which is why the comparison is drawn here rather than somewhere with more room.
+The trade is acceptable for all of these, which use the mean and the variance. It would not be acceptable for a question about the most extreme cell in a district, which is exactly what the tail comparison above shows. Java is close to the hardest case for aggregation, which is why the comparison is drawn here and not somewhere with more room.
 
-None of this counts against TerraClimate, which is explicit about how it is built. It is a caution about reading a 4 km map as though someone had measured 4 km.
+None of this counts against TerraClimate, which is explicit about how it is built. The caution is about reading a 4 km map as though someone had measured 4 km.
 
 ## Two products, one story, if you standardise first
 
@@ -187,7 +189,7 @@ There is no way around this with this data. Drought indices built on monthly acc
 
 ## Five things to carry forward
 
-Drought has two halves, and at Indramayu in 1997 the rise in demand was worth about as many millimetres as the whole normal rainfall of the month.
+Drought has two halves, and at Indramayu in 1997 the rise in demand was worth roughly two thirds of the entire normal rainfall of the month, 19.7 mm against 30.9.
 
 SPI and EDDI share no input, which is why they are the pair here and why SPEI is not.
 
