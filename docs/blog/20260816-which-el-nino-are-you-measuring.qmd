@@ -1,5 +1,5 @@
 ---
-title: "Which El Niño are you measuring?"
+title: "Which El Niño are you measuring? The index changed this year"
 author: "Benny Istanto"
 date: "2026-08-16"
 series: "El Nino 2026"
@@ -197,4 +197,4 @@ One limit needs stating before the analysis starts leaning on it. Both indices a
 
 Before the land, one more question about the ocean: how many events are actually in the record, how many of them are strong, and what kind. The answer is smaller than seventy-six years sounds.
 
-*Next: [Forty-four events](20260819-forty-four-events.qmd).*
+*Next: [Forty-four ENSO events, and only eight that can answer anything](20260819-forty-four-events.qmd).*

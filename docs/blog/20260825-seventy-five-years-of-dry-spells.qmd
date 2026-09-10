@@ -1,5 +1,5 @@
 ---
-title: "Seventy-five years of dry spells"
+title: "El Niño starts dry spells, it does not make them longer"
 author: "Benny Istanto"
 date: "2026-08-25"
 series: "El Nino 2026"
@@ -139,7 +139,7 @@ Over the Maritime Continent, **nineteen more months in every hundred** come in s
 
 Southwest North America moves the opposite way on both axes: El Niño leaves it with fewer dry months than a neutral stretch does, by a margin wide enough that this is not a borderline call. Any sentence beginning "El Niño causes drought" is simply false there.
 
-The Sahel is the quiet row, at +1.8 and +3.2. Worth remembering when post 7 shows the Sahel as the driest region on the map in August 2026: whatever is doing that, seventy-five years of record does not attribute much of it to El Niño.
+The Sahel is the quiet row, at +1.8 and +3.2. Worth remembering if the Sahel turns up dry this season: seventy-five years of record does not attribute much of that to El Niño.
 
 ## More spells, or longer ones?
 
@@ -217,7 +217,7 @@ Change in the share of dry months, El Niño minus Neutral, at every accumulation
 
 Makassar sees a third more of its months come in short of rain during El Niño, the largest cell-level response in the set and consistent with everything else the series has found there.
 
-Tarutung runs negative on both axes at every length, which is to say El Niño leaves it wetter and calmer. Post 6 explains why that one cell keeps turning up as the exception, and post 7 finds it wet and calm in the observed present as well.
+Tarutung runs negative on both axes at every length, which is to say El Niño leaves it wetter and calmer. Post 6 explains why that one cell keeps turning up as the exception.
 
 ## The four findings
 
@@ -227,4 +227,4 @@ It works by starting spells rather than stretching them, by a factor of up to 1.
 
 None of this is a forecast. It is what seventy-five years of record says happened when the Pacific was warm, which is the question the next post asks in a different way: not how much time each axis spends dry, but which direction each one moves.
 
-*Next: [Where the two halves disagree](20260828-where-the-two-halves-disagree.qmd).*
+*Next: [Rain and thirst move together under El Niño, which is worse news](20260828-where-the-two-halves-disagree.qmd).*

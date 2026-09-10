@@ -1,10 +1,10 @@
 ---
-title: "Where it is right now"
+title: "Where the world is dry right now, in rainfall and in thirst"
 author: "Benny Istanto"
-date: "2026-09-04"
+date: "2026-09-08"
 series: "El Nino 2026"
 description: "Not a forecast and not a composite: the observed state of both halves of the water balance through August 2026. The Sahel is at SPI-3 of -2.39, half the Maritime Continent is already in a dry spell, and a quarter of the world's land is dry on one axis while looking ordinary on the other."
-image: "../assets/image-blog/20260904-where-it-is-right-now-01.png"
+image: "../assets/image-blog/20260908-where-it-is-right-now-01.png"
 categories:
   - "Climate"
   - "Data Science"
@@ -21,7 +21,7 @@ Both halves are here, on the same grid and the same 1991-2020 baseline. That mat
 
 ## Where it is dry
 
-![](../assets/image-blog/20260904-where-it-is-right-now-01.png)
+![](../assets/image-blog/20260908-where-it-is-right-now-01.png)
 
 **August 2026**, the most recent month, over 2.39 million land cells on the supply side and 2.33 million on the demand side.
 
@@ -43,7 +43,7 @@ Global land averages **−0.33 on SPI-3** and **+0.12 on EDDI-3**. Neither is th
 
 ## Whether that is unusual
 
-![](../assets/image-blog/20260904-where-it-is-right-now-02.png)
+![](../assets/image-blog/20260908-where-it-is-right-now-02.png)
 
 Ranked against every August from 1979 to 2025, on the dry side of each axis so the top of both scales means dry:
 
@@ -67,7 +67,7 @@ The $+1$ terms are what stop $F$ ever reaching 0 or 1. One caution follows direc
 
 ## Where one half alone would miss it
 
-![](../assets/image-blog/20260904-where-it-is-right-now-03.png)
+![](../assets/image-blog/20260908-where-it-is-right-now-03.png)
 
 This is the figure the earlier draft of this post could not draw, and it is the one that justifies the whole two-axis apparatus.
 
@@ -84,7 +84,7 @@ Counting a cell as dry on an axis if it lands in the driest quarter of its own r
 
 ## How long it has been going
 
-![](../assets/image-blog/20260904-where-it-is-right-now-04.png)
+![](../assets/image-blog/20260908-where-it-is-right-now-04.png)
 
 Run theory on the observed record, with no forecast in it: consecutive months up to August 2026 beyond the dry threshold on each axis.
 
@@ -104,9 +104,9 @@ Three quarters of the Sahel is in a rainfall deficit spell, and half the Maritim
 
 ## How it compares with the analogues
 
-![](../assets/image-blog/20260904-where-it-is-right-now-05.png)
+![](../assets/image-blog/20260908-where-it-is-right-now-05.png)
 
-![](../assets/image-blog/20260904-where-it-is-right-now-06.png)
+![](../assets/image-blog/20260908-where-it-is-right-now-06.png)
 
 The five strong El Niños inside the AgERA5 record are **1983, 1992, 1997, 2009 and 2015**. August 2026 against the mean of those five:
 
@@ -126,7 +126,7 @@ Eastern Australia is going the other way on both halves too, at the 38.6th and 1
 
 ## The five cells, and why one axis is not enough
 
-![](../assets/image-blog/20260904-where-it-is-right-now-07.png)
+![](../assets/image-blog/20260908-where-it-is-right-now-07.png)
 
 | cell | SPI-3 | rank | EDDI-3 | rank | reading |
 |---|---|---|---|---|---|
@@ -152,4 +152,4 @@ What it cannot say is what happens next. August is one month, and the forecast p
 
 Nor can it separate El Niño from anything else. This is a description of an observed state with no attribution attached. The Sahel is the sharpest signal on the map, and post 9 finds the fitted relationship has essentially no skill there. Something is drying the Sahel. Nothing in this method can say the Pacific is.
 
-*Next: [What history says happens next](20260906-what-history-says.qmd), on what the five closest analogue seasons actually did.*
+*Next: [What the five closest El Niños did to the land](20260909-what-history-says.qmd), and how much five seasons can promise.*

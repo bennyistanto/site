@@ -1,5 +1,5 @@
 ---
-title: "A very strong El Niño is forecast"
+title: "A very strong El Niño is forecast, and nothing in the record matches it"
 author: "Benny Istanto"
 date: "2026-08-14"
 series: "El Nino 2026"
@@ -21,7 +21,7 @@ This series is about what that does to the land, and about how much of the answe
 
 The index on that chart is **RONI**, the Relative Oceanic Niño Index, which the Climate Prediction Center adopted as its primary standard in February 2026. The next post explains what it is and why the choice matters. For now, read it the way you would read the older Niño 3.4: above +0.5 is El Niño territory, below −0.5 is La Niña.
 
-Crossing the line is not the same as being a catalogued event, and the difference matters later. An event needs **five consecutive overlapping three-month seasons** past the threshold. As of the last observed season there is one, so 2026 is not yet in the record of 44 events that post 3 counts. What follows is a forecast of an event, not a report of one.
+Crossing the line is not the same as being a catalogued event, and the difference matters later. An event needs **five consecutive overlapping three-month seasons** past the threshold. As of the last observed season there is one, so 2026 is not yet a catalogued event at all. What follows is a forecast of an event, not a report of one.
 
 | | RONI |
 |---|---|
@@ -94,23 +94,10 @@ The first is that a number in the Pacific is not a harvest. The outlook's own pu
 
 The second is that a forecast is not an observation. Everything forward of the dashed line in the first figure is a spread of possibilities. None of it has happened. The 5th to 95th range for SON runs from +1.89 to +3.05, wide enough to hold both "much like 1997" and "unlike anything ever measured".
 
-## The ten posts
+## What this series will do
 
-Ten posts. The ocean is the subject of the first three; after that it is about land, and about what seventy-six years of data can and cannot support.
-
-| # | post |
-|---|---|
-| 1 | A very strong El Niño is forecast |
-| 2 | Which El Niño are you measuring? |
-| 3 | Forty-four events |
-| 4 | Two ways to see a drought, and what they are made of |
-| 5 | Seventy-five years of dry spells |
-| 6 | Where the two halves disagree |
-| 7 | Where it is right now |
-| 8 | What history says happens next |
-| 9 | Where it bites, and when it arrives |
-| 10 | Into early 2027, and what forty-four events support |
+Ten posts, planned rather than written. The ocean is the subject of the first three: what the outlook actually says, which index it is said in, and how much history there is to compare it against. After that it turns to the land, to what a drought is once you measure both halves of it, and to how far seventy-six years of record will stretch before it stops answering.
 
 Every figure is produced by a script that recomputes its numbers from the source data instead of quoting them, and where a claim cannot be checked the text says so.
 
-*Next: [Which El Niño are you measuring?](20260816-which-el-nino-are-you-measuring.qmd), on the index that changed this year and the 0.41 °C it moves.*
+*Next: [Which El Niño are you measuring? The index changed this year](20260816-which-el-nino-are-you-measuring.qmd), and the 0.41 °C it moves.*

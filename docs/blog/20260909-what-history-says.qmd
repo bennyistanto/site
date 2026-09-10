@@ -1,10 +1,10 @@
 ---
-title: "What history says happens next"
+title: "What the five closest El Niños did to the land"
 author: "Benny Istanto"
-date: "2026-09-06"
+date: "2026-09-09"
 series: "El Nino 2026"
 description: "The strongest matching seasons on record, composited. Rainfall at 61 per cent of normal across the Maritime Continent, five analogues out of five agreeing, and a correction that has to be applied before any of it can be read."
-image: "../assets/image-blog/20260906-what-history-says-01.png"
+image: "../assets/image-blog/20260909-what-history-says-01.png"
 categories:
   - "Climate"
   - "Data Science"
@@ -30,7 +30,7 @@ Everything below is a description of the past. Not one number here is a forecast
 
 ## The composites
 
-![](../assets/image-blog/20260906-what-history-says-01.png)
+![](../assets/image-blog/20260909-what-history-says-01.png)
 
 Left, what arrives: rainfall as a percentage of what that season normally delivers. Right, what leaves: evaporative demand. Brown is drier than usual, red is thirstier.
 
@@ -48,7 +48,7 @@ The pattern in the top row is the classic one, and the parts need names, because
 
 ## How much do the analogue seasons actually agree?
 
-![](../assets/image-blog/20260906-what-history-says-02.png)
+![](../assets/image-blog/20260909-what-history-says-02.png)
 
 A composite mean hides its own sample. An average of +1.0 from five seasons that all point the same way is a different statement from +1.0 produced by three strong seasons and two that went the other way, and the mean alone cannot tell them apart.
 
@@ -79,7 +79,7 @@ It put a spurious unanimous value on every ocean cell and inflated the global ag
 
 ## The correction that has to come first
 
-![](../assets/image-blog/20260906-what-history-says-04.png)
+![](../assets/image-blog/20260909-what-history-says-04.png)
 
 There is an arithmetic problem buried in any composite drawn from across a long record, and it nearly took this analysis with it.
 
@@ -97,7 +97,7 @@ And the direction of the bias runs in the reassuring direction. Because these an
 
 ## When it happens, not just whether
 
-![](../assets/image-blog/20260906-what-history-says-03.png)
+![](../assets/image-blog/20260909-what-history-says-03.png)
 
 Tracking the composite across the five target seasons gives something a single map cannot.
 
@@ -137,4 +137,4 @@ And five seasons remain five seasons however carefully they are averaged. The ag
 
 The next post stops describing the past. It evaluates the fitted relationship at the forecast value, which means extrapolating beyond every season used to fit it, then asks where that relationship predicts anything out of sample at all, and when in the horizon the effect arrives. That is a stronger claim and a more fragile one, and it comes with a map of exactly where the extrapolation is happening.
 
-*Next: [Where it bites, and when it arrives](20260908-where-it-bites-and-when.qmd).*
+*Next: [Where El Niño drought risk is real, and where it is not](20260910-where-it-bites-and-when.qmd).*

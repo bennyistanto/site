@@ -1,5 +1,5 @@
 ---
-title: "Forty-four events"
+title: "Forty-four ENSO events, and only eight that can answer anything"
 author: "Benny Istanto"
 date: "2026-08-19"
 series: "El Nino 2026"
@@ -112,4 +112,4 @@ The record cannot speak about central Pacific strong events at all, so nothing i
 
 And any claim about a strong El Niño rests on eight events. The last post comes back to this and puts a number on how much information eight events, and 912 months, actually carry. Less, in both cases, than the figure sounds.
 
-*Next: [Two ways to see a drought](20260822-two-ways-to-see-a-drought.qmd), on why one index is not enough and which two this series uses.*
+*Next: [Drought has two halves, and most maps measure one](20260822-two-ways-to-see-a-drought.qmd), on which two indices this series uses and which it deliberately leaves out.*

@@ -1,5 +1,5 @@
 ---
-title: "Where the two halves disagree"
+title: "Rain and thirst move together under El Niño, which is worse news"
 author: "Benny Istanto"
 date: "2026-08-28"
 series: "El Nino 2026"
@@ -126,6 +126,6 @@ One caveat on that comparison, since it would be easy to over-read: the period w
 
 ## Next: the present
 
-Everything so far has been the historical record. The next post stops looking backwards and asks where the world actually is, with the event already under way. It waits for August to close first, because the observations it needs do not exist until the month is over.
+Everything so far has been the historical record. The next post stops looking backwards and asks where the world actually is, with the event already under way. It waits for August to close first, and then a little longer: the observations it needs do not exist until the month is over, and the reanalysis they come from runs about eight days behind.
 
-*Next: [Where it is right now](20260904-where-it-is-right-now.qmd), once August has closed.*
+*Next: [Where the world is dry right now, in rainfall and in thirst](20260908-where-it-is-right-now.qmd), once August has closed.*

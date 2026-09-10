@@ -1,10 +1,10 @@
 ---
-title: "Into early 2027, and what forty-four events support"
+title: "Into early 2027, and how little forty-four events support"
 author: "Benny Istanto"
-date: "2026-09-10"
+date: "2026-09-11"
 series: "El Nino 2026"
 description: "The closing post. What the horizon looks like once the warming trend is taken out, how little independent information nine hundred months contains, and the three things this project got wrong and had to fix."
-image: "../assets/image-blog/20260910-into-early-2027-01.png"
+image: "../assets/image-blog/20260911-into-early-2027-01.png"
 categories:
   - "Climate"
   - "Data Science"
@@ -28,7 +28,7 @@ The rest of this post is why that last line is the one that matters.
 
 ## The tail of the horizon, and what the trend contributes
 
-![](../assets/image-blog/20260910-into-early-2027-01.png)
+![](../assets/image-blog/20260911-into-early-2027-01.png)
 
 The left panel is the horizon by region: who is affected, when, and for how long. The Maritime Continent is the outlier, with a third of its land elevated for four or more consecutive seasons and only 6.7 per cent escaping entirely. Southwest North America and the Sahel are essentially untouched by the *fitted relationship*, which is not the same as being untouched.
 
@@ -42,7 +42,7 @@ Every number quoted in the previous post is the detrended one, for this reason.
 
 ## What nine hundred months is worth
 
-![](../assets/image-blog/20260910-into-early-2027-02.png)
+![](../assets/image-blog/20260911-into-early-2027-02.png)
 
 The record contains **910 usable months** on both axes.
 
@@ -72,7 +72,7 @@ And the honest denominator is the last two rows. A claim of the form "this is wh
 
 ## Putting the sample to the test
 
-![](../assets/image-blog/20260910-into-early-2027-03.png)
+![](../assets/image-blog/20260911-into-early-2027-03.png)
 
 The way to find out what a sample supports is to hold part of it back. Every relationship in the forecast posts was refitted with one season removed, used to predict that season, and scored.
 

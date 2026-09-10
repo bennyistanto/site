@@ -33,46 +33,46 @@ The posts are interleaved with unrelated ones on the [main blog](blog.qmd), so t
 
 **Two halves of a balance.** What arrives, what leaves, how long each lasts, and how far forty-four events will stretch.
 
-**1. [A very strong El Niño is forecast](blog/20260814-a-very-strong-el-nino.qmd)**  
+**1. [A very strong El Niño is forecast, and nothing in the record matches it](blog/20260814-a-very-strong-el-nino.qmd)**  
 *14 August 2026*  
 In six months the Pacific swung from La Niña to El Niño conditions, and the official outlook has it climbing past anything in the record. For four consecutive seasons the central forecast sits above every value observed since 1950.
 
-**2. [Which El Niño are you measuring?](blog/20260816-which-el-nino-are-you-measuring.qmd)**  
+**2. [Which El Niño are you measuring? The index changed this year](blog/20260816-which-el-nino-are-you-measuring.qmd)**  
 *16 August 2026*  
 In February 2026 the Climate Prediction Center changed the index it uses to classify El Niño. The two indices disagree by 0.41 degrees right now, and the choice moves the map on 95 per cent of land.
 
-**3. [Forty-four events](blog/20260819-forty-four-events.qmd)**  
+**3. [Forty-four ENSO events, and only eight that can answer anything](blog/20260819-forty-four-events.qmd)**  
 *19 August 2026*  
 Seventy-six years of record contains forty-four ENSO events. Twenty-two are El Niño, eight of those are strong, and every single one of the eight is the same flavour. That is the whole evidence base.
 
-**4. [Two ways to see a drought, and what they are made of](blog/20260822-two-ways-to-see-a-drought.qmd)**  
+**4. [Drought has two halves, and most maps measure one](blog/20260822-two-ways-to-see-a-drought.qmd)**  
 *22 August 2026*  
 Drought is what arrives minus what leaves, and almost everything published measures only the first. This post builds the second, finds that a thirty-year baseline cannot express two of its own eleven categories, and then sets out what all of it is made of.
 
-**5. [Seventy-five years of dry spells](blog/20260825-seventy-five-years-of-dry-spells.qmd)**  
+**5. [El Niño starts dry spells, it does not make them longer](blog/20260825-seventy-five-years-of-dry-spells.qmd)**  
 *25 August 2026*  
 Run theory on both halves of the water balance at four accumulation lengths. Globally El Niño changes almost nothing. Over the Maritime Continent it changes the share of months that come in below the dry mark by nineteen points, and it does it by starting more spells rather than longer ones.
 
-**6. [Where the two halves disagree](blog/20260828-where-the-two-halves-disagree.qmd)**  
+**6. [Rain and thirst move together under El Niño, which is worse news](blog/20260828-where-the-two-halves-disagree.qmd)**  
 *28 August 2026*  
 The hypothesis this project was built to test was that El Nino makes some places wet and thirsty at once. On land where both responses are solid, that combination is 0.3 per cent. What is there instead is worse.
 
-**7. [Where it is right now](blog/20260904-where-it-is-right-now.qmd)**  
-*4 September 2026*  
+**7. [Where the world is dry right now, in rainfall and in thirst](blog/20260908-where-it-is-right-now.qmd)**  
+*8 September 2026*  
 Not a forecast and not a composite: the observed state of both halves of the water balance through August 2026. The Sahel is at SPI-3 of -2.39, half the Maritime Continent is already in a dry spell, and a quarter of the world's land is dry on one axis while looking ordinary on the other.
 
-**8. [What history says happens next](blog/20260906-what-history-says.qmd)**  
-*6 September 2026*  
+**8. [What the five closest El Niños did to the land](blog/20260909-what-history-says.qmd)**  
+*9 September 2026*  
 The strongest matching seasons on record, composited. Rainfall at 61 per cent of normal across the Maritime Continent, five analogues out of five agreeing, and a correction that has to be applied before any of it can be read.
 
-**9. [Where it bites, and when it arrives](blog/20260908-where-it-bites-and-when.qmd)**  
-*8 September 2026*  
+**9. [Where El Niño drought risk is real, and where it is not](blog/20260910-where-it-bites-and-when.qmd)**  
+*10 September 2026*  
 Evaluating the fitted relationship at a forecast beyond anything used to fit it. The chance of a record season runs four to five times higher than chance, about half of that is the warming trend, most of the world has no business being asked, and where the effect does arrive it arrives early and does not stay.
 
-**10. [Into early 2027, and what forty-four events support](blog/20260910-into-early-2027.qmd)**  
-*10 September 2026*  
+**10. [Into early 2027, and how little forty-four events support](blog/20260911-into-early-2027.qmd)**  
+*11 September 2026*  
 The closing post. What the horizon looks like once the warming trend is taken out, how little independent information nine hundred months contains, and the three things this project got wrong and had to fix.
 
 ---
 
-10 posts, 14 August 2026 to 10 September 2026.
+10 posts, 14 August 2026 to 11 September 2026.

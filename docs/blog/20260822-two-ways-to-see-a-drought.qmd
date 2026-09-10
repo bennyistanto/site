@@ -1,5 +1,5 @@
 ---
-title: "Two ways to see a drought, and what they are made of"
+title: "Drought has two halves, and most maps measure one"
 author: "Benny Istanto"
 date: "2026-08-22"
 series: "El Nino 2026"
@@ -84,7 +84,7 @@ NOAA's [EDDI classification](https://psl.noaa.gov/eddi/pdf/EDDI_UserGuide_v1.0.p
 
 That follows from the baseline this project chose and says nothing against NOAA's scheme. NOAA standardises EDDI against the whole period of record instead of a thirty-year normal. The [EDDI User Guide](https://psl.noaa.gov/eddi/pdf/EDDI_UserGuide_v1.0.pdf) (p.15) puts the climatology at "1980-present" and NOAA PSL's current page says 1979-present, so the window grows every year: by 2026 it is around forty-seven years, which reaches roughly the 98.6th percentile. It clears the 98th comfortably, so NOAA can report an exceptional drought. The WMO 1991-2020 window used here cannot, and that is the price of making this product line up with everything else in the series.
 
-This matters for what comes later. During a strong El Niño a non-trivial share of cells will sit exactly at the +2.03 bound, and a cell already at the bound cannot get worse in the index even when conditions do. Post 7 finds two of the five case cells pinned there in August 2026. A fit run against that flattened top end comes out shallower than the truth, because part of its evidence has nowhere left to move.
+This matters for what comes later. During a strong El Niño a non-trivial share of cells will sit exactly at the +2.03 bound, and a cell already at the bound cannot get worse in the index even when conditions do. When a later post turns to the observed present, that ceiling is the first thing it has to check. A fit run against that flattened top end comes out shallower than the truth, because part of its evidence has nowhere left to move.
 
 The fix is to rebuild on the full record, which lifts the ceiling to ±2.17. That has not been done for this series, and where saturation matters the text says so.
 
@@ -113,14 +113,14 @@ Everything above is computed from two land datasets. The rest of this post is th
 | TerraClimate `ppt`, `pet` | 1/24°, about 4.6 km | 1950-01 to 2025-12 |
 | EDDI, derived here | 1/24° and 0.25° | 1950-01 to 2025-12 |
 | SPI, scales 1, 3, 6, 12 | 1/24° | 1950-01 to 2025-12 |
-| **[AgERA5](https://cds.climate.copernicus.eu/datasets/sis-agrometeorological-indicators) reference ET** | **0.1°** | **1979-01 to 2026-08** |
-| **AgERA5 EDDI-3** | **0.1°** | **1979-01 to 2026-08** |
+| **[AgERA5](https://cds.climate.copernicus.eu/datasets/sis-agrometeorological-indicators) reference ET** | **0.1°** | **1979-01 to the last closed month** |
+| **AgERA5 EDDI-3** | **0.1°** | **1979-01 to the last closed month** |
 | RONI, ONI | Niño 3.4 | 1950-01 to 2026-06 |
 | CPC RONI outlook | 9 seasons | 2026-07 onward |
 
 Those spans are read out of the files. None is quoted from a plan.
 
-The two rows in bold are the reason this series can say anything about the present. **TerraClimate stops at December 2025**, eight months before the event began. **AgERA5 reaches August 2026**, with 2.33 million land cells in that month. One dataset is the history and the other is the news, and post 7 is written entirely from the second.
+The two rows in bold are the reason this series can say anything about the present. **TerraClimate stops at December 2025**, eight months before the event began. **AgERA5 runs to the last month that has closed**, over roughly 2.3 million land cells, and picks up the next one a few days after it ends. One dataset is the history and the other is the news, and the post on the observed present will be written entirely from the second.
 
 The land data carries `version V1.1`, `date_created 2026-06-02` and `source WorldClim v2.1, ERA5`, from the University of California Merced. Its own `references` attribute names Abatzoglou, Hegewisch, Yin and Kalashinkov (2026) for this version; the dataset was introduced in [Abatzoglou, Dobrowski, Parks and Hegewisch (2018)](https://www.nature.com/articles/sdata2017191).
 
@@ -199,4 +199,4 @@ The demand axis is climbing on **87 per cent of land**, so nothing later in this
 
 And the two demand products differ in level by 8 mm a month while agreeing on anomaly at r = 0.94, which is what allows the history and the news to be told with a single index.
 
-*Next: [Seventy-five years of dry spells](20260825-seventy-five-years-of-dry-spells.qmd), applying run theory to both indices at four accumulation lengths, to find out what El Niño actually changes.*
+*Next: [El Niño starts dry spells, it does not make them longer](20260825-seventy-five-years-of-dry-spells.qmd), applying run theory to both indices at four accumulation lengths, to find out what El Niño actually changes.*
