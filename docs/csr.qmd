@@ -42,8 +42,16 @@ Everything here is provided as a public service, with no warranty as to accuracy
 <a href="csr/terraclimate-spei.html" class="dataset-card">
   <img src="assets/image-csr/terraclimate-spei-00.png" class="dataset-thumbnail" alt="TerraClimate SPEI">
   <div class="dataset-content">
-    <div class="dataset-year">1960-2025</div>
+    <div class="dataset-year">1950-2025</div>
     <h3 class="dataset-title">TerraClimate SPEI</h3>
+  </div>
+</a>
+
+<a href="csr/terraclimate-spi.html" class="dataset-card">
+  <img src="assets/image-csr/terraclimate-spi-00.png" class="dataset-thumbnail" alt="TerraClimate SPI">
+  <div class="dataset-content">
+    <div class="dataset-year">1950-2025</div>
+    <h3 class="dataset-title">TerraClimate SPI</h3>
   </div>
 </a>
 
