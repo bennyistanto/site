@@ -75,6 +75,18 @@ def build(counts):
         "toc: true",
         "toc-title: Years",
         "css: styles/blog.css",
+        # NOTE: AdSense auto ads break this page. Because it is almost entirely
+        # large tables with no prose to sit between, auto ads injects
+        # <div class="google-auto-placed"> as a direct child of <tr>. A div is
+        # invalid inside a tr, so the browser wraps it in an anonymous cell and
+        # the row gains a column. Measured 12 Sep 2026: rows in three shapes,
+        # 57/378/116, 57/378/116/255 and 57/378/116/255/90.
+        #
+        # This cannot be fixed from the page. Quarto CONCATENATES
+        # include-in-header across project and document level rather than
+        # letting a document replace it: `null` fails schema validation and
+        # `[]` is merged away. The fix belongs in the AdSense console, or in
+        # how _quarto.yml scopes the include.
         "listing:",
     ]
     out.extend(listing(y) for y in order)
