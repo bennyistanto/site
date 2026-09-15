@@ -1,13 +1,13 @@
 ---
 title: "TerraClimate SPEI"
-subtitle: "Standardized Precipitation Evapotranspiration Index, 1958 to 2025"
+subtitle: "Standardized Precipitation Evapotranspiration Index, 1950 to 2025"
 page-layout: full
 toc: false
 image: "../assets/image-csr/terraclimate-spei-00.png"
 css: ../styles/project-detail.css
 ---
 
-The Standardized Precipitation Evapotranspiration Index over the global land surface, monthly, at about 4 km, from 1958 to 2025. SPEI subtracts potential evapotranspiration from precipitation before standardizing, so unlike SPI it answers to evaporative demand as well as to rainfall. That makes it the better choice where warming, not just drying, is the question. Twelve accumulation periods are published, from 1 to 72 months.
+The Standardized Precipitation Evapotranspiration Index over the global land surface, monthly, at about 4 km, from 1950 to 2025. SPEI subtracts potential evapotranspiration from precipitation before standardizing, so unlike SPI it answers to evaporative demand as well as to rainfall. That makes it the better choice where warming, not just drying, is the question. Twelve accumulation periods are published, from 1 to 72 months.
 
 ![Standardized Precipitation Evapotranspiration Index fitted with Pearson Type III, 12-month accumulation, December 2025](../assets/image-csr/terraclimate-spei-00.png)
 
@@ -53,7 +53,7 @@ Global, 90N to 90S and 180W to 180E
 Period
 :::
 ::: {.meta-value}
-1958 to 2025
+1950 to 2025
 :::
 :::
 
@@ -80,7 +80,9 @@ EPSG:4326
 
 SPEI is calculated with [precip-index](https://bennyistanto.github.io/precip-index/) from two TerraClimate v1.1 variables: precipitation (`ppt`) and potential evapotranspiration (`pet`). The distribution is fitted with Pearson Type III, against 1991 to 2020 as the baseline period.
 
-The record starts in 1958 because that is where TerraClimate's distributed record starts. Reaching further back means assembling a series from more than one source, and TerraClimate advises against mixing v1.0 with v1.1, so a single version is used throughout rather than splicing one into the other to gain years. That costs coverage and buys homogeneity, which is the right trade for an index whose purpose is comparing one period against another.
+The record starts in 1950 because that is where TerraClimate v1.1 starts. The original TerraClimate was built on the JRA-55 reanalysis and covered 1958 onward; v1.1 replaced that with monthly anomalies from ERA5 laid over WorldClim climatologies, and that is what carries it back to 1950. A single version is used throughout. TerraClimate advises against mixing v1.0 with v1.1, and a join between the two is exactly the kind of seam that later passes for a trend.
+
+Two things about the first year. TerraClimate cautions that 1950 may be affected by water balance model spin-up, but that concerns the model's storage outputs, such as soil moisture and runoff. Precipitation is an input, and potential evapotranspiration is computed from the climate variables rather than carried forward by the water balance. A trial evaporative-demand run bears this out: within its v1.1 years, 1950 sat inside the range of 1951 to 1957 on both mean and spread. Separately, an accumulation needs its full window before it can produce a value, so each timescale starts late by its own length, and the 12-month index has its first value in December 1950.
 
 ## Interpretation
 
@@ -114,7 +116,7 @@ SPEI is only as good as what goes into it, and both inputs come from TerraClimat
 
 ## Reading the time axis
 
-Every time step is stamped on the first of the month: `1958-01-01`, `1958-02-01`, and so on through `2025-12-01`.
+Every time step is stamped on the first of the month: `1950-01-01`, `1950-02-01`, and so on through `2025-12-01`.
 
 The day is there because a netCDF time coordinate has to be a complete date. It is not a claim about the first of the month. These are monthly values, each one covering its whole month, so `2025-12-01` means December 2025 and nothing narrower.
 
