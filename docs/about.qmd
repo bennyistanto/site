@@ -147,7 +147,7 @@ VAMPIRE (Vulnerability Analysis Monitoring Platform for the Impact of Regional E
 
 *It all begins with a question.*
 
-I'm moderately active on Telegram. You can discuss GIS and remote sensing, or post questions, in the [@gis_id](https://t.me/gis_id) channel, and I will do my best to answer. If you would like to get in touch, my email is below, and you can also reach me through WhatsApp or the message form on this page. Feel free to explore the site and say hello.
+I'm moderately active on Telegram. You can discuss GIS and remote sensing, or post questions, in the [\@gis_id](https://t.me/gis_id) channel, and I will do my best to answer. If you would like to get in touch, my email is below, and you can also reach me through WhatsApp or the message form on this page. Feel free to explore the site and say hello.
 :::
 
 ---
