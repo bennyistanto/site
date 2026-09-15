@@ -258,10 +258,47 @@ body.quarto-dark .student-note a {
   border-top: 1px solid var(--bs-border-color);
 }
 
+/* Fiverr banner: a lighter alternative to the CTA above, for smaller
+   fixed-scope work. Deliberately quieter than .cta-section so it reads as a
+   second option rather than a competing call to action. Neutral rgba border
+   and background rather than --bs-border-color, which stays light in the dark
+   theme and would draw a near-white outline. */
+.fiverr-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  border: 1px dashed rgba(128, 128, 128, 0.45);
+  border-radius: 0.5rem;
+  background: rgba(128, 128, 128, 0.05);
+}
+
+.fiverr-banner p {
+  margin: 0;
+}
+
+.fiverr-text {
+  flex: 1 1 320px;
+  line-height: 1.6;
+}
+
+.fiverr-banner .btn-secondary-custom {
+  white-space: nowrap;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .services-grid {
     grid-template-columns: 1fr;
+  }
+
+  .fiverr-banner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
   }
 
   .cta-buttons {
