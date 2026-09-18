@@ -117,9 +117,9 @@ Each accumulation period is a separate netCDF covering the full record.
 | 1 month | `wld_cli_chirps3_spi_gamma_1_month.nc` | In preparation |
 | 2 month | `wld_cli_chirps3_spi_gamma_2_month.nc` | In preparation |
 | 3 month | `wld_cli_chirps3_spi_gamma_3_month.nc` | In preparation |
-| 6 month | `wld_cli_chirps3_spi_gamma_6_month.nc` | In preparation |
+| 6 month | `wld_cli_chirps3_spi_gamma_6_month.nc` | [8.02 GB](https://drive.google.com/file/d/1gSWQuR1a7129kHH2ybtCchALWI4hQveK/view?usp=sharing) |
 | 9 month | `wld_cli_chirps3_spi_gamma_9_month.nc` | In preparation |
-| 12 month | `wld_cli_chirps3_spi_gamma_12_month.nc` | In preparation |
+| 12 month | `wld_cli_chirps3_spi_gamma_12_month.nc` | [7.93 GB](https://drive.google.com/file/d/163cMg7XAfP07-fTCedNzbyqU0jMcLs8l/view?usp=sharing) |
 | 18 month | `wld_cli_chirps3_spi_gamma_18_month.nc` | In preparation |
 | 24 month | `wld_cli_chirps3_spi_gamma_24_month.nc` | In preparation |
 | 36 month | `wld_cli_chirps3_spi_gamma_36_month.nc` | In preparation |
