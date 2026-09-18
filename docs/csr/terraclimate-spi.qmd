@@ -134,10 +134,10 @@ Each accumulation period is a separate netCDF covering the full record.
 |---|---|---|
 | 1 month | `wld_cli_terraclimate_spi_gamma_1_month.nc` | In preparation |
 | 2 month | `wld_cli_terraclimate_spi_gamma_2_month.nc` | In preparation |
-| 3 month | `wld_cli_terraclimate_spi_gamma_3_month.nc` | In preparation |
+| 3 month | `wld_cli_terraclimate_spi_gamma_3_month.nc` | [30.85 GB](https://drive.google.com/file/d/1HYUQakADhFQjQz_A4_1Ufv3ArAqoOswb/view?usp=sharing) |
 | 6 month | `wld_cli_terraclimate_spi_gamma_6_month.nc` | In preparation |
 | 9 month | `wld_cli_terraclimate_spi_gamma_9_month.nc` | In preparation |
-| 12 month | `wld_cli_terraclimate_spi_gamma_12_month.nc` | In preparation |
+| 12 month | `wld_cli_terraclimate_spi_gamma_12_month.nc` | [31.8 GB](https://drive.google.com/file/d/1-vDpaVPdvsURQqT6Em6TggbJneZgacG8/view?usp=sharing) |
 | 18 month | `wld_cli_terraclimate_spi_gamma_18_month.nc` | In preparation |
 | 24 month | `wld_cli_terraclimate_spi_gamma_24_month.nc` | In preparation |
 | 36 month | `wld_cli_terraclimate_spi_gamma_36_month.nc` | In preparation |
