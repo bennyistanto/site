@@ -135,9 +135,9 @@ Each accumulation period is a separate netCDF covering the full record.
 | 9 month | `wld_cli_terraclimate_spei_pearson3_9_month.nc` | In preparation |
 | 12 month | `wld_cli_terraclimate_spei_pearson3_12_month.nc` | In preparation |
 | 18 month | `wld_cli_terraclimate_spei_pearson3_18_month.nc` | In preparation |
-| 24 month | `wld_cli_terraclimate_spei_pearson3_24_month.nc` | In preparation |
+| 24 month | `wld_cli_terraclimate_spei_pearson3_24_month.nc` | [26.98 GB](https://drive.google.com/file/d/12NA-iyctgTsaGylziyCsFOtuOJwyWkOU/view?usp=drive_link) |
 | 36 month | `wld_cli_terraclimate_spei_pearson3_36_month.nc` | In preparation |
-| 48 month | `wld_cli_terraclimate_spei_pearson3_48_month.nc` | In preparation |
+| 48 month | `wld_cli_terraclimate_spei_pearson3_48_month.nc` | [25.69 GB](https://drive.google.com/file/d/1PvKnn1LQUNZDlFtQJ730mMngsJCKY_eh/view?usp=drive_link) |
 | 60 month | `wld_cli_terraclimate_spei_pearson3_60_month.nc` | In preparation |
 | 72 month | `wld_cli_terraclimate_spei_pearson3_72_month.nc` | In preparation |
 
