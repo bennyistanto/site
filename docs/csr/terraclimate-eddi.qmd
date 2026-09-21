@@ -187,7 +187,7 @@ Native resolution, about 4 km.
 | Timescale | File | Size |
 |---|---|---|
 | 1 month | `wld_cli_terraclimate_eddi_01month_1950_2025_base1991_2020.nc` | 7.23 GB |
-| 3 month | `wld_cli_terraclimate_eddi_03month_1950_2025_base1991_2020.nc` | 7.51 GB |
+| 3 month | `wld_cli_terraclimate_eddi_03month_1950_2025_base1991_2020.nc` | [7.51 GB](https://drive.google.com/file/d/14qjO2xiBmUbu5ub40SobefJDvUpJT4Ab/view?usp=sharing) |
 | 6 month | `wld_cli_terraclimate_eddi_06month_1950_2025_base1991_2020.nc` | 7.88 GB |
 | 12 month | `wld_cli_terraclimate_eddi_12month_1950_2025_base1991_2020.nc` | 7.05 GB |
 
@@ -217,7 +217,7 @@ Quarter degree.
 
 | Timescale | File | Size |
 |---|---|---|
-| 1 month | `wld_cli_terraclimate_eddi_01month_1950_2025_base1950_2025_025deg.nc` | 595.6 MB |
+| 1 month | `wld_cli_terraclimate_eddi_01month_1950_2025_base1950_2025_025deg.nc` | [595.6 MB](https://drive.google.com/file/d/1F_0sBUV4rWYLfH-ke1nMXEjDy0B8TUBn/view?usp=sharing) |
 | 3 month | `wld_cli_terraclimate_eddi_03month_1950_2025_base1950_2025_025deg.nc` | 653.1 MB |
 | 6 month | `wld_cli_terraclimate_eddi_06month_1950_2025_base1950_2025_025deg.nc` | 699.3 MB |
 | 12 month | `wld_cli_terraclimate_eddi_12month_1950_2025_base1950_2025_025deg.nc` | 629.9 MB |
