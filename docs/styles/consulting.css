@@ -289,10 +289,77 @@ body.quarto-dark .student-note a {
   white-space: nowrap;
 }
 
+/* Legal entity details. Deliberately the quietest block on the page: this is
+   reference material for procurement, contracting and due diligence, not a
+   selling point, so it reads as fine print rather than competing with the
+   calls to action above it. Neutral rgba for the rule rather than
+   --bs-border-color, which stays light in the dark theme and would draw a
+   near-white line across a dark page. */
+.legal-note {
+  margin: 2.5rem 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(128, 128, 128, 0.25);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.legal-note h4 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bs-secondary);
+  margin-bottom: 0.75rem;
+}
+
+/* Lead paragraph only. The child combinator keeps this off the paragraphs
+   Pandoc puts inside a loose definition. */
+.legal-note > p {
+  margin: 0 0 1rem;
+  opacity: 0.85;
+}
+
+/* Label and value pairs, in the shape an Impressum or a UK trading-disclosure
+   block uses: scans faster than prose when someone is looking for one number.
+   A definition list rather than a table, so the label stays tied to its value
+   for screen readers and the whole thing can stack on a narrow screen. */
+.legal-note dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.35rem 1.5rem;
+  margin: 0;
+}
+
+.legal-note dt {
+  font-weight: 600;
+  color: var(--bs-secondary);
+}
+
+.legal-note dd {
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* Pandoc wraps a loose definition in its own paragraph. */
+.legal-note dd p {
+  margin: 0;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .services-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Stack label above value: "Registered name" plus a 38-character company
+     name will not share a line on a phone. */
+  .legal-note dl {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .legal-note dd {
+    margin-bottom: 0.6rem;
   }
 
   .fiverr-banner {
