@@ -176,6 +176,28 @@ Schedule a consultation or reach out to discuss your project needs.
 If you are a student seeking advice for climate and geospatial problems, please save your budget. Post your questions at the [\@gis_id](https://t.me/gis_id){target="_blank"} Telegram group, and I will be happy to answer them there for free.
 :::
 
+::: {.legal-note}
+#### Badan hukum / Legal entity
+
+Consulting work is contracted through a registered Indonesian company rather than in a personal capacity. A *perseroan perorangan* is a *badan hukum*: a legal entity in its own right, with assets and obligations separate from its owner's.
+
+Registered name
+:   PT BENNY ISTANTO GEOSPATIAL CONSULTING
+
+Legal form
+:   Perseroan perorangan / single-shareholder limited company
+
+NIB
+:   2710260112177
+
+Incorporation
+:   Kepmenkum RI No. AHU-A133230.AH.01.30.Tahun 2026
+
+Contact
+:   [benny@istan.to](mailto:benny@istan.to)
+
+:::
+
 ::: {.back-link}
 [← Back to Works](../works.qmd)
 :::
