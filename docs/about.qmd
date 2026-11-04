@@ -16,7 +16,7 @@ My interests began to expand while I was still a student. I grew to love [GIS](h
 
 Through my work, I have had the chance to travel, live in interesting places, learn from different cultures, and enjoy lots of delicious, and sometimes unusual, food. I love what I do and I am eager to keep following this path. People say that the more involved we become, the more interesting the journey gets. The more I learn, the more I realize how much I still do not know.
 
-From June 2012 to August 2021, I was an Earth Observation and Climate Analyst at the United Nations [World Food Programme](https://www.wfp.org/countries/indonesia) in Indonesia, where I served as a geospatial and climate technologist for the Indonesia Country Office and the Regional Bureau in Bangkok (RBB) for Asia and the Pacific, covering 17 country offices and 5 oversight countries. During my time with WFP, two colleagues and I began working on an [award-winning](https://medium.com/world-food-programme-insight/wfp-staff-show-entrepreneurial-side-in-annual-competition-be03924215) technology innovation project called [VAMPIRE](works/projects/2016-vampire.qmd) (Vulnerability Analysis and Monitoring Platform for the Impact of Regional Events) in 2015, which is now being rebranded as [PRISM](https://innovation.wfp.org/project/prism). In my final four years at WFP, I focused on transforming satellite-based data products into actionable, life-saving insights for hydro-meteorological hazard early warning and early action.
+From June 2012 to August 2021, I was an Earth Observation and Climate Analyst at the United Nations [World Food Programme](https://www.wfp.org/countries/indonesia) in Indonesia, where I served as a geospatial and climate technologist for the Indonesia Country Office and the Regional Bureau in Bangkok (RBB) for Asia and the Pacific, covering 22 country offices. During my time with WFP, two colleagues and I began working on an [award-winning](https://medium.com/world-food-programme-insight/wfp-staff-show-entrepreneurial-side-in-annual-competition-be03924215) technology innovation project called [VAMPIRE](works/projects/2016-vampire.qmd) (Vulnerability Analysis and Monitoring Platform for the Impact of Regional Events) in 2015, which is now being rebranded as [PRISM](https://innovation.wfp.org/project/prism). In my final four years at WFP, I focused on transforming satellite-based data products into actionable, life-saving insights for hydro-meteorological hazard early warning and early action.
 
 Currently, I work as a [Climate Geographer](https://worldbank.github.io/GOST/content/staff/bennyistanto.html) at Geospatial Operations Support Team ([GOST](https://www.worldbank.org/en/research/brief/geospatial-operations-support-team-at-the-world-bank)) of Development Economic Data Group (DECDG), and as a [Data Scientist](https://riskdatalibrary.org/team/) with the Global Facility for Disaster Reduction and Recovery ([GFDRR](https://www.gfdrr.org/)) on the [Risk Data Library](https://riskdatalibrary.org/) project, both at [The World Bank](https://www.worldbank.org/), Washington DC.
 
@@ -39,14 +39,9 @@ I run a "casual weekend project" called [Climate Social Responsibility (CSR)](cs
 
 *Sarjana Sains* (S.Si. - equal to Bachelor of Science B.Sc.) in Meteorology with a focus on agriculture meteorology and climatology, computation and agriculture simulation model, satellite meteorology, with minor in geographic information system and remote sensing.
 
-**Supervisors**:
+**Supervisors**: 1. [Idung Risdiyanto](https://scholar.google.co.id/citations?hl=id&user=WBIaIyYAAAAJ) (Bogor Agricultural University), 2. [M. Rokhis Khomarudin](https://scholar.google.com/citations?hl=en&user=RA5YWWQAAAAJ) (Indonesian National Institute of Aeronautics and Spaces)
 
-- [Idung Risdiyanto](https://scholar.google.co.id/citations?hl=id&user=WBIaIyYAAAAJ) (Bogor Agricultural University)
-- [M. Rokhis Khomarudin](https://scholar.google.com/citations?hl=en&user=RA5YWWQAAAAJ) (Indonesian National Institute of Aeronautics and Spaces)
-
-**Bachelor thesis**:
-
-Software development to determine the Canadian Forest Fire Weather Index System using remote sensing satellite. (in Bahasa Indonesia). Source: [IPB Scientific Repository](https://repository.ipb.ac.id/handle/123456789/47915)
+**Bachelor thesis**: Software development to determine the Canadian Forest Fire Weather Index System using remote sensing satellite. (in Bahasa Indonesia). Source: [IPB Scientific Repository](https://repository.ipb.ac.id/handle/123456789/47915)
 
 ---
 
@@ -54,14 +49,9 @@ Software development to determine the Canadian Forest Fire Weather Index System 
 
 *Magister Sains* (M.Si. - equal to Master of Science M.Sc.) in Applied Climatology with a focus on satellite-derived climate data, statistical and deep learning bias correction models, gauge-satellite integration, and open-science methodologies.
 
-**Supervisors**:
+**Supervisors**: 1. [Rizaldi Boer](https://scholar.google.com/citations?user=jTPXEp8AAAAJ&hl=en) (Bogor Agricultural University), 2. [I Putu Santikayasa](https://scholar.google.com/citations?user=DcQ58z8AAAAJ&hl=en) (Bogor Agricultural University)
 
-- [Rizaldi Boer](https://scholar.google.com/citations?user=jTPXEp8AAAAJ&hl=en) (Bogor Agricultural University)
-- [I Putu Santikayasa](https://scholar.google.com/citations?user=DcQ58z8AAAAJ&hl=en) (Bogor Agricultural University)
-
-**Master's thesis**:
-
-A Hybrid Bias Correction Framework for Daily Satellite Precipitation. Source: [IPB Scientific Repository](https://repository.ipb.ac.id/handle/123456789/177877) or [Zenodo](https://doi.org/10.5281/zenodo.21996372)
+**Master's thesis**: A Hybrid Bias Correction Framework for Daily Satellite Precipitation. Source: [IPB Scientific Repository](https://repository.ipb.ac.id/handle/123456789/177877) or [Zenodo](https://doi.org/10.5281/zenodo.21996372)
 :::
 
 ::: {.g-col-12 .g-col-md-6}
@@ -69,10 +59,7 @@ A Hybrid Bias Correction Framework for Daily Satellite Precipitation. Source: [I
 
 **[Harvard University on edX, T.H. Chan School of Public Health](https://pll.harvard.edu/series/professional-certificate-data-science), United States** (01/2022 - 10/2024)
 
-*Data Science Professional*
-
-- **Credential**: [View certificate](https://credentials.edx.org/credentials/5dc2c828afb74fdbb8f9bfe1cdbb554b/)
-- **Capstone Projects**: [HarvardX PH125.9x Data Science Capstone](https://github.com/bennyistanto/HarvardX-PH125.9x-Data-Science-Capstone)
+*Data Science Professional*. Credential: [View certificate](https://credentials.edx.org/credentials/5dc2c828afb74fdbb8f9bfe1cdbb554b/)
 
 ---
 
@@ -129,13 +116,13 @@ VAMPIRE (Vulnerability Analysis Monitoring Platform for the Impact of Regional E
 ::: {.g-col-12 .g-col-md-6}
 ### Tools.
 
-- *Remote Sensing & GIS*: ArcGIS Suite (Pro, Server, Image Server, Online), QGIS, GDAL/OGR, SAGA, Whitebox, ERMapper, ILWIS
-- *Programming & Scripting*: Python, Bash, Google Earth Engine (GEE), ArcPy
-- *Development Tools & Version Control*: Git, Visual Studio Code, Sublime Text, Jupyter/ESRI Notebooks
+- *Remote Sensing & GIS*: ArcGIS Suite (Pro, Server, Image Server, Online), FOSS4G
+- *Scientific Programming*: Python and packages, Bash, Google Earth Engine (GEE), ArcPy, CDO, NCO
+- *Development Tools & Version Control*: Git, Visual Studio Code, Jupyter/ESRI Notebooks
 - *Documentation & Publishing*: LaTeX, Quarto, Markdown, Material for MkDocs, Jupyter Book
 - *Geospatial Data Catalogs*: CKAN, GeoNode, Portal for ArcGIS
-- *Agriculture & Climate Modeling*: DSSAT, TIMESAT
-- *Cartography & Digital Imaging*: Avenza, Adobe Illustrator/Photoshop, CorelDRAW, Inkscape, GIMP
+- *Agriculture & Climate Modeling*: DSSAT, TIMESAT, CPT, WRF
+- *Cartography & Digital Imaging*: Avenza, Illustrator/Photoshop, CorelDRAW, Inkscape, GIMP
 :::
 
 :::
