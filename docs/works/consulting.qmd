@@ -11,7 +11,7 @@ I provide specialized consultancy bridging **climate science** and **geospatial 
 :::
 
 ::: {.logo-section}
-![](../assets/image-logo/bigc-logo-full.png)
+[![](../assets/image-logo/bigc-logo-full.png)](https://bigc.science){target="_blank"}
 :::
 
 ::: {.services-grid}
@@ -192,6 +192,9 @@ NIB
 
 Incorporation
 :   Kepmenkum RI No. AHU-A133230.AH.01.30.Tahun 2026
+
+Website
+:   [bigc.science](https://bigc.science){target="_blank"}
 
 Contact
 :   [benny@istan.to](mailto:benny@istan.to)
