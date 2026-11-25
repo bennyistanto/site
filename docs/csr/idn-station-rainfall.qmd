@@ -100,7 +100,7 @@ Dates are checked against IMERG Final (2001 onward) and CPC Unified (1979 onward
 
 ## Coverage
 
-The record is long but uneven. One site reports in 1870, about 10 in 1900 and about 50 by 1950, almost all from the Dutch-era stations that SACA&D carries. The network peaks in the late 1980s and 1990s at close to 500 sites a year, thins after 2000 as several archives end, and grows again from 2016 with the Ministry of Public Works' rain posts.
+The record is long but uneven. One site reports in 1870, 6 in 1880, 20 in 1900 and about 50 by 1940. Before 1950 the values come from Dutch-era records in two collections: SACA&D, and the daily sheets of the colonial meteorological service (KNMI) for 14 stations in Java and Sumatra between 1879 and 1916. The network peaks in the late 1980s and 1990s at close to 500 sites a year, thins after 2000 as several archives end, and grows again from 2016 with the Ministry of Public Works' rain posts.
 
 ![One row per site, one column per year. Darker means more days with a value in that year.](../assets/image-csr/idn-station-rainfall-02.png)
 
