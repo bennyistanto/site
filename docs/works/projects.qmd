@@ -145,6 +145,46 @@ Featured projects demonstrating expertise in earth observation, climate analysis
     <h3 class="project-title">Hybrid Bias Correction for daily satellite precipitation</h3>
   </div>
 </a>
+
+<a href="projects/2026-pycpt-tutorial.html" class="project-card">
+  <img src="../assets/image-projects/2026-pycpt-tutorial-00.png" class="project-thumbnail" alt="PyCPT Tutorial">
+  <div class="project-content">
+    <div class="project-year">2026</div>
+    <h3 class="project-title">PyCPT Tutorial: rainfall forecasts, put to the test</h3>
+  </div>
+</a>
+
+<a href="projects/2026-xdssat.html" class="project-card">
+  <img src="../assets/image-projects/2026-xdssat-00.png" class="project-thumbnail" alt="xdssat">
+  <div class="project-content">
+    <div class="project-year">2026</div>
+    <h3 class="project-title">xdssat: the DSSAT crop model on a grid</h3>
+  </div>
+</a>
+
+<a href="projects/2026-drywet-explorer.html" class="project-card">
+  <img src="../assets/image-projects/2026-drywet-explorer-00.png" class="project-thumbnail" alt="drywet-explorer">
+  <div class="project-content">
+    <div class="project-year">2026</div>
+    <h3 class="project-title">drywet-explorer: dry and wet conditions in Indonesia</h3>
+  </div>
+</a>
+
+<a href="projects/2026-heat-explorer.html" class="project-card">
+  <img src="../assets/image-projects/2026-heat-explorer-00.png" class="project-thumbnail" alt="Heat Explorer">
+  <div class="project-content">
+    <div class="project-year">2026</div>
+    <h3 class="project-title">Heat Explorer: heat spells over the world's land</h3>
+  </div>
+</a>
+
+<a href="projects/2026-nightlights-explorer.html" class="project-card">
+  <img src="../assets/image-projects/2026-nightlights-explorer-00.png" class="project-thumbnail" alt="Nightlights Explorer">
+  <div class="project-content">
+    <div class="project-year">2026</div>
+    <h3 class="project-title">Nightlights Explorer: Indonesia after dark</h3>
+  </div>
+</a>
 </div>
 ```
 
