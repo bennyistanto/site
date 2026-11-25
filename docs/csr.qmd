@@ -72,8 +72,9 @@ Everything here is provided as a public service, with no warranty as to accuracy
 </a>
 
 <a href="csr/idn-station-rainfall.html" class="dataset-card">
+  <img src="assets/image-csr/idn-station-rainfall-00.png" class="dataset-thumbnail" alt="Indonesia Station Rainfall">
   <div class="dataset-content">
-    <div class="dataset-year">Daily, from 1950</div>
+    <div class="dataset-year">1866-2025</div>
     <h3 class="dataset-title">Indonesia Station Rainfall</h3>
   </div>
 </a>

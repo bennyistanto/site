@@ -3,6 +3,7 @@ title: "Indonesia Station Rainfall"
 subtitle: "Daily rain-gauge observations, compiled from many archives"
 page-layout: full
 toc: false
+image: "../assets/image-csr/idn-station-rainfall-00.png"
 css: ../styles/project-detail.css
 ---
 
@@ -11,6 +12,8 @@ css: ../styles/project-detail.css
 Daily rainfall observed at rain gauges and climate stations across Indonesia, gathered from national workbooks, provincial rain-post forms, river-basin archives, and regional and global collections into one consistent dataset. Nothing is interpolated: every value is an observation at a site. It is not a gridded product (that is on the list), and it is not homogenised.
 
 The observations themselves are official records: BMKG station data, much of it downloaded from [BMKG Data Online](https://dataonline.bmkg.go.id/), and the Ministry of Public Works' rain posts, which the Ministry publishes openly on its [water resources data portal](https://pdsda.sda.pu.go.id/). What is not official is the compilation: how the archives are combined, checked and flagged here is my own work, not a product of BMKG, the Ministry or any other provider, and it does not replace their data.
+
+![Rain-gauge sites in the release, coloured by provider group. A site joins every archive that holds the same gauge; PU posts never share a site with a BMKG station.](../assets/image-csr/idn-station-rainfall-01.png)
 
 ::: {.project-meta}
 ::: {.meta-item}
@@ -45,7 +48,7 @@ Daily
 Period
 :::
 ::: {.meta-value}
-From 1950
+1866 to 2025
 :::
 :::
 
@@ -94,6 +97,14 @@ This dataset brings them together **as observed**:
 Each value comes from one source series. Where several sources cover the same site and day, the highest-priority source supplies the value, and the others only fill days it does not have, after passing an overlap test against it.
 
 Dates are checked against IMERG Final (2001 onward) and CPC Unified (1979 onward). Before 1979 there is no gridded reference, so dates are as delivered and marked `unverified`.
+
+## Coverage
+
+The record is long but uneven. One site reports in 1870, about 10 in 1900 and about 50 by 1950, almost all from the Dutch-era stations that SACA&D carries. The network peaks in the late 1980s and 1990s at close to 500 sites a year, thins after 2000 as several archives end, and grows again from 2016 with the Ministry of Public Works' rain posts.
+
+![One row per site, one column per year. Darker means more days with a value in that year.](../assets/image-csr/idn-station-rainfall-02.png)
+
+![Sites with at least one value in each year, by provider group. The BMKG line drops after 2021, where the BMKG daily workbooks in this release end; 2023 is thin because the Ministry's portal holds little for that year.](../assets/image-csr/idn-station-rainfall-03.png)
 
 ## What is in the files
 
