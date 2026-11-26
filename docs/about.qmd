@@ -155,7 +155,8 @@ Currently living in Bogor, Indonesia
 
 - [<i class="bi bi-github"></i> GitHub](https://github.com/bennyistanto)
 - [<i class="bi bi-linkedin"></i> LinkedIn](https://linkedin.com/in/bennyistanto)
-- [<i class="bi bi-globe"></i> Website](https://benny.istan.to)
+- [<i class="bi bi-globe"></i> Personal Website](https://benny.istan.to)
+- [<i class="bi bi-globe"></i> BIGC Website](https://bigc.science)
 
 :::
 
