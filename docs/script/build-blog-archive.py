@@ -70,7 +70,7 @@ def build(counts):
     out = [
         "---",
         'title: "Blog Archive"',
-        'subtitle: "Every post, oldest to newest, grouped by year"',
+        'subtitle: "Every post, newest first, grouped by year"',
         "page-layout: full",
         "toc: true",
         "toc-title: Years",

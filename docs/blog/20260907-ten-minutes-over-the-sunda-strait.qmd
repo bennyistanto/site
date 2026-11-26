@@ -103,7 +103,7 @@ So the natural thing to animate is not true colour. It is the ash product, which
   <source src="../assets/image-blog/20260907-ten-minutes-over-the-sunda-strait-06.mp4" type="video/mp4">
 </video>
 
-*Three days of the Ash RGB at ten minute steps, 4 to 6 September. 433 frames at six per second, so one second of video is one hour of real time. [Full quality version on Google Drive](https://drive.google.com/file/d/1HVk19uSq-JO5WenUxPbAf0nJneVMcV1s/view?usp=sharing).*
+*Three days of the Ash RGB at ten minute steps, 4 to 6 September. 433 real frames, one second of video to one hour of real time. The frames in between are interpolated along the motion to smooth the playback. [Full quality version on Google Drive](https://drive.google.com/file/d/1HVk19uSq-JO5WenUxPbAf0nJneVMcV1s/view?usp=sharing).*
 
 Or, if you want the intuitive daytime view *and* continuity, you can have both. A day/night compositor mixes on solar zenith angle, fully true colour below 85 degrees, fully infrared above 88, linearly across twilight:
 
@@ -112,7 +112,7 @@ Or, if you want the intuitive daytime view *and* continuity, you can have both. 
   <source src="../assets/image-blog/20260907-ten-minutes-over-the-sunda-strait-10.mp4" type="video/mp4">
 </video>
 
-*The same three days, true colour by day dissolving into the Ash RGB at night. Same rate: one second is one hour. [Full quality version on Google Drive](https://drive.google.com/file/d/1OTL8hyyPKf4CEqIHjO8Uk7yLqWjskbWD/view?usp=sharing).*
+*The same three days, true colour by day dissolving into the Ash RGB at night. Same rate: one second is one hour, and the same interpolated frames between the real ones. [Full quality version on Google Drive](https://drive.google.com/file/d/1OTL8hyyPKf4CEqIHjO8Uk7yLqWjskbWD/view?usp=sharing).*
 
 Sunrise and sunset become a dissolve rather than a cut to black.
 

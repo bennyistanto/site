@@ -1,6 +1,6 @@
 ---
 title: "Blog Archive"
-subtitle: "Every post, oldest to newest, grouped by year"
+subtitle: "Every post, newest first, grouped by year"
 page-layout: full
 toc: true
 toc-title: Years
@@ -325,7 +325,7 @@ The [main blog page](blog.qmd) has category filters and search.
 
 ## 2026 {#year-2026}
 
-26 posts
+27 posts
 
 :::{#y2026}
 :::
